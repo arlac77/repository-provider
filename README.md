@@ -5,6 +5,7 @@ abstract interface to git repository providers like github bitbucket
 
 Example
 ====
+<!-- skip-example -->
 ```js
 import { GithubProvider } from 'repository-provider';
 
