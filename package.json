@@ -1,16 +1,18 @@
 {
   "name": "repository-provider",
   "version": "0.0.0-semantic-release",
-  "description": "abstract interface to git repository providers like github bitbucket",
-  "main": "dist/repository-provider.js",
-  "module": "src/repository-provider.js",
+  "description":
+    "abstract interface to git repository providers like github bitbucket",
+  "main": "dist/module.js",
+  "module": "src/module.js",
   "scripts": {
     "cover": "nyc --temp-directory build/nyc ava",
     "test": "ava",
     "pretest": "rollup -c tests/rollup.config.js",
     "precover": "rollup -c tests/rollup.config.js",
     "posttest": "npm run prepare && markdown-doctest",
-    "docs": "jsdoc2md --configure doc/jsdoc.json -l off -t doc/README.hbs -f src/*.js >README.md",
+    "docs":
+      "jsdoc2md --configure doc/jsdoc.json -l off -t doc/README.hbs -f src/*.js >README.md",
     "semantic-release": "semantic-release",
     "prepare": "rollup -c"
   },
@@ -22,6 +24,7 @@
     "node": ">=8.9.1"
   },
   "dependencies": {
+    "execa": "^0.8.0",
     "github-basic": "^6.0.0",
     "tempy": "^0.2.1"
   },
@@ -39,11 +42,7 @@
     "xo": "^0.19.0"
   },
   "release": {},
-  "keywords": [
-    "git",
-    "github",
-    "bitbucket"
-  ],
+  "keywords": ["git", "github", "bitbucket"],
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/arlac77/repository-provider/issues"
@@ -56,21 +55,12 @@
     }
   ],
   "ava": {
-    "files": [
-      "build/*-test.js"
-    ],
-    "require": [
-      "babel-register"
-    ]
+    "files": ["build/*-test.js"],
+    "require": ["babel-register"]
   },
   "nyc": {
-    "include": [
-      "build/*-test.js",
-      "src/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
+    "include": ["build/*-test.js", "src/**/*.js"],
+    "reporter": ["lcov"],
     "report-dir": "./build/coverage"
   },
   "template": {
