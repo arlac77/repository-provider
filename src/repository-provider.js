@@ -103,7 +103,7 @@ export class Branch {
   }
 
   delete() {
-    return this.repository.deleteBarnch(this.name);
+    return this.repository.deleteBranch(this.name);
   }
 
   async content(path) {
