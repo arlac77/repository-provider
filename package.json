@@ -1,7 +1,8 @@
 {
   "name": "repository-provider",
   "version": "0.0.0-semantic-release",
-  "description": "abstract interface to git repository providers like github bitbucket",
+  "description":
+    "abstract interface to git repository providers like github bitbucket",
   "main": "dist/module.js",
   "module": "src/module.js",
   "scripts": {
@@ -10,7 +11,8 @@
     "pretest": "rollup -c tests/rollup.config.js",
     "precover": "rollup -c tests/rollup.config.js",
     "posttest": "npm run prepare && markdown-doctest",
-    "docs": "jsdoc2md --configure doc/jsdoc.json -l off -t doc/README.hbs -f src/*.js >README.md",
+    "docs":
+      "jsdoc2md --configure doc/jsdoc.json -l off -t doc/README.hbs -f src/*.js >README.md",
     "semantic-release": "semantic-release",
     "prepare": "rollup -c"
   },
@@ -25,12 +27,12 @@
     "execa": "^0.8.0",
     "github-basic": "^6.0.0",
     "make-dir": "^1.1.0",
-    "tempy": "^0.2.1"
+    "tempy": "^0.2.1",
+    "bitbucket-server-nodejs": "^2.11.4"
   },
   "devDependencies": {
     "ava": "^0.23.0",
     "babel-preset-env": "^1.6.1",
-    "bitbucket-server-nodejs": "^2.11.4",
     "jsdoc-babel": "^0.3.0",
     "jsdoc-to-markdown": "^3.0.2",
     "markdown-doctest": "^0.9.1",
@@ -41,11 +43,7 @@
     "xo": "^0.19.0"
   },
   "release": {},
-  "keywords": [
-    "git",
-    "github",
-    "bitbucket"
-  ],
+  "keywords": ["git", "github", "bitbucket"],
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/arlac77/repository-provider/issues"
@@ -58,21 +56,12 @@
     }
   ],
   "ava": {
-    "files": [
-      "build/*-test.js"
-    ],
-    "require": [
-      "babel-register"
-    ]
+    "files": ["build/*-test.js"],
+    "require": ["babel-register"]
   },
   "nyc": {
-    "include": [
-      "build/*-test.js",
-      "src/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
+    "include": ["build/*-test.js", "src/**/*.js"],
+    "reporter": ["lcov"],
     "report-dir": "./build/coverage"
   },
   "template": {
