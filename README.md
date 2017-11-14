@@ -1,6 +1,8 @@
 
 repository-provider
 =====
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/arlac77/repository-provider.svg)](https://greenkeeper.io/)
 abstract interface to git repository providers like github bitbucket
 
 Example
