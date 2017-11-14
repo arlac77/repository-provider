@@ -58,9 +58,9 @@ export class GithubRepository extends Repository {
 
   async createBranch(name, from) {
     const res = await this.client.get(
-      `/repos/${this.name}/git/refs/heads/${from === undefined
-        ? 'master'
-        : from.name}`
+      `/repos/${this.name}/git/refs/heads/${
+        from === undefined ? 'master' : from.name
+      }`
     );
 
     const nb = await this.client.post(`/repos/${this.name}/git/refs`, {
@@ -197,24 +197,28 @@ export class GithubBranch extends Branch {
   }
 
   async tree(sha, prefix = '') {
-    const res = await this.client.get(
-      `/repos/${this.repository.name}/git/trees/${sha}`
-    );
-    const files = res.tree;
+    const list = [];
 
-    const dirs = await Promise.all(
-      files
-        .filter(f => f.type === 'tree')
-        .map(dir => this.tree(dir.sha, prefix + dir.path + '/'))
-    );
+    const t = async (sha, prefix = '') => {
+      const res = await this.client.get(
+        `/repos/${this.repository.name}/git/trees/${sha}`
+      );
+      const files = res.tree;
 
-    return [
-      ...files.map(f => {
-        f.path = prefix + f.path;
-        return f;
-      }),
-      ...dirs.map(d => d[0])
-    ];
+      files.forEach(f => (f.path = prefix + f.path));
+
+      list.push(...files);
+
+      await Promise.all(
+        files
+          .filter(f => f.type === 'tree')
+          .map(dir => t(dir.sha, prefix + dir.path + '/'))
+      );
+    };
+
+    await t(sha, prefix);
+
+    return list;
   }
 
   async list() {

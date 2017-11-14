@@ -83,6 +83,20 @@ test('list files', async t => {
   t.is(files[2].path, 'tests/rollup.config.js');
 });
 
+test('list files2', async t => {
+  const provider = new GithubProvider(config);
+  const repository = await provider.repository(
+    'arlac77/repository-provider' /*REPOSITORY_NAME*/
+  );
+  const branch = await repository.branch('master');
+
+  const files = await branch.list();
+
+  const allFiles = new Set(files.map(f => f.path));
+
+  t.truthy(allFiles.has('doc/jsdoc.json'));
+});
+
 test('content', async t => {
   const provider = new GithubProvider(config);
   const repository = await provider.repository(REPOSITORY_NAME);
