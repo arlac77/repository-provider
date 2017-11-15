@@ -31,7 +31,22 @@ test('local provider create branch', async t => {
   t.is(branches.get(newName), undefined);
 });
 
-test.skip('local provider list files', async t => {
+test('local get file', async t => {
+  const provider = new LocalProvider({ workspace: tempy.directory() });
+  const repository = await provider.repository(REPOSITORY_NAME);
+  const branch = await repository.branch('master');
+
+  const file = await branch.content('README.md');
+
+  t.is(
+    file,
+    `xxx
+
+`
+  );
+});
+
+test('local provider list files', async t => {
   const provider = new LocalProvider({ workspace: tempy.directory() });
   const repository = await provider.repository(REPOSITORY_NAME);
   const branch = await repository.branch('master');
@@ -39,4 +54,5 @@ test.skip('local provider list files', async t => {
   const files = await branch.list();
 
   t.is(files[0].path, 'README.md');
+  t.is(files[0].type, 'blob');
 });

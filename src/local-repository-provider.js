@@ -4,8 +4,11 @@ const makeDir = require('make-dir');
 const execa = require('execa');
 const { promisify } = require('util');
 const fs = require('fs');
+const path = require('path');
+const globby = require('globby');
 
 const stat = promisify(fs.stat);
+const readFile = promisify(fs.readFile);
 
 export class LocalProvider extends Provider {
   static get repositoryClass() {
@@ -71,4 +74,27 @@ export class LocalRepository extends Repository {
   }
 }
 
-export class LocalBranch extends Branch {}
+export class LocalBranch extends Branch {
+  get workspace() {
+    return this.repository.workspace;
+  }
+
+  async content(fileName, options = {}) {
+    try {
+      return readFile(path.join(this.workspace, fileName), {
+        encoding: 'utf8'
+      });
+    } catch (e) {
+      if (options.ignoreMissing) {
+        return '';
+      }
+      throw e;
+    }
+  }
+
+  async list() {
+    return (await globby(['**/*'], { cwd: this.workspace })).map(f => {
+      return { path: f, type: 'blob' };
+    });
+  }
+}
