@@ -193,6 +193,7 @@ export class GithubBranch extends Branch {
       if (options.ignoreMissing) {
         return '';
       }
+      throw e;
     }
   }
 
