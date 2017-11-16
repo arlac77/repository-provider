@@ -25,7 +25,7 @@
     "bitbucket-server-nodejs": "^2.11.4",
     "execa": "^0.8.0",
     "github-basic": "^6.0.0",
-    "globby": "^6.1.0",
+    "globby": "^7.0.0",
     "make-dir": "^1.1.0",
     "tempy": "^0.2.1"
   },
