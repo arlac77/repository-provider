@@ -21,14 +21,7 @@
   "engines": {
     "node": ">=8.9.1"
   },
-  "dependencies": {
-    "bitbucket-server-nodejs": "^2.11.4",
-    "execa": "^0.8.0",
-    "github-basic": "^6.0.0",
-    "globby": "^6.1.0",
-    "make-dir": "^1.1.0",
-    "tempy": "^0.2.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "ava": "^0.23.0",
     "babel-preset-env": "^1.6.1",
