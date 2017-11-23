@@ -1,3 +1,7 @@
+function notImplementedError() {
+  return new Error('not implemented');
+}
+
 export class Provider {
   /**
    * @return repository class used by the Provider
@@ -76,19 +80,19 @@ export class Repository {
   }
 
   async createBranch(name) {
-    return new Error('not implemented');
+    return notImplementedError();
   }
 
   async deleteBranch(name) {
-    return new Error('not implemented');
+    return notImplementedError();
   }
 
   async createPullRequest() {
-    return new Error('not implemented');
+    return notImplementedError();
   }
 
   async deletePullRequest(name) {
-    return new Error('not implemented');
+    return notImplementedError();
   }
 }
 
@@ -107,15 +111,21 @@ export class Branch {
   }
 
   async content(path) {
-    return new Error('not implemented');
+    return notImplementedError();
   }
 
+  /**
+   * Commit files
+   * @arg message {string} commit message
+   * @arg updates {object} file content to be commited
+   * @arg options {object}
+   */
   async commit(message, updates, options) {
-    return new Error('not implemented');
+    return notImplementedError();
   }
 
   async createPullRequest(toBranch, msg) {
-    return new Error('not implemented');
+    return notImplementedError();
   }
 
   async list() {
