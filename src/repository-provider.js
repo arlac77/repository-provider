@@ -103,6 +103,13 @@ export class Repository {
   async deletePullRequest(name) {
     return notImplementedError();
   }
+
+  /**
+   * forward to the Provider
+   */
+  get rateLimitReached() {
+    return this.provider.rateLimitReached;
+  }
 }
 
 export class Branch {
@@ -139,6 +146,13 @@ export class Branch {
 
   async list() {
     return [];
+  }
+
+  /**
+   * forward to the Provider
+   */
+  get rateLimitReached() {
+    return this.provider.rateLimitReached;
   }
 }
 
