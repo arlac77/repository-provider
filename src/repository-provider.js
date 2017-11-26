@@ -46,6 +46,15 @@ export class Provider {
 
     return r;
   }
+
+  /**
+   * Is our rate limit reached
+   * by default we have no rate limit
+   * @return false
+   */
+  get rateLimitReached() {
+    return false;
+  }
 }
 
 export class Repository {

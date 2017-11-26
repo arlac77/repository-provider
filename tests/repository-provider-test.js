@@ -7,4 +7,5 @@ test('provider config', async t => {
   const repository = await provider.config;
 
   t.deepEqual(provider.config, { key: 'value' });
+  t.is(provider.rateLimitReached, false);
 });
