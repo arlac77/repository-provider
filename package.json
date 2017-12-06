@@ -19,7 +19,7 @@
     "url": "git+https://github.com/arlac77/repository-provider.git"
   },
   "engines": {
-    "node": ">=8.9.1"
+    "node": ">=8.9.2"
   },
   "dependencies": {},
   "devDependencies": {
