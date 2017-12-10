@@ -29,11 +29,12 @@ export class Provider {
   }
 
   constructor(config) {
-    Object.defineProperty(this, 'config', {
-      value: this.constructor.config(config)
+    Object.defineProperties(this, {
+      config: {
+        value: this.constructor.config(config)
+      },
+      repositories: { value: new Map() }
     });
-
-    Object.defineProperty(this, 'repositories', { value: new Map() });
   }
 
   async repository(name) {
@@ -59,10 +60,12 @@ export class Provider {
 
 export class Repository {
   constructor(provider, name) {
-    Object.defineProperty(this, 'provider', { value: provider });
-    Object.defineProperty(this, 'name', { value: name });
-    Object.defineProperty(this, '_branches', { value: new Map() });
-    Object.defineProperty(this, '_pullRequests', { value: new Map() });
+    Object.defineProperties(this, {
+      name: { value: name },
+      provider: { value: provider },
+      _branches: { value: new Map() },
+      _pullRequests: { value: new Map() }
+    });
   }
 
   async initialize() {}
@@ -118,12 +121,21 @@ export class Repository {
   get rateLimitReached() {
     return this.provider.rateLimitReached;
   }
+
+  /**
+   * forward to the Provider
+   */
+  set rateLimitReached(value) {
+    this.provider.rateLimitReached(value);
+  }
 }
 
 export class Branch {
   constructor(repository, name = 'master') {
-    Object.defineProperty(this, 'repository', { value: repository });
-    Object.defineProperty(this, 'name', { value: name });
+    Object.defineProperties(this, {
+      name: { value: name },
+      repository: { value: repository }
+    });
   }
 
   get provider() {
@@ -162,12 +174,21 @@ export class Branch {
   get rateLimitReached() {
     return this.provider.rateLimitReached;
   }
+
+  /**
+   * forward to the Provider
+   */
+  set rateLimitReached(value) {
+    this.provider.rateLimitReached(value);
+  }
 }
 
 export class PullRequest {
   constructor(repository, name) {
-    Object.defineProperty(this, 'repository', { value: repository });
-    Object.defineProperty(this, 'name', { value: name });
+    Object.defineProperties(this, {
+      name: { value: name },
+      repository: { value: repository }
+    });
   }
 
   get provider() {
