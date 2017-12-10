@@ -62,6 +62,7 @@ export class Repository {
     Object.defineProperty(this, 'provider', { value: provider });
     Object.defineProperty(this, 'name', { value: name });
     Object.defineProperty(this, '_branches', { value: new Map() });
+    Object.defineProperty(this, '_pullRequests', { value: new Map() });
   }
 
   async initialize() {}
@@ -98,6 +99,13 @@ export class Repository {
 
   async createPullRequest() {
     return notImplementedError();
+  }
+
+  /**
+   * @return {Map} of all pull requests
+   */
+  async pullRequests() {
+    return this._pullRequests;
   }
 
   async deletePullRequest(name) {
