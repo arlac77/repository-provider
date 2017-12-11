@@ -7,7 +7,7 @@ export class Provider {
    * @return repository class used by the Provider
    */
   static get repositoryClass() {
-    return Repositoy;
+    return Repository;
   }
 
   /**
