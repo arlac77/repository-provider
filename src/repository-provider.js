@@ -183,12 +183,35 @@ export class Branch {
   }
 }
 
+export function definePropertiesFromOptions(object, options, keys) {
+  Object.defineProperties(
+    object,
+    keys.reduce((a, key) => {
+      if (options[key] !== undefined) {
+        a[key] = { value: options[key] };
+      }
+      return a;
+    }, {})
+  );
+}
+
 export class PullRequest {
-  constructor(repository, name) {
-    Object.defineProperties(this, {
-      name: { value: name },
-      repository: { value: repository }
-    });
+  constructor(repository, name, options) {
+    Object.defineProperties(
+      this,
+      ['title', 'state'].reduce(
+        (a, key) => {
+          if (options[key] !== undefined) {
+            a[key] = { value: options[key] };
+          }
+          return a;
+        },
+        {
+          name: { value: name },
+          repository: { value: repository }
+        }
+      )
+    );
   }
 
   get provider() {
