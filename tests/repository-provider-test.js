@@ -31,3 +31,11 @@ test('create pullRequests', async t => {
   t.is(pr.title, 'a title');
   t.is(pr.state, 'closed');
 });
+
+test('create pullRequests without options', async t => {
+  const repo = {};
+  const pr = new PullRequest(repo, 'p1');
+
+  t.is(pr.name, 'p1');
+  t.is(pr.repository, repo);
+});

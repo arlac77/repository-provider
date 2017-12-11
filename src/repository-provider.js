@@ -196,7 +196,7 @@ export function definePropertiesFromOptions(object, options, keys) {
 }
 
 export class PullRequest {
-  constructor(repository, name, options) {
+  constructor(repository, name, options = {}) {
     Object.defineProperties(
       this,
       ['title', 'state'].reduce(
