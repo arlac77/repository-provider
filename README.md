@@ -30,19 +30,10 @@ const provider = new GithubProvider({ token: 'xxx' });
 const repository = await provider.repository('myuser/myrepo');
 const branch = await repository.branch('master');
 const files = await branch.list();
-
 ```
 
-API Reference
-=====
+# API
 
-* <a name="get"></a>
-
-## get() ⇒
-**Kind**: global function  
-**Returns**: repository class used by the Provider  
-
-* * *
 
 install
 =======
