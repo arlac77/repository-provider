@@ -2,6 +2,10 @@ function notImplementedError() {
   return new Error('not implemented');
 }
 
+/**
+ * Base repository provider acts as a source of repositories
+ * @param {Object} config
+ */
 export class Provider {
   /**
    * @return repository class used by the Provider
@@ -58,6 +62,11 @@ export class Provider {
   }
 }
 
+/**
+ * Abstract repository
+ * @param {Provider} provider
+ * @param {string} name
+ */
 export class Repository {
   constructor(provider, name) {
     Object.defineProperties(this, {
@@ -130,6 +139,11 @@ export class Repository {
   }
 }
 
+/**
+ * Abstract git branch
+ * @param {Repository} repository
+ * @param {string} name
+ */
 export class Branch {
   constructor(repository, name = 'master') {
     Object.defineProperties(this, {
@@ -152,9 +166,9 @@ export class Branch {
 
   /**
    * Commit files
-   * @arg message {string} commit message
-   * @arg updates {object} file content to be commited
-   * @arg options {object}
+   * @arg {string} message commit message
+   * @arg {Object} updates file content to be commited
+   * @arg {Object} options
    */
   async commit(message, updates, options) {
     return notImplementedError();
@@ -183,6 +197,14 @@ export class Branch {
   }
 }
 
+/**
+ * Abstract pull request
+ * @param {Repositoy} repository
+ * @param {string} name
+ * @param {Object} options
+ * @param {string} options.title
+ * @param {string} options.state
+ */
 export class PullRequest {
   constructor(repository, name, options = {}) {
     Object.defineProperties(
