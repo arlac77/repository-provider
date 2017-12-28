@@ -1,9 +1,21 @@
 {
   "name": "repository-provider",
   "version": "0.0.0-semantic-release",
-  "description": "abstract interface to git repository providers like github bitbucket",
   "main": "dist/repository-provider.js",
   "module": "src/repository-provider.js",
+  "description": "abstract interface to git repository providers like github bitbucket",
+  "keywords": [
+    "git",
+    "github",
+    "bitbucket"
+  ],
+  "contributors": [
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
+  "license": "BSD-2-Clause",
   "scripts": {
     "cover": "nyc --temp-directory build/nyc ava",
     "test": "ava",
@@ -14,13 +26,6 @@
     "semantic-release": "semantic-release",
     "prepare": "rollup -c",
     "lint": "documentation lint src/repository-provider.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/arlac77/repository-provider.git"
-  },
-  "engines": {
-    "node": ">=8.9.3"
   },
   "dependencies": {},
   "devDependencies": {
@@ -33,23 +38,18 @@
     "xo": "^0.19.0",
     "documentation": "^5.3.5"
   },
-  "release": {},
-  "keywords": [
-    "git",
-    "github",
-    "bitbucket"
-  ],
-  "license": "BSD-2-Clause",
+  "engines": {
+    "node": ">=8.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arlac77/repository-provider.git"
+  },
   "bugs": {
     "url": "https://github.com/arlac77/repository-provider/issues"
   },
   "homepage": "https://github.com/arlac77/repository-provider#readme",
-  "contributors": [
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "release": {},
   "ava": {
     "files": [
       "build/*-test.js"
@@ -68,12 +68,12 @@
     ],
     "report-dir": "./build/coverage"
   },
+  "xo": {
+    "space": true
+  },
   "template": {
     "repository": {
       "url": "https://github.com/arlac77/npm-package-template.git"
     }
-  },
-  "xo": {
-    "space": true
   }
 }
