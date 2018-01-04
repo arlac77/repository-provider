@@ -69,19 +69,19 @@ Base repository provider acts as a source of repositories
 Is our rate limit reached
 by default we have no rate limit
 
-Returns **any** false
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
 ### repositoryClass
 
-Returns **any** repository class used by the Provider
+Returns **Class** repository class used by the Provider
 
 ### branchClass
 
-Returns **any** branch class used by the Provider
+Returns **Class** branch class used by the Provider
 
 ### pullRequestClass
 
-Returns **any** pull request class used by the Provider
+Returns **Class** pull request class used by the Provider
 
 ## Repository
 

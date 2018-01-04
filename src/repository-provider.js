@@ -8,21 +8,21 @@ function notImplementedError() {
  */
 export class Provider {
   /**
-   * @return repository class used by the Provider
+   * @return {Class} repository class used by the Provider
    */
   static get repositoryClass() {
     return Repository;
   }
 
   /**
-   * @return branch class used by the Provider
+   * @return {Class} branch class used by the Provider
    */
   static get branchClass() {
     return Branch;
   }
 
   /**
-   * @return pull request class used by the Provider
+   * @return {Class} pull request class used by the Provider
    */
   static get pullRequestClass() {
     return PullRequest;
@@ -55,7 +55,7 @@ export class Provider {
   /**
    * Is our rate limit reached
    * by default we have no rate limit
-   * @return false
+   * @return {boolean} false
    */
   get rateLimitReached() {
     return false;
