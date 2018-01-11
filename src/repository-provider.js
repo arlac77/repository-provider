@@ -5,6 +5,7 @@ function notImplementedError() {
 /**
  * Base repository provider acts as a source of repositories
  * @param {Object} config
+ * @property {Map} repositories
  */
 export class Provider {
   /**
@@ -66,6 +67,8 @@ export class Provider {
  * Abstract repository
  * @param {Provider} provider
  * @param {string} name
+ * @property {Provider} provider
+ * @property {string} name
  */
 export class Repository {
   constructor(provider, name) {
@@ -101,10 +104,18 @@ export class Repository {
     return this._branches;
   }
 
+  /**
+   * Create a new branch
+   * @param {string} name
+   */
   async createBranch(name) {
     return notImplementedError();
   }
 
+  /**
+   * Delete a branch
+   * @param {string} name
+   */
   async deleteBranch(name) {
     return notImplementedError();
   }
@@ -143,6 +154,8 @@ export class Repository {
  * Abstract git branch
  * @param {Repository} repository
  * @param {string} name
+ * @property {Repository} repository
+ * @property {string} name
  */
 export class Branch {
   constructor(repository, name = 'master') {
@@ -156,19 +169,28 @@ export class Branch {
     return this.repository.provider;
   }
 
+  /**
+   * Delete the branch
+   * forwarded to the repository
+   */
   delete() {
     return this.repository.deleteBranch(this.name);
   }
 
+  /**
+   * Deliver file content
+   * @param {string} path
+   * @return {string|Buffer} content os a given file
+   */
   async content(path) {
     return notImplementedError();
   }
 
   /**
    * Commit files
-   * @arg {string} message commit message
-   * @arg {Object} updates file content to be commited
-   * @arg {Object} options
+   * @param {string} message commit message
+   * @param {Object} updates file content to be commited
+   * @param {Object} options
    */
   async commit(message, updates, options) {
     return notImplementedError();

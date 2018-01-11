@@ -47,10 +47,14 @@ const files = await branch.list();
     -   [pullRequestClass](#pullrequestclass)
 -   [Repository](#repository)
     -   [branches](#branches)
+    -   [createBranch](#createbranch)
+    -   [deleteBranch](#deletebranch)
     -   [pullRequests](#pullrequests)
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
 -   [Branch](#branch)
+    -   [delete](#delete)
+    -   [content](#content)
     -   [commit](#commit)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
@@ -63,6 +67,10 @@ Base repository provider acts as a source of repositories
 **Parameters**
 
 -   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+**Properties**
+
+-   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** 
 
 ### rateLimitReached
 
@@ -92,9 +100,30 @@ Abstract repository
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+**Properties**
+
+-   `provider` **[Provider](#provider)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ### branches
 
 Returns **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** of all branches
+
+### createBranch
+
+Create a new branch
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### deleteBranch
+
+Delete a branch
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### pullRequests
 
@@ -120,6 +149,26 @@ Abstract git branch
 
 -   `repository` **[Repository](#repository)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `'master'`)
+
+**Properties**
+
+-   `repository` **[Repository](#repository)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### delete
+
+Delete the branch
+forwarded to the repository
+
+### content
+
+Deliver file content
+
+**Parameters**
+
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** content os a given file
 
 ### commit
 
