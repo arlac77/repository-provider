@@ -214,11 +214,11 @@ export class Branch {
   }
 
   /**
-   * create a pull request
+   * Create a pull request
    * @param {Branch} toBranch
    * @param {string} message
    */
-  async createPullRequest(toBranch, msg) {
+  async createPullRequest(toBranch, message) {
     return notImplementedError();
   }
 

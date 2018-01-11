@@ -210,12 +210,11 @@ Commit files
 
 ### createPullRequest
 
-create a pull request
+Create a pull request
 
 **Parameters**
 
 -   `toBranch` **[Branch](#branch)** 
--   `msg`  
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### rateLimitReached
