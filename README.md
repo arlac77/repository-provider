@@ -41,11 +41,14 @@ const files = await branch.list();
 ### Table of Contents
 
 -   [Provider](#provider)
+    -   [repository](#repository)
     -   [rateLimitReached](#ratelimitreached)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [pullRequestClass](#pullrequestclass)
--   [Repository](#repository)
+    -   [defaultOptions](#defaultoptions)
+    -   [options](#options)
+-   [Repository](#repository-1)
     -   [branches](#branches)
     -   [createBranch](#createbranch)
     -   [deleteBranch](#deletebranch)
@@ -56,6 +59,7 @@ const files = await branch.list();
     -   [delete](#delete)
     -   [content](#content)
     -   [commit](#commit)
+    -   [createPullRequest](#createpullrequest)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
 -   [PullRequest](#pullrequest)
@@ -66,11 +70,19 @@ Base repository provider acts as a source of repositories
 
 **Parameters**
 
--   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 **Properties**
 
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** 
+
+### repository
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Repository](#repository)** 
 
 ### rateLimitReached
 
@@ -90,6 +102,22 @@ Returns **Class** branch class used by the Provider
 ### pullRequestClass
 
 Returns **Class** pull request class used by the Provider
+
+### defaultOptions
+
+Default configuration options
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### options
+
+Pepare configuration by mixing together defaultOptions with actual options
+
+**Parameters**
+
+-   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** combined options
 
 ## Repository
 
@@ -179,6 +207,16 @@ Commit files
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
 -   `updates` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** file content to be commited
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### createPullRequest
+
+create a pull request
+
+**Parameters**
+
+-   `toBranch` **[Branch](#branch)** 
+-   `msg`  
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### rateLimitReached
 

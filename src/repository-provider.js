@@ -4,7 +4,7 @@ function notImplementedError() {
 
 /**
  * Base repository provider acts as a source of repositories
- * @param {Object} config
+ * @param {Object} options
  * @property {Map} repositories
  */
 export class Provider {
@@ -29,19 +29,36 @@ export class Provider {
     return PullRequest;
   }
 
-  static config(config) {
-    return Object.assign({}, config);
+  /**
+   * Default configuration options
+   * @return {Object}
+   */
+  static get defaultOptions() {
+    return {};
   }
 
-  constructor(config) {
+  /**
+   * Pepare configuration by mixing together defaultOptions with actual options
+   * @param {Object} config
+   * @return {Object} combined options
+   */
+  static options(config) {
+    return Object.assign(this.defaultOptions, config);
+  }
+
+  constructor(options) {
     Object.defineProperties(this, {
       config: {
-        value: this.constructor.config(config)
+        value: this.constructor.options(options)
       },
       repositories: { value: new Map() }
     });
   }
 
+  /**
+   * @param {string} name
+   * @return {Repository}
+   */
   async repository(name) {
     let r = this.repositories.get(name);
     if (r === undefined) {
@@ -196,6 +213,11 @@ export class Branch {
     return notImplementedError();
   }
 
+  /**
+   * create a pull request
+   * @param {Branch} toBranch
+   * @param {string} message
+   */
   async createPullRequest(toBranch, msg) {
     return notImplementedError();
   }
