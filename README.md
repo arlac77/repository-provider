@@ -144,6 +144,7 @@ Create a new branch
 **Parameters**
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `source` **[Branch](#branch)** branch defaults to master
 
 ### deleteBranch
 

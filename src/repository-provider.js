@@ -124,8 +124,9 @@ export class Repository {
   /**
    * Create a new branch
    * @param {string} name
+   * @param {Branch} source branch defaults to master
    */
-  async createBranch(name) {
+  async createBranch(name, source) {
     return notImplementedError();
   }
 
