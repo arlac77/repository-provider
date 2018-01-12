@@ -48,18 +48,20 @@ const files = await branch.list();
     -   [pullRequestClass](#pullrequestclass)
     -   [defaultOptions](#defaultoptions)
     -   [options](#options)
--   [Repository](#repository-1)
-    -   [branches](#branches)
-    -   [createBranch](#createbranch)
-    -   [deleteBranch](#deletebranch)
-    -   [pullRequests](#pullrequests)
-    -   [rateLimitReached](#ratelimitreached-1)
-    -   [rateLimitReached](#ratelimitreached-2)
+-   [Blob](#blob)
 -   [Branch](#branch)
     -   [delete](#delete)
     -   [content](#content)
     -   [commit](#commit)
     -   [createPullRequest](#createpullrequest)
+    -   [rateLimitReached](#ratelimitreached-1)
+    -   [rateLimitReached](#ratelimitreached-2)
+-   [Repository](#repository-1)
+    -   [branches](#branches)
+    -   [createBranch](#createbranch)
+    -   [deleteBranch](#deletebranch)
+    -   [pullRequests](#pullrequests)
+    -   [deletePullRequest](#deletepullrequest)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
 -   [PullRequest](#pullrequest)
@@ -75,6 +77,7 @@ Base repository provider acts as a source of repositories
 **Properties**
 
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** 
+-   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### repository
 
@@ -86,10 +89,10 @@ Returns **[Repository](#repository)**
 
 ### rateLimitReached
 
-Is our rate limit reached
-by default we have no rate limit
+Is our rate limit reached.
+By default we have no rate limit
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** always false
 
 ### repositoryClass
 
@@ -119,6 +122,80 @@ Pepare configuration by mixing together defaultOptions with actual options
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** combined options
 
+## Blob
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+**Properties**
+
+-   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** 
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
+-   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permission
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## Branch
+
+Abstract git branch
+
+**Parameters**
+
+-   `repository` **[Repository](#repository)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `'master'`)
+
+**Properties**
+
+-   `repository` **[Repository](#repository)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### delete
+
+-   **See: [Repository.deleteBranch](Repository.deleteBranch)**
+
+Delete the branch from the [Repository](#repository).
+
+### content
+
+Deliver file content
+
+**Parameters**
+
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** content os a given file
+
+### commit
+
+Commit files
+
+**Parameters**
+
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
+-   `updates` **[Blob](#blob)?** file content to be commited
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### createPullRequest
+
+Create a pull request
+
+**Parameters**
+
+-   `toBranch` **[Branch](#branch)** 
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### rateLimitReached
+
+Value delivered from the provider
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** providers rateLimitReached
+
+### rateLimitReached
+
+forward to the Provider
+
+**Parameters**
+
+-   `value` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
 ## Repository
 
 Abstract repository
@@ -139,7 +216,7 @@ Returns **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 
 ### createBranch
 
-Create a new branch
+Create a new  [Branch](#branch).
 
 **Parameters**
 
@@ -148,7 +225,7 @@ Create a new branch
 
 ### deleteBranch
 
-Delete a branch
+Delete a [Branch](#branch)
 
 **Parameters**
 
@@ -158,69 +235,19 @@ Delete a branch
 
 Returns **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** of all pull requests
 
-### rateLimitReached
+### deletePullRequest
 
-forward to the Provider
-
-### rateLimitReached
-
-forward to the Provider
+Delete a [PullRequest](#pullrequest)
 
 **Parameters**
 
--   `value`  
-
-## Branch
-
-Abstract git branch
-
-**Parameters**
-
--   `repository` **[Repository](#repository)** 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `'master'`)
-
-**Properties**
-
--   `repository` **[Repository](#repository)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-### delete
-
-Delete the branch
-forwarded to the repository
-
-### content
-
-Deliver file content
-
-**Parameters**
-
--   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** content os a given file
-
-### commit
-
-Commit files
-
-**Parameters**
-
--   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
--   `updates` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** file content to be commited
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-### createPullRequest
-
-Create a pull request
-
-**Parameters**
-
--   `toBranch` **[Branch](#branch)** 
--   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
 ### rateLimitReached
 
-forward to the Provider
+Value delivered from the provider
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** providers rateLimitReached
 
 ### rateLimitReached
 
@@ -228,7 +255,7 @@ forward to the Provider
 
 **Parameters**
 
--   `value`  
+-   `value` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## PullRequest
 
@@ -241,6 +268,13 @@ Abstract pull request
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
     -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
     -   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+**Properties**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `repository` **[Repository](#repository)** 
+-   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+-   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 
 # install
 
