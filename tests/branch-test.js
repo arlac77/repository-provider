@@ -9,5 +9,5 @@ test('branch ', async t => {
   const b = new Branch(repository, 'b1');
 
   t.is(b.name, 'b1');
-  //t.is(repository.branches.get('b1'), b);
+  t.is(await repository.branch('b1'), b);
 });

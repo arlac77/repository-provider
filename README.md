@@ -50,6 +50,7 @@ const files = await branch.list();
     -   [options](#options)
 -   [Blob](#blob)
 -   [Branch](#branch)
+    -   [provider](#provider-1)
     -   [delete](#delete)
     -   [content](#content)
     -   [commit](#commit)
@@ -60,11 +61,15 @@ const files = await branch.list();
     -   [branches](#branches)
     -   [createBranch](#createbranch)
     -   [deleteBranch](#deletebranch)
+    -   [addBranch](#addbranch)
     -   [pullRequests](#pullrequests)
+    -   [addPullRequest](#addpullrequest)
     -   [deletePullRequest](#deletepullrequest)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
 -   [PullRequest](#pullrequest)
+    -   [provider](#provider-2)
+    -   [delete](#delete-1)
 
 ## Provider
 
@@ -135,6 +140,8 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ## Branch
 
+-   **See: [Repository#addBranch](#repositoryaddbranch)**
+
 Abstract git branch
 
 **Parameters**
@@ -145,11 +152,16 @@ Abstract git branch
 **Properties**
 
 -   `repository` **[Repository](#repository)** 
+-   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### provider
+
+Returns **[Provider](#provider)** 
 
 ### delete
 
--   **See: [Repository.deleteBranch](Repository.deleteBranch)**
+-   **See: [Repository#deleteBranch](#repositorydeletebranch)**
 
 Delete the branch from the [Repository](#repository).
 
@@ -183,6 +195,8 @@ Create a pull request
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### rateLimitReached
+
+-   **See: [Provider#rateLimitReached](#providerratelimitreached)**
 
 Value delivered from the provider
 
@@ -231,9 +245,25 @@ Delete a [Branch](#branch)
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+### addBranch
+
+Add a branch
+
+**Parameters**
+
+-   `branch` **[Branch](#branch)** 
+
 ### pullRequests
 
 Returns **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** of all pull requests
+
+### addPullRequest
+
+Add a pull request
+
+**Parameters**
+
+-   `pullRequest` **[PullRequest](#pullrequest)** 
 
 ### deletePullRequest
 
@@ -259,6 +289,8 @@ forward to the Provider
 
 ## PullRequest
 
+-   **See: [Repository#addPullRequest](#repositoryaddpullrequest)**
+
 Abstract pull request
 
 **Parameters**
@@ -273,8 +305,19 @@ Abstract pull request
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `repository` **[Repository](#repository)** 
+-   `provider` **[Provider](#provider)** 
 -   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 -   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+
+### provider
+
+Returns **[Provider](#provider)** 
+
+### delete
+
+-   **See: [Repository#deletePullRequest](#repositorydeletepullrequest)**
+
+Delete the pull request from the [Repository](#repository).
 
 # install
 

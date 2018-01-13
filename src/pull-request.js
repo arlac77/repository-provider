@@ -1,5 +1,7 @@
 /**
  * Abstract pull request
+ * @see {@link Repository#addPullRequest}
+
  * @param {Repositoy} repository
  * @param {string} name
  * @param {Object} options
@@ -8,6 +10,7 @@
  *
  * @property {string} name
  * @property {Repository} repository
+ * @property {Provider} provider
  * @property {string} [title]
  * @property {string} [state]
  */
@@ -28,12 +31,21 @@ export class PullRequest {
         }
       )
     );
+
+    repository.addPullRequest(this);
   }
 
+  /**
+   * @return {Provider}
+   */
   get provider() {
     return this.repository.provider;
   }
 
+  /**
+   * Delete the pull request from the {@link Repository}.
+   * @see {@link Repository#deletePullRequest}
+   */
   async delete() {
     return this.repository.deletePullRequest(this.name);
   }

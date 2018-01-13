@@ -56,6 +56,14 @@ export class Repository {
     this._branches.delete(name);
   }
 
+  /**
+   * Add a branch
+   * @param {Branch} branch
+   */
+  async addBranch(branch) {
+    this._branches.set(branch.name, branch);
+  }
+
   async createPullRequest() {
     return notImplementedError();
   }
@@ -65,6 +73,18 @@ export class Repository {
    */
   async pullRequests() {
     return this._pullRequests;
+  }
+
+  async pullRequest(name) {
+    return this._pullRequests.get(name);
+  }
+
+  /**
+   * Add a pull request
+   * @param {PullRequest} pullRequest
+   */
+  async addPullRequest(pullRequest) {
+    this._pullRequests.set(pullRequest.name, pullRequest);
   }
 
   /**

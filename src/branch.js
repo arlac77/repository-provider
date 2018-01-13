@@ -1,8 +1,10 @@
 /**
  * Abstract git branch
+ * @see {@link Repository#addBranch}
  * @param {Repository} repository
  * @param {string} name
  * @property {Repository} repository
+ * @property {Provider} provider
  * @property {string} name
  */
 export class Branch {
@@ -12,16 +14,19 @@ export class Branch {
       repository: { value: repository }
     });
 
-    //repository.branches.set(name, this);
+    repository.addBranch(this);
   }
 
+  /**
+   * @return {Provider}
+   */
   get provider() {
     return this.repository.provider;
   }
 
   /**
    * Delete the branch from the {@link Repository}.
-   * @see {@link Repository.deleteBranch}
+   * @see {@link Repository#deleteBranch}
    */
   async delete() {
     return this.repository.deleteBranch(this.name);
@@ -61,6 +66,7 @@ export class Branch {
 
   /**
    * Value delivered from the provider
+   * @see {@link Provider#rateLimitReached}
    * @return {boolean} providers rateLimitReached
    */
   get rateLimitReached() {
