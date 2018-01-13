@@ -9,6 +9,6 @@ test('provider', async t => {
 
 test('repository ', async t => {
   const provider = new Provider();
-  const repository = await provider.repository('r1');
+  const repository = await provider.createRepository('r1');
   t.is(repository.name, 'r1');
 });

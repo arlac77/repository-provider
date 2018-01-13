@@ -4,7 +4,7 @@ import { PullRequest } from '../src/pull-request';
 
 test('pullRequests', async t => {
   const provider = new Provider();
-  const repository = await provider.repository('r1');
+  const repository = await provider.createRepository('r1');
 
   const prs = await repository.pullRequests;
 
@@ -13,7 +13,7 @@ test('pullRequests', async t => {
 
 test('create pullRequests', async t => {
   const provider = new Provider();
-  const repository = await provider.repository('r1');
+  const repository = await provider.createRepository('r1');
   const pr = new PullRequest(repository, 'p1', {
     title: 'a title',
     state: 'closed'
@@ -29,7 +29,7 @@ test('create pullRequests', async t => {
 
 test('create pullRequests without options', async t => {
   const provider = new Provider();
-  const repository = await provider.repository('r1');
+  const repository = await provider.createRepository('r1');
   const pr = new PullRequest(repository, 'p1');
 
   t.is(pr.name, 'p1');

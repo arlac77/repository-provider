@@ -4,9 +4,10 @@
  * @param {string} name
  * @property {Provider} provider
  * @property {string} name
+ * @property {Object} options
  */
 export class Repository {
-  constructor(provider, name) {
+  constructor(provider, name, options) {
     Object.defineProperties(this, {
       name: { value: name },
       provider: { value: provider },

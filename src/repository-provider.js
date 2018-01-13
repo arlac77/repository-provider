@@ -24,27 +24,6 @@ function notImplementedError() {
  */
 export class Provider {
   /**
-   * @return {Class} repository class used by the Provider
-   */
-  static get repositoryClass() {
-    return Repository;
-  }
-
-  /**
-   * @return {Class} branch class used by the Provider
-   */
-  static get branchClass() {
-    return Branch;
-  }
-
-  /**
-   * @return {Class} pull request class used by the Provider
-   */
-  static get pullRequestClass() {
-    return PullRequest;
-  }
-
-  /**
    * Default configuration options
    * @return {Object}
    */
@@ -71,18 +50,38 @@ export class Provider {
   }
 
   /**
+   * @return {Class} repository class used by the Provider
+   */
+  get repositoryClass() {
+    return Repository;
+  }
+
+  /**
+   * @return {Class} branch class used by the Provider
+   */
+  get branchClass() {
+    return Branch;
+  }
+
+  /**
+   * @return {Class} pull request class used by the Provider
+   */
+  get pullRequestClass() {
+    return PullRequest;
+  }
+
+  async createRepository(name, options) {
+    const repository = new this.repositoryClass(this, name, options);
+    this.repositories.set(name, repository);
+    return repository;
+  }
+
+  /**
    * @param {string} name
    * @return {Repository}
    */
   async repository(name) {
-    let r = this.repositories.get(name);
-    if (r === undefined) {
-      r = new this.constructor.repositoryClass(this, name);
-      await r.initialize();
-      this.repositories.set(name, r);
-    }
-
-    return r;
+    return this.repositories.get(name);
   }
 
   /**

@@ -4,7 +4,7 @@ import { Branch } from '../src/branch';
 
 test('branch', async t => {
   const provider = new Provider();
-  const repository = await provider.repository('r1');
+  const repository = await provider.createRepository('r1');
 
   const b = new Branch(repository, 'b1');
 
@@ -15,7 +15,7 @@ test('branch', async t => {
 
 test('branch delete', async t => {
   const provider = new Provider();
-  const repository = await provider.repository('r1');
+  const repository = await provider.createRepository('r1');
 
   const b = new Branch(repository, 'b1');
   await b.delete();

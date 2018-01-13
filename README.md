@@ -41,11 +41,11 @@ const files = await branch.list();
 ### Table of Contents
 
 -   [Provider](#provider)
-    -   [repository](#repository)
-    -   [rateLimitReached](#ratelimitreached)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [pullRequestClass](#pullrequestclass)
+    -   [repository](#repository)
+    -   [rateLimitReached](#ratelimitreached)
     -   [defaultOptions](#defaultoptions)
     -   [options](#options)
 -   [Content](#content)
@@ -87,6 +87,18 @@ Base repository provider acts as a source of repositories
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** 
 -   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
+### repositoryClass
+
+Returns **Class** repository class used by the Provider
+
+### branchClass
+
+Returns **Class** branch class used by the Provider
+
+### pullRequestClass
+
+Returns **Class** pull request class used by the Provider
+
 ### repository
 
 **Parameters**
@@ -101,18 +113,6 @@ Is our rate limit reached.
 By default we have no rate limit
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** always false
-
-### repositoryClass
-
-Returns **Class** repository class used by the Provider
-
-### branchClass
-
-Returns **Class** branch class used by the Provider
-
-### pullRequestClass
-
-Returns **Class** pull request class used by the Provider
 
 ### defaultOptions
 
@@ -227,11 +227,13 @@ Abstract repository
 
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options`  
 
 **Properties**
 
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### initialize
 
