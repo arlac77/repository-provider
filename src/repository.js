@@ -22,18 +22,17 @@ export class Repository {
     return branch.content(...args);
   }
 
+  /**
+   * Lookup branch by name
+   * @param {string} name
+   * @return {Promise<Branch>}
+   */
   async branch(name) {
-    let b = this._branches.get(name);
-    if (b === undefined) {
-      b = new this.provider.constructor.branchClass(this, name);
-      this._branches.set(name, b);
-    }
-
-    return b;
+    return this._branches.get(name);
   }
 
   /**
-   * @return {Map} of all branches
+   * @return {Promise<Map>} of all branches
    */
   async branches() {
     return this._branches;
@@ -42,7 +41,7 @@ export class Repository {
   /**
    * Create a new  {@link Branch}.
    * @param {string} name
-   * @param {Branch} source branch defaults to master
+   * @param {Promise<Branch>} source branch defaults to master
    */
   async createBranch(name, source) {
     return notImplementedError();
@@ -51,6 +50,7 @@ export class Repository {
   /**
    * Delete a {@link Branch}
    * @param {string} name
+   * @return {Promise}
    */
   async deleteBranch(name) {
     this._branches.delete(name);
@@ -59,6 +59,7 @@ export class Repository {
   /**
    * Add a branch
    * @param {Branch} branch
+   * @return {Promise}
    */
   async addBranch(branch) {
     this._branches.set(branch.name, branch);
@@ -69,12 +70,18 @@ export class Repository {
   }
 
   /**
-   * @return {Map} of all pull requests
+   * Deliver all @{link PullRequest}s
+   * @return {Promise<Map>} of all pull requests
    */
   async pullRequests() {
     return this._pullRequests;
   }
 
+  /**
+   * Deliver @{link PullRequest} for a given name
+   * @param {string} name
+   * @return {Promise<PullRequest>}
+   */
   async pullRequest(name) {
     return this._pullRequests.get(name);
   }
@@ -82,6 +89,7 @@ export class Repository {
   /**
    * Add a pull request
    * @param {PullRequest} pullRequest
+   * @return {Promise}
    */
   async addPullRequest(pullRequest) {
     this._pullRequests.set(pullRequest.name, pullRequest);
@@ -90,6 +98,7 @@ export class Repository {
   /**
    * Delete a {@link PullRequest}
    * @param {string} name
+   * @return {Promise}
    */
   async deletePullRequest(name) {
     this._pullRequests.delete(name);

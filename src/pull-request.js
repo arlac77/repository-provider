@@ -45,6 +45,7 @@ export class PullRequest {
   /**
    * Delete the pull request from the {@link Repository}.
    * @see {@link Repository#deletePullRequest}
+   * @return {Promise}
    */
   async delete() {
     return this.repository.deletePullRequest(this.name);

@@ -27,6 +27,7 @@ export class Branch {
   /**
    * Delete the branch from the {@link Repository}.
    * @see {@link Repository#deleteBranch}
+   * @return {Promise}
    */
   async delete() {
     return this.repository.deleteBranch(this.name);
@@ -35,7 +36,7 @@ export class Branch {
   /**
    * Deliver file content
    * @param {string} path
-   * @return {string|Buffer} content os a given file
+   * @return {Promise<Content>} content of a given file
    */
   async content(path) {
     return notImplementedError();
@@ -44,8 +45,9 @@ export class Branch {
   /**
    * Commit files
    * @param {string} message commit message
-   * @param {Blob} [updates] file content to be commited
+   * @param {Content} [updates] file content to be commited
    * @param {Object} options
+   * @return {Promise}
    */
   async commit(message, updates, options) {
     return notImplementedError();
@@ -55,6 +57,7 @@ export class Branch {
    * Create a pull request
    * @param {Branch} toBranch
    * @param {string} message
+   * @return {Promise}
    */
   async createPullRequest(toBranch, message) {
     return notImplementedError();

@@ -9,7 +9,7 @@ function notImplementedError() {
 }
 
 /**
- * @typedef {Object} Blob
+ * @typedef {Object} Content
  * @property {string|Buffer} content
  * @property {string} path file name inside of the repository
  * @property {string} mode file permission

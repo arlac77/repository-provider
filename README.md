@@ -48,26 +48,28 @@ const files = await branch.list();
     -   [pullRequestClass](#pullrequestclass)
     -   [defaultOptions](#defaultoptions)
     -   [options](#options)
--   [Blob](#blob)
+-   [Content](#content)
 -   [Branch](#branch)
     -   [provider](#provider-1)
     -   [delete](#delete)
-    -   [content](#content)
+    -   [content](#content-1)
     -   [commit](#commit)
     -   [createPullRequest](#createpullrequest)
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
 -   [Repository](#repository-1)
+    -   [branch](#branch-1)
     -   [branches](#branches)
     -   [createBranch](#createbranch)
     -   [deleteBranch](#deletebranch)
     -   [addBranch](#addbranch)
     -   [pullRequests](#pullrequests)
+    -   [pullRequest](#pullrequest)
     -   [addPullRequest](#addpullrequest)
     -   [deletePullRequest](#deletepullrequest)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
--   [PullRequest](#pullrequest)
+-   [PullRequest](#pullrequest-1)
     -   [provider](#provider-2)
     -   [delete](#delete-1)
 
@@ -127,7 +129,7 @@ Pepare configuration by mixing together defaultOptions with actual options
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** combined options
 
-## Blob
+## Content
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
@@ -165,6 +167,8 @@ Returns **[Provider](#provider)**
 
 Delete the branch from the [Repository](#repository).
 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
 ### content
 
 Deliver file content
@@ -173,7 +177,7 @@ Deliver file content
 
 -   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** content os a given file
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Content](#content)>** content of a given file
 
 ### commit
 
@@ -182,8 +186,10 @@ Commit files
 **Parameters**
 
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
--   `updates` **[Blob](#blob)?** file content to be commited
+-   `updates` **[Content](#content)?** file content to be commited
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
 ### createPullRequest
 
@@ -193,6 +199,8 @@ Create a pull request
 
 -   `toBranch` **[Branch](#branch)** 
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
 ### rateLimitReached
 
@@ -224,9 +232,19 @@ Abstract repository
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+### branch
+
+Lookup branch by name
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** 
+
 ### branches
 
-Returns **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** of all branches
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)>** of all branches
 
 ### createBranch
 
@@ -235,7 +253,7 @@ Create a new  [Branch](#branch).
 **Parameters**
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `source` **[Branch](#branch)** branch defaults to master
+-   `source` **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** branch defaults to master
 
 ### deleteBranch
 
@@ -245,6 +263,8 @@ Delete a [Branch](#branch)
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
 ### addBranch
 
 Add a branch
@@ -253,9 +273,23 @@ Add a branch
 
 -   `branch` **[Branch](#branch)** 
 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
 ### pullRequests
 
-Returns **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** of all pull requests
+Deliver all @{link PullRequest}s
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)>** of all pull requests
+
+### pullRequest
+
+Deliver @{link PullRequest} for a given name
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[PullRequest](#pullrequest)>** 
 
 ### addPullRequest
 
@@ -265,6 +299,8 @@ Add a pull request
 
 -   `pullRequest` **[PullRequest](#pullrequest)** 
 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
 ### deletePullRequest
 
 Delete a [PullRequest](#pullrequest)
@@ -272,6 +308,8 @@ Delete a [PullRequest](#pullrequest)
 **Parameters**
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
 ### rateLimitReached
 
@@ -318,6 +356,8 @@ Returns **[Provider](#provider)**
 -   **See: [Repository#deletePullRequest](#repositorydeletepullrequest)**
 
 Delete the pull request from the [Repository](#repository).
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
 # install
 
