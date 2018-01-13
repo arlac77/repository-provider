@@ -15,6 +15,10 @@ export class Repository {
     });
   }
 
+  /**
+   * called one after constructing to
+   * @return {Promise}
+   */
   async initialize() {}
 
   async content(...args) {

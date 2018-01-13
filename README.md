@@ -58,6 +58,7 @@ const files = await branch.list();
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
 -   [Repository](#repository-1)
+    -   [initialize](#initialize)
     -   [branch](#branch-1)
     -   [branches](#branches)
     -   [createBranch](#createbranch)
@@ -125,7 +126,7 @@ Pepare configuration by mixing together defaultOptions with actual options
 
 **Parameters**
 
--   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** raw config
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** combined options
 
@@ -231,6 +232,12 @@ Abstract repository
 
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### initialize
+
+called one after constructing to
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
 ### branch
 
