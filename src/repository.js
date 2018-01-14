@@ -57,9 +57,9 @@ export class Repository {
   }
 
   /**
-   * Create a new  {@link Branch}.
+   * Create a new {@link Branch} by cloning a given source branch
    * @param {string} name
-   * @param {Promise<Branch>} source branch defaults to master
+   * @param {Branch} source branch defaults to master
    * @param {Object} options
    * @return {Promise<Branch>} newly created branch
    */

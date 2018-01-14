@@ -193,7 +193,7 @@ Returns **[Provider](#provider)**
 
 ### fullName
 
-Deliver repository nad branch name combined
+Deliver repository and branch name combined
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
 
@@ -312,12 +312,12 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### createBranch
 
-Create a new  [Branch](#branch).
+Create a new [Branch](#branch) by cloning a given source branch
 
 **Parameters**
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `source` **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** branch defaults to master
+-   `source` **[Branch](#branch)** branch defaults to master
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** newly created branch
