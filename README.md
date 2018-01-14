@@ -40,26 +40,31 @@ const files = await branch.list();
 
 ### Table of Contents
 
+-   [Content](#content)
 -   [Provider](#provider)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [pullRequestClass](#pullrequestclass)
+    -   [createRepository](#createrepository)
     -   [repository](#repository)
+    -   [branch](#branch)
     -   [rateLimitReached](#ratelimitreached)
     -   [defaultOptions](#defaultoptions)
     -   [options](#options)
--   [Content](#content)
--   [Branch](#branch)
+-   [Branch](#branch-1)
     -   [provider](#provider-1)
     -   [delete](#delete)
     -   [content](#content-1)
     -   [commit](#commit)
     -   [createPullRequest](#createpullrequest)
+    -   [list](#list)
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
 -   [Repository](#repository-1)
     -   [initialize](#initialize)
-    -   [branch](#branch-1)
+    -   [content](#content-2)
+    -   [branch](#branch-2)
+    -   [defaultBranch](#defaultbranch)
     -   [branches](#branches)
     -   [createBranch](#createbranch)
     -   [deleteBranch](#deletebranch)
@@ -73,6 +78,17 @@ const files = await branch.list();
 -   [PullRequest](#pullrequest-1)
     -   [provider](#provider-2)
     -   [delete](#delete-1)
+
+## Content
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+**Properties**
+
+-   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** 
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
+-   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## Provider
 
@@ -99,13 +115,36 @@ Returns **Class** branch class used by the Provider
 
 Returns **Class** pull request class used by the Provider
 
+### createRepository
+
+Create a new repository
+
+**Parameters**
+
+-   `name`  
+-   `options`  
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
+
 ### repository
+
+Lookup a repository
 
 **Parameters**
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Repository](#repository)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
+
+### branch
+
+Lookup a branch
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** 
 
 ### rateLimitReached
 
@@ -129,17 +168,6 @@ Pepare configuration by mixing together defaultOptions with actual options
 -   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** raw config
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** combined options
-
-## Content
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-**Properties**
-
--   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** 
--   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
--   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permission
--   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## Branch
 
@@ -203,6 +231,10 @@ Create a pull request
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
+### list
+
+File list
+
 ### rateLimitReached
 
 -   **See: [Provider#rateLimitReached](#providerratelimitreached)**
@@ -241,6 +273,16 @@ called one after constructing to
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
+### content
+
+Lookup content form the default branch
+
+**Parameters**
+
+-   `args` **...any** 
+
+Returns **[Content](#content)** 
+
 ### branch
 
 Lookup branch by name
@@ -250,6 +292,12 @@ Lookup branch by name
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** 
+
+### defaultBranch
+
+Lookup the default branch
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** 'master' branch
 
 ### branches
 

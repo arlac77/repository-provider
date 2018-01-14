@@ -12,7 +12,7 @@ function notImplementedError() {
  * @typedef {Object} Content
  * @property {string|Buffer} content
  * @property {string} path file name inside of the repository
- * @property {string} mode file permission
+ * @property {string} mode file permissions
  * @property {string} type
  */
 
@@ -70,18 +70,39 @@ export class Provider {
     return PullRequest;
   }
 
+  /**
+   * Create a new repository
+   * @return {Promise<Repository>}
+   */
   async createRepository(name, options) {
     const repository = new this.repositoryClass(this, name, options);
+    await repository.initialize();
     this.repositories.set(name, repository);
     return repository;
   }
 
   /**
+   * Lookup a repository
    * @param {string} name
-   * @return {Repository}
+   * @return {Promise<Repository>}
    */
   async repository(name) {
     return this.repositories.get(name);
+  }
+
+  /**
+   * Lookup a branch
+   * @param {string} name
+   * @return {Promise<Branch>}
+   */
+  async branch(name) {
+    const repository = await this.repository(name);
+    const m = name.match(/#\w+$/);
+    if (m) {
+      return repository.branch(m[1]);
+    }
+
+    return repository.defaultBranch;
   }
 
   /**

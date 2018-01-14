@@ -22,9 +22,12 @@ export class Repository {
    */
   async initialize() {}
 
+  /**
+   * Lookup content form the default branch
+   * @return {Content}
+   */
   async content(...args) {
-    const branch = await this.branch('master');
-    return branch.content(...args);
+    return (await this.defaultBranch).content(...args);
   }
 
   /**
@@ -34,6 +37,14 @@ export class Repository {
    */
   async branch(name) {
     return this._branches.get(name);
+  }
+
+  /**
+   * Lookup the default branch
+   * @return {Promise<Branch>} 'master' branch
+   */
+  get defaultBranch() {
+    return this.branch('master');
   }
 
   /**

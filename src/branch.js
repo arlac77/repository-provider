@@ -63,6 +63,9 @@ export class Branch {
     return notImplementedError();
   }
 
+  /**
+   * File list
+   */
   async list() {
     return [];
   }
