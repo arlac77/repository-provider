@@ -27,7 +27,7 @@ export class Branch {
   }
 
   /**
-   * Deliver repository nad branch name combined
+   * Deliver repository and branch name combined
    * @return {string} 'repo#branch'
    */
   get fullName() {
