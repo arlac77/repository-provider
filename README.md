@@ -52,6 +52,7 @@ const files = await branch.list();
     -   [defaultOptions](#defaultoptions)
     -   [options](#options)
 -   [Branch](#branch-1)
+    -   [initialize](#initialize)
     -   [provider](#provider-1)
     -   [fullName](#fullname)
     -   [delete](#delete)
@@ -62,7 +63,7 @@ const files = await branch.list();
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
 -   [Repository](#repository-1)
-    -   [initialize](#initialize)
+    -   [initialize](#initialize-1)
     -   [content](#content-2)
     -   [branch](#branch-2)
     -   [defaultBranch](#defaultbranch)
@@ -187,6 +188,12 @@ Abstract git branch
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+### initialize
+
+called one after constructing
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
 ### provider
 
 Returns **[Provider](#provider)** 
@@ -276,7 +283,7 @@ Abstract repository
 
 ### initialize
 
-called one after constructing to
+called one after constructing
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 

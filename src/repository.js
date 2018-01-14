@@ -19,7 +19,7 @@ export class Repository {
   }
 
   /**
-   * called one after constructing to
+   * called one after constructing
    * @return {Promise}
    */
   async initialize() {}

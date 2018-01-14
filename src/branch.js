@@ -20,6 +20,12 @@ export class Branch {
   }
 
   /**
+   * called one after constructing
+   * @return {Promise}
+   */
+  async initialize() {}
+
+  /**
    * @return {Provider}
    */
   get provider() {
