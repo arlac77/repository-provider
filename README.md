@@ -65,6 +65,7 @@ const files = await branch.list();
 -   [Repository](#repository-1)
     -   [initialize](#initialize-1)
     -   [content](#content-2)
+    -   [urls](#urls)
     -   [branch](#branch-2)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches)
@@ -296,6 +297,12 @@ Lookup content form the default branch
 -   `args` **...any** 
 
 Returns **[Content](#content)** 
+
+### urls
+
+Deliver urls to access the repo
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
 ### branch
 

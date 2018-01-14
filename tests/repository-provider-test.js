@@ -7,8 +7,14 @@ test('provider', async t => {
   t.is(provider.rateLimitReached, false);
 });
 
-test('repository ', async t => {
+test('repository', async t => {
   const provider = new Provider();
   const repository = await provider.createRepository('r1');
   t.is(repository.name, 'r1');
+});
+
+test('repository urls', async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository('r1');
+  t.deepEqual(repository.urls, []);
 });

@@ -33,6 +33,14 @@ export class Repository {
   }
 
   /**
+   * Deliver urls to access the repo
+   * @return {string[]}
+   */
+  get urls() {
+    return [];
+  }
+
+  /**
    * Lookup branch by name
    * @param {string} name
    * @return {Promise<Branch>}
