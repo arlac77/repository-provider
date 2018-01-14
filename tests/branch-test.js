@@ -10,6 +10,7 @@ test('branch', async t => {
 
   t.is(b.provider, provider);
   t.is(b.name, 'b1');
+  t.is(b.fullName, 'r1#b1');
   t.is(await repository.branch('b1'), b);
 });
 

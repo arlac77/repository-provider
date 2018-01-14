@@ -53,6 +53,7 @@ const files = await branch.list();
     -   [options](#options)
 -   [Branch](#branch-1)
     -   [provider](#provider-1)
+    -   [fullName](#fullname)
     -   [delete](#delete)
     -   [content](#content-1)
     -   [commit](#commit)
@@ -189,6 +190,12 @@ Abstract git branch
 ### provider
 
 Returns **[Provider](#provider)** 
+
+### fullName
+
+Deliver repository nad branch name combined
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
 
 ### delete
 

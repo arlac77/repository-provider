@@ -27,6 +27,14 @@ export class Branch {
   }
 
   /**
+   * Deliver repository nad branch name combined
+   * @return {string} 'repo#branch'
+   */
+  get fullName() {
+    return `${this.repository.name}#${this.name}`;
+  }
+
+  /**
    * Delete the branch from the {@link Repository}.
    * @see {@link Repository#deleteBranch}
    * @return {Promise}
