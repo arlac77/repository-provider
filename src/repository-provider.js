@@ -97,7 +97,7 @@ export class Provider {
    */
   async branch(name) {
     const repository = await this.repository(name);
-    const m = name.match(/#\w+$/);
+    const m = name.match(/#(\w+)$/);
     if (m) {
       return repository.branch(m[1]);
     }
