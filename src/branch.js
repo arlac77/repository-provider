@@ -1,3 +1,5 @@
+import { notImplementedError } from './util';
+
 /**
  * Abstract git branch
  * @see {@link Repository#addBranch}

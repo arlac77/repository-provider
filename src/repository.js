@@ -1,3 +1,5 @@
+import { notImplementedError } from './util';
+
 /**
  * Abstract repository
  * @param {Provider} provider
@@ -58,15 +60,20 @@ export class Repository {
    * Create a new  {@link Branch}.
    * @param {string} name
    * @param {Promise<Branch>} source branch defaults to master
+   * @param {Object} options
+   * @return {Promise<Branch>} newly created branch
    */
-  async createBranch(name, source) {
-    return notImplementedError();
+  async createBranch(name, source, options) {
+    const branch = new this.provider.branchClass(this, name, options);
+    await branch.initialize();
+    this._branches.set(name, branch);
+    return branch;
   }
 
   /**
    * Delete a {@link Branch}
    * @param {string} name
-   * @return {Promise}
+   * @return {Promise<undefined>}
    */
   async deleteBranch(name) {
     this._branches.delete(name);

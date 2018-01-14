@@ -1,12 +1,9 @@
 import { Branch } from './branch';
 import { Repository } from './repository';
 import { PullRequest } from './pull-request';
+import { notImplementedError } from './util';
 
 export { Repository, Branch, PullRequest };
-
-function notImplementedError() {
-  return new Error('not implemented');
-}
 
 /**
  * @typedef {Object} Content
