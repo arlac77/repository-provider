@@ -8,6 +8,7 @@ test('branch', async t => {
 
   const b = new Branch(repository, 'b1');
 
+  t.is(b.repository, repository);
   t.is(b.provider, provider);
   t.is(b.name, 'b1');
   t.is(b.fullName, 'r1#b1');
