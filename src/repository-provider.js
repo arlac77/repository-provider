@@ -89,6 +89,9 @@ export class Provider {
 
   /**
    * Lookup a branch
+   * First lookup repository then the branch
+   * If no branch was specified then the default branch will be delivered.
+   * @see {@link Repository#defaultBranch}
    * @param {string} name
    * @return {Promise<Branch>}
    */
@@ -109,5 +112,14 @@ export class Provider {
    */
   get rateLimitReached() {
     return false;
+  }
+
+  /**
+   * Deliver the repository type
+   * @return {string} 'git'
+   */
+  get type()
+  {
+    return 'git';
   }
 }

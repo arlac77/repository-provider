@@ -49,6 +49,7 @@ const files = await branch.list();
     -   [repository](#repository)
     -   [branch](#branch)
     -   [rateLimitReached](#ratelimitreached)
+    -   [type](#type)
     -   [defaultOptions](#defaultoptions)
     -   [options](#options)
 -   [Branch](#branch-1)
@@ -141,7 +142,11 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### branch
 
+-   **See: [Repository#defaultBranch](#repositorydefaultbranch)**
+
 Lookup a branch
+First lookup repository then the branch
+If no branch was specified then the default branch will be delivered.
 
 **Parameters**
 
@@ -155,6 +160,12 @@ Is our rate limit reached.
 By default we have no rate limit
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** always false
+
+### type
+
+Deliver the repository type
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'git'
 
 ### defaultOptions
 

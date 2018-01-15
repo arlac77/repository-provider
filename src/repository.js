@@ -135,6 +135,11 @@ export class Repository {
     this._pullRequests.delete(name);
   }
 
+  get type()
+  {
+    return this.provider.type;
+  }
+
   /**
    * Value delivered from the provider
    * @return {boolean} providers rateLimitReached
