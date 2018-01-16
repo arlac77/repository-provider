@@ -41,6 +41,14 @@ export class Repository {
   }
 
   /**
+   * Repository owner
+   * @return {string}
+   */
+  get owner() {
+    return undefined;
+  }
+
+  /**
    * Lookup branch by name
    * @param {string} name
    * @return {Promise<Branch>}
@@ -135,8 +143,7 @@ export class Repository {
     this._pullRequests.delete(name);
   }
 
-  get type()
-  {
+  get type() {
     return this.provider.type;
   }
 

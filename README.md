@@ -55,6 +55,7 @@ const files = await branch.list();
 -   [Branch](#branch-1)
     -   [initialize](#initialize)
     -   [provider](#provider-1)
+    -   [owner](#owner)
     -   [fullName](#fullname)
     -   [delete](#delete)
     -   [content](#content-1)
@@ -67,6 +68,7 @@ const files = await branch.list();
     -   [initialize](#initialize-1)
     -   [content](#content-2)
     -   [urls](#urls)
+    -   [owner](#owner-1)
     -   [branch](#branch-2)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches)
@@ -210,6 +212,15 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Returns **[Provider](#provider)** 
 
+### owner
+
+-   **See: [Repository#owner](#repositoryowner)**
+
+Branch owner
+By default we provide the branch owner
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ### fullName
 
 Deliver repository and branch name combined
@@ -314,6 +325,12 @@ Returns **[Content](#content)**
 Deliver urls to access the repo
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+### owner
+
+Repository owner
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### branch
 

@@ -33,6 +33,16 @@ export class Branch {
   }
 
   /**
+   * Branch owner
+   * By default we provide the branch owner
+   * @see {@link Repository#owner}
+   * @return {string}
+   */
+  get owner() {
+    return this.repository.owner;
+  }
+
+  /**
    * Deliver repository and branch name combined
    * @return {string} 'repo#branch'
    */
