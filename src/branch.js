@@ -1,7 +1,7 @@
 import { notImplementedError } from './util';
 
 /**
- * Abstract git branch
+ * Abstract branch
  * @see {@link Repository#addBranch}
  * @param {Repository} repository
  * @param {string} name
@@ -34,12 +34,22 @@ export class Branch {
 
   /**
    * Branch owner
-   * By default we provide the branch owner
+   * By default we provide the repository owner
    * @see {@link Repository#owner}
    * @return {string}
    */
   get owner() {
     return this.repository.owner;
+  }
+
+  /**
+   * Branch project
+   * By default we provide the repository project
+   * @see {@link Repository#project}
+   * @return {string}
+   */
+  get project() {
+    return this.repository.project;
   }
 
   /**

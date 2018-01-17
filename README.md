@@ -56,6 +56,7 @@ const files = await branch.list();
     -   [initialize](#initialize)
     -   [provider](#provider-1)
     -   [owner](#owner)
+    -   [project](#project)
     -   [fullName](#fullname)
     -   [delete](#delete)
     -   [content](#content-1)
@@ -69,6 +70,7 @@ const files = await branch.list();
     -   [content](#content-2)
     -   [urls](#urls)
     -   [owner](#owner-1)
+    -   [project](#project-1)
     -   [branch](#branch-2)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches)
@@ -189,7 +191,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 -   **See: [Repository#addBranch](#repositoryaddbranch)**
 
-Abstract git branch
+Abstract branch
 
 **Parameters**
 
@@ -217,7 +219,16 @@ Returns **[Provider](#provider)**
 -   **See: [Repository#owner](#repositoryowner)**
 
 Branch owner
-By default we provide the branch owner
+By default we provide the repository owner
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### project
+
+-   **See: [Repository#project](#repositoryproject)**
+
+Branch project
+By default we provide the repository project
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -306,11 +317,13 @@ Abstract repository
 
 ### initialize
 
-called one after constructing
+Called one after constructing
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
 
 ### content
+
+-   **See: [Branch#content](#branchcontent)**
 
 Lookup content form the default branch
 
@@ -329,8 +342,16 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 ### owner
 
 Repository owner
+Default implementation delivers undefined
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** undefined
+
+### project
+
+Repository project
+Default implementation delivers undefined
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** undefined
 
 ### branch
 
@@ -382,7 +403,7 @@ Add a branch
 
 -   `branch` **[Branch](#branch)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
 
 ### pullRequests
 

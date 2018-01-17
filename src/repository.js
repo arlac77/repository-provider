@@ -19,13 +19,14 @@ export class Repository {
   }
 
   /**
-   * called one after constructing
-   * @return {Promise}
+   * Called one after constructing
+   * @return {Promise<undefined>}
    */
   async initialize() {}
 
   /**
    * Lookup content form the default branch
+   * @see {@link Branch#content}
    * @return {Content}
    */
   async content(...args) {
@@ -42,9 +43,19 @@ export class Repository {
 
   /**
    * Repository owner
-   * @return {string}
+   * Default implementation delivers undefined
+   * @return {string} undefined
    */
   get owner() {
+    return undefined;
+  }
+
+  /**
+   * Repository project
+   * Default implementation delivers undefined
+   * @return {string} undefined
+   */
+  get project() {
     return undefined;
   }
 
@@ -98,7 +109,7 @@ export class Repository {
   /**
    * Add a branch
    * @param {Branch} branch
-   * @return {Promise}
+   * @return {Promise<undefined>}
    */
   async addBranch(branch) {
     this._branches.set(branch.name, branch);
