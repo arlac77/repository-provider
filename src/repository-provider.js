@@ -46,6 +46,25 @@ export class Provider {
     });
   }
 
+  async _initialize() {
+    if (this._isInitialized) {
+      return;
+    }
+    await this.initialize();
+    this._isInitialized = true;
+  }
+
+  /**
+   * Provider initialization
+   * will be called once before content addressing method is called
+   * @see {@link Provider#repository}
+   * @see {@link Provider#branch}
+   * @see {@link Provider#createRepository}
+   * @see {@link Provider#deleteRepository}
+   * @return {Promise<undefined>}
+   */
+  async initialize() {}
+
   /**
    * @return {Class} repository class used by the Provider
    */
@@ -69,13 +88,26 @@ export class Provider {
 
   /**
    * Create a new repository
+   * @param {string} name
+   * @param {Object} options
    * @return {Promise<Repository>}
    */
   async createRepository(name, options) {
+    await this._initialize();
     const repository = new this.repositoryClass(this, name, options);
     await repository.initialize();
     this.repositories.set(name, repository);
     return repository;
+  }
+
+  /**
+   * Delete a repository
+   * @param {string} name
+   * @return {Promise<undefined>}
+   */
+  async deleteRepository(name) {
+    await this._initialize();
+    this.repositories.delete(name);
   }
 
   /**
@@ -84,6 +116,7 @@ export class Provider {
    * @return {Promise<Repository>}
    */
   async repository(name) {
+    await this._initialize();
     return this.repositories.get(name);
   }
 
@@ -96,6 +129,7 @@ export class Provider {
    * @return {Promise<Branch>}
    */
   async branch(name) {
+    await this._initialize();
     const [repoName, branchName] = name.split(/#/);
     let repository;
 

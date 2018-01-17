@@ -13,6 +13,9 @@ test('repository', async t => {
   const repository = await provider.createRepository('r1');
   t.is(repository.name, 'r1');
   t.is(repository.type, 'git');
+
+  await repository.delete();
+  t.is(await provider.repository('r1'), undefined);
 });
 
 test('get repository', async t => {

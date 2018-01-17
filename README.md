@@ -42,10 +42,12 @@ const files = await branch.list();
 
 -   [Content](#content)
 -   [Provider](#provider)
+    -   [initialize](#initialize)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [pullRequestClass](#pullrequestclass)
     -   [createRepository](#createrepository)
+    -   [deleteRepository](#deleterepository)
     -   [repository](#repository)
     -   [branch](#branch)
     -   [rateLimitReached](#ratelimitreached)
@@ -53,7 +55,7 @@ const files = await branch.list();
     -   [defaultOptions](#defaultoptions)
     -   [options](#options)
 -   [Branch](#branch-1)
-    -   [initialize](#initialize)
+    -   [initialize](#initialize-1)
     -   [provider](#provider-1)
     -   [owner](#owner)
     -   [project](#project)
@@ -66,7 +68,7 @@ const files = await branch.list();
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
 -   [Repository](#repository-1)
-    -   [initialize](#initialize-1)
+    -   [initialize](#initialize-2)
     -   [content](#content-2)
     -   [urls](#urls)
     -   [owner](#owner-1)
@@ -77,6 +79,7 @@ const files = await branch.list();
     -   [createBranch](#createbranch)
     -   [deleteBranch](#deletebranch)
     -   [addBranch](#addbranch)
+    -   [delete](#delete-1)
     -   [pullRequests](#pullrequests)
     -   [pullRequest](#pullrequest)
     -   [addPullRequest](#addpullrequest)
@@ -85,7 +88,7 @@ const files = await branch.list();
     -   [rateLimitReached](#ratelimitreached-4)
 -   [PullRequest](#pullrequest-1)
     -   [provider](#provider-2)
-    -   [delete](#delete-1)
+    -   [delete](#delete-2)
 
 ## Content
 
@@ -111,6 +114,18 @@ Base repository provider acts as a source of repositories
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** 
 -   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
+### initialize
+
+-   **See: [Provider#repository](#providerrepository)**
+-   **See: [Provider#branch](#providerbranch)**
+-   **See: [Provider#createRepository](#providercreaterepository)**
+-   **See: [Provider#deleteRepository](#providerdeleterepository)**
+
+Provider initialization
+will be called once before content addressing method is called
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+
 ### repositoryClass
 
 Returns **Class** repository class used by the Provider
@@ -129,10 +144,20 @@ Create a new repository
 
 **Parameters**
 
--   `name`  
--   `options`  
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
+
+### deleteRepository
+
+Delete a repository
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
 
 ### repository
 
@@ -244,7 +269,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 Delete the branch from the [Repository](#repository).
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
 
 ### content
 
@@ -402,6 +427,14 @@ Add a branch
 **Parameters**
 
 -   `branch` **[Branch](#branch)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+
+### delete
+
+-   **See: [Provider#deleteRepository](#providerdeleterepository)**
+
+Delete the repository from the [Provider](#provider).
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
 

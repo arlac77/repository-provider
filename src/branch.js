@@ -63,7 +63,7 @@ export class Branch {
   /**
    * Delete the branch from the {@link Repository}.
    * @see {@link Repository#deleteBranch}
-   * @return {Promise}
+   * @return {Promise<undefined>}
    */
   async delete() {
     return this.repository.deleteBranch(this.name);

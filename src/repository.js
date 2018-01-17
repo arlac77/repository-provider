@@ -115,6 +115,15 @@ export class Repository {
     this._branches.set(branch.name, branch);
   }
 
+  /**
+   * Delete the repository from the {@link Provider}.
+   * @see {@link Provider#deleteRepository}
+   * @return {Promise<undefined>}
+   */
+  async delete() {
+    return this.provider.deleteRepository(this.name);
+  }
+
   async createPullRequest() {
     return notImplementedError();
   }
