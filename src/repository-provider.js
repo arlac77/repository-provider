@@ -50,8 +50,8 @@ export class Provider {
     if (this._isInitialized) {
       return;
     }
-    await this.initialize();
     this._isInitialized = true;
+    await this.initialize();
   }
 
   /**
