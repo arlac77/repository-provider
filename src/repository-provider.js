@@ -92,14 +92,24 @@ export class Provider {
    * First lookup repository then the branch
    * If no branch was specified then the default branch will be delivered.
    * @see {@link Repository#defaultBranch}
-   * @param {string} name
+   * @param {string} name with optional branch name as '#myBranchName'
    * @return {Promise<Branch>}
    */
   async branch(name) {
-    const repository = await this.repository(name);
-    const m = name.match(/#(\w+)$/);
-    if (m) {
-      return repository.branch(m[1]);
+    const [repoName, branchName] = name.split(/#/);
+    let repository;
+
+    if (branchName !== undefined) {
+      repository = await this.repository(repoName);
+      if (repository !== undefined) {
+        return repository.branch(branchName);
+      }
+    }
+
+    repository = await this.repository(repoName);
+
+    if (repository === undefined) {
+      throw new Error(`Unknown repository ${repoName}`);
     }
 
     return repository.defaultBranch;
@@ -118,8 +128,7 @@ export class Provider {
    * Deliver the repository type
    * @return {string} 'git'
    */
-  get type()
-  {
+  get type() {
     return 'git';
   }
 }
