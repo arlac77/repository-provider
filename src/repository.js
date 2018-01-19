@@ -42,6 +42,14 @@ export class Repository {
   }
 
   /**
+   * Deliver preffered url to access the repo
+   * @return {string}
+   */
+  get url() {
+    return this.urls[0];
+  }
+
+  /**
    * Repository owner
    * Default implementation delivers undefined
    * @return {string} undefined

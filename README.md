@@ -60,6 +60,8 @@ const files = await branch.list();
     -   [owner](#owner)
     -   [project](#project)
     -   [fullName](#fullname)
+    -   [url](#url)
+    -   [isDefault](#isdefault)
     -   [delete](#delete)
     -   [content](#content-1)
     -   [commit](#commit)
@@ -71,6 +73,7 @@ const files = await branch.list();
     -   [initialize](#initialize-2)
     -   [content](#content-2)
     -   [urls](#urls)
+    -   [url](#url-1)
     -   [owner](#owner-1)
     -   [project](#project-1)
     -   [branch](#branch-2)
@@ -263,6 +266,18 @@ Deliver repository and branch name combined
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
 
+### url
+
+Deliver repository and branch name combined
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
+
+### isDefault
+
+Are we the default branch
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** name is 'master'
+
 ### delete
 
 -   **See: [Repository#deleteBranch](#repositorydeletebranch)**
@@ -363,6 +378,12 @@ Returns **[Content](#content)**
 Deliver urls to access the repo
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+### url
+
+Deliver preffered url to access the repo
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### owner
 

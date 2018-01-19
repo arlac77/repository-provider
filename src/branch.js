@@ -61,6 +61,24 @@ export class Branch {
   }
 
   /**
+   * Deliver repository and branch name combined
+   * @return {string} 'repoUrl#branch'
+   */
+  get url() {
+    return this.isDefault
+      ? this.repository.url
+      : `${this.repository.url}#${this.name}`;
+  }
+
+  /**
+   * Are we the default branch
+   * @return {boolean} name is 'master'
+   */
+  get isDefault() {
+    return this.name === 'master';
+  }
+
+  /**
    * Delete the branch from the {@link Repository}.
    * @see {@link Repository#deleteBranch}
    * @return {Promise<undefined>}
