@@ -12,7 +12,15 @@ test('branch', async t => {
   t.is(b.provider, provider);
   t.is(b.name, 'b1');
   t.is(b.fullName, 'r1#b1');
+  t.is(b.isDefault, false);
   t.is(await repository.branch('b1'), b);
+});
+
+test('branch isDefault', async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository('r1');
+  const b = new Branch(repository, 'master');
+  t.is(b.isDefault, true);
 });
 
 test('branch delete', async t => {
