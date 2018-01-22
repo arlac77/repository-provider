@@ -58,6 +58,14 @@ export class Repository {
   }
 
   /**
+   * Deliver the url of home page.
+   * @return {string}
+   */
+  get homePageURL() {
+    return undefined;
+  }
+
+  /**
    * Repository owner
    * Default implementation delivers undefined
    * @return {string} undefined

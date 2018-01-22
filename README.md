@@ -76,6 +76,7 @@ const files = await branch.list();
     -   [urls](#urls)
     -   [url](#url-1)
     -   [issuesURL](#issuesurl)
+    -   [homePageURL](#homepageurl)
     -   [owner](#owner-1)
     -   [project](#project-1)
     -   [branch](#branch-2)
@@ -391,6 +392,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### issuesURL
 
 Deliver the url of issue tracking system.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### homePageURL
+
+Deliver the url of home page.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
