@@ -73,6 +73,13 @@ export class Provider {
   }
 
   /**
+   * @return {Class} content class used by the Provider
+   */
+  get contentClass() {
+    return Content;
+  }
+
+  /**
    * @return {Class} pull request class used by the Provider
    */
   get pullRequestClass() {

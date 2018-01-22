@@ -44,6 +44,7 @@ const files = await branch.list();
     -   [initialize](#initialize)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
+    -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
     -   [createRepository](#createrepository)
     -   [deleteRepository](#deleterepository)
@@ -126,6 +127,10 @@ Returns **Class** repository class used by the Provider
 ### branchClass
 
 Returns **Class** branch class used by the Provider
+
+### contentClass
+
+Returns **Class** content class used by the Provider
 
 ### pullRequestClass
 
@@ -547,7 +552,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 -   `path`  
 -   `content`   (optional, default `undefined`)
 -   `type`   (optional, default `'blob'`)
--   `mode`   (optional, default `'0640'`)
+-   `mode`   (optional, default `'100644'`)
 
 **Properties**
 
