@@ -59,6 +59,7 @@ const files = await branch.list();
     -   [owner](#owner)
     -   [project](#project)
     -   [fullName](#fullname)
+    -   [fullCondensedName](#fullcondensedname)
     -   [url](#url)
     -   [isDefault](#isdefault)
     -   [delete](#delete)
@@ -255,9 +256,16 @@ Deliver repository and branch name combined
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
 
+### fullCondensedName
+
+Deliver repository and branch name combined.
+But skipping the branch name if it is the default branch
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
+
 ### url
 
-Deliver repository and branch name combined
+Deliver repository and branch url combined
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
 
@@ -538,7 +546,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 -   `path`  
 -   `content`   (optional, default `undefined`)
--   `type`   (optional, default `'file'`)
+-   `type`   (optional, default `'blob'`)
 -   `mode`   (optional, default `'0640'`)
 
 **Properties**

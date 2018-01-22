@@ -5,7 +5,7 @@
  * @property {string} mode file permissions
  */
 export class Content {
-  constructor(path, content = undefined, type = 'file', mode = '0640') {
+  constructor(path, content = undefined, type = 'blob', mode = '0640') {
     Object.defineProperties(this, {
       path: { value: path },
       content: { value: content, writeable: true },

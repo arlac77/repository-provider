@@ -61,7 +61,18 @@ export class Branch {
   }
 
   /**
-   * Deliver repository and branch name combined
+   * Deliver repository and branch name combined.
+   * But skipping the branch name if it is the default branch
+   * @return {string} 'repo#branch'
+   */
+  get fullCondensedName() {
+    return this.isDefault
+      ? this.repository.name
+      : `${this.repository.name}#${this.name}`;
+  }
+
+  /**
+   * Deliver repository and branch url combined
    * @return {string} 'repoUrl#branch'
    */
   get url() {

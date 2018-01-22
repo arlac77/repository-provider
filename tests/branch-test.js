@@ -20,6 +20,7 @@ test('branch isDefault', async t => {
   const provider = new Provider();
   const repository = await provider.createRepository('r1');
   const b = new Branch(repository, 'master');
+  t.is(b.fullName, 'r1#master');
   t.is(b.isDefault, true);
 });
 
