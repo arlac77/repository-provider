@@ -50,6 +50,14 @@ export class Repository {
   }
 
   /**
+   * Deliver the url of issue tracking system.
+   * @return {string}
+   */
+  get issuesURL() {
+    return undefined;
+  }
+
+  /**
    * Repository owner
    * Default implementation delivers undefined
    * @return {string} undefined
