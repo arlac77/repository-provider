@@ -40,7 +40,6 @@ const files = await branch.list();
 
 ### Table of Contents
 
--   [Content](#content)
 -   [Provider](#provider)
     -   [initialize](#initialize)
     -   [repositoryClass](#repositoryclass)
@@ -63,7 +62,7 @@ const files = await branch.list();
     -   [url](#url)
     -   [isDefault](#isdefault)
     -   [delete](#delete)
-    -   [content](#content-1)
+    -   [content](#content)
     -   [commit](#commit)
     -   [createPullRequest](#createpullrequest)
     -   [list](#list)
@@ -71,7 +70,7 @@ const files = await branch.list();
     -   [rateLimitReached](#ratelimitreached-2)
 -   [Repository](#repository-1)
     -   [initialize](#initialize-2)
-    -   [content](#content-2)
+    -   [content](#content-1)
     -   [urls](#urls)
     -   [url](#url-1)
     -   [owner](#owner-1)
@@ -92,17 +91,7 @@ const files = await branch.list();
 -   [PullRequest](#pullrequest-1)
     -   [provider](#provider-2)
     -   [delete](#delete-2)
-
-## Content
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-**Properties**
-
--   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** 
--   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
--   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
--   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   [Content](#content-2)
 
 ## Provider
 
@@ -542,6 +531,22 @@ Returns **[Provider](#provider)**
 Delete the pull request from the [Repository](#repository).
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
+## Content
+
+**Parameters**
+
+-   `path`  
+-   `content`   (optional, default `undefined`)
+-   `type`   (optional, default `'file'`)
+-   `mode`   (optional, default `'0640'`)
+
+**Properties**
+
+-   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** 
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** tpye of the content
+-   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
 
 # install
 

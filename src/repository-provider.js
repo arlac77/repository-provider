@@ -1,17 +1,10 @@
 import { Branch } from './branch';
 import { Repository } from './repository';
 import { PullRequest } from './pull-request';
+import { Content } from './content';
 import { notImplementedError } from './util';
 
-export { Repository, Branch, PullRequest };
-
-/**
- * @typedef {Object} Content
- * @property {string|Buffer} content
- * @property {string} path file name inside of the repository
- * @property {string} mode file permissions
- * @property {string} type
- */
+export { Repository, Branch, PullRequest, Content };
 
 /**
  * Base repository provider acts as a source of repositories
