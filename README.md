@@ -62,6 +62,8 @@ const files = await branch.list();
     -   [fullName](#fullname)
     -   [fullCondensedName](#fullcondensedname)
     -   [url](#url)
+    -   [issuesURL](#issuesurl)
+    -   [homePageURL](#homepageurl)
     -   [isDefault](#isdefault)
     -   [delete](#delete)
     -   [content](#content)
@@ -75,8 +77,8 @@ const files = await branch.list();
     -   [content](#content-1)
     -   [urls](#urls)
     -   [url](#url-1)
-    -   [issuesURL](#issuesurl)
-    -   [homePageURL](#homepageurl)
+    -   [issuesURL](#issuesurl-1)
+    -   [homePageURL](#homepageurl-1)
     -   [owner](#owner-1)
     -   [project](#project-1)
     -   [branch](#branch-2)
@@ -275,6 +277,22 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 Deliver repository and branch url combined
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
+
+### issuesURL
+
+-   **See: [Repository#issuesURL](#repositoryissuesurl)**
+
+Deliver the url of issue tracking system.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
+
+### homePageURL
+
+-   **See: [Repository#homePageURL](#repositoryhomepageurl)**
+
+Deliver the url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
 
 ### isDefault
 

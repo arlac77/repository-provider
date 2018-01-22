@@ -82,6 +82,24 @@ export class Branch {
   }
 
   /**
+   * Deliver the url of issue tracking system.
+   * @see {@link Repository#issuesURL}
+   * @return {string} as provided from the repository
+   */
+  get issuesURL() {
+    return this.repository.issuesURL;
+  }
+
+  /**
+   * Deliver the url of home page.
+   * @see {@link Repository#homePageURL}
+   * @return {string} as provided from the repository
+   */
+  get homePageURL() {
+    return this.repository.homePageURL;
+  }
+
+  /**
    * Are we the default branch
    * @return {boolean} name is 'master'
    */
