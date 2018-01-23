@@ -3,12 +3,9 @@
   "version": "0.0.0-semantic-release",
   "main": "dist/repository-provider.js",
   "module": "src/repository-provider.js",
-  "description": "abstract interface to git repository providers like github bitbucket",
-  "keywords": [
-    "git",
-    "github",
-    "bitbucket"
-  ],
+  "description":
+    "abstract interface to git repository providers like github bitbucket",
+  "keywords": ["git", "repository-provider"],
   "contributors": [
     {
       "name": "Markus Felten",
@@ -52,21 +49,12 @@
   "homepage": "https://github.com/arlac77/repository-provider#readme",
   "release": {},
   "ava": {
-    "files": [
-      "build/*-test.js"
-    ],
-    "require": [
-      "babel-register"
-    ]
+    "files": ["build/*-test.js"],
+    "require": ["babel-register"]
   },
   "nyc": {
-    "include": [
-      "build/*-test.js",
-      "src/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
+    "include": ["build/*-test.js", "src/**/*.js"],
+    "reporter": ["lcov"],
     "report-dir": "./build/coverage"
   },
   "xo": {
