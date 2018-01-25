@@ -1,7 +1,6 @@
 /**
  * Abstract pull request
- * @see {@link Repository#addPullRequest}
-
+ * {@link Repository#addPullRequest}
  * @param {Repositoy} repository
  * @param {string} name
  * @param {Object} options

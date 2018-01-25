@@ -26,7 +26,7 @@ export class Repository {
 
   /**
    * Lookup content form the default branch
-   * @see {@link Branch#content}
+   * {@link Branch#content}
    * @return {Content}
    */
   async content(...args) {
@@ -141,7 +141,7 @@ export class Repository {
 
   /**
    * Delete the repository from the {@link Provider}.
-   * @see {@link Provider#deleteRepository}
+   * {@link Provider#deleteRepository}
    * @return {Promise<undefined>}
    */
   async delete() {
@@ -153,7 +153,7 @@ export class Repository {
   }
 
   /**
-   * Deliver all @{link PullRequest}s
+   * Deliver all {@link PullRequest}s
    * @return {Promise<Map>} of all pull requests
    */
   async pullRequests() {

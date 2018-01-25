@@ -1,5 +1,6 @@
 /**
- * @property {string|Buffer} content
+ * Respresentation of one 'file' entry
+ * @property {string|Buffer|Stream} content
  * @property {string} path file name inside of the repository
  * @property {string} type tpye of the content
  * @property {string} mode file permissions
@@ -10,7 +11,7 @@ export class Content {
       path: { value: path },
       content: { value: content, writeable: true },
       type: { value: type },
-      mode: { value: type }
+      mode: { value: mode }
     });
   }
 }

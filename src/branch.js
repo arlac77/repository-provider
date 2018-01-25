@@ -128,7 +128,7 @@ export class Branch {
   /**
    * Commit files
    * @param {string} message commit message
-   * @param {Content} [updates] file content to be commited
+   * @param {Content[]} updates file content to be commited
    * @param {Object} options
    * @return {Promise}
    */
