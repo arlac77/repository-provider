@@ -53,7 +53,7 @@ export class Branch {
   }
 
   /**
-   * Deliver repository and branch name combined
+   * Repository and branch name combined
    * @return {string} 'repo#branch'
    */
   get fullName() {
@@ -61,7 +61,7 @@ export class Branch {
   }
 
   /**
-   * Deliver repository and branch name combined.
+   * Repository and branch name combined.
    * But skipping the branch name if it is the default branch
    * @return {string} 'repo#branch'
    */
@@ -82,7 +82,7 @@ export class Branch {
   }
 
   /**
-   * Deliver the url of issue tracking system.
+   * Url of issue tracking system.
    * @see {@link Repository#issuesURL}
    * @return {string} as provided from the repository
    */
@@ -91,7 +91,7 @@ export class Branch {
   }
 
   /**
-   * Deliver the url of home page.
+   * Url of home page.
    * @see {@link Repository#homePageURL}
    * @return {string} as provided from the repository
    */

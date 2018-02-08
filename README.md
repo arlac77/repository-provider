@@ -85,6 +85,7 @@ const files = await branch.list();
     -   [homePageURL](#homepageurl-1)
     -   [owner](#owner-1)
     -   [project](#project-1)
+    -   [condensedName](#condensedname)
     -   [branch](#branch-2)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches)
@@ -96,6 +97,7 @@ const files = await branch.list();
     -   [pullRequest](#pullrequest)
     -   [addPullRequest](#addpullrequest)
     -   [deletePullRequest](#deletepullrequest)
+    -   [type](#type-1)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
 -   [PullRequest](#pullrequest-1)
@@ -265,13 +267,13 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### fullName
 
-Deliver repository and branch name combined
+Repository and branch name combined
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
 
 ### fullCondensedName
 
-Deliver repository and branch name combined.
+Repository and branch name combined.
 But skipping the branch name if it is the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
@@ -286,7 +288,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 -   **See: [Repository#issuesURL](#repositoryissuesurl)**
 
-Deliver the url of issue tracking system.
+Url of issue tracking system.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
 
@@ -294,7 +296,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 -   **See: [Repository#homePageURL](#repositoryhomepageurl)**
 
-Deliver the url of home page.
+Url of home page.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
 
@@ -400,25 +402,25 @@ Returns **[Content](#content)**
 
 ### urls
 
-Deliver urls to access the repo
+urls to access the repo
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
 ### url
 
-Deliver preffered url to access the repo
+preffered url to access the repo
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### issuesURL
 
-Deliver the url of issue tracking system.
+the url of issue tracking system.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### homePageURL
 
-Deliver the url of home page.
+the url of home page.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -435,6 +437,12 @@ Repository project
 Default implementation delivers undefined
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** undefined
+
+### condensedName
+
+Name without project / owner
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
 
 ### branch
 
@@ -503,7 +511,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### pullRequest
 
-Deliver @{link PullRequest} for a given name
+The @{link PullRequest} for a given name
 
 **Parameters**
 
@@ -530,6 +538,10 @@ Delete a [PullRequest](#pullrequest)
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
+### type
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** providers type
 
 ### rateLimitReached
 

@@ -12,6 +12,7 @@ test('repository', async t => {
   const provider = new Provider();
   const repository = await provider.createRepository('r1');
   t.is(repository.name, 'r1');
+  t.is(repository.condensedName, 'r1');
   t.is(repository.type, 'git');
 
   await repository.delete();
@@ -23,6 +24,7 @@ test('get repository', async t => {
   await provider.createRepository('r1');
   const repository = await provider.repository('r1');
   t.is(repository.name, 'r1');
+  t.is(repository.condensedName, 'r1');
 });
 
 test('get repository#branch', async t => {

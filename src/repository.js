@@ -34,7 +34,7 @@ export class Repository {
   }
 
   /**
-   * Deliver urls to access the repo
+   * urls to access the repo
    * @return {string[]}
    */
   get urls() {
@@ -42,7 +42,7 @@ export class Repository {
   }
 
   /**
-   * Deliver preffered url to access the repo
+   * preffered url to access the repo
    * @return {string}
    */
   get url() {
@@ -50,7 +50,7 @@ export class Repository {
   }
 
   /**
-   * Deliver the url of issue tracking system.
+   * the url of issue tracking system.
    * @return {string}
    */
   get issuesURL() {
@@ -58,7 +58,7 @@ export class Repository {
   }
 
   /**
-   * Deliver the url of home page.
+   * the url of home page.
    * @return {string}
    */
   get homePageURL() {
@@ -81,6 +81,14 @@ export class Repository {
    */
   get project() {
     return undefined;
+  }
+
+  /**
+   * Name without project / owner
+   * @return {string} name
+   */
+  get condensedName() {
+    return this.name;
   }
 
   /**
@@ -161,7 +169,7 @@ export class Repository {
   }
 
   /**
-   * Deliver @{link PullRequest} for a given name
+   * The @{link PullRequest} for a given name
    * @param {string} name
    * @return {Promise<PullRequest>}
    */
@@ -187,6 +195,9 @@ export class Repository {
     this._pullRequests.delete(name);
   }
 
+  /**
+   * @return {string} providers type
+   */
   get type() {
     return this.provider.type;
   }
