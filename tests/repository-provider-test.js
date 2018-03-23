@@ -6,6 +6,7 @@ test('provider', async t => {
   t.deepEqual(provider.config, { key: 'value' });
   t.is(provider.rateLimitReached, false);
   t.is(provider.type, 'git');
+  t.is(provider.name, 'Provider');
 });
 
 test('repository', async t => {

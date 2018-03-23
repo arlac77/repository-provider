@@ -165,4 +165,12 @@ export class Provider {
   get type() {
     return 'git';
   }
+
+  /**
+   * Deliver the provider name
+   * @return {string} class name by default
+   */
+  get name() {
+    return this.constructor.name;
+  }
 }
