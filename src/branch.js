@@ -20,12 +20,13 @@ export class Branch {
   }
 
   /**
-   * called one after constructing
+   * called once after constructing
    * @return {Promise}
    */
   async initialize() {}
 
   /**
+   * The provider we live in
    * @return {Provider}
    */
   get provider() {
@@ -101,7 +102,7 @@ export class Branch {
 
   /**
    * Are we the default branch
-   * @return {boolean} name is 'master'
+   * @return {boolean} true if name is 'master'
    */
   get isDefault() {
     return this.name === 'master';

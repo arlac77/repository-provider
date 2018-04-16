@@ -56,7 +56,9 @@ const files = await branch.list();
     -   [branch](#branch)
     -   [rateLimitReached](#ratelimitreached)
     -   [type](#type)
+    -   [name](#name)
     -   [defaultOptions](#defaultoptions)
+    -   [optionsFromEnvironment](#optionsfromenvironment)
     -   [options](#options)
 -   [Branch](#branch-1)
     -   [initialize](#initialize-1)
@@ -204,11 +206,28 @@ Deliver the repository type
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'git'
 
+### name
+
+Deliver the provider name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name by default
+
 ### defaultOptions
 
 Default configuration options
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### optionsFromEnvironment
+
+Extract options suitable for the constructor
+form the given set of environment variables
+
+**Parameters**
+
+-   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** undefined if no environment variables have benn found
 
 ### options
 
@@ -239,11 +258,13 @@ Abstract branch
 
 ### initialize
 
-called one after constructing
+called once after constructing
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
 
 ### provider
+
+The provider we live in
 
 Returns **[Provider](#provider)** 
 
@@ -304,7 +325,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 Are we the default branch
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** name is 'master'
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name is 'master'
 
 ### delete
 
