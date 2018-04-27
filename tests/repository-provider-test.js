@@ -68,6 +68,13 @@ test('get unknown repository + branch', async t => {
   }
 });
 
+test('get undefined repository + branch', async t => {
+  const provider = new Provider();
+
+  const branch = await provider.branch(undefined);
+  t.is(branch, undefined);
+});
+
 test('repository urls', async t => {
   const provider = new Provider();
   const repository = await provider.createRepository('r1');

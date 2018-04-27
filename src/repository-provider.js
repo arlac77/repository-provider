@@ -139,6 +139,10 @@ export class Provider {
    * @return {Promise<Branch>}
    */
   async branch(name) {
+    if (name === undefined) {
+      return undefined;
+    }
+
     await this._initialize();
     const [repoName, branchName] = name.split(/#/);
     let repository;
