@@ -1,3 +1,5 @@
+import { notImplementedError } from './util';
+
 /**
  * Abstract pull request
  * {@link Repository#addPullRequest}
@@ -48,5 +50,19 @@ export class PullRequest {
    */
   async delete() {
     return this.repository.deletePullRequest(this.name);
+  }
+
+  /**
+   * Merge the pull request
+   */
+  async merge() {
+    return notImplementedError();
+  }
+
+  /**
+   * Decline the pull request
+   */
+  async decline() {
+    return notImplementedError();
   }
 }

@@ -104,6 +104,8 @@ const files = await branch.list();
 -   [PullRequest](#pullrequest-1)
     -   [provider](#provider-2)
     -   [delete](#delete-2)
+    -   [merge](#merge)
+    -   [decline](#decline)
 -   [Content](#content-2)
 
 ## Provider
@@ -609,6 +611,14 @@ Returns **[Provider](#provider)**
 Delete the pull request from the [Repository](#repository).
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
+### merge
+
+Merge the pull request
+
+### decline
+
+Decline the pull request
 
 ## Content
 
