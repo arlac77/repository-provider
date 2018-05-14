@@ -1,9 +1,14 @@
 /**
  * Respresentation of one 'file' entry
- * @property {string|Buffer|Stream} content
  * @property {string} path file name inside of the repository
- * @property {string} type tpye of the content
+ * @property {string|Buffer|Stream} content
+ * @property {string} type type of the content
  * @property {string} mode file permissions
+ *
+ * @param {string} path file name inside of the repository
+ * @param {string|Buffer|Stream} content
+ * @param {string} type type of the content
+ * @param {string} mode file permissions
  */
 export class Content {
   constructor(path, content = undefined, type = 'blob', mode = '100644') {
