@@ -1,6 +1,9 @@
 {
   "name": "repository-provider",
   "version": "0.0.0-semantic-release",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/repository-provider.js",
   "module": "src/repository-provider.js",
   "description": "abstract interface to git repository providers like github bitbucket",
