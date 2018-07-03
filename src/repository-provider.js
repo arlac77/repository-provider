@@ -25,7 +25,7 @@ export class Provider {
    * Extract options suitable for the constructor
    * form the given set of environment variables
    * @param {Object} env
-   * @return {Object} undefined if no environment variables have benn found
+   * @return {Object} undefined if no suitable environment variables have been found
    */
   static optionsFromEnvironment(env) {
     return undefined;
