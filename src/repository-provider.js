@@ -1,10 +1,11 @@
 import { Branch } from './branch';
 import { Repository } from './repository';
 import { PullRequest } from './pull-request';
+import { Project } from './project';
 import { Content } from './content';
 import { notImplementedError } from './util';
 
-export { Repository, Branch, PullRequest, Content };
+export { Repository, Branch, PullRequest, Project, Content };
 
 /**
  * Base repository provider acts as a source of repositories
@@ -45,7 +46,8 @@ export class Provider {
       config: {
         value: this.constructor.options(options)
       },
-      repositories: { value: new Map() }
+      repositories: { value: new Map() },
+      projects: { value: new Map() }
     });
   }
 
@@ -82,6 +84,14 @@ export class Provider {
     return Branch;
   }
 
+
+  /**
+   * @return {Class} project class used by the Provider
+   */
+  get projectClass() {
+    return Project;
+  }
+  
   /**
    * @return {Class} content class used by the Provider
    */
