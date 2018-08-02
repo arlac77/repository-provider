@@ -141,7 +141,7 @@ export class Branch {
    * Create a pull request
    * @param {Branch} toBranch
    * @param {string} message
-   * @return {Promise}
+   * @return {Promise<PullRequest>}
    */
   async createPullRequest(toBranch, message) {
     return notImplementedError();
@@ -149,6 +149,7 @@ export class Branch {
 
   /**
    * File list
+   * @return {string[]} all file names in the branch
    */
   async list() {
     return [];
