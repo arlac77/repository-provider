@@ -49,6 +49,7 @@ const files = await branch.list();
     -   [initialize](#initialize)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
+    -   [projectClass](#projectclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
     -   [createRepository](#createrepository)
@@ -133,9 +134,12 @@ const files = await branch.list();
     -   [delete](#delete-2)
     -   [merge](#merge)
     -   [decline](#decline)
--   [Content](#content-2)
+-   [Project](#project-2)
     -   [Parameters](#parameters-23)
     -   [Properties](#properties-4)
+-   [Content](#content-2)
+    -   [Parameters](#parameters-24)
+    -   [Properties](#properties-5)
 
 ## Provider
 
@@ -169,6 +173,10 @@ Returns **Class** repository class used by the Provider
 ### branchClass
 
 Returns **Class** branch class used by the Provider
+
+### projectClass
+
+Returns **Class** project class used by the Provider
 
 ### contentClass
 
@@ -396,11 +404,13 @@ Create a pull request
 -   `toBranch` **[Branch](#branch)** 
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[PullRequest](#pullrequest)>** 
 
 ### list
 
 File list
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** all file names in the branch
 
 ### rateLimitReached
 
@@ -648,6 +658,20 @@ Merge the pull request
 ### decline
 
 Decline the pull request
+
+## Project
+
+Abstract project
+
+### Parameters
+
+-   `provider` **[Provider](#provider)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### Properties
+
+-   `provider` **[Provider](#provider)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## Content
 
