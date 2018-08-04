@@ -46,32 +46,21 @@ const files = await branch.list();
 -   [Provider](#provider)
     -   [Parameters](#parameters)
     -   [Properties](#properties)
-    -   [initialize](#initialize)
-    -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [projectClass](#projectclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
-    -   [createRepository](#createrepository)
-        -   [Parameters](#parameters-1)
-    -   [deleteRepository](#deleterepository)
-        -   [Parameters](#parameters-2)
-    -   [repository](#repository)
-        -   [Parameters](#parameters-3)
-    -   [branch](#branch)
-        -   [Parameters](#parameters-4)
     -   [rateLimitReached](#ratelimitreached)
-    -   [type](#type)
     -   [name](#name)
     -   [defaultOptions](#defaultoptions)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-5)
+        -   [Parameters](#parameters-1)
     -   [options](#options)
-        -   [Parameters](#parameters-6)
--   [Branch](#branch-1)
-    -   [Parameters](#parameters-7)
+        -   [Parameters](#parameters-2)
+-   [Branch](#branch)
+    -   [Parameters](#parameters-3)
     -   [Properties](#properties-1)
-    -   [initialize](#initialize-1)
+    -   [initialize](#initialize)
     -   [provider](#provider-1)
     -   [owner](#owner)
     -   [project](#project)
@@ -83,15 +72,27 @@ const files = await branch.list();
     -   [isDefault](#isdefault)
     -   [delete](#delete)
     -   [content](#content)
-        -   [Parameters](#parameters-8)
+        -   [Parameters](#parameters-4)
     -   [commit](#commit)
-        -   [Parameters](#parameters-9)
+        -   [Parameters](#parameters-5)
     -   [createPullRequest](#createpullrequest)
-        -   [Parameters](#parameters-10)
+        -   [Parameters](#parameters-6)
     -   [list](#list)
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
+        -   [Parameters](#parameters-7)
+-   [Owner](#owner-1)
+    -   [repositoryClass](#repositoryclass)
+    -   [deleteRepository](#deleterepository)
+        -   [Parameters](#parameters-8)
+    -   [repository](#repository)
+        -   [Parameters](#parameters-9)
+    -   [createRepository](#createrepository)
+        -   [Parameters](#parameters-10)
+    -   [branch](#branch-1)
         -   [Parameters](#parameters-11)
+    -   [initialize](#initialize-1)
+    -   [type](#type)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-12)
     -   [Properties](#properties-2)
@@ -102,7 +103,7 @@ const files = await branch.list();
     -   [url](#url-1)
     -   [issuesURL](#issuesurl-1)
     -   [homePageURL](#homepageurl-1)
-    -   [owner](#owner-1)
+    -   [owner](#owner-2)
     -   [project](#project-1)
     -   [condensedName](#condensedname)
     -   [branch](#branch-2)
@@ -143,6 +144,8 @@ const files = await branch.list();
 
 ## Provider
 
+**Extends Owner**
+
 Base repository provider acts as a source of repositories
 
 ### Parameters
@@ -153,22 +156,6 @@ Base repository provider acts as a source of repositories
 
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** 
 -   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-### initialize
-
--   **See: [Provider#repository](#providerrepository)**
--   **See: [Provider#branch](#providerbranch)**
--   **See: [Provider#createRepository](#providercreaterepository)**
--   **See: [Provider#deleteRepository](#providerdeleterepository)**
-
-Provider initialization
-will be called once before content addressing method is called
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
-
-### repositoryClass
-
-Returns **Class** repository class used by the Provider
 
 ### branchClass
 
@@ -186,63 +173,12 @@ Returns **Class** content class used by the Provider
 
 Returns **Class** pull request class used by the Provider
 
-### createRepository
-
-Create a new repository
-
-#### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
-
-### deleteRepository
-
-Delete a repository
-
-#### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
-
-### repository
-
-Lookup a repository
-
-#### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
-
-### branch
-
--   **See: [Repository#defaultBranch](#repositorydefaultbranch)**
-
-Lookup a branch
-First lookup repository then the branch
-If no branch was specified then the default branch will be delivered.
-
-#### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** with optional branch name as '#myBranchName'
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** 
-
 ### rateLimitReached
 
 Is our rate limit reached.
 By default we have no rate limit
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** always false
-
-### type
-
-Deliver the repository type
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'git'
 
 ### name
 
@@ -428,6 +364,75 @@ forward to the Provider
 
 -   `value` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
+## Owner
+
+### repositoryClass
+
+Returns **Class** repository class used by the Provider
+
+### deleteRepository
+
+Delete a repository
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+
+### repository
+
+Lookup a repository
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
+
+### createRepository
+
+Create a new repository
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
+
+### branch
+
+-   **See: [Repository#defaultBranch](#repositorydefaultbranch)**
+
+Lookup a branch
+First lookup repository then the branch
+If no branch was specified then the default branch will be delivered.
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** with optional branch name as '#myBranchName'
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** 
+
+### initialize
+
+-   **See: [Provider#repository](Provider#repository)**
+-   **See: [Provider#branch](Provider#branch)**
+-   **See: [Provider#createRepository](Provider#createRepository)**
+-   **See: [Provider#deleteRepository](Provider#deleteRepository)**
+
+Provider initialization
+will be called once before content addressing method is called
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+
+### type
+
+Deliver the repository type
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'git'
+
 ## Repository
 
 Abstract repository
@@ -560,7 +565,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### delete
 
 Delete the repository from the [Provider](#provider).
-[Provider#deleteRepository](#providerdeleterepository)
+[Provider#deleteRepository](Provider#deleteRepository)
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
 
@@ -660,6 +665,8 @@ Merge the pull request
 Decline the pull request
 
 ## Project
+
+**Extends Owner**
 
 Abstract project
 

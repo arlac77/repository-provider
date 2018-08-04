@@ -1,11 +1,12 @@
 import { Branch } from './branch';
+import { Owner } from './owner';
 import { Repository } from './repository';
 import { PullRequest } from './pull-request';
 import { Project } from './project';
 import { Content } from './content';
 import { notImplementedError } from './util';
 
-export { Repository, Branch, PullRequest, Project, Content };
+export { Repository, Branch, PullRequest, Owner, Project, Content };
 
 /**
  * Base repository provider acts as a source of repositories
@@ -13,7 +14,7 @@ export { Repository, Branch, PullRequest, Project, Content };
  * @property {Map} repositories
  * @property {Object} config
  */
-export class Provider {
+export class Provider extends Owner {
   /**
    * Default configuration options
    * @return {Object}
@@ -42,39 +43,14 @@ export class Provider {
   }
 
   constructor(options) {
+    super();
+
     Object.defineProperties(this, {
       config: {
         value: this.constructor.options(options)
       },
-      repositories: { value: new Map() },
       projects: { value: new Map() }
     });
-  }
-
-  async _initialize() {
-    if (this._isInitialized) {
-      return;
-    }
-    this._isInitialized = true;
-    await this.initialize();
-  }
-
-  /**
-   * Provider initialization
-   * will be called once before content addressing method is called
-   * @see {@link Provider#repository}
-   * @see {@link Provider#branch}
-   * @see {@link Provider#createRepository}
-   * @see {@link Provider#deleteRepository}
-   * @return {Promise<undefined>}
-   */
-  async initialize() {}
-
-  /**
-   * @return {Class} repository class used by the Provider
-   */
-  get repositoryClass() {
-    return Repository;
   }
 
   /**
@@ -84,14 +60,13 @@ export class Provider {
     return Branch;
   }
 
-
   /**
    * @return {Class} project class used by the Provider
    */
   get projectClass() {
     return Project;
   }
-  
+
   /**
    * @return {Class} content class used by the Provider
    */
@@ -107,87 +82,12 @@ export class Provider {
   }
 
   /**
-   * Create a new repository
-   * @param {string} name
-   * @param {Object} options
-   * @return {Promise<Repository>}
-   */
-  async createRepository(name, options) {
-    await this._initialize();
-    const repository = new this.repositoryClass(this, name, options);
-    await repository.initialize();
-    this.repositories.set(name, repository);
-    return repository;
-  }
-
-  /**
-   * Delete a repository
-   * @param {string} name
-   * @return {Promise<undefined>}
-   */
-  async deleteRepository(name) {
-    await this._initialize();
-    this.repositories.delete(name);
-  }
-
-  /**
-   * Lookup a repository
-   * @param {string} name
-   * @return {Promise<Repository>}
-   */
-  async repository(name) {
-    await this._initialize();
-    return this.repositories.get(name);
-  }
-
-  /**
-   * Lookup a branch
-   * First lookup repository then the branch
-   * If no branch was specified then the default branch will be delivered.
-   * @see {@link Repository#defaultBranch}
-   * @param {string} name with optional branch name as '#myBranchName'
-   * @return {Promise<Branch>}
-   */
-  async branch(name) {
-    if (name === undefined) {
-      return undefined;
-    }
-
-    await this._initialize();
-    const [repoName, branchName] = name.split(/#/);
-    let repository;
-
-    if (branchName !== undefined) {
-      repository = await this.repository(repoName);
-      if (repository !== undefined) {
-        return repository.branch(branchName);
-      }
-    }
-
-    repository = await this.repository(repoName);
-
-    if (repository === undefined) {
-      throw new Error(`Unknown repository ${repoName}`);
-    }
-
-    return repository.defaultBranch;
-  }
-
-  /**
    * Is our rate limit reached.
    * By default we have no rate limit
    * @return {boolean} always false
    */
   get rateLimitReached() {
     return false;
-  }
-
-  /**
-   * Deliver the repository type
-   * @return {string} 'git'
-   */
-  get type() {
-    return 'git';
   }
 
   /**

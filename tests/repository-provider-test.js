@@ -9,25 +9,6 @@ test('provider', async t => {
   t.is(provider.name, 'Provider');
 });
 
-test('repository', async t => {
-  const provider = new Provider();
-  const repository = await provider.createRepository('r1');
-  t.is(repository.name, 'r1');
-  t.is(repository.condensedName, 'r1');
-  t.is(repository.type, 'git');
-
-  await repository.delete();
-  t.is(await provider.repository('r1'), undefined);
-});
-
-test('get repository', async t => {
-  const provider = new Provider();
-  await provider.createRepository('r1');
-  const repository = await provider.repository('r1');
-  t.is(repository.name, 'r1');
-  t.is(repository.condensedName, 'r1');
-});
-
 test('get repository#branch', async t => {
   const provider = new Provider();
   const r = await provider.createRepository('r1');
@@ -66,17 +47,4 @@ test('get unknown repository + branch', async t => {
   } catch (err) {
     t.is(err.message, 'Unknown repository r2');
   }
-});
-
-test('get undefined repository + branch', async t => {
-  const provider = new Provider();
-
-  const branch = await provider.branch(undefined);
-  t.is(branch, undefined);
-});
-
-test('repository urls', async t => {
-  const provider = new Provider();
-  const repository = await provider.createRepository('r1');
-  t.deepEqual(repository.urls, []);
 });
