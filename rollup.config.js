@@ -1,6 +1,7 @@
 import executable from 'rollup-plugin-executable';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
+import cleanup from 'rollup-plugin-cleanup';
 import pkg from './package.json';
 
 export default {
@@ -10,5 +11,5 @@ export default {
     format: 'cjs',
     interop: false
   },
-  plugins: [resolve(), commonjs()]
+  plugins: [resolve(), commonjs(), cleanup()]
 };
