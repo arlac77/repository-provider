@@ -1,7 +1,7 @@
 import { Repository } from './repository';
 
 /**
- *
+ * @property {Map<string,Repository>} repositories
  */
 export class Owner {
   constructor() {

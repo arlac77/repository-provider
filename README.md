@@ -46,6 +46,10 @@ const files = await branch.list();
 -   [Provider](#provider)
     -   [Parameters](#parameters)
     -   [Properties](#properties)
+    -   [project](#project)
+        -   [Parameters](#parameters-1)
+    -   [createProject](#createproject)
+        -   [Parameters](#parameters-2)
     -   [branchClass](#branchclass)
     -   [projectClass](#projectclass)
     -   [contentClass](#contentclass)
@@ -54,16 +58,16 @@ const files = await branch.list();
     -   [name](#name)
     -   [defaultOptions](#defaultoptions)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-1)
+        -   [Parameters](#parameters-3)
     -   [options](#options)
-        -   [Parameters](#parameters-2)
+        -   [Parameters](#parameters-4)
 -   [Branch](#branch)
-    -   [Parameters](#parameters-3)
+    -   [Parameters](#parameters-5)
     -   [Properties](#properties-1)
     -   [initialize](#initialize)
     -   [provider](#provider-1)
     -   [owner](#owner)
-    -   [project](#project)
+    -   [project](#project-1)
     -   [fullName](#fullname)
     -   [fullCondensedName](#fullcondensedname)
     -   [url](#url)
@@ -72,75 +76,76 @@ const files = await branch.list();
     -   [isDefault](#isdefault)
     -   [delete](#delete)
     -   [content](#content)
-        -   [Parameters](#parameters-4)
-    -   [commit](#commit)
-        -   [Parameters](#parameters-5)
-    -   [createPullRequest](#createpullrequest)
         -   [Parameters](#parameters-6)
+    -   [commit](#commit)
+        -   [Parameters](#parameters-7)
+    -   [createPullRequest](#createpullrequest)
+        -   [Parameters](#parameters-8)
     -   [list](#list)
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
-        -   [Parameters](#parameters-7)
+        -   [Parameters](#parameters-9)
 -   [Owner](#owner-1)
+    -   [Properties](#properties-2)
     -   [repositoryClass](#repositoryclass)
     -   [deleteRepository](#deleterepository)
-        -   [Parameters](#parameters-8)
-    -   [repository](#repository)
-        -   [Parameters](#parameters-9)
-    -   [createRepository](#createrepository)
         -   [Parameters](#parameters-10)
-    -   [branch](#branch-1)
+    -   [repository](#repository)
         -   [Parameters](#parameters-11)
+    -   [createRepository](#createrepository)
+        -   [Parameters](#parameters-12)
+    -   [branch](#branch-1)
+        -   [Parameters](#parameters-13)
     -   [initialize](#initialize-1)
     -   [type](#type)
 -   [Repository](#repository-1)
-    -   [Parameters](#parameters-12)
-    -   [Properties](#properties-2)
+    -   [Parameters](#parameters-14)
+    -   [Properties](#properties-3)
     -   [initialize](#initialize-2)
     -   [content](#content-1)
-        -   [Parameters](#parameters-13)
+        -   [Parameters](#parameters-15)
     -   [urls](#urls)
     -   [url](#url-1)
     -   [issuesURL](#issuesurl-1)
     -   [homePageURL](#homepageurl-1)
     -   [owner](#owner-2)
-    -   [project](#project-1)
+    -   [project](#project-2)
     -   [condensedName](#condensedname)
     -   [branch](#branch-2)
-        -   [Parameters](#parameters-14)
+        -   [Parameters](#parameters-16)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches)
     -   [createBranch](#createbranch)
-        -   [Parameters](#parameters-15)
-    -   [deleteBranch](#deletebranch)
-        -   [Parameters](#parameters-16)
-    -   [addBranch](#addbranch)
         -   [Parameters](#parameters-17)
+    -   [deleteBranch](#deletebranch)
+        -   [Parameters](#parameters-18)
+    -   [addBranch](#addbranch)
+        -   [Parameters](#parameters-19)
     -   [delete](#delete-1)
     -   [pullRequests](#pullrequests)
     -   [pullRequest](#pullrequest)
-        -   [Parameters](#parameters-18)
-    -   [addPullRequest](#addpullrequest)
-        -   [Parameters](#parameters-19)
-    -   [deletePullRequest](#deletepullrequest)
         -   [Parameters](#parameters-20)
+    -   [addPullRequest](#addpullrequest)
+        -   [Parameters](#parameters-21)
+    -   [deletePullRequest](#deletepullrequest)
+        -   [Parameters](#parameters-22)
     -   [type](#type-1)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
-        -   [Parameters](#parameters-21)
+        -   [Parameters](#parameters-23)
 -   [PullRequest](#pullrequest-1)
-    -   [Parameters](#parameters-22)
-    -   [Properties](#properties-3)
+    -   [Parameters](#parameters-24)
+    -   [Properties](#properties-4)
     -   [provider](#provider-2)
     -   [delete](#delete-2)
     -   [merge](#merge)
     -   [decline](#decline)
--   [Project](#project-2)
-    -   [Parameters](#parameters-23)
-    -   [Properties](#properties-4)
--   [Content](#content-2)
-    -   [Parameters](#parameters-24)
+-   [Project](#project-3)
+    -   [Parameters](#parameters-25)
     -   [Properties](#properties-5)
+-   [Content](#content-2)
+    -   [Parameters](#parameters-26)
+    -   [Properties](#properties-6)
 
 ## Provider
 
@@ -154,8 +159,29 @@ Base repository provider acts as a source of repositories
 
 ### Properties
 
--   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)** 
+-   `projects` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Project](#project)>** 
 -   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### project
+
+Lookup a project
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the project
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Project](#project)>** 
+
+### createProject
+
+Create a new project
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Project](#project)>** 
 
 ### branchClass
 
@@ -365,6 +391,10 @@ forward to the Provider
 -   `value` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## Owner
+
+### Properties
+
+-   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Repository](#repository)>** 
 
 ### repositoryClass
 

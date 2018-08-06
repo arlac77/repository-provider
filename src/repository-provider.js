@@ -11,7 +11,7 @@ export { Repository, Branch, PullRequest, Owner, Project, Content };
 /**
  * Base repository provider acts as a source of repositories
  * @param {Object} options
- * @property {Map} repositories
+ * @property {Map<string,Project>} projects
  * @property {Object} config
  */
 export class Provider extends Owner {
@@ -51,6 +51,33 @@ export class Provider extends Owner {
       },
       projects: { value: new Map() }
     });
+  }
+
+  /**
+   * Lookup a project
+   * @param {string} name of the project
+   * @return {Promise<Project>}
+   */
+  async project(name) {
+    if (name === undefined) {
+      return undefined;
+    }
+    await this._initialize();
+    return this.projects.get(name);
+  }
+
+  /**
+   * Create a new project
+   * @param {string} name
+   * @param {Object} options
+   * @return {Promise<Project>}
+   */
+  async createProject(name, options) {
+    await this._initialize();
+    const project = new this.projectClass(this, name, options);
+    await project.initialize();
+    this.projects.set(name, project);
+    return project;
   }
 
   /**

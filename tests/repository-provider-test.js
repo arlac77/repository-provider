@@ -9,6 +9,14 @@ test('provider', async t => {
   t.is(provider.name, 'Provider');
 });
 
+test('provider project', async t => {
+  const provider = new Provider({ key: 'value' });
+  t.is(await provider.project('p1'), undefined);
+  const p1 = await provider.createProject('p1');
+  t.is(p1.name, 'p1');
+  t.is(await provider.project('p1'), p1);
+});
+
 test('get repository#branch', async t => {
   const provider = new Provider();
   const r = await provider.createRepository('r1');
