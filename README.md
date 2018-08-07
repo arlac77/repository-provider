@@ -712,7 +712,7 @@ Abstract project
 
 ## Content
 
-Respresentation of one 'file' entry
+Representation of one file or directory entry
 
 ### Parameters
 

@@ -1,5 +1,5 @@
 /**
- * Respresentation of one 'file' entry
+ * Representation of one file or directory entry
  * @property {string} path file name inside of the repository
  * @property {string|Buffer|Stream} content
  * @property {string} type type of the content
