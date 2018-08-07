@@ -17,7 +17,7 @@ test('provider project', async t => {
   t.is(await provider.project('p1'), p1);
 });
 
-test.only('provider project repository', async t => {
+test('provider project repository', async t => {
   const provider = new Provider();
   t.is(await provider.project('p1'), undefined);
   const p1 = await provider.createProject('p1');
