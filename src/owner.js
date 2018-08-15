@@ -1,6 +1,9 @@
 import { Repository } from './repository';
+import { Branch } from './branch';
+import { Content } from './content';
 
 /**
+ * Collection of repositories
  * @property {Map<string,Repository>} repositories
  */
 export class Owner {
@@ -15,6 +18,20 @@ export class Owner {
    */
   get repositoryClass() {
     return Repository;
+  }
+
+  /**
+   * @return {Class} branch class used by the Provider
+   */
+  get branchClass() {
+    return Branch;
+  }
+
+  /**
+   * @return {Class} content class used by the Provider
+   */
+  get contentClass() {
+    return Content;
   }
 
   /**

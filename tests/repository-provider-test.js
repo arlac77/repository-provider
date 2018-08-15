@@ -9,18 +9,18 @@ test('provider', async t => {
   t.is(provider.name, 'Provider');
 });
 
-test('provider project', async t => {
+test('provider repository group', async t => {
   const provider = new Provider();
-  t.is(await provider.project('p1'), undefined);
-  const p1 = await provider.createProject('p1');
+  t.is(await provider.repositoryGroup('p1'), undefined);
+  const p1 = await provider.createRepositoryGroup('p1');
   t.is(p1.name, 'p1');
-  t.is(await provider.project('p1'), p1);
+  t.is(await provider.repositoryGroup('p1'), p1);
 });
 
-test('provider project repository', async t => {
+test('provider repository group create repository', async t => {
   const provider = new Provider();
-  t.is(await provider.project('p1'), undefined);
-  const p1 = await provider.createProject('p1');
+  t.is(await provider.repositoryGroup('p1'), undefined);
+  const p1 = await provider.createRepositoryGroup('p1');
   const r1 = await p1.createRepository('r1');
 
   t.is(r1.name, 'r1');

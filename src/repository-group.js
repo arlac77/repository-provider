@@ -1,14 +1,14 @@
 import { Owner } from './owner';
 
 /**
- * Abstract project
+ * Abstract repository as a collection
  * @param {Provider} provider
- * @param {string} name
+ * @param {string} name of the group
  *
  * @property {Provider} provider
  * @property {string} name
  */
-export class Project extends Owner {
+export class RepositoryGroup extends Owner {
   constructor(provider, name) {
     super();
     Object.defineProperties(this, {

@@ -46,28 +46,29 @@ const files = await branch.list();
 -   [Provider](#provider)
     -   [Parameters](#parameters)
     -   [Properties](#properties)
-    -   [project](#project)
+    -   [repositoryGroup](#repositorygroup)
         -   [Parameters](#parameters-1)
-    -   [createProject](#createproject)
+    -   [createRepositoryGroup](#createrepositorygroup)
         -   [Parameters](#parameters-2)
-    -   [branchClass](#branchclass)
-    -   [projectClass](#projectclass)
-    -   [contentClass](#contentclass)
+    -   [repository](#repository)
+        -   [Parameters](#parameters-3)
+    -   [repositoryGroupClass](#repositorygroupclass)
     -   [pullRequestClass](#pullrequestclass)
     -   [rateLimitReached](#ratelimitreached)
     -   [name](#name)
+    -   [provider](#provider-1)
     -   [defaultOptions](#defaultoptions)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-3)
-    -   [options](#options)
         -   [Parameters](#parameters-4)
+    -   [options](#options)
+        -   [Parameters](#parameters-5)
 -   [Branch](#branch)
-    -   [Parameters](#parameters-5)
+    -   [Parameters](#parameters-6)
     -   [Properties](#properties-1)
     -   [initialize](#initialize)
-    -   [provider](#provider-1)
+    -   [provider](#provider-2)
     -   [owner](#owner)
-    -   [project](#project-1)
+    -   [project](#project)
     -   [fullName](#fullname)
     -   [fullCondensedName](#fullcondensedname)
     -   [url](#url)
@@ -76,75 +77,78 @@ const files = await branch.list();
     -   [isDefault](#isdefault)
     -   [delete](#delete)
     -   [content](#content)
-        -   [Parameters](#parameters-6)
-    -   [commit](#commit)
         -   [Parameters](#parameters-7)
-    -   [createPullRequest](#createpullrequest)
+    -   [commit](#commit)
         -   [Parameters](#parameters-8)
+    -   [createPullRequest](#createpullrequest)
+        -   [Parameters](#parameters-9)
     -   [list](#list)
     -   [rateLimitReached](#ratelimitreached-1)
     -   [rateLimitReached](#ratelimitreached-2)
-        -   [Parameters](#parameters-9)
+        -   [Parameters](#parameters-10)
 -   [Owner](#owner-1)
     -   [Properties](#properties-2)
     -   [repositoryClass](#repositoryclass)
+    -   [branchClass](#branchclass)
+    -   [contentClass](#contentclass)
     -   [deleteRepository](#deleterepository)
-        -   [Parameters](#parameters-10)
-    -   [repository](#repository)
         -   [Parameters](#parameters-11)
-    -   [createRepository](#createrepository)
+    -   [repository](#repository-1)
         -   [Parameters](#parameters-12)
-    -   [branch](#branch-1)
+    -   [createRepository](#createrepository)
         -   [Parameters](#parameters-13)
+    -   [branch](#branch-1)
+        -   [Parameters](#parameters-14)
     -   [initialize](#initialize-1)
     -   [type](#type)
--   [Repository](#repository-1)
-    -   [Parameters](#parameters-14)
+-   [Repository](#repository-2)
+    -   [Parameters](#parameters-15)
     -   [Properties](#properties-3)
+    -   [provider](#provider-3)
     -   [initialize](#initialize-2)
     -   [content](#content-1)
-        -   [Parameters](#parameters-15)
+        -   [Parameters](#parameters-16)
     -   [urls](#urls)
     -   [url](#url-1)
     -   [issuesURL](#issuesurl-1)
     -   [homePageURL](#homepageurl-1)
     -   [owner](#owner-2)
-    -   [project](#project-2)
+    -   [project](#project-1)
     -   [condensedName](#condensedname)
     -   [branch](#branch-2)
-        -   [Parameters](#parameters-16)
+        -   [Parameters](#parameters-17)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches)
     -   [createBranch](#createbranch)
-        -   [Parameters](#parameters-17)
-    -   [deleteBranch](#deletebranch)
         -   [Parameters](#parameters-18)
-    -   [addBranch](#addbranch)
+    -   [deleteBranch](#deletebranch)
         -   [Parameters](#parameters-19)
+    -   [addBranch](#addbranch)
+        -   [Parameters](#parameters-20)
     -   [delete](#delete-1)
     -   [pullRequests](#pullrequests)
     -   [pullRequest](#pullrequest)
-        -   [Parameters](#parameters-20)
-    -   [addPullRequest](#addpullrequest)
         -   [Parameters](#parameters-21)
-    -   [deletePullRequest](#deletepullrequest)
+    -   [addPullRequest](#addpullrequest)
         -   [Parameters](#parameters-22)
+    -   [deletePullRequest](#deletepullrequest)
+        -   [Parameters](#parameters-23)
     -   [type](#type-1)
     -   [rateLimitReached](#ratelimitreached-3)
     -   [rateLimitReached](#ratelimitreached-4)
-        -   [Parameters](#parameters-23)
+        -   [Parameters](#parameters-24)
 -   [PullRequest](#pullrequest-1)
-    -   [Parameters](#parameters-24)
+    -   [Parameters](#parameters-25)
     -   [Properties](#properties-4)
-    -   [provider](#provider-2)
+    -   [provider](#provider-4)
     -   [delete](#delete-2)
     -   [merge](#merge)
     -   [decline](#decline)
--   [Project](#project-3)
-    -   [Parameters](#parameters-25)
+-   [RepositoryGroup](#repositorygroup-1)
+    -   [Parameters](#parameters-26)
     -   [Properties](#properties-5)
 -   [Content](#content-2)
-    -   [Parameters](#parameters-26)
+    -   [Parameters](#parameters-27)
     -   [Properties](#properties-6)
 
 ## Provider
@@ -159,41 +163,43 @@ Base repository provider acts as a source of repositories
 
 ### Properties
 
--   `projects` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Project](#project)>** 
+-   `repositoryGroups` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [RepositoryGroup](#repositorygroup)>** 
 -   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-### project
+### repositoryGroup
 
-Lookup a project
+Lookup a repository group
 
 #### Parameters
 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the project
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Project](#project)>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[RepositoryGroup](#repositorygroup)>** 
 
-### createProject
+### createRepositoryGroup
 
-Create a new project
+Create a new repository group
 
 #### Parameters
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Project](#project)>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[RepositoryGroup](#repositorygroup)>** 
 
-### branchClass
+### repository
 
-Returns **Class** branch class used by the Provider
+Lookup a repository in the provider and all of its repository groups
 
-### projectClass
+#### Parameters
 
-Returns **Class** project class used by the Provider
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-### contentClass
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
 
-Returns **Class** content class used by the Provider
+### repositoryGroupClass
+
+Returns **Class** repository group class used by the Provider
 
 ### pullRequestClass
 
@@ -211,6 +217,12 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 Deliver the provider name
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name by default
+
+### provider
+
+we are our own provider
+
+Returns **[Provider](#provider)** this
 
 ### defaultOptions
 
@@ -392,6 +404,8 @@ forward to the Provider
 
 ## Owner
 
+Collection of repositories
+
 ### Properties
 
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Repository](#repository)>** 
@@ -399,6 +413,14 @@ forward to the Provider
 ### repositoryClass
 
 Returns **Class** repository class used by the Provider
+
+### branchClass
+
+Returns **Class** branch class used by the Provider
+
+### contentClass
+
+Returns **Class** content class used by the Provider
 
 ### deleteRepository
 
@@ -447,7 +469,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### initialize
 
--   **See: [Provider#repository](Provider#repository)**
+-   **See: [Provider#repository](#providerrepository)**
 -   **See: [Provider#branch](Provider#branch)**
 -   **See: [Provider#createRepository](Provider#createRepository)**
 -   **See: [Provider#deleteRepository](Provider#deleteRepository)**
@@ -469,15 +491,21 @@ Abstract repository
 
 ### Parameters
 
--   `provider` **[Provider](#provider)** 
+-   `owner` **[Owner](#owner)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options`  
 
 ### Properties
 
--   `provider` **[Provider](#provider)** 
+-   `owner` **[Owner](#owner)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### provider
+
+the owners provider
+
+Returns **[Provider](#provider)** 
 
 ### initialize
 
@@ -694,16 +722,16 @@ Merge the pull request
 
 Decline the pull request
 
-## Project
+## RepositoryGroup
 
 **Extends Owner**
 
-Abstract project
+Abstract repository as a collection
 
 ### Parameters
 
 -   `provider` **[Provider](#provider)** 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
 
 ### Properties
 

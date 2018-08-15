@@ -2,20 +2,28 @@ import { notImplementedError } from './util';
 
 /**
  * Abstract repository
- * @param {Provider} provider
+ * @param {Owner} owner
  * @param {string} name
- * @property {Provider} provider
+ * @property {Owner} owner
  * @property {string} name
  * @property {Object} options
  */
 export class Repository {
-  constructor(provider, name, options) {
+  constructor(owner, name, options) {
     Object.defineProperties(this, {
       name: { value: name },
-      provider: { value: provider },
+      owner: { value: owner },
       _branches: { value: new Map() },
       _pullRequests: { value: new Map() }
     });
+  }
+
+  /**
+   * the owners provider
+   * @return {Provider}
+   */
+  get provider() {
+    return this.owner.provider;
   }
 
   /**
@@ -153,7 +161,7 @@ export class Repository {
    * @return {Promise<undefined>}
    */
   async delete() {
-    return this.provider.deleteRepository(this.name);
+    return this.owner.deleteRepository(this.name);
   }
 
   async createPullRequest() {
@@ -199,7 +207,7 @@ export class Repository {
    * @return {string} providers type
    */
   get type() {
-    return this.provider.type;
+    return this.owner.type;
   }
 
   /**

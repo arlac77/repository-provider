@@ -2,16 +2,16 @@ import { Branch } from './branch';
 import { Owner } from './owner';
 import { Repository } from './repository';
 import { PullRequest } from './pull-request';
-import { Project } from './project';
+import { RepositoryGroup } from './repository-group';
 import { Content } from './content';
 import { notImplementedError } from './util';
 
-export { Repository, Branch, PullRequest, Owner, Project, Content };
+export { Repository, Branch, PullRequest, Owner, RepositoryGroup, Content };
 
 /**
  * Base repository provider acts as a source of repositories
  * @param {Object} options
- * @property {Map<string,Project>} projects
+ * @property {Map<string,RepositoryGroup>} repositoryGroups
  * @property {Object} config
  */
 export class Provider extends Owner {
@@ -49,56 +49,64 @@ export class Provider extends Owner {
       config: {
         value: this.constructor.options(options)
       },
-      projects: { value: new Map() }
+      repositoryGroups: { value: new Map() }
     });
   }
 
   /**
-   * Lookup a project
-   * @param {string} name of the project
-   * @return {Promise<Project>}
+   * Lookup a repository group
+   * @param {string} name of the group
+   * @return {Promise<RepositoryGroup>}
    */
-  async project(name) {
+  async repositoryGroup(name) {
     if (name === undefined) {
       return undefined;
     }
     await this._initialize();
-    return this.projects.get(name);
+    return this.repositoryGroups.get(name);
   }
 
   /**
-   * Create a new project
+   * Create a new repository group
    * @param {string} name
    * @param {Object} options
-   * @return {Promise<Project>}
+   * @return {Promise<RepositoryGroup>}
    */
-  async createProject(name, options) {
+  async createRepositoryGroup(name, options) {
     await this._initialize();
-    const project = new this.projectClass(this, name, options);
-    await project.initialize();
-    this.projects.set(name, project);
-    return project;
+    const repositoryGroup = new this.repositoryGroupClass(this, name, options);
+    await repositoryGroup.initialize();
+    this.repositoryGroups.set(name, repositoryGroup);
+    return repositoryGroup;
   }
 
   /**
-   * @return {Class} branch class used by the Provider
+   * Lookup a repository in the provider and all of its repository groups
+   * @param {string} name
+   * @return {Promise<Repository>}
    */
-  get branchClass() {
-    return Branch;
+  async repository(name) {
+    let r = await super.repository(name);
+
+    if (r !== undefined) {
+      return r;
+    }
+
+    for (const p of this.repositoryGroups.values()) {
+      r = await p.repository(name);
+      if (r !== undefined) {
+        return r;
+      }
+    }
+
+    return r;
   }
 
   /**
-   * @return {Class} project class used by the Provider
+   * @return {Class} repository group class used by the Provider
    */
-  get projectClass() {
-    return Project;
-  }
-
-  /**
-   * @return {Class} content class used by the Provider
-   */
-  get contentClass() {
-    return Content;
+  get repositoryGroupClass() {
+    return RepositoryGroup;
   }
 
   /**
@@ -123,5 +131,13 @@ export class Provider extends Owner {
    */
   get name() {
     return this.constructor.name;
+  }
+
+  /**
+   * we are our own provider
+   * @return {Provider} this
+   */
+  get provider() {
+    return this;
   }
 }
