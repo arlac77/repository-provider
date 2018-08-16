@@ -46,12 +46,14 @@ export class Owner {
 
   /**
    * Lookup a repository
-   * @param {string} name
+   * @param {string} name of the repository may contain a #branch
    * @return {Promise<Repository>}
    */
   async repository(name) {
+    const [repoName, branchName] = name.split(/#/);
+
     await this._initialize();
-    return this.repositories.get(name);
+    return this.repositories.get(repoName);
   }
 
   /**

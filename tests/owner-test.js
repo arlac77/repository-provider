@@ -20,6 +20,14 @@ test('owner get repository', async t => {
   t.is(repository.condensedName, 'r1');
 });
 
+test('owner get repository with branch', async t => {
+  const owner = new Owner();
+  await owner.createRepository('r1');
+  const repository = await owner.repository('r1#master');
+  t.is(repository.name, 'r1');
+  t.is(repository.condensedName, 'r1');
+});
+
 test('owner repository urls', async t => {
   const owner = new Owner();
   const repository = await owner.createRepository('r1');
