@@ -74,15 +74,6 @@ export class Repository {
   }
 
   /**
-   * Repository owner
-   * Default implementation delivers undefined
-   * @return {string} undefined
-   */
-  get owner() {
-    return undefined;
-  }
-
-  /**
    * Repository project
    * Default implementation delivers undefined
    * @return {string} undefined

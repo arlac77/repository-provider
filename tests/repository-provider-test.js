@@ -55,15 +55,6 @@ test('get unknown repository + branch', async t => {
   const r = await provider.createRepository('r1');
   const b = await r.createBranch('master');
 
-  try {
-    const branch = await provider.branch('r2#master');
-  } catch (err) {
-    t.is(err.message, 'Unknown repository r2');
-  }
-
-  try {
-    const branch = await provider.branch('r2');
-  } catch (err) {
-    t.is(err.message, 'Unknown repository r2');
-  }
+  t.is(await provider.branch('r2#master'), undefined);
+  t.is(await provider.branch('r2'), undefined);
 });

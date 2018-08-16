@@ -50,6 +50,10 @@ export class Owner {
    * @return {Promise<Repository>}
    */
   async repository(name) {
+    if (name === undefined) {
+      return undefined;
+    }
+
     const [repoName, branchName] = name.split(/#/);
 
     await this._initialize();
@@ -76,31 +80,23 @@ export class Owner {
    * If no branch was specified then the default branch will be delivered.
    * @see {@link Repository#defaultBranch}
    * @param {string} name with optional branch name as '#myBranchName'
-   * @return {Promise<Branch>}
+   * @return {Promise<Branch|undefined>}
    */
   async branch(name) {
     if (name === undefined) {
       return undefined;
     }
 
-    await this._initialize();
     const [repoName, branchName] = name.split(/#/);
-    let repository;
-
-    if (branchName !== undefined) {
-      repository = await this.repository(repoName);
-      if (repository !== undefined) {
-        return repository.branch(branchName);
-      }
-    }
-
-    repository = await this.repository(repoName);
+    const repository = await this.repository(repoName);
 
     if (repository === undefined) {
-      throw new Error(`Unknown repository ${repoName}`);
+      return undefined;
     }
 
-    return repository.defaultBranch;
+    return branchName === undefined
+      ? repository.defaultBranch
+      : repository.branch(branchName);
   }
 
   async _initialize() {

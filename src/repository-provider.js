@@ -86,20 +86,42 @@ export class Provider extends Owner {
    * @return {Promise<Repository>}
    */
   async repository(name) {
-    let r = await super.repository(name);
+    const r = await super.repository(name);
 
     if (r !== undefined) {
       return r;
     }
 
     for (const p of this.repositoryGroups.values()) {
-      r = await p.repository(name);
+      const r = await p.repository(name);
       if (r !== undefined) {
         return r;
       }
     }
 
-    return r;
+    return undefined;
+  }
+
+  /**
+   * Lookup a branch in the provider and all of its repository groups
+   * @param {string} name
+   * @return {Promise<Branch>}
+   */
+  async branch(name) {
+    const r = await super.branch(name);
+
+    if (r !== undefined) {
+      return r;
+    }
+
+    for (const p of this.repositoryGroups.values()) {
+      const r = await p.branch(name);
+      if (r !== undefined) {
+        return r;
+      }
+    }
+
+    return undefined;
   }
 
   /**
