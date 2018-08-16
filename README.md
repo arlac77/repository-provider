@@ -148,6 +148,9 @@ const files = await branch.list();
 -   [RepositoryGroup](#repositorygroup-1)
     -   [Parameters](#parameters-27)
     -   [Properties](#properties-5)
+    -   [repositoryClass](#repositoryclass-1)
+    -   [branchClass](#branchclass-1)
+    -   [contentClass](#contentclass-1)
 -   [Content](#content-2)
     -   [Parameters](#parameters-28)
     -   [Properties](#properties-6)
@@ -741,6 +744,24 @@ Abstract repository as a collection
 
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### repositoryClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
+### branchClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
+### contentClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
 
 ## Content
 
