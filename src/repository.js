@@ -7,6 +7,8 @@ import { notImplementedError } from './util';
  * @property {Owner} owner
  * @property {string} name
  * @property {Object} options
+ * @property {Map<string,Branch>} branches
+ * @property {Map<string,PullRequest>} pullRequests
  */
 export class Repository {
   constructor(owner, name, options) {
@@ -71,6 +73,14 @@ export class Repository {
    */
   get homePageURL() {
     return undefined;
+  }
+
+  /**
+   * the description of the repository content.
+   * @return {string} (defaults to empty string)
+   */
+  get description() {
+    return '';
   }
 
   /**
