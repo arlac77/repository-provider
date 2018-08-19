@@ -16,8 +16,10 @@ const MyProbe = OneTimeInititalizerMixin(
 test('call _initialize only once', async t => {
   const probe = new MyProbe();
   t.is(probe.initializeCalled, 0);
+  t.is(probe.isInitialized, false);
   await probe.initialize();
   t.is(probe.initializeCalled, 1);
+  t.is(probe.isInitialized, true);
   await probe.initialize();
   t.is(probe.initializeCalled, 1);
 });

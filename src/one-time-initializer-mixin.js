@@ -1,9 +1,13 @@
 const IS_INITIALIZED = Symbol('isInitialized');
 
 export function OneTimeInititalizerMixin(base) {
-  return class _OneTimeInititalizer extends base {
+  /**
+   * enshures tha _initialize() will be called only once
+   */
+  return class OneTimeInititalizer extends base {
     /**
-     * async initialization will execute _intitialize() only once
+     * async initialization.
+     * Will execute _intitialize() only once
      *
      * @return {Promise<undefined>}
      */
@@ -12,9 +16,16 @@ export function OneTimeInititalizerMixin(base) {
         return;
       }
 
-      await this._initialize(...args);
-
       this[IS_INITIALIZED] = true;
+
+      await this._initialize(...args);
+    }
+
+    /**
+     * @return {boolean} true is initialize() has been done
+     */
+    get isInitialized() {
+      return this[IS_INITIALIZED] ? true : false;
     }
   };
 }
