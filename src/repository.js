@@ -22,9 +22,9 @@ export const Repository = OneTimeInititalizerMixin(
       return {
         /**
          * the description of the repository content.
-         * @return {string} (defaults to empty string)
+         * @return {string}
          */
-        description: ''
+        description: undefined
       };
     }
 

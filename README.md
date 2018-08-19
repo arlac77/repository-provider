@@ -258,7 +258,7 @@ options
 
 the description of the repository content.
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** (defaults to empty string)
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## PullRequest
 
