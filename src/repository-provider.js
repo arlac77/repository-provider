@@ -62,7 +62,7 @@ export class Provider extends Owner {
     if (name === undefined) {
       return undefined;
     }
-    await this._initialize();
+    await this.initialize();
     return this.repositoryGroups.get(name);
   }
 
@@ -73,7 +73,7 @@ export class Provider extends Owner {
    * @return {Promise<RepositoryGroup>}
    */
   async createRepositoryGroup(name, options) {
-    await this._initialize();
+    await this.initialize();
     const repositoryGroup = new this.repositoryGroupClass(this, name, options);
     await repositoryGroup.initialize();
     this.repositoryGroups.set(name, repositoryGroup);
