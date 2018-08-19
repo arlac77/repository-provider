@@ -5,6 +5,8 @@ import { OneTimeInititalizerMixin } from './one-time-initializer-mixin';
  * Abstract repository
  * @param {Owner} owner
  * @param {string} name
+ * @param {Object} options
+ * @param {string} options.description
  * @property {Owner} owner
  * @property {string} name
  * @property {Object} options
@@ -13,13 +15,37 @@ import { OneTimeInititalizerMixin } from './one-time-initializer-mixin';
  */
 export const Repository = OneTimeInititalizerMixin(
   class Repository {
+    /**
+     * options
+     */
+    static get defaultOptions() {
+      return {
+        /**
+         * the description of the repository content.
+         * @return {string} (defaults to empty string)
+         */
+        description: ''
+      };
+    }
+
     constructor(owner, name, options) {
-      Object.defineProperties(this, {
+      const properties = {
         name: { value: name },
         owner: { value: owner },
         _branches: { value: new Map() },
         _pullRequests: { value: new Map() }
+      };
+
+      const defaultOptions = this.constructor.defaultOptions;
+
+      Object.keys(defaultOptions).forEach(name => {
+        properties[name] = {
+          value:
+            (options !== undefined && options[name]) || defaultOptions[name]
+        };
       });
+
+      Object.defineProperties(this, properties);
     }
 
     /**
@@ -69,14 +95,6 @@ export const Repository = OneTimeInititalizerMixin(
      */
     get homePageURL() {
       return undefined;
-    }
-
-    /**
-     * the description of the repository content.
-     * @return {string} (defaults to empty string)
-     */
-    get description() {
-      return '';
     }
 
     /**

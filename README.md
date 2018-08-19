@@ -67,12 +67,14 @@ const files = await branch.list();
 -   [Branch](#branch-1)
     -   [Parameters](#parameters-7)
     -   [Properties](#properties-1)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-8)
     -   [Properties](#properties-3)
+-   [defaultOptions](#defaultoptions-1)
+-   [description](#description)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-9)
     -   [Properties](#properties-4)
@@ -217,6 +219,10 @@ Abstract branch
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+## OneTimeInititalizer
+
+enshures tha \_initialize() will be called only once
+
 ## Owner
 
 Collection of repositories
@@ -224,10 +230,6 @@ Collection of repositories
 ### Properties
 
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Repository](#repository)>** 
-
-## OneTimeInititalizer
-
-enshures tha \_initialize() will be called only once
 
 ## Repository
 
@@ -237,6 +239,8 @@ Abstract repository
 
 -   `owner` **[Owner](#owner)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### Properties
 
@@ -245,6 +249,16 @@ Abstract repository
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 -   `branches` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Branch](#branch)>** 
 -   `pullRequests` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [PullRequest](#pullrequest)>** 
+
+## defaultOptions
+
+options
+
+## description
+
+the description of the repository content.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** (defaults to empty string)
 
 ## PullRequest
 
