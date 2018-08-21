@@ -1,14 +1,15 @@
-import { notImplementedError } from './util';
-import { OneTimeInititalizerMixin } from './one-time-initializer-mixin';
+import { notImplementedError } from "./util";
+import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
 
 /**
  * Abstract repository
  * @param {Owner} owner
- * @param {string} name
+ * @param {string} name (#branch) will be removed
  * @param {Object} options
  * @param {string} options.description
+ * @param {string} options.id
  * @property {Owner} owner
- * @property {string} name
+ * @property {string} name without (#branch)
  * @property {Object} options
  * @property {Map<string,Branch>} branches
  * @property {Map<string,PullRequest>} pullRequests
@@ -24,11 +25,19 @@ export const Repository = OneTimeInititalizerMixin(
          * the description of the repository content.
          * @return {string}
          */
-        description: undefined
+        description: undefined,
+
+        /**
+         * unique id within the provider.
+         * @return {string}
+         */
+        id: undefined
       };
     }
 
     constructor(owner, name, options) {
+      name = name.replace(/#.*$/, "");
+
       const properties = {
         name: { value: name },
         owner: { value: owner },
@@ -128,7 +137,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise<Branch>} 'master' branch
      */
     get defaultBranch() {
-      return this.branch('master');
+      return this.branch("master");
     }
 
     /**
