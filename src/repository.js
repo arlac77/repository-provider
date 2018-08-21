@@ -6,11 +6,13 @@ import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
  * @param {Owner} owner
  * @param {string} name (#branch) will be removed
  * @param {Object} options
- * @param {string} options.description
- * @param {string} options.id
+ * @param {string} [options.description] human readable description
+ * @param {string} [options.id] internal id
+ *
  * @property {Owner} owner
  * @property {string} name without (#branch)
- * @property {Object} options
+ * @property {string} [description] from options.description
+ * @property {string} [id] from options.id
  * @property {Map<string,Branch>} branches
  * @property {Map<string,PullRequest>} pullRequests
  */
