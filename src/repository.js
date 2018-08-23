@@ -131,6 +131,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise<Branch>}
      */
     async branch(name) {
+      await this.initialize();
       return this._branches.get(name);
     }
 
@@ -146,6 +147,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise<Map>} of all branches
      */
     async branches() {
+      await this.initialize();
       return this._branches;
     }
 

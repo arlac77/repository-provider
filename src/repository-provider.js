@@ -1,10 +1,10 @@
-import { Branch } from './branch';
-import { Owner } from './owner';
-import { Repository } from './repository';
-import { PullRequest } from './pull-request';
-import { RepositoryGroup } from './repository-group';
-import { Content } from './content';
-import { notImplementedError } from './util';
+import { Branch } from "./branch";
+import { Owner } from "./owner";
+import { Repository } from "./repository";
+import { PullRequest } from "./pull-request";
+import { RepositoryGroup } from "./repository-group";
+import { Content } from "./content";
+import { notImplementedError } from "./util";
 
 export { Repository, Branch, PullRequest, Owner, RepositoryGroup, Content };
 
@@ -86,6 +86,8 @@ export class Provider extends Owner {
    * @return {Promise<Repository>}
    */
   async repository(name) {
+    await this.initialize();
+
     const r = await super.repository(name);
 
     if (r !== undefined) {
@@ -108,6 +110,8 @@ export class Provider extends Owner {
    * @return {Promise<Branch>}
    */
   async branch(name) {
+    await this.initialize();
+
     const r = await super.branch(name);
 
     if (r !== undefined) {
