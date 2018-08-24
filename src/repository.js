@@ -1,5 +1,6 @@
 import { notImplementedError } from "./util";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
+import { propertiesFromOptions } from "./util";
 
 /**
  * Abstract repository
@@ -47,16 +48,21 @@ export const Repository = OneTimeInititalizerMixin(
         _pullRequests: { value: new Map() }
       };
 
-      const defaultOptions = this.constructor.defaultOptions;
-
-      Object.keys(defaultOptions).forEach(name => {
-        properties[name] = {
-          value:
-            (options !== undefined && options[name]) || defaultOptions[name]
-        };
-      });
+      propertiesFromOptions(
+        properties,
+        options,
+        this.constructor.defaultOptions
+      );
 
       Object.defineProperties(this, properties);
+    }
+
+    /**
+     * full repository name within the provider
+     * @return {string} full repo name
+     */
+    get fullName() {
+      return this.name;
     }
 
     /**

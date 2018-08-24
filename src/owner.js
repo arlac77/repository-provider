@@ -1,7 +1,7 @@
-import { Repository } from './repository';
-import { Branch } from './branch';
-import { Content } from './content';
-import { OneTimeInititalizerMixin } from './one-time-initializer-mixin';
+import { Repository } from "./repository";
+import { Branch } from "./branch";
+import { Content } from "./content";
+import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
 
 /**
  * Collection of repositories
@@ -9,6 +9,13 @@ import { OneTimeInititalizerMixin } from './one-time-initializer-mixin';
  */
 export const Owner = OneTimeInititalizerMixin(
   class Owner {
+    /**
+     * options
+     */
+    static get defaultOptions() {
+      return {};
+    }
+
     constructor() {
       Object.defineProperties(this, {
         repositories: { value: new Map() }
@@ -106,7 +113,7 @@ export const Owner = OneTimeInititalizerMixin(
      * @return {string} 'git'
      */
     get type() {
-      return 'git';
+      return "git";
     }
 
     async _initialize() {}

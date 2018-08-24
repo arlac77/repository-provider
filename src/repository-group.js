@@ -1,4 +1,5 @@
-import { Owner } from './owner';
+import { Owner } from "./owner";
+import { propertiesFromOptions } from "./util";
 
 /**
  * Abstract repository as a collection
@@ -9,12 +10,17 @@ import { Owner } from './owner';
  * @property {string} name
  */
 export class RepositoryGroup extends Owner {
-  constructor(provider, name) {
+  constructor(provider, name, options) {
     super();
-    Object.defineProperties(this, {
+
+    const properties = {
       name: { value: name },
       provider: { value: provider }
-    });
+    };
+
+    propertiesFromOptions(properties, options, this.constructor.defaultOptions);
+
+    Object.defineProperties(this, properties);
   }
 
   /**

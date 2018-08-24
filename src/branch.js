@@ -1,22 +1,39 @@
-import { notImplementedError } from './util';
-import { OneTimeInititalizerMixin } from './one-time-initializer-mixin';
+import { notImplementedError } from "./util";
+import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
+import { propertiesFromOptions } from "./util";
 
 /**
  * Abstract branch
  * @see {@link Repository#addBranch}
  * @param {Repository} repository
  * @param {string} name
+ * @param {Object} options
  * @property {Repository} repository
  * @property {Provider} provider
  * @property {string} name
  */
 export const Branch = OneTimeInititalizerMixin(
   class Branch {
-    constructor(repository, name = 'master') {
-      Object.defineProperties(this, {
+    /**
+     * options
+     */
+    static get defaultOptions() {
+      return {};
+    }
+
+    constructor(repository, name = "master", options) {
+      const properties = {
         name: { value: name },
         repository: { value: repository }
-      });
+      };
+
+      propertiesFromOptions(
+        properties,
+        options,
+        this.constructor.defaultOptions
+      );
+
+      Object.defineProperties(this, properties);
 
       repository.addBranch(this);
     }
@@ -54,7 +71,7 @@ export const Branch = OneTimeInititalizerMixin(
      * @return {string} 'repo#branch'
      */
     get fullName() {
-      return `${this.repository.name}#${this.name}`;
+      return `${this.repository.fullName}#${this.name}`;
     }
 
     /**
@@ -101,7 +118,7 @@ export const Branch = OneTimeInititalizerMixin(
      * @return {boolean} true if name is 'master'
      */
     get isDefault() {
-      return this.name === 'master';
+      return this.name === "master";
     }
 
     /**

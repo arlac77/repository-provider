@@ -67,13 +67,15 @@ const files = await branch.list();
 -   [Branch](#branch-1)
     -   [Parameters](#parameters-7)
     -   [Properties](#properties-1)
+-   [defaultOptions](#defaultoptions-1)
+-   [defaultOptions](#defaultoptions-2)
+-   [defaultOptions](#defaultoptions-3)
 -   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-8)
     -   [Properties](#properties-3)
--   [defaultOptions](#defaultoptions-1)
 -   [description](#description)
 -   [id](#id)
 -   [PullRequest](#pullrequest)
@@ -213,12 +215,25 @@ Abstract branch
 
 -   `repository` **[Repository](#repository)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### Properties
 
 -   `repository` **[Repository](#repository)** 
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## defaultOptions
+
+options
+
+## defaultOptions
+
+options
+
+## defaultOptions
+
+options
 
 ## OneTimeInititalizer
 
@@ -252,10 +267,6 @@ Abstract repository
 -   `id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.id
 -   `branches` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Branch](#branch)>** 
 -   `pullRequests` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [PullRequest](#pullrequest)>** 
-
-## defaultOptions
-
-options
 
 ## description
 
@@ -320,6 +331,7 @@ Abstract repository as a collection
 
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
+-   `options`  
 
 ### Properties
 
