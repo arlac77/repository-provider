@@ -58,7 +58,7 @@ export const Owner = OneTimeInititalizerMixin(
      * @param {string} name of the repository may contain a #branch
      * @return {Promise<Repository>}
      */
-    async repository(name) {
+    async repository(name, options) {
       if (name === undefined) {
         return undefined;
       }
@@ -91,7 +91,7 @@ export const Owner = OneTimeInititalizerMixin(
      * @param {string} name with optional branch name as '#myBranchName'
      * @return {Promise<Branch|undefined>}
      */
-    async branch(name) {
+    async branch(name, options) {
       if (name === undefined) {
         return undefined;
       }

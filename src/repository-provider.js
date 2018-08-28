@@ -56,9 +56,10 @@ export class Provider extends Owner {
   /**
    * Lookup a repository group
    * @param {string} name of the group
+   * @param {Object} options
    * @return {Promise<RepositoryGroup>}
    */
-  async repositoryGroup(name) {
+  async repositoryGroup(name, options) {
     if (name === undefined) {
       return undefined;
     }
@@ -82,20 +83,21 @@ export class Provider extends Owner {
 
   /**
    * Lookup a repository in the provider and all of its repository groups
-   * @param {string} name
+   * @param {string} name of the repository
+   * @param {Object} options
    * @return {Promise<Repository>}
    */
-  async repository(name) {
+  async repository(name, options) {
     await this.initialize();
 
-    const r = await super.repository(name);
+    const r = await super.repository(name, options);
 
     if (r !== undefined) {
       return r;
     }
 
     for (const p of this.repositoryGroups.values()) {
-      const r = await p.repository(name);
+      const r = await p.repository(name, options);
       if (r !== undefined) {
         return r;
       }
@@ -106,20 +108,21 @@ export class Provider extends Owner {
 
   /**
    * Lookup a branch in the provider and all of its repository groups
-   * @param {string} name
+   * @param {string} name of the branch
+   * @param {Object} options
    * @return {Promise<Branch>}
    */
-  async branch(name) {
+  async branch(name, options) {
     await this.initialize();
 
-    const r = await super.branch(name);
+    const r = await super.branch(name, options);
 
     if (r !== undefined) {
       return r;
     }
 
     for (const p of this.repositoryGroups.values()) {
-      const r = await p.branch(name);
+      const r = await p.branch(name, options);
       if (r !== undefined) {
         return r;
       }
