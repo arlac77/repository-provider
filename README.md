@@ -77,7 +77,9 @@ const files = await branch.list();
     -   [Parameters](#parameters-8)
     -   [Properties](#properties-3)
 -   [description](#description)
+-   [description](#description-1)
 -   [id](#id)
+-   [id](#id-1)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-9)
     -   [Properties](#properties-4)
@@ -277,6 +279,18 @@ the description of the repository content.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+## description
+
+the description of the repository content.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## id
+
+unique id within the provider.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ## id
 
 unique id within the provider.
@@ -334,7 +348,9 @@ Abstract repository as a collection
 
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
--   `options`  
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** human readable description
+    -   `options.id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** internal id
 
 ### Properties
 
