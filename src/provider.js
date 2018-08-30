@@ -2,7 +2,7 @@ import { Branch } from "./branch";
 import { Owner } from "./owner";
 import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
-import { RepositoryGroup } from "./repository-group";
+import { RepositoryGroup } from "./group";
 import { Content } from "./content";
 import { notImplementedError } from "./util";
 

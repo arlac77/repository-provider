@@ -4,8 +4,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/repository-provider.js",
-  "module": "src/repository-provider.js",
+  "main": "dist/provider.js",
+  "module": "src/provider.js",
   "description": "abstract interface to git repository providers like github bitbucket",
   "keywords": [
     "git",
@@ -24,10 +24,10 @@
     "pretest": "rollup -c tests/rollup.config.js",
     "precover": "rollup -c tests/rollup.config.js",
     "posttest": "npm run prepare && markdown-doctest",
-    "docs": "documentation readme src/repository-provider.js --section=API",
+    "docs": "documentation readme src/provider.js --section=API",
     "semantic-release": "semantic-release",
     "prepare": "rollup -c",
-    "lint": "documentation lint src/repository-provider.js",
+    "lint": "documentation lint src/provider.js",
     "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {},
