@@ -37,9 +37,26 @@ test("repository normalize name", t => {
   t.is(repository.fullName, "r1");
 });
 
-test.only("repository classes", t => {
+test("repository classes", t => {
   const owner = new Provider();
   const repository = new Repository(owner, "r1#branch");
   t.is(repository.branchClass, Branch);
   t.is(repository.contentClass, Content);
+});
+
+class MyRepository extends Repository {
+  static get defaultOptions() {
+    return Object.assign(
+      {
+        myAttribute: 77
+      },
+      super.defaultOptions
+    );
+  }
+}
+
+test("defaultOption", t => {
+  const repository = new MyRepository(undefined, "r1", { id: "xxx" });
+  t.is(repository.myAttribute, 77);
+  t.is(repository.id, "xxx");
 });
