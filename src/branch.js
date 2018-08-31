@@ -75,14 +75,14 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * Repository and branch name combined.
+     * Repository fullName and branch name combined.
      * But skipping the branch name if it is the default branch
-     * @return {string} 'repo#branch'
+     * @return {string} 'user/repo#branch'
      */
     get fullCondensedName() {
       return this.isDefault
-        ? this.repository.name
-        : `${this.repository.name}#${this.name}`;
+        ? this.repository.fullName
+        : `${this.repository.fullName}#${this.name}`;
     }
 
     /**
