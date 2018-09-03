@@ -78,8 +78,7 @@ export const Owner = OneTimeInititalizerMixin(
     async createRepository(name, options) {
       await this.initialize();
       const repository = new this.repositoryClass(this, name, options);
-      await repository.initialize();
-      this.repositories.set(name, repository);
+      this.repositories.set(repository.name, repository);
       return repository;
     }
 
