@@ -4,6 +4,7 @@ import { Provider } from "../src/provider";
 import { Repository } from "../src/repository";
 import { Branch } from "../src/branch";
 import { Content } from "../src/content";
+import { PullRequest } from "../src/pull-request";
 
 test("repository create with options", t => {
   const owner = new Owner();
@@ -42,6 +43,7 @@ test("repository classes", t => {
   const repository = new Repository(owner, "r1#branch");
   t.is(repository.branchClass, Branch);
   t.is(repository.contentClass, Content);
+  t.is(repository.pullRequestClass, PullRequest);
 });
 
 class MyRepository extends Repository {

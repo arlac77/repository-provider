@@ -273,6 +273,14 @@ export const Repository = OneTimeInititalizerMixin(
      * By default we use the providers implementation.
      * @return {Class} as defined in the provider
      */
+    get pullRequestClass() {
+      return this.provider.pullRequestClass;
+    }
+
+    /**
+     * By default we use the providers implementation.
+     * @return {Class} as defined in the provider
+     */
     get branchClass() {
       return this.provider.branchClass;
     }
