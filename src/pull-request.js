@@ -1,4 +1,4 @@
-import { notImplementedError } from './util';
+import { notImplementedError, propertiesFromOptions } from "./util";
 
 /**
  * Abstract pull request
@@ -16,22 +16,31 @@ import { notImplementedError } from './util';
  * @property {string} [state]
  */
 export class PullRequest {
-  constructor(repository, name, options = {}) {
-    Object.defineProperties(
-      this,
-      ['title', 'state'].reduce(
-        (a, key) => {
-          if (options[key] !== undefined) {
-            a[key] = { value: options[key] };
-          }
-          return a;
-        },
-        {
-          name: { value: name },
-          repository: { value: repository }
-        }
-      )
-    );
+  static get defaultOptions() {
+    return {
+      /**
+       * the description of the pull request.
+       * @return {string}
+       */
+      title: undefined,
+
+      /**
+       * state of the pull request.
+       * @return {string}
+       */
+      state: undefined
+    };
+  }
+
+  constructor(repository, name, options) {
+    const properties = {
+      name: { value: name },
+      repository: { value: repository }
+    };
+
+    propertiesFromOptions(properties, options, this.constructor.defaultOptions);
+
+    Object.defineProperties(this, properties);
 
     repository.addPullRequest(this);
   }

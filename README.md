@@ -87,6 +87,8 @@ const files = await branch.list();
     -   [delete](#delete)
     -   [merge](#merge)
     -   [decline](#decline)
+-   [title](#title)
+-   [state](#state)
 -   [RepositoryGroup](#repositorygroup-1)
     -   [Parameters](#parameters-10)
     -   [Properties](#properties-5)
@@ -96,6 +98,8 @@ const files = await branch.list();
 -   [Content](#content)
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
+-   [propertiesFromOptions](#propertiesfromoptions)
+    -   [Parameters](#parameters-12)
 
 ## Provider
 
@@ -306,7 +310,7 @@ Abstract pull request
 
 -   `repository` **Repositoy** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
     -   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -337,6 +341,18 @@ Merge the pull request
 ### decline
 
 Decline the pull request
+
+## title
+
+the description of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## state
+
+state of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## RepositoryGroup
 
@@ -392,6 +408,18 @@ Representation of one file or directory entry
 -   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))** 
 -   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content
 -   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
+
+## propertiesFromOptions
+
+-   **See: Object.definedProperties()**
+
+create properties from options and default options
+
+### Parameters
+
+-   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** where the properties will be stored
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `defaultOptions` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 # install
 
