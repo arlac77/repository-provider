@@ -14,6 +14,7 @@ test("branch", async t => {
   t.is(b.fullName, "r1#b1");
   t.is(b.fullCondensedName, "r1#b1");
   t.is(b.isDefault, false);
+  t.is(b.ref, "refs/heads/b1");
   t.is(await repository.branch("b1"), b);
 });
 

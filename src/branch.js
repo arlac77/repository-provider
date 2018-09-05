@@ -114,6 +114,14 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
+     * Git branch ref name
+     * @return {string} git ref of the branch
+     */
+    get ref() {
+      return `refs/heads/${this.name}`;
+    }
+
+    /**
      * Are we the default branch
      * @return {boolean} true if name is 'master'
      */
