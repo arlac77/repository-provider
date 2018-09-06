@@ -1,6 +1,7 @@
 import test from "ava";
 import { Provider } from "../src/provider";
 import { Branch } from "../src/branch";
+import { PullRequest } from "../src/pull-request";
 
 test("branch", async t => {
   const provider = new Provider();
@@ -15,6 +16,7 @@ test("branch", async t => {
   t.is(b.fullCondensedName, "r1#b1");
   t.is(b.isDefault, false);
   t.is(b.ref, "refs/heads/b1");
+  t.is(b.pullRequestClass, PullRequest);
   t.is(await repository.branch("b1"), b);
 });
 

@@ -193,6 +193,14 @@ export const Branch = OneTimeInititalizerMixin(
       this.provider.rateLimitReached(value);
     }
 
+    /**
+     * By default we use the repository implementation.
+     * @return {Class} as defined in the repository
+     */
+    get pullRequestClass() {
+      return this.repository.pullRequestClass;
+    }
+
     async _initialize() {}
   }
 );

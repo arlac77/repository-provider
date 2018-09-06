@@ -65,4 +65,12 @@ export class RepositoryGroup extends Owner {
   get contentClass() {
     return this.provider.contentClass;
   }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
+  get pullRequestClass() {
+    return this.provider.pullRequestClass;
+  }
 }
