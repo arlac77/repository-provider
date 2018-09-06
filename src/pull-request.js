@@ -19,10 +19,16 @@ export class PullRequest {
   static get defaultOptions() {
     return {
       /**
-       * the description of the pull request.
+       * the one line description of the pull request.
        * @return {string}
        */
       title: undefined,
+
+      /**
+       * the description of the pull request.
+       * @return {string}
+       */
+      body: undefined,
 
       /**
        * state of the pull request.

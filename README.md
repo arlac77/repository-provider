@@ -88,6 +88,7 @@ const files = await branch.list();
     -   [merge](#merge)
     -   [decline](#decline)
 -   [title](#title)
+-   [body](#body)
 -   [state](#state)
 -   [RepositoryGroup](#repositorygroup-1)
     -   [Parameters](#parameters-10)
@@ -95,6 +96,7 @@ const files = await branch.list();
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
+    -   [pullRequestClass](#pullrequestclass-1)
 -   [Content](#content)
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
@@ -344,6 +346,12 @@ Decline the pull request
 
 ## title
 
+the one line description of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## body
+
 the description of the pull request.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
@@ -386,6 +394,12 @@ By default we use the providers implementation.
 Returns **Class** as defined in the provider
 
 ### contentClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
+### pullRequestClass
 
 By default we use the providers implementation.
 
