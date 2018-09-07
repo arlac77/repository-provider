@@ -202,5 +202,14 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     async _initialize() {}
+
+    /**
+     * Get sha of a ref
+     * @param {string} ref
+     * @return {string} sha of the ref
+     */
+    async refId(ref = this.ref) {
+      return this.repository.refId(ref);
+    }
   }
 );

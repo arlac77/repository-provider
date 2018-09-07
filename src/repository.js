@@ -244,6 +244,15 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
+     * Get sha of a ref
+     * @param {string} ref
+     * @return {string} sha of the ref
+     */
+    async refId(ref) {
+      return undefined;
+    }
+
+    /**
      * Value delivered from the provider
      * @return {boolean} providers rateLimitReached
      */
