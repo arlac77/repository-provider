@@ -57,16 +57,6 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * Branch project
-     * By default we provide the repository project
-     * @see {@link Repository#project}
-     * @return {string}
-     */
-    get project() {
-      return this.repository.project;
-    }
-
-    /**
      * Repository and branch name combined
      * @return {string} 'repo#branch'
      */

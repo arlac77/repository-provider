@@ -115,16 +115,7 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
-     * Repository project
-     * Default implementation delivers undefined
-     * @return {string} undefined
-     */
-    get project() {
-      return undefined;
-    }
-
-    /**
-     * Name without project / owner
+     * Name without owner
      * @return {string} name
      */
     get condensedName() {
