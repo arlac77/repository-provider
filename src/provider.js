@@ -144,13 +144,6 @@ export class Provider extends Owner {
   }
 
   /**
-   * @return {Class} pull request class used by the Provider
-   */
-  get pullRequestClass() {
-    return PullRequest;
-  }
-
-  /**
    * Is our rate limit reached.
    * By default we have no rate limit
    * @return {boolean} always false

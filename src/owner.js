@@ -1,6 +1,7 @@
 import { Repository } from "./repository";
 import { Branch } from "./branch";
 import { Content } from "./content";
+import { PullRequest } from "./pull-request";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
 
 /**
@@ -41,6 +42,13 @@ export const Owner = OneTimeInititalizerMixin(
      */
     get contentClass() {
       return Content;
+    }
+
+    /**
+     * @return {Class} pull request class used by the Provider
+     */
+    get pullRequestClass() {
+      return PullRequest;
     }
 
     /**

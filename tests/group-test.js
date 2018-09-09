@@ -4,6 +4,7 @@ import { RepositoryGroup } from "../src/group";
 import { Repository } from "../src/repository";
 import { Branch } from "../src/branch";
 import { Content } from "../src/content";
+import { PullRequest } from "../src/pull-request";
 
 test("repository-group create with options", t => {
   const owner = new Owner();
@@ -23,4 +24,5 @@ test("repository-group classes", t => {
   t.is(rg.repositoryClass, Repository);
   t.is(rg.branchClass, Branch);
   t.is(rg.contentClass, Content);
+  t.is(rg.pullRequestClass, PullRequest);
 });

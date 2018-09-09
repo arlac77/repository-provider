@@ -8,7 +8,7 @@ import { propertiesFromOptions } from "./util";
  * @param {Object} options
  * @param {string} [options.description] human readable description
  * @param {string} [options.id] internal id
-
+ *
  * @property {Provider} provider
  * @property {string} name
  */
@@ -16,7 +16,7 @@ export class RepositoryGroup extends Owner {
   static get defaultOptions() {
     return Object.assign({}, super.defaultOptions, {
       /**
-       * the description of the repository content.
+       * the description of the repository group.
        * @return {string}
        */
       description: undefined,

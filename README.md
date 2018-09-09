@@ -55,7 +55,6 @@ const files = await branch.list();
     -   [branch](#branch)
         -   [Parameters](#parameters-4)
     -   [repositoryGroupClass](#repositorygroupclass)
-    -   [pullRequestClass](#pullrequestclass)
     -   [rateLimitReached](#ratelimitreached)
     -   [name](#name)
     -   [provider](#provider-1)
@@ -96,7 +95,7 @@ const files = await branch.list();
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
-    -   [pullRequestClass](#pullrequestclass-1)
+    -   [pullRequestClass](#pullrequestclass)
 -   [Content](#content)
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
@@ -165,10 +164,6 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### repositoryGroupClass
 
 Returns **Class** repository group class used by the Provider
-
-### pullRequestClass
-
-Returns **Class** pull request class used by the Provider
 
 ### rateLimitReached
 
@@ -287,7 +282,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## description
 
-the description of the repository content.
+the description of the repository group.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
