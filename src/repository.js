@@ -197,6 +197,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise<Map>} of all pull requests
      */
     async pullRequests() {
+      await this.initialize();
       return this._pullRequests;
     }
 
