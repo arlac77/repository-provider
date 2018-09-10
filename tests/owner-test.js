@@ -39,6 +39,12 @@ test("owner repository urls", async t => {
   t.deepEqual(repository.urls, []);
 });
 
+test("owner get undefined repository", async t => {
+  const owner = new Owner();
+  const repository = await owner.repository(undefined);
+  t.is(repository, undefined);
+});
+
 test("owner get undefined repository + branch", async t => {
   const owner = new Owner();
   const branch = await owner.branch(undefined);

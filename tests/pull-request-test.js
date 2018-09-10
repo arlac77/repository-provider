@@ -22,6 +22,7 @@ test("create pullRequests", async t => {
 
   t.is(pr.name, "p1");
   t.is(pr.repository, repository);
+  t.is(pr.provider, provider);
   t.is(pr.title, "a title");
   t.is(pr.body, "the body");
   t.is(pr.state, "closed");
