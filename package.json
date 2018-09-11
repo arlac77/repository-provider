@@ -58,6 +58,8 @@
   },
   "homepage": "https://github.com/arlac77/repository-provider#readme",
   "ava": {
+    "babel": false,
+    "compileEnhancements": false,
     "files": [
       "build/*-test.js"
     ],
