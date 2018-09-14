@@ -21,6 +21,7 @@ export default {
       exclude: "node_modules/**"
     }),
     resolve(),
-    commonjs()
+    commonjs(),
+    cleanup()
   ]
 };
