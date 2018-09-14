@@ -39,3 +39,29 @@ test("branch delete", async t => {
 
   t.is(await repository.branch("b1"), undefined);
 });
+
+test("branch list", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1");
+
+  const b = new Branch(repository, "b1");
+
+  const entries = new Set();
+  for await (const entry of b.list(["*.js"])) {
+    entries.add(entry.path);
+  }
+
+  t.is(entries.size, 0);
+});
+
+test("branch content", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1");
+
+  const b = new Branch(repository, "b1");
+
+  await t.throwsAsync(async () => b.content("aFile"), {
+    instanceOf: Error,
+    message: `No such object 'aFile'`
+  });
+});

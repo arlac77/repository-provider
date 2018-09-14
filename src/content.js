@@ -19,4 +19,8 @@ export class Content {
       mode: { value: mode }
     });
   }
+
+  get isDirectory() {
+    return this.type === "tree";
+  }
 }

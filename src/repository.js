@@ -74,7 +74,7 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
-     * Lookup content form the default branch
+     * Lookup content form the head of the default branch
      * {@link Branch#content}
      * @return {Content}
      */

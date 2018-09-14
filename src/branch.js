@@ -129,12 +129,12 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * Deliver file content
+     * Deliver file content from the head
      * @param {string} path
      * @return {Promise<Content>} content of a given file
      */
     async content(path) {
-      return notImplementedError();
+      throw new Error(`No such object '${path}'`);
     }
 
     /**
@@ -159,12 +159,10 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * File list
+     * List paths of the branch
      * @return {string[]} all file names in the branch
      */
-    async list() {
-      return [];
-    }
+    async *list(matchingPatterns) {}
 
     /**
      * Value delivered from the provider
