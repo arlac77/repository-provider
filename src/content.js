@@ -24,3 +24,12 @@ export class Content {
     return this.type === "tree";
   }
 }
+
+/**
+ *
+ * @param {string} path
+ * @return {Content}
+ */
+export function emptyContent(path, options) {
+  return new Content(path, "");
+}

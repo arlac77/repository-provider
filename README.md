@@ -99,8 +99,10 @@ const files = await branch.list();
 -   [Content](#content)
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
--   [propertiesFromOptions](#propertiesfromoptions)
+-   [emptyContent](#emptycontent)
     -   [Parameters](#parameters-12)
+-   [propertiesFromOptions](#propertiesfromoptions)
+    -   [Parameters](#parameters-13)
 
 ## Provider
 
@@ -417,6 +419,15 @@ Representation of one file or directory entry
 -   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))** 
 -   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content
 -   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
+
+## emptyContent
+
+### Parameters
+
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options`  
+
+Returns **[Content](#content)** 
 
 ## propertiesFromOptions
 
