@@ -3,10 +3,18 @@ import { Owner } from "./owner";
 import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
-import { Content } from "./content";
+import { Content, emptyContent } from "./content";
 import { notImplementedError, propertiesFromOptions } from "./util";
 
-export { Repository, Branch, PullRequest, Owner, RepositoryGroup, Content };
+export {
+  Repository,
+  Branch,
+  PullRequest,
+  Owner,
+  RepositoryGroup,
+  Content,
+  emptyContent
+};
 
 /**
  * Base repository provider acts as a source of repositories
