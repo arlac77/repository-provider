@@ -156,7 +156,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise<Branch>} newly created branch
      */
     async createBranch(name, source, options) {
-      const branch = new this.provider.branchClass(this, name, options);
+      const branch = new this.branchClass(this, name, options);
       this._branches.set(branch.name, branch);
       return branch;
     }
