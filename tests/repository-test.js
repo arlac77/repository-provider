@@ -18,6 +18,8 @@ test("repository create with options", t => {
   t.is(repository.type, "git");
   t.is(repository.description, "a description");
   t.is(repository.id, "4711");
+  t.is(repository.issuesURL, undefined);
+  t.is(repository.homePageURL, undefined);
 });
 
 test("repository create without options", t => {
@@ -36,6 +38,18 @@ test("repository normalize name", t => {
   t.is(repository.owner, owner);
   t.is(repository.name, "r1");
   t.is(repository.fullName, "r1");
+});
+
+test("repository create branch", async t => {
+  const provider = new Provider();
+
+  const repository = new Repository(provider, "r1#branch");
+  const b1 = await repository.createBranch(
+    "b1",
+    await repository.defaultBranch
+  );
+  t.is(b1.name, "b1");
+  t.is(b1.repository, repository);
 });
 
 test("repository classes", t => {
