@@ -160,6 +160,7 @@ export const Branch = OneTimeInititalizerMixin(
 
     /**
      * List paths of the branch
+     * @param {string[]} matchingPatterns
      * @return {string[]} all file names in the branch
      */
     async *list(matchingPatterns) {}
