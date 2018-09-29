@@ -11,7 +11,19 @@
  * @param {string} mode file permissions
  */
 export class Content {
-  constructor(path, content = undefined, type = "blob", mode = "100644") {
+  static get TYPE_BLOB() {
+    return "blob";
+  }
+  static get TYPE_TREE() {
+    return "tree";
+  }
+
+  constructor(
+    path,
+    content = undefined,
+    type = Content.TYPE_BLOB,
+    mode = "100644"
+  ) {
     Object.defineProperties(this, {
       path: { value: path },
       content: { value: content, writeable: true },
@@ -21,7 +33,37 @@ export class Content {
   }
 
   get isDirectory() {
-    return this.type === "tree";
+    return this.type === Content.TYPE_TREE;
+  }
+
+  /**
+   * compare against other content
+   * @param {Content} other
+   * @return {boolean} true if other describes the same content
+   */
+  equals(other) {
+    if (
+      other === undefined ||
+      this.path !== other.path ||
+      this.type !== other.type ||
+      this.mode !== other.mode
+    ) {
+      return false;
+    }
+
+    if (Buffer.isBuffer(this.content)) {
+      if (Buffer.isBuffer(other.content)) {
+        return this.content.equals(other.content);
+      }
+
+    } else {
+      if (this.content === undefined && other.content === undefined) {
+        return true;
+      }
+    }
+
+    console.log(`not implemented: ${typeof this.content} <> ${typeof other.content}`);
+    return false;
   }
 }
 

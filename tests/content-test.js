@@ -24,3 +24,17 @@ test("create empty", t => {
   const content = emptyContent("somewhere", { encoding: "utf-8" });
   t.is(content.content.toString("utf-8"), "");
 });
+
+test("equals", t => {
+  const contenta = new Content("somewhere", Buffer.from('A'), "tree");
+
+  t.true(contenta.equals(contenta));
+  t.false(contenta.equals(undefined));
+
+  const contenta2 = new Content("somewhere", Buffer.from('A'), "tree");
+  t.true(contenta.equals(contenta2));
+
+  const contentb = new Content("somewhere", Buffer.from('B'), "tree");
+  t.false(contenta.equals(contentb));
+
+});

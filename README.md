@@ -99,10 +99,12 @@ const files = await branch.list();
 -   [Content](#content)
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
+    -   [equals](#equals)
+        -   [Parameters](#parameters-12)
 -   [emptyContent](#emptycontent)
-    -   [Parameters](#parameters-12)
--   [propertiesFromOptions](#propertiesfromoptions)
     -   [Parameters](#parameters-13)
+-   [propertiesFromOptions](#propertiesfromoptions)
+    -   [Parameters](#parameters-14)
 
 ## Provider
 
@@ -410,7 +412,7 @@ Representation of one file or directory entry
 
 -   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
 -   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))**  (optional, default `undefined`)
--   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content (optional, default `"blob"`)
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content (optional, default `Content.TYPE_BLOB`)
 -   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions (optional, default `"100644"`)
 
 ### Properties
@@ -419,6 +421,16 @@ Representation of one file or directory entry
 -   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))** 
 -   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content
 -   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
+
+### equals
+
+compare against other content
+
+#### Parameters
+
+-   `other` **[Content](#content)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other describes the same content
 
 ## emptyContent
 
