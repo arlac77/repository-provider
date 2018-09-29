@@ -99,6 +99,8 @@ const files = await branch.list();
 -   [Content](#content)
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
+    -   [isDirectory](#isdirectory)
+    -   [isBlob](#isblob)
     -   [equals](#equals)
         -   [Parameters](#parameters-12)
 -   [emptyContent](#emptycontent)
@@ -407,6 +409,7 @@ Returns **Class** as defined in the provider
 ## Content
 
 Representation of one file or directory entry
+All paths are asolute (no leading '/') and build with '/'
 
 ### Parameters
 
@@ -421,6 +424,14 @@ Representation of one file or directory entry
 -   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))** 
 -   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content
 -   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
+
+### isDirectory
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a directory
+
+### isBlob
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a blog (plain old file)
 
 ### equals
 

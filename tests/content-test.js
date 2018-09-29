@@ -6,23 +6,34 @@ test("create", t => {
   t.is(content.path, "somewhere");
   t.is(content.type, "blob");
   t.is(content.mode, "100644");
+  t.true(content.isBlob);
   t.false(content.isDirectory);
+});
+
+test("create invalid path", t => {
+  t.throws(() => new Content("/somewhere"), TypeError);
+  t.throws(() => new Content("somewhere\\abc"), TypeError);
 });
 
 test("create Directory", t => {
   const content = new Content("somewhere", undefined, "tree");
   t.is(content.path, "somewhere");
   t.true(content.isDirectory);
+  t.false(content.isBlob);
 });
 
 test("create from Buffer", t => {
   const content = new Content("somewhere", Buffer.from("abc", "utf-8"));
   t.is(content.content.toString("utf-8"), "abc");
+  t.true(content.isBlob);
+  t.false(content.isDirectory);
 });
 
 test("create empty", t => {
   const content = emptyContent("somewhere", { encoding: "utf-8" });
   t.is(content.content.toString("utf-8"), "");
+  t.true(content.isBlob);
+  t.false(content.isDirectory);
 });
 
 test("equals", t => {
@@ -36,5 +47,4 @@ test("equals", t => {
 
   const contentb = new Content("somewhere", Buffer.from('B'), "tree");
   t.false(contenta.equals(contentb));
-
 });

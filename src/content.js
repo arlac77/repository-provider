@@ -1,5 +1,6 @@
 /**
  * Representation of one file or directory entry
+ * All paths are asolute (no leading '/') and build with '/'
  * @property {string} path file name inside of the repository
  * @property {string|Buffer|Stream} content
  * @property {string} type type of the content
@@ -24,6 +25,12 @@ export class Content {
     type = Content.TYPE_BLOB,
     mode = "100644"
   ) {
+    if (path[0] === "/" || path.indexOf("\\") >= 0) {
+      throw new TypeError(
+        `Paths should not contain leading '/' or any '\\': ${path}`
+      );
+    }
+
     Object.defineProperties(this, {
       path: { value: path },
       content: { value: content, writeable: true },
@@ -32,8 +39,18 @@ export class Content {
     });
   }
 
+  /**
+   * @return {boolean} true is content represents a directory
+   */
   get isDirectory() {
     return this.type === Content.TYPE_TREE;
+  }
+
+  /**
+   * @return {boolean} true is content represents a blog (plain old file)
+   */
+  get isBlob() {
+    return this.type === Content.TYPE_BLOB;
   }
 
   /**
@@ -55,14 +72,15 @@ export class Content {
       if (Buffer.isBuffer(other.content)) {
         return this.content.equals(other.content);
       }
-
     } else {
       if (this.content === undefined && other.content === undefined) {
         return true;
       }
     }
 
-    console.log(`not implemented: ${typeof this.content} <> ${typeof other.content}`);
+    console.log(
+      `not implemented: ${typeof this.content} <> ${typeof other.content}`
+    );
     return false;
   }
 }
