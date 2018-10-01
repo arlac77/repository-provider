@@ -100,7 +100,7 @@ const files = await branch.list();
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
     -   [isDirectory](#isdirectory)
-    -   [isBlob](#isblob)
+    -   [isFile](#isfile)
     -   [equals](#equals)
         -   [Parameters](#parameters-12)
 -   [emptyContent](#emptycontent)
@@ -429,9 +429,9 @@ All paths are asolute (no leading '/') and build with '/'
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a directory
 
-### isBlob
+### isFile
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a blog (plain old file)
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a blob (plain old file)
 
 ### equals
 

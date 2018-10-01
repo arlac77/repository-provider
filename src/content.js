@@ -47,10 +47,22 @@ export class Content {
   }
 
   /**
-   * @return {boolean} true is content represents a blog (plain old file)
+   * @return {boolean} true is content represents a blob (plain old file)
    */
-  get isBlob() {
+  get isFile() {
     return this.type === Content.TYPE_BLOB;
+  }
+
+  toString() {
+    return this.path;
+  }
+
+  toJSON() {
+    return {
+      path: this.path,
+      type: this.type,
+      mode: this.mode
+    };
   }
 
   /**
@@ -73,6 +85,15 @@ export class Content {
         return this.content.equals(other.content);
       }
     } else {
+      if (typeof this.content === "string" || this.content instanceof String) {
+        if (
+          typeof other.content === "string" ||
+          other.content instanceof String
+        ) {
+          return this.content === other.content;
+        }
+      }
+
       if (this.content === undefined && other.content === undefined) {
         return true;
       }
