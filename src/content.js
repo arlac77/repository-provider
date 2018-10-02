@@ -54,7 +54,15 @@ export class Content {
   }
 
   toString() {
-    return this.path;
+    if (typeof this.content === "string" || this.content instanceof String) {
+      return this.content;
+    }
+
+    if (Buffer.isBuffer(this.content)) {
+      return this.content.toString('utf8');
+    }
+
+    return undefined;
   }
 
   toJSON() {

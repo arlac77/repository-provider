@@ -25,6 +25,7 @@ test("create Directory", t => {
 test("create from Buffer", t => {
   const content = new Content("somewhere", Buffer.from("abc", "utf-8"));
   t.is(content.content.toString("utf-8"), "abc");
+  t.is(content.toString(), "abc");
   t.true(content.isFile);
   t.false(content.isDirectory);
 });
@@ -32,6 +33,7 @@ test("create from Buffer", t => {
 test("create empty", t => {
   const content = emptyContent("somewhere", { encoding: "utf-8" });
   t.is(content.content.toString("utf-8"), "");
+  t.is(content.toString(), "");
   t.true(content.isFile);
   t.false(content.isDirectory);
 });
