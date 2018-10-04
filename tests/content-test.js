@@ -63,3 +63,16 @@ test("equals String", t => {
   const contentb = new Content("somewhere", "B");
   t.false(contenta.equals(contentb));
 });
+
+test("equals Buffer <> String", t => {
+  const contenta = new Content("somewhere", "A");
+
+  t.true(contenta.equals(contenta));
+  t.false(contenta.equals(undefined));
+
+  const contenta2 = new Content("somewhere", Buffer.from("A"));
+  t.true(contenta.equals(contenta2));
+
+  const contentb = new Content("somewhere", Buffer.from("B"));
+  t.false(contenta.equals(contentb));
+});

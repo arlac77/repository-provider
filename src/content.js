@@ -53,13 +53,17 @@ export class Content {
     return this.type === Content.TYPE_BLOB;
   }
 
+  /**
+   * Deliver content as string
+   * @return {string} content
+   */
   toString() {
     if (typeof this.content === "string" || this.content instanceof String) {
       return this.content;
     }
 
     if (Buffer.isBuffer(this.content)) {
-      return this.content.toString('utf8');
+      return this.content.toString("utf8");
     }
 
     return undefined;
@@ -94,12 +98,7 @@ export class Content {
       }
     } else {
       if (typeof this.content === "string" || this.content instanceof String) {
-        if (
-          typeof other.content === "string" ||
-          other.content instanceof String
-        ) {
-          return this.content === other.content;
-        }
+        return this.toString() === other.toString();
       }
 
       if (this.content === undefined && other.content === undefined) {
@@ -115,7 +114,7 @@ export class Content {
 }
 
 /**
- *
+ * Create empty content (file)
  * @param {string} path
  * @return {Content}
  */
