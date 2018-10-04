@@ -1,4 +1,6 @@
 import test from "ava";
+import { join } from 'path';
+import { createReadStream } from 'fs';
 import { Content, emptyContent } from "../src/content";
 
 test("create", t => {
@@ -8,6 +10,15 @@ test("create", t => {
   t.is(content.mode, "100644");
   t.true(content.isFile);
   t.false(content.isDirectory);
+});
+
+test("json", t => {
+  const content = new Content("somewhere");
+  t.deepEqual(JSON.parse(JSON.stringify(content)), {
+    path: "somewhere",
+    type: "blob",
+    mode: "100644"
+  });
 });
 
 test("create invalid path", t => {
@@ -68,11 +79,16 @@ test("equals Buffer <> String", t => {
   const contenta = new Content("somewhere", "A");
 
   t.true(contenta.equals(contenta));
-  t.false(contenta.equals(undefined));
 
   const contenta2 = new Content("somewhere", Buffer.from("A"));
   t.true(contenta.equals(contenta2));
 
   const contentb = new Content("somewhere", Buffer.from("B"));
   t.false(contenta.equals(contentb));
+});
+
+test.skip("equals ReadStream", t => {
+  const contenta = new Content("file1.txt", createReadStream(join(__dirname,'..','tests','fixtures','file1.txt')));
+
+  t.true(contenta.equals(contenta));
 });
