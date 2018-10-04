@@ -101,6 +101,7 @@ const files = await branch.list();
     -   [Properties](#properties-6)
     -   [isDirectory](#isdirectory)
     -   [isFile](#isfile)
+    -   [toString](#tostring)
     -   [equals](#equals)
         -   [Parameters](#parameters-12)
 -   [emptyContent](#emptycontent)
@@ -433,6 +434,12 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a blob (plain old file)
 
+### toString
+
+Deliver content as string
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** content
+
 ### equals
 
 compare against other content
@@ -444,6 +451,8 @@ compare against other content
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other describes the same content
 
 ## emptyContent
+
+Create empty content (file)
 
 ### Parameters
 
