@@ -1,6 +1,6 @@
 import test from "ava";
-import { join } from 'path';
-import { createReadStream } from 'fs';
+import { join } from "path";
+import { createReadStream } from "fs";
 import { Content, emptyContent } from "../src/content";
 
 test("create", t => {
@@ -87,8 +87,17 @@ test("equals Buffer <> String", t => {
   t.false(contenta.equals(contentb));
 });
 
-test.skip("equals ReadStream", t => {
-  const contenta = new Content("file1.txt", createReadStream(join(__dirname,'..','tests','fixtures','file1.txt')));
+test.only("equals ReadStream", t => {
+  const contenta = new Content(
+    "file1.txt",
+    createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
+  );
 
   t.true(contenta.equals(contenta));
+
+  const contenta2 = new Content(
+    "file1.txt",
+    createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
+  );
+  t.true(contenta.equals(contenta2));
 });

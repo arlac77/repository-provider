@@ -96,20 +96,9 @@ export class Content {
       if (Buffer.isBuffer(other.content)) {
         return this.content.equals(other.content);
       }
-    } else {
-      if (typeof this.content === "string" || this.content instanceof String) {
-        return this.toString() === other.toString();
-      }
-
-      if (this.content === undefined && other.content === undefined) {
-        return true;
-      }
     }
 
-    console.log(
-      `not implemented: ${typeof this.content} <> ${typeof other.content}`
-    );
-    return false;
+    return this.toString() === other.toString();
   }
 }
 
