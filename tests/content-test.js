@@ -87,7 +87,7 @@ test("equals Buffer <> String", t => {
   t.false(contenta.equals(contentb));
 });
 
-test.only("equals ReadStream", t => {
+test("equals ReadStream", t => {
   const contenta = new Content(
     "file1.txt",
     createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
