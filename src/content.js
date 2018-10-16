@@ -33,7 +33,14 @@ export class Content {
 
     Object.defineProperties(this, {
       path: { value: path },
-      content: { value: content, writeable: true },
+      content: {
+        get() {
+          return content;
+        },
+        set(value) {
+          content = value;
+        }
+      },
       type: { value: type },
       mode: { value: mode }
     });

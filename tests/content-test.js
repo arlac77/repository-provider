@@ -12,6 +12,12 @@ test("create", t => {
   t.false(content.isDirectory);
 });
 
+test("alter content", t => {
+  const content = new Content("somewhere");
+  content.content = "new content";
+  t.is(content.content, "new content");
+});
+
 test("json", t => {
   const content = new Content("somewhere");
   t.deepEqual(JSON.parse(JSON.stringify(content)), {
