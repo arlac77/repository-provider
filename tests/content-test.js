@@ -1,6 +1,7 @@
 import test from "ava";
 import { join } from "path";
 import { createReadStream } from "fs";
+import { Stream } from 'stream';
 import { Content, emptyContent } from "../src/content";
 
 test("content create", t => {
@@ -32,7 +33,7 @@ test("content create invalid path", t => {
   t.throws(() => new Content("somewhere\\abc"), TypeError);
 });
 
-test("content create Directory", t => {
+test("content create as Directory", t => {
   const content = new Content("somewhere", undefined, "tree");
   t.is(content.path, "somewhere");
   t.true(content.isDirectory);
@@ -43,6 +44,15 @@ test("content create from Buffer", t => {
   const content = new Content("somewhere", Buffer.from("abc", "utf-8"));
   t.is(content.content.toString("utf-8"), "abc");
   t.is(content.toString(), "abc");
+  t.deepEqual(content.toStream().read(), Buffer.from("abc", "utf-8"));
+  t.true(content.isFile);
+  t.false(content.isDirectory);
+});
+
+test("content create from stream", t => {
+  const content = new Content("somewhere", createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt")));
+//  t.is(content.toString(), "abc");
+  t.true(content.toStream() instanceof Stream);
   t.true(content.isFile);
   t.false(content.isDirectory);
 });
@@ -51,6 +61,7 @@ test("content create empty", t => {
   const content = emptyContent("somewhere", { encoding: "utf-8" });
   t.is(content.content.toString("utf-8"), "");
   t.is(content.toString(), "");
+  t.is(content.toStream().read(), null);
   t.true(content.isFile);
   t.false(content.isDirectory);
 });

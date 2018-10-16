@@ -30,7 +30,9 @@
     "lint": "documentation lint src/provider.js",
     "travis-deploy-once": "travis-deploy-once"
   },
-  "dependencies": {},
+  "dependencies": {
+    "to-readable-stream": "^1.0.0"
+  },
   "devDependencies": {
     "@babel/plugin-proposal-async-generator-functions": "^7.1.0",
     "ava": "^1.0.0-rc.1",

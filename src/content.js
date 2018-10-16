@@ -1,3 +1,6 @@
+import toReadableStream from "to-readable-stream";
+import { Stream } from 'stream';
+
 /**
  * Representation of one file or directory entry
  * All paths are asolute (no leading '/') and build with '/'
@@ -74,6 +77,14 @@ export class Content {
     }
 
     return undefined;
+  }
+
+  /**
+   * Deliver content as stream
+   * @return {ReadableStream} content
+   */
+  toStream() {
+    return this.content instanceof Stream ? this.content : toReadableStream(this.content);
   }
 
   toJSON() {

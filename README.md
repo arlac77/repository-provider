@@ -102,6 +102,7 @@ const files = await branch.list();
     -   [isDirectory](#isdirectory)
     -   [isFile](#isfile)
     -   [toString](#tostring)
+    -   [toStream](#tostream)
     -   [equals](#equals)
         -   [Parameters](#parameters-12)
 -   [emptyContent](#emptycontent)
@@ -439,6 +440,12 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 Deliver content as string
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** content
+
+### toStream
+
+Deliver content as stream
+
+Returns **ReadableStream** content
 
 ### equals
 

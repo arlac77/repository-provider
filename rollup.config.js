@@ -13,6 +13,7 @@ export default {
     format: "cjs",
     interop: false
   },
+  external: ["stream"],
   plugins: [
     babel({
       runtimeHelpers: false,
