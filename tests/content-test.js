@@ -3,7 +3,7 @@ import { join } from "path";
 import { createReadStream } from "fs";
 import { Content, emptyContent } from "../src/content";
 
-test("create", t => {
+test("content create", t => {
   const content = new Content("somewhere");
   t.is(content.path, "somewhere");
   t.is(content.type, "blob");
@@ -12,13 +12,13 @@ test("create", t => {
   t.false(content.isDirectory);
 });
 
-test("alter content", t => {
+test("content alter content", t => {
   const content = new Content("somewhere");
   content.content = "new content";
   t.is(content.content, "new content");
 });
 
-test("json", t => {
+test("content json", t => {
   const content = new Content("somewhere");
   t.deepEqual(JSON.parse(JSON.stringify(content)), {
     path: "somewhere",
@@ -27,19 +27,19 @@ test("json", t => {
   });
 });
 
-test("create invalid path", t => {
+test("content create invalid path", t => {
   t.throws(() => new Content("/somewhere"), TypeError);
   t.throws(() => new Content("somewhere\\abc"), TypeError);
 });
 
-test("create Directory", t => {
+test("content create Directory", t => {
   const content = new Content("somewhere", undefined, "tree");
   t.is(content.path, "somewhere");
   t.true(content.isDirectory);
   t.false(content.isFile);
 });
 
-test("create from Buffer", t => {
+test("content create from Buffer", t => {
   const content = new Content("somewhere", Buffer.from("abc", "utf-8"));
   t.is(content.content.toString("utf-8"), "abc");
   t.is(content.toString(), "abc");
@@ -47,7 +47,7 @@ test("create from Buffer", t => {
   t.false(content.isDirectory);
 });
 
-test("create empty", t => {
+test("content create empty", t => {
   const content = emptyContent("somewhere", { encoding: "utf-8" });
   t.is(content.content.toString("utf-8"), "");
   t.is(content.toString(), "");
@@ -55,7 +55,7 @@ test("create empty", t => {
   t.false(content.isDirectory);
 });
 
-test("equals Buffer", t => {
+test("content equals Buffer", t => {
   const contenta = new Content("somewhere", Buffer.from("A"));
 
   t.true(contenta.equals(contenta));
@@ -68,7 +68,7 @@ test("equals Buffer", t => {
   t.false(contenta.equals(contentb));
 });
 
-test("equals String", t => {
+test("content equals String", t => {
   const contenta = new Content("somewhere", "A");
 
   t.true(contenta.equals(contenta));
@@ -81,7 +81,7 @@ test("equals String", t => {
   t.false(contenta.equals(contentb));
 });
 
-test("equals Buffer <> String", t => {
+test("content equals Buffer <> String", t => {
   const contenta = new Content("somewhere", "A");
 
   t.true(contenta.equals(contenta));
@@ -93,7 +93,7 @@ test("equals Buffer <> String", t => {
   t.false(contenta.equals(contentb));
 });
 
-test("equals ReadStream", t => {
+test("content equals ReadStream", t => {
   const contenta = new Content(
     "file1.txt",
     createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
