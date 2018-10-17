@@ -1,5 +1,5 @@
 import toReadableStream from "to-readable-stream";
-import { Stream } from 'stream';
+import { Stream } from "stream";
 
 /**
  * Representation of one file or directory entry
@@ -8,11 +8,13 @@ import { Stream } from 'stream';
  * @property {string|Buffer|Stream} content
  * @property {string} type type of the content
  * @property {string} mode file permissions
+ * @property {string} sha sha of the content
  *
  * @param {string} path file name inside of the repository
  * @param {string|Buffer|Stream} content
  * @param {string} type type of the content
  * @param {string} mode file permissions
+ * @param {string} sha sha of the content
  */
 export class Content {
   static get TYPE_BLOB() {
@@ -26,7 +28,8 @@ export class Content {
     path,
     content = undefined,
     type = Content.TYPE_BLOB,
-    mode = "100644"
+    mode = "100644",
+    sha
   ) {
     if (path[0] === "/" || path.indexOf("\\") >= 0) {
       throw new TypeError(
@@ -42,6 +45,14 @@ export class Content {
         },
         set(value) {
           content = value;
+        }
+      },
+      sha: {
+        get() {
+          return sha;
+        },
+        set(value) {
+          sha = value;
         }
       },
       type: { value: type },
@@ -84,14 +95,17 @@ export class Content {
    * @return {ReadableStream} content
    */
   toStream() {
-    return this.content instanceof Stream ? this.content : toReadableStream(this.content);
+    return this.content instanceof Stream
+      ? this.content
+      : toReadableStream(this.content);
   }
 
   toJSON() {
     return {
       path: this.path,
       type: this.type,
-      mode: this.mode
+      mode: this.mode,
+      sha: this.sha
     };
   }
 

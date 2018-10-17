@@ -1,7 +1,7 @@
 import test from "ava";
 import { join } from "path";
 import { createReadStream } from "fs";
-import { Stream } from 'stream';
+import { Stream } from "stream";
 import { Content, emptyContent } from "../src/content";
 
 test("content create", t => {
@@ -21,10 +21,13 @@ test("content alter content", t => {
 
 test("content json", t => {
   const content = new Content("somewhere");
+  content.sha = "12345";
+
   t.deepEqual(JSON.parse(JSON.stringify(content)), {
     path: "somewhere",
     type: "blob",
-    mode: "100644"
+    mode: "100644",
+    sha: "12345"
   });
 });
 
@@ -50,8 +53,11 @@ test("content create from Buffer", t => {
 });
 
 test("content create from stream", t => {
-  const content = new Content("somewhere", createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt")));
-//  t.is(content.toString(), "abc");
+  const content = new Content(
+    "somewhere",
+    createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
+  );
+  //  t.is(content.toString(), "abc");
   t.true(content.toStream() instanceof Stream);
   t.true(content.isFile);
   t.false(content.isDirectory);
