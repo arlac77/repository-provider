@@ -6,14 +6,18 @@ import { notImplementedError, propertiesFromOptions } from "./util";
  * @param {Repositoy} repository
  * @param {string} name
  * @param {Object} options
- * @param {string} options.title
- * @param {string} options.state
- *
+ * @param {string} [options.title]
+ * @param {string} [options.state]
+ * @param {boolean} [options.merged]
+ * @param {boolean} [options.locked]
+
  * @property {string} name
  * @property {Repository} repository
  * @property {Provider} provider
  * @property {string} [title]
  * @property {string} [state]
+ * @property {boolean} [merged]
+ * @property {boolean} [locked]
  */
 export class PullRequest {
   static get defaultOptions() {
