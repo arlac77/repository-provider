@@ -91,6 +91,7 @@ const files = await branch.list();
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
+-   [merged](#merged)
 -   [RepositoryGroup](#repositorygroup-1)
     -   [Parameters](#parameters-10)
     -   [Properties](#properties-5)
@@ -376,6 +377,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## locked
 
 locked state of the pull request.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+## merged
+
+merged state of the pull request.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 

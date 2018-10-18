@@ -19,6 +19,12 @@ export class PullRequest {
   static get defaultOptions() {
     return {
       /**
+       * internal id.
+       * @return {string}
+       */
+      id: undefined,
+
+      /**
        * the one line description of the pull request.
        * @return {string}
        */
@@ -43,10 +49,10 @@ export class PullRequest {
       locked: false,
 
       /**
-       * internal id.
-       * @return {string}
+       * merged state of the pull request.
+       * @return {boolean}
        */
-      id: undefined
+      merged: false
     };
   }
 
