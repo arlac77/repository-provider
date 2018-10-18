@@ -17,7 +17,8 @@ test("create pullRequests", async t => {
   const pr = new PullRequest(repository, "p1", {
     title: "a title",
     body: "the body",
-    state: "closed"
+    state: "closed",
+    id: '123456'
   });
 
   t.is(pr.name, "p1");
@@ -26,6 +27,8 @@ test("create pullRequests", async t => {
   t.is(pr.title, "a title");
   t.is(pr.body, "the body");
   t.is(pr.state, "closed");
+  t.is(pr.locked, false);
+  t.is(pr.id, '123456');
 
   t.is(await repository.pullRequest("p1"), pr);
 });
@@ -36,5 +39,6 @@ test("create pullRequests without options", async t => {
   const pr = new PullRequest(repository, "p1");
 
   t.is(pr.name, "p1");
+  t.is(pr.locked, false);
   t.is(pr.repository, repository);
 });

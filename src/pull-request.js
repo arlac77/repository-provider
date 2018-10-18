@@ -34,7 +34,19 @@ export class PullRequest {
        * state of the pull request.
        * @return {string}
        */
-      state: undefined
+      state: undefined,
+
+      /**
+       * locked state of the pull request.
+       * @return {boolean}
+       */
+      locked: false,
+
+      /**
+       * internal id.
+       * @return {string}
+       */
+      id: undefined
     };
   }
 

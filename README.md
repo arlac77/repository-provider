@@ -79,6 +79,7 @@ const files = await branch.list();
 -   [description](#description-1)
 -   [id](#id)
 -   [id](#id-1)
+-   [id](#id-2)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-9)
     -   [Properties](#properties-4)
@@ -89,6 +90,7 @@ const files = await branch.list();
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
+-   [locked](#locked)
 -   [RepositoryGroup](#repositorygroup-1)
     -   [Parameters](#parameters-10)
     -   [Properties](#properties-5)
@@ -302,6 +304,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## id
 
+internal id.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## id
+
 unique id within the provider.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
@@ -364,6 +372,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 state of the pull request.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## locked
+
+locked state of the pull request.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## RepositoryGroup
 
