@@ -42,21 +42,11 @@ test("repository normalize name", t => {
 
 test("repository create branch", async t => {
   const provider = new Provider();
-
   const repository = new Repository(provider, "r1#branch");
-  const b1 = await repository.createBranch(
-    "b1",
-    await repository.defaultBranch
-  );
+  const b1 = await repository.createBranch("b1");
   t.is(b1.name, "b1");
   t.is(b1.repository, repository);
-
-  const b1a = await repository.createBranch(
-    "b1",
-    await repository.defaultBranch
-  );
-
-  t.is(b1,b1a);
+  t.is(b1, await repository.createBranch("b1"));
 });
 
 test("repository classes", t => {

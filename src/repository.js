@@ -159,7 +159,8 @@ export const Repository = OneTimeInititalizerMixin(
       await this._initialize();
       let branch = this._branches.get(name);
       if (branch === undefined) {
-        branch = await this._createBranch(name, source, options);
+        branch = await this._createBranch(name, source === undefined ? await this.defaultBranch : source, options);
+        this._branches.set(branch.name, branch);
       }
 
       return branch;
@@ -174,9 +175,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise<Branch>} newly created branch
      */
     async _createBranch(name, source, options) {
-      const branch = new this.branchClass(this, name, options);
-      this._branches.set(branch.name, branch);
-      return branch;
+      return new this.branchClass(this, name, options);
     }
 
     /**
