@@ -153,9 +153,27 @@ export const Repository = OneTimeInititalizerMixin(
      * @param {string} name
      * @param {Branch} source branch defaults to master
      * @param {Object} options
-     * @return {Promise<Branch>} newly created branch
+     * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
      */
     async createBranch(name, source, options) {
+      await this._initialize();
+      let branch = this._branches.get(name);
+      if (branch === undefined) {
+        branch = await this._createBranch(name, source, options);
+      }
+
+      return branch;
+    }
+
+    /**
+     * internal branch creation does no initialization
+     * Create a new {@link Branch} by cloning a given source branch
+     * @param {string} name
+     * @param {Branch} source branch defaults to master
+     * @param {Object} options
+     * @return {Promise<Branch>} newly created branch
+     */
+    async _createBranch(name, source, options) {
       const branch = new this.branchClass(this, name, options);
       this._branches.set(branch.name, branch);
       return branch;

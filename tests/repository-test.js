@@ -50,6 +50,13 @@ test("repository create branch", async t => {
   );
   t.is(b1.name, "b1");
   t.is(b1.repository, repository);
+
+  const b1a = await repository.createBranch(
+    "b1",
+    await repository.defaultBranch
+  );
+
+  t.is(b1,b1a);
 });
 
 test("repository classes", t => {
