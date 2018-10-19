@@ -2,7 +2,7 @@ const IS_INITIALIZED = Symbol('isInitialized');
 
 export function OneTimeInititalizerMixin(base) {
   /**
-   * enshures tha _initialize() will be called only once
+   * enshures that _initialize() will be called only once
    */
   return class OneTimeInititalizer extends base {
     /**

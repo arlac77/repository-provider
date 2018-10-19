@@ -156,7 +156,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
      */
     async createBranch(name, source, options) {
-      await this._initialize();
+      await this.initialize();
       let branch = this._branches.get(name);
       if (branch === undefined) {
         branch = await this._createBranch(name, source === undefined ? await this.defaultBranch : source, options);
@@ -167,8 +167,10 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
-     * internal branch creation does no initialization
      * Create a new {@link Branch} by cloning a given source branch
+     * All repository implementations must provide a repository._createBranch() to handle the real branch creation.
+     * This methos MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
+     * Internal branch creation does not call repository.initialize()
      * @param {string} name
      * @param {Branch} source branch defaults to master
      * @param {Object} options

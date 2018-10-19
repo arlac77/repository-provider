@@ -69,9 +69,9 @@ const files = await branch.list();
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
 -   [defaultOptions](#defaultoptions-3)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-8)
     -   [Properties](#properties-3)
@@ -252,10 +252,6 @@ options
 
 options
 
-## OneTimeInititalizer
-
-enshures tha \_initialize() will be called only once
-
 ## Owner
 
 Collection of repositories
@@ -263,6 +259,10 @@ Collection of repositories
 ### Properties
 
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Repository](#repository)>** 
+
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
 
 ## Repository
 
