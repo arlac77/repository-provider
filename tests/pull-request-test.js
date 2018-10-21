@@ -2,7 +2,7 @@ import test from "ava";
 import { Provider } from "../src/provider";
 import { PullRequest } from "../src/pull-request";
 
-test("pullRequests", async t => {
+test("pullRequest list", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
 
@@ -11,7 +11,7 @@ test("pullRequests", async t => {
   t.is(prs.length, 0);
 });
 
-test("create pullRequests", async t => {
+test("pullRequest create", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
   const pr = new PullRequest(repository, "p1", {
@@ -34,7 +34,7 @@ test("create pullRequests", async t => {
   t.is(await repository.pullRequest("p1"), pr);
 });
 
-test("create pullRequests without options", async t => {
+test("pullRequest create without options", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
   const pr = new PullRequest(repository, "p1");
@@ -43,4 +43,15 @@ test("create pullRequests without options", async t => {
   t.is(pr.locked, false);
   t.is(pr.merged, false);
   t.is(pr.repository, repository);
+});
+
+
+test("pullRequest modify", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1");
+  const pr = new PullRequest(repository, "p1");
+  pr.merged = true;
+  t.is(pr.merged, true);
+  pr.state = 'closed';
+  t.is(pr.state, 'closed');
 });

@@ -68,6 +68,18 @@ export class PullRequest {
 
     propertiesFromOptions(properties, options, this.constructor.defaultOptions);
 
+    let merged = properties.merged.value;
+    properties.merged = {
+      set(value) { merged = value; },
+      get() { return merged; }
+    }
+
+    let state = properties.state.value;
+    properties.state = {
+      set(value) { state = value; },
+      get() { return state; }
+    }
+
     Object.defineProperties(this, properties);
 
     repository.addPullRequest(this);
