@@ -70,15 +70,23 @@ export class PullRequest {
 
     let merged = properties.merged.value;
     properties.merged = {
-      set(value) { merged = value; },
-      get() { return merged; }
-    }
+      set(value) {
+        merged = value;
+      },
+      get() {
+        return merged;
+      }
+    };
 
     let state = properties.state.value;
     properties.state = {
-      set(value) { state = value; },
-      get() { return state; }
-    }
+      set(value) {
+        state = value;
+      },
+      get() {
+        return state;
+      }
+    };
 
     Object.defineProperties(this, properties);
 
@@ -113,5 +121,20 @@ export class PullRequest {
    */
   async decline() {
     return notImplementedError();
+  }
+
+  toString() {
+    return `${this.name}: ${this.title}, state: ${this.state}, merged: ${
+      this.merged
+    }`;
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      title: this.title,
+      merged: this.merged,
+      state: this.state
+    };
   }
 }
