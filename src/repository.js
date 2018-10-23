@@ -312,5 +312,9 @@ export const Repository = OneTimeInititalizerMixin(
     get contentClass() {
       return this.provider.contentClass;
     }
+
+    toString() {
+      return this.name;
+    }
   }
 );

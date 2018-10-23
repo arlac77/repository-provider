@@ -175,4 +175,8 @@ export class Provider extends Owner {
   get provider() {
     return this;
   }
+
+  toString() {
+    return this.name;
+  }
 }

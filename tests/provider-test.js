@@ -7,6 +7,7 @@ test("provider", async t => {
   t.is(provider.rateLimitReached, false);
   t.is(provider.type, "git");
   t.is(provider.name, "Provider");
+  t.is(`${provider}`, "Provider");
 });
 
 test("provider repository group", async t => {

@@ -200,5 +200,9 @@ export const Branch = OneTimeInititalizerMixin(
     async refId(ref = this.ref) {
       return this.repository.refId(ref);
     }
+
+    toString() {
+      return this.fullCondensedName;
+    }
   }
 );

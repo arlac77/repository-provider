@@ -30,7 +30,7 @@ test("pullRequest create", async t => {
   t.is(pr.locked, false);
   t.is(pr.merged, false);
   t.is(pr.id, "123456");
-  t.is(pr.toString(), "p1: a title, state: closed, merged: false");
+  t.is(`${pr}`, "p1: a title, state: closed, merged: false");
 
   t.is(await repository.pullRequest("p1"), pr);
 });

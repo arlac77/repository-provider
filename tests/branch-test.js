@@ -18,7 +18,7 @@ test("branch", async t => {
   t.is(b.isDefault, false);
   t.is(b.homePageURL, undefined);
   t.is(b.issuesURL, undefined);
-
+  t.is(`${b}`, "r1#b1");
   t.is(b.ref, "refs/heads/b1");
   t.is(b.pullRequestClass, PullRequest);
   t.is(await repository.branch("b1"), b);
