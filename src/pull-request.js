@@ -3,7 +3,8 @@ import { notImplementedError, propertiesFromOptions } from "./util";
 /**
  * Abstract pull request
  * {@link Repository#addPullRequest}
- * @param {Repositoy} repository
+ * @param {Branch} source
+ * @param {Branch} destination
  * @param {string} name
  * @param {Object} options
  * @param {string} [options.title]
@@ -12,8 +13,8 @@ import { notImplementedError, propertiesFromOptions } from "./util";
  * @param {boolean} [options.locked]
 
  * @property {string} name
- * @property {Repository} repository
- * @property {Provider} provider
+ * @property {Branch} source
+ * @property {Branch} destination
  * @property {string} [title]
  * @property {string} [state]
  * @property {boolean} [merged]
@@ -60,10 +61,11 @@ export class PullRequest {
     };
   }
 
-  constructor(repository, name, options) {
+  constructor(source, destination, name, options) {
     const properties = {
       name: { value: name },
-      repository: { value: repository }
+      source: { value: source },
+      destination: { value: destination }
     };
 
     propertiesFromOptions(properties, options, this.constructor.defaultOptions);
@@ -90,14 +92,18 @@ export class PullRequest {
 
     Object.defineProperties(this, properties);
 
-    repository.addPullRequest(this);
+    destination.addPullRequest(this);
+  }
+
+  get repository() {
+    return this.destination.repository;
   }
 
   /**
    * @return {Provider}
    */
   get provider() {
-    return this.repository.provider;
+    return this.destination.provider;
   }
 
   /**
@@ -106,7 +112,7 @@ export class PullRequest {
    * @return {Promise}
    */
   async delete() {
-    return this.repository.deletePullRequest(this.name);
+    return this.destination.deletePullRequest(this.name);
   }
 
   /**
@@ -131,6 +137,8 @@ export class PullRequest {
 
   toJSON() {
     return {
+      source: this.source,
+      destination: this.destination,
       name: this.name,
       title: this.title,
       merged: this.merged,

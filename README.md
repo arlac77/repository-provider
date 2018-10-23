@@ -322,7 +322,8 @@ Abstract pull request
 
 ### Parameters
 
--   `repository` **Repositoy** 
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
@@ -333,8 +334,8 @@ Abstract pull request
 ### Properties
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `repository` **[Repository](#repository)** 
--   `provider` **[Provider](#provider)** 
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
 -   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 -   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 -   `merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 

@@ -158,6 +158,22 @@ export const Branch = OneTimeInititalizerMixin(
       return notImplementedError();
     }
 
+    async addPullRequest(pullRequest) {
+      return this.repository.addPullRequest(pullRequest);
+    }
+
+    async deletePullRequest(name) {
+      return this.repository.deletePullRequest(name);
+    }
+
+    /**
+     * By default we use the repository implementation.
+     * @return {Class} as defined in the repository
+     */
+    get pullRequestClass() {
+      return this.repository.pullRequestClass;
+    }
+
     /**
      * List paths of the branch
      * @param {string[]} matchingPatterns
@@ -182,13 +198,6 @@ export const Branch = OneTimeInititalizerMixin(
       this.provider.rateLimitReached(value);
     }
 
-    /**
-     * By default we use the repository implementation.
-     * @return {Class} as defined in the repository
-     */
-    get pullRequestClass() {
-      return this.repository.pullRequestClass;
-    }
 
     async _initialize() {}
 
