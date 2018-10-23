@@ -1,6 +1,7 @@
 import test from "ava";
 import { Provider } from "../src/provider";
 import { Branch } from "../src/branch";
+import { Repository } from "../src/repository";
 import { PullRequest } from "../src/pull-request";
 
 test("branch", async t => {
@@ -67,4 +68,14 @@ test("branch content", async t => {
     instanceOf: Error,
     message: `No such object 'aFile'`
   });
+});
+
+test("branch create", async t => {
+  const provider = new Provider();
+  const repository = new Repository(provider, "r1");
+
+  const b1 = await repository.createBranch("b1");
+  const b2 = await b1.createBranch("b2");
+
+  t.is(b2, await b1.createBranch("b2"));
 });

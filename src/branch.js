@@ -175,6 +175,17 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
+     * Create a new {@link Branch} by cloning a given source branch
+     * Simplay calls Repository.createBranch() with the receiver as source branch
+     * @param {string} name
+     * @param {Object} options
+     * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
+     */
+    async createBranch(name, options) {
+      return this.repository.createBranch(name, this, options);
+    }
+
+    /**
      * List paths of the branch
      * @param {string[]} matchingPatterns
      * @return {string[]} all file names in the branch
@@ -197,7 +208,6 @@ export const Branch = OneTimeInititalizerMixin(
     set rateLimitReached(value) {
       this.provider.rateLimitReached(value);
     }
-
 
     async _initialize() {}
 

@@ -41,7 +41,7 @@ test("repository normalize name", t => {
   t.is(repository.fullName, "r1");
 });
 
-test("repository create branch", async t => {
+test("repository branch create", async t => {
   const provider = new Provider();
   const repository = new Repository(provider, "r1#branch");
   const b1 = await repository.createBranch("b1");
