@@ -17,9 +17,11 @@ import { Stream } from "stream";
  * @param {string} sha sha of the content
  */
 export class Content {
+  
   static get TYPE_BLOB() {
     return "blob";
   }
+  
   static get TYPE_TREE() {
     return "tree";
   }
@@ -61,14 +63,14 @@ export class Content {
   }
 
   /**
-   * @return {boolean} true is content represents a directory
+   * @return {boolean} true if content represents a directory
    */
   get isDirectory() {
     return this.type === Content.TYPE_TREE;
   }
 
   /**
-   * @return {boolean} true is content represents a blob (plain old file)
+   * @return {boolean} true if content represents a blob (plain old file)
    */
   get isFile() {
     return this.type === Content.TYPE_BLOB;
