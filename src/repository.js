@@ -207,8 +207,19 @@ export const Repository = OneTimeInititalizerMixin(
       return this.owner.deleteRepository(this.name);
     }
 
-    async createPullRequest() {
-      return notImplementedError();
+    async createPullRequest(name, source, options) {
+      await this.initialize();
+      let pr = this._pullRequests.get(name);
+      if (pr === undefined) {
+        pr = await this._createPullRequest(name, source, options);
+        this._pullRequests.set(pr.name, pr);
+      }
+
+      return pr;
+    }
+
+    async _createPullRequest(name, source, options) {
+      return new this.pullRequestClass(name, source, this, options);
     }
 
     /**
