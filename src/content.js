@@ -17,11 +17,10 @@ import { Stream } from "stream";
  * @param {string} sha sha of the content
  */
 export class Content {
-  
   static get TYPE_BLOB() {
     return "blob";
   }
-  
+
   static get TYPE_TREE() {
     return "tree";
   }
@@ -96,7 +95,7 @@ export class Content {
    * Deliver content as stream
    * @return {ReadableStream} content
    */
-  toStream() {
+  async getReadStream() {
     return this.content instanceof Stream
       ? this.content
       : toReadableStream(this.content);

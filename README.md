@@ -105,7 +105,7 @@ const files = await branch.list();
     -   [isDirectory](#isdirectory)
     -   [isFile](#isfile)
     -   [toString](#tostring)
-    -   [toStream](#tostream)
+    -   [getReadStream](#getreadstream)
     -   [equals](#equals)
         -   [Parameters](#parameters-12)
 -   [emptyContent](#emptycontent)
@@ -457,11 +457,11 @@ All paths are asolute (no leading '/') and build with '/'
 
 ### isDirectory
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a directory
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if content represents a directory
 
 ### isFile
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true is content represents a blob (plain old file)
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if content represents a blob (plain old file)
 
 ### toString
 
@@ -469,7 +469,7 @@ Deliver content as string
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** content
 
-### toStream
+### getReadStream
 
 Deliver content as stream
 

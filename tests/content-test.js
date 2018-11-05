@@ -43,31 +43,34 @@ test("content create as Directory", t => {
   t.false(content.isFile);
 });
 
-test("content create from Buffer", t => {
+test("content create from Buffer", async t => {
   const content = new Content("somewhere", Buffer.from("abc", "utf-8"));
   t.is(content.content.toString("utf-8"), "abc");
   t.is(content.toString(), "abc");
-  t.deepEqual(content.toStream().read(), Buffer.from("abc", "utf-8"));
+  t.deepEqual(
+    (await content.getReadStream()).read(),
+    Buffer.from("abc", "utf-8")
+  );
   t.true(content.isFile);
   t.false(content.isDirectory);
 });
 
-test("content create from stream", t => {
+test("content create from stream", async t => {
   const content = new Content(
     "somewhere",
     createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
   );
   //  t.is(content.toString(), "abc");
-  t.true(content.toStream() instanceof Stream);
+  t.true((await content.getReadStream()) instanceof Stream);
   t.true(content.isFile);
   t.false(content.isDirectory);
 });
 
-test("content create empty", t => {
+test("content create empty", async t => {
   const content = emptyContent("somewhere", { encoding: "utf-8" });
   t.is(content.content.toString("utf-8"), "");
   t.is(content.toString(), "");
-  t.is(content.toStream().read(), null);
+  t.is((await content.getReadStream()).read(), null);
   t.true(content.isFile);
   t.false(content.isDirectory);
 });
