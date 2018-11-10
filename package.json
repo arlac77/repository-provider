@@ -19,7 +19,7 @@
   ],
   "license": "BSD-2-Clause",
   "scripts": {
-    "cover": "c8 --temp-directory build/coverage ava && c8 report -r lcov --temp-directory build/coverage && nyc --temp-directory build/nyc ava",
+    "cover": "c8 --temp-directory build/coverage ava && c8 report -r lcov --temp-directory build/coverage",
     "test": "ava",
     "posttest": "npm run prepare && markdown-doctest",
     "docs": "documentation readme src/provider.js --section=API",
@@ -32,7 +32,6 @@
     "to-readable-stream": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-async-generator-functions": "^7.1.0",
     "ava": "^1.0.0-rc.1",
     "documentation": "^8.1.2",
     "markdown-doctest": "^0.9.1",
@@ -63,21 +62,11 @@
     "babel": false,
     "compileEnhancements": false,
     "files": [
-      "build/*-test.js"
+      "tests/*-test.js"
     ],
     "require": [
-      "babel-register"
+      "esm"
     ]
-  },
-  "nyc": {
-    "include": [
-      "build/*-test.js",
-      "src/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
-    "report-dir": "./build/coverage"
   },
   "xo": {
     "space": true
