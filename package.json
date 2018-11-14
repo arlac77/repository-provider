@@ -67,9 +67,6 @@
       "esm"
     ]
   },
-  "xo": {
-    "space": true
-  },
   "template": {
     "repository": {
       "url": "https://github.com/arlac77/npm-package-template.git"
