@@ -92,7 +92,7 @@ export class Content {
   }
 
   /**
-   * Deliver content as stream
+   * Deliver content as read stream
    * @return {ReadableStream} content
    */
   async getReadStream() {
@@ -111,20 +111,25 @@ export class Content {
   }
 
   /**
-   * compare against other content
+   * compare meta info against other entry
    * @param {Content} other
-   * @return {boolean} true if other describes the same content
+   * @return {boolean} true if other has the same meta information (name...)
    */
-  equals(other) {
-    if (
-      other === undefined ||
-      this.path !== other.path ||
-      this.type !== other.type ||
-      this.mode !== other.mode
-    ) {
-      return false;
-    }
+  equalsMeta(other) {
+    return (
+      other !== undefined &&
+      (this.path === other.path &&
+        this.type === other.type &&
+        this.mode === other.mode)
+    );
+  }
 
+  /**
+   * compare content against other entry
+   * @param {Content} other
+   * @return {boolean} true if other has the same content (bitwise)
+   */
+  equalsContent(other) {
     if (Buffer.isBuffer(this.content)) {
       if (Buffer.isBuffer(other.content)) {
         return this.content.equals(other.content);
@@ -132,6 +137,15 @@ export class Content {
     }
 
     return this.toString() === other.toString();
+  }
+
+  /**
+   * compare against other content
+   * @param {Content} other
+   * @return {boolean} true if other describes the same content
+   */
+  equals(other) {
+    return this.equalsMeta(other) && this.equalsContent(other);
   }
 }
 
