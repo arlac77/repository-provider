@@ -1,8 +1,11 @@
 import test from "ava";
-import { join } from "path";
+import { join, dirname } from "path";
 import { createReadStream } from "fs";
 import { Stream } from "stream";
 import { Content, emptyContent } from "../src/content";
+
+const here = dirname(new URL(import.meta.url).pathname);
+const file1 = join(here, "..", "tests", "fixtures", "file1.txt");
 
 test("content create", t => {
   const content = new Content("somewhere");
@@ -56,10 +59,7 @@ test("content create from Buffer", async t => {
 });
 
 test("content create from stream", async t => {
-  const content = new Content(
-    "somewhere",
-    createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
-  );
+  const content = new Content("somewhere", createReadStream(file1));
   //  t.is(content.toString(), "abc");
   t.true((await content.getReadStream()) instanceof Stream);
   t.true(content.isFile);
@@ -114,16 +114,10 @@ test("content equals Buffer <> String", t => {
 });
 
 test("content equals ReadStream", t => {
-  const contenta = new Content(
-    "file1.txt",
-    createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
-  );
+  const contenta = new Content("file1.txt", createReadStream(file1));
 
   t.true(contenta.equals(contenta));
 
-  const contenta2 = new Content(
-    "file1.txt",
-    createReadStream(join(__dirname, "..", "tests", "fixtures", "file1.txt"))
-  );
+  const contenta2 = new Content("file1.txt", createReadStream(file1));
   t.true(contenta.equals(contenta2));
 });

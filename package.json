@@ -5,7 +5,7 @@
     "access": "public"
   },
   "main": "dist/provider.js",
-  "module": "src/provider.js",
+  "module": "src/provider.mjs",
   "description": "abstract interface to git repository providers like github bitbucket",
   "keywords": [
     "git",
@@ -22,10 +22,10 @@
     "cover": "c8 --temp-directory build/coverage ava && c8 report -r lcov --temp-directory build/coverage",
     "test": "ava",
     "posttest": "npm run prepare && markdown-doctest",
-    "docs": "documentation readme src/provider.js --section=API",
+    "docs": "documentation readme src/provider.mjs --section=API",
     "semantic-release": "semantic-release",
     "prepare": "rollup -c",
-    "lint": "documentation lint src/provider.js",
+    "lint": "documentation lint src/provider.mjs",
     "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {
