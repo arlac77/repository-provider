@@ -3,8 +3,9 @@ import { join, dirname } from "path";
 import { createReadStream } from "fs";
 import { Stream } from "stream";
 import { Content, emptyContent } from "../src/content";
+import { fileURLToPath } from "url";
 
-const here = dirname(new URL(import.meta.url).pathname);
+const here = dirname(fileURLToPath(import.meta.url));
 const file1 = join(here, "..", "tests", "fixtures", "file1.txt");
 
 test("content create", t => {
