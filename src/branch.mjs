@@ -130,11 +130,11 @@ export const Branch = OneTimeInititalizerMixin(
 
     /**
      * Deliver file content from the head
-     * @param {string} path
+     * @param {string} name
      * @return {Promise<Content>} content of a given file
      */
-    async content(path) {
-      throw new Error(`No such object '${path}'`);
+    async content(name) {
+      throw new Error(`No such object '${name}'`);
     }
 
     /**
@@ -185,12 +185,21 @@ export const Branch = OneTimeInititalizerMixin(
       return this.repository.createBranch(name, this, options);
     }
 
+    async *list(matchingPatterns) {
+      return this.entries(matchingPatterns);
+    }
+
     /**
-     * List paths of the branch
+     * List entries of the branch
      * @param {string[]} matchingPatterns
      * @return {string[]} all file names in the branch
      */
-    async *list(matchingPatterns) {}
+    async *entries(matchingPatterns) {
+    }
+
+    async entry(name) {
+      return (await this.entries(name).next()).value;
+    }
 
     /**
      * Value delivered from the provider

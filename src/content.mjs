@@ -3,14 +3,14 @@ import { Stream } from "stream";
 
 /**
  * Representation of one file or directory entry
- * All paths are asolute (no leading '/') and build with '/'
- * @property {string} path file name inside of the repository
+ * All names are asolute (no leading '/') and build with '/'
+ * @property {string} name file name inside of the repository
  * @property {string|Buffer|Stream} content
  * @property {string} type type of the content
  * @property {string} mode file permissions
  * @property {string} sha sha of the content
  *
- * @param {string} path file name inside of the repository
+ * @param {string} name file name inside of the repository
  * @param {string|Buffer|Stream} content
  * @param {string} type type of the content
  * @param {string} mode file permissions
@@ -26,20 +26,20 @@ export class Content {
   }
 
   constructor(
-    path,
+    name,
     content = undefined,
     type = Content.TYPE_BLOB,
     mode = "100644",
     sha
   ) {
-    if (path[0] === "/" || path.indexOf("\\") >= 0) {
+    if (name[0] === "/" || name.indexOf("\\") >= 0) {
       throw new TypeError(
-        `Paths should not contain leading '/' or any '\\': ${path}`
+        `Names should not contain leading '/' or any '\\': ${name}`
       );
     }
 
     Object.defineProperties(this, {
-      path: { value: path },
+      name: { value: name },
       content: {
         get() {
           return content;
@@ -59,6 +59,13 @@ export class Content {
       type: { value: type },
       mode: { value: mode }
     });
+  }
+
+  /**
+   * deprecated is name instead
+   */
+  get path() {
+    return this.name;
   }
 
   /**
@@ -103,7 +110,7 @@ export class Content {
 
   toJSON() {
     return {
-      path: this.path,
+      name: this.name,
       type: this.type,
       mode: this.mode,
       sha: this.sha
@@ -118,7 +125,7 @@ export class Content {
   equalsMeta(other) {
     return (
       other !== undefined &&
-      (this.path === other.path &&
+      (this.name === other.name &&
         this.type === other.type &&
         this.mode === other.mode)
     );
@@ -151,9 +158,9 @@ export class Content {
 
 /**
  * Create empty content (file)
- * @param {string} path
+ * @param {string} name
  * @return {Content}
  */
-export function emptyContent(path, options) {
-  return new Content(path, "");
+export function emptyContent(name, options) {
+  return new Content(name, "");
 }

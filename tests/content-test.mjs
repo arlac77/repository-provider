@@ -9,7 +9,7 @@ const file1 = join(here, "..", "tests", "fixtures", "file1.txt");
 
 test("content create", t => {
   const content = new Content("somewhere");
-  t.is(content.path, "somewhere");
+  t.is(content.name, "somewhere");
   t.is(content.type, "blob");
   t.is(content.mode, "100644");
   t.true(content.isFile);
@@ -27,21 +27,21 @@ test("content json", t => {
   content.sha = "12345";
 
   t.deepEqual(JSON.parse(JSON.stringify(content)), {
-    path: "somewhere",
+    name: "somewhere",
     type: "blob",
     mode: "100644",
     sha: "12345"
   });
 });
 
-test("content create invalid path", t => {
+test("content create invalid name", t => {
   t.throws(() => new Content("/somewhere"), TypeError);
   t.throws(() => new Content("somewhere\\abc"), TypeError);
 });
 
 test("content create as Directory", t => {
   const content = new Content("somewhere", undefined, "tree");
-  t.is(content.path, "somewhere");
+  t.is(content.name, "somewhere");
   t.true(content.isDirectory);
   t.false(content.isFile);
 });
