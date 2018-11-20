@@ -1,6 +1,6 @@
 import { notImplementedError } from "./util";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
-import { propertiesFromOptions } from "./util";
+import { definePropertiesFromOptions } from "./util";
 
 /**
  * Abstract repository
@@ -41,20 +41,16 @@ export const Repository = OneTimeInititalizerMixin(
     constructor(owner, name, options) {
       name = name.replace(/#.*$/, "");
 
-      const properties = {
-        name: { value: name },
-        owner: { value: owner },
-        _branches: { value: new Map() },
-        _pullRequests: { value: new Map() }
-      };
-
-      propertiesFromOptions(
-        properties,
-        options,
-        this.constructor.defaultOptions
+      definePropertiesFromOptions(
+        this,
+        {
+          name: { value: name },
+          owner: { value: owner },
+          _branches: { value: new Map() },
+          _pullRequests: { value: new Map() }
+        },
+        options
       );
-
-      Object.defineProperties(this, properties);
     }
 
     /**
@@ -159,7 +155,11 @@ export const Repository = OneTimeInititalizerMixin(
       await this.initialize();
       let branch = this._branches.get(name);
       if (branch === undefined) {
-        branch = await this._createBranch(name, source === undefined ? await this.defaultBranch : source, options);
+        branch = await this._createBranch(
+          name,
+          source === undefined ? await this.defaultBranch : source,
+          options
+        );
         this._branches.set(branch.name, branch);
       }
 

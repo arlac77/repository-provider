@@ -4,7 +4,7 @@ import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
 import { Content, emptyContent } from "./content";
-import { notImplementedError, propertiesFromOptions } from "./util";
+import { notImplementedError, definePropertiesFromOptions } from "./util";
 
 export {
   Repository,
@@ -53,17 +53,17 @@ export class Provider extends Owner {
   constructor(options) {
     super();
 
-    const properties = {
-      config: {
-        // TODO ret rid of config
-        value: this.constructor.options(options)
+    definePropertiesFromOptions(
+      this,
+      {
+        config: {
+          // TODO ret rid of config
+          value: this.constructor.options(options)
+        },
+        repositoryGroups: { value: new Map() }
       },
-      repositoryGroups: { value: new Map() }
-    };
-
-    propertiesFromOptions(properties, options, this.constructor.defaultOptions);
-
-    Object.defineProperties(this, properties);
+      options
+    );
   }
 
   /**

@@ -5,14 +5,25 @@ export function notImplementedError() {
 /**
  * create properties from options and default options
  * @see Object.definedProperties()
- * @param {Object} properties where the properties will be stored
+ * @param {Object} object target object
+ * @param {Object} properties object properties
  * @param {Object} options
- * @param {Object} defaultOptions
  */
-export function propertiesFromOptions(properties, options, defaultOptions) {
+export function definePropertiesFromOptions(object, properties, options) {
+  const defaultOptions = object.constructor.defaultOptions;
+  const after = {};
+
   Object.keys(defaultOptions).forEach(name => {
-    properties[name] = {
-      value: (options !== undefined && options[name]) || defaultOptions[name]
-    };
+    const value = (options !== undefined && options[name]) || defaultOptions[name];
+
+    if(properties[name] === undefined) {
+      properties[name] = { value };
+    }
+    else {
+      after[name]=value;
+    }
   });
+
+  Object.defineProperties(object, properties);
+  Object.assign(object,after);
 }

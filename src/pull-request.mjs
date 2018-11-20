@@ -1,4 +1,4 @@
-import { notImplementedError, propertiesFromOptions } from "./util";
+import { notImplementedError, definePropertiesFromOptions } from "./util";
 
 /**
  * Abstract pull request
@@ -62,35 +62,31 @@ export class PullRequest {
   }
 
   constructor(source, destination, name, options) {
+    let merged, state;
+
     const properties = {
       name: { value: name },
       source: { value: source },
-      destination: { value: destination }
-    };
-
-    propertiesFromOptions(properties, options, this.constructor.defaultOptions);
-
-    let merged = properties.merged.value;
-    properties.merged = {
-      set(value) {
-        merged = value;
+      destination: { value: destination },
+      merged: {
+        set(value) {
+          merged = value;
+        },
+        get() {
+          return merged;
+        }
       },
-      get() {
-        return merged;
+      state: {
+        set(value) {
+          state = value;
+        },
+        get() {
+          return state;
+        }
       }
     };
 
-    let state = properties.state.value;
-    properties.state = {
-      set(value) {
-        state = value;
-      },
-      get() {
-        return state;
-      }
-    };
-
-    Object.defineProperties(this, properties);
+    definePropertiesFromOptions(this, properties, options);
 
     destination.addPullRequest(this);
   }

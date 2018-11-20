@@ -1,6 +1,6 @@
 import { notImplementedError } from "./util";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
-import { propertiesFromOptions } from "./util";
+import { definePropertiesFromOptions } from "./util";
 
 /**
  * Abstract branch
@@ -22,18 +22,14 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     constructor(repository, name = "master", options) {
-      const properties = {
-        name: { value: name },
-        repository: { value: repository }
-      };
-
-      propertiesFromOptions(
-        properties,
-        options,
-        this.constructor.defaultOptions
+      definePropertiesFromOptions(
+        this,
+        {
+          name: { value: name },
+          repository: { value: repository }
+        },
+        options
       );
-
-      Object.defineProperties(this, properties);
 
       repository.addBranch(this);
     }
@@ -194,9 +190,13 @@ export const Branch = OneTimeInititalizerMixin(
      * @param {string[]} matchingPatterns
      * @return {string[]} all file names in the branch
      */
-    async *entries(matchingPatterns) {
-    }
+    async *entries(matchingPatterns) {}
 
+    /**
+     * get exactly one matchin enty by name
+     * @param {string} name
+     * @return {Promise<Entry>}
+     */
     async entry(name) {
       return (await this.entries(name).next()).value;
     }
