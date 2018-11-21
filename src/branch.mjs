@@ -129,7 +129,7 @@ export const Branch = OneTimeInititalizerMixin(
      * @param {string} name
      * @return {Promise<Content>} content of a given file
      */
-    async content(name) {
+    async entry(name) {
       throw new Error(`No such object '${name}'`);
     }
 
@@ -181,10 +181,6 @@ export const Branch = OneTimeInititalizerMixin(
       return this.repository.createBranch(name, this, options);
     }
 
-    async *list(matchingPatterns) {
-      return this.entries(matchingPatterns);
-    }
-
     /**
      * List entries of the branch
      * @param {string[]} matchingPatterns
@@ -231,6 +227,18 @@ export const Branch = OneTimeInititalizerMixin(
 
     toString() {
       return this.fullCondensedName;
+    }
+
+
+
+    async *list(...args) {
+      console.log(`${this.constructor.name}: list is deprecated use entries instead`):
+      return this.entries(...args);
+    }
+
+    async content(...args) {
+      console.log(`${this.constructor.name}: content is deprecated use entry instead`):
+      return this.entry(...args);
     }
   }
 );
