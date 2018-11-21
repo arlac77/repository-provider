@@ -3,7 +3,6 @@ import { Provider } from "../src/provider";
 
 test("provider", async t => {
   const provider = new Provider({ key: "value" });
-  t.deepEqual(provider.config, { key: "value" });
   t.is(provider.rateLimitReached, false);
   t.is(provider.type, "git");
   t.is(provider.name, "Provider");

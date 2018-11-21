@@ -43,13 +43,13 @@ export const Repository = OneTimeInititalizerMixin(
 
       definePropertiesFromOptions(
         this,
+        options,
         {
           name: { value: name },
           owner: { value: owner },
           _branches: { value: new Map() },
           _pullRequests: { value: new Map() }
-        },
-        options
+        }
       );
     }
 

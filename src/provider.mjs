@@ -20,17 +20,8 @@ export {
  * Base repository provider acts as a source of repositories
  * @param {Object} options
  * @property {Map<string,RepositoryGroup>} repositoryGroups
- * @property {Object} config
  */
 export class Provider extends Owner {
-  /**
-   * Default configuration options
-   * @return {Object}
-   */
-  static get defaultOptions() {
-    return {};
-  }
-
   /**
    * Extract options suitable for the constructor
    * form the given set of environment variables
@@ -55,14 +46,10 @@ export class Provider extends Owner {
 
     definePropertiesFromOptions(
       this,
+      options,
       {
-        config: {
-          // TODO ret rid of config
-          value: this.constructor.options(options)
-        },
         repositoryGroups: { value: new Map() }
-      },
-      options
+      }
     );
   }
 

@@ -86,7 +86,7 @@ export class PullRequest {
       }
     };
 
-    definePropertiesFromOptions(this, properties, options);
+    definePropertiesFromOptions(this, options, properties);
 
     destination.addPullRequest(this);
   }

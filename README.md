@@ -58,7 +58,6 @@ const files = await branch.list();
     -   [rateLimitReached](#ratelimitreached)
     -   [name](#name)
     -   [provider](#provider-1)
-    -   [defaultOptions](#defaultoptions)
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-5)
     -   [options](#options)
@@ -77,7 +76,6 @@ Base repository provider acts as a source of repositories
 ### Properties
 
 -   `repositoryGroups` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), RepositoryGroup>** 
--   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### repositoryGroup
 
@@ -145,12 +143,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 we are our own provider
 
 Returns **[Provider](#provider)** this
-
-### defaultOptions
-
-Default configuration options
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### optionsFromEnvironment
 

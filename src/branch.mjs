@@ -24,11 +24,11 @@ export const Branch = OneTimeInititalizerMixin(
     constructor(repository, name = "master", options) {
       definePropertiesFromOptions(
         this,
+        options,
         {
           name: { value: name },
           repository: { value: repository }
-        },
-        options
+        }
       );
 
       repository.addBranch(this);

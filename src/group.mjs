@@ -34,11 +34,11 @@ export class RepositoryGroup extends Owner {
 
     definePropertiesFromOptions(
       this,
+      options,
       {
         name: { value: name },
         provider: { value: provider }
-      },
-      options
+      }
     );
   }
 

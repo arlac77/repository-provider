@@ -6,10 +6,10 @@ export function notImplementedError() {
  * create properties from options and default options
  * @see Object.definedProperties()
  * @param {Object} object target object
- * @param {Object} properties object properties
  * @param {Object} options
+ * @param {Object} properties object properties
  */
-export function definePropertiesFromOptions(object, properties, options) {
+export function definePropertiesFromOptions(object, options, properties = {}) {
   const defaultOptions = object.constructor.defaultOptions;
   const after = {};
 

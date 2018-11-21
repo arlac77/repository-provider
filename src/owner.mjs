@@ -18,9 +18,12 @@ export const Owner = OneTimeInititalizerMixin(
     }
 
     constructor() {
-      Object.defineProperties(this, {
-        repositories: { value: new Map() }
-      });
+      Object.defineProperties(
+        this,
+        {
+          repositories: { value: new Map() }
+        }
+      );
     }
 
     /**
