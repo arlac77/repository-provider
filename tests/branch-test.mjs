@@ -66,7 +66,7 @@ test("branch entry", async t => {
 
   await t.throwsAsync(async () => b.entry("aFile"), {
     instanceOf: Error,
-    message: `No such object 'aFile'`
+    message: `No such entry 'aFile'`
   });
 });
 

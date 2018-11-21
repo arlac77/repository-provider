@@ -194,7 +194,11 @@ export const Branch = OneTimeInititalizerMixin(
      * @return {Promise<Entry>}
      */
     async entry(name) {
-      return (await this.entries(name).next()).value;
+      const e = (await this.entries(name).next()).value;
+      if(e === undefined) {
+        throw new Error(`No such entry '${name}'`);
+      }
+      return e;
     }
 
     /**
@@ -229,15 +233,17 @@ export const Branch = OneTimeInititalizerMixin(
       return this.fullCondensedName;
     }
 
-
-
     async *list(...args) {
-      console.log(`${this.constructor.name}: list is deprecated use entries instead`):
+      console.log(
+        `${this.constructor.name}: list is deprecated use entries instead`
+      );
       return this.entries(...args);
     }
 
     async content(...args) {
-      console.log(`${this.constructor.name}: content is deprecated use entry instead`):
+      console.log(
+        `${this.constructor.name}: content is deprecated use entry instead`
+      );
       return this.entry(...args);
     }
   }
