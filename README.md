@@ -60,8 +60,6 @@ const files = await branch.list();
     -   [provider](#provider-1)
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-5)
-    -   [options](#options)
-        -   [Parameters](#parameters-6)
 
 ## Provider
 
@@ -154,16 +152,6 @@ form the given set of environment variables
 -   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** undefined if no suitable environment variables have been found
-
-### options
-
-Pepare configuration by mixing together defaultOptions with actual options
-
-#### Parameters
-
--   `config` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** raw config
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** combined options
 
 # install
 
