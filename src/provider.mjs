@@ -32,15 +32,6 @@ export class Provider extends Owner {
     return undefined;
   }
 
-  /**
-   * Pepare configuration by mixing together defaultOptions with actual options
-   * @param {Object} config raw config
-   * @return {Object} combined options
-   */
-  static options(config) {
-    return Object.assign(this.defaultOptions, config);
-  }
-
   constructor(options) {
     super();
 
