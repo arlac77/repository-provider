@@ -61,12 +61,6 @@ export class Content {
     });
   }
 
-  /**
-   * deprecated is name instead
-   */
-  get path() {
-    return this.name;
-  }
 
   /**
    * @return {boolean} true if content represents a directory
@@ -153,6 +147,15 @@ export class Content {
    */
   equals(other) {
     return this.equalsMeta(other) && this.equalsContent(other);
+  }
+
+
+  /**
+   * deprecated is name instead
+   */
+  get path() {
+    console.log(`${this.constructor.name}: path is deprecated use name instead`);
+    return this.name;
   }
 }
 
