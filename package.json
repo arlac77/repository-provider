@@ -29,6 +29,7 @@
     "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {
+    "loglevel-mixin": "^2.0.5",
     "to-readable-stream": "^1.0.0"
   },
   "devDependencies": {

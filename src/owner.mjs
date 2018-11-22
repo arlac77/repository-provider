@@ -3,12 +3,13 @@ import { Branch } from "./branch";
 import { Entry } from "./entry";
 import { PullRequest } from "./pull-request";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
+import { LogLevelMixin } from 'loglevel-mixin/src/loglevel-mixin.mjs';
 
 /**
  * Collection of repositories
  * @property {Map<string,Repository>} repositories
  */
-export const Owner = OneTimeInititalizerMixin(
+export const Owner = LogLevelMixin(OneTimeInititalizerMixin(
   class Owner {
     /**
      * options
@@ -128,4 +129,4 @@ export const Owner = OneTimeInititalizerMixin(
 
     async _initialize() {}
   }
-);
+));
