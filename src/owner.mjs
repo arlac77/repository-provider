@@ -15,7 +15,12 @@ export const Owner = LogLevelMixin(OneTimeInititalizerMixin(
      * options
      */
     static get defaultOptions() {
-      return {};
+      return {
+        /**
+         * default logger
+         */
+        logger: (...arg) => console.log(...args)
+      };
     }
 
     constructor() {
