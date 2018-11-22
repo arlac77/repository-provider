@@ -233,6 +233,14 @@ export const Branch = OneTimeInititalizerMixin(
       return this.fullCondensedName;
     }
 
+    /**
+     * By default we use the providers implementation.
+     * @return {Class} as defined in the repository
+     */
+    get entryClass() {
+      return this.repository.entryClass;
+    }
+
     async *list(...args) {
       console.log(
         `${this.constructor.name}: list is deprecated use entries instead`
