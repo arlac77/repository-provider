@@ -21,3 +21,4 @@ after_script:
   - cat ./coverage/lcov.info | coveralls
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
+before_install: []
