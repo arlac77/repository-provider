@@ -16,7 +16,7 @@ import { Stream } from "stream";
  * @param {string} mode file permissions
  * @param {string} sha sha of the content
  */
-export class Content {
+export class Entry {
   static get TYPE_BLOB() {
     return "blob";
   }
@@ -28,7 +28,7 @@ export class Content {
   constructor(
     name,
     content = undefined,
-    type = Content.TYPE_BLOB,
+    type = Entry.TYPE_BLOB,
     mode = "100644",
     sha
   ) {
@@ -61,32 +61,39 @@ export class Content {
     });
   }
 
-
   /**
    * @return {boolean} true if content represents a directory
    */
   get isDirectory() {
-    return this.type === Content.TYPE_TREE;
+    return this.type === Entry.TYPE_TREE;
   }
 
   /**
    * @return {boolean} true if content represents a blob (plain old file)
    */
   get isFile() {
-    return this.type === Content.TYPE_BLOB;
+    return this.type === Entry.TYPE_BLOB;
   }
 
   /**
    * Deliver content as string
    * @return {string} content
    */
-  toString() {
+  async getString() {
     if (typeof this.content === "string" || this.content instanceof String) {
       return this.content;
     }
 
     if (Buffer.isBuffer(this.content)) {
       return this.content.toString("utf8");
+    }
+
+    return undefined;
+  }
+
+  async getBuffer() {
+    if (Buffer.isBuffer(this.content)) {
+      return this.content;
     }
 
     return undefined;
@@ -113,10 +120,10 @@ export class Content {
 
   /**
    * compare meta info against other entry
-   * @param {Content} other
+   * @param {Entry} other
    * @return {boolean} true if other has the same meta information (name...)
    */
-  equalsMeta(other) {
+  async equalsMeta(other) {
     return (
       other !== undefined &&
       (this.name === other.name &&
@@ -127,34 +134,48 @@ export class Content {
 
   /**
    * compare content against other entry
-   * @param {Content} other
+   * @param {Entry} other
    * @return {boolean} true if other has the same content (bitwise)
    */
-  equalsContent(other) {
+  async equalsContent(other) {
     if (Buffer.isBuffer(this.content)) {
       if (Buffer.isBuffer(other.content)) {
         return this.content.equals(other.content);
       }
     }
 
-    return this.toString() === other.toString();
+    const [a,b] = await Promise.all([this.getString(), other.getString()]);
+    return a === b;
   }
 
   /**
-   * compare against other content
-   * @param {Content} other
+   * compare against other entry
+   * @param {Entry} other
    * @return {boolean} true if other describes the same content
    */
-  equals(other) {
-    return this.equalsMeta(other) && this.equalsContent(other);
+  async equals(other) {
+    return await this.equalsMeta(other) && await this.equalsContent(other);
   }
 
+  /**
+   * Deliver content as string
+   * @return {string} content
+   */
+  toString() {
+    console.log(
+      `${
+        this.constructor.name
+      }: toString() is deprecated use getString() instead`
+    );
+  }
 
   /**
    * deprecated is name instead
    */
   get path() {
-    console.log(`${this.constructor.name}: path is deprecated use name instead`);
+    console.log(
+      `${this.constructor.name}: path is deprecated use name instead`
+    );
     return this.name;
   }
 }
@@ -162,8 +183,8 @@ export class Content {
 /**
  * Create empty content (file)
  * @param {string} name
- * @return {Content}
+ * @return {Entry}
  */
-export function emptyContent(name, options) {
-  return new Content(name, "");
+export function emptyEntry(name, options) {
+  return new Entry(name, "");
 }

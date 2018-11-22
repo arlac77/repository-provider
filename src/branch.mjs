@@ -127,7 +127,7 @@ export const Branch = OneTimeInititalizerMixin(
     /**
      * Deliver file content from the head
      * @param {string} name
-     * @return {Promise<Content>} content of a given file
+     * @return {Promise<Entry>} content of a given file
      */
     async entry(name) {
       throw new Error(`No such object '${name}'`);
@@ -136,7 +136,7 @@ export const Branch = OneTimeInititalizerMixin(
     /**
      * Commit files
      * @param {string} message commit message
-     * @param {Content[]} updates file content to be commited
+     * @param {Entry[]} updates file content to be commited
      * @param {Object} options
      * @return {Promise}
      */

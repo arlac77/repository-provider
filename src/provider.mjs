@@ -3,7 +3,7 @@ import { Owner } from "./owner";
 import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
-import { Content, emptyContent } from "./content";
+import { Entry, emptyEntry } from "./entry";
 import { notImplementedError, definePropertiesFromOptions } from "./util";
 
 export {
@@ -12,8 +12,8 @@ export {
   PullRequest,
   Owner,
   RepositoryGroup,
-  Content,
-  emptyContent
+  Entry,
+  emptyEntry
 };
 
 /**

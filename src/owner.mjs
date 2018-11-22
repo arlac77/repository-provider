@@ -1,6 +1,6 @@
 import { Repository } from "./repository";
 import { Branch } from "./branch";
-import { Content } from "./content";
+import { Entry } from "./entry";
 import { PullRequest } from "./pull-request";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
 
@@ -41,10 +41,10 @@ export const Owner = OneTimeInititalizerMixin(
     }
 
     /**
-     * @return {Class} content class used by the Provider
+     * @return {Class} entry class used by the Provider
      */
-    get contentClass() {
-      return Content;
+    get entryClass() {
+      return Entry;
     }
 
     /**

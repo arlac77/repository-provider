@@ -70,12 +70,12 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
-     * Lookup content form the head of the default branch
-     * {@link Branch#content}
-     * @return {Content}
+     * Lookup entries form the head of the default branch
+     * {@link Branch#entry}
+     * @return {Entry}
      */
-    async content(...args) {
-      return (await this.defaultBranch).content(...args);
+    async entry(name) {
+      return (await this.defaultBranch).entry(name);
     }
 
     /**
@@ -320,8 +320,8 @@ export const Repository = OneTimeInititalizerMixin(
      * By default we use the providers implementation.
      * @return {Class} as defined in the provider
      */
-    get contentClass() {
-      return this.provider.contentClass;
+    get entryClass() {
+      return this.provider.entryClass;
     }
 
     toString() {
