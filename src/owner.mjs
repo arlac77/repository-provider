@@ -19,7 +19,8 @@ export const Owner = LogLevelMixin(OneTimeInititalizerMixin(
         /**
          * default logger
          */
-        logger: (...arg) => console.log(...args)
+        logger: (...arg) => console.log(...args),
+        logLevel: 'info'
       };
     }
 

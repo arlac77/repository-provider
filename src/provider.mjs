@@ -42,6 +42,8 @@ export class Provider extends Owner {
         repositoryGroups: { value: new Map() }
       }
     );
+
+    this.trace( level => options);
   }
 
   /**
