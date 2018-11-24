@@ -76,6 +76,15 @@ export class Entry {
   }
 
   /**
+   *
+   * @return {string[]} UTI types
+   */
+  async getTypes()
+  {
+    return [];
+  }
+
+  /**
    * Deliver content as string
    * @return {string} content
    */
