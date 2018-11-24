@@ -61,19 +61,6 @@ export class Entry {
     });
   }
 
-  /**
-   * @return {boolean} true if content represents a directory
-   */
-  get isDirectory() {
-    return this.type === Entry.TYPE_TREE;
-  }
-
-  /**
-   * @return {boolean} true if content represents a blob (plain old file)
-   */
-  get isFile() {
-    return this.type === Entry.TYPE_BLOB;
-  }
 
   /**
    *
@@ -176,6 +163,29 @@ export class Entry {
         this.constructor.name
       }: toString() is deprecated use getString() instead`
     );
+  }
+
+
+  /**
+   * @return {boolean} true if content represents a directory
+   */
+  get isDirectory() {
+    console.log(
+      `${this.constructor.name}: isDirectory is deprecated`
+    );
+
+    return this.type === Entry.TYPE_TREE;
+  }
+
+  /**
+   * @return {boolean} true if content represents a blob (plain old file)
+   */
+  get isFile() {
+    console.log(
+      `${this.constructor.name}: isFile is deprecated`
+    );
+
+    return this.type === Entry.TYPE_BLOB;
   }
 
   /**
