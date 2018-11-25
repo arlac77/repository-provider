@@ -2,7 +2,7 @@ import { Owner } from "./owner";
 import { definePropertiesFromOptions } from "./util";
 
 /**
- * Abstract repository as a collection
+ * Abstract repository collection
  * @param {Provider} provider
  * @param {string} name of the group
  * @param {Object} options
@@ -32,14 +32,10 @@ export class RepositoryGroup extends Owner {
   constructor(provider, name, options) {
     super();
 
-    definePropertiesFromOptions(
-      this,
-      options,
-      {
-        name: { value: name },
-        provider: { value: provider }
-      }
-    );
+    definePropertiesFromOptions(this, options, {
+      name: { value: name },
+      provider: { value: provider }
+    });
   }
 
   /**
@@ -72,5 +68,13 @@ export class RepositoryGroup extends Owner {
    */
   get pullRequestClass() {
     return this.provider.pullRequestClass;
+  }
+
+  toString() {
+    return this.name;
+  }
+
+  toJSON() {
+    return Object.assign({ name: this.name }, super.toJSON());
   }
 }

@@ -327,5 +327,9 @@ export const Repository = OneTimeInititalizerMixin(
     toString() {
       return this.name;
     }
+
+    toJSON() {
+      return Object.assign({ name: this.name }, super.toJSON());
+    }
   }
 );

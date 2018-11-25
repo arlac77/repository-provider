@@ -20,6 +20,7 @@ test("repository create with options", t => {
   t.is(repository.id, "4711");
   t.is(repository.issuesURL, undefined);
   t.is(repository.homePageURL, undefined);
+  t.is(repository.toString(), "r1");
 });
 
 test("repository create without options", t => {

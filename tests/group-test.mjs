@@ -15,6 +15,7 @@ test("repository-group create with options", t => {
   t.is(rg.name, "rg");
   t.is(rg.description, "a description");
   t.is(rg.id, "4711");
+  t.is(rg.toString(), "rg");
 });
 
 test("repository-group classes", t => {
