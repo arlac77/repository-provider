@@ -8,6 +8,11 @@ test("provider", async t => {
   t.is(provider.priority, 0);
   t.is(provider.name, "Provider");
   t.is(`${provider}`, "Provider");
+  t.deepEqual(provider.toJSON(), {
+    name: 'Provider',
+    logLevel: 'info',
+    priority: 0
+  });
 });
 
 test("provider repository group", async t => {

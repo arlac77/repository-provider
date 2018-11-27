@@ -58,6 +58,7 @@ const files = await branch.list();
     -   [rateLimitReached](#ratelimitreached)
     -   [name](#name)
     -   [provider](#provider-1)
+    -   [toJSON](#tojson)
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-5)
 -   [priority](#priority)
@@ -142,6 +143,10 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 we are our own provider
 
 Returns **[Provider](#provider)** this
+
+### toJSON
+
+list all defined entries from defaultOptions
 
 ### optionsFromEnvironment
 

@@ -169,4 +169,20 @@ export class Provider extends Owner {
   toString() {
     return this.name;
   }
+
+  /**
+   * list all defined entries from defaultOptions
+   *
+   */
+  toJSON() {
+    const json = { name: this.name };
+
+    Object.keys(this.constructor.defaultOptions).forEach(k => {
+      if(this[k] !== undefined && typeof this[k] !== 'function') {
+        json[k] = this[k];
+      }
+    });
+
+    return json;
+  }
 }
