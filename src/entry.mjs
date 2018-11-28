@@ -1,6 +1,43 @@
 import toReadableStream from "to-readable-stream";
 import { Stream } from "stream";
 
+
+/**
+ * Representation of one file or directory entry
+ * All names are asolute (no leading '/') and build with '/'
+ * @property {string} name file name inside of the repository
+ *
+ * @param {string} name file name inside of the repository
+ */
+export class BaseEntry {
+  constructor(name)
+  {
+    if (name[0] === "/" || name.indexOf("\\") >= 0) {
+      throw new TypeError(
+        `Names should not contain leading '/' or any '\\': ${name}`
+      );
+    }
+
+    Object.defineProperties(this, {
+      name: { value: name }
+    });
+  }
+  /**
+   *
+   * @return {string[]} UTI types
+   */
+  async getTypes()
+  {
+    return [];
+  }
+
+  toJSON() {
+    return {
+      name: this.name
+    };
+  }
+}
+
 /**
  * Representation of one file or directory entry
  * All names are asolute (no leading '/') and build with '/'
@@ -16,7 +53,7 @@ import { Stream } from "stream";
  * @param {string} mode file permissions
  * @param {string} sha sha of the content
  */
-export class Entry {
+export class Entry extends BaseEntry {
   static get TYPE_BLOB() {
     return "blob";
   }
@@ -32,14 +69,9 @@ export class Entry {
     mode = "100644",
     sha
   ) {
-    if (name[0] === "/" || name.indexOf("\\") >= 0) {
-      throw new TypeError(
-        `Names should not contain leading '/' or any '\\': ${name}`
-      );
-    }
+    super(name);
 
     Object.defineProperties(this, {
-      name: { value: name },
       content: {
         get() {
           return content;
@@ -59,16 +91,6 @@ export class Entry {
       type: { value: type },
       mode: { value: mode }
     });
-  }
-
-
-  /**
-   *
-   * @return {string[]} UTI types
-   */
-  async getTypes()
-  {
-    return [];
   }
 
   /**
@@ -106,12 +128,11 @@ export class Entry {
   }
 
   toJSON() {
-    return {
-      name: this.name,
+    return Object.assign({
       type: this.type,
       mode: this.mode,
       sha: this.sha
-    };
+    },super.toJSON());
   }
 
   /**
@@ -153,6 +174,9 @@ export class Entry {
     return await this.equalsMeta(other) && await this.equalsContent(other);
   }
 
+
+  /*** DEPRECATED methods properties follow */
+
   /**
    * Deliver content as string
    * @return {string} content
@@ -164,7 +188,6 @@ export class Entry {
       }: toString() is deprecated use getString() instead`
     );
   }
-
 
   /**
    * @return {boolean} true if content represents a directory
