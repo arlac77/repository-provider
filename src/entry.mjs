@@ -1,7 +1,6 @@
 import toReadableStream from "to-readable-stream";
 import { Stream } from "stream";
 
-
 /**
  * Representation of one file or directory entry
  * All names are asolute (no leading '/') and build with '/'
@@ -10,8 +9,7 @@ import { Stream } from "stream";
  * @param {string} name file name inside of the repository
  */
 export class BaseEntry {
-  constructor(name)
-  {
+  constructor(name) {
     if (name[0] === "/" || name.indexOf("\\") >= 0) {
       throw new TypeError(
         `Names should not contain leading '/' or any '\\': ${name}`
@@ -22,13 +20,17 @@ export class BaseEntry {
       name: { value: name }
     });
   }
+
   /**
    *
    * @return {string[]} UTI types
    */
-  async getTypes()
-  {
+  async getTypes() {
     return [];
+  }
+
+  get isDirectory() {
+    return false;
   }
 
   toJSON() {
@@ -37,6 +39,24 @@ export class BaseEntry {
     };
   }
 }
+
+/**
+ * brings Directory attributes
+ */
+export function DirectoryEntryMixin(superclass) {
+  return class DirectoryEntryMixin extends superclass {
+    get isDirectory() {
+      return true;
+    }
+
+    async getTypes() {
+      return ["public.directory"];
+    }
+  };
+}
+
+export const BaseDirecotryEntry = DirectoryEntryMixin(BaseEntry);
+
 
 /**
  * Representation of one file or directory entry
@@ -128,11 +148,14 @@ export class Entry extends BaseEntry {
   }
 
   toJSON() {
-    return Object.assign({
-      type: this.type,
-      mode: this.mode,
-      sha: this.sha
-    },super.toJSON());
+    return Object.assign(
+      {
+        type: this.type,
+        mode: this.mode,
+        sha: this.sha
+      },
+      super.toJSON()
+    );
   }
 
   /**
@@ -161,7 +184,7 @@ export class Entry extends BaseEntry {
       }
     }
 
-    const [a,b] = await Promise.all([this.getString(), other.getString()]);
+    const [a, b] = await Promise.all([this.getString(), other.getString()]);
     return a === b;
   }
 
@@ -171,9 +194,8 @@ export class Entry extends BaseEntry {
    * @return {boolean} true if other describes the same content
    */
   async equals(other) {
-    return await this.equalsMeta(other) && await this.equalsContent(other);
+    return (await this.equalsMeta(other)) && (await this.equalsContent(other));
   }
-
 
   /*** DEPRECATED methods properties follow */
 
@@ -193,9 +215,7 @@ export class Entry extends BaseEntry {
    * @return {boolean} true if content represents a directory
    */
   get isDirectory() {
-    console.log(
-      `${this.constructor.name}: isDirectory is deprecated`
-    );
+    console.log(`${this.constructor.name}: isDirectory is deprecated`);
 
     return this.type === Entry.TYPE_TREE;
   }
@@ -204,9 +224,7 @@ export class Entry extends BaseEntry {
    * @return {boolean} true if content represents a blob (plain old file)
    */
   get isFile() {
-    console.log(
-      `${this.constructor.name}: isFile is deprecated`
-    );
+    console.log(`${this.constructor.name}: isFile is deprecated`);
 
     return this.type === Entry.TYPE_BLOB;
   }
