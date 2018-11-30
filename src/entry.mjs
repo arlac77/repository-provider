@@ -55,8 +55,7 @@ export function DirectoryEntryMixin(superclass) {
   };
 }
 
-export const BaseDirecotryEntry = DirectoryEntryMixin(BaseEntry);
-
+export const BaseDirectoryEntry = DirectoryEntryMixin(BaseEntry);
 
 /**
  * Representation of one file or directory entry
