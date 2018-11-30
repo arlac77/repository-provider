@@ -3,7 +3,13 @@ import { Owner } from "./owner";
 import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
-import { BaseEntry, Entry, emptyEntry } from "./entry";
+import {
+  BaseEntry,
+  Entry,
+  BaseDirectoryEntry,
+  DirectoryEntryMixin,
+  emptyEntry
+} from "./entry";
 import { notImplementedError, definePropertiesFromOptions } from "./util";
 
 export {
@@ -14,6 +20,8 @@ export {
   RepositoryGroup,
   BaseEntry,
   Entry,
+  BaseDirectoryEntry,
+  DirectoryEntryMixin,
   emptyEntry
 };
 
@@ -34,27 +42,26 @@ export class Provider extends Owner {
   }
 
   static get defaultOptions() {
-    return Object.assign({
-      /**
-      * in case there are several provider able to support a given source which one sould be used ?
-      * this defines the order
-      */
-      priority: 0
-    }, super.defaultOptions);
+    return Object.assign(
+      {
+        /**
+         * in case there are several provider able to support a given source which one sould be used ?
+         * this defines the order
+         */
+        priority: 0
+      },
+      super.defaultOptions
+    );
   }
 
   constructor(options) {
     super();
 
-    definePropertiesFromOptions(
-      this,
-      options,
-      {
-        repositoryGroups: { value: new Map() }
-      }
-    );
+    definePropertiesFromOptions(this, options, {
+      repositoryGroups: { value: new Map() }
+    });
 
-    this.trace( level => options);
+    this.trace(level => options);
   }
 
   /**
@@ -179,7 +186,7 @@ export class Provider extends Owner {
     const json = { name: this.name };
 
     Object.keys(this.constructor.defaultOptions).forEach(k => {
-      if(this[k] !== undefined && typeof this[k] !== 'function') {
+      if (this[k] !== undefined && typeof this[k] !== "function") {
         json[k] = this[k];
       }
     });
