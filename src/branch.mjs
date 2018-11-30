@@ -189,7 +189,7 @@ export const Branch = OneTimeInititalizerMixin(
     async *entries(matchingPatterns) {}
 
     /**
-     * get exactly one matchin enty by name
+     * get exactly one matching entry by name
      * @param {string} name
      * @return {Promise<Entry>}
      */
@@ -240,6 +240,10 @@ export const Branch = OneTimeInititalizerMixin(
     get entryClass() {
       return this.repository.entryClass;
     }
+
+
+ /// depredations follow
+
 
     async *list(...args) {
       console.log(
