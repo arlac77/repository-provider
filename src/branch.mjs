@@ -22,14 +22,10 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     constructor(repository, name = "master", options) {
-      definePropertiesFromOptions(
-        this,
-        options,
-        {
-          name: { value: name },
-          repository: { value: repository }
-        }
-      );
+      definePropertiesFromOptions(this, options, {
+        name: { value: name },
+        repository: { value: repository }
+      });
 
       repository.addBranch(this);
     }
@@ -69,6 +65,10 @@ export const Branch = OneTimeInititalizerMixin(
       return this.isDefault
         ? this.repository.fullName
         : `${this.repository.fullName}#${this.name}`;
+    }
+
+    toString() {
+      return this.fullCondensedName;
     }
 
     /**
@@ -125,15 +125,6 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * Deliver file content from the head
-     * @param {string} name
-     * @return {Promise<Entry>} content of a given file
-     */
-    async entry(name) {
-      throw new Error(`No such object '${name}'`);
-    }
-
-    /**
      * Commit files
      * @param {string} message commit message
      * @param {Entry[]} updates file content to be commited
@@ -142,6 +133,70 @@ export const Branch = OneTimeInititalizerMixin(
      */
     async commit(message, updates, options) {
       return notImplementedError();
+    }
+
+    /**
+     * List entries of the branch
+     * @param {string[]} matchingPatterns
+     * @return {Entry} all matching entries in the branch
+     */
+    async *entries(matchingPatterns) {}
+
+    /**
+     * List all entries of the branch
+     * @return {Entry} all entries in the branch
+     */
+    [Symbol.asyncIterator]() {
+      return this.entries();
+    }
+
+    /**
+     * get exactly one matching entry by name
+     * @param {string} name
+     * @return {Promise<Entry>}
+     */
+    async entry(name) {
+      const e = (await this.entries(name).next()).value;
+      if (e === undefined) {
+        throw new Error(`No such entry '${name}'`);
+      }
+      return e;
+    }
+
+    /**
+     * Value delivered from the provider
+     * @see {@link Provider#rateLimitReached}
+     * @return {boolean} providers rateLimitReached
+     */
+    get rateLimitReached() {
+      return this.provider.rateLimitReached;
+    }
+
+    /**
+     * forward to the Provider
+     * @param {boolean} value
+     */
+    set rateLimitReached(value) {
+      this.provider.rateLimitReached(value);
+    }
+
+    async _initialize() {}
+
+    /**
+     * Get sha of a ref
+     * @param {string} ref
+     * @return {string} sha of the ref
+     */
+    async refId(ref = this.ref) {
+      return this.repository.refId(ref);
+    }
+
+    /**
+     * By default we use the providers implementation.
+     * @return {Class} as defined in the repository
+     */
+    get entryClass() {
+      return this.repository.entryClass;
     }
 
     /**
@@ -181,69 +236,7 @@ export const Branch = OneTimeInititalizerMixin(
       return this.repository.createBranch(name, this, options);
     }
 
-    /**
-     * List entries of the branch
-     * @param {string[]} matchingPatterns
-     * @return {string[]} all file names in the branch
-     */
-    async *entries(matchingPatterns) {}
-
-    /**
-     * get exactly one matching entry by name
-     * @param {string} name
-     * @return {Promise<Entry>}
-     */
-    async entry(name) {
-      const e = (await this.entries(name).next()).value;
-      if(e === undefined) {
-        throw new Error(`No such entry '${name}'`);
-      }
-      return e;
-    }
-
-    /**
-     * Value delivered from the provider
-     * @see {@link Provider#rateLimitReached}
-     * @return {boolean} providers rateLimitReached
-     */
-    get rateLimitReached() {
-      return this.provider.rateLimitReached;
-    }
-
-    /**
-     * forward to the Provider
-     * @param {boolean} value
-     */
-    set rateLimitReached(value) {
-      this.provider.rateLimitReached(value);
-    }
-
-    async _initialize() {}
-
-    /**
-     * Get sha of a ref
-     * @param {string} ref
-     * @return {string} sha of the ref
-     */
-    async refId(ref = this.ref) {
-      return this.repository.refId(ref);
-    }
-
-    toString() {
-      return this.fullCondensedName;
-    }
-
-    /**
-     * By default we use the providers implementation.
-     * @return {Class} as defined in the repository
-     */
-    get entryClass() {
-      return this.repository.entryClass;
-    }
-
-
- /// depredations follow
-
+    /// depredations follow
 
     async *list(...args) {
       console.log(
