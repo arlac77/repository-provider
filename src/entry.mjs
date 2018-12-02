@@ -41,7 +41,7 @@ export class BaseEntry {
 }
 
 /**
- * brings Directory attributes
+ * brings Directory attributes to entries
  */
 export function DirectoryEntryMixin(superclass) {
   return class DirectoryEntryMixin extends superclass {
@@ -52,6 +52,22 @@ export function DirectoryEntryMixin(superclass) {
     async getTypes() {
       return ["public.directory"];
     }
+  };
+}
+
+/**
+ * genral content access entries
+ */
+export function ContentEntryMixin(superclass) {
+  return class ContentEntryMixin extends superclass {
+    get isFile() {
+      return true;
+    }
+  };
+}
+
+export function StreamContentEntryMixin(superclass) {
+  return class StreamContentEntryMixin extends superclass {
   };
 }
 
