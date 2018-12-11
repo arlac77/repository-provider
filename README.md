@@ -62,6 +62,71 @@ const files = await branch.list();
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-5)
 -   [priority](#priority)
+-   [Branch](#branch-1)
+    -   [Parameters](#parameters-6)
+    -   [Properties](#properties-1)
+-   [defaultOptions](#defaultoptions)
+-   [defaultOptions](#defaultoptions-1)
+-   [defaultOptions](#defaultoptions-2)
+-   [OneTimeInititalizer](#onetimeinititalizer)
+-   [Owner](#owner)
+    -   [Properties](#properties-2)
+-   [logger](#logger)
+    -   [Parameters](#parameters-7)
+-   [Repository](#repository-1)
+    -   [Parameters](#parameters-8)
+    -   [Properties](#properties-3)
+-   [description](#description)
+-   [description](#description-1)
+-   [id](#id)
+-   [id](#id-1)
+-   [id](#id-2)
+-   [PullRequest](#pullrequest)
+    -   [Parameters](#parameters-9)
+    -   [Properties](#properties-4)
+    -   [provider](#provider-2)
+    -   [delete](#delete)
+    -   [merge](#merge)
+    -   [decline](#decline)
+-   [title](#title)
+-   [body](#body)
+-   [state](#state)
+-   [locked](#locked)
+-   [merged](#merged)
+-   [RepositoryGroup](#repositorygroup-1)
+    -   [Parameters](#parameters-10)
+    -   [Properties](#properties-5)
+    -   [repositoryClass](#repositoryclass)
+    -   [branchClass](#branchclass)
+    -   [contentClass](#contentclass)
+    -   [pullRequestClass](#pullrequestclass)
+-   [BaseEntry](#baseentry)
+    -   [Parameters](#parameters-11)
+    -   [Properties](#properties-6)
+    -   [getTypes](#gettypes)
+-   [DirectoryEntryMixin](#directoryentrymixin)
+    -   [Parameters](#parameters-12)
+-   [ContentEntryMixin](#contententrymixin)
+    -   [Parameters](#parameters-13)
+-   [Entry](#entry)
+    -   [Parameters](#parameters-14)
+    -   [Properties](#properties-7)
+    -   [getString](#getstring)
+    -   [getReadStream](#getreadstream)
+    -   [equalsMeta](#equalsmeta)
+        -   [Parameters](#parameters-15)
+    -   [equalsContent](#equalscontent)
+        -   [Parameters](#parameters-16)
+    -   [equals](#equals)
+        -   [Parameters](#parameters-17)
+    -   [toString](#tostring)
+    -   [isDirectory](#isdirectory)
+    -   [isFile](#isfile)
+    -   [path](#path)
+-   [emptyEntry](#emptyentry)
+    -   [Parameters](#parameters-18)
+-   [definePropertiesFromOptions](#definepropertiesfromoptions)
+    -   [Parameters](#parameters-19)
 
 ## Provider
 
@@ -75,7 +140,7 @@ Base repository provider acts as a source of repositories
 
 ### Properties
 
--   `repositoryGroups` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), RepositoryGroup>** 
+-   `repositoryGroups` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [RepositoryGroup](#repositorygroup)>** 
 
 ### repositoryGroup
 
@@ -86,7 +151,7 @@ Lookup a repository group
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;RepositoryGroup>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[RepositoryGroup](#repositorygroup)>** 
 
 ### createRepositoryGroup
 
@@ -97,7 +162,7 @@ Create a new repository group
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;RepositoryGroup>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[RepositoryGroup](#repositorygroup)>** 
 
 ### repository
 
@@ -108,7 +173,7 @@ Lookup a repository in the provider and all of its repository groups
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the repository
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Repository>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Repository](#repository)>** 
 
 ### branch
 
@@ -119,7 +184,7 @@ Lookup a branch in the provider and all of its repository groups
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the branch
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Branch>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** 
 
 ### repositoryGroupClass
 
@@ -163,6 +228,365 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 in case there are several provider able to support a given source which one sould be used ?
 this defines the order
+
+## Branch
+
+-   **See: [Repository#addBranch](Repository#addBranch)**
+
+Abstract branch
+
+### Parameters
+
+-   `repository` **[Repository](#repository)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### Properties
+
+-   `repository` **[Repository](#repository)** 
+-   `provider` **[Provider](#provider)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## defaultOptions
+
+options
+
+## defaultOptions
+
+options
+
+## defaultOptions
+
+options
+
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
+
+## Owner
+
+Collection of repositories
+
+### Properties
+
+-   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Repository](#repository)>** 
+
+## logger
+
+default logger
+
+### Parameters
+
+-   `arg` **...any** 
+
+## Repository
+
+Abstract repository
+
+### Parameters
+
+-   `owner` **[Owner](#owner)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** (#branch) will be removed
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** human readable description
+    -   `options.id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** internal id
+
+### Properties
+
+-   `owner` **[Owner](#owner)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** without (#branch)
+-   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.description
+-   `id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.id
+-   `branches` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Branch](#branch)>** 
+-   `pullRequests` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [PullRequest](#pullrequest)>** 
+
+## description
+
+the description of the repository content.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## description
+
+the description of the repository group.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## id
+
+unique id within the provider.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## id
+
+internal id.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## id
+
+unique id within the provider.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## PullRequest
+
+Abstract pull request
+[Repository#addPullRequest](Repository#addPullRequest)
+
+### Parameters
+
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+    -   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+    -   `options.merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+    -   `options.locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+
+### Properties
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
+-   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+-   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+-   `merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+-   `locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+
+### provider
+
+Returns **[Provider](#provider)** 
+
+### delete
+
+-   **See: [Repository#deletePullRequest](Repository#deletePullRequest)**
+
+Delete the pull request from the [Repository](#repository).
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
+### merge
+
+Merge the pull request
+
+### decline
+
+Decline the pull request
+
+## title
+
+the one line description of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## body
+
+the description of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## state
+
+state of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## locked
+
+locked state of the pull request.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+## merged
+
+merged state of the pull request.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+## RepositoryGroup
+
+**Extends Owner**
+
+Abstract repository collection
+
+### Parameters
+
+-   `provider` **[Provider](#provider)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** human readable description
+    -   `options.id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** internal id
+
+### Properties
+
+-   `provider` **[Provider](#provider)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### repositoryClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
+### branchClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
+### contentClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
+### pullRequestClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
+## BaseEntry
+
+Representation of one file or directory entry
+All names are asolute (no leading '/') and build with '/'
+
+### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
+
+### Properties
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
+
+### getTypes
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** UTI types
+
+## DirectoryEntryMixin
+
+brings Directory attributes to entries
+
+### Parameters
+
+-   `superclass`  
+
+## ContentEntryMixin
+
+genral content access entries
+
+### Parameters
+
+-   `superclass`  
+
+## Entry
+
+**Extends BaseEntry**
+
+Representation of one file or directory entry
+All names are asolute (no leading '/') and build with '/'
+
+### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
+-   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))**  (optional, default `undefined`)
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content (optional, default `Entry.TYPE_BLOB`)
+-   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions (optional, default `"100644"`)
+-   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the content
+
+### Properties
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
+-   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))** 
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content
+-   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
+-   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the content
+
+### getString
+
+Deliver content as string
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** content
+
+### getReadStream
+
+Deliver content as read stream
+
+Returns **ReadableStream** content
+
+### equalsMeta
+
+compare meta info against other entry
+
+#### Parameters
+
+-   `other` **[Entry](#entry)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other has the same meta information (name...)
+
+### equalsContent
+
+compare content against other entry
+
+#### Parameters
+
+-   `other` **[Entry](#entry)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other has the same content (bitwise)
+
+### equals
+
+compare against other entry
+
+#### Parameters
+
+-   `other` **[Entry](#entry)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other describes the same content
+
+### toString
+
+Deliver content as string
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** content
+
+### isDirectory
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if content represents a directory
+
+### isFile
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if content represents a blob (plain old file)
+
+### path
+
+deprecated is name instead
+
+## emptyEntry
+
+Create empty content (file)
+
+### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options`  
+
+Returns **[Entry](#entry)** 
+
+## definePropertiesFromOptions
+
+-   **See: Object.definedProperties()**
+
+create properties from options and default options
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
 
 # install
 
