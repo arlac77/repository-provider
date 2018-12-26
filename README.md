@@ -100,33 +100,21 @@ const files = await branch.list();
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
--   [BaseEntry](#baseentry)
+-   [Entry](#entry)
     -   [Parameters](#parameters-11)
     -   [Properties](#properties-6)
-    -   [getTypes](#gettypes)
--   [DirectoryEntryMixin](#directoryentrymixin)
-    -   [Parameters](#parameters-12)
--   [ContentEntryMixin](#contententrymixin)
-    -   [Parameters](#parameters-13)
--   [Entry](#entry)
-    -   [Parameters](#parameters-14)
-    -   [Properties](#properties-7)
     -   [getString](#getstring)
     -   [getReadStream](#getreadstream)
     -   [equalsMeta](#equalsmeta)
-        -   [Parameters](#parameters-15)
+        -   [Parameters](#parameters-12)
     -   [equalsContent](#equalscontent)
-        -   [Parameters](#parameters-16)
+        -   [Parameters](#parameters-13)
     -   [equals](#equals)
-        -   [Parameters](#parameters-17)
-    -   [toString](#tostring)
-    -   [isDirectory](#isdirectory)
-    -   [isFile](#isfile)
-    -   [path](#path)
+        -   [Parameters](#parameters-14)
 -   [emptyEntry](#emptyentry)
-    -   [Parameters](#parameters-18)
+    -   [Parameters](#parameters-15)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-19)
+    -   [Parameters](#parameters-16)
 
 ## Provider
 
@@ -449,39 +437,6 @@ By default we use the providers implementation.
 
 Returns **Class** as defined in the provider
 
-## BaseEntry
-
-Representation of one file or directory entry
-All names are asolute (no leading '/') and build with '/'
-
-### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
-
-### Properties
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
-
-### getTypes
-
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** UTI types
-
-## DirectoryEntryMixin
-
-brings Directory attributes to entries
-
-### Parameters
-
--   `superclass`  
-
-## ContentEntryMixin
-
-genral content access entries
-
-### Parameters
-
--   `superclass`  
-
 ## Entry
 
 **Extends BaseEntry**
@@ -546,24 +501,6 @@ compare against other entry
 -   `other` **[Entry](#entry)** 
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other describes the same content
-
-### toString
-
-Deliver content as string
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** content
-
-### isDirectory
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if content represents a directory
-
-### isFile
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if content represents a blob (plain old file)
-
-### path
-
-deprecated is name instead
 
 ## emptyEntry
 

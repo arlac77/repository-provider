@@ -3,11 +3,10 @@ import { Owner } from "./owner";
 import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
+import { BaseEntry } from "content-entry/src/base-entry";
+import { BaseCollectionEntry, CollectionEntryMixin } from "content-entry/src/base-collection-entry";
 import {
-  BaseEntry,
   Entry,
-  BaseDirectoryEntry,
-  DirectoryEntryMixin,
   emptyEntry
 } from "./entry";
 import { notImplementedError, definePropertiesFromOptions } from "./util";
@@ -20,8 +19,8 @@ export {
   RepositoryGroup,
   BaseEntry,
   Entry,
-  BaseDirectoryEntry,
-  DirectoryEntryMixin,
+  BaseCollectionEntry,
+  CollectionEntryMixin,
   emptyEntry
 };
 

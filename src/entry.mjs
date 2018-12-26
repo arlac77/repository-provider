@@ -1,77 +1,6 @@
 import toReadableStream from "to-readable-stream";
 import { Stream } from "stream";
-
-/**
- * Representation of one file or directory entry
- * All names are asolute (no leading '/') and build with '/'
- * @property {string} name file name inside of the repository
- *
- * @param {string} name file name inside of the repository
- */
-export class BaseEntry {
-  constructor(name) {
-    if (name[0] === "/" || name.indexOf("\\") >= 0) {
-      throw new TypeError(
-        `Names should not contain leading '/' or any '\\': ${name}`
-      );
-    }
-
-    Object.defineProperties(this, {
-      name: { value: name }
-    });
-  }
-
-  /**
-   *
-   * @return {string[]} UTI types
-   */
-  async getTypes() {
-    return [];
-  }
-
-  get isDirectory() {
-    return false;
-  }
-
-  toJSON() {
-    return {
-      name: this.name
-    };
-  }
-}
-
-/**
- * brings Directory attributes to entries
- */
-export function DirectoryEntryMixin(superclass) {
-  return class DirectoryEntryMixin extends superclass {
-    get isDirectory() {
-      return true;
-    }
-
-    async getTypes() {
-      return ["public.directory"];
-    }
-  };
-}
-
-/**
- * genral content access entries
- */
-export function ContentEntryMixin(superclass) {
-  return class ContentEntryMixin extends superclass {
-    get isFile() {
-      return true;
-    }
-  };
-}
-
-export function StreamContentEntryMixin(superclass) {
-  return class StreamContentEntryMixin extends superclass {
-  };
-}
-
-export const BaseDirectoryEntry = DirectoryEntryMixin(BaseEntry);
+import { BaseEntry } from 'content-entry/src/base-entry';
 
 /**
  * Representation of one file or directory entry
@@ -210,48 +139,6 @@ export class Entry extends BaseEntry {
    */
   async equals(other) {
     return (await this.equalsMeta(other)) && (await this.equalsContent(other));
-  }
-
-  /*** DEPRECATED methods properties follow */
-
-  /**
-   * Deliver content as string
-   * @return {string} content
-   */
-  toString() {
-    console.log(
-      `${
-        this.constructor.name
-      }: toString() is deprecated use getString() instead`
-    );
-  }
-
-  /**
-   * @return {boolean} true if content represents a directory
-   */
-  get isDirectory() {
-    console.log(`${this.constructor.name}: isDirectory is deprecated`);
-
-    return this.type === Entry.TYPE_TREE;
-  }
-
-  /**
-   * @return {boolean} true if content represents a blob (plain old file)
-   */
-  get isFile() {
-    console.log(`${this.constructor.name}: isFile is deprecated`);
-
-    return this.type === Entry.TYPE_BLOB;
-  }
-
-  /**
-   * deprecated is name instead
-   */
-  get path() {
-    console.log(
-      `${this.constructor.name}: path is deprecated use name instead`
-    );
-    return this.name;
   }
 }
 
