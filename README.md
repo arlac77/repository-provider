@@ -100,21 +100,8 @@ const files = await branch.list();
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
--   [Entry](#entry)
-    -   [Parameters](#parameters-11)
-    -   [Properties](#properties-6)
-    -   [getString](#getstring)
-    -   [getReadStream](#getreadstream)
-    -   [equalsMeta](#equalsmeta)
-        -   [Parameters](#parameters-12)
-    -   [equalsContent](#equalscontent)
-        -   [Parameters](#parameters-13)
-    -   [equals](#equals)
-        -   [Parameters](#parameters-14)
--   [emptyEntry](#emptyentry)
-    -   [Parameters](#parameters-15)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-16)
+    -   [Parameters](#parameters-11)
 
 ## Provider
 
@@ -436,82 +423,6 @@ Returns **Class** as defined in the provider
 By default we use the providers implementation.
 
 Returns **Class** as defined in the provider
-
-## Entry
-
-**Extends BaseEntry**
-
-Representation of one file or directory entry
-All names are asolute (no leading '/') and build with '/'
-
-### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
--   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))**  (optional, default `undefined`)
--   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content (optional, default `Entry.TYPE_BLOB`)
--   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions (optional, default `"100644"`)
--   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the content
-
-### Properties
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name inside of the repository
--   `content` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html) \| [Stream](https://nodejs.org/api/stream.html))** 
--   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** type of the content
--   `mode` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file permissions
--   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the content
-
-### getString
-
-Deliver content as string
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** content
-
-### getReadStream
-
-Deliver content as read stream
-
-Returns **ReadableStream** content
-
-### equalsMeta
-
-compare meta info against other entry
-
-#### Parameters
-
--   `other` **[Entry](#entry)** 
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other has the same meta information (name...)
-
-### equalsContent
-
-compare content against other entry
-
-#### Parameters
-
--   `other` **[Entry](#entry)** 
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other has the same content (bitwise)
-
-### equals
-
-compare against other entry
-
-#### Parameters
-
--   `other` **[Entry](#entry)** 
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other describes the same content
-
-## emptyEntry
-
-Create empty content (file)
-
-### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `options`  
-
-Returns **[Entry](#entry)** 
 
 ## definePropertiesFromOptions
 

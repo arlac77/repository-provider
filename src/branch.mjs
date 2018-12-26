@@ -235,21 +235,5 @@ export const Branch = OneTimeInititalizerMixin(
     async createBranch(name, options) {
       return this.repository.createBranch(name, this, options);
     }
-
-    /// depredations follow
-
-    async *list(...args) {
-      console.log(
-        `${this.constructor.name}: list is deprecated use entries instead`
-      );
-      return this.entries(...args);
-    }
-
-    async content(...args) {
-      console.log(
-        `${this.constructor.name}: content is deprecated use entry instead`
-      );
-      return this.entry(...args);
-    }
   }
 );

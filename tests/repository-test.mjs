@@ -3,7 +3,7 @@ import { Owner } from "../src/owner";
 import { Provider } from "../src/provider";
 import { Repository } from "../src/repository";
 import { Branch } from "../src/branch";
-import { Entry } from "../src/entry";
+import { Entry } from "content-entry/src/entry";
 import { PullRequest } from "../src/pull-request";
 
 test("repository create with options", t => {

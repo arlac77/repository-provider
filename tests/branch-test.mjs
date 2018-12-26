@@ -3,7 +3,7 @@ import { Provider } from "../src/provider";
 import { Branch } from "../src/branch";
 import { Repository } from "../src/repository";
 import { PullRequest } from "../src/pull-request";
-import { Entry } from "../src/entry";
+import { Entry } from "content-entry/src/entry";
 
 test("branch", async t => {
   const provider = new Provider();

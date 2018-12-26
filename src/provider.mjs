@@ -3,26 +3,9 @@ import { Owner } from "./owner";
 import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
-import { BaseEntry } from "content-entry/src/base-entry";
-import { BaseCollectionEntry, CollectionEntryMixin } from "content-entry/src/base-collection-entry";
-import {
-  Entry,
-  emptyEntry
-} from "./entry";
 import { notImplementedError, definePropertiesFromOptions } from "./util";
 
-export {
-  Repository,
-  Branch,
-  PullRequest,
-  Owner,
-  RepositoryGroup,
-  BaseEntry,
-  Entry,
-  BaseCollectionEntry,
-  CollectionEntryMixin,
-  emptyEntry
-};
+export { Repository, Branch, PullRequest, Owner, RepositoryGroup };
 
 /**
  * Base repository provider acts as a source of repositories
