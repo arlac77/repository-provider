@@ -29,7 +29,7 @@
     "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {
-    "content-entry": "^1.4.2",
+    "content-entry": "^1.7.0",
     "loglevel-mixin": "^2.0.5",
     "to-readable-stream": "^1.0.0"
   },
