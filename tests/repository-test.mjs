@@ -3,7 +3,6 @@ import { Owner } from "../src/owner";
 import { Provider } from "../src/provider";
 import { Repository } from "../src/repository";
 import { Branch } from "../src/branch";
-import { Entry } from "content-entry/src/entry";
 import { PullRequest } from "../src/pull-request";
 
 test("repository create with options", t => {
@@ -55,7 +54,7 @@ test("repository classes", t => {
   const owner = new Provider();
   const repository = new Repository(owner, "r1#branch");
   t.is(repository.branchClass, Branch);
-  t.is(repository.entryClass, Entry);
+  t.is(repository.entryClass, undefined);
   t.is(repository.pullRequestClass, PullRequest);
 });
 

@@ -1,6 +1,5 @@
 import { Repository } from "./repository";
 import { Branch } from "./branch";
-import { Entry } from "content-entry/src/entry";
 import { PullRequest } from "./pull-request";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
 import { LogLevelMixin } from "loglevel-mixin/src/loglevel-mixin.mjs";
@@ -49,7 +48,7 @@ export const Owner = LogLevelMixin(
        * @return {Class} entry class used by the Provider
        */
       get entryClass() {
-        return Entry;
+        return undefined;
       }
 
       /**

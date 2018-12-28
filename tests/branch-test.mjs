@@ -3,7 +3,6 @@ import { Provider } from "../src/provider";
 import { Branch } from "../src/branch";
 import { Repository } from "../src/repository";
 import { PullRequest } from "../src/pull-request";
-import { Entry } from "content-entry/src/entry";
 
 test("branch", async t => {
   const provider = new Provider();
@@ -23,7 +22,7 @@ test("branch", async t => {
   t.is(`${b}`, "r1#b1");
   t.is(b.ref, "refs/heads/b1");
   t.is(b.pullRequestClass, PullRequest);
-  t.is(b.entryClass, Entry);
+  t.is(b.entryClass, undefined);
   t.is(await repository.branch("b1"), b);
 });
 
