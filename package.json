@@ -27,7 +27,7 @@
     "lint": "documentation lint src/provider.mjs"
   },
   "dependencies": {
-    "loglevel-mixin": "^2.0.5"
+    "loglevel-mixin": "^3.0.0"
   },
   "devDependencies": {
     "ava": "^1.0.1",
