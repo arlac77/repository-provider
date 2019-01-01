@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/provider.js",
+  "main": "src/provider.mjs",
   "module": "src/provider.mjs",
   "description": "abstract interface to git repository providers like github bitbucket",
   "keywords": [
@@ -22,7 +22,7 @@
     "cover": "c8 --temp-directory build/coverage ava && c8 report -r lcov --temp-directory build/coverage",
     "docs": "documentation readme src/provider.mjs --section=API",
     "lint": "documentation lint src/provider.mjs",
-    "posttest": "markdown-doctest && npm run prepare",
+    "posttest": "markdown-doctest",
     "test": "ava"
   },
   "dependencies": {
