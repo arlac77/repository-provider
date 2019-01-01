@@ -2,7 +2,7 @@ import { Repository } from "./repository";
 import { Branch } from "./branch";
 import { PullRequest } from "./pull-request";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
-import { LogLevelMixin } from "loglevel-mixin/src/loglevel-mixin.mjs";
+import { LogLevelMixin } from "loglevel-mixin";
 
 /**
  * Collection of repositories
