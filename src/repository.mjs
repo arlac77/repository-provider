@@ -41,16 +41,12 @@ export const Repository = OneTimeInititalizerMixin(
     constructor(owner, name, options) {
       name = name.replace(/#.*$/, "");
 
-      definePropertiesFromOptions(
-        this,
-        options,
-        {
-          name: { value: name },
-          owner: { value: owner },
-          _branches: { value: new Map() },
-          _pullRequests: { value: new Map() }
-        }
-      );
+      definePropertiesFromOptions(this, options, {
+        name: { value: name },
+        owner: { value: owner },
+        _branches: { value: new Map() },
+        _pullRequests: { value: new Map() }
+      });
     }
 
     /**
@@ -272,22 +268,6 @@ export const Repository = OneTimeInititalizerMixin(
      */
     async refId(ref) {
       return undefined;
-    }
-
-    /**
-     * Value delivered from the provider
-     * @return {boolean} providers rateLimitReached
-     */
-    get rateLimitReached() {
-      return this.provider.rateLimitReached;
-    }
-
-    /**
-     * forward to the Provider
-     * @param {boolean} value
-     */
-    set rateLimitReached(value) {
-      this.provider.rateLimitReached(value);
     }
 
     async _initialize() {}

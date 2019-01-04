@@ -132,15 +132,6 @@ export class Provider extends Owner {
   }
 
   /**
-   * Is our rate limit reached.
-   * By default we have no rate limit
-   * @return {boolean} always false
-   */
-  get rateLimitReached() {
-    return false;
-  }
-
-  /**
    * Deliver the provider name
    * @return {string} class name by default
    */

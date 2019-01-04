@@ -163,23 +163,6 @@ export const Branch = OneTimeInititalizerMixin(
       return e;
     }
 
-    /**
-     * Value delivered from the provider
-     * @see {@link Provider#rateLimitReached}
-     * @return {boolean} providers rateLimitReached
-     */
-    get rateLimitReached() {
-      return this.provider.rateLimitReached;
-    }
-
-    /**
-     * forward to the Provider
-     * @param {boolean} value
-     */
-    set rateLimitReached(value) {
-      this.provider.rateLimitReached(value);
-    }
-
     async _initialize() {}
 
     /**

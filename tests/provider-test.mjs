@@ -3,14 +3,13 @@ import { Provider } from "../src/provider";
 
 test("provider", async t => {
   const provider = new Provider({ key: "value" });
-  t.is(provider.rateLimitReached, false);
   t.is(provider.type, "git");
   t.is(provider.priority, 0);
   t.is(provider.name, "Provider");
   t.is(`${provider}`, "Provider");
   t.deepEqual(provider.toJSON(), {
-    name: 'Provider',
-    logLevel: 'info',
+    name: "Provider",
+    logLevel: "info",
     priority: 0
   });
 });

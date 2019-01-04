@@ -55,7 +55,6 @@ const files = await branch.list();
     -   [branch](#branch)
         -   [Parameters](#parameters-4)
     -   [repositoryGroupClass](#repositorygroupclass)
-    -   [rateLimitReached](#ratelimitreached)
     -   [name](#name)
     -   [provider](#provider-1)
     -   [toJSON](#tojson)
@@ -68,11 +67,11 @@ const files = await branch.list();
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [logger](#logger)
     -   [Parameters](#parameters-7)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-8)
     -   [Properties](#properties-3)
@@ -165,13 +164,6 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Returns **Class** repository group class used by the Provider
 
-### rateLimitReached
-
-Is our rate limit reached.
-By default we have no rate limit
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** always false
-
 ### name
 
 Deliver the provider name
@@ -234,6 +226,10 @@ options
 
 options
 
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
+
 ## Owner
 
 Collection of repositories
@@ -249,10 +245,6 @@ default logger
 ### Parameters
 
 -   `arg` **...any** 
-
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
 
 ## Repository
 
