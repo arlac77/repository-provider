@@ -29,12 +29,12 @@
     "loglevel-mixin": "^3.0.0"
   },
   "devDependencies": {
-    "ava": "^1.0.1",
+    "ava": "^1.1.0",
     "c8": "^3.2.1",
     "documentation": "^9.1.1",
     "esm": "^3.0.84",
     "markdown-doctest": "^0.9.1",
-    "semantic-release": "^15.13.2"
+    "semantic-release": "^15.13.3"
   },
   "engines": {
     "node": ">=10.15.0"
