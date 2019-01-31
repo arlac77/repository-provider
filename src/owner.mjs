@@ -3,6 +3,7 @@ import { Branch } from "./branch";
 import { PullRequest } from "./pull-request";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
 import { LogLevelMixin } from "loglevel-mixin";
+import micromatch from "micromatch";
 
 /**
  * Collection of repositories
@@ -26,7 +27,7 @@ export const Owner = LogLevelMixin(
 
       constructor() {
         Object.defineProperties(this, {
-          repositories: { value: new Map() }
+          _repositories: { value: new Map() }
         });
       }
 
@@ -65,7 +66,7 @@ export const Owner = LogLevelMixin(
        */
       async deleteRepository(name) {
         await this.initialize();
-        this.repositories.delete(name);
+        this._repositories.delete(name);
       }
 
       /**
@@ -81,7 +82,19 @@ export const Owner = LogLevelMixin(
         const [repoName, branchName] = name.split(/#/);
 
         await this.initialize();
-        return this.repositories.get(repoName);
+        return this._repositories.get(repoName);
+      }
+
+      /**
+       * List repositories for the owner
+       * @param {string[]} matchingPatterns
+       * @return {Repository} all matching repositories of the owner
+       */
+      async *repositories(patterns) {
+        await this.initialize();
+        for(const name of micromatch([...this._repositories.keys()], patterns)) {
+          yield this._repositories.get(name);
+        }
       }
 
       /**
@@ -93,7 +106,7 @@ export const Owner = LogLevelMixin(
       async createRepository(name, options) {
         await this.initialize();
         const repository = new this.repositoryClass(this, name, options);
-        this.repositories.set(repository.name, repository);
+        this._repositories.set(repository.name, repository);
         return repository;
       }
 
