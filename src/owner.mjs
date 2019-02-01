@@ -87,8 +87,8 @@ export const Owner = LogLevelMixin(
 
       /**
        * List repositories for the owner
-       * @param {string[]} matchingPatterns
-       * @return {Repository} all matching repositories of the owner
+       * @param {string[]|string} matchingPatterns
+       * @return {Iterator<Repository>} all matching repositories of the owner
        */
       async *repositories(patterns) {
         await this.initialize();
@@ -135,6 +135,27 @@ export const Owner = LogLevelMixin(
           : repository.branch(branchName);
       }
 
+      /**
+       * List branches for the owner
+       * @param {string[]|string} matchingPatterns
+       * @return {Iterator<Branch>} all matching branches of the owner
+       */
+      async *branches(patterns) {
+        const [repoPatterns, branchPatterns] = patterns.split(/#/);
+
+        await this.initialize();
+ 
+        for(const name of micromatch([...this._repositories.keys()], repoPatterns)) {
+          const repository = this._repositories.get(name);
+          const branch = branchPatterns === undefined
+            ? repository.defaultBranch
+            : repository.branch(branchPatterns);
+          if(branch !== undefined) {
+            yield branch;
+          }
+        }
+      }
+      
       /**
        * Deliver the repository type
        * @return {string} 'git'
