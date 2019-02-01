@@ -1,5 +1,6 @@
 import test from "ava";
 import { Owner } from "../src/owner";
+import { Branch } from "../src/branch";
 
 test("owner create repository", async t => {
   const owner = new Owner();
@@ -34,29 +35,29 @@ test("owner list repositories", async t => {
 
   const m = {};
 
-  for await ( const r of owner.repositories("r*")) {
+  for await (const r of owner.repositories("r*")) {
     m[r.name] = r;
   }
 
-  t.is(m.r1.name,'r1');
-  t.is(m.r2.name,'r2');
+  t.is(m.r1.name, "r1");
+  t.is(m.r2.name, "r2");
   t.falsy(m.x);
 });
 
 test("owner list branches", async t => {
   const owner = new Owner();
-  await owner.createRepository("r1");
-  await owner.createRepository("r2");
-  await owner.createRepository("x");
-  await owner.createRepository("yr2");
+  new Branch(await owner.createRepository("r1"));
+  new Branch(await owner.createRepository("r2"));
+  new Branch(await owner.createRepository("x"));
+  new Branch(await owner.createRepository("yr2"));
 
   const m = {};
 
-  for await ( const b of owner.branches("r*")) {
+  for await (const b of owner.branches("r*")) {
     m[b.fullName] = b;
   }
 
-  t.is(m['r1#master'].name,'r1#master');
+  t.is(m["r1#master"].fullName, "r1#master");
   t.falsy(m.x);
 });
 
