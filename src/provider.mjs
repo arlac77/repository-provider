@@ -1,11 +1,12 @@
 import { Branch } from "./branch";
 import { Owner } from "./owner";
+import { RepositoryOwnerMixin } from "./owner-mixin";
 import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
 import { notImplementedError, definePropertiesFromOptions } from "./util";
 
-export { Repository, Branch, PullRequest, Owner, RepositoryGroup };
+export { Repository, Branch, PullRequest, Owner, RepositoryOwnerMixin, RepositoryGroup };
 
 /**
  * Base repository provider acts as a source of repositories

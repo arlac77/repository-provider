@@ -70,19 +70,22 @@ const files = await branch.list();
 -   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
--   [logger](#logger)
+-   [RepositoryOwnerMixin](#repositoryownermixin)
     -   [Parameters](#parameters-7)
--   [Repository](#repository-1)
-    -   [Parameters](#parameters-8)
     -   [Properties](#properties-3)
+-   [logger](#logger)
+    -   [Parameters](#parameters-8)
+-   [Repository](#repository-1)
+    -   [Parameters](#parameters-9)
+    -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
 -   [id](#id)
 -   [id](#id-1)
 -   [id](#id-2)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-9)
-    -   [Properties](#properties-4)
+    -   [Parameters](#parameters-10)
+    -   [Properties](#properties-5)
     -   [provider](#provider-2)
     -   [delete](#delete)
     -   [merge](#merge)
@@ -93,14 +96,14 @@ const files = await branch.list();
 -   [locked](#locked)
 -   [merged](#merged)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-10)
-    -   [Properties](#properties-5)
+    -   [Parameters](#parameters-11)
+    -   [Properties](#properties-6)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-11)
+    -   [Parameters](#parameters-12)
 
 ## Provider
 
@@ -233,6 +236,18 @@ enshures that \_initialize() will be called only once
 ## Owner
 
 Collection of repositories
+
+### Properties
+
+-   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Repository](#repository)>** 
+
+## RepositoryOwnerMixin
+
+Collection of repositories
+
+### Parameters
+
+-   `parent`  
 
 ### Properties
 
