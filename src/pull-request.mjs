@@ -126,9 +126,14 @@ export class PullRequest {
   }
 
   toString() {
-    return `${this.name}: ${this.title}, state: ${this.state}, merged: ${
-      this.merged
-    }`;
+    return [
+      [this.name, this.title],
+      ["state", this.state],
+      ["merged", this.merged],
+      ["destination", this.destination]
+    ]
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(", ");
   }
 
   toJSON() {
