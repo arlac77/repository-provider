@@ -128,8 +128,7 @@ export class PullRequest {
   toString() {
     return [
       [this.name, this.title],
-      ["state", this.state],
-      ["merged", this.merged],
+      ...Object.keys(this.constructor.defaultOptions).filter(k => k !== 'id' && k !== 'title' && k !== 'body').map(k => [k,this[k]]),
       ["destination", this.destination]
     ]
       .map(([k, v]) => `${k}: ${v}`)

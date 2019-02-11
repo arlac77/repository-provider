@@ -36,7 +36,7 @@ test("pullRequest create", async t => {
   t.is(pr.id, "123456");
   t.is(
     `${pr}`,
-    "p1: a title, state: closed, merged: false, destination: r1#b2"
+    "p1: a title, state: closed, locked: false, merged: false, destination: r1#b2"
   );
 
   t.is(await repository.pullRequest("p1"), pr);
