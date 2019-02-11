@@ -5,13 +5,14 @@ import { Repository } from "./repository";
 import { PullRequest } from "./pull-request";
 import { RepositoryGroup } from "./group";
 import { notImplementedError, definePropertiesFromOptions } from "./util";
+import micromatch from "micromatch";
 
 export { Repository, Branch, PullRequest, Owner, RepositoryOwnerMixin, RepositoryGroup };
 
 /**
  * Base repository provider acts as a source of repositories
  * @param {Object} options
- * @property {Map<string,RepositoryGroup>} repositoryGroups
+ * @property {Map<string,RepositoryGroup>} _repositoryGroups
  */
 export class Provider extends Owner {
   /**
@@ -41,7 +42,7 @@ export class Provider extends Owner {
     super();
 
     definePropertiesFromOptions(this, options, {
-      repositoryGroups: { value: new Map() }
+      _repositoryGroups: { value: new Map() }
     });
 
     this.trace(level => options);
@@ -58,7 +59,22 @@ export class Provider extends Owner {
       return undefined;
     }
     await this.initialize();
-    return this.repositoryGroups.get(name);
+    return this._repositoryGroups.get(name);
+  }
+
+  /**
+   * List groups
+   * @param {string[]|string} matchingPatterns
+   * @return {Iterator<RepositoryGroup>} all matching repositories groups of the owner
+   */
+  async *repositoryGroups(patterns) {
+    await this.initialize();
+    for (const name of micromatch(
+      [...this._repositoryGroups.keys()],
+      patterns
+    )) {
+      yield this._repositoryGroups.get(name);
+    }
   }
 
   /**
@@ -71,7 +87,7 @@ export class Provider extends Owner {
     await this.initialize();
     const repositoryGroup = new this.repositoryGroupClass(this, name, options);
     await repositoryGroup.initialize();
-    this.repositoryGroups.set(name, repositoryGroup);
+    this._repositoryGroups.set(name, repositoryGroup);
     return repositoryGroup;
   }
 
@@ -90,7 +106,7 @@ export class Provider extends Owner {
       return r;
     }
 
-    for (const p of this.repositoryGroups.values()) {
+    for (const p of this._repositoryGroups.values()) {
       const r = await p.repository(name, options);
       if (r !== undefined) {
         return r;
@@ -115,7 +131,7 @@ export class Provider extends Owner {
       return r;
     }
 
-    for (const p of this.repositoryGroups.values()) {
+    for (const p of this._repositoryGroups.values()) {
       const r = await p.branch(name, options);
       if (r !== undefined) {
         return r;

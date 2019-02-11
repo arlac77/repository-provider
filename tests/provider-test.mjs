@@ -33,6 +33,20 @@ test("provider repository group create repository", async t => {
   //t.is(await provider.repository('p1/r1'), r1);
 });
 
+test("provider repository group list", async t => {
+  const provider = new Provider();
+  await provider.createRepositoryGroup("g1");
+  await provider.createRepositoryGroup("g2");
+
+  const gs = {};
+
+  for await(const g of provider.repositoryGroups("*")) {
+    gs[g.name] = g;
+  }
+
+  t.is(gs.g1.name, 'g1');
+});
+
 test("get repository#branch", async t => {
   const provider = new Provider();
   const r = await provider.createRepository("r1");

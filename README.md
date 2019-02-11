@@ -48,21 +48,23 @@ const files = await branch.list();
     -   [Properties](#properties)
     -   [repositoryGroup](#repositorygroup)
         -   [Parameters](#parameters-1)
-    -   [createRepositoryGroup](#createrepositorygroup)
+    -   [repositoryGroups](#repositorygroups)
         -   [Parameters](#parameters-2)
-    -   [repository](#repository)
+    -   [createRepositoryGroup](#createrepositorygroup)
         -   [Parameters](#parameters-3)
-    -   [branch](#branch)
+    -   [repository](#repository)
         -   [Parameters](#parameters-4)
+    -   [branch](#branch)
+        -   [Parameters](#parameters-5)
     -   [repositoryGroupClass](#repositorygroupclass)
     -   [name](#name)
     -   [provider](#provider-1)
     -   [toJSON](#tojson)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-5)
+        -   [Parameters](#parameters-6)
 -   [priority](#priority)
 -   [Branch](#branch-1)
-    -   [Parameters](#parameters-6)
+    -   [Parameters](#parameters-7)
     -   [Properties](#properties-1)
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
@@ -71,12 +73,12 @@ const files = await branch.list();
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
-    -   [Parameters](#parameters-7)
+    -   [Parameters](#parameters-8)
     -   [Properties](#properties-3)
 -   [logger](#logger)
-    -   [Parameters](#parameters-8)
--   [Repository](#repository-1)
     -   [Parameters](#parameters-9)
+-   [Repository](#repository-1)
+    -   [Parameters](#parameters-10)
     -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
@@ -84,7 +86,7 @@ const files = await branch.list();
 -   [id](#id-1)
 -   [id](#id-2)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-10)
+    -   [Parameters](#parameters-11)
     -   [Properties](#properties-5)
     -   [provider](#provider-2)
     -   [delete](#delete)
@@ -96,14 +98,14 @@ const files = await branch.list();
 -   [locked](#locked)
 -   [merged](#merged)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-11)
+    -   [Parameters](#parameters-12)
     -   [Properties](#properties-6)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-12)
+    -   [Parameters](#parameters-13)
 
 ## Provider
 
@@ -117,7 +119,7 @@ Base repository provider acts as a source of repositories
 
 ### Properties
 
--   `repositoryGroups` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [RepositoryGroup](#repositorygroup)>** 
+-   `_repositoryGroups` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [RepositoryGroup](#repositorygroup)>** 
 
 ### repositoryGroup
 
@@ -129,6 +131,17 @@ Lookup a repository group
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[RepositoryGroup](#repositorygroup)>** 
+
+### repositoryGroups
+
+List groups
+
+#### Parameters
+
+-   `patterns`  
+-   `matchingPatterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
+
+Returns **Iterator&lt;[RepositoryGroup](#repositorygroup)>** all matching repositories groups of the owner
 
 ### createRepositoryGroup
 
