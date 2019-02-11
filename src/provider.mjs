@@ -64,7 +64,7 @@ export class Provider extends Owner {
 
   /**
    * List groups
-   * @param {string[]|string} matchingPatterns
+   * @param {string[]|string} patterns
    * @return {Iterator<RepositoryGroup>} all matching repositories groups of the owner
    */
   async *repositoryGroups(patterns) {
