@@ -110,9 +110,26 @@ export function RepositoryOwnerMixin(parent) {
          */
         async createRepository(name, options) {
           await this.initialize();
-          const repository = new this.repositoryClass(this, name, options);
-          this._repositories.set(repository.name, repository);
+          let repository = this._repositories.get(name);
+          if(repository === undefined) {
+            repository = await this._createRepository(name, options);
+            this._repositories.set(repository.name, repository);
+          }
+
           return repository;
+        }
+
+        /**
+         * Create a new {@link Repository}
+         * All owner implementations must provide a repository._createRepository() to handle the real repository creation.
+         * This methos MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
+         * Internal repository creation does not call owner.initialize()
+         * @param {string} name
+         * @param {Object} options
+         * @return {Promise<Repository>} newly created repository
+         */
+        async _createRepository(name, options) {
+          return new this.repositoryClass(this, name, options);
         }
 
         /**

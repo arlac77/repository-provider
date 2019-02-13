@@ -69,7 +69,6 @@ const files = await branch.list();
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
@@ -77,6 +76,7 @@ const files = await branch.list();
     -   [Properties](#properties-3)
 -   [logger](#logger)
     -   [Parameters](#parameters-9)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-10)
     -   [Properties](#properties-4)
@@ -241,10 +241,6 @@ options
 
 options
 
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
-
 ## Owner
 
 Collection of repositories
@@ -272,6 +268,10 @@ default logger
 ### Parameters
 
 -   `arg` **...any** 
+
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
 
 ## Repository
 
