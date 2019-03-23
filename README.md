@@ -6,11 +6,9 @@
 [![codecov.io](http://codecov.io/github/arlac77/repository-provider/coverage.svg?branch=master)](http://codecov.io/github/arlac77/repository-provider?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/arlac77/repository-provider/badge.svg)](https://snyk.io/test/github/arlac77/repository-provider)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/repository-provider.svg?style=flat-square)](https://github.com/arlac77/repository-provider/issues)
-[![Stories in Ready](https://badge.waffle.io/arlac77/repository-provider.svg?label=ready&title=Ready)](http://waffle.io/arlac77/repository-provider)
 [![Dependency Status](https://david-dm.org/arlac77/repository-provider.svg)](https://david-dm.org/arlac77/repository-provider)
 [![devDependency Status](https://david-dm.org/arlac77/repository-provider/dev-status.svg)](https://david-dm.org/arlac77/repository-provider#info=devDependencies)
 [![docs](http://inch-ci.org/github/arlac77/repository-provider.svg?branch=master)](http://inch-ci.org/github/arlac77/repository-provider)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 [![downloads](http://img.shields.io/npm/dm/repository-provider.svg?style=flat-square)](https://npmjs.org/package/repository-provider)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
