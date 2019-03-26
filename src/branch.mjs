@@ -144,7 +144,7 @@ export const Branch = OneTimeInititalizerMixin(
 
     /**
      * List all entries of the branch
-     * @return {Entry} all entries in the branch
+     * @return {Iterator<Entry>} all entries in the branch
      */
     [Symbol.asyncIterator]() {
       return this.entries();
