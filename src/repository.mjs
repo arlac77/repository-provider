@@ -75,6 +75,15 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
+     * List entries of the default branch
+     * @param {string[]} matchingPatterns
+     * @return {Entry} all matching entries in the branch
+     */
+    async *entries(...args) {
+      yield *(await this.defaultBranch).entries(...args);
+    }
+
+    /**
      * urls to access the repo
      * @return {string[]}
      */
