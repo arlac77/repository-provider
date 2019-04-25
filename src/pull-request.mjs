@@ -1,4 +1,4 @@
-import { notImplementedError, definePropertiesFromOptions } from "./util";
+import { notImplementedError, definePropertiesFromOptions } from "./util.mjs";
 
 /**
  * Abstract pull request

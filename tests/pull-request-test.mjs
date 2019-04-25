@@ -1,6 +1,6 @@
 import test from "ava";
-import { Provider } from "../src/provider";
-import { PullRequest } from "../src/pull-request";
+import { Provider } from "../src/provider.mjs";
+import { PullRequest } from "../src/pull-request.mjs";
 
 test("pullRequest list", async t => {
   const provider = new Provider();

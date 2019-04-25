@@ -1,6 +1,5 @@
-import { notImplementedError } from "./util";
-import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
-import { definePropertiesFromOptions } from "./util";
+import { definePropertiesFromOptions, notImplementedError } from "./util.mjs";
+import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
 
 /**
  * Abstract branch

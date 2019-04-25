@@ -1,5 +1,5 @@
 
-import { RepositoryOwnerMixin } from './owner-mixin';
+import { RepositoryOwnerMixin } from './owner-mixin.mjs';
 
 /**
  * Collection of repositories

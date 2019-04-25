@@ -1,5 +1,5 @@
 import test from "ava";
-import { Provider } from "../src/provider";
+import { Provider } from "../src/provider.mjs";
 
 test("provider", async t => {
   const provider = new Provider({ key: "value" });

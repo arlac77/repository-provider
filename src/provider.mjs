@@ -1,10 +1,10 @@
-import { Branch } from "./branch";
-import { Owner } from "./owner";
-import { RepositoryOwnerMixin } from "./owner-mixin";
-import { Repository } from "./repository";
-import { PullRequest } from "./pull-request";
-import { RepositoryGroup } from "./group";
-import { notImplementedError, definePropertiesFromOptions } from "./util";
+import { Branch } from "./branch.mjs";
+import { Owner } from "./owner.mjs";
+import { RepositoryOwnerMixin } from "./owner-mixin.mjs";
+import { Repository } from "./repository.mjs";
+import { PullRequest } from "./pull-request.mjs";
+import { RepositoryGroup } from "./group.mjs";
+import { notImplementedError, definePropertiesFromOptions } from "./util.mjs";
 import micromatch from "micromatch";
 
 export { Repository, Branch, PullRequest, Owner, RepositoryOwnerMixin, RepositoryGroup };

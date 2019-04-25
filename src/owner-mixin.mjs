@@ -1,7 +1,7 @@
-import { Repository } from "./repository";
-import { Branch } from "./branch";
-import { PullRequest } from "./pull-request";
-import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin";
+import { Repository } from "./repository.mjs";
+import { Branch } from "./branch.mjs";
+import { PullRequest } from "./pull-request.mjs";
+import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
 import { LogLevelMixin } from "loglevel-mixin";
 import micromatch from "micromatch";
 

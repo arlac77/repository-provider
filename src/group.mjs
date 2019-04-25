@@ -1,5 +1,5 @@
-import { Owner } from "./owner";
-import { definePropertiesFromOptions } from "./util";
+import { Owner } from "./owner.mjs";
+import { definePropertiesFromOptions } from "./util.mjs";
 
 /**
  * Abstract repository collection

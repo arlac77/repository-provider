@@ -1,5 +1,5 @@
 import test from 'ava';
-import { OneTimeInititalizerMixin } from '../src/one-time-initializer-mixin';
+import { OneTimeInititalizerMixin } from '../src/one-time-initializer-mixin.mjs';
 
 const MyProbe = OneTimeInititalizerMixin(
   class Base {

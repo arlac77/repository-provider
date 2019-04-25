@@ -1,9 +1,9 @@
 import test from "ava";
-import { Owner } from "../src/owner";
-import { Provider } from "../src/provider";
-import { Repository } from "../src/repository";
-import { Branch } from "../src/branch";
-import { PullRequest } from "../src/pull-request";
+import { Owner } from "../src/owner.mjs";
+import { Provider } from "../src/provider.mjs";
+import { Repository } from "../src/repository.mjs";
+import { Branch } from "../src/branch.mjs";
+import { PullRequest } from "../src/pull-request.mjs";
 
 test("repository create with options", t => {
   const owner = new Owner();
