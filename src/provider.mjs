@@ -7,7 +7,14 @@ import { RepositoryGroup } from "./group.mjs";
 import { notImplementedError, definePropertiesFromOptions } from "./util.mjs";
 import micromatch from "micromatch";
 
-export { Repository, Branch, PullRequest, Owner, RepositoryOwnerMixin, RepositoryGroup };
+export {
+  Repository,
+  Branch,
+  PullRequest,
+  Owner,
+  RepositoryOwnerMixin,
+  RepositoryGroup
+};
 
 /**
  * Base repository provider acts as a source of repositories
@@ -60,21 +67,6 @@ export class Provider extends Owner {
     }
     await this.initialize();
     return this._repositoryGroups.get(name);
-  }
-
-  /**
-   * List groups
-   * @param {string[]|string} patterns
-   * @return {Iterator<RepositoryGroup>} all matching repositories groups of the owner
-   */
-  async *repositoryGroups(patterns) {
-    await this.initialize();
-    for (const name of micromatch(
-      [...this._repositoryGroups.keys()],
-      patterns
-    )) {
-      yield this._repositoryGroups.get(name);
-    }
   }
 
   /**
@@ -140,6 +132,35 @@ export class Provider extends Owner {
 
     return undefined;
   }
+
+  /**
+   * List groups
+   * @param {string[]|string} patterns
+   * @return {Iterator<RepositoryGroup>} all matching repositories groups of the provider
+   */
+  async *repositoryGroups(patterns) {
+    await this.initialize();
+    for (const name of micromatch(
+      [...this._repositoryGroups.keys()],
+      patterns
+    )) {
+      yield this._repositoryGroups.get(name);
+    }
+  }
+
+  /**
+   * List repositories
+   * @param {string[]|string} patterns
+   * @return {Iterator<Repository>} all matching branches of the provider
+   */
+  async *repositories() {}
+
+  /**
+   * List branches
+   * @param {string[]|string} patterns
+   * @return {Iterator<Branch>} all matching branches of the provider
+   */
+  async *branches(patterns) {}
 
   /**
    * @return {Class} repository group class used by the Provider
