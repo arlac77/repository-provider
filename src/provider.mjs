@@ -153,7 +153,7 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Repository>} all matching branches of the provider
    */
-  async *repositories() {}
+  async *repositories(patterns) {}
 
   /**
    * List branches
