@@ -80,7 +80,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Entry} all matching entries in the branch
      */
     async *entries(...args) {
-      yield *(await this.defaultBranch).entries(...args);
+      yield* (await this.defaultBranch).entries(...args);
     }
 
     /**
@@ -317,8 +317,19 @@ export const Repository = OneTimeInititalizerMixin(
       return this.name;
     }
 
+    /**
+     * provide name and all defined defaultOptions
+     */
     toJSON() {
-      return Object.assign({ name: this.name }, super.toJSON());
+      return Object.keys(this.constructor.defaultOptions).reduce(
+        (a, c) => {
+          if (this[c] !== undefined) {
+            a[c] = this[c];
+          }
+          return a;
+        },
+        { name: this.name }
+      );
     }
   }
 );

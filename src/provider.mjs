@@ -33,16 +33,14 @@ export class Provider extends Owner {
   }
 
   static get defaultOptions() {
-    return Object.assign(
-      {
-        /**
-         * in case there are several provider able to support a given source which one sould be used ?
-         * this defines the order
-         */
-        priority: 0
-      },
-      super.defaultOptions
-    );
+    return {
+      /**
+       * in case there are several provider able to support a given source which one sould be used ?
+       * this defines the order
+       */
+      priority: 0,
+      ...super.defaultOptions
+    };
   }
 
   constructor(options) {

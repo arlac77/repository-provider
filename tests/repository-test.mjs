@@ -20,6 +20,11 @@ test("repository create with options", t => {
   t.is(repository.issuesURL, undefined);
   t.is(repository.homePageURL, undefined);
   t.is(repository.toString(), "r1");
+  t.deepEqual(repository.toJSON(), {
+    description: "a description",
+    id: "4711",
+    name: "r1"
+  });
 });
 
 test("repository create without options", t => {

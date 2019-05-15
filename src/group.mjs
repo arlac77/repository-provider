@@ -14,7 +14,8 @@ import { definePropertiesFromOptions } from "./util.mjs";
  */
 export class RepositoryGroup extends Owner {
   static get defaultOptions() {
-    return Object.assign({}, super.defaultOptions, {
+    return {
+      ...super.defaultOptions,
       /**
        * the description of the repository group.
        * @return {string}
@@ -26,7 +27,7 @@ export class RepositoryGroup extends Owner {
        * @return {string}
        */
       id: undefined
-    });
+    };
   }
 
   constructor(provider, name, options) {
@@ -75,6 +76,6 @@ export class RepositoryGroup extends Owner {
   }
 
   toJSON() {
-    return Object.assign({ name: this.name }, super.toJSON());
+    return { name: this.name, ...super.toJSON() };
   }
 }
