@@ -23,7 +23,8 @@ test("repository create with options", t => {
   t.deepEqual(repository.toJSON(), {
     description: "a description",
     id: "4711",
-    name: "r1"
+    name: "r1",
+    urls: []
   });
 });
 
