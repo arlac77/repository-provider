@@ -24,6 +24,7 @@ test("repository create with options", t => {
     description: "a description",
     id: "4711",
     name: "r1",
+    fullName: "r1",
     urls: []
   });
 });

@@ -328,7 +328,7 @@ export const Repository = OneTimeInititalizerMixin(
           }
           return a;
         },
-        { name: this.name, urls: this.urls }
+        { name: this.name, fullName: this.fullName, urls: this.urls }
       );
     }
   }
