@@ -45,7 +45,8 @@ export const Repository = OneTimeInititalizerMixin(
         name: { value: name },
         owner: { value: owner },
         _branches: { value: new Map() },
-        _pullRequests: { value: new Map() }
+        _pullRequests: { value: new Map() },
+        _hooks: { value: new Map() }
       });
     }
 
@@ -264,6 +265,23 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
+     * Add a hook
+     * @param {Hook} hook
+     * @return {Promise}
+     */
+    async addHook(hook) {
+      this._hooks.set(hook.url,hook);
+    }
+
+    /**
+     * List hooks
+     * @param {string} filter
+     * @return {Hook} all matching hook of the repository
+     */
+    async *hooks() {
+    }
+
+    /**
      * @return {string} providers type
      */
     get type() {
@@ -311,6 +329,14 @@ export const Repository = OneTimeInititalizerMixin(
      */
     get entryClass() {
       return this.provider.entryClass;
+    }
+
+    /**
+     * By default we use the providers implementation.
+     * @return {Class} as defined in the provider
+     */
+    get hookClass() {
+      return this.provider.hookClass;
     }
 
     toString() {

@@ -58,6 +58,7 @@ const files = await branch.list();
     -   [branches](#branches)
         -   [Parameters](#parameters-7)
     -   [repositoryGroupClass](#repositorygroupclass)
+    -   [hookClass](#hookclass)
     -   [name](#name)
     -   [provider](#provider-1)
     -   [toJSON](#tojson)
@@ -98,15 +99,18 @@ const files = await branch.list();
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
--   [RepositoryGroup](#repositorygroup-1)
+-   [Hook](#hook)
     -   [Parameters](#parameters-14)
     -   [Properties](#properties-6)
+-   [RepositoryGroup](#repositorygroup-1)
+    -   [Parameters](#parameters-15)
+    -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-15)
+    -   [Parameters](#parameters-16)
 
 ## Provider
 
@@ -199,6 +203,10 @@ Returns **Iterator&lt;[Branch](#branch)>** all matching branches of the provider
 ### repositoryGroupClass
 
 Returns **Class** repository group class used by the Provider
+
+### hookClass
+
+Returns **Class** hook class used by the Provider
 
 ### name
 
@@ -420,6 +428,21 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 merged state of the pull request.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+## Hook
+
+### Parameters
+
+-   `repository`  
+-   `url`  
+-   `events`   (optional, default `new Set(["*"])`)
+-   `options`  
+
+### Properties
+
+-   `repository` **[Repository](#repository)** 
+-   `url` **[URL](https://developer.mozilla.org/docs/Web/API/URL/URL)** 
+-   `events` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
 ## RepositoryGroup
 

@@ -3,6 +3,7 @@ import { Owner } from "./owner.mjs";
 import { RepositoryOwnerMixin } from "./owner-mixin.mjs";
 import { Repository } from "./repository.mjs";
 import { PullRequest } from "./pull-request.mjs";
+import { Hook } from "./hook.mjs";
 import { RepositoryGroup } from "./group.mjs";
 import { notImplementedError, definePropertiesFromOptions } from "./util.mjs";
 import micromatch from "micromatch";
@@ -13,7 +14,8 @@ export {
   PullRequest,
   Owner,
   RepositoryOwnerMixin,
-  RepositoryGroup
+  RepositoryGroup,
+  Hook
 };
 
 /**
@@ -165,6 +167,13 @@ export class Provider extends Owner {
    */
   get repositoryGroupClass() {
     return RepositoryGroup;
+  }
+
+  /**
+   * @return {Class} hook class used by the Provider
+   */
+  get hookClass() {
+    return Hook;
   }
 
   /**
