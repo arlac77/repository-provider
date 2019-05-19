@@ -1,4 +1,4 @@
-import { definePropertiesFromOptions } from "./util.mjs";
+import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
 
 /**
  * @property {Repository} repository
@@ -8,17 +8,27 @@ import { definePropertiesFromOptions } from "./util.mjs";
 export class Hook {
   static get defaultOptions() {
     return {
-      secret: "",
+      id: undefined,
+      url: "",
+      secret: undefined,
       content_type: "json",
+      insecure_ssl: false,
       active: true
     };
   }
 
-  constructor(repository, url, events = new Set(["*"]), options) {
+  constructor(repository, name, events = new Set(["*"]), options) {
     definePropertiesFromOptions(this, options, {
       repository: { value: repository },
-      events: { value: events },
-      url: { value: url }
+      name: { value: name },
+      events: { value: events }
     });
+  }
+
+  /**
+   * provide name and all defined defaultOptions
+   */
+  toJSON() {
+    return optionJSON(this, { name: this.name, events: [...this.events] });
   }
 }

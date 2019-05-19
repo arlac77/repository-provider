@@ -1,6 +1,6 @@
 import { notImplementedError } from "./util.mjs";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
-import { definePropertiesFromOptions } from "./util.mjs";
+import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
 
 /**
  * Abstract repository
@@ -35,7 +35,7 @@ export const Repository = OneTimeInititalizerMixin(
          * @return {string}
          */
         id: undefined,
-        
+
         /**
          * The name of the default branch
          * @return {string}
@@ -52,7 +52,7 @@ export const Repository = OneTimeInititalizerMixin(
         owner: { value: owner },
         _branches: { value: new Map() },
         _pullRequests: { value: new Map() },
-        _hooks: { value: new Map() }
+        _hooks: { value: [] }
       });
     }
 
@@ -276,7 +276,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {Promise}
      */
     async addHook(hook) {
-      this._hooks.set(hook.url,hook);
+      this._hooks.push(hook);
     }
 
     /**
@@ -284,8 +284,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @param {string} filter
      * @return {Hook} all matching hook of the repository
      */
-    async *hooks() {
-    }
+    async *hooks() {}
 
     /**
      * @return {string} providers type
@@ -353,15 +352,11 @@ export const Repository = OneTimeInititalizerMixin(
      * provide name and all defined defaultOptions
      */
     toJSON() {
-      return Object.keys(this.constructor.defaultOptions).reduce(
-        (a, c) => {
-          if (this[c] !== undefined) {
-            a[c] = this[c];
-          }
-          return a;
-        },
-        { name: this.name, fullName: this.fullName, urls: this.urls }
-      );
+      return optionJSON(this, {
+        name: this.name,
+        fullName: this.fullName,
+        urls: this.urls
+      });
     }
   }
 );

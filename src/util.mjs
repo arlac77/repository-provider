@@ -14,16 +14,25 @@ export function definePropertiesFromOptions(object, options, properties = {}) {
   const after = {};
 
   Object.keys(defaultOptions).forEach(name => {
-    const value = (options !== undefined && options[name]) || defaultOptions[name];
+    const value =
+      (options !== undefined && options[name]) || defaultOptions[name];
 
-    if(properties[name] === undefined) {
+    if (properties[name] === undefined) {
       properties[name] = { value };
-    }
-    else {
-      after[name]=value;
+    } else {
+      after[name] = value;
     }
   });
 
   Object.defineProperties(object, properties);
-  Object.assign(object,after);
+  Object.assign(object, after);
+}
+
+export function optionJSON(object, initial = {}) {
+  return Object.keys(object.constructor.defaultOptions).reduce((a, c) => {
+    if (object[c] !== undefined) {
+      a[c] = object[c];
+    }
+    return a;
+  }, initial);
 }

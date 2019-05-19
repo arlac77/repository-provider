@@ -1,4 +1,8 @@
-import { notImplementedError, definePropertiesFromOptions } from "./util.mjs";
+import {
+  notImplementedError,
+  definePropertiesFromOptions,
+  optionJSON
+} from "./util.mjs";
 
 /**
  * Abstract pull request
@@ -128,7 +132,9 @@ export class PullRequest {
   toString() {
     return [
       [this.name, this.title],
-      ...Object.keys(this.constructor.defaultOptions).filter(k => k !== 'id' && k !== 'title' && k !== 'body').map(k => [k,this[k]]),
+      ...Object.keys(this.constructor.defaultOptions)
+        .filter(k => k !== "id" && k !== "title" && k !== "body")
+        .map(k => [k, this[k]]),
       ["destination", this.destination]
     ]
       .map(([k, v]) => `${k}: ${v}`)
@@ -136,13 +142,10 @@ export class PullRequest {
   }
 
   toJSON() {
-    return {
+    return optionJSON(this, {
       source: this.source,
       destination: this.destination,
-      name: this.name,
-      title: this.title,
-      merged: this.merged,
-      state: this.state
-    };
+      name: this.name
+    });
   }
 }

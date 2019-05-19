@@ -103,6 +103,7 @@ const files = await branch.list();
 -   [Hook](#hook)
     -   [Parameters](#parameters-14)
     -   [Properties](#properties-6)
+    -   [toJSON](#tojson-1)
 -   [RepositoryGroup](#repositorygroup-1)
     -   [Parameters](#parameters-15)
     -   [Properties](#properties-7)
@@ -441,7 +442,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### Parameters
 
 -   `repository`  
--   `url`  
+-   `name`  
 -   `events`   (optional, default `new Set(["*"])`)
 -   `options`  
 
@@ -450,6 +451,10 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 -   `repository` **[Repository](#repository)** 
 -   `url` **[URL](https://developer.mozilla.org/docs/Web/API/URL/URL)** 
 -   `events` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+### toJSON
+
+provide name and all defined defaultOptions
 
 ## RepositoryGroup
 
