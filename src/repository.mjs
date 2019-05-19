@@ -34,7 +34,13 @@ export const Repository = OneTimeInititalizerMixin(
          * unique id within the provider.
          * @return {string}
          */
-        id: undefined
+        id: undefined,
+        
+        /**
+         * The name of the default branch
+         * @return {string}
+         */
+        defaultBranchName: "master"
       };
     }
 
@@ -136,10 +142,10 @@ export const Repository = OneTimeInititalizerMixin(
 
     /**
      * Lookup the default branch
-     * @return {Promise<Branch>} 'master' branch
+     * @return {Promise<Branch>} branch named after defaultBranchName
      */
     get defaultBranch() {
-      return this.branch("master");
+      return this.branch(this.defaultBranchName);
     }
 
     /**
@@ -153,7 +159,7 @@ export const Repository = OneTimeInititalizerMixin(
     /**
      * Create a new {@link Branch} by cloning a given source branch
      * @param {string} name
-     * @param {Branch} source branch defaults to master
+     * @param {Branch} source branch defaults to the defaultBranch
      * @param {Object} options
      * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
      */
@@ -178,7 +184,7 @@ export const Repository = OneTimeInititalizerMixin(
      * This methos MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
      * Internal branch creation does not call repository.initialize()
      * @param {string} name
-     * @param {Branch} source branch defaults to master
+     * @param {Branch} source branch defaults to the defaultBranch
      * @param {Object} options
      * @return {Promise<Branch>} newly created branch
      */
