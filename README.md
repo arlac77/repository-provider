@@ -87,6 +87,7 @@ const files = await branch.list();
 -   [id](#id)
 -   [id](#id-1)
 -   [id](#id-2)
+-   [defaultBranchName](#defaultbranchname)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-13)
     -   [Properties](#properties-5)
@@ -350,6 +351,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## id
 
 unique id within the provider.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## defaultBranchName
+
+The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
