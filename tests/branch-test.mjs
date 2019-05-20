@@ -59,6 +59,20 @@ test("branch entries", async t => {
   t.is(entries.size, 0);
 });
 
+test.only("branch entries implicit async itrator", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1");
+
+  const b = new Branch(repository, "b1");
+
+  const entries = new Set();
+  for await (const entry of b) {
+    entries.add(entry.path);
+  }
+
+  t.is(entries.size, 0);
+});
+
 test("branch entry", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");

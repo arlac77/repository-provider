@@ -1,4 +1,8 @@
-import { notImplementedError, definePropertiesFromOptions, optionJSON } from "./util.mjs";
+import {
+  notImplementedError,
+  definePropertiesFromOptions,
+  optionJSON
+} from "./util.mjs";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
 
 /**
@@ -143,10 +147,10 @@ export const Branch = OneTimeInititalizerMixin(
 
     /**
      * List all entries of the branch
-     * @return {Iterator<Entry>} all entries in the branch
+     * @return {asyncIterator<Entry>} all entries in the branch
      */
-    async *[Symbol.iterator]() {
-      return this.entries();
+    async *[Symbol.asyncIterator]() {
+      return yield* this.entries();
     }
 
     /**
@@ -217,7 +221,7 @@ export const Branch = OneTimeInititalizerMixin(
     async createBranch(name, options) {
       return this.repository.createBranch(name, this, options);
     }
-    
+
     /**
      * provide name and all defined defaultOptions
      */
