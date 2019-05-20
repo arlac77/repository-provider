@@ -76,6 +76,6 @@ export class RepositoryGroup extends Owner {
   }
 
   toJSON() {
-    return { name: this.name, ...super.toJSON() };
+    return optionJSON(this, { name: this.name });
   }
 }

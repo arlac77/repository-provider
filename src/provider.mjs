@@ -5,7 +5,7 @@ import { Repository } from "./repository.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Hook } from "./hook.mjs";
 import { RepositoryGroup } from "./group.mjs";
-import { notImplementedError, definePropertiesFromOptions } from "./util.mjs";
+import { definePropertiesFromOptions } from "./util.mjs";
 import micromatch from "micromatch";
 
 export {
