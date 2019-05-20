@@ -1,6 +1,5 @@
-import { notImplementedError } from "./util.mjs";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
-import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
+import { notImplementedError, definePropertiesFromOptions, optionJSON } from "./util.mjs";
 
 /**
  * Abstract repository
