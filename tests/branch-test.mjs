@@ -83,6 +83,8 @@ test("branch entry", async t => {
     instanceOf: Error,
     message: `No such entry 'aFile'`
   });
+
+  t.is(b.maybeEntry("aFile"), undefined);
 });
 
 test("branch create", async t => {

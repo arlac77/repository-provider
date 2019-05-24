@@ -11,6 +11,7 @@ import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
  * @param {Repository} repository
  * @param {string} name
  * @param {Object} options
+ * 
  * @property {Repository} repository
  * @property {Provider} provider
  * @property {string} name
@@ -154,7 +155,16 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * get exactly one matching entry by name
+     * get exactly one matching entry by name or undefine if no such entry is found
+     * @param {string} name
+     * @return {Promise<Entry>}
+     */
+    async maybeEntry(name) {
+      return (await this.entries(name).next()).value;
+    }
+
+    /**
+     * get exactly one matching entry by name (thwos if entry is not found)
      * @param {string} name
      * @return {Promise<Entry>}
      */
