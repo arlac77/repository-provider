@@ -90,6 +90,15 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
+     * get exactly one matching entry by name or undefine if no such entry is found
+     * @param {string} name
+     * @return {Promise<Entry>}
+     */
+    async maybeEntry(name) {
+      return (await this.defaultBranch).maybeEntry(name);
+    }
+
+    /**
      * urls to access the repo
      * @return {string[]}
      */

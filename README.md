@@ -71,7 +71,6 @@ const files = await branch.list();
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
@@ -88,6 +87,7 @@ const files = await branch.list();
 -   [id](#id-1)
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-13)
     -   [Properties](#properties-5)
@@ -272,10 +272,6 @@ options
 
 options
 
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
-
 ## Owner
 
 Collection of repositories
@@ -360,6 +356,10 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
 
 ## PullRequest
 
