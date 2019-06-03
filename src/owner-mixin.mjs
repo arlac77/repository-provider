@@ -76,7 +76,7 @@ export function RepositoryOwnerMixin(parent) {
          * @param {string} name of the repository may contain a #branch
          * @return {Promise<Repository>}
          */
-        async repository(name, options) {
+        async repository(name) {
           if (name === undefined) {
             return undefined;
           }
@@ -104,13 +104,14 @@ export function RepositoryOwnerMixin(parent) {
 
         /**
          * Create a new repository
+         * if there is already if repository for the given name it will be returned
          * @param {string} name
          * @param {Object} options
          * @return {Promise<Repository>}
          */
         async createRepository(name, options) {
-          await this.initialize();
-          let repository = this._repositories.get(name);
+          let repository = await this.repository(name);
+
           if(repository === undefined) {
             repository = await this._createRepository(name, options);
             this._repositories.set(repository.name, repository);

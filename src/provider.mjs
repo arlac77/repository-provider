@@ -58,10 +58,9 @@ export class Provider extends Owner {
   /**
    * Lookup a repository group
    * @param {string} name of the group
-   * @param {Object} options
    * @return {Promise<RepositoryGroup>}
    */
-  async repositoryGroup(name, options) {
+  async repositoryGroup(name) {
     if (name === undefined) {
       return undefined;
     }
@@ -71,12 +70,21 @@ export class Provider extends Owner {
 
   /**
    * Create a new repository group
-   * @param {string} name
+   * If there is already a group for the given name it will be returend instead
+   * @param {string} name of the group
    * @param {Object} options
    * @return {Promise<RepositoryGroup>}
    */
   async createRepositoryGroup(name, options) {
-    await this.initialize();
+    let repositoryGroup = await this.repositoryGroup(name);
+    if (repositoryGroup === undefined) {
+      repositoryGroup = this._createRepositoryGroup(name, options);
+    }
+
+    return repositoryGroup;
+  }
+
+  async _createRepositoryGroup(name, options) {
     const repositoryGroup = new this.repositoryGroupClass(this, name, options);
     await repositoryGroup.initialize();
     this._repositoryGroups.set(name, repositoryGroup);
