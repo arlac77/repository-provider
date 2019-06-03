@@ -58,12 +58,12 @@ test("provider repository list", async t => {
   const rs = {};
 
   for await(const r of provider.repositories()) {
-    //console.log(r.fullName);
     rs[r.fullName] = r;
   }
 
   t.is(Object.keys(rs).length,2);
-   t.is(rs.r2.name, 'r2');
+  t.is(rs['g1/r1'].name, 'r1');
+  t.is(rs['g1/r1'].fullName, 'g1/r1');
 });
 
 test("get repository#branch", async t => {

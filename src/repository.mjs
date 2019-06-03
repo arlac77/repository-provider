@@ -60,7 +60,9 @@ export const Repository = OneTimeInititalizerMixin(
      * @return {string} full repo name
      */
     get fullName() {
-      return this.name;
+      return this.owner === this.provider || this.owner.name === undefined
+        ? this.name
+        : [this.owner.name, this.name].join("/");
     }
 
     /**
