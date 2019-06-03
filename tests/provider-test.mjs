@@ -24,13 +24,13 @@ test("provider repository group", async t => {
 
 test("provider repository group create repository", async t => {
   const provider = new Provider();
-  t.is(await provider.repositoryGroup("p1"), undefined);
-  const p1 = await provider.createRepositoryGroup("p1");
-  const r1 = await p1.createRepository("r1");
+  t.is(await provider.repositoryGroup("g1"), undefined);
+  const g1 = await provider.createRepositoryGroup("g1");
+  const r1 = await g1.createRepository("r1");
 
   t.is(r1.name, "r1");
-  t.is(await p1.repository("r1"), r1);
-  //t.is(await provider.repository('p1/r1'), r1);
+  t.is(await g1.repository("r1"), r1);
+  //t.is(await provider.repository('g1/r1'), r1);
 });
 
 test("provider repository group list", async t => {
@@ -45,6 +45,25 @@ test("provider repository group list", async t => {
   }
 
   t.is(gs.g1.name, 'g1');
+});
+
+test("provider repository list", async t => {
+  const provider = new Provider();
+  const g1 = await provider.createRepositoryGroup("g1");
+  const g2 = await provider.createRepositoryGroup("g2");
+
+  await g1.createRepository('r1');
+  await g2.createRepository('r2');
+  
+  const rs = {};
+
+  for await(const r of provider.repositories()) {
+    //console.log(r.fullName);
+    rs[r.fullName] = r;
+  }
+
+  t.is(Object.keys(rs).length,2);
+   t.is(rs.r2.name, 'r2');
 });
 
 test("get repository#branch", async t => {

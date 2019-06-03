@@ -161,7 +161,19 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Repository>} all matching branches of the provider
    */
-  async *repositories(patterns) {}
+  async *repositories(patterns = ["**/*"]) {
+    await this.initialize();
+
+    const level1Patterns = patterns.map(p => p.split(/\//)[1]);
+
+    for (const name of micromatch(
+      [...this._repositoryGroups.keys()],
+      patterns
+    )) {
+      const rg = this._repositoryGroups.get(name);
+      yield* rg.repositories(level1Patterns);
+    }
+  }
 
   /**
    * List branches
