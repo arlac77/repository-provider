@@ -54,7 +54,6 @@ test("owner list branches", async t => {
   const m = {};
 
   for await (const b of owner.branches("r*")) {
-    console.log(b.fullName);
     m[b.fullName] = b;
   }
 
