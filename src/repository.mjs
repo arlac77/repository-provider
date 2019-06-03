@@ -145,7 +145,7 @@ export const Repository = OneTimeInititalizerMixin(
      * @param {string} name
      * @return {Promise<Branch>}
      */
-    async branch(name, options) {
+    async branch(name) {
       await this.initialize();
       return this._branches.get(name);
     }
