@@ -94,20 +94,19 @@ export class Provider extends Owner {
   /**
    * Lookup a repository in the provider and all of its repository groups
    * @param {string} name of the repository
-   * @param {Object} options
    * @return {Promise<Repository>}
    */
-  async repository(name, options) {
+  async repository(name) {
     await this.initialize();
 
-    const r = await super.repository(name, options);
+    const r = await super.repository(name);
 
     if (r !== undefined) {
       return r;
     }
 
     for (const p of this._repositoryGroups.values()) {
-      const r = await p.repository(name, options);
+      const r = await p.repository(name);
       if (r !== undefined) {
         return r;
       }
@@ -161,17 +160,19 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Repository>} all matching branches of the provider
    */
-  async *repositories(patterns = ["**/*"]) {
+  async *repositories(patterns = ["*/*"]) {
     await this.initialize();
 
+    const level0Patterns = patterns.map(p => p.split(/\//)[0]);
     const level1Patterns = patterns.map(p => p.split(/\//)[1]);
 
-    for (const name of micromatch(
-      [...this._repositoryGroups.keys()],
-      patterns
-    )) {
-      const rg = this._repositoryGroups.get(name);
-      yield* rg.repositories(level1Patterns);
+    for(const name of this._repositoryGroups.keys()) {
+      for(const m of level0Patterns) {
+        if(m === '*' || m === name) {
+          const rg = this._repositoryGroups.get(name);
+          yield* rg.repositories(level1Patterns);
+        }
+      }
     }
   }
 
