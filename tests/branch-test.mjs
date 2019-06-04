@@ -35,6 +35,17 @@ test("branch isDefault", async t => {
   t.is(b.isDefault, true);
 });
 
+test("branch isDefault changed", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1", {
+    defaultBranchName: "otherMaster"
+  });
+  const b = new Branch(repository, "otherMaster");
+  t.is(b.fullName, "r1#otherMaster");
+  t.is(b.fullCondensedName, "r1");
+  t.is(b.isDefault, true);
+});
+
 test("branch delete", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
@@ -59,7 +70,7 @@ test("branch entries", async t => {
   t.is(entries.size, 0);
 });
 
-test.only("branch entries implicit async itrator", async t => {
+test("branch entries implicit async itrator", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
 
@@ -84,7 +95,7 @@ test("branch entry", async t => {
     message: `No such entry 'aFile'`
   });
 
-  t.is(b.maybeEntry("aFile"), undefined);
+  t.is(await b.maybeEntry("aFile"), undefined);
 });
 
 test("branch create", async t => {

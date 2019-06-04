@@ -113,10 +113,10 @@ export const Branch = OneTimeInititalizerMixin(
 
     /**
      * Are we the default branch
-     * @return {boolean} true if name is 'master'
+     * @return {boolean} true if name is the repository default branch
      */
     get isDefault() {
-      return this.name === "master";
+      return this.name === this.repository.defaultBranchName;
     }
 
     /**
