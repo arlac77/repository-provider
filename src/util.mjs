@@ -2,6 +2,11 @@ export function notImplementedError() {
   return new Error("not implemented");
 }
 
+export function asArray(value)
+{
+  return Array.isArray(value) ? value : [value];
+}
+
 /**
  * create properties from options and default options
  * @see Object.definedProperties()

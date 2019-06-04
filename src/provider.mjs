@@ -5,7 +5,7 @@ import { Repository } from "./repository.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Hook } from "./hook.mjs";
 import { RepositoryGroup } from "./group.mjs";
-import { definePropertiesFromOptions } from "./util.mjs";
+import { definePropertiesFromOptions, asArray } from "./util.mjs";
 import micromatch from "micromatch";
 
 export {
@@ -162,6 +162,7 @@ export class Provider extends Owner {
    */
   async *repositories(patterns = ["*/*"]) {
     await this.initialize();
+    patterns = asArray(patterns);
 
     const level0Patterns = patterns.map(p => p.split(/\//)[0]);
     const level1Patterns = patterns.map(p => p.split(/\//)[1]);

@@ -47,17 +47,35 @@ test("provider repository group list", async t => {
   t.is(gs.g1.name, 'g1');
 });
 
-test("provider repository list", async t => {
+async function setupProvider()
+{
   const provider = new Provider();
   const g1 = await provider.createRepositoryGroup("g1");
   const g2 = await provider.createRepositoryGroup("g2");
 
   await g1.createRepository('r1');
   await g2.createRepository('r2');
-  
+  return provider;
+}
+
+test("provider repository list default", async t => {
+  const provider = await setupProvider();
   const rs = {};
 
   for await(const r of provider.repositories()) {
+    rs[r.fullName] = r;
+  }
+
+  t.is(Object.keys(rs).length,2);
+  t.is(rs['g1/r1'].name, 'r1');
+  t.is(rs['g1/r1'].fullName, 'g1/r1');
+});
+
+test("provider repository list **/*", async t => {
+  const provider = await setupProvider();
+  const rs = {};
+
+  for await(const r of provider.repositories('*/*')) {
     rs[r.fullName] = r;
   }
 
