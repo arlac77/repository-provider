@@ -185,6 +185,13 @@ export class Provider extends Owner {
   async *branches(patterns) {}
 
   /**
+   * List tags
+   * @param {string[]|string} patterns
+   * @return {Iterator<Branch>} all matching tags of the provider
+   */
+  async *tags(patterns) {}
+
+  /**
    * @return {Class} repository group class used by the Provider
    */
   get repositoryGroupClass() {

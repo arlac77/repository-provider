@@ -221,6 +221,13 @@ export const Repository = OneTimeInititalizerMixin(
     }
 
     /**
+     * @return {Iterator<String>} of all tags
+     */
+    async *tags(pattern) {
+    }
+
+
+    /**
      * Delete the repository from the {@link Provider}.
      * {@link Provider#deleteRepository}
      * @return {Promise<undefined>}

@@ -5,7 +5,7 @@ import { Repository } from "../src/repository.mjs";
 import { Branch } from "../src/branch.mjs";
 import { PullRequest } from "../src/pull-request.mjs";
 
-test("repository create with options", t => {
+test("repository create with options", async t => {
   const owner = new Owner();
   const repository = new Repository(owner, "r1", {
     description: "a description",
@@ -28,6 +28,8 @@ test("repository create with options", t => {
     fullName: "r1",
     urls: []
   });
+
+  t.deepEqual(await repository.tags().next(),{done: true, value: undefined});
 });
 
 test("repository create without options", t => {
