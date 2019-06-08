@@ -33,6 +33,13 @@ export function definePropertiesFromOptions(object, options, properties = {}) {
   Object.assign(object, after);
 }
 
+/**
+ * create json based on present options.
+ * In other words only produce key value pairs if value is defined.
+ * @param {Object} object
+ * @param {Object} initial
+ * @return {Object} initial + defined values
+ */
 export function optionJSON(object, initial = {}) {
   return Object.keys(object.constructor.defaultOptions).reduce((a, c) => {
     if (object[c] !== undefined) {
