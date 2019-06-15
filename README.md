@@ -21,9 +21,9 @@ abstract interface to git repository providers like github bitbucket
 <!-- skip-example -->
 
 ```es6
-import { GithubProvider } from 'repository-provider';
+import { Provider } from 'repository-provider';
 
-const provider = new GithubProvider({ token: 'xxx' });
+const provider = new Provider({ token: 'xxx' });
 
 const repository = await provider.repository('myuser/myrepo');
 const branch = await repository.branch('master');
@@ -31,6 +31,10 @@ const branch = await repository.branch('master');
 for await (const entry of await branch.entries()) {
     console.log(entry.name);
 }
+
+const readme = await branch.entry('README.md');
+
+console.log(await readme.toString());
 
 ```
 
