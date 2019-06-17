@@ -27,8 +27,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "loglevel-mixin": "^3.0.0",
-    "micromatch": "^4.0.2"
+    "loglevel-mixin": "^3.0.0"
   },
   "devDependencies": {
     "ava": "^2.1.0",

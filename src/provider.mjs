@@ -6,7 +6,6 @@ import { PullRequest } from "./pull-request.mjs";
 import { Hook } from "./hook.mjs";
 import { RepositoryGroup } from "./group.mjs";
 import { definePropertiesFromOptions, asArray } from "./util.mjs";
-import micromatch from "micromatch";
 
 export {
   Repository,
@@ -147,7 +146,7 @@ export class Provider extends Owner {
    */
   async *repositoryGroups(patterns) {
     await this.initialize();
-    for (const name of micromatch(
+    for (const name of this.match(
       [...this._repositoryGroups.keys()],
       patterns
     )) {

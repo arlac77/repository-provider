@@ -35,7 +35,6 @@ for await (const entry of await branch.entries()) {
 const readme = await branch.entry('README.md');
 
 console.log(await readme.toString());
-
 ```
 
 # Derived Providers
@@ -81,6 +80,7 @@ console.log(await readme.toString());
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
@@ -97,7 +97,6 @@ console.log(await readme.toString());
 -   [id](#id-1)
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-14)
     -   [Properties](#properties-5)
@@ -123,6 +122,8 @@ console.log(await readme.toString());
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-17)
+-   [optionJSON](#optionjson)
+    -   [Parameters](#parameters-18)
 
 ## Provider
 
@@ -291,6 +292,10 @@ options
 
 options
 
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
+
 ## Owner
 
 Collection of repositories
@@ -375,10 +380,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
 
 ## PullRequest
 
@@ -529,6 +530,18 @@ create properties from options and default options
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor
 -   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
+
+## optionJSON
+
+create json based on present options.
+In other words only produce key value pairs if value is defined.
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `initial` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** initial + defined values
 
 # install
 

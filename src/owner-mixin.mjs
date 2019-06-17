@@ -3,7 +3,6 @@ import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
 import { LogLevelMixin } from "loglevel-mixin";
-import micromatch from "micromatch";
 
 /**
  * Collection of repositories
@@ -94,11 +93,37 @@ export function RepositoryOwnerMixin(parent) {
          */
         async *repositories(patterns) {
           await this.initialize();
-          for (const name of micromatch(
-            [...this._repositories.keys()],
+          for (const name of this.match(
+            this._repositories.keys(),
             patterns
           )) {
             yield this._repositories.get(name);
+          }
+        }
+
+        /**
+         * match entries against pattern
+         * @param {string[]} entries 
+         * @param {string[]} patterns 
+         * @return {string *}
+         */
+        * match(entries, patterns) {
+          if (patterns === undefined) {
+            for (const entry of entries) {
+              yield entry;
+            }
+            return;
+          }
+
+          const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(r => new RegExp(r.replace(/\*/, '.*')));
+
+          for (const entry of entries) {
+            for (const r of rs) {
+              if (entry.match(r)) {
+                yield entry;
+                break;
+              }
+            }
           }
         }
 
@@ -112,7 +137,7 @@ export function RepositoryOwnerMixin(parent) {
         async createRepository(name, options) {
           let repository = await this.repository(name);
 
-          if(repository === undefined) {
+          if (repository === undefined) {
             repository = await this._createRepository(name, options);
             this._repositories.set(repository.name, repository);
           }
@@ -168,8 +193,8 @@ export function RepositoryOwnerMixin(parent) {
 
           await this.initialize();
 
-          for (const name of micromatch(
-            [...this._repositories.keys()],
+          for (const name of this.match(
+            this._repositories.keys(),
             repoPatterns
           )) {
             const repository = this._repositories.get(name);
@@ -191,7 +216,7 @@ export function RepositoryOwnerMixin(parent) {
           return "git";
         }
 
-        async _initialize() {}
+        async _initialize() { }
       }
     )
   );
