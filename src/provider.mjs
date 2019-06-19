@@ -26,7 +26,7 @@ export class Provider extends Owner {
   /**
    * Extract options suitable for the constructor
    * form the given set of environment variables
-   * @param {Object} env
+   * @param {Object} env taken from process.env
    * @return {Object} undefined if no suitable environment variables have been found
    */
   static optionsFromEnvironment(env) {
