@@ -30,7 +30,32 @@ export class Provider extends Owner {
    * @return {Object} undefined if no suitable environment variables have been found
    */
   static optionsFromEnvironment(env) {
-    return undefined;
+    if (env === undefined) {
+      return undefined;
+    }
+
+    let options;
+
+    const o = this.environmentOptions;
+
+    for (const k of Object.keys(o)) {
+      if (env[k] !== undefined) {
+        if (options === undefined) {
+          options = {};
+        }
+        options[o[k]] = env[k];
+      }
+    }
+
+    return options;
+  }
+
+  /**
+   * known mapping from environment variable to options
+   * @return {Object} with the mapping of environmentvaraible names to option keys
+   */
+  static get environmentOptions() {
+    return {};
   }
 
   static get defaultOptions() {
@@ -166,9 +191,9 @@ export class Provider extends Owner {
     const level0Patterns = patterns.map(p => p.split(/\//)[0]);
     const level1Patterns = patterns.map(p => p.split(/\//)[1]);
 
-    for(const name of this._repositoryGroups.keys()) {
-      for(const m of level0Patterns) {
-        if(m === '*' || m === name) {
+    for (const name of this._repositoryGroups.keys()) {
+      for (const m of level0Patterns) {
+        if (m === '*' || m === name) {
           const rg = this._repositoryGroups.get(name);
           yield* rg.repositories(level1Patterns);
         }
@@ -181,14 +206,14 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching branches of the provider
    */
-  async *branches(patterns) {}
+  async *branches(patterns) { }
 
   /**
    * List tags
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching tags of the provider
    */
-  async *tags(patterns) {}
+  async *tags(patterns) { }
 
   /**
    * @return {Class} repository group class used by the Provider

@@ -14,6 +14,19 @@ test("provider", async t => {
   });
 });
 
+test("provider env options", async t => {
+  t.is(Provider.optionsFromEnvironment(), undefined);
+  t.is(Provider.optionsFromEnvironment({}), undefined);
+
+  class MyProvider extends Provider {
+    static get environmentOptions() {
+      return { a: 'b'};
+    }
+  }
+
+  t.deepEqual(MyProvider.optionsFromEnvironment({a: 77}), {b : 77});
+});
+
 test("provider repository group", async t => {
   const provider = new Provider();
   t.is(await provider.repositoryGroup("p1"), undefined);

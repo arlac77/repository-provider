@@ -73,6 +73,7 @@ console.log(await readme.toString());
     -   [toJSON](#tojson)
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-9)
+    -   [environmentOptions](#environmentoptions)
 -   [priority](#priority)
 -   [Branch](#branch-1)
     -   [Parameters](#parameters-10)
@@ -256,6 +257,12 @@ form the given set of environment variables
 -   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** undefined if no suitable environment variables have been found
+
+### environmentOptions
+
+known mapping from environment variable to options
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** with the mapping of environmentvaraible names to option keys
 
 ## priority
 
