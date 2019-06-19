@@ -20,11 +20,14 @@ test("provider env options", async t => {
 
   class MyProvider extends Provider {
     static get environmentOptions() {
-      return { a: 'b'};
+      return {
+        'GITEA_TOKEN': 'token',
+        'GITEA_API': 'api'
+      };
     }
   }
 
-  t.deepEqual(MyProvider.optionsFromEnvironment({a: 77}), {b : 77});
+  t.deepEqual(MyProvider.optionsFromEnvironment({ GITEA_API: 'http:/somewhere/api', GITEA_TOKEN: 'abc' }), { token: 'abc', api: 'http:/somewhere/api' });
 });
 
 test("provider repository group", async t => {
@@ -53,15 +56,14 @@ test("provider repository group list", async t => {
 
   const gs = {};
 
-  for await(const g of provider.repositoryGroups("*")) {
+  for await (const g of provider.repositoryGroups("*")) {
     gs[g.name] = g;
   }
 
   t.is(gs.g1.name, 'g1');
 });
 
-async function setupProvider()
-{
+async function setupProvider() {
   const provider = new Provider();
   const g1 = await provider.createRepositoryGroup("g1");
   const g2 = await provider.createRepositoryGroup("g2");
@@ -75,11 +77,11 @@ test("provider repository list default", async t => {
   const provider = await setupProvider();
   const rs = {};
 
-  for await(const r of provider.repositories()) {
+  for await (const r of provider.repositories()) {
     rs[r.fullName] = r;
   }
 
-  t.is(Object.keys(rs).length,2);
+  t.is(Object.keys(rs).length, 2);
   t.is(rs['g1/r1'].name, 'r1');
   t.is(rs['g1/r1'].fullName, 'g1/r1');
 });
@@ -88,11 +90,11 @@ test("provider repository list **/*", async t => {
   const provider = await setupProvider();
   const rs = {};
 
-  for await(const r of provider.repositories('*/*')) {
+  for await (const r of provider.repositories('*/*')) {
     rs[r.fullName] = r;
   }
 
-  t.is(Object.keys(rs).length,2);
+  t.is(Object.keys(rs).length, 2);
   t.is(rs['g1/r1'].name, 'r1');
   t.is(rs['g1/r1'].fullName, 'g1/r1');
 });
