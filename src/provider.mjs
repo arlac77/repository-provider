@@ -172,7 +172,7 @@ export class Provider extends Owner {
   async *repositoryGroups(patterns) {
     await this.initialize();
     for (const name of this.match(
-      [...this._repositoryGroups.keys()],
+      this._repositoryGroups.keys(),
       patterns
     )) {
       yield this._repositoryGroups.get(name);
@@ -184,8 +184,18 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Repository>} all matching branches of the provider
    */
-  async *repositories(patterns = ["*/*"]) {
+  async *repositories(patterns) {
     await this.initialize();
+
+    if (patterns === undefined) {
+      for (const name of this._repositoryGroups.keys()) {
+        const rg = this._repositoryGroups.get(name);
+        yield* rg.repositories();
+      }
+
+      return;
+    }
+
     patterns = asArray(patterns);
 
     const level0Patterns = patterns.map(p => p.split(/\//)[0]);
@@ -206,14 +216,14 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching branches of the provider
    */
-  async *branches(patterns) { }
+  async * branches(patterns) { }
 
   /**
    * List tags
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching tags of the provider
    */
-  async *tags(patterns) { }
+  async * tags(patterns) { }
 
   /**
    * @return {Class} repository group class used by the Provider
