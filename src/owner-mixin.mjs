@@ -103,7 +103,7 @@ export function RepositoryOwnerMixin(parent) {
 
         /**
          * match entries against pattern
-         * @param {string[]} entries 
+         * @param {*<string>} entries 
          * @param {string[]} patterns 
          * @return {string *}
          */
