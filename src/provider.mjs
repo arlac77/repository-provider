@@ -62,8 +62,9 @@ export class Provider extends Owner {
             break;
           }
           if (t[key] === undefined) {
-            t = t[key] = def.template;
+            t[key] = def.template;
           }
+          t = t[key];
         }
       }
     }
