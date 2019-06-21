@@ -95,6 +95,9 @@ export class PullRequest {
     destination.addPullRequest(this);
   }
 
+  /**
+   * @return {Repository} destination repository
+   */
   get repository() {
     return this.destination.repository;
   }

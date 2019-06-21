@@ -101,6 +101,7 @@ console.log(await readme.toString());
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-14)
     -   [Properties](#properties-5)
+    -   [repository](#repository-2)
     -   [provider](#provider-2)
     -   [delete](#delete)
     -   [merge](#merge)
@@ -413,6 +414,10 @@ Abstract pull request
 -   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 -   `merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
 -   `locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+
+### repository
+
+Returns **[Repository](#repository)** destination repository
 
 ### provider
 
