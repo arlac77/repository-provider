@@ -14,22 +14,6 @@ test("provider", async t => {
   });
 });
 
-test("provider env options", async t => {
-  t.is(Provider.optionsFromEnvironment(), undefined);
-  t.is(Provider.optionsFromEnvironment({}), undefined);
-
-  class MyProvider extends Provider {
-    static get environmentOptions() {
-      return {
-        'GITEA_TOKEN': 'token',
-        'GITEA_API': 'api'
-      };
-    }
-  }
-
-  t.deepEqual(MyProvider.optionsFromEnvironment({ GITEA_API: 'http:/somewhere/api', GITEA_TOKEN: 'abc' }), { token: 'abc', api: 'http:/somewhere/api' });
-});
-
 test("provider repository group", async t => {
   const provider = new Provider();
   t.is(await provider.repositoryGroup("p1"), undefined);
