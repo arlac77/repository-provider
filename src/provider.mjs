@@ -80,6 +80,15 @@ export class Provider extends Owner {
     return {};
   }
 
+  /**
+   * Check if given options are sufficint to create a provider
+   * @param {Object} options
+   * @return {boolean} true if options ar sufficiant to construct a provider
+   */
+  static areOptionsSufficciant(options) {
+    return true;
+  }
+
   static get defaultOptions() {
     return {
       /**
@@ -89,6 +98,11 @@ export class Provider extends Owner {
       priority: 0,
       ...super.defaultOptions
     };
+  }
+
+  static initialize(options, env) {
+    options = { ...options, ...this.optionsFromEnvironment(env) };
+    return this.areOptionsSufficciant(options) ? new this(options) : undefined;
   }
 
   constructor(options) {

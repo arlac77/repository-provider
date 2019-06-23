@@ -74,9 +74,11 @@ console.log(await readme.toString());
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-9)
     -   [environmentOptions](#environmentoptions)
+    -   [areOptionsSufficciant](#areoptionssufficciant)
+        -   [Parameters](#parameters-10)
 -   [priority](#priority)
 -   [Branch](#branch-1)
-    -   [Parameters](#parameters-10)
+    -   [Parameters](#parameters-11)
     -   [Properties](#properties-1)
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
@@ -85,12 +87,12 @@ console.log(await readme.toString());
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
-    -   [Parameters](#parameters-11)
+    -   [Parameters](#parameters-12)
     -   [Properties](#properties-3)
 -   [logger](#logger)
-    -   [Parameters](#parameters-12)
--   [Repository](#repository-1)
     -   [Parameters](#parameters-13)
+-   [Repository](#repository-1)
+    -   [Parameters](#parameters-14)
     -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
@@ -99,7 +101,7 @@ console.log(await readme.toString());
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-14)
+    -   [Parameters](#parameters-15)
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
     -   [provider](#provider-2)
@@ -112,20 +114,20 @@ console.log(await readme.toString());
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-15)
+    -   [Parameters](#parameters-16)
     -   [Properties](#properties-6)
     -   [toJSON](#tojson-1)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-16)
+    -   [Parameters](#parameters-17)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-17)
--   [optionJSON](#optionjson)
     -   [Parameters](#parameters-18)
+-   [optionJSON](#optionjson)
+    -   [Parameters](#parameters-19)
 
 ## Provider
 
@@ -264,6 +266,16 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 known mapping from environment variable to options
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** with the mapping of environmentvaraible names to option keys
+
+### areOptionsSufficciant
+
+Check if given options are sufficint to create a provider
+
+#### Parameters
+
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if options ar sufficiant to construct a provider
 
 ## priority
 
