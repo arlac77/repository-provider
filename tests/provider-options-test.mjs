@@ -17,6 +17,7 @@ class MyProvider extends Provider {
 
     static get environmentOptions() {
         return {
+            GIT_CLONE_OPTIONS: { path: 'cloneOptions', parse: value => value.split(/\s+/) },
             GITEA_TOKEN: { path: 'authentication.token', template: { type: 'token' } },
             GITEA_API: 'api',
             BITBUCKET_USERNAME: { path: 'authentication.username', template: { type: 'basic' } },
@@ -26,10 +27,11 @@ class MyProvider extends Provider {
 }
 
 test("provider env options", async t => {
-    t.deepEqual(MyProvider.optionsFromEnvironment({ GITEA_API: 'http:/somewhere/api', GITEA_TOKEN: 'abc' }),
+    t.deepEqual(MyProvider.optionsFromEnvironment({ GITEA_API: 'http:/somewhere/api', GITEA_TOKEN: 'abc', GIT_CLONE_OPTIONS: '-A 1' }),
         {
             authentication: { type: 'token', token: 'abc' },
-            api: 'http:/somewhere/api'
+            api: 'http:/somewhere/api',
+            cloneOptions: ['-A', '1']
         });
 });
 

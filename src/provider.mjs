@@ -58,7 +58,7 @@ export class Provider extends Owner {
           const key = keyPath[n];
 
           if (n === keyPath.length - 1) {
-            t[key] = env[k];
+            t[key] = def.parse ? def.parse(env[k]) : env[k];
             break;
           }
           if (t[key] === undefined) {
