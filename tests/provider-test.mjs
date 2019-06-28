@@ -14,6 +14,11 @@ test("provider", async t => {
   });
 });
 
+test("provider with priority", async t => {
+  const provider = new Provider({ priority: 77 });
+  t.is(provider.priority, 77);
+});
+
 test("provider repository group", async t => {
   const provider = new Provider();
   t.is(await provider.repositoryGroup("p1"), undefined);
