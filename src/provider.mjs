@@ -157,6 +157,21 @@ export class Provider extends Owner {
     return repositoryGroup;
   }
 
+   /**
+   * All possible base urls
+   * For github something like
+   * - git@github.com
+   * - git://github.com
+   * - git+ssh://github.com
+   * - https://github.com
+   * - git+https://github.com
+   * @return {string[]} common base urls of all repositories
+   */
+  get repositoryBases()
+  {
+    return [];
+  }
+
   /**
    * bring a repository name into istnormal form by removing any clutter
    * like .git suffix or #branch names
@@ -164,6 +179,13 @@ export class Provider extends Owner {
    * @return {string} normalized name
    */
   normalizeRepositoryName(name) {
+    for(const b of this.repositoryBases) {
+      if (name.startsWith(b)) {
+        name = name.substring(b.length);
+        break;
+      }
+    }
+
     return name.replace(/\.git(#.*)?$/, '').replace(/#.*$/,'');
   }
 

@@ -54,6 +54,7 @@ console.log(await readme.toString());
         -   [Parameters](#parameters-1)
     -   [createRepositoryGroup](#createrepositorygroup)
         -   [Parameters](#parameters-2)
+    -   [repositoryBases](#repositorybases)
     -   [normalizeRepositoryName](#normalizerepositoryname)
         -   [Parameters](#parameters-3)
     -   [repository](#repository)
@@ -168,6 +169,19 @@ If there is already a group for the given name it will be returend instead
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[RepositoryGroup](#repositorygroup)>** 
+
+### repositoryBases
+
+All possible base urls
+For github something like
+
+-   git@github.com
+-   git://github.com
+-   git+ssh://github.com
+-   <https://github.com>
+-   git+<https://github.com>
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** common base urls of all repositories
 
 ### normalizeRepositoryName
 
