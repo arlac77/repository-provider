@@ -54,31 +54,35 @@ console.log(await readme.toString());
         -   [Parameters](#parameters-1)
     -   [createRepositoryGroup](#createrepositorygroup)
         -   [Parameters](#parameters-2)
-    -   [repository](#repository)
+    -   [normalizeRepositoryName](#normalizerepositoryname)
         -   [Parameters](#parameters-3)
-    -   [branch](#branch)
+    -   [repository](#repository)
         -   [Parameters](#parameters-4)
-    -   [repositoryGroups](#repositorygroups)
+    -   [branch](#branch)
         -   [Parameters](#parameters-5)
-    -   [repositories](#repositories)
+    -   [repositoryGroups](#repositorygroups)
         -   [Parameters](#parameters-6)
-    -   [branches](#branches)
+    -   [repositories](#repositories)
         -   [Parameters](#parameters-7)
-    -   [tags](#tags)
+    -   [branches](#branches)
         -   [Parameters](#parameters-8)
+    -   [tags](#tags)
+        -   [Parameters](#parameters-9)
     -   [repositoryGroupClass](#repositorygroupclass)
     -   [hookClass](#hookclass)
     -   [name](#name)
     -   [provider](#provider-1)
     -   [toJSON](#tojson)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-9)
+        -   [Parameters](#parameters-10)
     -   [environmentOptions](#environmentoptions)
     -   [areOptionsSufficciant](#areoptionssufficciant)
-        -   [Parameters](#parameters-10)
+        -   [Parameters](#parameters-11)
+    -   [initialize](#initialize)
+        -   [Parameters](#parameters-12)
 -   [priority](#priority)
 -   [Branch](#branch-1)
-    -   [Parameters](#parameters-11)
+    -   [Parameters](#parameters-13)
     -   [Properties](#properties-1)
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
@@ -87,12 +91,12 @@ console.log(await readme.toString());
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
-    -   [Parameters](#parameters-12)
+    -   [Parameters](#parameters-14)
     -   [Properties](#properties-3)
 -   [logger](#logger)
-    -   [Parameters](#parameters-13)
+    -   [Parameters](#parameters-15)
 -   [Repository](#repository-1)
-    -   [Parameters](#parameters-14)
+    -   [Parameters](#parameters-16)
     -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
@@ -101,7 +105,7 @@ console.log(await readme.toString());
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-15)
+    -   [Parameters](#parameters-17)
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
     -   [provider](#provider-2)
@@ -114,20 +118,20 @@ console.log(await readme.toString());
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-16)
+    -   [Parameters](#parameters-18)
     -   [Properties](#properties-6)
     -   [toJSON](#tojson-1)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-17)
+    -   [Parameters](#parameters-19)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-18)
+    -   [Parameters](#parameters-20)
 -   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-19)
+    -   [Parameters](#parameters-21)
 
 ## Provider
 
@@ -164,6 +168,17 @@ If there is already a group for the given name it will be returend instead
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[RepositoryGroup](#repositorygroup)>** 
+
+### normalizeRepositoryName
+
+bring a repository name into istnormal form by removing any clutter
+like .git suffix or #branch names
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** normalized name
 
 ### repository
 
@@ -276,6 +291,17 @@ Check if given options are sufficint to create a provider
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if options ar sufficiant to construct a provider
+
+### initialize
+
+Creates a new provider for a given set of options
+
+#### Parameters
+
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** additional options
+-   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
+
+Returns **[Provider](#provider)** newly createdprovider or undefined if optionsa re not sufficient to construct a provider
 
 ## priority
 

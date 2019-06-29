@@ -42,10 +42,27 @@ test("provider env options multiple keys on template", async t => {
         });
 });
 
-
 test("initialize", async t => {
     const provider = MyProvider.initialize(undefined, { GITEA_TOKEN: 'abc' });
     t.is(provider.name, 'MyProvider');
     t.is(MyProvider.initialize(undefined, undefined), undefined);
 });
 
+test("new provider", async t => {
+    const provider = new Provider({ key: "value" });
+    t.is(provider.type, "git");
+    t.is(provider.priority, 0);
+    t.is(provider.name, "Provider");
+    t.is(`${provider}`, "Provider");
+    t.deepEqual(provider.toJSON(), {
+      name: "Provider",
+      logLevel: "info",
+      priority: 0
+    });
+  });
+  
+test("provider with priority", async t => {
+    const provider = new Provider({ priority: 77 });
+    t.is(provider.priority, 77);
+  });
+  

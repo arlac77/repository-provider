@@ -1,23 +1,16 @@
 import test from "ava";
 import { Provider } from "../src/provider.mjs";
 
-test("provider", async t => {
-  const provider = new Provider({ key: "value" });
-  t.is(provider.type, "git");
-  t.is(provider.priority, 0);
-  t.is(provider.name, "Provider");
-  t.is(`${provider}`, "Provider");
-  t.deepEqual(provider.toJSON(), {
-    name: "Provider",
-    logLevel: "info",
-    priority: 0
-  });
+
+test("provider normalize repo name", async t => {
+  const provider = new Provider();
+  t.is(provider.normalizeRepositoryName('abc'),'abc');
+  t.is(provider.normalizeRepositoryName('abc/def'),'abc/def');
+  t.is(provider.normalizeRepositoryName('abc/def#mybranch'),'abc/def');
+  t.is(provider.normalizeRepositoryName('abc/def.git'),'abc/def');
+  t.is(provider.normalizeRepositoryName('abc/def.git#mybranch'),'abc/def');
 });
 
-test("provider with priority", async t => {
-  const provider = new Provider({ priority: 77 });
-  t.is(provider.priority, 77);
-});
 
 test("provider repository group", async t => {
   const provider = new Provider();
@@ -35,7 +28,7 @@ test("provider repository group create repository", async t => {
 
   t.is(r1.name, "r1");
   t.is(await g1.repository("r1"), r1);
-  //t.is(await provider.repository('g1/r1'), r1);
+  t.is(await provider.repository('g1/r1#branch'), r1);
 });
 
 test("provider repository group list", async t => {

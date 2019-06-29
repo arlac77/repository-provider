@@ -100,6 +100,12 @@ export class Provider extends Owner {
     };
   }
 
+  /**
+   * Creates a new provider for a given set of options
+   * @param {Object} options additional options
+   * @param {Object} env taken from process.env
+   * @return {Provider} newly createdprovider or undefined if optionsa re not sufficient to construct a provider
+   */
   static initialize(options, env) {
     options = { ...options, ...this.optionsFromEnvironment(env) };
     return this.areOptionsSufficciant(options) ? new this(options) : undefined;
@@ -152,12 +158,34 @@ export class Provider extends Owner {
   }
 
   /**
+   * bring a repository name into istnormal form by removing any clutter
+   * like .git suffix or #branch names
+   * @param {string} name
+   * @return {string} normalized name
+   */
+  normalizeRepositoryName(name) {
+    return name.replace(/\.git(#.*)?$/, '').replace(/#.*$/,'');
+  }
+
+  /**
    * Lookup a repository in the provider and all of its repository groups
    * @param {string} name of the repository
    * @return {Promise<Repository>}
    */
   async repository(name) {
+    if (name === undefined) {
+      return undefined;
+    }
+
     await this.initialize();
+
+    name = this.normalizeRepositoryName(name);
+
+    const parts = name.split(/\//);
+    if(parts.length === 2) {
+      const group = this._repositoryGroups.get(parts[0]);
+      return group.repository(parts[1]);
+    }
 
     const r = await super.repository(name);
 
