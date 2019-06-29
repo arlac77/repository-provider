@@ -46,7 +46,7 @@ export class Provider extends Owner {
 
         let def = o[k];
 
-        if (typeof def === 'string') {
+        if (typeof def === "string") {
           def = { path: def, template: {} };
         }
 
@@ -157,7 +157,7 @@ export class Provider extends Owner {
     return repositoryGroup;
   }
 
-   /**
+  /**
    * All possible base urls
    * For github something like
    * - git@github.com
@@ -167,8 +167,7 @@ export class Provider extends Owner {
    * - git+https://github.com
    * @return {string[]} common base urls of all repositories
    */
-  get repositoryBases()
-  {
+  get repositoryBases() {
     return [];
   }
 
@@ -179,14 +178,14 @@ export class Provider extends Owner {
    * @return {string} normalized name
    */
   normalizeRepositoryName(name) {
-    for(const b of this.repositoryBases) {
+    for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
         name = name.substring(b.length);
         break;
       }
     }
 
-    return name.replace(/\.git(#.*)?$/, '').replace(/#.*$/,'');
+    return name.replace(/\.git(#.*)?$/, "").replace(/#.*$/, "");
   }
 
   /**
@@ -204,9 +203,9 @@ export class Provider extends Owner {
     name = this.normalizeRepositoryName(name);
 
     const parts = name.split(/\//);
-    if(parts.length === 2) {
+    if (parts.length === 2) {
       const group = this._repositoryGroups.get(parts[0]);
-      return group.repository(parts[1]);
+      return group === undefined ? undefined : group.repository(parts[1]);
     }
 
     const r = await super.repository(name);
@@ -257,10 +256,7 @@ export class Provider extends Owner {
    */
   async *repositoryGroups(patterns) {
     await this.initialize();
-    for (const name of this.match(
-      this._repositoryGroups.keys(),
-      patterns
-    )) {
+    for (const name of this.match(this._repositoryGroups.keys(), patterns)) {
       yield this._repositoryGroups.get(name);
     }
   }
@@ -289,7 +285,7 @@ export class Provider extends Owner {
 
     for (const name of this._repositoryGroups.keys()) {
       for (const m of level0Patterns) {
-        if (m === '*' || m === name) {
+        if (m === "*" || m === name) {
           const rg = this._repositoryGroups.get(name);
           yield* rg.repositories(level1Patterns);
         }
@@ -302,14 +298,14 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching branches of the provider
    */
-  async * branches(patterns) { }
+  async *branches(patterns) {}
 
   /**
    * List tags
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching tags of the provider
    */
-  async * tags(patterns) { }
+  async *tags(patterns) {}
 
   /**
    * @return {Class} repository group class used by the Provider
