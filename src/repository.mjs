@@ -168,7 +168,7 @@ export const Repository = OneTimeInititalizerMixin(
 
     /**
      * Create a new {@link Branch} by cloning a given source branch
-     * @param {string} name
+     * @param {string} name of the new branch
      * @param {Branch} source branch defaults to the defaultBranch
      * @param {Object} options
      * @return {Promise<Branch>} newly created branch (or already present old one with the same name)

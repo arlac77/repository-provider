@@ -224,7 +224,7 @@ export const Branch = OneTimeInititalizerMixin(
     /**
      * Create a new {@link Branch} by cloning a given source branch
      * Simplay calls Repository.createBranch() with the receiver as source branch
-     * @param {string} name
+     * @param {string} name the new branch
      * @param {Object} options
      * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
      */
