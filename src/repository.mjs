@@ -193,7 +193,7 @@ export const Repository = OneTimeInititalizerMixin(
      * All repository implementations must provide a repository._createBranch() to handle the real branch creation.
      * This methos MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
      * Internal branch creation does not call repository.initialize()
-     * @param {string} name
+     * @param {string} name of the new branch
      * @param {Branch} source branch defaults to the defaultBranch
      * @param {Object} options
      * @return {Promise<Branch>} newly created branch
@@ -236,6 +236,13 @@ export const Repository = OneTimeInititalizerMixin(
       return this.owner.deleteRepository(this.name);
     }
 
+    /**
+     * create a pull request (or deliver an already present for thefiven name)
+     * @param {string} name of the pr
+     * @param {Branch} source branch
+     * @param {Object} options
+     * @return {PullRequest}
+     */
     async createPullRequest(name, source, options) {
       await this.initialize();
       let pr = this._pullRequests.get(name);
