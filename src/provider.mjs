@@ -195,8 +195,8 @@ export class Provider extends Owner {
    * @return {Object}
    */
   parseName(name) {
-    name = name.replace(/^([\w\-]+:\/\/)[^\@]+@/, (match, g1) => g1);
-    name = name.replace(/^git\+/, '');
+    name = name.replace(/^([\w\-\+]+:\/\/)[^\@]+@/, (match, g1) => g1);
+    name = name.replace(/^git\+/, "");
 
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
@@ -205,7 +205,7 @@ export class Provider extends Owner {
       }
     }
 
-    if(name.startsWith('/')) {
+    if (name.startsWith("/")) {
       name = name.substring(1);
     }
 
