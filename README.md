@@ -57,47 +57,49 @@ console.log(await readme.toString());
     -   [repositoryBases](#repositorybases)
     -   [normalizeRepositoryName](#normalizerepositoryname)
         -   [Parameters](#parameters-3)
-    -   [repository](#repository)
+    -   [parseName](#parsename)
         -   [Parameters](#parameters-4)
-    -   [branch](#branch)
+    -   [repository](#repository)
         -   [Parameters](#parameters-5)
-    -   [repositoryGroups](#repositorygroups)
+    -   [branch](#branch)
         -   [Parameters](#parameters-6)
-    -   [repositories](#repositories)
+    -   [repositoryGroups](#repositorygroups)
         -   [Parameters](#parameters-7)
-    -   [branches](#branches)
+    -   [repositories](#repositories)
         -   [Parameters](#parameters-8)
-    -   [tags](#tags)
+    -   [branches](#branches)
         -   [Parameters](#parameters-9)
+    -   [tags](#tags)
+        -   [Parameters](#parameters-10)
     -   [repositoryGroupClass](#repositorygroupclass)
     -   [hookClass](#hookclass)
     -   [name](#name)
     -   [provider](#provider-1)
     -   [toJSON](#tojson)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-10)
+        -   [Parameters](#parameters-11)
     -   [environmentOptions](#environmentoptions)
     -   [areOptionsSufficciant](#areoptionssufficciant)
-        -   [Parameters](#parameters-11)
-    -   [initialize](#initialize)
         -   [Parameters](#parameters-12)
+    -   [initialize](#initialize)
+        -   [Parameters](#parameters-13)
 -   [priority](#priority)
 -   [Branch](#branch-1)
-    -   [Parameters](#parameters-13)
+    -   [Parameters](#parameters-14)
     -   [Properties](#properties-1)
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
-    -   [Parameters](#parameters-14)
+    -   [Parameters](#parameters-15)
     -   [Properties](#properties-3)
 -   [logger](#logger)
-    -   [Parameters](#parameters-15)
--   [Repository](#repository-1)
     -   [Parameters](#parameters-16)
+-   [OneTimeInititalizer](#onetimeinititalizer)
+-   [Repository](#repository-1)
+    -   [Parameters](#parameters-17)
     -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
@@ -106,7 +108,7 @@ console.log(await readme.toString());
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-17)
+    -   [Parameters](#parameters-18)
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
     -   [provider](#provider-2)
@@ -119,20 +121,20 @@ console.log(await readme.toString());
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-18)
+    -   [Parameters](#parameters-19)
     -   [Properties](#properties-6)
     -   [toJSON](#tojson-1)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-19)
+    -   [Parameters](#parameters-20)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-20)
--   [optionJSON](#optionjson)
     -   [Parameters](#parameters-21)
+-   [optionJSON](#optionjson)
+    -   [Parameters](#parameters-22)
 
 ## Provider
 
@@ -193,6 +195,17 @@ like .git suffix or #branch names
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** normalized name
+
+### parseName
+
+parses repository name ans tries to split it into
+group,repository and branch
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### repository
 
@@ -352,10 +365,6 @@ options
 
 options
 
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
-
 ## Owner
 
 Collection of repositories
@@ -383,6 +392,10 @@ default logger
 ### Parameters
 
 -   `arg` **...any** 
+
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
 
 ## Repository
 

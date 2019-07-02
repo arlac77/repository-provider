@@ -178,6 +178,8 @@ export class Provider extends Owner {
    * @return {string} normalized name
    */
   normalizeRepositoryName(name) {
+
+
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
         name = name.substring(b.length);
@@ -186,6 +188,42 @@ export class Provider extends Owner {
     }
 
     return name.replace(/\.git(#.*)?$/, "").replace(/#.*$/, "");
+  }
+
+  /**
+   * parses repository name ans tries to split it into
+   * group,repository and branch
+   * @param {string} name
+   * @return {Object}
+   */
+  parseName(name) {
+    for (const b of this.repositoryBases) {
+      if (name.startsWith(b)) {
+        name = name.substring(b.length);
+        break;
+      }
+    }
+
+    const result = {};
+    const m = name.match(/#(.*)$/);
+    if(m) {
+      result.branch = m[1];
+      name = name.replace(/#.*$/, "");
+    }
+
+    name = name.replace(/\.git$/, "");
+
+    const parts = name.split(/\//);
+
+    if(parts.length === 2) {
+      result.group = parts[0];
+      result.repository = parts[1];
+    }
+    else {
+      result.repository = name;
+    }
+
+    return result;
   }
 
   /**
@@ -200,22 +238,21 @@ export class Provider extends Owner {
 
     await this.initialize();
 
-    name = this.normalizeRepositoryName(name);
+    const { repository, group } = this.parseName(name);
 
-    const parts = name.split(/\//);
-    if (parts.length === 2) {
-      const group = this._repositoryGroups.get(parts[0]);
-      return group === undefined ? undefined : group.repository(parts[1]);
+    if (group) {
+      const g = this._repositoryGroups.get(group);
+      return g === undefined ? undefined : g.repository(repository);
     }
 
-    const r = await super.repository(name);
+    const r = await super.repository(repository);
 
     if (r !== undefined) {
       return r;
     }
 
     for (const p of this._repositoryGroups.values()) {
-      const r = await p.repository(name);
+      const r = await p.repository(repository);
       if (r !== undefined) {
         return r;
       }

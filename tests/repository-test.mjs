@@ -29,7 +29,7 @@ test("repository create with options", async t => {
     urls: []
   });
 
-  t.deepEqual(await repository.tags().next(),{done: true, value: undefined});
+  t.deepEqual(await repository.tags().next(), { done: true, value: undefined });
 });
 
 test("repository create without options", t => {
