@@ -18,7 +18,7 @@ test("provider repository group create repository", async t => {
   t.is(r1.name, "r1");
   t.is(await g1.repository("r1"), r1);
   t.is(await provider.repository("g1/r1#branch"), r1);
-  t.is(await provider.repository("g2/r1"), undefined);
+  t.is(await provider.repository("g2/r1"), r1);
 });
 
 test("provider repository group list", async t => {

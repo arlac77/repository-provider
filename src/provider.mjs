@@ -238,11 +238,16 @@ export class Provider extends Owner {
 
     await this.initialize();
 
-    const { repository, group } = this.parseName(name);
+    const { group, repository } = this.parseName(name);
 
-    if (group) {
-      const g = this._repositoryGroups.get(group);
-      return g === undefined ? undefined : g.repository(repository);
+    if (group !== undefined) {
+      const rg = await this.repositoryGroup(group);
+      if (rg !== undefined) {
+        const r = await rg.repository(repository);
+        if (r !== undefined) {
+          return r;
+        }
+      }
     }
 
     const r = await super.repository(repository);
