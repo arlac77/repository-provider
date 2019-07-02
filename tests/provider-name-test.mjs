@@ -3,7 +3,7 @@ import { Provider } from "../src/provider.mjs";
 
 class MyProvider extends Provider {
   get repositoryBases() {
-    return ["https://github.com/"];
+    return ["https://github.com/",'http://otherdomain.com'];
   }
 }
 
@@ -39,6 +39,16 @@ test("provider parseName", t => {
       branch: "mybranch"
     },
     "https://user@github.com/arlac77/sync-test-repository.git#mybranch": {
+      group: "arlac77",
+      repository: "sync-test-repository",
+      branch: "mybranch"
+    },
+    "http://otherdomain.com/arlac77/sync-test-repository.git#mybranch": {
+      group: "arlac77",
+      repository: "sync-test-repository",
+      branch: "mybranch"
+    },
+    "git+http://otherdomain.com/arlac77/sync-test-repository.git#mybranch": {
       group: "arlac77",
       repository: "sync-test-repository",
       branch: "mybranch"
