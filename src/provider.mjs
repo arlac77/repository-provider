@@ -178,8 +178,6 @@ export class Provider extends Owner {
    * @return {string} normalized name
    */
   normalizeRepositoryName(name) {
-
-
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
         name = name.substring(b.length);
@@ -197,6 +195,9 @@ export class Provider extends Owner {
    * @return {Object}
    */
   parseName(name) {
+
+    name = name.replace(/^([\w\-]+:\/\/)[^\@]+@/,(match,g1) => g1);
+
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
         name = name.substring(b.length);
@@ -206,7 +207,7 @@ export class Provider extends Owner {
 
     const result = {};
     const m = name.match(/#(.*)$/);
-    if(m) {
+    if (m) {
       result.branch = m[1];
       name = name.replace(/#.*$/, "");
     }
@@ -215,11 +216,10 @@ export class Provider extends Owner {
 
     const parts = name.split(/\//);
 
-    if(parts.length === 2) {
+    if (parts.length === 2) {
       result.group = parts[0];
       result.repository = parts[1];
-    }
-    else {
+    } else {
       result.repository = name;
     }
 

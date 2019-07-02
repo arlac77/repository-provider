@@ -1,14 +1,13 @@
 import test from "ava";
 import { Provider } from "../src/provider.mjs";
 
-
 class MyProvider extends Provider {
-    get repositoryBases() {
-      return ["https://github.com/"];
-    }
+  get repositoryBases() {
+    return ["https://github.com/"];
   }
-  
-test("provider normalize repo name", async t => {
+}
+
+test("provider normalize repo name", t => {
   const provider = new Provider();
   t.is(provider.normalizeRepositoryName("abc"), "abc");
   t.is(provider.normalizeRepositoryName("abc/def"), "abc/def");
@@ -17,7 +16,7 @@ test("provider normalize repo name", async t => {
   t.is(provider.normalizeRepositoryName("abc/def.git#mybranch"), "abc/def");
 });
 
-test("provider parseName", async t => {
+test("provider parseName", t => {
   const provider = new MyProvider();
   const nameFixtures = {
     abc: { repository: "abc" },
@@ -30,14 +29,23 @@ test("provider parseName", async t => {
       branch: "mybranch"
     },
     "https://github.com/arlac77/sync-test-repository.git#mybranch": {
-        group: "arlac77",
-        repository: "sync-test-repository",
-        branch: "mybranch"
-      }
+      group: "arlac77",
+      repository: "sync-test-repository",
+      branch: "mybranch"
+    },
+    "https://user:password@github.com/arlac77/sync-test-repository.git#mybranch": {
+      group: "arlac77",
+      repository: "sync-test-repository",
+      branch: "mybranch"
+    },
+    "https://user@github.com/arlac77/sync-test-repository.git#mybranch": {
+      group: "arlac77",
+      repository: "sync-test-repository",
+      branch: "mybranch"
+    }
   };
 
   for (const name of Object.keys(nameFixtures)) {
     t.deepEqual(provider.parseName(name), nameFixtures[name]);
   }
 });
-
