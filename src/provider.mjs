@@ -195,8 +195,7 @@ export class Provider extends Owner {
    * @return {Object}
    */
   parseName(name) {
-
-    name = name.replace(/^([\w\-]+:\/\/)[^\@]+@/,(match,g1) => g1);
+    name = name.replace(/^([\w\-]+:\/\/)[^\@]+@/, (match, g1) => g1);
 
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
@@ -306,7 +305,7 @@ export class Provider extends Owner {
   /**
    * List repositories
    * @param {string[]|string} patterns
-   * @return {Iterator<Repository>} all matching branches of the provider
+   * @return {Iterator<Repository>} all matching repos of the provider
    */
   async *repositories(patterns) {
     await this.initialize();
@@ -320,17 +319,11 @@ export class Provider extends Owner {
       return;
     }
 
-    patterns = asArray(patterns);
+    for (const pattern of asArray(patterns)) {
+      const [groupPattern, repoPattern] = pattern.split(/\//);
 
-    const level0Patterns = patterns.map(p => p.split(/\//)[0]);
-    const level1Patterns = patterns.map(p => p.split(/\//)[1]);
-
-    for (const name of this._repositoryGroups.keys()) {
-      for (const m of level0Patterns) {
-        if (m === "*" || m === name) {
-          const rg = this._repositoryGroups.get(name);
-          yield* rg.repositories(level1Patterns);
-        }
+      for await (const group of this.repositoryGroups(groupPattern)) {
+        yield* group.repositories(repoPattern);
       }
     }
   }
@@ -340,7 +333,17 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching branches of the provider
    */
-  async *branches(patterns) {}
+  async *branches(patterns) {
+    await this.initialize();
+
+    for (const pattern of asArray(patterns)) {
+      const [groupPattern, repoPattern] = pattern.split(/\//);
+
+      for await (const group of this.repositoryGroups(groupPattern)) {
+        yield* group.branches(repoPattern);
+      }
+    }
+  }
 
   /**
    * List tags

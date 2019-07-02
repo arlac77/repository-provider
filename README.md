@@ -246,7 +246,7 @@ List repositories
 
 -   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator&lt;[Repository](#repository)>** all matching branches of the provider
+Returns **Iterator&lt;[Repository](#repository)>** all matching repos of the provider
 
 ### branches
 
