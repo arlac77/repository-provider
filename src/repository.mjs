@@ -51,6 +51,7 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
         name: { value: name },
         owner: { value: owner },
         _branches: { value: new Map() },
+        _tags: { value: new Map() },
         _pullRequests: { value: new Map() },
         _hooks: { value: [] }
       });
@@ -166,9 +167,12 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
     /**
      * @return {Promise<Map>} of all branches
      */
-    async branches() {
+    async *branches(patterns) {
       await this.initialize();
-      return this._branches;
+
+      for(const name of this.owner.match(this._branches.keys(), patterns)) {
+        yield this._branches.get(name);
+      }
     }
 
     /**
@@ -228,13 +232,20 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
     /**
      * @return {Iterator<String>} of all tags
      */
-    async *tags(pattern) {
+    async *tags(patterns) {
+      await this.initialize();
+
+      for(const name of this.owner.match(this._tags.keys(), patterns)) {
+        yield this._tags.get(name);
+      }
     }
 
     /**
      * @return {Iterator<String>} of all tags
      */
-    async *tag(name) {
+    async tag(name) {
+      await this.initialize();
+      return this._tags.get(name);
     }
 
     /**
