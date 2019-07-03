@@ -16,6 +16,8 @@
 
 abstract interface to git repository providers like github bitbucket
 
+see list of avaliable implementations below
+
 # Example
 
 <!-- skip-example -->
@@ -25,10 +27,9 @@ import { Provider } from 'repository-provider';
 
 const provider = new Provider({ token: 'xxx' });
 
-const repository = await provider.repository('myuser/myrepo');
-const branch = await repository.branch('master');
+const branch = await provider.branch('myuser/myrepo#myBranch');
 
-for await (const entry of await branch.entries()) {
+for await (const entry of branch.entries('**/*.md')) {
     console.log(entry.name);
 }
 
@@ -90,7 +91,6 @@ console.log(await readme.toString());
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
@@ -98,6 +98,7 @@ console.log(await readme.toString());
     -   [Properties](#properties-3)
 -   [logger](#logger)
     -   [Parameters](#parameters-16)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-17)
     -   [Properties](#properties-4)
@@ -365,10 +366,6 @@ options
 
 options
 
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
-
 ## Owner
 
 Collection of repositories
@@ -396,6 +393,10 @@ default logger
 ### Parameters
 
 -   `arg` **...any** 
+
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
 
 ## Repository
 
