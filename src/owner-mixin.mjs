@@ -1,8 +1,8 @@
+import { LogLevelMixin } from "loglevel-mixin";
 import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
-import { LogLevelMixin } from "loglevel-mixin";
 
 /**
  * Collection of repositories
@@ -166,7 +166,7 @@ export function RepositoryOwnerMixin(parent) {
          * @param {string} name with optional branch name as '#myBranchName'
          * @return {Promise<Branch|undefined>}
          */
-        async branch(name, options) {
+        async branch(name) {
           if (name === undefined) {
             return undefined;
           }
@@ -208,6 +208,13 @@ export function RepositoryOwnerMixin(parent) {
           }
         }
 
+        
+        async tag(name) {
+        }
+
+        async *tags(patterns) {
+        }
+  
         /**
          * Deliver the repository type
          * @return {string} 'git'

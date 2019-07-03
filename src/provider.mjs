@@ -355,7 +355,17 @@ export class Provider extends Owner {
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching tags of the provider
    */
-  async *tags(patterns) {}
+  async *tags(patterns) {
+    await this.initialize();
+
+    for (const pattern of asArray(patterns)) {
+      const [groupPattern, repoPattern] = pattern.split(/\//);
+
+      for await (const group of this.repositoryGroups(groupPattern)) {
+        yield* group.tags(repoPattern);
+      }
+    }
+  }
 
   /**
    * @return {Class} repository group class used by the Provider

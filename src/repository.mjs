@@ -1,3 +1,4 @@
+import { LogLevelMixin } from "loglevel-mixin";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
 import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
 
@@ -16,7 +17,7 @@ import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
  * @property {Map<string,Branch>} branches
  * @property {Map<string,PullRequest>} pullRequests
  */
-export const Repository = OneTimeInititalizerMixin(
+export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
   class Repository {
     /**
      * options
@@ -71,6 +72,10 @@ export const Repository = OneTimeInititalizerMixin(
      */
     get provider() {
       return this.owner.provider;
+    }
+
+    logger(...args) {
+      this.provider.logger(...args);
     }
 
     /**
@@ -226,6 +231,11 @@ export const Repository = OneTimeInititalizerMixin(
     async *tags(pattern) {
     }
 
+    /**
+     * @return {Iterator<String>} of all tags
+     */
+    async *tag(name) {
+    }
 
     /**
      * Delete the repository from the {@link Provider}.
@@ -383,4 +393,4 @@ export const Repository = OneTimeInititalizerMixin(
       });
     }
   }
-);
+));
