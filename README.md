@@ -91,7 +91,6 @@ console.log(await readme.toString());
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
@@ -99,6 +98,7 @@ console.log(await readme.toString());
     -   [Properties](#properties-3)
 -   [logger](#logger)
     -   [Parameters](#parameters-16)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-17)
     -   [Properties](#properties-4)
@@ -188,7 +188,7 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 
 ### normalizeRepositoryName
 
-bring a repository name into istnormal form by removing any clutter
+bring a repository name into its normal form by removing any clutter
 like .git suffix or #branch names
 
 #### Parameters
@@ -199,7 +199,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### parseName
 
-parses repository name ans tries to split it into
+parses repository name and tries to split it into
 group,repository and branch
 
 #### Parameters
@@ -366,10 +366,6 @@ options
 
 options
 
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
-
 ## Owner
 
 Collection of repositories
@@ -397,6 +393,10 @@ default logger
 ### Parameters
 
 -   `args` **...any** 
+
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
 
 ## Repository
 

@@ -172,7 +172,7 @@ export class Provider extends Owner {
   }
 
   /**
-   * bring a repository name into istnormal form by removing any clutter
+   * bring a repository name into its normal form by removing any clutter
    * like .git suffix or #branch names
    * @param {string} name
    * @return {string} normalized name
@@ -189,7 +189,7 @@ export class Provider extends Owner {
   }
 
   /**
-   * parses repository name ans tries to split it into
+   * parses repository name and tries to split it into
    * group,repository and branch
    * @param {string} name
    * @return {Object}
