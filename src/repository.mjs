@@ -281,11 +281,14 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
 
     /**
      * Deliver all {@link PullRequest}s
-     * @return {Promise<Map>} of all pull requests
+     * @return {Iterator<PullRequest>} of all pull requests
      */
-    async pullRequests() {
+    async *pullRequests() {
       await this.initialize();
-      return this._pullRequests;
+      
+      for(const name this._pullRequests.keys()) {
+        yield this._pullRequests.get(name);
+      }
     }
 
     /**
@@ -294,6 +297,7 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
      * @return {Promise<PullRequest>}
      */
     async pullRequest(name) {
+      await this.initialize();
       return this._pullRequests.get(name);
     }
 

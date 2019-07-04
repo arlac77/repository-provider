@@ -32,6 +32,7 @@ test("repository create with options", async t => {
   t.deepEqual(await repository.tags().next(), { done: true, value: undefined });
   t.deepEqual(await repository.hooks().next(), { done: true, value: undefined });
   t.deepEqual(await repository.branches().next(), { done: true, value: undefined });
+  t.deepEqual(await repository.pullRequests().next(), { done: true, value: undefined });
 });
 
 test("repository create without options", t => {
