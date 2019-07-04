@@ -285,9 +285,9 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
      */
     async *pullRequests() {
       await this.initialize();
-      
-      for(const name this._pullRequests.keys()) {
-        yield this._pullRequests.get(name);
+
+      for(const pr of this._pullRequests.values()) {
+        yield or;
       }
     }
 
