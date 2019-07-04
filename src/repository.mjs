@@ -330,8 +330,8 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
      * @return {Hook} all matching hook of the repository
      */
     async *hooks() {
-      await self.initialize();
-      for(const hook of this.hooks) {
+      await this.initialize();
+      for(const hook of this._hooks) {
         yield hook;
       }
     }
