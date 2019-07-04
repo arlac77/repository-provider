@@ -40,6 +40,13 @@ test("pullRequest create", async t => {
   );
 
   t.is(await repository.pullRequest("p1"), pr);
+
+  const prs = {};
+  for await (const pr of repository.pullRequests()) {
+    prs[pr.name] = pr;
+  }
+
+  t.is(prs[pr.name], pr);
 });
 
 test("pullRequest create without options", async t => {

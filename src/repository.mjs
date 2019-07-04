@@ -98,7 +98,7 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
     }
 
     /**
-     * get exactly one matching entry by name or undefine if no such entry is found
+     * get exactly one matching entry by name or undefined if no such entry is found
      * @param {string} name
      * @return {Promise<Entry>}
      */
@@ -287,7 +287,7 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
       await this.initialize();
 
       for(const pr of this._pullRequests.values()) {
-        yield or;
+        yield pr;
       }
     }
 
