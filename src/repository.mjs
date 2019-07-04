@@ -361,8 +361,8 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
         this._fetchBranches(),
         this._fetchTags(),
         this._fetchHooks(),
-        this._fetchPullRequests()
       ]);
+      await this._fetchPullRequests();
     }
     
     async _fetchHooks() {}
