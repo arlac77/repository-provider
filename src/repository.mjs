@@ -329,7 +329,12 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
      * @param {string} filter
      * @return {Hook} all matching hook of the repository
      */
-    async *hooks() {}
+    async *hooks() {
+      await self.initialize();
+      for(const hook of this.hooks) {
+        yield hook;
+      }
+    }
 
     /**
      * @return {string} providers type
@@ -347,7 +352,19 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
       return undefined;
     }
 
-    async _initialize() {}
+    async _initialize() {
+      await Promise.all([
+        this._fetchBranches(),
+        this._fetchTags(),
+        this._fetchHooks(),
+        this._fetchPullRequests()
+      ]);
+    }
+    
+    async _fetchHooks() {}
+    async _fetchBranches() {}
+    async _fetchTags() {}
+    async _fetchPullRequests() {}
 
     /**
      * By default we use the providers implementation.
