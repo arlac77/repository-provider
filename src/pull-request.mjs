@@ -7,8 +7,8 @@ import {
 /**
  * Abstract pull request
  * {@link Repository#addPullRequest}
- * @param {Branch} source
- * @param {Branch} destination
+ * @param {Branch} source merge source
+ * @param {Branch} destination merge target
  * @param {string} name
  * @param {Object} options
  * @param {string} [options.title]
@@ -47,6 +47,9 @@ export class PullRequest {
 
       /**
        * state of the pull request.
+       * - open
+       * - merged
+       * - closed
        * @return {string}
        */
       state: undefined,
@@ -66,7 +69,7 @@ export class PullRequest {
   }
 
   constructor(source, destination, name, options) {
-    let merged, state;
+    let state;
 
     const properties = {
       name: { value: name },
@@ -74,10 +77,12 @@ export class PullRequest {
       destination: { value: destination },
       merged: {
         set(value) {
-          merged = value;
+          if (value) {
+            state = "merged";
+          }
         },
         get() {
-          return merged;
+          return state === "merged";
         }
       },
       state: {
@@ -92,7 +97,9 @@ export class PullRequest {
 
     definePropertiesFromOptions(this, options, properties);
 
-    destination.addPullRequest(this);
+    if(destination !== undefined) {
+      destination.addPullRequest(this);
+    }
   }
 
   /**

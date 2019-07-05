@@ -77,6 +77,8 @@ test("pullRequest modify", async t => {
 
   pr.merged = true;
   t.is(pr.merged, true);
+  t.is(pr.state, "merged");
+
   pr.state = "closed";
   t.is(pr.state, "closed");
   t.is(pr.source, b1);

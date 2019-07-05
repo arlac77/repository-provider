@@ -462,8 +462,8 @@ Abstract pull request
 
 ### Parameters
 
--   `source` **[Branch](#branch)** 
--   `destination` **[Branch](#branch)** 
+-   `source` **[Branch](#branch)** merge source
+-   `destination` **[Branch](#branch)** merge target
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
@@ -520,6 +520,10 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## state
 
 state of the pull request.
+
+-   open
+-   merged
+-   closed
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
