@@ -4,6 +4,7 @@ import {
   optionJSON
 } from "./util.mjs";
 
+
 /**
  * Abstract pull request
  * {@link Repository#addPullRequest}
@@ -25,6 +26,15 @@ import {
  * @property {boolean} [locked]
  */
 export class PullRequest {
+
+  /**
+   * 
+   */
+  static get validStates()
+  {
+    return new Set(["OPEN", "MERGED", "CLOSED"]);
+  }
+
   static get defaultOptions() {
     return {
       /**
@@ -47,9 +57,9 @@ export class PullRequest {
 
       /**
        * state of the pull request.
-       * - open
-       * - merged
-       * - closed
+       * - OPEN
+       * - MERGED
+       * - CLOSED
        * @return {string}
        */
       state: undefined,
@@ -78,15 +88,16 @@ export class PullRequest {
       merged: {
         set(value) {
           if (value) {
-            state = "merged";
+            state = "MERGED";
           }
         },
         get() {
-          return state === "merged";
+          return state === "MERGED";
         }
       },
       state: {
         set(value) {
+
           state = value;
         },
         get() {
@@ -106,14 +117,14 @@ export class PullRequest {
    * @return {Repository} destination repository
    */
   get repository() {
-    return this.destination.repository;
+    return this.destination === undefined ? undefined : this.destination.repository;
   }
 
   /**
    * @return {Provider}
    */
   get provider() {
-    return this.destination.provider;
+    return this.destination === undefined ? undefined : this.destination.provider;
   }
 
   /**
@@ -122,7 +133,7 @@ export class PullRequest {
    * @return {Promise}
    */
   async delete() {
-    return this.destination.deletePullRequest(this.name);
+    return this.destination === undefined ? undefined : this.destination.deletePullRequest(this.name);
   }
 
   /**

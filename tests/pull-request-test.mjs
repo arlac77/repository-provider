@@ -20,7 +20,7 @@ test("pullRequest create", async t => {
   const pr = new PullRequest(b1, b2, "p1", {
     title: "a title",
     body: "the body",
-    state: "closed",
+    state: "CLOSED",
     id: "123456"
   });
 
@@ -30,13 +30,13 @@ test("pullRequest create", async t => {
   t.is(pr.provider, provider);
   t.is(pr.title, "a title");
   t.is(pr.body, "the body");
-  t.is(pr.state, "closed");
+  t.is(pr.state, "CLOSED");
   t.is(pr.locked, false);
   t.is(pr.merged, false);
   t.is(pr.id, "123456");
   t.is(
     `${pr}`,
-    "p1: a title, state: closed, locked: false, merged: false, destination: r1#b2"
+    "p1: a title, state: CLOSED, locked: false, merged: false, destination: r1#b2"
   );
 
   t.is(await repository.pullRequest("p1"), pr);
@@ -77,10 +77,10 @@ test("pullRequest modify", async t => {
 
   pr.merged = true;
   t.is(pr.merged, true);
-  t.is(pr.state, "merged");
+  t.is(pr.state, "MERGED");
 
-  pr.state = "closed";
-  t.is(pr.state, "closed");
+  pr.state = "CLOSED";
+  t.is(pr.state, "CLOSED");
   t.is(pr.source, b1);
   t.is(pr.destination, b2);
 });

@@ -116,6 +116,7 @@ console.log(await readme.toString());
     -   [delete](#delete)
     -   [merge](#merge)
     -   [decline](#decline)
+    -   [validStates](#validstates)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
@@ -505,6 +506,8 @@ Merge the pull request
 
 Decline the pull request
 
+### validStates
+
 ## title
 
 the one line description of the pull request.
@@ -521,9 +524,9 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 state of the pull request.
 
--   open
--   merged
--   closed
+-   OPEN
+-   MERGED
+-   CLOSED
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
