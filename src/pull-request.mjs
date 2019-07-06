@@ -4,7 +4,6 @@ import {
   optionJSON
 } from "./util.mjs";
 
-
 /**
  * Abstract pull request
  * {@link Repository#addPullRequest}
@@ -26,12 +25,11 @@ import {
  * @property {boolean} [locked]
  */
 export class PullRequest {
-
   /**
-   * 
+   * All valid states
+   * @return {Set<string>} valid states
    */
-  static get validStates()
-  {
+  static get validStates() {
     return new Set(["OPEN", "MERGED", "CLOSED"]);
   }
 
@@ -62,7 +60,7 @@ export class PullRequest {
        * - CLOSED
        * @return {string}
        */
-      state: undefined,
+      state: "OPEN",
 
       /**
        * locked state of the pull request.
@@ -97,8 +95,9 @@ export class PullRequest {
       },
       state: {
         set(value) {
-
-          state = value;
+          if (this.constructor.validStates.has(value)) {
+            state = value;
+          } else throw new Error(`Invalid Pull Request state ${value}`);
         },
         get() {
           return state;
@@ -108,7 +107,7 @@ export class PullRequest {
 
     definePropertiesFromOptions(this, options, properties);
 
-    if(destination !== undefined) {
+    if (destination !== undefined) {
       destination.addPullRequest(this);
     }
   }
@@ -117,14 +116,18 @@ export class PullRequest {
    * @return {Repository} destination repository
    */
   get repository() {
-    return this.destination === undefined ? undefined : this.destination.repository;
+    return this.destination === undefined
+      ? undefined
+      : this.destination.repository;
   }
 
   /**
    * @return {Provider}
    */
   get provider() {
-    return this.destination === undefined ? undefined : this.destination.provider;
+    return this.destination === undefined
+      ? undefined
+      : this.destination.provider;
   }
 
   /**
@@ -133,7 +136,9 @@ export class PullRequest {
    * @return {Promise}
    */
   async delete() {
-    return this.destination === undefined ? undefined : this.destination.deletePullRequest(this.name);
+    return this.destination === undefined
+      ? undefined
+      : this.destination.deletePullRequest(this.name);
   }
 
   /**

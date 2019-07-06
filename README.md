@@ -91,7 +91,6 @@ console.log(await readme.toString());
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
@@ -108,6 +107,7 @@ console.log(await readme.toString());
 -   [id](#id-1)
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-18)
     -   [Properties](#properties-5)
@@ -367,10 +367,6 @@ options
 
 options
 
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
-
 ## Owner
 
 Collection of repositories
@@ -456,6 +452,10 @@ The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
+
 ## PullRequest
 
 Abstract pull request
@@ -507,6 +507,10 @@ Merge the pull request
 Decline the pull request
 
 ### validStates
+
+All valid states
+
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid states
 
 ## title
 

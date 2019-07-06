@@ -84,3 +84,15 @@ test("pullRequest modify", async t => {
   t.is(pr.source, b1);
   t.is(pr.destination, b2);
 });
+
+test("pullRequest modify invalid state", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1");
+  const b1 = await repository.createBranch("b1");
+  const b2 = await repository.createBranch("b2");
+
+  const pr = new PullRequest(b1, b2, "p1");
+
+
+  t.throws( () => { pr.state = "SOMETHING"});
+});
