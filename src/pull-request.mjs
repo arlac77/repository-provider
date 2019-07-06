@@ -33,6 +33,24 @@ export class PullRequest {
     return new Set(["OPEN", "MERGED", "CLOSED"]);
   }
 
+  /**
+   * list all pull request for a given destination repo
+   * @param {Repository} destination
+   * @param {Set<string>} states
+   */
+  static async *list(destination, states) {}
+
+  /**
+   * Opens a new pull request
+   * @param {Branch} source
+   * @param {Branch} destination
+   * @param {Object} options
+   * @return {PullRequest}
+   */
+  static async open(source, destination, options) {
+    return new this(source, destination, "0", options);
+  }
+
   static get defaultOptions() {
     return {
       /**

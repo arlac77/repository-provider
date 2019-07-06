@@ -91,6 +91,7 @@ console.log(await readme.toString());
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
+-   [OneTimeInititalizer](#onetimeinititalizer)
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
@@ -107,7 +108,6 @@ console.log(await readme.toString());
 -   [id](#id-1)
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
--   [OneTimeInititalizer](#onetimeinititalizer)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-18)
     -   [Properties](#properties-5)
@@ -117,26 +117,30 @@ console.log(await readme.toString());
     -   [merge](#merge)
     -   [decline](#decline)
     -   [validStates](#validstates)
+    -   [list](#list)
+        -   [Parameters](#parameters-19)
+    -   [open](#open)
+        -   [Parameters](#parameters-20)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-19)
+    -   [Parameters](#parameters-21)
     -   [Properties](#properties-6)
     -   [toJSON](#tojson-1)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-20)
+    -   [Parameters](#parameters-22)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-21)
+    -   [Parameters](#parameters-23)
 -   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-22)
+    -   [Parameters](#parameters-24)
 
 ## Provider
 
@@ -367,6 +371,10 @@ options
 
 options
 
+## OneTimeInititalizer
+
+enshures that \_initialize() will be called only once
+
 ## Owner
 
 Collection of repositories
@@ -452,10 +460,6 @@ The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
-
 ## PullRequest
 
 Abstract pull request
@@ -511,6 +515,27 @@ Decline the pull request
 All valid states
 
 Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid states
+
+### list
+
+list all pull request for a given destination repo
+
+#### Parameters
+
+-   `destination` **[Repository](#repository)** 
+-   `states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+### open
+
+Opens a new pull request
+
+#### Parameters
+
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[PullRequest](#pullrequest)** 
 
 ## title
 

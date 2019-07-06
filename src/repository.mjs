@@ -368,8 +368,13 @@ export const Repository = OneTimeInititalizerMixin(LogLevelMixin(
     async _fetchHooks() {}
     async _fetchBranches() {}
     async _fetchTags() {}
-    async _fetchPullRequests() {}
-
+    
+    async _fetchPullRequests() {
+      for await(const pr of this.pullRequestClass.list(this)) {
+        this._pullRequests.set(pr.name, pr);
+      }
+    }
+  
     /**
      * By default we use the providers implementation.
      * @return {Class} as defined in the provider
