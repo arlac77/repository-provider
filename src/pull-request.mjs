@@ -113,6 +113,7 @@ export class PullRequest {
       },
       state: {
         set(value) {
+          value = value.toUpperCase();
           if (this.constructor.validStates.has(value)) {
             state = value;
           } else throw new Error(`Invalid Pull Request state ${value}`);

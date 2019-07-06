@@ -20,7 +20,7 @@ test("pullRequest create", async t => {
   const pr = new PullRequest(b1, b2, "p1", {
     title: "a title",
     body: "the body",
-    state: "CLOSED",
+    state: "closed",
     id: "123456"
   });
 
