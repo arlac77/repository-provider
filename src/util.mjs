@@ -48,3 +48,26 @@ export function optionJSON(object, initial = {}) {
     return a;
   }, initial);
 }
+
+
+
+/**
+ * find a new branch name for a given pattern
+ * @param {Repository} repository
+ * @param {string} pattern
+ */
+export async function generateBranchName(repository,pattern)
+{
+  let n = 1;
+
+  //const present = new Set();
+  
+  for await (const b of repository.branches(pattern)) {
+    //console.log("FOUND", b.name);
+    //present.add(b.name);
+    n++;
+  }
+
+  const name = pattern.replace(/\*/,n);
+  return name;
+}

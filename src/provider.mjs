@@ -5,7 +5,7 @@ import { Repository } from "./repository.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Hook } from "./hook.mjs";
 import { RepositoryGroup } from "./group.mjs";
-import { definePropertiesFromOptions, asArray } from "./util.mjs";
+import { definePropertiesFromOptions, asArray, generateBranchName } from "./util.mjs";
 
 export {
   Repository,
@@ -14,7 +14,8 @@ export {
   Owner,
   RepositoryOwnerMixin,
   RepositoryGroup,
-  Hook
+  Hook,
+  generateBranchName
 };
 
 /**
