@@ -34,9 +34,18 @@ export class PullRequest {
   }
 
   /**
+   * All valid merge methods
+   * @return {Set<string>} valid merge methods
+   */
+  static get validMergeMethods() {
+    return new Set(/*["MERGE", "SQUASH", "REBASE"]*/);
+  }
+
+  /**
    * list all pull request for a given destination repo
    * @param {Repository} destination
    * @param {Set<string>} states
+   * @return {Iterator<PullRequest>} 
    */
   static async *list(destination, states) {}
 
@@ -45,6 +54,8 @@ export class PullRequest {
    * @param {Branch} source
    * @param {Branch} destination
    * @param {Object} options
+   * @param {string} options.title
+   * @param {string} options.body
    * @return {PullRequest}
    */
   static async open(source, destination, options) {
@@ -162,9 +173,17 @@ export class PullRequest {
 
   /**
    * Merge the pull request
+   * @param {string} method
    */
-  async merge() {
-    return notImplementedError();
+  async merge(method) {
+    method = method.toUpperCase();
+    if (this.constructor.validMergeMethods.has(method)) {
+      await this._merge(method);
+      this.merged = true;
+    }
+    else {
+      Throw new Error(`Merging with ${method} is not supported`);
+    }
   }
 
   /**
