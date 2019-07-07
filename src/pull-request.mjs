@@ -160,6 +160,13 @@ export class PullRequest {
       : this.destination.provider;
   }
 
+  async write() {
+    this._write();
+  }
+  
+  async _write() {
+  }
+  
   /**
    * Delete the pull request from the {@link Repository}.
    * @see {@link Repository#deletePullRequest}
@@ -182,7 +189,7 @@ export class PullRequest {
       this.merged = true;
     }
     else {
-      Throw new Error(`Merging with ${method} is not supported`);
+      throw new Error(`Merging with ${method} is not supported`);
     }
   }
 
