@@ -475,7 +475,7 @@ Abstract pull request
 
 -   `source` **[Branch](#branch)** merge source
 -   `destination` **[Branch](#branch)** merge target
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `number` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
     -   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
@@ -484,7 +484,7 @@ Abstract pull request
 
 ### Properties
 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `number` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `source` **[Branch](#branch)** 
 -   `destination` **[Branch](#branch)** 
 -   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
@@ -508,7 +508,7 @@ Check for equality
 
 -   `other` **[PullRequest](#pullrequest)** 
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and provider are equal
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if number and provider are equal
 
 ### delete
 
