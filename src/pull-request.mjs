@@ -45,7 +45,7 @@ export class PullRequest {
    * list all pull request for a given destination repo
    * @param {Repository} destination
    * @param {Set<string>} states
-   * @return {Iterator<PullRequest>} 
+   * @return {Iterator<PullRequest>}
    */
   static async *list(destination, states) {}
 
@@ -163,10 +163,9 @@ export class PullRequest {
   async write() {
     this._write();
   }
-  
-  async _write() {
-  }
-  
+
+  async _write() {}
+
   /**
    * Delete the pull request from the {@link Repository}.
    * @see {@link Repository#deletePullRequest}
@@ -187,8 +186,7 @@ export class PullRequest {
     if (this.constructor.validMergeMethods.has(method)) {
       await this._merge(method);
       this.merged = true;
-    }
-    else {
+    } else {
       throw new Error(`Merging with ${method} is not supported`);
     }
   }
