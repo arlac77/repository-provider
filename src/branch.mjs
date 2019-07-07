@@ -198,11 +198,11 @@ export const Branch = OneTimeInititalizerMixin(
     /**
      * Create a pull request
      * @param {Branch} toBranch
-     * @param {string} message
+     * @param {Object} options
      * @return {Promise<PullRequest>}
      */
-    async createPullRequest(toBranch, message) {
-      return notImplementedError();
+    async createPullRequest(toBranch, options) {
+      return this.pullRequestClass.open(this, toBranch, options);
     }
 
     async addPullRequest(pullRequest) {

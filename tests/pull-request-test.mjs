@@ -49,6 +49,20 @@ test("pullRequest create", async t => {
   t.is(prs[pr.name], pr);
 });
 
+test("pullRequest equal", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1");
+  const b1 = await repository.createBranch("b1");
+  const b2 = await repository.createBranch("b2");
+
+  const pr1 = new PullRequest(b1, b2, "pr1");
+  const pr1b = new PullRequest(b1, b2, "pr1");
+  const pr2 = new PullRequest(b1, b2, "pr2");
+  t.true(pr1.equals(pr1b));
+  t.true(pr1.equals(pr1));
+  t.false(pr1.equals(pr2));
+});
+
 test("pullRequest create without options", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");

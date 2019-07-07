@@ -160,6 +160,19 @@ export class PullRequest {
       : this.destination.provider;
   }
 
+  /**
+   * Check for equality
+   * @param {PullRequest} other
+   * @return {boolean} true if name and provider are equal
+   */
+  equals(other) {
+    if(other === undefined) {
+      return false;
+    }
+
+    return this.name === other.name && this.repository === other.repository;
+  }
+
   async write() {
     this._write();
   }

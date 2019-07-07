@@ -113,34 +113,40 @@ console.log(await readme.toString());
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
     -   [provider](#provider-2)
+    -   [equals](#equals)
+        -   [Parameters](#parameters-19)
     -   [delete](#delete)
     -   [merge](#merge)
+        -   [Parameters](#parameters-20)
     -   [decline](#decline)
     -   [validStates](#validstates)
+    -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-19)
+        -   [Parameters](#parameters-21)
     -   [open](#open)
-        -   [Parameters](#parameters-20)
+        -   [Parameters](#parameters-22)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-21)
+    -   [Parameters](#parameters-23)
     -   [Properties](#properties-6)
     -   [toJSON](#tojson-1)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-22)
+    -   [Parameters](#parameters-24)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-23)
+    -   [Parameters](#parameters-25)
 -   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-24)
+    -   [Parameters](#parameters-26)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-27)
 
 ## Provider
 
@@ -494,6 +500,16 @@ Returns **[Repository](#repository)** destination repository
 
 Returns **[Provider](#provider)** 
 
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[PullRequest](#pullrequest)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and provider are equal
+
 ### delete
 
 -   **See: [Repository#deletePullRequest](Repository#deletePullRequest)**
@@ -506,6 +522,10 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Merge the pull request
 
+#### Parameters
+
+-   `method` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ### decline
 
 Decline the pull request
@@ -516,6 +536,12 @@ All valid states
 
 Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid states
 
+### validMergeMethods
+
+All valid merge methods
+
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid merge methods
+
 ### list
 
 list all pull request for a given destination repo
@@ -524,6 +550,8 @@ list all pull request for a given destination repo
 
 -   `destination` **[Repository](#repository)** 
 -   `states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+Returns **Iterator&lt;[PullRequest](#pullrequest)>** 
 
 ### open
 
@@ -534,6 +562,8 @@ Opens a new pull request
 -   `source` **[Branch](#branch)** 
 -   `destination` **[Branch](#branch)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+    -   `options.body` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[PullRequest](#pullrequest)** 
 
@@ -656,6 +686,17 @@ In other words only produce key value pairs if value is defined.
 -   `initial` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** initial + defined values
+
+## generateBranchName
+
+find a new branch name for a given pattern
+'_' will be replaced by a number
+'something/_' will get to something/1 something/2 ...
+
+### Parameters
+
+-   `repository` **[Repository](#repository)** 
+-   `pattern` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 # install
 
