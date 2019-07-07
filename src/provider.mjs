@@ -122,6 +122,10 @@ export class Provider extends Owner {
     this.trace(level => options);
   }
 
+  equals(other) {
+    return this === other;
+  }
+
   /**
    * Lookup a repository group
    * @param {string} name of the group

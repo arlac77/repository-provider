@@ -9,14 +9,14 @@ import {
  * {@link Repository#addPullRequest}
  * @param {Branch} source merge source
  * @param {Branch} destination merge target
- * @param {string} name
+ * @param {string} number
  * @param {Object} options
  * @param {string} [options.title]
  * @param {string} [options.state]
  * @param {boolean} [options.merged]
  * @param {boolean} [options.locked]
 
- * @property {string} name
+ * @property {string} number
  * @property {Branch} source
  * @property {Branch} destination
  * @property {string} [title]
@@ -105,11 +105,11 @@ export class PullRequest {
     };
   }
 
-  constructor(source, destination, name, options) {
+  constructor(source, destination, number, options) {
     let state;
 
     const properties = {
-      name: { value: name },
+      number: { value: number },
       source: { value: source },
       destination: { value: destination },
       merged: {
@@ -142,6 +142,10 @@ export class PullRequest {
     }
   }
 
+  get name() {
+    return this.number;
+  }
+
   /**
    * @return {Repository} destination repository
    */
@@ -163,14 +167,14 @@ export class PullRequest {
   /**
    * Check for equality
    * @param {PullRequest} other
-   * @return {boolean} true if name and provider are equal
+   * @return {boolean} true if number and provider are equal
    */
   equals(other) {
     if(other === undefined) {
       return false;
     }
 
-    return this.name === other.name && this.repository === other.repository;
+    return this.number === other.number && this.repository === other.repository;
   }
 
   async write() {
@@ -187,7 +191,7 @@ export class PullRequest {
   async delete() {
     return this.destination === undefined
       ? undefined
-      : this.destination.deletePullRequest(this.name);
+      : this.destination.deletePullRequest(this.number);
   }
 
   /**
@@ -213,7 +217,7 @@ export class PullRequest {
 
   toString() {
     return [
-      [this.name, this.title],
+      [this.number, this.title],
       ...Object.keys(this.constructor.defaultOptions)
         .filter(k => k !== "id" && k !== "title" && k !== "body")
         .map(k => [k, this[k]]),
@@ -227,7 +231,7 @@ export class PullRequest {
     return optionJSON(this, {
       source: this.source,
       destination: this.destination,
-      name: this.name
+      number: this.number
     });
   }
 }
