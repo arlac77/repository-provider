@@ -122,6 +122,9 @@ export class Provider extends Owner {
     this.trace(level => options);
   }
 
+  /**
+   * @return {boolean} true if other provider is the same as the receiver
+   */
   equals(other) {
     return this === other;
   }

@@ -174,7 +174,7 @@ export class PullRequest {
       return false;
     }
 
-    return this.number === other.number && this.repository === other.repository;
+    return this.number === other.number && this.repository.equals(other.repository);
   }
 
   async write() {
