@@ -218,11 +218,12 @@ export class PullRequest {
   toString() {
     return [
       [this.number, this.title],
+      ["source", this.source],
+      ["destination", this.destination],
       ...Object.keys(this.constructor.defaultOptions)
         .filter(k => k !== "id" && k !== "title" && k !== "body")
         .map(k => [k, this[k]]),
-      ["destination", this.destination]
-    ]
+      ]
       .map(([k, v]) => `${k}: ${v}`)
       .join(", ");
   }
