@@ -10,6 +10,9 @@ class MyProvider extends Provider {
 test("provider normalize repo name", t => {
   const provider = new Provider();
   t.is(provider.normalizeRepositoryName("abc"), "abc");
+  t.is(provider.normalizeRepositoryName(" abc"), "abc");
+  t.is(provider.normalizeRepositoryName("abc "), "abc");
+  t.is(provider.normalizeRepositoryName(" abc "), "abc");
   t.is(provider.normalizeRepositoryName("abc/def"), "abc/def");
   t.is(provider.normalizeRepositoryName("abc/def#mybranch"), "abc/def");
   t.is(provider.normalizeRepositoryName("abc/def.git"), "abc/def");
@@ -20,8 +23,8 @@ test("provider parseName", t => {
   const provider = new MyProvider();
   const nameFixtures = {
     abc: { repository: "abc" },
-    "abc/def": { group: "abc", repository: "def" },
-    "abc/def#mybranch": { group: "abc", repository: "def", branch: "mybranch" },
+    " abc/def": { group: "abc", repository: "def" },
+    "abc/def#mybranch ": { group: "abc", repository: "def", branch: "mybranch" },
     "abc/def.git": { group: "abc", repository: "def" },
     "abc/def.git#mybranch": {
       group: "abc",

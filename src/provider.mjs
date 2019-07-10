@@ -186,6 +186,7 @@ export class Provider extends Owner {
    * @return {string} normalized name
    */
   normalizeRepositoryName(name) {
+    name = name.trim();
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
         name = name.substring(b.length);
@@ -203,6 +204,7 @@ export class Provider extends Owner {
    * @return {Object}
    */
   parseName(name) {
+    name = name.trim();
     name = name.replace(/^([\w\-\+]+:\/\/)[^\@]+@/, (match, g1) => g1);
     name = name.replace(/^git\+/, "");
 
