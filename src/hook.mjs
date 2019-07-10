@@ -26,6 +26,19 @@ export class Hook {
   }
 
   /**
+   * Check for equality
+   * @param {Hook} other
+   * @return {boolean} true if name and repository are equal
+   */
+  equals(other) {
+    if (other === undefined) {
+      return false;
+    }
+
+    return this.name === other.name && this.repository.equals(other.repository);
+  }
+
+  /**
    * provide name and all defined defaultOptions
    */
   toJSON() {

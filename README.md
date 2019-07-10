@@ -51,42 +51,44 @@ console.log(await readme.toString());
 -   [Provider](#provider)
     -   [Parameters](#parameters)
     -   [Properties](#properties)
-    -   [repositoryGroup](#repositorygroup)
+    -   [equals](#equals)
         -   [Parameters](#parameters-1)
-    -   [createRepositoryGroup](#createrepositorygroup)
+    -   [repositoryGroup](#repositorygroup)
         -   [Parameters](#parameters-2)
+    -   [createRepositoryGroup](#createrepositorygroup)
+        -   [Parameters](#parameters-3)
     -   [repositoryBases](#repositorybases)
     -   [normalizeRepositoryName](#normalizerepositoryname)
-        -   [Parameters](#parameters-3)
-    -   [parseName](#parsename)
         -   [Parameters](#parameters-4)
-    -   [repository](#repository)
+    -   [parseName](#parsename)
         -   [Parameters](#parameters-5)
-    -   [branch](#branch)
+    -   [repository](#repository)
         -   [Parameters](#parameters-6)
-    -   [repositoryGroups](#repositorygroups)
+    -   [branch](#branch)
         -   [Parameters](#parameters-7)
-    -   [repositories](#repositories)
+    -   [repositoryGroups](#repositorygroups)
         -   [Parameters](#parameters-8)
-    -   [branches](#branches)
+    -   [repositories](#repositories)
         -   [Parameters](#parameters-9)
-    -   [tags](#tags)
+    -   [branches](#branches)
         -   [Parameters](#parameters-10)
+    -   [tags](#tags)
+        -   [Parameters](#parameters-11)
     -   [repositoryGroupClass](#repositorygroupclass)
     -   [hookClass](#hookclass)
     -   [name](#name)
     -   [provider](#provider-1)
     -   [toJSON](#tojson)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-11)
+        -   [Parameters](#parameters-12)
     -   [environmentOptions](#environmentoptions)
     -   [areOptionsSufficciant](#areoptionssufficciant)
-        -   [Parameters](#parameters-12)
-    -   [initialize](#initialize)
         -   [Parameters](#parameters-13)
+    -   [initialize](#initialize)
+        -   [Parameters](#parameters-14)
 -   [priority](#priority)
 -   [Branch](#branch-1)
-    -   [Parameters](#parameters-14)
+    -   [Parameters](#parameters-15)
     -   [Properties](#properties-1)
 -   [defaultOptions](#defaultoptions)
 -   [defaultOptions](#defaultoptions-1)
@@ -95,12 +97,12 @@ console.log(await readme.toString());
 -   [Owner](#owner)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
-    -   [Parameters](#parameters-15)
+    -   [Parameters](#parameters-16)
     -   [Properties](#properties-3)
 -   [logger](#logger)
-    -   [Parameters](#parameters-16)
--   [Repository](#repository-1)
     -   [Parameters](#parameters-17)
+-   [Repository](#repository-1)
+    -   [Parameters](#parameters-18)
     -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
@@ -109,44 +111,47 @@ console.log(await readme.toString());
 -   [id](#id-2)
 -   [defaultBranchName](#defaultbranchname)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-18)
+    -   [Parameters](#parameters-19)
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
     -   [provider](#provider-2)
-    -   [equals](#equals)
-        -   [Parameters](#parameters-19)
+    -   [equals](#equals-1)
+        -   [Parameters](#parameters-20)
     -   [delete](#delete)
     -   [merge](#merge)
-        -   [Parameters](#parameters-20)
+        -   [Parameters](#parameters-21)
     -   [decline](#decline)
     -   [validStates](#validstates)
+    -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-21)
-    -   [open](#open)
         -   [Parameters](#parameters-22)
+    -   [open](#open)
+        -   [Parameters](#parameters-23)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-23)
+    -   [Parameters](#parameters-24)
     -   [Properties](#properties-6)
+    -   [equals](#equals-2)
+        -   [Parameters](#parameters-25)
     -   [toJSON](#tojson-1)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-24)
+    -   [Parameters](#parameters-26)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-25)
--   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-26)
--   [generateBranchName](#generatebranchname)
     -   [Parameters](#parameters-27)
+-   [optionJSON](#optionjson)
+    -   [Parameters](#parameters-28)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-29)
 
 ## Provider
 
@@ -161,6 +166,14 @@ Base repository provider acts as a source of repositories
 ### Properties
 
 -   `_repositoryGroups` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [RepositoryGroup](#repositorygroup)>** 
+
+### equals
+
+#### Parameters
+
+-   `other`  
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other provider is the same as the receiver
 
 ### repositoryGroup
 
@@ -536,6 +549,12 @@ All valid states
 
 Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid states
 
+### defaultListStates
+
+States to list pull request by default
+
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** states to list by default
+
 ### validMergeMethods
 
 All valid merge methods
@@ -615,6 +634,16 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 -   `repository` **[Repository](#repository)** 
 -   `url` **[URL](https://developer.mozilla.org/docs/Web/API/URL/URL)** 
 -   `events` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[Hook](#hook)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and repository are equal
 
 ### toJSON
 

@@ -11,7 +11,7 @@ import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
  * @param {Repository} repository
  * @param {string} name
  * @param {Object} options
- * 
+ *
  * @property {Repository} repository
  * @property {Provider} provider
  * @property {string} name
@@ -32,6 +32,21 @@ export const Branch = OneTimeInititalizerMixin(
       });
 
       repository.addBranch(this);
+    }
+
+    /**
+     * Check for equality
+     * @param {Branch} other
+     * @return {boolean} true if name and repository are equal
+     */
+    equals(other) {
+      if (other === undefined) {
+        return false;
+      }
+
+      return (
+        this.name === other.name && this.repository.equals(other.repository)
+      );
     }
 
     /**

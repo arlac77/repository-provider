@@ -34,6 +34,14 @@ export class PullRequest {
   }
 
   /**
+   * States to list pull request by default
+   * @return {Set<string>} states to list by default
+   */
+  static get defaultListStates() {
+    return new Set(['OPEN']);
+  }
+
+  /**
    * All valid merge methods
    * @return {Set<string>} valid merge methods
    */
