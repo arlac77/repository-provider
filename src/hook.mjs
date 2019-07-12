@@ -23,6 +23,8 @@ export class Hook {
       name: { value: name },
       events: { value: events }
     });
+
+    repository.addHook(this);
   }
 
   /**
@@ -39,7 +41,7 @@ export class Hook {
   }
 
   /**
-   * provide name and all defined defaultOptions
+   * provide name, events and all defined defaultOptions
    */
   toJSON() {
     return optionJSON(this, { name: this.name, events: [...this.events] });

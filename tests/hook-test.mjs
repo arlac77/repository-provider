@@ -3,7 +3,7 @@ import { Owner } from "../src/owner.mjs";
 import { Repository } from "../src/repository.mjs";
 import { Hook } from "../src/hook.mjs";
 
-test("add hook", t => {
+test("add hook", async t => {
   const repository = new Repository(new Owner(), "r1");
 
   const hook = new Hook(repository, "hook1", new Set(["a"]), {
@@ -12,6 +12,16 @@ test("add hook", t => {
   });
 
   t.is(hook.repository, repository);
+
+  t.is(repository._hooks.length,1);
+  /*
+  let n = 0;
+  for await (const h of repository.hooks()) {
+    t.is(h.repository, repository);
+    n++;
+  }
+  t.is(n, 1);
+  */
   t.is(hook.name, "hook1");
   t.deepEqual(hook.events, new Set(["a"]));
 
@@ -22,9 +32,9 @@ test("add hook", t => {
     name: "hook1",
     active: true,
     id: 77,
-    events: ['a'],
+    events: ["a"],
     insecure_ssl: false,
-    content_type: 'json',
+    content_type: "json",
     url: "http://somewere.com/path"
   });
 });

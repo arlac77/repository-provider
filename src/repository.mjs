@@ -2,6 +2,8 @@ import { LogLevelMixin } from "loglevel-mixin";
 import { OneTimeInititalizerMixin } from "./one-time-initializer-mixin.mjs";
 import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
 
+const HOOKS_INITIALIZED = Symbol('hooksInitialized');
+
 /**
  * Abstract repository
  * @param {Owner} owner
@@ -336,12 +338,23 @@ export const Repository = OneTimeInititalizerMixin(
         this._pullRequests.delete(name);
       }
 
+      async _fetchHooks() {
+      }
+
+      async initializeHooks() {
+        if (this[HOOKS_INITIALIZED] === true) {
+          return;
+        }
+        this[HOOKS_INITIALIZED] = true;
+
+        await this._fetchHooks();
+      }
+
       /**
        * Add a hook
        * @param {Hook} hook
-       * @return {Promise}
        */
-      async addHook(hook) {
+      addHook(hook) {
         this._hooks.push(hook);
       }
 
@@ -351,7 +364,7 @@ export const Repository = OneTimeInititalizerMixin(
        * @return {Hook} all matching hook of the repository
        */
       async *hooks() {
-        await this.initialize();
+        await this.initializeHooks();
         for (const hook of this._hooks) {
           yield hook;
         }
@@ -376,13 +389,11 @@ export const Repository = OneTimeInititalizerMixin(
       async _initialize() {
         await Promise.all([
           this._fetchBranches(),
-          this._fetchTags(),
-          this._fetchHooks()
+          this._fetchTags()
         ]);
         await this._fetchPullRequests();
       }
 
-      async _fetchHooks() {}
       async _fetchBranches() {}
       async _fetchTags() {}
 
