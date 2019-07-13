@@ -144,9 +144,9 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * Commit files
+     * Commit entries
      * @param {string} message commit message
-     * @param {Entry[]} updates file content to be commited
+     * @param {Entry[]} updates content to be commited
      * @param {Object} options
      * @return {Promise}
      */

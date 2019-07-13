@@ -647,7 +647,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### toJSON
 
-provide name and all defined defaultOptions
+provide name, events and all defined defaultOptions
 
 ## RepositoryGroup
 
