@@ -9,11 +9,13 @@ test("repository-group create with options", t => {
   const owner = new Owner();
   const rg = new RepositoryGroup(owner, "rg", {
     description: "a description",
-    id: "4711"
+    id: "4711",
+    uuid: "12345"
   });
   t.is(rg.name, "rg");
   t.is(rg.description, "a description");
   t.is(rg.id, "4711");
+  t.is(rg.uuid, "12345");
   t.is(rg.toString(), "rg");
 });
 

@@ -26,7 +26,13 @@ export class RepositoryGroup extends Owner {
        * unique id within the provider.
        * @return {string}
        */
-      id: undefined
+      id: undefined,
+
+      /**
+       * unique id.
+       * @return {string}
+       */
+      uuid: undefined
     };
   }
 

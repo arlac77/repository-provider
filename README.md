@@ -109,6 +109,8 @@ console.log(await readme.toString());
 -   [id](#id)
 -   [id](#id-1)
 -   [id](#id-2)
+-   [uuid](#uuid)
+-   [uuid](#uuid-1)
 -   [defaultBranchName](#defaultbranchname)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-19)
@@ -470,6 +472,18 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## id
 
 unique id within the provider.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## uuid
+
+unique id.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## uuid
+
+unique id.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 

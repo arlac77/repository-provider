@@ -9,7 +9,8 @@ test("repository create with options", async t => {
   const owner = new Owner();
   const repository = new Repository(owner, "r1", {
     description: "a description",
-    id: "4711"
+    id: "4711",
+    uuid: '12345'
   });
   t.is(repository.owner, owner);
   t.is(repository.name, "r1");
@@ -17,6 +18,7 @@ test("repository create with options", async t => {
   t.is(repository.type, "git");
   t.is(repository.description, "a description");
   t.is(repository.id, "4711");
+  t.is(repository.uuid, "12345");
   t.is(repository.issuesURL, undefined);
   t.is(repository.homePageURL, undefined);
   t.is(repository.toString(), "r1");
@@ -24,6 +26,7 @@ test("repository create with options", async t => {
     defaultBranchName: "master",
     description: "a description",
     id: "4711",
+    uuid: '12345',
     name: "r1",
     fullName: "r1",
     urls: []

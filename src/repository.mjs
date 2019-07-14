@@ -40,6 +40,12 @@ export const Repository = OneTimeInititalizerMixin(
           id: undefined,
 
           /**
+           * unique id.
+           * @return {string}
+           */
+          uuid: undefined,
+
+          /**
            * The name of the default branch
            * @return {string}
            */
