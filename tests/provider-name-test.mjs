@@ -42,35 +42,47 @@ test("provider parseName", t => {
     },
 
     "https://github.com/arlac77/sync-test-repository.git#mybranch": {
+      base: 'https://github.com/',
       group: "arlac77",
       repository: "sync-test-repository",
       branch: "mybranch"
     },
     "https://user:password@github.com/arlac77/sync-test-repository.git#mybranch": {
+      base: 'https://github.com/',
       group: "arlac77",
       repository: "sync-test-repository",
       branch: "mybranch"
     },
     "https://user@github.com/arlac77/sync-test-repository.git#mybranch": {
+      base: 'https://github.com/',
       group: "arlac77",
       repository: "sync-test-repository",
       branch: "mybranch"
     },
     "http://otherdomain.com/arlac77/sync-test-repository.git#mybranch": {
+      base: 'http://otherdomain.com',
       group: "arlac77",
       repository: "sync-test-repository",
       branch: "mybranch"
     },
     "git+http://otherdomain.com/arlac77/sync-test-repository.git#mybranch": {
+      base: 'http://otherdomain.com',
       group: "arlac77",
       repository: "sync-test-repository",
       branch: "mybranch"
     },
     "git+http://arlac77@otherdomain.com/prefix/arlac77/sync-test-repository.git": {
+      base: 'http://otherdomain.com',
       group: "arlac77",
       repository: "sync-test-repository"
     },
     "git@bitbucket.org:arlac77/sync-test-repository.git": {
+      base: 'git@bitbucket.org:',
+      group: "arlac77",
+      repository: "sync-test-repository"
+    },
+    "git@bitbucket.org/arlac77/sync-test-repository.git": {
+      base: 'git@bitbucket.org/',
       group: "arlac77",
       repository: "sync-test-repository"
     }

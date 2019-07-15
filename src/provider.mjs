@@ -10,6 +10,7 @@ import {
   asArray,
   generateBranchName
 } from "./util.mjs";
+import { isRegExp } from "util";
 
 export {
   Repository,
@@ -203,17 +204,20 @@ export class Provider extends Owner {
 
   /**
    * parses repository name and tries to split it into
-   * group,repository and branch
+   * base, group, repository and branch
    * @param {string} name
    * @return {Object}
    */
   parseName(name) {
+    const result = {};
+
     name = name.trim();
     name = name.replace(/^([\w\-\+]+:\/\/)[^\@]+@/, (match, g1) => g1);
     name = name.replace(/^git\+/, "");
 
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
+        result.base = b;
         name = name.substring(b.length);
         break;
       }
@@ -223,15 +227,19 @@ export class Provider extends Owner {
       name = name.substring(1);
     }
 
-    const result = {};
-    const m = name.match(/#(.*)$/);
+    let m = name.match(/#(.*)$/);
     if (m) {
       result.branch = m[1];
       name = name.replace(/#.*$/, "");
     }
 
     name = name.replace(/\.git$/, "");
-    name = name.replace(/^git@[^:\/]+[:\/]/, "");
+
+    m = name.match(/^git@[^:\/]+[:\/]/);
+    if(m) {
+      result.base = m[0];
+      name = name.substring(result.base.length);
+    }
 
     const parts = name.split(/\//);
 
@@ -257,7 +265,13 @@ export class Provider extends Owner {
 
     await this.initialize();
 
-    const { group, repository } = this.parseName(name);
+    const { base, group, repository } = this.parseName(name);
+
+    if(base !== undefined) {
+      if(!this.repositoryBases.find(x => x === base)) {
+        return undefined;
+      }
+    }
 
     if (group !== undefined) {
       const rg = await this.repositoryGroup(group);
