@@ -70,11 +70,10 @@ test("provider parseName", t => {
       group: "arlac77",
       repository: "sync-test-repository"
     },
-    /*
     "git@bitbucket.org:arlac77/sync-test-repository.git": {
       group: "arlac77",
       repository: "sync-test-repository"
-    }*/
+    }
   };
 
   for (const name of Object.keys(nameFixtures)) {

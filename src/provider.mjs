@@ -5,7 +5,11 @@ import { Repository } from "./repository.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Hook } from "./hook.mjs";
 import { RepositoryGroup } from "./group.mjs";
-import { definePropertiesFromOptions, asArray, generateBranchName } from "./util.mjs";
+import {
+  definePropertiesFromOptions,
+  asArray,
+  generateBranchName
+} from "./util.mjs";
 
 export {
   Repository,
@@ -227,12 +231,13 @@ export class Provider extends Owner {
     }
 
     name = name.replace(/\.git$/, "");
+    name = name.replace(/^git@[^:\/]+[:\/]/, "");
 
     const parts = name.split(/\//);
 
     if (parts.length >= 2) {
-      result.group = parts[parts.length -2];
-      result.repository = parts[parts.length -1];
+      result.group = parts[parts.length - 2];
+      result.repository = parts[parts.length - 1];
     } else {
       result.repository = name;
     }
