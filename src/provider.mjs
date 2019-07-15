@@ -241,6 +241,13 @@ export class Provider extends Owner {
       name = name.substring(result.base.length);
     }
 
+    m = name.match(/^[\w\-^+]+:\/\/[^\/]+\//);
+    if(m) {
+      result.base = m[0];
+      name = name.substring(result.base.length);
+    }
+
+
     const parts = name.split(/\//);
 
     if (parts.length >= 2) {
