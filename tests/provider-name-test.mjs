@@ -24,13 +24,23 @@ test("provider parseName", t => {
   const nameFixtures = {
     abc: { repository: "abc" },
     " abc/def": { group: "abc", repository: "def" },
-    "abc/def#mybranch ": { group: "abc", repository: "def", branch: "mybranch" },
+    "abc/def#mybranch ": {
+      group: "abc",
+      repository: "def",
+      branch: "mybranch"
+    },
     "abc/def.git": { group: "abc", repository: "def" },
     "abc/def.git#mybranch": {
       group: "abc",
       repository: "def",
       branch: "mybranch"
     },
+    "xxx/abc/def.git#mybranch": {
+      group: "abc",
+      repository: "def",
+      branch: "mybranch"
+    },
+
     "https://github.com/arlac77/sync-test-repository.git#mybranch": {
       group: "arlac77",
       repository: "sync-test-repository",
@@ -56,10 +66,15 @@ test("provider parseName", t => {
       repository: "sync-test-repository",
       branch: "mybranch"
     },
-    "git+http://arlac77@otherdomain.com/arlac77/sync-test-repository.git": {
+    "git+http://arlac77@otherdomain.com/prefix/arlac77/sync-test-repository.git": {
       group: "arlac77",
       repository: "sync-test-repository"
-    }
+    },
+    /*
+    "git@bitbucket.org:arlac77/sync-test-repository.git": {
+      group: "arlac77",
+      repository: "sync-test-repository"
+    }*/
   };
 
   for (const name of Object.keys(nameFixtures)) {

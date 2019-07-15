@@ -230,9 +230,9 @@ export class Provider extends Owner {
 
     const parts = name.split(/\//);
 
-    if (parts.length === 2) {
-      result.group = parts[0];
-      result.repository = parts[1];
+    if (parts.length >= 2) {
+      result.group = parts[parts.length -2];
+      result.repository = parts[parts.length -1];
     } else {
       result.repository = name;
     }
