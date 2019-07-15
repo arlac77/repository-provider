@@ -450,7 +450,7 @@ export const Repository = OneTimeInititalizerMixin(
       }
 
       toString() {
-        return this.name;
+        return this.fullName;
       }
 
       /**
