@@ -236,17 +236,16 @@ export class Provider extends Owner {
     name = name.replace(/\.git$/, "");
 
     m = name.match(/^git@[^:\/]+[:\/]/);
-    if(m) {
+    if (m) {
       result.base = m[0];
       name = name.substring(result.base.length);
     }
 
     m = name.match(/^[\w\-^+]+:\/\/[^\/]+\//);
-    if(m) {
+    if (m) {
       result.base = m[0];
       name = name.substring(result.base.length);
     }
-
 
     const parts = name.split(/\//);
 
@@ -260,23 +259,18 @@ export class Provider extends Owner {
     return result;
   }
 
-  /**
-   * Lookup a repository in the provider and all of its repository groups
-   * @param {string} name of the repository
-   * @return {Promise<Repository>}
-   */
-  async repository(name) {
+  async _repositoryWithBranchName(name) {
     if (name === undefined) {
-      return undefined;
+      return {};
     }
 
     await this.initialize();
 
-    const { base, group, repository } = this.parseName(name);
+    const { base, group, repository, branch } = this.parseName(name);
 
-    if(base !== undefined) {
-      if(!this.repositoryBases.find(x => x === base)) {
-        return undefined;
+    if (base !== undefined) {
+      if (!this.repositoryBases.find(x => x === base)) {
+        return {};
       }
     }
 
@@ -285,7 +279,7 @@ export class Provider extends Owner {
       if (rg !== undefined) {
         const r = await rg.repository(repository);
         if (r !== undefined) {
-          return r;
+          return { repository: r, branch };
         }
       }
     }
@@ -293,42 +287,42 @@ export class Provider extends Owner {
     const r = await super.repository(repository);
 
     if (r !== undefined) {
-      return r;
+      return { repository: r, branch };
     }
 
     for (const p of this._repositoryGroups.values()) {
       const r = await p.repository(repository);
       if (r !== undefined) {
-        return r;
+        return { repository: r, branch };
       }
     }
 
-    return undefined;
+    return {};
+  }
+
+  /**
+   * Lookup a repository in the provider and all of its repository groups
+   * @param {string} name of the repository
+   * @return {Promise<Repository>}
+   */
+  async repository(name) {
+    const { repository } = await this._repositoryWithBranchName(name);
+    return repository;
   }
 
   /**
    * Lookup a branch in the provider and all of its repository groups
    * @param {string} name of the branch
-   * @param {Object} options
    * @return {Promise<Branch>}
    */
-  async branch(name, options) {
-    await this.initialize();
+  async branch(name) {
+    const { repository, branch } = await this._repositoryWithBranchName(name);
 
-    const r = await super.branch(name, options);
-
-    if (r !== undefined) {
-      return r;
-    }
-
-    for (const p of this._repositoryGroups.values()) {
-      const r = await p.branch(name, options);
-      if (r !== undefined) {
-        return r;
-      }
-    }
-
-    return undefined;
+    return repository === undefined
+      ? undefined
+      : repository.branch(
+          branch === undefined ? repository.defaultBranchName : branch
+        );
   }
 
   /**
