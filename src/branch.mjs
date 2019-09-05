@@ -179,7 +179,7 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
-     * get exactly one matching entry by name (thwos if entry is not found)
+     * get exactly one matching entry by name (throws if entry is not found)
      * @param {string} name
      * @return {Promise<Entry>}
      */
