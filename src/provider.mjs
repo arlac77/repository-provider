@@ -10,7 +10,6 @@ import {
   asArray,
   generateBranchName
 } from "./util.mjs";
-import { isRegExp } from "util";
 
 export {
   Repository,
