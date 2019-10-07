@@ -112,6 +112,7 @@ console.log(await readme.toString());
 -   [uuid](#uuid)
 -   [uuid](#uuid-1)
 -   [defaultBranchName](#defaultbranchname)
+-   [urls](#urls)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-19)
     -   [Properties](#properties-5)
@@ -491,6 +492,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## urls
+
+urls of the repository
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
 ## PullRequest
 

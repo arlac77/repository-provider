@@ -51,12 +51,23 @@ export const Repository = OneTimeInititalizerMixin(
            */
           defaultBranchName: "master",
 
+          /**
+           * urls of the repository
+           * @return {string[]}
+           */
           urls: undefined
         };
       }
 
       constructor(owner, name, options) {
         name = name.replace(/#.*$/, "");
+
+        const parts = name.split(/\//);
+        if(parts.length >= 2) {
+          if(parts[parts.length - 2] === owner.name) {
+            name = parts[parts.length - 1];
+          }
+        }
 
         definePropertiesFromOptions(this, options, {
           name: { value: name },
