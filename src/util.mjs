@@ -21,10 +21,12 @@ export function definePropertiesFromOptions(object, options, properties = {}) {
     const value =
       (options !== undefined && options[name]) || defaultOptions[name];
 
-    if (properties[name] === undefined) {
-      properties[name] = { value };
-    } else {
-      after[name] = value;
+    if (value !== undefined) {
+      if (properties[name] === undefined) {
+        properties[name] = { value };
+      } else {
+        after[name] = value;
+      }
     }
   });
 
