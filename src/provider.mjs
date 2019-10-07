@@ -165,7 +165,7 @@ export class Provider extends Owner {
   async _createRepositoryGroup(name, options) {
     const repositoryGroup = new this.repositoryGroupClass(this, name, options);
     await repositoryGroup.initialize();
-    this._repositoryGroups.set(name, repositoryGroup);
+    this._repositoryGroups.set(repositoryGroup.name, repositoryGroup);
     return repositoryGroup;
   }
 
