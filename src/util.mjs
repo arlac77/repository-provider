@@ -43,8 +43,9 @@ export function definePropertiesFromOptions(object, options, properties = {}) {
  */
 export function optionJSON(object, initial = {}) {
   return Object.keys(object.constructor.defaultOptions).reduce((a, c) => {
-    if (object[c] !== undefined) {
-      a[c] = object[c];
+    const value = object[c];
+    if (value !== undefined && !(value instanceof Function)) {
+      a[c] = value;
     }
     return a;
   }, initial);
