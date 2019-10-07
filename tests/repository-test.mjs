@@ -1,4 +1,5 @@
 import test from "ava";
+import { RepositoryGroup } from "../src/group.mjs";
 import { Owner } from "../src/owner.mjs";
 import { Provider } from "../src/provider.mjs";
 import { Repository } from "../src/repository.mjs";
@@ -10,7 +11,7 @@ test("repository create with options", async t => {
   const repository = new Repository(owner, "r1", {
     description: "a description",
     id: "4711",
-    uuid: '12345'
+    uuid: "12345"
   });
   t.is(repository.owner, owner);
   t.is(repository.name, "r1");
@@ -26,16 +27,45 @@ test("repository create with options", async t => {
     defaultBranchName: "master",
     description: "a description",
     id: "4711",
-    uuid: '12345',
+    uuid: "12345",
     name: "r1",
     fullName: "r1",
     urls: []
   });
 
   t.deepEqual(await repository.tags().next(), { done: true, value: undefined });
-  t.deepEqual(await repository.hooks().next(), { done: true, value: undefined });
-  t.deepEqual(await repository.branches().next(), { done: true, value: undefined });
-  t.deepEqual(await repository.pullRequests().next(), { done: true, value: undefined });
+  t.deepEqual(await repository.hooks().next(), {
+    done: true,
+    value: undefined
+  });
+  t.deepEqual(await repository.branches().next(), {
+    done: true,
+    value: undefined
+  });
+  t.deepEqual(await repository.pullRequests().next(), {
+    done: true,
+    value: undefined
+  });
+});
+
+test("repository create with more options", async t => {
+  const provider = new Provider();
+  const group = new RepositoryGroup(provider, "g1");
+  const repository = new Repository(group, "r1", {
+    fullName: "g1/r1",
+    description: "a description",
+    id: "4712",
+    uuid: "12345",
+    urls: ["http:/myprovider/orner1/r1.git"]
+  });
+
+  t.is(repository.owner, group);
+  t.is(repository.name, "r1");
+  t.is(repository.fullName, "g1/r1");
+  t.is(repository.type, "git");
+  t.is(repository.id, "4712");
+  t.is(repository.description, "a description");
+  t.deepEqual(repository.urls, ["http:/myprovider/orner1/r1.git"]);
 });
 
 test("repository create without options", t => {

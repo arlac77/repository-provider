@@ -49,7 +49,9 @@ export const Repository = OneTimeInititalizerMixin(
            * The name of the default branch
            * @return {string}
            */
-          defaultBranchName: "master"
+          defaultBranchName: "master",
+
+          urls: undefined
         };
       }
 
