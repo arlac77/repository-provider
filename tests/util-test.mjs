@@ -1,7 +1,10 @@
 import test from "ava";
 import { Provider } from "../src/provider.mjs";
 import { Branch } from "../src/branch.mjs";
-import { generateBranchName } from "../src/util.mjs";
+import {
+  generateBranchName,
+  definePropertiesFromOptions
+} from "../src/util.mjs";
 
 test("branch", async t => {
   const provider = new Provider();
@@ -16,4 +19,11 @@ test("branch", async t => {
   new Branch(repository, "b3");
 
   t.is(await generateBranchName(repository, "b*"), "b4");
+});
+
+test("props", t => {
+  const object = {};
+
+  definePropertiesFromOptions(object, { name: "a" });
+  t.is(object.a, undefined);
 });

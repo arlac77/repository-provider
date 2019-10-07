@@ -715,8 +715,10 @@ Returns **Class** as defined in the provider
 ## definePropertiesFromOptions
 
 -   **See: Object.definedProperties()**
+-   **See: Object.hasOwnProperty()**
 
-create properties from options and default options
+Create properties from options and default options
+Already present properties (direct) are skipped
 
 ### Parameters
 

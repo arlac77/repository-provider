@@ -19,7 +19,8 @@ export {
   RepositoryOwnerMixin,
   RepositoryGroup,
   Hook,
-  generateBranchName
+  generateBranchName,
+  definePropertiesFromOptions
 };
 
 /**
