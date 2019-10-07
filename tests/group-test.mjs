@@ -17,6 +17,13 @@ test("repository-group create with options", t => {
   t.is(rg.id, "4711");
   t.is(rg.uuid, "12345");
   t.is(rg.toString(), "rg");
+  t.deepEqual(rg.toJSON(), {
+    name: "rg",
+    uuid: "12345",
+    id: "4711",
+    description: "a description",
+    logLevel: 'info'
+  });
 });
 
 test("repository-group classes", t => {
