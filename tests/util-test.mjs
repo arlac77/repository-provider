@@ -6,20 +6,25 @@ import {
   definePropertiesFromOptions
 } from "../src/util.mjs";
 
-test("branch", async t => {
+async function gbnt(t, branchNames, pattern, result) {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
 
-  new Branch(repository, "b1");
+  for (const bn of branchNames) {
+    new Branch(repository, bn);
+  }
 
-  t.is(await generateBranchName(repository, "b*"), "b2");
-  new Branch(repository, "b2");
+  t.is(await generateBranchName(repository, pattern), result);
+}
 
-  t.is(await generateBranchName(repository, "b*"), "b3");
-  new Branch(repository, "b3");
+gbnt.title = (providedTitle = "", a, b) =>
+  `generateBranchName ${providedTitle} ${a} ${b}`.trim();
 
-  t.is(await generateBranchName(repository, "b*"), "b4");
-});
+test(gbnt, ["b1"], "x1", "x1");
+test(gbnt, ["b1"], "b*", "b2");
+test(gbnt, ["b1", "b2"], "b*", "b3");
+test(gbnt, ["b1", "b2", "b3"], "b*", "b4");
+test(gbnt, ["b1", "mkpr/1"], "mkpr/*", "mkpr/2");
 
 test("props", t => {
   const object = {};
