@@ -47,16 +47,19 @@ export function definePropertiesFromOptions(object, options, properties = {}) {
  * In other words only produce key value pairs if value is defined.
  * @param {Object} object
  * @param {Object} initial
+ * @param {string[]} skip keys not to put in the result
  * @return {Object} initial + defined values
  */
-export function optionJSON(object, initial = {}) {
-  return Object.keys(object.constructor.defaultOptions).reduce((a, c) => {
-    const value = object[c];
-    if (value !== undefined && !(value instanceof Function)) {
-      a[c] = value;
-    }
-    return a;
-  }, initial);
+export function optionJSON(object, initial = {}, skip = []) {
+  return Object.keys(object.constructor.defaultOptions || {})
+    .filter(key => skip.indexOf(key) < 0)
+    .reduce((a, c) => {
+      const value = object[c];
+      if (value !== undefined && !(value instanceof Function)) {
+        a[c] = value;
+      }
+      return a;
+    }, initial);
 }
 
 /**

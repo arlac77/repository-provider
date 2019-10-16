@@ -1,9 +1,11 @@
 import test from "ava";
 import { Provider } from "../src/provider.mjs";
 import { Branch } from "../src/branch.mjs";
+import { RepositoryGroup } from "../src/group.mjs";
 import {
   generateBranchName,
-  definePropertiesFromOptions
+  definePropertiesFromOptions,
+  optionJSON
 } from "../src/util.mjs";
 
 async function gbnt(t, branchNames, pattern, result) {
@@ -32,3 +34,19 @@ test("props", t => {
   definePropertiesFromOptions(object, { name: "a" });
   t.is(object.a, undefined);
 });
+
+function ojt(t, object, initial, skip, result) {
+  t.deepEqual(optionJSON(object, initial, skip), result);
+}
+
+ojt.title = (providedTitle = "", a, b) =>
+  `optionJSON ${providedTitle} ${JSON.stringify(a)} ${b}`.trim();
+
+test(ojt, {}, undefined, undefined, {});
+test(
+  ojt,
+  new RepositoryGroup(undefined, "a", { id: 1 }),
+  undefined,
+  ["logLevel"],
+  { id: 1 }
+);

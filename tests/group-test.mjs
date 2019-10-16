@@ -21,8 +21,7 @@ test("repository-group create with options", t => {
     name: "rg",
     uuid: "12345",
     id: "4711",
-    description: "a description",
-    logLevel: 'info'
+    description: "a description"
   });
 });
 
