@@ -1,9 +1,11 @@
 import { Branch } from "./branch.mjs";
 import { Owner } from "./owner.mjs";
 import { RepositoryOwnerMixin } from "./owner-mixin.mjs";
+import { IssueMixin } from "./issue-mixin.mjs";
 import { Repository } from "./repository.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Hook } from "./hook.mjs";
+import { Milestone } from "./milestone.mjs";
 import { RepositoryGroup } from "./group.mjs";
 import {
   definePropertiesFromOptions,
@@ -20,7 +22,9 @@ export {
   RepositoryGroup,
   Hook,
   generateBranchName,
-  definePropertiesFromOptions
+  definePropertiesFromOptions,
+  IssueMixin,
+  Milestone
 };
 
 /**

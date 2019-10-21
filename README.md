@@ -142,19 +142,21 @@ console.log(await readme.toString());
     -   [equals](#equals-2)
         -   [Parameters](#parameters-25)
     -   [toJSON](#tojson-1)
--   [RepositoryGroup](#repositorygroup-1)
+-   [Milestone](#milestone)
     -   [Parameters](#parameters-26)
+-   [RepositoryGroup](#repositorygroup-1)
+    -   [Parameters](#parameters-27)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-27)
--   [optionJSON](#optionjson)
     -   [Parameters](#parameters-28)
--   [generateBranchName](#generatebranchname)
+-   [optionJSON](#optionjson)
     -   [Parameters](#parameters-29)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-30)
 
 ## Provider
 
@@ -668,6 +670,13 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### toJSON
 
 provide name, events and all defined defaultOptions
+
+## Milestone
+
+### Parameters
+
+-   `owner`  
+-   `options`  
 
 ## RepositoryGroup
 
