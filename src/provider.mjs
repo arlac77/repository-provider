@@ -286,6 +286,8 @@ export class Provider extends Owner {
           return { repository: r, branch };
         }
       }
+
+      return {};
     }
 
     const r = await super.repository(repository);
