@@ -349,14 +349,13 @@ export class Provider extends Owner {
    * @return {Iterator<Repository>} all matching repos of the provider
    */
   async *repositories(patterns) {
-    await this.initialize();
-
     if (patterns === undefined) {
+      await this.initialize();
+
       for (const name of this._repositoryGroups.keys()) {
         const rg = this._repositoryGroups.get(name);
         yield* rg.repositories();
       }
-
       return;
     }
 
@@ -375,8 +374,6 @@ export class Provider extends Owner {
    * @return {Iterator<Branch>} all matching branches of the provider
    */
   async *branches(patterns) {
-    await this.initialize();
-
     for (const pattern of asArray(patterns)) {
       const [groupPattern, repoPattern] = pattern.split(/\//);
 
@@ -392,8 +389,6 @@ export class Provider extends Owner {
    * @return {Iterator<Branch>} all matching tags of the provider
    */
   async *tags(patterns) {
-    await this.initialize();
-
     for (const pattern of asArray(patterns)) {
       const [groupPattern, repoPattern] = pattern.split(/\//);
 
