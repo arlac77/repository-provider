@@ -312,6 +312,7 @@ export class Provider extends Owner {
    * @return {Promise<Repository>}
    */
   async repository(name) {
+    await this.initialize();
     const { repository } = await this._repositoryWithBranchName(name);
     return repository;
   }
@@ -322,6 +323,7 @@ export class Provider extends Owner {
    * @return {Promise<Branch>}
    */
   async branch(name) {
+    await this.initialize();
     const { repository, branch } = await this._repositoryWithBranchName(name);
 
     return repository === undefined
