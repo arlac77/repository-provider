@@ -27,7 +27,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "loglevel-mixin": "^3.0.0"
+    "loglevel-mixin": "^4.0.0"
   },
   "devDependencies": {
     "ava": "^2.4.0",
