@@ -185,6 +185,14 @@ export const Repository = OneTimeInititalizerMixin(
       }
 
       /**
+       * by default we are not archived
+       * @return {boolean} false
+       */
+      get isArchived() {
+        return false;
+      }
+
+      /**
        * Lookup branch by name
        * @param {string} name
        * @return {Promise<Branch>}

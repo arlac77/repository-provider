@@ -22,6 +22,7 @@ test("repository create with options", async t => {
   t.is(repository.uuid, "12345");
   t.is(repository.issuesURL, undefined);
   t.is(repository.homePageURL, undefined);
+  t.is(repository.isArchived, false);
   t.is(repository.toString(), "r1");
   t.deepEqual(repository.toJSON(), {
     defaultBranchName: "master",
