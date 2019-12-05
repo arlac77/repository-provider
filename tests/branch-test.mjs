@@ -17,6 +17,9 @@ test("branch", async t => {
   t.is(b.fullName, "r1#b1");
   t.is(b.fullCondensedName, "r1#b1");
   t.is(b.isDefault, false);
+  t.is(b.isLocked, false);
+  t.is(b.isArchived, false);
+  t.is(b.isDisabled, false);
   t.is(b.homePageURL, undefined);
   t.is(b.issuesURL, undefined);
   t.is(`${b}`, "r1#b1");

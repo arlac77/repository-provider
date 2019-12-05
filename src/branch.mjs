@@ -135,6 +135,30 @@ export const Branch = OneTimeInititalizerMixin(
     }
 
     /**
+     * forwarded from the repository
+     */
+    get isLocked()
+    {
+      return this.repository.isLocked;
+    }
+
+    /**
+     * forwarded from the repository
+     */
+    get isArchived()
+    {
+      return this.repository.isArchived;
+    }
+
+    /**
+     * forwarded from the repository
+     */
+    get isDisabled()
+    {
+      return this.repository.isDisabled;
+    }
+
+    /**
      * Delete the branch from the {@link Repository}.
      * @see {@link Repository#deleteBranch}
      * @return {Promise<undefined>}
