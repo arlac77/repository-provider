@@ -31,6 +31,7 @@ test("repository create with options", async t => {
     uuid: "12345",
     name: "r1",
     fullName: "r1",
+    isArchived: false,
     urls: []
   });
 
@@ -57,6 +58,7 @@ test("repository create with more options", async t => {
     description: "a description",
     id: "4712",
     uuid: "12345",
+    isArchived: true,
     urls: ["http:/myprovider/orner1/r1.git"]
   });
 
@@ -66,6 +68,7 @@ test("repository create with more options", async t => {
   t.is(repository.type, "git");
   t.is(repository.id, "4712");
   t.is(repository.description, "a description");
+  t.is(repository.isArchived, true);
   t.deepEqual(repository.urls, ["http:/myprovider/orner1/r1.git"]);
 });
 

@@ -55,7 +55,9 @@ export const Repository = OneTimeInititalizerMixin(
            * urls of the repository
            * @return {string[]}
            */
-          urls: undefined
+          urls: undefined,
+
+          isArchived: undefined
         };
       }
 
