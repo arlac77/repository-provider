@@ -57,7 +57,9 @@ export const Repository = OneTimeInititalizerMixin(
            */
           urls: undefined,
 
-          isArchived: undefined
+          isArchived: undefined,
+          isLocked: undefined,
+          isDisabled: undefined
         };
       }
 
@@ -191,6 +193,22 @@ export const Repository = OneTimeInititalizerMixin(
        * @return {boolean} false
        */
       get isArchived() {
+        return false;
+      }
+
+      /**
+       * by default we are not locked
+       * @return {boolean} false
+       */
+      get isLocked() {
+        return false;
+      }
+
+      /**
+       * by default we are not disabled
+       * @return {boolean} false
+       */
+      get isDisabled() {
         return false;
       }
 

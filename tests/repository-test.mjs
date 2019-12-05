@@ -32,6 +32,8 @@ test("repository create with options", async t => {
     name: "r1",
     fullName: "r1",
     isArchived: false,
+    isDisabled: false,
+    isLocked: false,
     urls: []
   });
 
