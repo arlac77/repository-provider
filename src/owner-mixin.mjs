@@ -25,7 +25,12 @@ export function RepositoryOwnerMixin(parent) {
           };
         }
 
-        _repositories= new Map();
+        constructor(...args) {
+          super(...args);
+          Object.defineProperties(this, {
+            _repositories: { value: new Map() }
+          });
+        }
 
         /**
          * @return {Class} repository class used by the Provider
