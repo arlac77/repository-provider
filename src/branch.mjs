@@ -215,6 +215,12 @@ export const Branch = OneTimeInititalizerMixin(
       return e;
     }
 
+    /**
+     * Remove entries form the branch
+     * @param {Iterator <Entry>} entries
+     */
+    async removeEntries(entries) {}
+
     async _initialize() {}
 
     /**
