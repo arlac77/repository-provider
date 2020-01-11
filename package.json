@@ -37,7 +37,7 @@
     "esm": "^3.2.25",
     "markdown-doctest": "^1.0.0",
     "repository-provider-test-support": "github:arlac77/repository-provider-test-support",
-    "semantic-release": "^16.0.0"
+    "semantic-release": "^16.0.1"
   },
   "engines": {
     "node": ">=12.14.1"
