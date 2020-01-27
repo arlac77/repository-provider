@@ -198,7 +198,7 @@ export class Provider extends Owner {
     name = name.trim();
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
-        name = name.substring(b.length);
+        name = name.slice(b.length);
         break;
       }
     }
@@ -222,13 +222,13 @@ export class Provider extends Owner {
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
         result.base = b;
-        name = name.substring(b.length);
+        name = name.slice(b.length);
         break;
       }
     }
 
     if (name.startsWith("/")) {
-      name = name.substring(1);
+      name = name.slice(1);
     }
 
     let m = name.match(/#(.*)$/);
@@ -242,13 +242,13 @@ export class Provider extends Owner {
     m = name.match(/^git@[^:\/]+[:\/]/);
     if (m) {
       result.base = m[0];
-      name = name.substring(result.base.length);
+      name = name.slice(result.base.length);
     }
 
     m = name.match(/^[\w\-^+]+:\/\/[^\/]+\//);
     if (m) {
       result.base = m[0];
-      name = name.substring(result.base.length);
+      name = name.slice(result.base.length);
     }
 
     const parts = name.split(/\//);
