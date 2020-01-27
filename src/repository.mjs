@@ -108,7 +108,7 @@ export const Repository = OneTimeInititalizerMixin(
       /**
        * Check for equality
        * @param {Repository} other
-       * @return {boolean} true if number and provider are equal
+       * @return {boolean} true if name and provider are equal
        */
       equals(other) {
         if (other === undefined) {
