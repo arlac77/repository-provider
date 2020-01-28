@@ -175,7 +175,7 @@ export class PullRequest {
   /**
    * Check for equality
    * @param {PullRequest} other
-   * @return {boolean} true if number and provider are equal
+   * @return {boolean} true if number and repository are equal
    */
   equals(other) {
     if(other === undefined) {
