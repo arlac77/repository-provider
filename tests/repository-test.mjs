@@ -1,4 +1,6 @@
 import test from "ava";
+import { repositoryEqualityTest } from "repository-provider-test-support";
+
 import { RepositoryGroup } from "../src/group.mjs";
 import { Owner } from "../src/owner.mjs";
 import { Provider } from "../src/provider.mjs";
@@ -112,12 +114,10 @@ test("repository classes", t => {
 
 class MyRepository extends Repository {
   static get defaultOptions() {
-    return Object.assign(
-      {
-        myAttribute: 77
-      },
-      super.defaultOptions
-    );
+    return {
+      ...super.defaultOptions,
+      myAttribute: 77
+    };
   }
 }
 
@@ -126,3 +126,6 @@ test("defaultOption", t => {
   t.is(repository.myAttribute, 77);
   t.is(repository.id, "xxx");
 });
+
+
+test(repositoryEqualityTest, new Provider(), "r1", "r2");
