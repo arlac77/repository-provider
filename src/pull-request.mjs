@@ -117,7 +117,7 @@ export class PullRequest {
     let state;
 
     const properties = {
-      number: { value: number },
+      number: { value: number.toString() },
       source: { value: source },
       destination: { value: destination },
       merged: {

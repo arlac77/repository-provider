@@ -11,6 +11,16 @@ test("pullRequest list", async t => {
   t.is(prs.length, 0);
 });
 
+test("pullRequest create numeric", async t => {
+  const provider = new Provider();
+  const repository = await provider.createRepository("r1");
+  const b1 = await repository.createBranch("b1");
+  const b2 = await repository.createBranch("b2");
+  const pr = new PullRequest(b1, b2, 4711);
+
+  t.is(pr.number, "4711");
+});
+
 test("pullRequest create", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
