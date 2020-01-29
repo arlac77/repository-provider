@@ -543,7 +543,7 @@ Check for equality
 
 -   `other` **[PullRequest](#pullrequest)** 
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if number and provider are equal
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if number and repository are equal
 
 ### delete
 
@@ -585,12 +585,15 @@ Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 
 ### list
 
-list all pull request for a given destination repo
+List all pull request for a given repo
+result can be filtered by source branch destination branch and pr states
 
 #### Parameters
 
--   `destination` **[Repository](#repository)** 
--   `states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+-   `repository` **[Repository](#repository)** 
+-   `source` **[Branch](#branch)?** 
+-   `destination` **[Branch](#branch)?** 
+-   `states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
 
 Returns **Iterator&lt;[PullRequest](#pullrequest)>** 
 

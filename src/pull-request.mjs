@@ -50,12 +50,15 @@ export class PullRequest {
   }
 
   /**
-   * list all pull request for a given destination repo
-   * @param {Repository} destination
-   * @param {Set<string>} states
+   * List all pull request for a given repo
+   * result can be filtered by source branch destination branch and pr states
+   * @param {Repository} repository
+   * @param {Branch?} source
+   * @param {Branch?} destination
+   * @param {Set<string>?} states
    * @return {Iterator<PullRequest>}
    */
-  static async *list(destination, states) {}
+  static async *list(repository, source, destination, states) {}
 
   /**
    * Opens a new pull request
