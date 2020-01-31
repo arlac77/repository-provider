@@ -1,0 +1,10 @@
+{
+  "name": "repository-provider",
+  "description": "abstract interface to git repository providers like github bitbucket",
+  "icons": [
+    {
+      "src": "facicon.ico",
+      "sizes": "16x16"
+    }
+  ]
+}
