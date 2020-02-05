@@ -148,7 +148,7 @@ export function RepositoryOwnerMixin(parent) {
         /**
          * Create a new {@link Repository}
          * All owner implementations must provide a repository._createRepository() to handle the real repository creation.
-         * This methos MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
+         * This method MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
          * Internal repository creation does not call owner.initialize()
          * @param {string} name
          * @param {Object} options
