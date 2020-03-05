@@ -586,14 +586,15 @@ Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 ### list
 
 List all pull request for a given repo
-result can be filtered by source branch destination branch and pr states
+result will be filtered by source branch, destination branch and states
 
 #### Parameters
 
 -   `repository` **[Repository](#repository)** 
--   `source` **[Branch](#branch)?** 
--   `destination` **[Branch](#branch)?** 
--   `states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
+-   `filter` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `filter.source` **[Branch](#branch)?** 
+    -   `filter.destination` **[Branch](#branch)?** 
+    -   `filter.states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
 
 Returns **Iterator&lt;[PullRequest](#pullrequest)>** 
 

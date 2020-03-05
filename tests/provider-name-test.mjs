@@ -5,7 +5,7 @@ import { Provider } from "../src/provider.mjs";
 
 class MyProvider extends Provider {
   get repositoryBases() {
-    return ["https://github.com/", "http://otherdomain.com"];
+    return [ "https://github.com/", "http://otherdomain.com"];
   }
 }
 
@@ -22,6 +22,12 @@ test("provider normalize repo name", t => {
 });
 
 test(providerParseNameTest, new MyProvider(), {
+  "abc/def/g": { group: "abc", repository: "def" },
+  "xxx/abc/def.git#mybranch": {
+    group: "abc",
+    repository: "def",
+    branch: "mybranch"
+  },
   abc: { repository: "abc" },
   " abc/def": { group: "abc", repository: "def" },
   "abc/def#mybranch ": {
@@ -35,12 +41,6 @@ test(providerParseNameTest, new MyProvider(), {
     repository: "def",
     branch: "mybranch"
   },
-  "xxx/abc/def.git#mybranch": {
-    group: "abc",
-    repository: "def",
-    branch: "mybranch"
-  },
-
   "https://github.com/arlac77/sync-test-repository.git#mybranch": {
     base: "https://github.com/",
     group: "arlac77",

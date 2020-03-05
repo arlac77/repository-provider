@@ -213,11 +213,11 @@ export class Provider extends Owner {
    * @return {Object}
    */
   parseName(name) {
-    const result = {};
-
     name = name.trim();
     name = name.replace(/^([\w\-\+]+:\/\/)[^\@]+@/, (match, g1) => g1);
     name = name.replace(/^git\+/, "");
+
+    const result = {};
 
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {
@@ -231,13 +231,19 @@ export class Provider extends Owner {
       name = name.slice(1);
     }
 
+    let rightAligned = false;
+
     let m = name.match(/#(.*)$/);
     if (m) {
       result.branch = m[1];
       name = name.replace(/#.*$/, "");
+      rightAligned = true;
     }
 
-    name = name.replace(/\.git$/, "");
+    if (name.endsWith(".git")) {
+      name = name.slice(0,name.length - 4);
+      rightAligned = true;
+    }
 
     m = name.match(/^git@[^:\/]+[:\/]/);
     if (m) {
@@ -254,8 +260,13 @@ export class Provider extends Owner {
     const parts = name.split(/\//);
 
     if (parts.length >= 2) {
-      result.group = parts[parts.length - 2];
-      result.repository = parts[parts.length - 1];
+      if (rightAligned) {
+        result.group = parts[parts.length - 2];
+        result.repository = parts[parts.length - 1];
+      } else {
+        result.group = parts[0];
+        result.repository = parts[1];
+      }
     } else {
       result.repository = name;
     }
