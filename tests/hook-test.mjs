@@ -13,7 +13,7 @@ test("add hook", async t => {
 
   t.is(hook.repository, repository);
 
-  t.is(repository._hooks.length,1);
+  t.is(repository._hooks.length, 1);
   /*
   let n = 0;
   for await (const h of repository.hooks()) {

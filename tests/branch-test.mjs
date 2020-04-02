@@ -49,12 +49,12 @@ test("branch isDefault changed", async t => {
   t.is(b.isDefault, true);
 });
 
-test("branch delete", async t => {
+test.only("branch delete", async t => {
   const provider = new Provider();
   const repository = await provider.createRepository("r1");
+  const branch = await repository.createBranch("b1");
 
-  const b = new Branch(repository, "b1");
-  await b.delete();
+  await branch.delete();
 
   t.is(await repository.branch("b1"), undefined);
 });

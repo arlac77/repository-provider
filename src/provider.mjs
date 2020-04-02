@@ -147,7 +147,7 @@ export class Provider extends Owner {
     if (name === undefined) {
       return undefined;
     }
-    await this.initialize();
+    await this.initializeRepositories();
     return this._repositoryGroups.get(name);
   }
 
@@ -169,7 +169,6 @@ export class Provider extends Owner {
 
   async _createRepositoryGroup(name, options) {
     const repositoryGroup = new this.repositoryGroupClass(this, name, options);
-    await repositoryGroup.initialize();
     this._repositoryGroups.set(repositoryGroup.name, repositoryGroup);
     return repositoryGroup;
   }
@@ -279,7 +278,7 @@ export class Provider extends Owner {
       return {};
     }
 
-    await this.initialize();
+    await this.initializeRepositories();
 
     const { base, group, repository, branch } = this.parseName(name);
 
@@ -327,7 +326,7 @@ export class Provider extends Owner {
       return undefined;
     }
 
-    await this.initialize();
+    await this.initializeRepositories();
     const { repository } = await this._repositoryWithBranchName(name);
     return repository;
   }
@@ -342,7 +341,7 @@ export class Provider extends Owner {
       return undefined;
     }
 
-    await this.initialize();
+    await this.initializeRepositories();
     const { repository, branch } = await this._repositoryWithBranchName(name);
 
     return repository === undefined
@@ -358,7 +357,7 @@ export class Provider extends Owner {
    * @return {Iterator<RepositoryGroup>} all matching repositories groups of the provider
    */
   async *repositoryGroups(patterns) {
-    await this.initialize();
+    await this.initializeRepositories();
     for (const name of this.match(this._repositoryGroups.keys(), patterns)) {
       yield this._repositoryGroups.get(name);
     }
@@ -371,7 +370,7 @@ export class Provider extends Owner {
    */
   async *repositories(patterns) {
     if (patterns === undefined) {
-      await this.initialize();
+      await this.initializeRepositories();
 
       for (const name of this._repositoryGroups.keys()) {
         const rg = this._repositoryGroups.get(name);
@@ -468,4 +467,5 @@ export class Provider extends Owner {
 
     return json;
   }
+
 }

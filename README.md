@@ -89,19 +89,53 @@ console.log(await readme.toString());
 -   [Branch](#branch-1)
     -   [Parameters](#parameters-15)
     -   [Properties](#properties-1)
--   [defaultOptions](#defaultoptions)
--   [defaultOptions](#defaultoptions-1)
--   [defaultOptions](#defaultoptions-2)
--   [OneTimeInititalizer](#onetimeinititalizer)
--   [Owner](#owner)
+    -   [equals](#equals-1)
+        -   [Parameters](#parameters-16)
+    -   [provider](#provider-2)
+    -   [owner](#owner)
+    -   [fullName](#fullname)
+    -   [fullCondensedName](#fullcondensedname)
+    -   [url](#url)
+    -   [issuesURL](#issuesurl)
+    -   [homePageURL](#homepageurl)
+    -   [ref](#ref)
+    -   [isDefault](#isdefault)
+    -   [isLocked](#islocked)
+    -   [isArchived](#isarchived)
+    -   [isDisabled](#isdisabled)
+    -   [delete](#delete)
+    -   [commit](#commit)
+        -   [Parameters](#parameters-17)
+    -   [entries](#entries)
+        -   [Parameters](#parameters-18)
+    -   [asyncIterator](#asynciterator)
+    -   [maybeEntry](#maybeentry)
+        -   [Parameters](#parameters-19)
+    -   [entry](#entry)
+        -   [Parameters](#parameters-20)
+    -   [removeEntries](#removeentries)
+        -   [Parameters](#parameters-21)
+    -   [refId](#refid)
+        -   [Parameters](#parameters-22)
+    -   [entryClass](#entryclass)
+    -   [createPullRequest](#createpullrequest)
+        -   [Parameters](#parameters-23)
+    -   [pullRequestClass](#pullrequestclass)
+    -   [createBranch](#createbranch)
+        -   [Parameters](#parameters-24)
+    -   [toJSON](#tojson-1)
+    -   [defaultOptions](#defaultoptions)
+-   [Owner](#owner-1)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
-    -   [Parameters](#parameters-16)
+    -   [Parameters](#parameters-25)
     -   [Properties](#properties-3)
+-   [defaultOptions](#defaultoptions-1)
+-   [defaultOptions](#defaultoptions-2)
 -   [logger](#logger)
-    -   [Parameters](#parameters-17)
+    -   [Parameters](#parameters-26)
 -   [Repository](#repository-1)
-    -   [Parameters](#parameters-18)
+    -   [Parameters](#parameters-27)
     -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
@@ -113,49 +147,49 @@ console.log(await readme.toString());
 -   [defaultBranchName](#defaultbranchname)
 -   [urls](#urls)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-19)
+    -   [Parameters](#parameters-28)
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
-    -   [provider](#provider-2)
-    -   [equals](#equals-1)
-        -   [Parameters](#parameters-20)
-    -   [delete](#delete)
+    -   [provider](#provider-3)
+    -   [equals](#equals-2)
+        -   [Parameters](#parameters-29)
+    -   [delete](#delete-1)
     -   [merge](#merge)
-        -   [Parameters](#parameters-21)
+        -   [Parameters](#parameters-30)
     -   [decline](#decline)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-22)
+        -   [Parameters](#parameters-31)
     -   [open](#open)
-        -   [Parameters](#parameters-23)
+        -   [Parameters](#parameters-32)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-24)
+    -   [Parameters](#parameters-33)
     -   [Properties](#properties-6)
-    -   [equals](#equals-2)
-        -   [Parameters](#parameters-25)
-    -   [toJSON](#tojson-1)
+    -   [equals](#equals-3)
+        -   [Parameters](#parameters-34)
+    -   [toJSON](#tojson-2)
 -   [Milestone](#milestone)
-    -   [Parameters](#parameters-26)
+    -   [Parameters](#parameters-35)
 -   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-27)
+    -   [Parameters](#parameters-36)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
-    -   [pullRequestClass](#pullrequestclass)
+    -   [pullRequestClass](#pullrequestclass-1)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-28)
+    -   [Parameters](#parameters-37)
 -   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-29)
+    -   [Parameters](#parameters-38)
 -   [generateBranchName](#generatebranchname)
-    -   [Parameters](#parameters-30)
+    -   [Parameters](#parameters-39)
 
 ## Provider
 
@@ -373,7 +407,7 @@ Abstract branch
 ### Parameters
 
 -   `repository` **[Repository](#repository)** 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `"master"`)
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### Properties
@@ -382,21 +416,210 @@ Abstract branch
 -   `provider` **[Provider](#provider)** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-## defaultOptions
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[Branch](#branch)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and repository are equal
+
+### provider
+
+The provider we live in
+
+Returns **[Provider](#provider)** 
+
+### owner
+
+-   **See: [Repository#owner](Repository#owner)
+    **
+
+Branch owner
+By default we provide the repository owner
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### fullName
+
+Repository and branch name combined
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
+
+### fullCondensedName
+
+Repository fullName and branch name combined.
+But skipping the branch name if it is the default branch
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
+
+### url
+
+Deliver repository and branch url combined
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
+
+### issuesURL
+
+-   **See: [Repository#issuesURL](Repository#issuesURL)
+    **
+
+Url of issue tracking system.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
+
+### homePageURL
+
+-   **See: [Repository#homePageURL](Repository#homePageURL)
+    **
+
+Url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
+
+### ref
+
+Git branch ref name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** git ref of the branch
+
+### isDefault
+
+Are we the default branch
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name is the repository default branch
+
+### isLocked
+
+forwarded from the repository
+
+### isArchived
+
+forwarded from the repository
+
+### isDisabled
+
+forwarded from the repository
+
+### delete
+
+-   **See: [Repository#deleteBranch](Repository#deleteBranch)
+    **
+
+Delete the branch from the [Repository](#repository).
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+
+### commit
+
+Commit entries
+
+#### Parameters
+
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
+-   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Entry>** content to be commited
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
+### entries
+
+List entries of the branch
+
+#### Parameters
+
+-   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+Returns **Entry** all matching entries in the branch
+
+### asyncIterator
+
+List all entries of the branch
+
+Returns **asyncIterator&lt;Entry>** all entries in the branch
+
+### maybeEntry
+
+get exactly one matching entry by name or undefine if no such entry is found
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Entry>** 
+
+### entry
+
+get exactly one matching entry by name (throws if entry is not found)
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Entry>** 
+
+### removeEntries
+
+Remove entries form the branch
+
+#### Parameters
+
+-   `entries` **Iterator&lt;Entry>** 
+
+### refId
+
+Get sha of a ref
+
+#### Parameters
+
+-   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `this.ref`)
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the ref
+
+### entryClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the repository
+
+### createPullRequest
+
+Create a pull request
+
+#### Parameters
+
+-   `toBranch` **[Branch](#branch)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[PullRequest](#pullrequest)>** 
+
+### pullRequestClass
+
+By default we use the repository implementation.
+
+Returns **Class** as defined in the repository
+
+### createBranch
+
+Create a new [Branch](#branch) by cloning a given source branch.
+Simply calls Repository.createBranch() with the receiver as source branch
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the new branch
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** newly created branch (or already present old one with the same name)
+
+### toJSON
+
+provide name and all defined defaultOptions
+
+### defaultOptions
 
 options
-
-## defaultOptions
-
-options
-
-## defaultOptions
-
-options
-
-## OneTimeInititalizer
-
-enshures that \_initialize() will be called only once
 
 ## Owner
 
@@ -417,6 +640,14 @@ Collection of repositories
 ### Properties
 
 -   `repositories` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Repository](#repository)>** 
+
+## defaultOptions
+
+options
+
+## defaultOptions
+
+options
 
 ## logger
 
