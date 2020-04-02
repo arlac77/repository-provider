@@ -365,7 +365,8 @@ this defines the order
 
 ## Branch
 
--   **See: [Repository#addBranch](Repository#addBranch)**
+-   **See: [Repository#addBranch](Repository#addBranch)
+    **
 
 Abstract branch
 
@@ -546,7 +547,8 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### delete
 
--   **See: [Repository#deletePullRequest](Repository#deletePullRequest)**
+-   **See: [Repository#deletePullRequest](Repository#deletePullRequest)
+    **
 
 Delete the pull request from the [Repository](#repository).
 
@@ -726,8 +728,10 @@ Returns **Class** as defined in the provider
 
 ## definePropertiesFromOptions
 
--   **See: Object.definedProperties()**
--   **See: Object.hasOwnProperty()**
+-   **See: Object.definedProperties()
+    **
+-   **See: Object.hasOwnProperty()
+    **
 
 Create properties from options and default options
 Already present properties (direct) are skipped
