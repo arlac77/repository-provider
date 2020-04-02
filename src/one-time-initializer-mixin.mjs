@@ -1,4 +1,5 @@
-const IS_INITIALIZED = Symbol('isInitialized');
+const IS_INITIALIZED = Symbol("isInitialized");
+const DURING_INITIALIZATION = Symbol("duringInitialization");
 
 export function OneTimeInititalizerMixin(base) {
   /**
@@ -16,9 +17,16 @@ export function OneTimeInititalizerMixin(base) {
         return;
       }
 
-      this[IS_INITIALIZED] = true;
+      if (this[DURING_INITIALIZATION]) {
+        return this[DURING_INITIALIZATION];
+      }
 
-      await this._initialize(...args);
+      this[DURING_INITIALIZATION] = this._initialize(...args);
+
+      await this[DURING_INITIALIZATION];
+
+      this[DURING_INITIALIZATION] = undefined;
+      this[IS_INITIALIZED] = true;
     }
 
     /**
