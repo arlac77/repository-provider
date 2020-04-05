@@ -240,7 +240,7 @@ export class Provider extends Owner {
     }
 
     if (name.endsWith(".git")) {
-      name = name.slice(0,name.length - 4);
+      name = name.slice(0, name.length - 4);
       rightAligned = true;
     }
 
@@ -372,18 +372,16 @@ export class Provider extends Owner {
     if (patterns === undefined) {
       await this.initializeRepositories();
 
-      for (const name of this._repositoryGroups.keys()) {
-        const rg = this._repositoryGroups.get(name);
-        yield* rg.repositories();
+      for (const group of this._repositoryGroups.values()) {
+        yield* group.repositories();
       }
-      return;
-    }
+    } else {
+      for (const pattern of asArray(patterns)) {
+        const [groupPattern, repoPattern] = pattern.split(/\//);
 
-    for (const pattern of asArray(patterns)) {
-      const [groupPattern, repoPattern] = pattern.split(/\//);
-
-      for await (const group of this.repositoryGroups(groupPattern)) {
-        yield* group.repositories(repoPattern);
+        for await (const group of this.repositoryGroups(groupPattern)) {
+          yield* group.repositories(repoPattern);
+        }
       }
     }
   }
@@ -467,5 +465,4 @@ export class Provider extends Owner {
 
     return json;
   }
-
 }
