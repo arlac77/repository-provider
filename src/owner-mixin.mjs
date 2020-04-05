@@ -110,7 +110,7 @@ export function RepositoryOwnerMixin(parent) {
         }
 
         const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
-          r => new RegExp(r.replace(/\*/, ".*"))
+          pattern => new RegExp("^"+pattern.replace(/\*/g, ".*")+"$")
         );
 
         for (const entry of entries) {

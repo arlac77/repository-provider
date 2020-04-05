@@ -25,6 +25,9 @@ async function createOwner() {
 }
 
 test(olrt, createOwner(), "r1", ["r1"]);
-test(olrt, createOwner(), "r*", ["r1", "r2", "yr2"]);
+test(olrt, createOwner(), "r*", ["r1", "r2"]);
+test(olrt, createOwner(), "*r*", ["r1", "r2", "yr2"]);
 test(olrt, createOwner(), "*", ["r1", "r2", "x", "yr2"]);
+test(olrt, createOwner(), undefined, ["r1", "r2", "x", "yr2"]);
 test(olrt, createOwner(), "abc", []);
+test(olrt, createOwner(), "", []);
