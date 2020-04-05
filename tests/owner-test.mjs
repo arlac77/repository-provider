@@ -26,24 +26,6 @@ test("owner get repository", async t => {
   t.is(repository.condensedName, "r1");
 });
 
-test("owner list repositories", async t => {
-  const owner = new Owner();
-  await owner.createRepository("r1");
-  await owner.createRepository("r2");
-  await owner.createRepository("x");
-  await owner.createRepository("yr2");
-
-  const m = {};
-
-  for await (const r of owner.repositories("r*")) {
-    m[r.name] = r;
-  }
-
-  t.is(m.r1.name, "r1");
-  t.is(m.r2.name, "r2");
-  t.falsy(m.x);
-});
-
 test("owner list branches", async t => {
   const owner = new Owner();
   new Branch(await owner.createRepository("r1"));
