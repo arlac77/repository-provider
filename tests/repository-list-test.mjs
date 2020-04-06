@@ -9,17 +9,26 @@ test.before(async t => {
   await g1.createRepository("r1");
   await g1.createRepository("r2");
   const g2 = await provider._createRepositoryGroup("g2");
+  await g2.createRepository("r1");
+
+  const g3 = await provider._createRepositoryGroup("g3");
 });
 
-const fullResult = {
-  r1: { name: "r1" },
-  r2: { name: "r2" }
+const g1Result = {
+  "g1/r1": { name: "r1" },
+  "g1/r2": { name: "r2" }
 };
 
-test(repositoryListTest, provider, "g1/*", fullResult);
-test(repositoryListTest, provider, "*", fullResult);
-test(repositoryListTest, provider, undefined, fullResult);
-test(repositoryListTest, provider, "g2/*", undefined);
+const g2Result = {
+  "g2/r1": { name: "r1" }
+};
+
+test(repositoryListTest, provider, "g1/*", g1Result);
+test(repositoryListTest, provider, "*", { ...g1Result, ...g2Result });
+test(repositoryListTest, provider, "*/r*", { ...g1Result, ...g2Result });
+test(repositoryListTest, provider, undefined, { ...g1Result, ...g2Result });
+test(repositoryListTest, provider, "*/x*");
+test(repositoryListTest, provider, "g3/*", undefined);
 
 test(repositoryListTest, new Provider(), undefined, undefined);
 test(repositoryListTest, new Provider(), "*", undefined);
