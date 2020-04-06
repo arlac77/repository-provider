@@ -160,7 +160,7 @@ export function RepositoryOwnerMixin(parent) {
        * @param {string} name
        * @param {Object} options
        */
-      addRespository(name, options) {
+      addRepository(name, options) {
         const repository = new this.repositoryClass(this, name, options);
         this._repositories.set(repository.name, repository);
         return repository;

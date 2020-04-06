@@ -34,3 +34,11 @@ test("repository-group classes", t => {
   t.is(rg.entryClass, undefined);
   t.is(rg.pullRequestClass, PullRequest);
 });
+
+test("repository-group add repo", async t => {
+  const owner = new Owner();
+  const rg = new RepositoryGroup(owner, "rg");
+
+  const r1 = rg.addRepository("r1");
+  t.is(await rg.repository("r1"), r1);
+});

@@ -132,7 +132,7 @@ console.log(await readme.toString());
     -   [Properties](#properties-3)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
--   [logger](#logger)
+-   [log](#log)
     -   [Parameters](#parameters-26)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-27)
@@ -649,7 +649,7 @@ options
 
 options
 
-## logger
+## log
 
 default logger
 
