@@ -131,8 +131,6 @@ export function RepositoryOwnerMixin(parent) {
        * @return {Promise<Repository>}
        */
       async createRepository(name, options) {
-        await this.initializeRepositories();
-
         let repository = await this.repository(name);
 
         if (repository === undefined) {
@@ -152,6 +150,17 @@ export function RepositoryOwnerMixin(parent) {
        * @return {Promise<Repository>} newly created repository
        */
       async _createRepository(name, options) {
+        const repository = new this.repositoryClass(this, name, options);
+        this._repositories.set(repository.name, repository);
+        return repository;
+      }
+
+      /**
+       * Add a repository to the group (does not execute any provider actions)
+       * @param {string} name
+       * @param {Object} options
+       */
+      addRespository(name, options) {
         const repository = new this.repositoryClass(this, name, options);
         this._repositories.set(repository.name, repository);
         return repository;
