@@ -174,6 +174,18 @@ export class Provider extends Owner {
   }
 
   /**
+   * Add a new repository group (not provider specific actions are executed)
+   * @param {string} name of the group
+   * @param {Object} options
+   * @return {RepositoryGroup}
+   */
+  addRepositoryGroup(name, options) {
+    const repositoryGroup = new this.repositoryGroupClass(this, name, options);
+    this._repositoryGroups.set(repositoryGroup.name, repositoryGroup);
+    return repositoryGroup;
+  }
+
+  /**
    * All possible base urls
    * For github something like
    * - git@github.com
