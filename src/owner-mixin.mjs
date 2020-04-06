@@ -110,7 +110,7 @@ export function RepositoryOwnerMixin(parent) {
         }
 
         const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
-          pattern => new RegExp("^"+pattern.replace(/\*/g, ".*")+"$")
+          pattern => new RegExp("^" + pattern.replace(/\*/g, ".*") + "$")
         );
 
         for (const entry of entries) {
@@ -161,8 +161,11 @@ export function RepositoryOwnerMixin(parent) {
        * @param {Object} options
        */
       addRepository(name, options) {
-        const repository = new this.repositoryClass(this, name, options);
-        this._repositories.set(repository.name, repository);
+        let repository = this._repositories.get(name);
+        if (repository === undefined) {
+          repository = new this.repositoryClass(this, name, options);
+          this._repositories.set(repository.name, repository);
+        }
         return repository;
       }
 

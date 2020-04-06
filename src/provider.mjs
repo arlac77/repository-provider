@@ -180,8 +180,11 @@ export class Provider extends Owner {
    * @return {RepositoryGroup}
    */
   addRepositoryGroup(name, options) {
-    const repositoryGroup = new this.repositoryGroupClass(this, name, options);
-    this._repositoryGroups.set(repositoryGroup.name, repositoryGroup);
+    let repositoryGroup = this._repositoryGroups.get(name);
+    if (repositoryGroup == undefined) {
+      repositoryGroup = new this.repositoryGroupClass(this, name, options);
+      this._repositoryGroups.set(repositoryGroup.name, repositoryGroup);
+    }
     return repositoryGroup;
   }
 
