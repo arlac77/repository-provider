@@ -18,7 +18,7 @@ export function RepositoryOwnerMixin(parent) {
           /**
            * default logger
            */
-          logger: (...args) => console.log(...args),
+          log: (...args) => console.log(...args),
           logLevel: "info"
         };
       }
