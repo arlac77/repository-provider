@@ -1,6 +1,12 @@
 import test from "ava";
 import { Owner } from "../src/owner.mjs";
 
+class CaseInsensitiveOwner extends Owner {
+  normalizeRepositoryName(name) {
+    return super.normalizeRepositoryName(name).toLowerCase();
+  }
+}
+
 async function olrt(t, owner, pattern, result) {
   owner = await owner;
   const found = [];
@@ -13,21 +19,24 @@ async function olrt(t, owner, pattern, result) {
 }
 
 olrt.title = (providedTitle = "", owner, pattern, result) =>
-  `owner list repositories ${providedTitle} ${pattern}`.trim();
+  `${owner.constructor.name} list repositories ${providedTitle} ${pattern}`.trim();
 
-async function createOwner() {
-  const owner = new Owner();
-  await owner.createRepository("r1");
+async function createOwner(factory) {
+  const owner = new factory();
+  await owner.createRepository("r1#b1");
   await owner.createRepository("r2");
   await owner.createRepository("x");
-  await owner.createRepository("yr2");
+  await owner.createRepository("Yr2");
   return owner;
 }
 
-test(olrt, createOwner(), "r1", ["r1"]);
-test(olrt, createOwner(), "r*", ["r1", "r2"]);
-test(olrt, createOwner(), "*r*", ["r1", "r2", "yr2"]);
-test(olrt, createOwner(), "*", ["r1", "r2", "x", "yr2"]);
-test(olrt, createOwner(), undefined, ["r1", "r2", "x", "yr2"]);
-test(olrt, createOwner(), "abc", []);
-test(olrt, createOwner(), "", []);
+test(olrt, createOwner(Owner), "r1", ["r1"]);
+test(olrt, createOwner(Owner), "r*", ["r1", "r2"]);
+test(olrt, createOwner(Owner), "*r*", ["r1", "r2", "Yr2"]);
+test(olrt, createOwner(Owner), "*", ["r1", "r2", "x", "Yr2"]);
+test(olrt, createOwner(Owner), undefined, ["r1", "r2", "x", "Yr2"]);
+test(olrt, createOwner(Owner), "abc", []);
+test(olrt, createOwner(Owner), "", []);
+
+
+test("Case sensitive",olrt, createOwner(CaseInsensitiveOwner), "*r*", ["r1", "r2", "yr2"]);

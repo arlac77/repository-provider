@@ -59,6 +59,16 @@ export function RepositoryOwnerMixin(parent) {
       }
 
       /**
+       * Normalizes a repository name
+       * strips branch away
+       * @param {string} name
+       * @return {string} normalized name
+       */
+      normalizeRepositoryName(name) {
+        return name.replace(/#.*$/, "");
+      }
+
+      /**
        * Delete a repository
        * @param {string} name
        * @return {Promise<undefined>}

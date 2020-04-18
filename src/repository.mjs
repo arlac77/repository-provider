@@ -60,7 +60,7 @@ export const Repository = LogLevelMixin(
     }
 
     constructor(owner, name, options) {
-      name = name.replace(/#.*$/, "");
+      name = owner.normalizeRepositoryName(name);
 
       const parts = name.split(/\//);
       if (parts.length >= 2) {
