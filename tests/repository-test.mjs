@@ -122,10 +122,9 @@ class MyRepository extends Repository {
 }
 
 test("defaultOption", t => {
-  const repository = new MyRepository(undefined, "r1", { id: "xxx" });
+  const repository = new MyRepository(new Provider(), "r1", { id: "xxx" });
   t.is(repository.myAttribute, 77);
   t.is(repository.id, "xxx");
 });
-
 
 test(repositoryEqualityTest, new Provider(), "r1", "r2");
