@@ -2,13 +2,14 @@ import test from "ava";
 import { Owner } from "../src/owner.mjs";
 
 class CaseInsensitiveOwner extends Owner {
-  normalizeRepositoryName(name) {
-    return super.normalizeRepositoryName(name).toLowerCase();
+  normalizeRepositoryName(name,forLookup) {
+    name = super.normalizeRepositoryName(name,forLookup);
+    return forLookup ? name.toLowerCase() : name;
   }
 }
 
-async function olrt(t, owner, pattern, result) {
-  owner = await owner;
+async function olrt(t, factory, pattern, result) {
+  const owner = await createOwner(factory);
   const found = [];
 
   for await (const r of owner.repositories(pattern)) {
@@ -18,39 +19,35 @@ async function olrt(t, owner, pattern, result) {
   t.deepEqual(found.sort(), result.sort());
 }
 
-olrt.title = (providedTitle = "", owner, pattern, result) =>
-  `${owner.constructor.name} list repositories ${providedTitle} ${pattern}`.trim();
+olrt.title = (providedTitle = "", factory, pattern, result) =>
+  `${factory.name} list repositories ${providedTitle} '${pattern}'`.trim();
 
 async function createOwner(factory) {
   const owner = new factory();
   await owner.createRepository("r1#b1");
   await owner.createRepository("r2");
   await owner.createRepository("x");
-  await owner.createRepository("Yr2");
+  await owner.createRepository("Upper");
   return owner;
 }
 
-test(olrt, createOwner(Owner), "r1", ["r1"]);
-test(olrt, createOwner(Owner), "r*", ["r1", "r2"]);
-test(olrt, createOwner(Owner), "*r*", ["r1", "r2", "Yr2"]);
-test(olrt, createOwner(Owner), "*", ["r1", "r2", "x", "Yr2"]);
-test(olrt, createOwner(Owner), undefined, ["r1", "r2", "x", "Yr2"]);
-test(olrt, createOwner(Owner), "abc", []);
-test(olrt, createOwner(Owner), "", []);
+test(olrt, Owner, "r1", ["r1"]);
+test(olrt, Owner, "r*", ["r1", "r2"]);
+test(olrt, Owner, "*r*", ["r1", "r2", "Upper"]);
+test(olrt, Owner, "*", ["r1", "r2", "x", "Upper"]);
+test(olrt, Owner, undefined, ["r1", "r2", "x", "Upper"]);
+test(olrt, Owner, "abc", []);
+test(olrt, Owner, "", []);
 
-test("Case sensitive", olrt, createOwner(CaseInsensitiveOwner), "*r*", [
-  "r1",
-  "r2",
-  "yr2"
-]);
+test(olrt, CaseInsensitiveOwner, "*r*", [ "r1", "r2", "Upper" ]);
 
 test("repository case insensitive", async t => {
   const owner = await createOwner(CaseInsensitiveOwner);
-  t.is(await owner.repository("yr2"), await owner.repository("Yr2"));
+  t.is(await owner.repository("upper"), await owner.repository("Upper"));
 });
 
 test("repository case sensitive", async t => {
   const owner = await createOwner(Owner);
-  t.is(await owner.repository("Yr2"), await owner.repository("Yr2"));
-  t.is(await owner.repository("yr2"), undefined);
+  t.is(await owner.repository("Upper"), await owner.repository("Upper"));
+  t.is(await owner.repository("upper"), undefined);
 });

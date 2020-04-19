@@ -206,9 +206,10 @@ export class Provider extends Owner {
    * bring a repository name into its normal form by removing any clutter
    * like .git suffix or #branch names
    * @param {string} name
+   * @param {boolean} forLookup
    * @return {string} normalized name
    */
-  normalizeRepositoryName(name) {
+  normalizeRepositoryName(name, forLookup) {
     name = name.trim();
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {

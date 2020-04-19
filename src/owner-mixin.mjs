@@ -62,10 +62,20 @@ export function RepositoryOwnerMixin(parent) {
        * Normalizes a repository name
        * strips branch away
        * @param {string} name
+       * @param {boolean} forLookup
        * @return {string} normalized name
        */
-      normalizeRepositoryName(name) {
-        return name.replace(/#.*$/, "");
+      normalizeRepositoryName(name, forLookup) {
+        name = name.replace(/#.*$/, "");
+
+        const parts = name.split(/\//);
+        if (parts.length >= 2) {
+          if (parts[parts.length - 2] === this.name) {
+            return parts[parts.length - 1];
+          }
+        }
+
+        return name;
       }
 
       /**
@@ -74,7 +84,7 @@ export function RepositoryOwnerMixin(parent) {
        * @return {Promise<undefined>}
        */
       async deleteRepository(name) {
-        this._repositories.delete(this.normalizeRepositoryName(name));
+        this._repositories.delete(this.normalizeRepositoryName(name, true));
       }
 
       /**
@@ -87,11 +97,9 @@ export function RepositoryOwnerMixin(parent) {
           return undefined;
         }
 
-        const [repoName, branchName] = name.split(/#/);
-
         await this.initializeRepositories();
   
-        return this._repositories.get(this.normalizeRepositoryName(repoName));
+        return this._repositories.get(this.normalizeRepositoryName(name,true));
       }
 
       /**

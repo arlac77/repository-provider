@@ -60,17 +60,8 @@ export const Repository = LogLevelMixin(
     }
 
     constructor(owner, name, options) {
-      name = owner.normalizeRepositoryName(name);
-
-      const parts = name.split(/\//);
-      if (parts.length >= 2) {
-        if (parts[parts.length - 2] === owner.name) {
-          name = parts[parts.length - 1];
-        }
-      }
-
       definePropertiesFromOptions(this, options, {
-        name: { value: name },
+        name: { value: owner.normalizeRepositoryName(name, false) }, 
         owner: { value: owner },
         _branches: { value: new Map() },
         _tags: { value: new Map() },
