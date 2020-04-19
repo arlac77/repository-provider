@@ -74,7 +74,7 @@ export function RepositoryOwnerMixin(parent) {
        * @return {Promise<undefined>}
        */
       async deleteRepository(name) {
-        this._repositories.delete(name);
+        this._repositories.delete(this.normalizeRepositoryName(name));
       }
 
       /**
@@ -90,7 +90,8 @@ export function RepositoryOwnerMixin(parent) {
         const [repoName, branchName] = name.split(/#/);
 
         await this.initializeRepositories();
-        return this._repositories.get(repoName);
+  
+        return this._repositories.get(this.normalizeRepositoryName(repoName));
       }
 
       /**

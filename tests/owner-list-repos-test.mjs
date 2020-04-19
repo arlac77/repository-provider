@@ -38,5 +38,19 @@ test(olrt, createOwner(Owner), undefined, ["r1", "r2", "x", "Yr2"]);
 test(olrt, createOwner(Owner), "abc", []);
 test(olrt, createOwner(Owner), "", []);
 
+test("Case sensitive", olrt, createOwner(CaseInsensitiveOwner), "*r*", [
+  "r1",
+  "r2",
+  "yr2"
+]);
 
-test("Case sensitive",olrt, createOwner(CaseInsensitiveOwner), "*r*", ["r1", "r2", "yr2"]);
+test("repository case insensitive", async t => {
+  const owner = await createOwner(CaseInsensitiveOwner);
+  t.is(await owner.repository("yr2"), await owner.repository("Yr2"));
+});
+
+test("repository case sensitive", async t => {
+  const owner = await createOwner(Owner);
+  t.is(await owner.repository("Yr2"), await owner.repository("Yr2"));
+  t.is(await owner.repository("yr2"), undefined);
+});
