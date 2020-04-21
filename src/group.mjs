@@ -45,6 +45,16 @@ export class RepositoryGroup extends Owner {
     });
   }
 
+  get areRepositoryNamesCaseSensitive()
+  {
+    return this.provider.areRepositoryNamesCaseSensitive;
+  }
+
+  get areRepositoryGroupNamesCaseSensitive()
+  {
+    return this.provider.areRepositoryGroupNamesCaseSensitive;
+  }
+
   /**
    * By default we use the providers implementation.
    * @return {Class} as defined in the provider

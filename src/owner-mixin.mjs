@@ -71,11 +71,35 @@ export function RepositoryOwnerMixin(parent) {
         const parts = name.split(/\//);
         if (parts.length >= 2) {
           if (parts[parts.length - 2] === this.name) {
-            return parts[parts.length - 1];
+            name = parts[parts.length - 1];
           }
         }
 
+        if(forLookup && !this.areRepositoryNamesCaseSensitive) {
+          return name.toLowerCase();
+        }
+
         return name;
+      }
+
+      /**
+       * Are repositroy names case sensitive.
+       * Overwrite and return false if you want to have case insensitive repository lookup
+       * @return {boolean} true
+       */
+      get areRepositoryNamesCaseSensitive()
+      {
+        return true;
+      }
+
+      /**
+       * Are repositroy group names case sensitive.
+       * Overwrite and return false if you want to have case insensitive group lookup
+       * @return {boolean} true
+       */
+      get areGroupNamesCaseSensitive()
+      {
+        return true;
       }
 
       /**
@@ -99,6 +123,7 @@ export function RepositoryOwnerMixin(parent) {
 
         await this.initializeRepositories();
   
+        //console.log("XX",name,this.normalizeRepositoryName(name,true),[...this._repositories.keys()]);
         return this._repositories.get(this.normalizeRepositoryName(name,true));
       }
 
@@ -109,7 +134,7 @@ export function RepositoryOwnerMixin(parent) {
        */
       async *repositories(patterns) {
         await this.initializeRepositories();
-        for (const name of this.match(this._repositories.keys(), patterns)) {
+        for (const name of this.match(this._repositories.keys(), patterns, this.areRepositoriesCasesSensitive)) {
           yield this._repositories.get(name);
         }
       }
@@ -118,9 +143,10 @@ export function RepositoryOwnerMixin(parent) {
        * match entries against pattern
        * @param {*<string>} entries
        * @param {string[]} patterns
+       * @param {boolean} caseSensitive 
        * @return {string *}
        */
-      *match(entries, patterns) {
+      *match(entries, patterns, caseSensitive=true) {
         if (patterns === undefined) {
           for (const entry of entries) {
             yield entry;
@@ -129,7 +155,7 @@ export function RepositoryOwnerMixin(parent) {
         }
 
         const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
-          pattern => new RegExp("^" + pattern.replace(/\*/g, ".*") + "$")
+          pattern => new RegExp("^" + pattern.replace(/\*/g, ".*") + "$", caseSensitive ? undefined : "i")
         );
 
         for (const entry of entries) {
@@ -170,7 +196,7 @@ export function RepositoryOwnerMixin(parent) {
        */
       async _createRepository(name, options) {
         const repository = new this.repositoryClass(this, name, options);
-        this._repositories.set(repository.name, repository);
+        this._repositories.set(this.normalizeRepositoryName(repository.name, true), repository);
         return repository;
       }
 
@@ -183,7 +209,7 @@ export function RepositoryOwnerMixin(parent) {
         let repository = this._repositories.get(name);
         if (repository === undefined) {
           repository = new this.repositoryClass(this, name, options);
-          this._repositories.set(repository.name, repository);
+          this._repositories.set(this.normalizeRepositoryName(repository.name, true), repository);
         }
         return repository;
       }
@@ -225,7 +251,8 @@ export function RepositoryOwnerMixin(parent) {
 
         for (const name of this.match(
           this._repositories.keys(),
-          repoPatterns
+          repoPatterns,
+          this.areRepositoriesCaseSensitive
         )) {
           const repository = this._repositories.get(name);
           const branch =

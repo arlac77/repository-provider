@@ -218,7 +218,13 @@ export class Provider extends Owner {
       }
     }
 
-    return name.replace(/\.git(#.*)?$/, "").replace(/#.*$/, "");
+    name = name.replace(/\.git(#.*)?$/, "").replace(/#.*$/, "");
+
+    if(forLookup && !this.areRepositoryNamesCaseSensitive) {
+      return name.toLowerCase();
+    }
+
+    return name;
   }
 
   /**
