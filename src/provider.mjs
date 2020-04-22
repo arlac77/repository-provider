@@ -227,6 +227,14 @@ export class Provider extends Owner {
     return name;
   }
 
+  normalizeGroupName(name, forLookup) {
+    if(forLookup && !this.areGroupNamesCaseSensitive) {
+      return name.toLowerCase();
+    }
+
+    return name;
+  }
+  
   /**
    * parses repository name and tries to split it into
    * base, group, repository and branch
@@ -311,7 +319,7 @@ export class Provider extends Owner {
     }
 
     if (group !== undefined) {
-      const rg = await this.repositoryGroup(group);
+      const rg = await this.repositoryGroup(this.normalizeGroupName(group));
       if (rg !== undefined) {
         const r = await rg.repository(repository);
         if (r !== undefined) {
@@ -380,7 +388,8 @@ export class Provider extends Owner {
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();
-    for (const name of this.match(this._repositoryGroups.keys(), patterns)) {
+    for (const name of this.match(this._repositoryGroups.keys(), patterns,
+      this.areGroupNamesCaseSensitive)) {
       yield this._repositoryGroups.get(name);
     }
   }

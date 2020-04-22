@@ -123,7 +123,6 @@ export function RepositoryOwnerMixin(parent) {
 
         await this.initializeRepositories();
   
-        //console.log("XX",name,this.normalizeRepositoryName(name,true),[...this._repositories.keys()]);
         return this._repositories.get(this.normalizeRepositoryName(name,true));
       }
 
