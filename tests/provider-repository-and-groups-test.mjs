@@ -1,13 +1,54 @@
 import test from "ava";
 import { Provider } from "../src/provider.mjs";
 
-test("provider repository group", async t => {
-  const provider = new Provider();
-  t.is(await provider.repositoryGroup("p1"), undefined);
-  const p1 = await provider.createRepositoryGroup("p1");
-  t.is(p1.name, "p1");
-  t.is(await provider.repositoryGroup("p1"), p1);
-});
+
+class CaseInsensitiveProvider extends Provider {
+  get areRepositoryNamesCaseSensitive()
+  {
+    return false;
+  }
+
+  get areGroupNamesCaseSensitive()
+  {
+    return false;
+  }
+}
+
+async function createProvider(factory = Provider) {
+  const provider = new factory();
+  const g1 = await provider.createRepositoryGroup("g1");
+  const g2 = await provider.createRepositoryGroup("g2");
+  await provider.createRepositoryGroup("Upper");
+
+  await g1.createRepository("r1");
+  await g2.createRepository("r2");
+
+  return provider;
+}
+
+async function pgrt(t, factory, name, result) {
+  const provider = await createProvider(factory);
+  const group = await provider.repositoryGroup(name);
+
+  if (result === undefined) {
+    t.is(group, undefined, `no group for '${name}'`);
+  } else {
+    if (group) {
+      t.is(group.name, result, `lookup '${name}'`);
+    } else {
+      t.fail(`group not found for '${name}'`);
+    }
+  }
+}
+
+pgrt.title = (providedTitle = "", factory, name, result) =>
+  `${factory.name} get group ${providedTitle} '${name}'`.trim();
+
+test(pgrt, Provider, "g1", "g1");
+test(pgrt, Provider, "Upper", "Upper");
+test(pgrt, CaseInsensitiveProvider, "Upper", "Upper");
+test(pgrt, CaseInsensitiveProvider, "upper", "Upper");
+
 
 test("provider repository group create repository", async t => {
   const provider = new Provider();
@@ -22,10 +63,7 @@ test("provider repository group create repository", async t => {
 });
 
 test("provider repository group list", async t => {
-  const provider = new Provider();
-  await provider.createRepositoryGroup("g1");
-  await provider.createRepositoryGroup("g2");
-
+  const provider = await createProvider();
   const gs = {};
 
   for await (const g of provider.repositoryGroups("*")) {
@@ -35,18 +73,8 @@ test("provider repository group list", async t => {
   t.is(gs.g1.name, "g1");
 });
 
-async function setupProvider() {
-  const provider = new Provider();
-  const g1 = await provider.createRepositoryGroup("g1");
-  const g2 = await provider.createRepositoryGroup("g2");
-
-  await g1.createRepository("r1");
-  await g2.createRepository("r2");
-  return provider;
-}
-
 test("provider repository list default", async t => {
-  const provider = await setupProvider();
+  const provider = await createProvider();
   const rs = {};
 
   for await (const r of provider.repositories()) {
@@ -59,7 +87,7 @@ test("provider repository list default", async t => {
 });
 
 test("provider repository list **/*", async t => {
-  const provider = await setupProvider();
+  const provider = await createProvider();
   const rs = {};
 
   for await (const r of provider.repositories("*/*")) {

@@ -148,7 +148,7 @@ export class Provider extends Owner {
       return undefined;
     }
     await this.initializeRepositories();
-    return this._repositoryGroups.get(name);
+    return this._repositoryGroups.get(this.normalizeGroupName(name,true));
   }
 
   /**
@@ -169,7 +169,7 @@ export class Provider extends Owner {
 
   async _createRepositoryGroup(name, options) {
     const repositoryGroup = new this.repositoryGroupClass(this, name, options);
-    this._repositoryGroups.set(repositoryGroup.name, repositoryGroup);
+    this._repositoryGroups.set(this.normalizeGroupName(repositoryGroup.name, true), repositoryGroup);
     return repositoryGroup;
   }
 
@@ -183,7 +183,7 @@ export class Provider extends Owner {
     let repositoryGroup = this._repositoryGroups.get(name);
     if (repositoryGroup == undefined) {
       repositoryGroup = new this.repositoryGroupClass(this, name, options);
-      this._repositoryGroups.set(repositoryGroup.name, repositoryGroup);
+      this._repositoryGroups.set(this.normalizeGroupName(repositoryGroup.name, true), repositoryGroup);
     }
     return repositoryGroup;
   }
@@ -220,7 +220,7 @@ export class Provider extends Owner {
 
     name = name.replace(/\.git(#.*)?$/, "").replace(/#.*$/, "");
 
-    if(forLookup && !this.areRepositoryNamesCaseSensitive) {
+    if (forLookup && !this.areRepositoryNamesCaseSensitive) {
       return name.toLowerCase();
     }
 
@@ -228,13 +228,13 @@ export class Provider extends Owner {
   }
 
   normalizeGroupName(name, forLookup) {
-    if(forLookup && !this.areGroupNamesCaseSensitive) {
+    if (forLookup && !this.areGroupNamesCaseSensitive) {
       return name.toLowerCase();
     }
 
     return name;
   }
-  
+
   /**
    * parses repository name and tries to split it into
    * base, group, repository and branch
@@ -388,8 +388,11 @@ export class Provider extends Owner {
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();
-    for (const name of this.match(this._repositoryGroups.keys(), patterns,
-      this.areGroupNamesCaseSensitive)) {
+    for (const name of this.match(
+      this._repositoryGroups.keys(),
+      patterns,
+      this.areGroupNamesCaseSensitive
+    )) {
       yield this._repositoryGroups.get(name);
     }
   }
