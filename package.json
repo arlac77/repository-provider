@@ -21,6 +21,7 @@
   ],
   "license": "BSD-2-Clause",
   "scripts": {
+    "prepare": "rollup -c",
     "test": "ava --timeout 2m",
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "docs": "documentation readme src/provider.mjs --section=API",
@@ -34,6 +35,7 @@
     "c8": "^7.1.0",
     "documentation": "^12.3.0",
     "repository-provider-test-support": "github:arlac77/repository-provider-test-support",
+    "rollup": "^2.7.2",
     "semantic-release": "^17.0.7"
   },
   "engines": {
@@ -50,6 +52,7 @@
   "template": {
     "inheritFrom": [
       "arlac77/template-arlac77-github",
+      "arlac77/template-cli-app",
       "arlac77/template-esm-only",
       "arlac77/template-github"
     ]
