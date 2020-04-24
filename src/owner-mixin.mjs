@@ -268,14 +268,6 @@ export function RepositoryOwnerMixin(parent) {
 
       async *tags(patterns) {}
 
-      /**
-       * Deliver the repository type
-       * @return {string} 'git'
-       */
-      get type() {
-        return "git";
-      }
-
       initialize() {}
       initializeRepositories() {
         return this.initialize();

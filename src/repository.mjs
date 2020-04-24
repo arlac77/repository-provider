@@ -394,10 +394,10 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * @return {string} providers type
+     * @return {string} 'git' 
      */
     get type() {
-      return this.owner.type;
+      return 'git';
     }
 
     /**

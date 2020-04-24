@@ -70,7 +70,6 @@ test("initialize", async t => {
 
 test("new provider", async t => {
   const provider = new Provider({ key: "value" });
-  t.is(provider.type, "git");
   t.is(provider.priority, 0);
   t.is(provider.name, "Provider");
   t.is(`${provider}`, "Provider");
