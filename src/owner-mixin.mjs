@@ -133,7 +133,7 @@ export function RepositoryOwnerMixin(parent) {
        */
       async *repositories(patterns) {
         await this.initializeRepositories();
-        for (const name of this.match(this._repositories.keys(), patterns, this.areRepositoriesCasesSensitive)) {
+        for (const name of this.match(this._repositories.keys(), patterns, this.areRepositoryNamesCaseSensitive)) {
           yield this._repositories.get(name);
         }
       }

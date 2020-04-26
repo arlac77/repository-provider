@@ -148,7 +148,7 @@ export class Provider extends Owner {
       return undefined;
     }
     await this.initializeRepositories();
-    return this._repositoryGroups.get(this.normalizeGroupName(name,true));
+    return this._repositoryGroups.get(this.normalizeGroupName(name, true));
   }
 
   /**
@@ -169,7 +169,10 @@ export class Provider extends Owner {
 
   async _createRepositoryGroup(name, options) {
     const repositoryGroup = new this.repositoryGroupClass(this, name, options);
-    this._repositoryGroups.set(this.normalizeGroupName(repositoryGroup.name, true), repositoryGroup);
+    this._repositoryGroups.set(
+      this.normalizeGroupName(repositoryGroup.name, true),
+      repositoryGroup
+    );
     return repositoryGroup;
   }
 
@@ -416,7 +419,6 @@ export class Provider extends Owner {
         const [groupPattern, repoPattern] = pattern.split(/\//);
 
         for await (const group of this.repositoryGroups(groupPattern)) {
-          //console.log("G",group.name,repoPattern,[...group._repositories.keys()]);
           yield* group.repositories(repoPattern);
         }
       }
