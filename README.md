@@ -12,7 +12,7 @@
 
 # repository-provider
 
-abstract interface to git repository providers like github bitbucket
+abstract interface to git repository providers like github, bitbucket, gitlab, gitea, ...
 
 see list of avaliable implementations below
 
