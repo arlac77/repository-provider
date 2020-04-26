@@ -28,12 +28,12 @@ const provider = new Provider({ token: 'xxx' });
 const branch = await provider.branch('myuser/myrepo#myBranch');
 
 for await (const entry of branch.entries('**/*.md')) {
-    console.log(entry.name);
+  console.log(entry.name);
 }
 
 const readme = await branch.entry('README.md');
 
-console.log(await readme.toString());
+console.log(await readme.getString());
 ```
 
 # Derived Providers
