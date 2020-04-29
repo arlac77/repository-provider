@@ -75,7 +75,7 @@ export function RepositoryOwnerMixin(parent) {
           }
         }
 
-        if(forLookup && !this.areRepositoryNamesCaseSensitive) {
+        if (forLookup && !this.areRepositoryNamesCaseSensitive) {
           return name.toLowerCase();
         }
 
@@ -87,8 +87,7 @@ export function RepositoryOwnerMixin(parent) {
        * Overwrite and return false if you want to have case insensitive repository lookup
        * @return {boolean} true
        */
-      get areRepositoryNamesCaseSensitive()
-      {
+      get areRepositoryNamesCaseSensitive() {
         return true;
       }
 
@@ -97,18 +96,8 @@ export function RepositoryOwnerMixin(parent) {
        * Overwrite and return false if you want to have case insensitive group lookup
        * @return {boolean} true
        */
-      get areGroupNamesCaseSensitive()
-      {
+      get areGroupNamesCaseSensitive() {
         return true;
-      }
-
-      /**
-       * Delete a repository
-       * @param {string} name
-       * @return {Promise<undefined>}
-       */
-      async deleteRepository(name) {
-        this._repositories.delete(this.normalizeRepositoryName(name, true));
       }
 
       /**
@@ -122,8 +111,8 @@ export function RepositoryOwnerMixin(parent) {
         }
 
         await this.initializeRepositories();
-  
-        return this._repositories.get(this.normalizeRepositoryName(name,true));
+
+        return this._repositories.get(this.normalizeRepositoryName(name, true));
       }
 
       /**
@@ -133,7 +122,11 @@ export function RepositoryOwnerMixin(parent) {
        */
       async *repositories(patterns) {
         await this.initializeRepositories();
-        for (const name of this.match(this._repositories.keys(), patterns, this.areRepositoryNamesCaseSensitive)) {
+        for (const name of this.match(
+          this._repositories.keys(),
+          patterns,
+          this.areRepositoryNamesCaseSensitive
+        )) {
           yield this._repositories.get(name);
         }
       }
@@ -142,10 +135,10 @@ export function RepositoryOwnerMixin(parent) {
        * match entries against pattern
        * @param {*<string>} entries
        * @param {string[]} patterns
-       * @param {boolean} caseSensitive 
+       * @param {boolean} caseSensitive
        * @return {string *}
        */
-      *match(entries, patterns, caseSensitive=true) {
+      *match(entries, patterns, caseSensitive = true) {
         if (patterns === undefined) {
           for (const entry of entries) {
             yield entry;
@@ -154,7 +147,11 @@ export function RepositoryOwnerMixin(parent) {
         }
 
         const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
-          pattern => new RegExp("^" + pattern.replace(/\*/g, ".*") + "$", caseSensitive ? undefined : "i")
+          pattern =>
+            new RegExp(
+              "^" + pattern.replace(/\*/g, ".*") + "$",
+              caseSensitive ? undefined : "i"
+            )
         );
 
         for (const entry of entries) {
@@ -168,49 +165,42 @@ export function RepositoryOwnerMixin(parent) {
       }
 
       /**
-       * Create a new repository
-       * if there is already if repository for the given name it will be returned
+       * Create a new {@link Repository} in the provider.
+       * If there is already if repository for the given name it will be returned
        * @param {string} name
        * @param {Object} options
-       * @return {Promise<Repository>}
+       * @return {Promise<Repository>} newly created repository (if not already present)
        */
       async createRepository(name, options) {
-        let repository = await this.repository(name);
-
-        if (repository === undefined) {
-          repository = await this._createRepository(name, options);
-        }
-
-        return repository;
+        return this.addRepository(name, options);
       }
 
       /**
-       * Create a new {@link Repository}
-       * All owner implementations must provide a repository._createRepository() to handle the real repository creation.
-       * This method MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
-       * Internal repository creation does not call owner.initialize()
+       * Add a {@link Repository} to the group.
+       * Only adds the repository to the in memory representation (does not execute any provider actions)
        * @param {string} name
        * @param {Object} options
        * @return {Promise<Repository>} newly created repository
-       */
-      async _createRepository(name, options) {
-        const repository = new this.repositoryClass(this, name, options);
-        this._repositories.set(this.normalizeRepositoryName(repository.name, true), repository);
-        return repository;
-      }
-
-      /**
-       * Add a repository to the group (does not execute any provider actions)
-       * @param {string} name
-       * @param {Object} options
        */
       addRepository(name, options) {
         let repository = this._repositories.get(name);
         if (repository === undefined) {
           repository = new this.repositoryClass(this, name, options);
-          this._repositories.set(this.normalizeRepositoryName(repository.name, true), repository);
+          this._repositories.set(
+            this.normalizeRepositoryName(repository.name, true),
+            repository
+          );
         }
         return repository;
+      }
+
+      /**
+       * Delete a repository
+       * @param {string} name
+       * @return {Promise<undefined>}
+       */
+      async deleteRepository(name) {
+        this._repositories.delete(this.normalizeRepositoryName(name, true));
       }
 
       /**

@@ -159,21 +159,7 @@ export class Provider extends Owner {
    * @return {Promise<RepositoryGroup>}
    */
   async createRepositoryGroup(name, options) {
-    let repositoryGroup = await this.repositoryGroup(name);
-    if (repositoryGroup === undefined) {
-      repositoryGroup = this._createRepositoryGroup(name, options);
-    }
-
-    return repositoryGroup;
-  }
-
-  async _createRepositoryGroup(name, options) {
-    const repositoryGroup = new this.repositoryGroupClass(this, name, options);
-    this._repositoryGroups.set(
-      this.normalizeGroupName(repositoryGroup.name, true),
-      repositoryGroup
-    );
-    return repositoryGroup;
+    return this.addRepositoryGroup(name, options);
   }
 
   /**
@@ -350,6 +336,23 @@ export class Provider extends Owner {
 
     return {};
   }
+
+  
+  /*
+  async createRepository(name, options) {
+    let repository = await this.repository(name);
+    if(repository) {
+      return repository;
+    }
+    const group = await this.repositoryGroup(name);
+    if(group) {
+      return group.createRepository(name, options);
+    }
+  }
+ 
+  async deleteRepository(name) {
+  }
+*/
 
   /**
    * Lookup a repository in the provider and all of its repository groups
