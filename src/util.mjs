@@ -20,13 +20,12 @@ export function definePropertiesFromOptions(object, options, properties = {}) {
   const after = {};
 
   if (defaultOptions !== undefined) {
-    Object.keys(defaultOptions).forEach(name => {
+    Object.entries(defaultOptions).forEach(([name, defaultOption]) => {
       if (object.hasOwnProperty(name)) {
         return;
       }
 
-      const value =
-        (options !== undefined && options[name]) || defaultOptions[name];
+      const value = (options !== undefined && options[name]) || defaultOption;
 
       if (value !== undefined) {
         if (properties[name] === undefined) {
