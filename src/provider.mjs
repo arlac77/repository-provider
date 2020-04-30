@@ -337,23 +337,6 @@ export class Provider extends Owner {
     return {};
   }
 
-  
-  /*
-  async createRepository(name, options) {
-    let repository = await this.repository(name);
-    if(repository) {
-      return repository;
-    }
-    const group = await this.repositoryGroup(name);
-    if(group) {
-      return group.createRepository(name, options);
-    }
-  }
- 
-  async deleteRepository(name) {
-  }
-*/
-
   /**
    * Lookup a repository in the provider and all of its repository groups
    * @param {string} name of the repository
