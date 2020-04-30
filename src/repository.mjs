@@ -61,7 +61,7 @@ export const Repository = LogLevelMixin(
 
     constructor(owner, name, options) {
       definePropertiesFromOptions(this, options, {
-        name: { value: owner.normalizeRepositoryName(name, false) }, 
+        name: { value: owner.normalizeRepositoryName(name, false) },
         owner: { value: owner },
         _branches: { value: new Map() },
         _tags: { value: new Map() },
@@ -236,31 +236,27 @@ export const Repository = LogLevelMixin(
      */
     async createBranch(name, source, options) {
       await this.initializeBranches();
+      return this.addBranch(name, options);
+    }
+
+    /**
+     * Add a new {@link Branch}.
+     * Internal branch creation does not call repository.initialize()
+     * @param {string} name of the new branch
+     * @param {Object} options
+     * @return {Promise<Branch>} newly created branch
+     */
+    addBranch(name, options) {
       let branch = this._branches.get(name);
       if (branch === undefined) {
-        branch = await this._createBranch(
-          name,
-          source === undefined ? await this.defaultBranch : source,
-          options
-        );
-        this._branches.set(branch.name, branch);
+        branch = new this.branchClass(this, name, options);
       }
 
       return branch;
     }
 
-    /**
-     * Create a new {@link Branch} by cloning a given source branch
-     * All repository implementations must provide a repository._createBranch() to handle the real branch creation.
-     * This methos MUST NOT be called by application code directly. It should be implemented by child classes, and called by the internal class methods only.
-     * Internal branch creation does not call repository.initialize()
-     * @param {string} name of the new branch
-     * @param {Branch} source branch defaults to the defaultBranch
-     * @param {Object} options
-     * @return {Promise<Branch>} newly created branch
-     */
-    async _createBranch(name, source, options) {
-      return new this.branchClass(this, name, options);
+    _addBranch(branch) {
+      this._branches.set(branch.name, branch);
     }
 
     /**
@@ -270,16 +266,6 @@ export const Repository = LogLevelMixin(
      */
     async deleteBranch(name) {
       this._branches.delete(name);
-    }
-
-    /**
-     * Add a branch
-     * @param {Branch} branch
-     * @return {Promise<undefined>}
-     */
-    async addBranch(branch) {
-      //await this.initializeBranches();
-      this._branches.set(branch.name, branch);
     }
 
     /**
@@ -394,10 +380,10 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * @return {string} 'git' 
+     * @return {string} 'git'
      */
     get type() {
-      return 'git';
+      return "git";
     }
 
     /**
@@ -465,7 +451,7 @@ export const Repository = LogLevelMixin(
     }
 
     initialize() {}
-    
+
     initializeHooks() {
       return this.initialize();
     }

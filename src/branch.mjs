@@ -6,7 +6,7 @@ import {
 
 /**
  * Abstract branch
- * @see {@link Repository#addBranch}
+ * @see {@link Repository#_addBranch}
  * @param {Repository} repository
  * @param {string} name
  * @param {Object} options
@@ -29,7 +29,7 @@ export class Branch {
       repository: { value: repository }
     });
 
-    repository.addBranch(this);
+    repository._addBranch(this);
   }
 
   /**

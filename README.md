@@ -412,7 +412,7 @@ this defines the order
 
 ## Branch
 
--   **See: [Repository#addBranch](Repository#addBranch)
+-   **See: [Repository#\_addBranch](Repository#_addBranch)
     **
 
 Abstract branch
