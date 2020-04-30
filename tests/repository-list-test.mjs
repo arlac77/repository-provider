@@ -6,11 +6,10 @@ const provider = new Provider();
 
 test.before(async t => {
   const g1 = await provider.addRepositoryGroup("g1");
-  await g1.createRepository("r1");
-  await g1.createRepository("r2");
+  await g1.addRepository("r1");
+  await g1.addRepository("r2");
   const g2 = await provider.addRepositoryGroup("g2");
-  await g2.createRepository("r1");
-
+  await g2.addRepository("r1");
   const g3 = await provider.addRepositoryGroup("g3");
 });
 
