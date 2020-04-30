@@ -8,7 +8,7 @@ import { Repository } from "../src/repository.mjs";
 import { Branch } from "../src/branch.mjs";
 import { PullRequest } from "../src/pull-request.mjs";
 
-test("repository create with options", async t => {
+test("repository init with options", async t => {
   const owner = new Owner();
   const repository = new Repository(owner, "r1", {
     description: "a description",
@@ -54,7 +54,7 @@ test("repository create with options", async t => {
   });
 });
 
-test("repository create with more options", async t => {
+test("repository init with more options", async t => {
   const provider = new Provider();
   const group = new RepositoryGroup(provider, "g1");
   const repository = new Repository(group, "r1", {
@@ -76,7 +76,7 @@ test("repository create with more options", async t => {
   t.deepEqual(repository.urls, ["http:/myprovider/orner1/r1.git"]);
 });
 
-test("repository create without options", t => {
+test("repository init without options", t => {
   const owner = new Owner();
   const repository = new Repository(owner, "r1");
   t.is(repository.owner, owner);
