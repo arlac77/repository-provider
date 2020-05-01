@@ -132,11 +132,11 @@ export function RepositoryOwnerMixin(parent) {
       }
 
       /**
-       * match entries against pattern
+       * Match entries against pattern
        * @param {*<string>} entries
        * @param {string[]} patterns
        * @param {boolean} caseSensitive
-       * @return {string *}
+       * @return {string *} filtered entries
        */
       *match(entries, patterns, caseSensitive = true) {
         if (patterns === undefined) {
@@ -183,13 +183,11 @@ export function RepositoryOwnerMixin(parent) {
        * @return {Promise<Repository>} newly created repository
        */
       addRepository(name, options) {
-        let repository = this._repositories.get(name);
+        const normalizedName = this.normalizeRepositoryName(name, true);
+        let repository = this._repositories.get(normalizedName);
         if (repository === undefined) {
           repository = new this.repositoryClass(this, name, options);
-          this._repositories.set(
-            this.normalizeRepositoryName(repository.name, true),
-            repository
-          );
+          this._repositories.set(normalizedName,repository);
         }
         return repository;
       }
