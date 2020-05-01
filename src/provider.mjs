@@ -310,7 +310,7 @@ export class Provider extends Owner {
     }
 
     if (group !== undefined) {
-      const rg = await this.repositoryGroup(this.normalizeGroupName(group));
+      const rg = await this.repositoryGroup(group);
       if (rg !== undefined) {
         const r = await rg.repository(repository);
         if (r !== undefined) {
