@@ -62,36 +62,38 @@ console.log(await readme.getString());
         -   [Parameters](#parameters-5)
     -   [parseName](#parsename)
         -   [Parameters](#parameters-6)
-    -   [repository](#repository)
+    -   [decomposeName](#decomposename)
         -   [Parameters](#parameters-7)
-    -   [branch](#branch)
+    -   [repository](#repository)
         -   [Parameters](#parameters-8)
-    -   [repositoryGroups](#repositorygroups)
+    -   [branch](#branch)
         -   [Parameters](#parameters-9)
-    -   [repositories](#repositories)
+    -   [repositoryGroups](#repositorygroups)
         -   [Parameters](#parameters-10)
-    -   [branches](#branches)
+    -   [repositories](#repositories)
         -   [Parameters](#parameters-11)
-    -   [tags](#tags)
+    -   [branches](#branches)
         -   [Parameters](#parameters-12)
+    -   [tags](#tags)
+        -   [Parameters](#parameters-13)
     -   [repositoryGroupClass](#repositorygroupclass)
     -   [hookClass](#hookclass)
     -   [name](#name)
     -   [provider](#provider-1)
     -   [toJSON](#tojson)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-13)
+        -   [Parameters](#parameters-14)
     -   [environmentOptions](#environmentoptions)
     -   [areOptionsSufficciant](#areoptionssufficciant)
-        -   [Parameters](#parameters-14)
-    -   [initialize](#initialize)
         -   [Parameters](#parameters-15)
+    -   [initialize](#initialize)
+        -   [Parameters](#parameters-16)
 -   [priority](#priority)
 -   [Branch](#branch-1)
-    -   [Parameters](#parameters-16)
+    -   [Parameters](#parameters-17)
     -   [Properties](#properties-1)
     -   [equals](#equals-1)
-        -   [Parameters](#parameters-17)
+        -   [Parameters](#parameters-18)
     -   [provider](#provider-2)
     -   [owner](#owner)
     -   [fullName](#fullname)
@@ -106,37 +108,37 @@ console.log(await readme.getString());
     -   [isDisabled](#isdisabled)
     -   [delete](#delete)
     -   [commit](#commit)
-        -   [Parameters](#parameters-18)
-    -   [entries](#entries)
         -   [Parameters](#parameters-19)
+    -   [entries](#entries)
+        -   [Parameters](#parameters-20)
     -   [asyncIterator](#asynciterator)
     -   [maybeEntry](#maybeentry)
-        -   [Parameters](#parameters-20)
-    -   [entry](#entry)
         -   [Parameters](#parameters-21)
-    -   [removeEntries](#removeentries)
+    -   [entry](#entry)
         -   [Parameters](#parameters-22)
-    -   [refId](#refid)
+    -   [removeEntries](#removeentries)
         -   [Parameters](#parameters-23)
+    -   [refId](#refid)
+        -   [Parameters](#parameters-24)
     -   [entryClass](#entryclass)
     -   [createPullRequest](#createpullrequest)
-        -   [Parameters](#parameters-24)
+        -   [Parameters](#parameters-25)
     -   [pullRequestClass](#pullrequestclass)
     -   [createBranch](#createbranch)
-        -   [Parameters](#parameters-25)
+        -   [Parameters](#parameters-26)
     -   [toJSON](#tojson-1)
     -   [defaultOptions](#defaultoptions)
 -   [Owner](#owner-1)
     -   [Properties](#properties-2)
 -   [RepositoryOwnerMixin](#repositoryownermixin)
-    -   [Parameters](#parameters-26)
+    -   [Parameters](#parameters-27)
     -   [Properties](#properties-3)
 -   [defaultOptions](#defaultoptions-1)
 -   [defaultOptions](#defaultoptions-2)
 -   [log](#log)
-    -   [Parameters](#parameters-27)
--   [Repository](#repository-1)
     -   [Parameters](#parameters-28)
+-   [Repository](#repository-1)
+    -   [Parameters](#parameters-29)
     -   [Properties](#properties-4)
 -   [description](#description)
 -   [description](#description-1)
@@ -148,49 +150,50 @@ console.log(await readme.getString());
 -   [defaultBranchName](#defaultbranchname)
 -   [urls](#urls)
 -   [PullRequest](#pullrequest)
-    -   [Parameters](#parameters-29)
+    -   [Parameters](#parameters-30)
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
     -   [provider](#provider-3)
     -   [equals](#equals-2)
-        -   [Parameters](#parameters-30)
+        -   [Parameters](#parameters-31)
     -   [delete](#delete-1)
     -   [merge](#merge)
-        -   [Parameters](#parameters-31)
+        -   [Parameters](#parameters-32)
     -   [decline](#decline)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-32)
-    -   [open](#open)
         -   [Parameters](#parameters-33)
+    -   [open](#open)
+        -   [Parameters](#parameters-34)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-34)
+    -   [Parameters](#parameters-35)
     -   [Properties](#properties-6)
     -   [equals](#equals-3)
-        -   [Parameters](#parameters-35)
+        -   [Parameters](#parameters-36)
     -   [toJSON](#tojson-2)
 -   [Milestone](#milestone)
-    -   [Parameters](#parameters-36)
--   [RepositoryGroup](#repositorygroup-1)
     -   [Parameters](#parameters-37)
+-   [RepositoryGroup](#repositorygroup-1)
+    -   [Parameters](#parameters-38)
     -   [Properties](#properties-7)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass-1)
+-   [url](#url-1)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-38)
--   [optionJSON](#optionjson)
     -   [Parameters](#parameters-39)
--   [generateBranchName](#generatebranchname)
+-   [optionJSON](#optionjson)
     -   [Parameters](#parameters-40)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-41)
 
 ## Provider
 
@@ -282,6 +285,12 @@ base, group, repository and branch
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### decomposeName
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### repository
 
@@ -940,6 +949,8 @@ Abstract repository collection
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** human readable description
     -   `options.id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** internal id
+    -   `options.uuid` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** internal id
+    -   `options.url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** home
 
 ### Properties
 
@@ -969,6 +980,12 @@ Returns **Class** as defined in the provider
 By default we use the providers implementation.
 
 Returns **Class** as defined in the provider
+
+## url
+
+group home.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## definePropertiesFromOptions
 

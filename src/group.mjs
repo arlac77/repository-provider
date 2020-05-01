@@ -8,6 +8,8 @@ import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
  * @param {Object} options
  * @param {string} [options.description] human readable description
  * @param {string} [options.id] internal id
+ * @param {string} [options.uuid] internal id
+ * @param {string} [options.url] home
  *
  * @property {Provider} provider
  * @property {string} name
@@ -32,7 +34,13 @@ export class RepositoryGroup extends Owner {
        * unique id.
        * @return {string}
        */
-      uuid: undefined
+      uuid: undefined,
+
+      /**
+       * group home.
+       * @return {string}
+       */
+      url: undefined
     };
   }
 

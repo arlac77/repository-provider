@@ -10,18 +10,21 @@ test("repository-group create with options", t => {
   const rg = new RepositoryGroup(owner, "rg", {
     description: "a description",
     id: "4711",
-    uuid: "12345"
+    uuid: "12345",
+    url: "http://somewhere/rg"
   });
   t.is(rg.name, "rg");
   t.is(rg.description, "a description");
   t.is(rg.id, "4711");
   t.is(rg.uuid, "12345");
+  t.is(rg.url, "http://somewhere/rg");
   t.is(rg.toString(), "rg");
   t.deepEqual(rg.toJSON(), {
     name: "rg",
     uuid: "12345",
     id: "4711",
-    description: "a description"
+    description: "a description",
+    url: "http://somewhere/rg"
   });
 });
 
