@@ -32,6 +32,7 @@ test(providerNameTest, new Provider(), "abc/def.git", "abc/def");
 test(providerNameTest, new Provider(), "abc/def.git#mybranch", "abc/def");
 
 test(providerParseNameTest, new MyProvider(), {
+  "": { repository: "" },
   "abc/def/g": { group: "abc", repository: "def" },
   "xxx/abc/def.git#mybranch": {
     group: "abc",

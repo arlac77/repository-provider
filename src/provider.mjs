@@ -211,19 +211,15 @@ export class Provider extends Owner {
 
     name = name.replace(/\.git(#.*)?$/, "").replace(/#.*$/, "");
 
-    if (forLookup && !this.areRepositoryNamesCaseSensitive) {
-      return name.toLowerCase();
-    }
-
-    return name;
+    return forLookup && !this.areRepositoryNamesCaseSensitive
+      ? name.toLowerCase()
+      : name;
   }
 
   normalizeGroupName(name, forLookup) {
-    if (forLookup && !this.areGroupNamesCaseSensitive) {
-      return name.toLowerCase();
-    }
-
-    return name;
+    return forLookup && !this.areGroupNamesCaseSensitive
+      ? name.toLowerCase()
+      : name;
   }
 
   /**
@@ -343,10 +339,6 @@ export class Provider extends Owner {
    * @return {Promise<Repository>}
    */
   async repository(name) {
-    if (name === undefined) {
-      return undefined;
-    }
-
     await this.initializeRepositories();
     const { repository } = await this._repositoryWithBranchName(name);
     return repository;
@@ -358,10 +350,6 @@ export class Provider extends Owner {
    * @return {Promise<Branch>}
    */
   async branch(name) {
-    if (name === undefined) {
-      return undefined;
-    }
-
     await this.initializeRepositories();
     const { repository, branch } = await this._repositoryWithBranchName(name);
 
