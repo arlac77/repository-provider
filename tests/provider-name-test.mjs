@@ -20,6 +20,7 @@ providerNameTest.title = (
   expectedName = name
 ) => `${providedTitle} ${provider.name} '${name}' = '${expectedName}'`.trim();
 
+test(providerNameTest, new Provider(), "", "");
 test(providerNameTest, new Provider(), "abc", "abc");
 test(providerNameTest, new Provider(), "abc#branch", "abc");
 test(providerNameTest, new Provider(), " abc", "abc");
