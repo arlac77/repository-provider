@@ -290,7 +290,10 @@ export class Provider extends Owner {
     return result;
   }
 
-  async _repositoryWithBranchName(name) {
+  /**
+   * @param {string} name
+   */
+  async decomposeName(name) {
     if (name === undefined) {
       return {};
     }
@@ -339,8 +342,7 @@ export class Provider extends Owner {
    * @return {Promise<Repository>}
    */
   async repository(name) {
-    await this.initializeRepositories();
-    const { repository } = await this._repositoryWithBranchName(name);
+    const { repository } = await this.decomposeName(name,'R');
     return repository;
   }
 
@@ -350,8 +352,7 @@ export class Provider extends Owner {
    * @return {Promise<Branch>}
    */
   async branch(name) {
-    await this.initializeRepositories();
-    const { repository, branch } = await this._repositoryWithBranchName(name);
+    const { repository, branch } = await this.decomposeName(name,'B');
 
     return repository === undefined
       ? undefined
