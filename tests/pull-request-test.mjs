@@ -117,6 +117,7 @@ test("pullRequest modify invalid state", async t => {
 
   const pr = new PullRequest(b1, b2, "4711");
 
-
-  t.throws( () => { pr.state = "SOMETHING"});
+  t.throws(() => {
+    pr.state = "SOMETHING";
+  });
 });
