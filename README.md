@@ -274,7 +274,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### parseName
 
-parses repository name and tries to split it into
+Parses repository name and tries to split it into
 base, group, repository and branch
 
 #### Parameters
