@@ -4,9 +4,11 @@ import { Branch } from "../src/branch.mjs";
 import { Repository } from "../src/repository.mjs";
 import { PullRequest } from "../src/pull-request.mjs";
 
-test("branch", async t => {
+test("branch init", async t => {
   const provider = new Provider();
-  const repository = await provider.createRepository("r1");
+  const repository = await provider.addRepository("r1", {
+    urls: ["http://myprovider.com/r1"]
+  });
 
   const b = new Branch(repository, "b1");
 
@@ -16,6 +18,7 @@ test("branch", async t => {
   t.is(b.owner, provider);
   t.is(b.fullName, "r1#b1");
   t.is(b.fullCondensedName, "r1#b1");
+  t.is(b.url, "http://myprovider.com/r1#b1");
   t.is(b.isDefault, false);
   t.is(b.isLocked, false);
   t.is(b.isArchived, false);
@@ -29,18 +32,21 @@ test("branch", async t => {
   t.is(await repository.branch("b1"), b);
 });
 
-test("branch isDefault", async t => {
+test("branch init isDefault", async t => {
   const provider = new Provider();
-  const repository = await provider.createRepository("r1");
+  const repository = await provider.addRepository("r1", {
+    urls: ["http://myprovider.com/r1"]
+  });
   const b = new Branch(repository, "master");
   t.is(b.fullName, "r1#master");
   t.is(b.fullCondensedName, "r1");
   t.is(b.isDefault, true);
+  t.is(b.url, "http://myprovider.com/r1");
 });
 
 test("branch isDefault changed", async t => {
   const provider = new Provider();
-  const repository = await provider.createRepository("r1", {
+  const repository = await provider.addRepository("r1", {
     defaultBranchName: "otherMaster"
   });
   const b = new Branch(repository, "otherMaster");
@@ -51,7 +57,7 @@ test("branch isDefault changed", async t => {
 
 test("branch delete", async t => {
   const provider = new Provider();
-  const repository = await provider.createRepository("r1");
+  const repository = await provider.addRepository("r1");
   const branch = await repository.createBranch("b1");
 
   await branch.delete();
@@ -61,7 +67,7 @@ test("branch delete", async t => {
 
 test("branch entries", async t => {
   const provider = new Provider();
-  const repository = await provider.createRepository("r1");
+  const repository = await provider.addRepository("r1");
 
   const b = new Branch(repository, "b1");
 
@@ -75,7 +81,7 @@ test("branch entries", async t => {
 
 test("branch entries implicit async itrator", async t => {
   const provider = new Provider();
-  const repository = await provider.createRepository("r1");
+  const repository = await provider.addRepository("r1");
 
   const b = new Branch(repository, "b1");
 
@@ -89,7 +95,7 @@ test("branch entries implicit async itrator", async t => {
 
 test("branch entry", async t => {
   const provider = new Provider();
-  const repository = await provider.createRepository("r1");
+  const repository = await provider.addRepository("r1");
 
   const b = new Branch(repository, "b1");
 
@@ -109,4 +115,16 @@ test("branch create", async t => {
   const b2 = await b1.createBranch("b2");
 
   t.is(b2, await b1.createBranch("b2"));
+});
+
+test("branch equals", async t => {
+  const provider = new Provider();
+  const repository = new Repository(provider, "r1");
+
+  const b1 = await repository.createBranch("b1");
+  const b2 = await repository.createBranch("b2");
+
+  t.true(b1.equals(b1));
+  t.false(b1.equals(b2));
+  t.false(b1.equals(undefined));
 });
