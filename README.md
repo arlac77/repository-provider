@@ -262,7 +262,7 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 
 ### normalizeRepositoryName
 
-bring a repository name into its normal form by removing any clutter
+Bring a repository name into its normal form by removing any clutter
 like .git suffix or #branch names
 
 #### Parameters
@@ -380,7 +380,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### environmentOptions
 
-known mapping from environment variable to options
+Known mapping from environment variable to options
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** with the mapping of environmentvaraible names to option keys
 

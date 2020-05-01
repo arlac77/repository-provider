@@ -83,7 +83,7 @@ export class Provider extends Owner {
   }
 
   /**
-   * known mapping from environment variable to options
+   * Known mapping from environment variable to options
    * @return {Object} with the mapping of environmentvaraible names to option keys
    */
   static get environmentOptions() {
@@ -194,7 +194,7 @@ export class Provider extends Owner {
   }
 
   /**
-   * bring a repository name into its normal form by removing any clutter
+   * Bring a repository name into its normal form by removing any clutter
    * like .git suffix or #branch names
    * @param {string} name
    * @param {boolean} forLookup
@@ -227,7 +227,7 @@ export class Provider extends Owner {
   }
 
   /**
-   * parses repository name and tries to split it into
+   * Parses repository name and tries to split it into
    * base, group, repository and branch
    * @param {string} name
    * @return {Object}
