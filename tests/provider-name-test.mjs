@@ -5,21 +5,30 @@ import { Provider } from "../src/provider.mjs";
 
 class MyProvider extends Provider {
   get repositoryBases() {
-    return [ "https://github.com/", "http://otherdomain.com"];
+    return ["https://github.com/", "http://otherdomain.com"];
   }
 }
 
-test("provider normalize repo name", t => {
-  const provider = new Provider();
-  t.is(provider.normalizeRepositoryName("abc"), "abc");
-  t.is(provider.normalizeRepositoryName(" abc"), "abc");
-  t.is(provider.normalizeRepositoryName("abc "), "abc");
-  t.is(provider.normalizeRepositoryName(" abc "), "abc");
-  t.is(provider.normalizeRepositoryName("abc/def"), "abc/def");
-  t.is(provider.normalizeRepositoryName("abc/def#mybranch"), "abc/def");
-  t.is(provider.normalizeRepositoryName("abc/def.git"), "abc/def");
-  t.is(provider.normalizeRepositoryName("abc/def.git#mybranch"), "abc/def");
-});
+export async function providerNameTest(t, provider, name, expectedName = name) {
+  t.is(provider.normalizeRepositoryName(name), expectedName);
+}
+
+providerNameTest.title = (
+  providedTitle = "provider name",
+  provider,
+  name,
+  expectedName = name
+) => `${providedTitle} ${provider.name} '${name}' = '${expectedName}'`.trim();
+
+test(providerNameTest, new Provider(), "abc", "abc");
+test(providerNameTest, new Provider(), "abc#branch", "abc");
+test(providerNameTest, new Provider(), " abc", "abc");
+test(providerNameTest, new Provider(), "abc ", "abc");
+test(providerNameTest, new Provider(), " abc ", "abc");
+test(providerNameTest, new Provider(), "abc/def", "abc/def");
+test(providerNameTest, new Provider(), "abc/def#mybranch", "abc/def");
+test(providerNameTest, new Provider(), "abc/def.git", "abc/def");
+test(providerNameTest, new Provider(), "abc/def.git#mybranch", "abc/def");
 
 test(providerParseNameTest, new MyProvider(), {
   "abc/def/g": { group: "abc", repository: "def" },
