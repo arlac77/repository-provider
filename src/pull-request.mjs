@@ -64,7 +64,7 @@ export class PullRequest {
   /**
    * Opens a new pull request
    * @param {Branch} source
-   * @param {Branch} destination
+   * @param {Branch} destination
    * @param {Object} options
    * @param {string} options.title
    * @param {string} options.body
