@@ -150,7 +150,7 @@ export class PullRequest {
     definePropertiesFromOptions(this, options, properties);
 
     if (destination !== undefined) {
-      destination.addPullRequest(this);
+      destination._addPullRequest(this);
     }
   }
 
