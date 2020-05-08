@@ -175,7 +175,7 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * by default we are not archived
+     * By default we are not archived
      * @return {boolean} false
      */
     get isArchived() {
@@ -183,7 +183,7 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * by default we are not locked
+     * By default we are not locked
      * @return {boolean} false
      */
     get isLocked() {
@@ -191,10 +191,18 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * by default we are not disabled
+     * By default we are not disabled
      * @return {boolean} false
      */
     get isDisabled() {
+      return false;
+    }
+
+    /**
+     * By default we are not a template
+     * @return {boolean} false
+     */
+    get isTemplate() {
       return false;
     }
 
