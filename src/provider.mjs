@@ -10,7 +10,8 @@ import { RepositoryGroup } from "./group.mjs";
 import {
   definePropertiesFromOptions,
   asArray,
-  generateBranchName
+  generateBranchName,
+  mapAttributes
 } from "./util.mjs";
 
 export {
@@ -21,10 +22,11 @@ export {
   RepositoryOwnerMixin,
   RepositoryGroup,
   Hook,
+  IssueMixin,
+  Milestone,
   generateBranchName,
   definePropertiesFromOptions,
-  IssueMixin,
-  Milestone
+  mapAttributes
 };
 
 /**

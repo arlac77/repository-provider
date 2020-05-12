@@ -82,3 +82,18 @@ export async function generateBranchName(repository, pattern) {
   const name = pattern.replace(/\*/, n);
   return name;
 }
+
+/**
+ * Rename attributes
+ * @param {Object} object
+ * @param {Object} mapping
+ * @return {Object} keys renamed after mapping
+ */
+export function mapAttributes(object, mapping) {
+  return Object.fromEntries(
+    Object.entries(object).map(([name, value]) => [
+      mapping[name] ? mapping[name] : name,
+      value
+    ])
+  );
+}

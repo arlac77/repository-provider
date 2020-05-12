@@ -36,6 +36,7 @@ test("repository init with options", async t => {
     isArchived: false,
     isDisabled: false,
     isLocked: false,
+    isTemplate: false,
     urls: []
   });
 
@@ -63,6 +64,7 @@ test("repository init with more options", async t => {
     id: "4712",
     uuid: "12345",
     isArchived: true,
+    isTemplate: true,
     urls: ["http:/myprovider/orner1/r1.git"]
   });
 
@@ -73,6 +75,7 @@ test("repository init with more options", async t => {
   t.is(repository.id, "4712");
   t.is(repository.description, "a description");
   t.is(repository.isArchived, true);
+  t.is(repository.isTemplate, true);
   t.deepEqual(repository.urls, ["http:/myprovider/orner1/r1.git"]);
 });
 

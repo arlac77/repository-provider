@@ -5,7 +5,8 @@ import { RepositoryGroup } from "../src/group.mjs";
 import {
   generateBranchName,
   definePropertiesFromOptions,
-  optionJSON
+  optionJSON,
+  mapAttributes
 } from "../src/util.mjs";
 
 async function gbnt(t, branchNames, pattern, result) {
@@ -50,3 +51,10 @@ test(
   ["logLevel"],
   { id: 1 }
 );
+
+test("map attrs", t => {
+  t.deepEqual(mapAttributes({ a: 1, b: "2" }, { a: "A" }), {
+    A: 1,
+    b: "2"
+  });
+});

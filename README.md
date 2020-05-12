@@ -149,6 +149,8 @@ console.log(await readme.getString());
 -   [uuid](#uuid-1)
 -   [defaultBranchName](#defaultbranchname)
 -   [urls](#urls)
+-   [homePageURL](#homepageurl-1)
+-   [issuesURL](#issuesurl-1)
 -   [PullRequest](#pullrequest)
     -   [Parameters](#parameters-30)
     -   [Properties](#properties-5)
@@ -194,6 +196,8 @@ console.log(await readme.getString());
     -   [Parameters](#parameters-40)
 -   [generateBranchName](#generatebranchname)
     -   [Parameters](#parameters-41)
+-   [mapAttributes](#mapattributes)
+    -   [Parameters](#parameters-42)
 
 ## Provider
 
@@ -754,6 +758,18 @@ urls of the repository
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
+## homePageURL
+
+the url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## issuesURL
+
+the url of issue tracking system.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ## PullRequest
 
 Abstract pull request
@@ -1026,6 +1042,17 @@ find a new branch name for a given pattern
 
 -   `repository` **[Repository](#repository)** 
 -   `pattern` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## mapAttributes
+
+Rename attributes
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `mapping` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
 
 # install
 
