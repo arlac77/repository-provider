@@ -53,6 +53,18 @@ export const Repository = LogLevelMixin(
          */
         urls: undefined,
 
+        /**
+         * the url of home page.
+         * @return {string}
+         */
+        homePageURL: undefined,
+ 
+        /**
+         * the url of issue tracking system.
+         * @return {string}
+         */
+        issuesURL: undefined,
+        
         isArchived: undefined,
         isLocked: undefined,
         isDisabled: undefined
