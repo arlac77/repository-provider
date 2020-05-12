@@ -241,8 +241,8 @@ export class Branch {
     return this.pullRequestClass.open(this, toBranch, options);
   }
 
-  async addPullRequest(pullRequest) {
-    return this.repository.addPullRequest(pullRequest);
+  async _addPullRequest(pullRequest) {
+    return this.repository._addPullRequest(pullRequest);
   }
 
   async deletePullRequest(name) {

@@ -187,7 +187,7 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * by default we are not archived
+     * By default we are not archived
      * @return {boolean} false
      */
     get isArchived() {
@@ -195,7 +195,7 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * by default we are not locked
+     * By default we are not locked
      * @return {boolean} false
      */
     get isLocked() {
@@ -203,10 +203,18 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * by default we are not disabled
+     * By default we are not disabled
      * @return {boolean} false
      */
     get isDisabled() {
+      return false;
+    }
+
+    /**
+     * By default we are not a template
+     * @return {boolean} false
+     */
+    get isTemplate() {
       return false;
     }
 
@@ -317,17 +325,25 @@ export const Repository = LogLevelMixin(
      */
     async createPullRequest(name, source, options) {
       await this.initializePullRequests();
+      return this.addPullRequest(name, source, options);
+    }
+
+    /**
+     * Add a pull request
+     * @param {PullRequest} pullRequest
+     * @return {Promise}
+     */
+    addPullRequest(name, source, options) {
       let pr = this._pullRequests.get(name);
-      if (pr === undefined) {
-        pr = await this._createPullRequest(name, source, options);
+      if(pr === undefined) {
+        pr = new this.pullRequestClass(name, source, this, options);
         this._pullRequests.set(pr.name, pr);
       }
-
       return pr;
     }
 
-    async _createPullRequest(name, source, options) {
-      return new this.pullRequestClass(name, source, this, options);
+    _addPullRequest(pr) {
+      this._pullRequests.set(pr.name, pr);
     }
 
     /**
@@ -350,16 +366,6 @@ export const Repository = LogLevelMixin(
     async pullRequest(name) {
       await this.initializePullRequests();
       return this._pullRequests.get(name);
-    }
-
-    /**
-     * Add a pull request
-     * @param {PullRequest} pullRequest
-     * @return {Promise}
-     */
-    async addPullRequest(pullRequest) {
-      await this.initializePullRequests();
-      this._pullRequests.set(pullRequest.name, pullRequest);
     }
 
     /**
