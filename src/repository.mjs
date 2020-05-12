@@ -67,7 +67,8 @@ export const Repository = LogLevelMixin(
         
         isArchived: undefined,
         isLocked: undefined,
-        isDisabled: undefined
+        isDisabled: undefined,
+        isTemplate: undefined
       };
     }
 
