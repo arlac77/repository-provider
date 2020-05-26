@@ -13,3 +13,4 @@ test(mt, ["a", "b", "c"], undefined, ["a", "b", "c"]);
 test(mt, ["a", "b", "c"], "*", ["a", "b", "c"]);
 test(mt, ["a", "b", "c"], "a", ["a"]);
 test(mt, ["a.a", "a.b", "a.c"], "*.c", ["a.c"]);
+test(mt, ["a.a", "a.b", "a.c"], ["*.c", "*.a"], ["a.a", "a.c"]);
