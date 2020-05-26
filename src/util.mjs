@@ -102,10 +102,11 @@ export function mapAttributes(object, mapping) {
  * Match entries against pattern
  * @param {Iterator<string>} entries
  * @param {string[]} patterns
+ * @param {any} getName
  * @param {boolean} caseSensitive
  * @return {Iterator<string>} filtered entries
  */
-export function* match(entries, patterns, caseSensitive = true) {
+export function* match(entries, patterns, getName = entry=>entry, caseSensitive = true) {
   if (patterns === undefined) {
     yield* entries;
     return;
@@ -114,14 +115,18 @@ export function* match(entries, patterns, caseSensitive = true) {
   const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
     pattern =>
       new RegExp(
-        "^" + pattern.replace(/\*/g, ".*") + "$",
+        "^" + pattern.replace(/\*/g, ".*")
+        .replace(/\!(.*)/,(m,r) => `((?!${r}).)*`)
+        + "$",
         caseSensitive ? undefined : "i"
       )
   );
 
+  //console.log(rs);
+
   for (const entry of entries) {
     for (const r of rs) {
-      if (entry.match(r)) {
+      if (getName(entry).match(r)) {
         yield entry;
         break;
       }

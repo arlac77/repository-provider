@@ -140,7 +140,7 @@ export function RepositoryOwnerMixin(parent) {
        * @return {Iterator<string>} filtered entries
        */
       *match(entries, patterns, caseSensitive) {
-        yield* match(entries, patterns, caseSensitive);
+        yield* match(entries, patterns, undefined, caseSensitive);
       }
 
       /**
