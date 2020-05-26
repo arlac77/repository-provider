@@ -5,6 +5,11 @@ import {
 } from "./util.mjs";
 
 /**
+ * @typedef {Object} CommitResult
+ * @property {string} ref
+ */
+
+/**
  * Abstract branch
  * @see {@link Repository#_addBranch}
  * @param {Repository} repository
@@ -160,12 +165,13 @@ export class Branch {
     return this.repository.deleteBranch(this.name);
   }
 
+  
   /**
    * Commit entries
    * @param {string} message commit message
    * @param {Entry[]} updates content to be commited
    * @param {Object} options
-   * @return {Promise}
+   * @return {CommitResult}
    */
   async commit(message, updates, options) {
     return notImplementedError();
