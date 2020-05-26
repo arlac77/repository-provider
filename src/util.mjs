@@ -100,10 +100,10 @@ export function mapAttributes(object, mapping) {
 
 /**
  * Match entries against pattern
- * @param {*<string>} entries
+ * @param {Iterator<string>} entries
  * @param {string[]} patterns
  * @param {boolean} caseSensitive
- * @return {string *} filtered entries
+ * @return {Iterator<string>} filtered entries
  */
 export function* match(entries, patterns, caseSensitive = true) {
   if (patterns === undefined) {
