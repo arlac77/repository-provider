@@ -8,8 +8,7 @@
   "type": "module",
   "main": "./src/provider.mjs",
   "exports": {
-    ".": "./src/provider.mjs",
-    "./": "./"
+    ".": "./src/provider.mjs"
   },
   "description": "abstract interface to git repository providers like github bitbucket",
   "keywords": [
