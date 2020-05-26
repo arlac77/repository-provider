@@ -2,6 +2,7 @@ import { LogLevelMixin } from "loglevel-mixin";
 import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
+import { match } from "./util.mjs";
 
 /**
  * Collection of repositories
@@ -138,30 +139,8 @@ export function RepositoryOwnerMixin(parent) {
        * @param {boolean} caseSensitive
        * @return {string *} filtered entries
        */
-      *match(entries, patterns, caseSensitive = true) {
-        if (patterns === undefined) {
-          for (const entry of entries) {
-            yield entry;
-          }
-          return;
-        }
-
-        const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
-          pattern =>
-            new RegExp(
-              "^" + pattern.replace(/\*/g, ".*") + "$",
-              caseSensitive ? undefined : "i"
-            )
-        );
-
-        for (const entry of entries) {
-          for (const r of rs) {
-            if (entry.match(r)) {
-              yield entry;
-              break;
-            }
-          }
-        }
+      *match(entries, patterns, caseSensitive) {
+        yield* match(entries, patterns, caseSensitive);
       }
 
       /**
@@ -187,7 +166,7 @@ export function RepositoryOwnerMixin(parent) {
         let repository = this._repositories.get(normalizedName);
         if (repository === undefined) {
           repository = new this.repositoryClass(this, name, options);
-          this._repositories.set(normalizedName,repository);
+          this._repositories.set(normalizedName, repository);
         }
         return repository;
       }

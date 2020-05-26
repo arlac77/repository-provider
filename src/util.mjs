@@ -97,3 +97,34 @@ export function mapAttributes(object, mapping) {
     ])
   );
 }
+
+/**
+ * Match entries against pattern
+ * @param {*<string>} entries
+ * @param {string[]} patterns
+ * @param {boolean} caseSensitive
+ * @return {string *} filtered entries
+ */
+export function* match(entries, patterns, caseSensitive = true) {
+  if (patterns === undefined) {
+    yield* entries;
+    return;
+  }
+
+  const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
+    pattern =>
+      new RegExp(
+        "^" + pattern.replace(/\*/g, ".*") + "$",
+        caseSensitive ? undefined : "i"
+      )
+  );
+
+  for (const entry of entries) {
+    for (const r of rs) {
+      if (entry.match(r)) {
+        yield entry;
+        break;
+      }
+    }
+  }
+}

@@ -11,7 +11,8 @@ import {
   definePropertiesFromOptions,
   asArray,
   generateBranchName,
-  mapAttributes
+  mapAttributes,
+  match
 } from "./util.mjs";
 
 export {
@@ -26,7 +27,8 @@ export {
   Milestone,
   generateBranchName,
   definePropertiesFromOptions,
-  mapAttributes
+  mapAttributes,
+  match
 };
 
 /**
@@ -344,7 +346,7 @@ export class Provider extends Owner {
    * @return {Promise<Repository>}
    */
   async repository(name) {
-    const { repository } = await this.decomposeName(name,'R');
+    const { repository } = await this.decomposeName(name, "R");
     return repository;
   }
 
@@ -354,7 +356,7 @@ export class Provider extends Owner {
    * @return {Promise<Branch>}
    */
   async branch(name) {
-    const { repository, branch } = await this.decomposeName(name,'B');
+    const { repository, branch } = await this.decomposeName(name, "B");
 
     return repository === undefined
       ? undefined
