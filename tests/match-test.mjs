@@ -47,3 +47,10 @@ test.skip(
   ["a.mjs", "b.mjs", "tests/c.mjs"],
   ["a.mjs", "b.mjs"]
 );
+
+test(
+  mt,
+  ".github/workflows/*.yml",
+  [".github/workflows/ci.yml", "ci.yml", ".github/ci.yml"],
+  [".github/workflows/ci.yml"]
+);
