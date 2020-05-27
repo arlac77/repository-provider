@@ -2,7 +2,7 @@ import { LogLevelMixin } from "loglevel-mixin";
 import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { match } from "./util.mjs";
+import { match } from "./match.mjs";
 
 /**
  * Collection of repositories

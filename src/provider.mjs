@@ -11,9 +11,10 @@ import {
   definePropertiesFromOptions,
   asArray,
   generateBranchName,
-  mapAttributes,
-  match
+  mapAttributes
 } from "./util.mjs";
+
+export * from "./match.mjs";
 
 export {
   Repository,
@@ -27,8 +28,7 @@ export {
   Milestone,
   generateBranchName,
   definePropertiesFromOptions,
-  mapAttributes,
-  match
+  mapAttributes
 };
 
 /**
