@@ -20,7 +20,7 @@ async function olrt(t, factory, pattern, result) {
 }
 
 olrt.title = (providedTitle = "", factory, pattern, result) =>
-  `${factory.name} list repositories ${providedTitle} '${pattern}'`.trim();
+  `${factory.name} list repositories${providedTitle ?' ' + providedTitle:''} '${pattern}'`.trim();
 
 async function ogrt(t, factory, name, result) {
   const owner = await createOwner(factory);
@@ -40,7 +40,7 @@ async function ogrt(t, factory, name, result) {
 }
 
 ogrt.title = (providedTitle = "", factory, name, result) =>
-  `${factory.name} get repository ${providedTitle} '${name}'`.trim();
+  `${factory.name} get repository${providedTitle ?' ' + providedTitle:''} '${name}'`.trim();
 
 async function createOwner(factory) {
   const owner = new factory();
