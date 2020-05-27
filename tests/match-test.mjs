@@ -1,45 +1,49 @@
 import test from "ava";
 import { match } from "repository-provider";
 
-async function mt(t, entries, pattern, result) {
+async function mt(t, pattern, entries, result) {
   const r = [...match(entries, pattern)];
+  //console.log(">>", r);
   t.deepEqual(r, result);
 }
 
-mt.title = (providedTitle = "", entries, pattern, result) =>
-  `match ${providedTitle} ${entries} ${pattern}`.trim();
+mt.title = (providedTitle = "", pattern, entries, result) =>
+  `match ${providedTitle} ${pattern} ${entries}`.trim();
 
-test(mt, ["a", "b", "c"], undefined, ["a", "b", "c"]);
-test(mt, ["a", "b", "c"], "*", ["a", "b", "c"]);
-test(mt, ["a", "b", "c"], "a", ["a"]);
-test(mt, ["a.a", "a.b", "a.c"], "*.c", ["a.c"]);
-test(mt, ["a.a", "a.b", "a.c"], ["*.c", "*.a"], ["a.a", "a.c"]);
+test(mt, undefined, ["a", "b", "c"], ["a", "b", "c"]);
+test(mt, [], ["a", "b", "c"], ["a", "b", "c"]);
+test(mt, "a", ["a", "b", "c"], ["a"]);
+test(mt, ["a", "b"], ["a", "b", "c"], ["a", "b"]);
 
-test(mt, ["apple", "banana", "citrus"], "!banana", ["apple", "citrus"]);
-test(mt, ["a.a", "a.b", "a.c"], "!*.c", ["a.a", "a.b"]);
+test(mt, "*", ["a", "b", "c"], ["a", "b", "c"]);
+test(mt, "*.c", ["a.a", "a.b", "a.c"], ["a.c"]);
+test(mt, ["*.c", "*.a"], ["a.a", "a.b", "a.c"], ["a.a", "a.c"]);
+
+test(mt, "!banana", ["apple", "banana", "citrus"], ["apple", "citrus"]);
+test(mt, "!*.c", ["a.a", "a.b", "a.c"], ["a.a", "a.b"]);
 
 test(
   mt,
-  ["rollup.config.mjs", "rollupx.config.mjs", "tests/rollup.config.mjs"],
   "**/rollup.config.*js",
+  ["rollup.config.mjs", "rollupx.config.mjs", "tests/rollup.config.mjs"],
   ["rollup.config.mjs", "tests/rollup.config.mjs"]
 );
 
 test.skip(
   mt,
+  ["**/package.json", "!test/**/*", "!tests/**/*"],
   [
     ".gitignore",
     "package.json",
     "tests/rollup.config.mjs",
     "test/fixtures/package.json"
   ],
-  ["**/package.json", "!test/**/*", "!tests/**/*"],
   ["package.json"]
 );
 
 test.skip(
   mt,
-  ["a.mjs", "b.mjs", "tests/c.mjs"],
   ["**/*.mjs", "!tests/*.mjs"],
+  ["a.mjs", "b.mjs", "tests/c.mjs"],
   ["a.mjs", "b.mjs"]
 );

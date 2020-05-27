@@ -14,7 +14,7 @@ import {
   mapAttributes
 } from "./util.mjs";
 
-export * from "./match.mjs";
+import { match } from "./match.mjs";
 
 export {
   Repository,
@@ -28,7 +28,8 @@ export {
   Milestone,
   generateBranchName,
   definePropertiesFromOptions,
-  mapAttributes
+  mapAttributes,
+  match
 };
 
 /**
@@ -372,11 +373,9 @@ export class Provider extends Owner {
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();
-    for (const name of this.match(
-      this._repositoryGroups.keys(),
-      patterns,
-      this.areGroupNamesCaseSensitive
-    )) {
+    for (const name of match(this._repositoryGroups.keys(), patterns, {
+      caseSensitive: this.areGroupNamesCaseSensitive
+    })) {
       yield this._repositoryGroups.get(name);
     }
   }

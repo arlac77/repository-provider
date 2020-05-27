@@ -1,5 +1,6 @@
 import { LogLevelMixin } from "loglevel-mixin";
 import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
+import { match } from "./match.mjs";
 
 /**
  * Abstract repository
@@ -243,7 +244,7 @@ export const Repository = LogLevelMixin(
     async *branches(patterns) {
       await this.initializeBranches();
 
-      for (const name of this.owner.match(this._branches.keys(), patterns)) {
+      for (const name of match(this._branches.keys(), patterns)) {
         yield this._branches.get(name);
       }
     }
@@ -295,7 +296,7 @@ export const Repository = LogLevelMixin(
     async *tags(patterns) {
       await this.initializeTags();
 
-      for (const name of this.owner.match(this._tags.keys(), patterns)) {
+      for (const name of match(this._tags.keys(), patterns)) {
         yield this._tags.get(name);
       }
     }

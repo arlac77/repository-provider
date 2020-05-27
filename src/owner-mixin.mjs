@@ -123,24 +123,11 @@ export function RepositoryOwnerMixin(parent) {
        */
       async *repositories(patterns) {
         await this.initializeRepositories();
-        for (const name of this.match(
-          this._repositories.keys(),
-          patterns,
-          this.areRepositoryNamesCaseSensitive
-        )) {
+        for (const name of match(this._repositories.keys(), patterns, {
+          caseSensitive: this.areRepositoryNamesCaseSensitive
+        })) {
           yield this._repositories.get(name);
         }
-      }
-
-      /**
-       * Match entries against pattern
-       * @param {Iterator<string>} entries
-       * @param {string[]} patterns
-       * @param {boolean} caseSensitive
-       * @return {Iterator<string>} filtered entries
-       */
-      *match(entries, patterns, caseSensitive) {
-        yield* match(entries, patterns, undefined, caseSensitive);
       }
 
       /**
@@ -215,11 +202,9 @@ export function RepositoryOwnerMixin(parent) {
 
         await this.initializeRepositories();
 
-        for (const name of this.match(
-          this._repositories.keys(),
-          repoPatterns,
-          this.areRepositoriesCaseSensitive
-        )) {
+        for (const name of match(this._repositories.keys(), repoPatterns, {
+          caseSensitive: this.areRepositoriesCaseSensitive
+        })) {
           const repository = this._repositories.get(name);
           const branch =
             branchPatterns === undefined
