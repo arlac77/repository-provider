@@ -115,7 +115,10 @@ export function* match(entries, patterns, getName = entry=>entry, caseSensitive 
   const rs = (Array.isArray(patterns) ? patterns : [patterns]).map(
     pattern =>
       new RegExp(
-        "^" + pattern.replace(/\*/g, ".*")
+        "^" + pattern
+        .replace(/(\*\*\/|\*)/g, ".*")
+       // .replace(/\*\*\//g, ".*")
+       // .replace(/\*/g, ".*")
         .replace(/\!(.*)/,(m,r) => `((?!${r}).)*`)
         + "$",
         caseSensitive ? undefined : "i"

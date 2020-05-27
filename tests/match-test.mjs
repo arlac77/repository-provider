@@ -18,6 +18,11 @@ test(mt, ["a.a", "a.b", "a.c"], ["*.c", "*.a"], ["a.a", "a.c"]);
 test(mt, ["apple", "banana", "citrus"], "!banana", ["apple", "citrus"]);
 test(mt, ["a.a", "a.b", "a.c"], "!*.c", ["a.a", "a.b"]);
 
+test(
+  mt,
+  ["rollup.config.mjs", "rollupx.config.mjs", "tests/rollup.config.mjs"],
+  "**/rollup.config.*js",
+  ["rollup.config.mjs", "tests/rollup.config.mjs"]
+);
 
 //test(mt, ["a.mjs", "b.mjs", "tests/c.mjs"], ["**/*.mjs", "!tests/*.mjs"], ["a.mjs", "b.mjs"]);
-
