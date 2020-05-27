@@ -25,4 +25,11 @@ test(
   ["rollup.config.mjs", "tests/rollup.config.mjs"]
 );
 
+test(
+  mt,
+  [".gitignore", "package.json", "tests/rollup.config.mjs","test/fixtures/package.json"],
+  ["**/package.json", "!test/**/*", "!tests/**/*"],
+  ["package.json"]
+);
+
 //test(mt, ["a.mjs", "b.mjs", "tests/c.mjs"], ["**/*.mjs", "!tests/*.mjs"], ["a.mjs", "b.mjs"]);
