@@ -483,3 +483,5 @@ export class Provider extends Owner {
     return json;
   }
 }
+
+export default Provider;
