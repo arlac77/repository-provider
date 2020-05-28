@@ -119,7 +119,7 @@ export class Provider extends Owner {
    * Creates a new provider for a given set of options
    * @param {Object} options additional options
    * @param {Object} env taken from process.env
-   * @return {Provider} newly createdprovider or undefined if optionsa re not sufficient to construct a provider
+   * @return {Provider} newly created provider or undefined if options are not sufficient to construct a provider
    */
   static initialize(options, env) {
     options = { ...options, ...this.optionsFromEnvironment(env) };
