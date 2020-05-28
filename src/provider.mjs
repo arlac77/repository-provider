@@ -53,31 +53,29 @@ export class Provider extends Owner {
 
     const o = this.environmentOptions;
 
-    for (const k of Object.keys(o)) {
+    for (let [k,v] of Object.entries(o)) {
       if (env[k] !== undefined) {
         if (options === undefined) {
           options = {};
         }
 
-        let def = o[k];
-
-        if (typeof def === "string") {
-          def = { path: def, template: {} };
+        if (typeof v === "string") {
+          v = { path: v, template: {} };
         }
 
         let t = options;
 
-        const keyPath = def.path.split(/\./);
+        const keyPath = v.path.split(/\./);
 
         for (let n = 0; ; n++) {
           const key = keyPath[n];
 
           if (n === keyPath.length - 1) {
-            t[key] = def.parse ? def.parse(env[k]) : env[k];
+            t[key] = v.parse ? v.parse(env[k]) : env[k];
             break;
           }
           if (t[key] === undefined) {
-            t[key] = def.template;
+            t[key] = v.template;
           }
           t = t[key];
         }
