@@ -165,7 +165,6 @@ export class Branch {
     return this.repository.deleteBranch(this.name);
   }
 
-  
   /**
    * Commit entries
    * @param {string} message commit message
@@ -193,7 +192,7 @@ export class Branch {
   }
 
   /**
-   * get exactly one matching entry by name or undefine if no such entry is found
+   * Get exactly one matching entry by name or undefine if no such entry is found
    * @param {string} name
    * @return {Promise<Entry>}
    */
@@ -202,7 +201,7 @@ export class Branch {
   }
 
   /**
-   * get exactly one matching entry by name (throws if entry is not found)
+   * Get exactly one matching entry by name (throws if entry is not found)
    * @param {string} name
    * @return {Promise<Entry>}
    */
@@ -275,7 +274,7 @@ export class Branch {
   }
 
   /**
-   * provide name and all defined defaultOptions
+   * Provide name and all defined defaultOptions
    */
   toJSON() {
     return optionJSON(this, {
