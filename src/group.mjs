@@ -37,6 +37,12 @@ export class RepositoryGroup extends Owner {
       uuid: undefined,
 
       /**
+       * type of the repository group either User or Organization.
+       * @return {string}
+       */
+      type: undefined,
+
+      /**
        * group home.
        * @return {string}
        */
