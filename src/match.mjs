@@ -1,7 +1,7 @@
 /**
  * Match entries against glob pattern
- * @param {Iterator<string>} entries
- * @param {string[]} patterns
+ * @param {Iterator<string|Object>} entries
+ * @param {string[]|string} patterns
  * @param {Object} options
  * @param {Function} options.getName
  * @param {boolean} options.caseSensitive defaults to true
