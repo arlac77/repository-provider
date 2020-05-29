@@ -4,10 +4,10 @@
  * @param {string[]} patterns
  * @param {Object} options
  * @param {Function} options.getName
- * @param {boolean} options.caseSensitive
+ * @param {boolean} options.caseSensitive defaults to true
  * @return {Iterator<string>} filtered entries
  */
-export function* match(entries, patterns, options = { caseSensitive: true }) {
+export function* match(entries, patterns, options = {}) {
   if (
     patterns === undefined ||
     (Array.isArray(patterns) && patterns.length === 0)
@@ -84,5 +84,10 @@ export function compile(patterns, options) {
   const source = "^" + parts.join("") + "$";
 
   //console.log("P", patterns, source, options.caseSensitive);
-  return new RegExp(source, options.caseSensitive ? undefined : "i");
+  return new RegExp(
+    source,
+    options.caseSensitive === undefined || options.caseSensitive
+      ? undefined
+      : "i"
+  );
 }

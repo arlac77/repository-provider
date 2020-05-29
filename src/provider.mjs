@@ -53,7 +53,7 @@ export class Provider extends Owner {
 
     const o = this.environmentOptions;
 
-    for (let [k,v] of Object.entries(o)) {
+    for (let [k, v] of Object.entries(o)) {
       if (env[k] !== undefined) {
         if (options === undefined) {
           options = {};
@@ -371,11 +371,10 @@ export class Provider extends Owner {
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();
-    for (const name of match(this._repositoryGroups.keys(), patterns, {
-      caseSensitive: this.areGroupNamesCaseSensitive
-    })) {
-      yield this._repositoryGroups.get(name);
-    }
+    yield* match(this._repositoryGroups.values(), patterns, {
+      caseSensitive: this.areGroupNamesCaseSensitive,
+      getName: entry => entry.name
+    });
   }
 
   /**

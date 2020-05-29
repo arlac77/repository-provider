@@ -123,11 +123,10 @@ export function RepositoryOwnerMixin(parent) {
        */
       async *repositories(patterns) {
         await this.initializeRepositories();
-        for (const name of match(this._repositories.keys(), patterns, {
-          caseSensitive: this.areRepositoryNamesCaseSensitive
-        })) {
-          yield this._repositories.get(name);
-        }
+        yield* match(this._repositories.values(), patterns, {
+          caseSensitive: this.areRepositoryNamesCaseSensitive,
+          getName: entry => entry.name
+        });
       }
 
       /**

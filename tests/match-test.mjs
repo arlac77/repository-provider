@@ -21,12 +21,17 @@ test(mt, ["*.c", "*.a"], ["a.a", "a.b", "a.c"], ["a.a", "a.c"]);
 
 test(mt, "!banana", ["apple", "banana", "citrus"], ["apple", "citrus"]);
 test(mt, "!*.c", ["a.a", "a.b", "a.c"], ["a.a", "a.b"]);
-
 test(
   mt,
   "**/rollup.config.*js",
   ["rollup.config.mjs", "rollupx.config.mjs", "tests/rollup.config.mjs"],
   ["rollup.config.mjs", "tests/rollup.config.mjs"]
+);
+test(
+  mt,
+  ".github/workflows/*.yml",
+  [".github/workflows/ci.yml", "ci.yml", ".github/ci.yml"],
+  [".github/workflows/ci.yml"]
 );
 
 test.skip(
@@ -48,9 +53,3 @@ test.skip(
   ["a.mjs", "b.mjs"]
 );
 
-test(
-  mt,
-  ".github/workflows/*.yml",
-  [".github/workflows/ci.yml", "ci.yml", ".github/ci.yml"],
-  [".github/workflows/ci.yml"]
-);

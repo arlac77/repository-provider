@@ -59,13 +59,13 @@ export const Repository = LogLevelMixin(
          * @return {string}
          */
         homePageURL: undefined,
- 
+
         /**
          * the url of issue tracking system.
          * @return {string}
          */
         issuesURL: undefined,
-        
+
         isArchived: undefined,
         isLocked: undefined,
         isDisabled: undefined,
@@ -239,14 +239,13 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * @return {Promise<Map>} of all branches
+     * @return {Iterator<Branch>} of all branches
      */
     async *branches(patterns) {
       await this.initializeBranches();
-
-      for (const name of match(this._branches.keys(), patterns)) {
-        yield this._branches.get(name);
-      }
+      yield* match(this._branches.values(), patterns, {
+        getName: entry => entry.name
+      });
     }
 
     /**
@@ -296,9 +295,9 @@ export const Repository = LogLevelMixin(
     async *tags(patterns) {
       await this.initializeTags();
 
-      for (const name of match(this._tags.keys(), patterns)) {
-        yield this._tags.get(name);
-      }
+      yield* match(this._tags.values(), patterns, {
+        getName: entry => entry.name
+      });
     }
 
     /**
@@ -337,7 +336,7 @@ export const Repository = LogLevelMixin(
      */
     addPullRequest(name, source, options) {
       let pr = this._pullRequests.get(name);
-      if(pr === undefined) {
+      if (pr === undefined) {
         pr = new this.pullRequestClass(name, source, this, options);
         this._pullRequests.set(pr.name, pr);
       }
