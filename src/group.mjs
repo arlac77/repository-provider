@@ -19,31 +19,37 @@ export class RepositoryGroup extends Owner {
     return {
       ...super.defaultOptions,
       /**
-       * the description of the repository group.
+       * The description of the repository group.
        * @return {string}
        */
       description: undefined,
 
       /**
-       * unique id within the provider.
+       * The name suitable for human.
+       * @return {string}
+       */
+      displayName: undefined,
+
+      /**
+       * Unique id within the provider.
        * @return {string}
        */
       id: undefined,
 
       /**
-       * unique id.
+       * Unique id.
        * @return {string}
        */
       uuid: undefined,
 
       /**
-       * type of the repository group either User or Organization.
+       * Type of the repository group either User or Organization.
        * @return {string}
        */
       type: undefined,
-
+      
       /**
-       * group home.
+       * Group home.
        * @return {string}
        */
       url: undefined
@@ -57,6 +63,15 @@ export class RepositoryGroup extends Owner {
       name: { value: name },
       provider: { value: provider }
     });
+  }
+
+  /**
+   * 
+   * @return {string} name suitable for humans
+   */
+  get displayName()
+  {
+    return this.name;
   }
 
   get areRepositoryNamesCaseSensitive()
@@ -106,6 +121,6 @@ export class RepositoryGroup extends Owner {
   }
 
   toJSON() {
-    return optionJSON(this, { name: this.name }, ["logLevel"]);
+    return optionJSON(this, { name: this.name }, ["logLevel", "displayName"]);
   }
 }

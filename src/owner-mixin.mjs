@@ -17,7 +17,7 @@ export function RepositoryOwnerMixin(parent) {
       static get defaultOptions() {
         return {
           /**
-           * default logger
+           * Default logger
            */
           log: (...args) => console.log(...args),
           logLevel: "info"

@@ -42,7 +42,7 @@ export function definePropertiesFromOptions(object, options, properties = {}) {
 }
 
 /**
- * create json based on present options.
+ * Create json based on present options.
  * In other words only produce key value pairs if value is defined.
  * @param {Object} object
  * @param {Object} initial
@@ -62,7 +62,7 @@ export function optionJSON(object, initial = {}, skip = []) {
 }
 
 /**
- * find a new branch name for a given pattern
+ * Find a new branch name for a given pattern
  * '*' will be replaced by a number
  * 'something/*' will get to something/1 something/2 ...
  * @param {Repository} repository

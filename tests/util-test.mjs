@@ -49,7 +49,7 @@ test(
   new RepositoryGroup(undefined, "a", { id: 1 }),
   undefined,
   ["logLevel"],
-  { id: 1 }
+  { id: 1, displayName: "a" }
 );
 
 test("map attrs", t => {
