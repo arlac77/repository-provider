@@ -85,7 +85,7 @@ export async function generateBranchName(repository, pattern) {
 
 /**
  * Rename attributes.
- * Filters out null and empty strings
+ * Filters out null, undefined and empty strings
  * @param {Object} object
  * @param {Object} mapping
  * @return {Object} keys renamed after mapping
