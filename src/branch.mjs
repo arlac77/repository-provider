@@ -25,7 +25,19 @@ export class Branch {
    * options
    */
   static get defaultOptions() {
-    return {};
+    return {
+      /**
+       * The description of the repository content.
+       * @return {string}
+       */
+      description: undefined,
+
+      /**
+       * Can the brach be modified.
+       * @return {string}
+       */
+      isProtected: undefined
+    };
   }
 
   constructor(repository, name = "master", options) {
@@ -154,6 +166,14 @@ export class Branch {
    */
   get isDisabled() {
     return this.repository.isDisabled;
+  }
+
+  /**
+   *
+   * @return false
+   */
+  get isProtected() {
+    return false;
   }
 
   /**

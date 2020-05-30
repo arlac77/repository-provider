@@ -25,19 +25,19 @@ export const Repository = LogLevelMixin(
     static get defaultOptions() {
       return {
         /**
-         * the description of the repository content.
+         * The description of the repository content.
          * @return {string}
          */
         description: undefined,
 
         /**
-         * unique id within the provider.
+         * Unique id within the provider.
          * @return {string}
          */
         id: undefined,
 
         /**
-         * unique id.
+         * Unique id.
          * @return {string}
          */
         uuid: undefined,
@@ -49,19 +49,19 @@ export const Repository = LogLevelMixin(
         defaultBranchName: "master",
 
         /**
-         * urls of the repository
+         * URLs of the repository
          * @return {string[]}
          */
         urls: undefined,
 
         /**
-         * the url of home page.
+         * The url of home page.
          * @return {string}
          */
         homePageURL: undefined,
 
         /**
-         * the url of issue tracking system.
+         * The url of issue tracking system.
          * @return {string}
          */
         issuesURL: undefined,
