@@ -84,17 +84,16 @@ export async function generateBranchName(repository, pattern) {
 }
 
 /**
- * Rename attributes
+ * Rename attributes.
+ * Filters out null and empty strings
  * @param {Object} object
  * @param {Object} mapping
  * @return {Object} keys renamed after mapping
  */
 export function mapAttributes(object, mapping) {
   return Object.fromEntries(
-    Object.entries(object).map(([name, value]) => [
-      mapping[name] ? mapping[name] : name,
-      value
-    ])
+    Object.entries(object)
+      .filter(([name, value]) => value !== undefined && value !== null && value !== "")
+      .map(([name, value]) => [mapping[name] ? mapping[name] : name, value])
   );
 }
-
