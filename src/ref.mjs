@@ -1,4 +1,4 @@
-import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
+import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
 
 /**
  * Base for Branch and Tag
@@ -23,8 +23,16 @@ export class Ref {
     };
   }
 
+  /**
+   * Map attributes between external and internal representation
+   */
+  static get attributeMapping()
+  {
+    return {};
+  }
+
   constructor(repository, name, options) {
-    definePropertiesFromOptions(this, options, {
+    definePropertiesFromOptions(this, mapAttributes(options, this.constructor.attributeMapping), {
       name: { value: name },
       repository: { value: repository }
     });

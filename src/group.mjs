@@ -1,5 +1,5 @@
 import { Owner } from "./owner.mjs";
-import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
+import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
 
 /**
  * Abstract repository collection
@@ -56,10 +56,17 @@ export class RepositoryGroup extends Owner {
     };
   }
 
+  /**
+   * Map attributes between external and internal representation
+   */
+  static get attributeMapping()
+  {
+    return {};
+  }
+
   constructor(provider, name, options) {
     super();
-
-    definePropertiesFromOptions(this, options, {
+    definePropertiesFromOptions(this, mapAttributes(options, this.constructor.attributeMapping), {
       name: { value: name },
       provider: { value: provider }
     });

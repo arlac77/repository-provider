@@ -52,6 +52,10 @@ test(
   { id: 1, displayName: "a" }
 );
 
+test("map attrs undefined", t => {
+  t.deepEqual(mapAttributes(undefined, { a: "A" }), undefined);
+});
+
 test("map attrs", t => {
   t.deepEqual(mapAttributes({ a: 1, b: "2" }, { a: "A" }), {
     A: 1,

@@ -1,5 +1,5 @@
 import { LogLevelMixin } from "loglevel-mixin";
-import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
+import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
 import { match } from "./match.mjs";
 
 /**
@@ -73,15 +73,26 @@ export const Repository = LogLevelMixin(
       };
     }
 
+    /**
+     * Map attributes between external and internal representation
+     */
+    static get attributeMapping() {
+      return {};
+    }
+
     constructor(owner, name, options) {
-      definePropertiesFromOptions(this, options, {
-        name: { value: owner.normalizeRepositoryName(name, false) },
-        owner: { value: owner },
-        _branches: { value: new Map() },
-        _tags: { value: new Map() },
-        _pullRequests: { value: new Map() },
-        _hooks: { value: [] }
-      });
+      definePropertiesFromOptions(
+        this,
+        mapAttributes(options, this.constructor.attributeMapping),
+        {
+          name: { value: owner.normalizeRepositoryName(name, false) },
+          owner: { value: owner },
+          _branches: { value: new Map() },
+          _tags: { value: new Map() },
+          _pullRequests: { value: new Map() },
+          _hooks: { value: [] }
+        }
+      );
     }
 
     /**

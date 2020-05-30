@@ -26,6 +26,7 @@ export function RepositoryOwnerMixin(parent) {
 
       constructor(...args) {
         super(...args);
+
         Object.defineProperties(this, {
           _repositories: { value: new Map() }
         });
