@@ -1,4 +1,6 @@
 import { Branch } from "./branch.mjs";
+import { Ref } from "./ref.mjs";
+import { Tag } from "./tag.mjs";
 import { Owner } from "./owner.mjs";
 import { RepositoryOwnerMixin } from "./owner-mixin.mjs";
 import { IssueMixin } from "./issue-mixin.mjs";
@@ -18,6 +20,8 @@ import { match } from "./match.mjs";
 
 export {
   Repository,
+  Ref,
+  Tag,
   Branch,
   PullRequest,
   Owner,

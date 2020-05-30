@@ -289,6 +289,10 @@ export const Repository = LogLevelMixin(
       this._branches.delete(name);
     }
 
+    _addTag(tag) {
+      this._tags.set(tag.name, tag);
+    }
+
     /**
      * @return {Iterator<String>} of all tags
      */

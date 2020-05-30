@@ -1,8 +1,6 @@
-import {
-  notImplementedError,
-  definePropertiesFromOptions,
-  optionJSON
-} from "./util.mjs";
+import { notImplementedError } from "./util.mjs";
+
+import { Ref } from "./ref.mjs";
 
 /**
  * @typedef {Object} CommitResult
@@ -20,64 +18,10 @@ import {
  * @property {Provider} provider
  * @property {string} name
  */
-export class Branch {
-  /**
-   * options
-   */
-  static get defaultOptions() {
-    return {
-      /**
-       * The description of the repository content.
-       * @return {string}
-       */
-      description: undefined,
-
-      /**
-       * Can the brach be modified.
-       * @return {string}
-       */
-      isProtected: undefined
-    };
-  }
-
+export class Branch extends Ref {
   constructor(repository, name = "master", options) {
-    definePropertiesFromOptions(this, options, {
-      name: { value: name },
-      repository: { value: repository }
-    });
-
+    super(repository, name, options);
     repository._addBranch(this);
-  }
-
-  /**
-   * Check for equality
-   * @param {Branch} other
-   * @return {boolean} true if name and repository are equal
-   */
-  equals(other) {
-    if (other === undefined) {
-      return false;
-    }
-
-    return this.name === other.name && this.repository.equals(other.repository);
-  }
-
-  /**
-   * The provider we live in
-   * @return {Provider}
-   */
-  get provider() {
-    return this.repository.provider;
-  }
-
-  /**
-   * Branch owner
-   * By default we provide the repository owner
-   * @see {@link Repository#owner}
-   * @return {string}
-   */
-  get owner() {
-    return this.repository.owner;
   }
 
   /**
@@ -113,30 +57,8 @@ export class Branch {
       : `${this.repository.url}#${this.name}`;
   }
 
-  /**
-   * Url of issue tracking system.
-   * @see {@link Repository#issuesURL}
-   * @return {string} as provided from the repository
-   */
-  get issuesURL() {
-    return this.repository.issuesURL;
-  }
-
-  /**
-   * Url of home page.
-   * @see {@link Repository#homePageURL}
-   * @return {string} as provided from the repository
-   */
-  get homePageURL() {
-    return this.repository.homePageURL;
-  }
-
-  /**
-   * Git branch ref name
-   * @return {string} git ref of the branch
-   */
-  get ref() {
-    return `refs/heads/${this.name}`;
+  get refType() {
+    return "heads";
   }
 
   /**
@@ -145,35 +67,6 @@ export class Branch {
    */
   get isDefault() {
     return this.name === this.repository.defaultBranchName;
-  }
-
-  /**
-   * forwarded from the repository
-   */
-  get isLocked() {
-    return this.repository.isLocked;
-  }
-
-  /**
-   * forwarded from the repository
-   */
-  get isArchived() {
-    return this.repository.isArchived;
-  }
-
-  /**
-   * forwarded from the repository
-   */
-  get isDisabled() {
-    return this.repository.isDisabled;
-  }
-
-  /**
-   *
-   * @return false
-   */
-  get isProtected() {
-    return false;
   }
 
   /**
@@ -197,56 +90,10 @@ export class Branch {
   }
 
   /**
-   * List entries of the branch
-   * @param {string[]} matchingPatterns
-   * @return {Entry} all matching entries in the branch
-   */
-  async *entries(matchingPatterns) {}
-
-  /**
-   * List all entries of the branch
-   * @return {asyncIterator<Entry>} all entries in the branch
-   */
-  async *[Symbol.asyncIterator]() {
-    return yield* this.entries();
-  }
-
-  /**
-   * Get exactly one matching entry by name or undefine if no such entry is found
-   * @param {string} name
-   * @return {Promise<Entry>}
-   */
-  async maybeEntry(name) {
-    return (await this.entries(name).next()).value;
-  }
-
-  /**
-   * Get exactly one matching entry by name (throws if entry is not found)
-   * @param {string} name
-   * @return {Promise<Entry>}
-   */
-  async entry(name) {
-    const e = (await this.entries(name).next()).value;
-    if (e === undefined) {
-      throw new Error(`No such entry '${name}'`);
-    }
-    return e;
-  }
-
-  /**
    * Remove entries form the branch
    * @param {Iterator <Entry>} entries
    */
   async removeEntries(entries) {}
-
-  /**
-   * Get sha of a ref
-   * @param {string} ref
-   * @return {string} sha of the ref
-   */
-  async refId(ref = this.ref) {
-    return this.repository.refId(ref);
-  }
 
   /**
    * By default we use the providers implementation.
@@ -291,14 +138,5 @@ export class Branch {
    */
   async createBranch(name, options) {
     return this.repository.createBranch(name, this, options);
-  }
-
-  /**
-   * Provide name and all defined defaultOptions
-   */
-  toJSON() {
-    return optionJSON(this, {
-      name: this.name
-    });
   }
 }
