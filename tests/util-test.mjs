@@ -60,7 +60,7 @@ test("map attrs", t => {
 });
 
 test("map attrs remove empty", t => {
-  t.deepEqual(mapAttributes({ a: 1, b: "2", c: "", d: null }, { a: "A" }), {
+  t.deepEqual(mapAttributes({ a: 1, b: "2", c: "", d: null, e: undefined }, { a: "A" }), {
     A: 1,
     b: "2"
   });

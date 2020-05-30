@@ -93,7 +93,7 @@ export async function generateBranchName(repository, pattern) {
 export function mapAttributes(object, mapping) {
   return Object.fromEntries(
     Object.entries(object)
-      .filter(([name, value]) => value !== null && value !== "")
+      .filter(([name, value]) => value !== undefined && value !== null && value !== "")
       .map(([name, value]) => [mapping[name] ? mapping[name] : name, value])
   );
 }
