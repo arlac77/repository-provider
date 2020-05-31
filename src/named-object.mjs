@@ -25,7 +25,7 @@ export class NamedObject {
     return {};
   }
 
-  constructor(repository, name, options, additionaProperties) {
+  constructor( name, options, additionaProperties) {
     definePropertiesFromOptions(this, mapAttributes(options, this.constructor.attributeMapping), {
       name: { value: name },
       ...additionaProperties

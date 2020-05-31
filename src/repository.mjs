@@ -1,8 +1,8 @@
 import { LogLevelMixin } from "loglevel-mixin";
+import { matcher } from "matching-iterator";
 import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
 import { NamedObject } from "./named-object.mjs";
 
-import { match } from "./match.mjs";
 
 /**
  * Abstract repository
@@ -241,8 +241,8 @@ export const Repository = LogLevelMixin(
      */
     async *branches(patterns) {
       await this.initializeBranches();
-      yield* match(this._branches.values(), patterns, {
-        getName: entry => entry.name
+      yield* matcher(this._branches.values(), patterns, {
+        name: "name"
       });
     }
 
@@ -297,8 +297,8 @@ export const Repository = LogLevelMixin(
     async *tags(patterns) {
       await this.initializeTags();
 
-      yield* match(this._tags.values(), patterns, {
-        getName: entry => entry.name
+      yield* matcher(this._tags.values(), patterns, {
+        name: "name"
       });
     }
 

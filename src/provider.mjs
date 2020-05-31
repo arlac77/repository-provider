@@ -1,3 +1,4 @@
+import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
 import { Ref } from "./ref.mjs";
 import { Tag } from "./tag.mjs";
@@ -16,8 +17,6 @@ import {
   mapAttributes
 } from "./util.mjs";
 
-import { match } from "./match.mjs";
-
 export {
   Repository,
   Ref,
@@ -32,8 +31,7 @@ export {
   Milestone,
   generateBranchName,
   definePropertiesFromOptions,
-  mapAttributes,
-  match
+  mapAttributes
 };
 
 /**
@@ -375,9 +373,9 @@ export class Provider extends Owner {
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();
-    yield* match(this._repositoryGroups.values(), patterns, {
+    yield* matcher(this._repositoryGroups.values(), patterns, {
       caseSensitive: this.areGroupNamesCaseSensitive,
-      getName: entry => entry.name
+      name: "name"
     });
   }
 

@@ -1,8 +1,8 @@
 import { LogLevelMixin } from "loglevel-mixin";
+import { matcher } from "matching-iterator";
 import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { match } from "./match.mjs";
 
 /**
  * Collection of repositories
@@ -124,9 +124,9 @@ export function RepositoryOwnerMixin(parent) {
        */
       async *repositories(patterns) {
         await this.initializeRepositories();
-        yield* match(this._repositories.values(), patterns, {
+        yield* matcher(this._repositories.values(), patterns, {
           caseSensitive: this.areRepositoryNamesCaseSensitive,
-          getName: entry => entry.name
+          name: "name"
         });
       }
 
@@ -202,7 +202,7 @@ export function RepositoryOwnerMixin(parent) {
 
         await this.initializeRepositories();
 
-        for (const name of match(this._repositories.keys(), repoPatterns, {
+        for (const name of matcher(this._repositories.keys(), repoPatterns, {
           caseSensitive: this.areRepositoriesCaseSensitive
         })) {
           const repository = this._repositories.get(name);
