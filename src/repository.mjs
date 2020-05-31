@@ -163,7 +163,7 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * the url of issue tracking system.
+     * The url of issue tracking system.
      * @return {string}
      */
     get issuesURL() {
@@ -171,7 +171,7 @@ export const Repository = LogLevelMixin(
     }
 
     /**
-     * the url of home page.
+     * The url of home page.
      * @return {string}
      */
     get homePageURL() {
