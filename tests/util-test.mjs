@@ -3,8 +3,7 @@ import { Provider, RepositoryGroup, Branch } from "repository-provider";
 import {
   generateBranchName,
   definePropertiesFromOptions,
-  optionJSON,
-  mapAttributes
+  optionJSON
 } from "../src/util.mjs";
 
 async function gbnt(t, branchNames, pattern, result) {
@@ -49,24 +48,3 @@ test(
   ["logLevel"],
   { id: 1, displayName: "a" }
 );
-
-test("map attrs undefined", t => {
-  t.deepEqual(mapAttributes(undefined, { a: "A" }), undefined);
-});
-
-test("map attrs", t => {
-  t.deepEqual(mapAttributes({ a: 1, b: "2" }, { a: "A" }), {
-    A: 1,
-    b: "2"
-  });
-});
-
-test("map attrs remove empty", t => {
-  t.deepEqual(
-    mapAttributes({ a: 1, b: "2", c: "", d: null, e: undefined }, { a: "A" }),
-    {
-      A: 1,
-      b: "2"
-    }
-  );
-});
