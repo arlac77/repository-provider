@@ -1,15 +1,16 @@
 import { matcher } from "matching-iterator";
-import { Branch } from "./branch.mjs";
-import { Ref } from "./ref.mjs";
-import { Tag } from "./tag.mjs";
 import { Owner } from "./owner.mjs";
+import { RepositoryGroup } from "./repository-group.mjs";
 import { RepositoryOwnerMixin } from "./owner-mixin.mjs";
-import { IssueMixin } from "./issue-mixin.mjs";
 import { Repository } from "./repository.mjs";
+import { Ref } from "./ref.mjs";
+import { Branch } from "./branch.mjs";
+import { Tag } from "./tag.mjs";
+import { IssueMixin } from "./issue-mixin.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Hook } from "./hook.mjs";
 import { Milestone } from "./milestone.mjs";
-import { RepositoryGroup } from "./group.mjs";
+
 import {
   definePropertiesFromOptions,
   asArray,

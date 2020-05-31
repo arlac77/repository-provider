@@ -52,7 +52,13 @@ export class RepositoryGroup extends Owner {
        * Group home.
        * @return {string}
        */
-      url: undefined
+      url: undefined,
+
+      /**
+       * Avatar.
+       * @return {string}
+       */
+      avatarURL: undefined
     };
   }
 
