@@ -45,6 +45,10 @@ export class NamedObject {
     return this.name === other.name;
   }
 
+  diosplayName() {
+    return this.mame;
+  }
+
   toString() {
     return this.mame;
   }
