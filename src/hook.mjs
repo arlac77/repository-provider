@@ -1,13 +1,15 @@
 import { definePropertiesFromOptions, optionJSON } from "./util.mjs";
+import { NamedObject } from "./named-object.mjs";
 
 /**
  * @property {Repository} repository
  * @property {URL} url
  * @property {Set<string>} events
  */
-export class Hook {
+export class Hook extends NamedObject {
   static get defaultOptions() {
     return {
+      ...super.defaultOptions,
       id: undefined,
       url: "",
       secret: undefined,
@@ -18,13 +20,12 @@ export class Hook {
   }
 
   constructor(repository, name, events = new Set(["*"]), options) {
-    definePropertiesFromOptions(this, options, {
+    super(name, options, {
       repository: { value: repository },
-      name: { value: name },
       events: { value: events }
     });
 
-    repository.addHook(this);
+    repository._addHook(this);
   }
 
   /**
@@ -33,11 +34,7 @@ export class Hook {
    * @return {boolean} true if name and repository are equal
    */
   equals(other) {
-    if (other === undefined) {
-      return false;
-    }
-
-    return this.name === other.name && this.repository.equals(other.repository);
+    return super.equals(other) && this.repository.equals(other.repository);
   }
 
   /**

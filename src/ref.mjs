@@ -1,20 +1,17 @@
 import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
+import { NamedObject } from "./named-object.mjs";
 
 /**
  * Base for Branch and Tag
  */
-export class Ref {
+export class Ref extends NamedObject {
   /**
    * options
    */
   static get defaultOptions() {
     return {
-      /**
-       * The description of the repository content.
-       * @return {string}
-       */
-      description: undefined,
-
+      ...super.defaultOptions,
+ 
       /**
        * Can the brach be modified.
        * @return {string}
@@ -23,19 +20,8 @@ export class Ref {
     };
   }
 
-  /**
-   * Map attributes between external and internal representation
-   */
-  static get attributeMapping()
-  {
-    return {};
-  }
-
   constructor(repository, name, options) {
-    definePropertiesFromOptions(this, mapAttributes(options, this.constructor.attributeMapping), {
-      name: { value: name },
-      repository: { value: repository }
-    });
+    super(name,options, { repository: { value: repository }});
   }
 
   /**
@@ -44,11 +30,7 @@ export class Ref {
    * @return {boolean} true if name and repository are equal
    */
   equals(other) {
-    if (other === undefined) {
-      return false;
-    }
-
-    return this.name === other.name && this.repository.equals(other.repository);
+    return super.equals(other) && this.repository.equals(other.repository);
   }
 
   get refType() {
@@ -172,14 +154,5 @@ export class Ref {
    */
   get isProtected() {
     return false;
-  }
-
-  /**
-   * Provide name and all defined defaultOptions
-   */
-  toJSON() {
-    return optionJSON(this, {
-      name: this.name
-    });
   }
 }

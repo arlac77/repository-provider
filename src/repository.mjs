@@ -1,5 +1,7 @@
 import { LogLevelMixin } from "loglevel-mixin";
 import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
+import { NamedObject } from "./named-object.mjs";
+
 import { match } from "./match.mjs";
 
 /**
@@ -18,18 +20,14 @@ import { match } from "./match.mjs";
  * @property {Map<string,PullRequest>} pullRequests
  */
 export const Repository = LogLevelMixin(
-  class Repository {
+  class Repository extends NamedObject {
     /**
      * options
      */
     static get defaultOptions() {
       return {
-        /**
-         * The description of the repository content.
-         * @return {string}
-         */
-        description: undefined,
-
+        ...super.defaultOptions,
+ 
         /**
          * Unique id within the provider.
          * @return {string}
@@ -73,19 +71,8 @@ export const Repository = LogLevelMixin(
       };
     }
 
-    /**
-     * Map attributes between external and internal representation
-     */
-    static get attributeMapping() {
-      return {};
-    }
-
     constructor(owner, name, options) {
-      definePropertiesFromOptions(
-        this,
-        mapAttributes(options, this.constructor.attributeMapping),
-        {
-          name: { value: owner.normalizeRepositoryName(name, false) },
+      super(owner.normalizeRepositoryName(name, false), options, {
           owner: { value: owner },
           _branches: { value: new Map() },
           _tags: { value: new Map() },
@@ -397,7 +384,7 @@ export const Repository = LogLevelMixin(
      * Add a hook
      * @param {Hook} hook
      */
-    addHook(hook) {
+    _addHook(hook) {
       this._hooks.push(hook);
     }
 
