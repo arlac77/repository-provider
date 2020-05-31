@@ -1,7 +1,7 @@
 import test from "ava";
 import { providerParseNameTest } from "repository-provider-test-support";
 
-import { Provider } from "../src/provider.mjs";
+import { Provider } from "repository-provider";
 
 class MyProvider extends Provider {
   get repositoryBases() {

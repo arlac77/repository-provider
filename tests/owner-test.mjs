@@ -1,6 +1,5 @@
 import test from "ava";
-import { Owner } from "../src/owner.mjs";
-import { Branch } from "../src/branch.mjs";
+import { Owner, Branch } from "repository-provider";
 
 test("owner create repository", async t => {
   const owner = new Owner();

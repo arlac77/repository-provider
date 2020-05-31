@@ -1,6 +1,6 @@
 import test from "ava";
 import { groupListTest } from "repository-provider-test-support";
-import { Provider } from "../src/provider.mjs";
+import { Provider } from "repository-provider";
 
 function initProvider(factory) {
   const provider = new factory();
@@ -31,10 +31,19 @@ class CaseInsensitiveProvider extends Provider {
   }
 }
 
-test(groupListTest, initProvider(CaseInsensitiveProvider), undefined, { g1: {}, g2: {} });
-test(groupListTest, initProvider(CaseInsensitiveProvider), "*", { g1: {}, g2: {}, Upper: {}});
+test(groupListTest, initProvider(CaseInsensitiveProvider), undefined, {
+  g1: {},
+  g2: {}
+});
+test(groupListTest, initProvider(CaseInsensitiveProvider), "*", {
+  g1: {},
+  g2: {},
+  Upper: {}
+});
 test(groupListTest, initProvider(CaseInsensitiveProvider), "g1", { g1: {} });
 test(groupListTest, initProvider(CaseInsensitiveProvider), "*2", { g2: {} });
-test(groupListTest, initProvider(CaseInsensitiveProvider), "g*", { g1: {}, g2: {} });
+test(groupListTest, initProvider(CaseInsensitiveProvider), "g*", {
+  g1: {},
+  g2: {}
+});
 test(groupListTest, initProvider(CaseInsensitiveProvider), "u*", { Upper: {} });
-

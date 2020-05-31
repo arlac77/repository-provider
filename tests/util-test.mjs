@@ -1,7 +1,5 @@
 import test from "ava";
-import { Provider } from "../src/provider.mjs";
-import { Branch } from "../src/branch.mjs";
-import { RepositoryGroup } from "../src/group.mjs";
+import { Provider, RepositoryGroup, Branch } from "repository-provider";
 import {
   generateBranchName,
   definePropertiesFromOptions,

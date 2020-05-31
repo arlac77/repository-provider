@@ -1,5 +1,5 @@
 import test from "ava";
-import { Provider } from "../src/provider.mjs";
+import { Provider } from "repository-provider";
 
 export async function repositoryCreateTest(
   t,

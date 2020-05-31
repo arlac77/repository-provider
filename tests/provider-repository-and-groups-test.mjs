@@ -1,15 +1,12 @@
 import test from "ava";
-import { Provider } from "../src/provider.mjs";
-
+import { Provider } from "repository-provider";
 
 class CaseInsensitiveProvider extends Provider {
-  get areRepositoryNamesCaseSensitive()
-  {
+  get areRepositoryNamesCaseSensitive() {
     return false;
   }
 
-  get areGroupNamesCaseSensitive()
-  {
+  get areGroupNamesCaseSensitive() {
     return false;
   }
 }
@@ -48,7 +45,6 @@ test(pgrt, Provider, "g1", "g1");
 test(pgrt, Provider, "Upper", "Upper");
 test(pgrt, CaseInsensitiveProvider, "Upper", "Upper");
 test(pgrt, CaseInsensitiveProvider, "upper", "Upper");
-
 
 test("provider repository group create repository", async t => {
   const provider = new Provider();

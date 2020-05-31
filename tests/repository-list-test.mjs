@@ -1,6 +1,6 @@
 import test from "ava";
-import { repositoryListTest } from "repository-provider-test-support/src/repository-list-test.mjs";
-import { Provider } from "../src/provider.mjs";
+import { repositoryListTest } from "repository-provider-test-support";
+import { Provider } from "repository-provider";
 
 const provider = new Provider();
 

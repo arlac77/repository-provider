@@ -1,12 +1,13 @@
 import test from "ava";
 import { repositoryEqualityTest } from "repository-provider-test-support";
-
-import { RepositoryGroup } from "../src/group.mjs";
-import { Owner } from "../src/owner.mjs";
-import { Provider } from "../src/provider.mjs";
-import { Repository } from "../src/repository.mjs";
-import { Branch } from "../src/branch.mjs";
-import { PullRequest } from "../src/pull-request.mjs";
+import {
+  Provider,
+  Owner,
+  RepositoryGroup,
+  Repository,
+  Branch,
+  PullRequest
+} from "repository-provider";
 
 test("repository init with options", async t => {
   const owner = new Owner();

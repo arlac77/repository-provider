@@ -1,9 +1,11 @@
 import test from "ava";
-import { Owner } from "../src/owner.mjs";
-import { RepositoryGroup } from "../src/group.mjs";
-import { Repository } from "../src/repository.mjs";
-import { Branch } from "../src/branch.mjs";
-import { PullRequest } from "../src/pull-request.mjs";
+import {
+  Owner,
+  RepositoryGroup,
+  Repository,
+  Branch,
+  PullRequest
+} from "repository-provider";
 
 test("repository-group create with options", t => {
   const owner = new Owner();

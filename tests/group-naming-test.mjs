@@ -1,7 +1,5 @@
 import test from "ava";
-import { Provider } from "../src/provider.mjs";
-import { RepositoryGroup } from "../src/group.mjs";
-import { Repository } from "../src/repository.mjs";
+import { Provider, RepositoryGroup, Repository } from "repository-provider";
 
 function rgnt(t, gn, rn, options, fn) {
   const provider = new Provider();

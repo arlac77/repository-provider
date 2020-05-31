@@ -1,7 +1,5 @@
 import test from "ava";
-import { Owner } from "../src/owner.mjs";
-import { Repository } from "../src/repository.mjs";
-import { Hook } from "../src/hook.mjs";
+import { Owner, Repository, Hook } from "repository-provider";
 
 test("add hook", async t => {
   const repository = new Repository(new Owner(), "r1");

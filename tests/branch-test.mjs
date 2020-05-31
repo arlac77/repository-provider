@@ -1,8 +1,5 @@
 import test from "ava";
-import { Provider } from "../src/provider.mjs";
-import { Branch } from "../src/branch.mjs";
-import { Repository } from "../src/repository.mjs";
-import { PullRequest } from "../src/pull-request.mjs";
+import { Provider, Repository, Branch, PullRequest } from "repository-provider";
 
 test("branch init", async t => {
   const provider = new Provider();
