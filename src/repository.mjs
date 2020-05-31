@@ -384,6 +384,10 @@ export const Repository = LogLevelMixin(
      * Add a hook
      * @param {Hook} hook
      */
+    addHook(hook) {
+      this._hooks.push(hook);
+    }
+
     _addHook(hook) {
       this._hooks.push(hook);
     }
