@@ -45,7 +45,7 @@ export class NamedObject {
     return this.name === other.name;
   }
 
-  diosplayName() {
+  displayName() {
     return this.mame;
   }
 
