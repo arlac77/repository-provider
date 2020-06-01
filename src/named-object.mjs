@@ -1,6 +1,9 @@
 import { definePropertiesFromOptions, mapAttributes, optionJSON } from "./util.mjs";
 
 /**
+ * @praram {string} name
+ * @praram {Object} options
+ * 
  * @property {string} name
  */
 export class NamedObject {
@@ -45,7 +48,7 @@ export class NamedObject {
     return this.name === other.name;
   }
 
-  displayName() {
+  get displayName() {
     return this.mame;
   }
 
