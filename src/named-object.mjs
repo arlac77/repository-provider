@@ -1,8 +1,8 @@
 import { definePropertiesFromOptions, mapAttributes, optionJSON } from "./util.mjs";
 
 /**
- * @praram {string} name
- * @praram {Object} options
+ * @param {string} name
+ * @param {Object} options
  * 
  * @property {string} name
  */
