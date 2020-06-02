@@ -22,6 +22,7 @@ export class NamedObject {
 
   /**
    * Map attributes between external and internal representation
+   * @return {Object}
    */
   static get attributeMapping()
   {
@@ -49,7 +50,7 @@ export class NamedObject {
   }
 
   get displayName() {
-    return this.mame;
+    return this.name;
   }
 
   toString() {
