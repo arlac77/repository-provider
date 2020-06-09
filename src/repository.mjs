@@ -127,8 +127,8 @@ export class Repository extends NamedObject {
    * @param {string[]} matchingPatterns
    * @return {Entry} all matching entries in the branch
    */
-  async *entries(...args) {
-    yield* (await this.defaultBranch).entries(...args);
+  async *entries(matchingPatterns) {
+    yield* (await this.defaultBranch).entries(matchingPatterns);
   }
 
   /**
@@ -286,7 +286,8 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * @return {Iterator<String>} of all tags
+   * @param {string|string[]} patterns
+   * @return {Iterator<Tag>} of all tags
    */
   async *tags(patterns) {
     await this.initializeTags();
@@ -297,7 +298,8 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * @return {Iterator<String>} of all tags
+   * @param {string} name
+   * @return {Tag}
    */
   async tag(name) {
     await this.initializeTags();
@@ -327,8 +329,10 @@ export class Repository extends NamedObject {
 
   /**
    * Add a pull request
-   * @param {PullRequest} pullRequest
-   * @return {Promise}
+   * @param {string} name
+   * @param {Branch} source
+   * @param {Object} options
+   * @return {PullRequest}
    */
   addPullRequest(name, source, options) {
     let pr = this._pullRequests.get(name);
@@ -396,8 +400,7 @@ export class Repository extends NamedObject {
 
   /**
    * List hooks
-   * @param {string} filter
-   * @return {Hook} all matching hook of the repository
+   * @return {Hook} all hooks of the repository
    */
   async *hooks() {
     await this.initializeHooks();

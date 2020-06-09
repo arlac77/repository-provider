@@ -5,6 +5,9 @@ import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
 import { Hook } from "./hook.mjs";
 
+/**
+ * 
+ */
 export class BaseProvider {
   /**
    * Extract options suitable for the constructor

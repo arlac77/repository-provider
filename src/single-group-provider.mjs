@@ -1,6 +1,9 @@
 import { BaseProvider } from "./base-provider.mjs";
 import RepositoryOwner from "./repository-owner.mjs";
 
+/**
+ * Provider with a single set of repositoies
+ */
 export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
 
   async repositoryGroup(name) {
@@ -12,7 +15,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
    * @param {string[]|string} patterns
    * @return {Iterator<RepositoryGroup>} all matching repositories groups of the provider
    */
-  async *repositoryGroups() {
+  async *repositoryGroups(patterns) {
     yield this;
   }
 }

@@ -135,7 +135,7 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
 
   /**
    * List branches for the owner
-   * @param {string[]|string} matchingPatterns
+   * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching branches of the owner
    */
   async *branches(patterns) {

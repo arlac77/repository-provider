@@ -1,6 +1,10 @@
 import { matcher } from "matching-iterator";
 import { BaseProvider } from "./base-provider.mjs";
 
+/**
+ * Provider supporting serveral repository groups
+ *
+ */
 export class MultiGroupProvider extends BaseProvider {
   constructor(options) {
     super(options, {
