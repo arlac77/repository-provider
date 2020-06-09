@@ -18,7 +18,7 @@ import { Ref } from "./ref.mjs";
  * @property {string} name
  */
 export class Branch extends Ref {
-  constructor(repository, name = "master", options) {
+  constructor(repository, name =repository.defaultBranchName, options) {
     super(repository, name, options);
     repository._addBranch(this);
   }
@@ -66,6 +66,11 @@ export class Branch extends Ref {
    */
   get isDefault() {
     return this.name === this.repository.defaultBranchName;
+  }
+
+  get isWritable()
+  {
+    return !this.isArchived;
   }
 
   /**

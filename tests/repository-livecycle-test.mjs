@@ -1,5 +1,5 @@
 import test from "ava";
-import { Provider } from "repository-provider";
+import { SingleGroupProvider, MultiGroupProvider } from "repository-provider";
 
 export async function repositoryCreateTest(
   t,
@@ -26,6 +26,6 @@ repositoryCreateTest.title = (
   expectedFullName = fullName
 ) => `${providedTitle} ${provider.name} ${fullName}`.trim();
 
-test(repositoryCreateTest, new Provider(), "r1", {});
-test(repositoryCreateTest, new Provider(), "r1#b1", {}, "r1");
-test.skip(repositoryCreateTest, new Provider(), "g1/r1", {});
+test(repositoryCreateTest, new SingleGroupProvider(), "r1", {});
+test(repositoryCreateTest, new SingleGroupProvider(), "r1#b1", {}, "r1");
+test.skip(repositoryCreateTest, new MultiGroupProvider(), "g1/r1", {});

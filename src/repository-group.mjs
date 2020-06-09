@@ -1,5 +1,7 @@
-import { Owner } from "./owner.mjs";
-import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
+import RepositoryOwner from "./repository-owner.mjs";
+import { NamedObject } from "./named-object.mjs";
+import { matcher } from "matching-iterator";
+import { Branch } from "./branch.mjs";
 
 /**
  * Abstract repository collection
@@ -14,21 +16,11 @@ import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.m
  * @property {Provider} provider
  * @property {string} name
  */
-export class RepositoryGroup extends Owner {
+
+export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   static get defaultOptions() {
     return {
       ...super.defaultOptions,
-      /**
-       * The description of the repository group.
-       * @return {string}
-       */
-      description: undefined,
-
-      /**
-       * The name suitable for human.
-       * @return {string}
-       */
-      displayName: undefined,
 
       /**
        * Unique id within the provider.
@@ -47,7 +39,7 @@ export class RepositoryGroup extends Owner {
        * @return {string}
        */
       type: undefined,
-      
+
       /**
        * Group home.
        * @return {string}
@@ -65,35 +57,21 @@ export class RepositoryGroup extends Owner {
   /**
    * Map attributes between external and internal representation
    */
-  static get attributeMapping()
-  {
+  static get attributeMapping() {
     return {};
   }
 
   constructor(provider, name, options) {
-    super();
-    definePropertiesFromOptions(this, mapAttributes(options, this.constructor.attributeMapping), {
-      name: { value: name },
+    super(name, options, {
       provider: { value: provider }
     });
   }
 
-  /**
-   * 
-   * @return {string} name suitable for humans
-   */
-  get displayName()
-  {
-    return this.name;
-  }
-
-  get areRepositoryNamesCaseSensitive()
-  {
+  get areRepositoryNamesCaseSensitive() {
     return this.provider.areRepositoryNamesCaseSensitive;
   }
 
-  get areRepositoryGroupNamesCaseSensitive()
-  {
+  get areRepositoryGroupNamesCaseSensitive() {
     return this.provider.areRepositoryGroupNamesCaseSensitive;
   }
 
@@ -129,11 +107,57 @@ export class RepositoryGroup extends Owner {
     return this.provider.pullRequestClass;
   }
 
-  toString() {
-    return this.name;
+
+  /**
+   * Lookup a branch
+   * First lookup repository then the branch
+   * If no branch was specified then the default branch will be delivered.
+   * @see {@link Repository#defaultBranch}
+   * @param {string} name with optional branch name as '#myBranchName'
+   * @return {Promise<Branch|undefined>}
+   */
+  async branch(name) {
+    if (name === undefined) {
+      return undefined;
+    }
+
+    const [repoName, branchName] = name.split(/#/);
+    const repository = await this.repository(repoName);
+
+    if (repository === undefined) {
+      return undefined;
+    }
+
+    return branchName === undefined
+      ? repository.defaultBranch
+      : repository.branch(branchName);
   }
 
-  toJSON() {
-    return optionJSON(this, { name: this.name }, ["logLevel", "displayName"]);
+  /**
+   * List branches for the owner
+   * @param {string[]|string} matchingPatterns
+   * @return {Iterator<Branch>} all matching branches of the owner
+   */
+  async *branches(patterns) {
+    const [repoPatterns, branchPatterns] = patterns.split(/#/);
+
+    await this.initializeRepositories();
+
+    for (const name of matcher(this._repositories.keys(), repoPatterns, {
+      caseSensitive: this.areRepositoriesCaseSensitive
+    })) {
+      const repository = this._repositories.get(name);
+      const branch =
+        branchPatterns === undefined
+          ? repository.defaultBranch
+          : repository.branch(branchPatterns);
+      if (branch !== undefined) {
+        yield branch;
+      }
+    }
   }
+
+  async tag(name) {}
+
+  async *tags(patterns) {}
 }

@@ -1,7 +1,7 @@
 import test from "ava";
-import { Owner } from "repository-provider";
+import { SingleGroupProvider } from "repository-provider";
 
-class CaseInsensitiveOwner extends Owner {
+class CaseInsensitiveOwner extends SingleGroupProvider {
   get areRepositoryNamesCaseSensitive() {
     return false;
   }
@@ -52,19 +52,19 @@ async function createOwner(factory) {
   return owner;
 }
 
-test(olrt, Owner, "r1", ["r1"]);
-test(olrt, Owner, "r*", ["r1", "r2"]);
-test(olrt, Owner, "*r*", ["r1", "r2", "Upper"]);
-test(olrt, Owner, "*", ["r1", "r2", "x", "Upper"]);
-test(olrt, Owner, undefined, ["r1", "r2", "x", "Upper"]);
-test(olrt, Owner, "abc", []);
-test(olrt, Owner, "", []);
+test(olrt, SingleGroupProvider, "r1", ["r1"]);
+test(olrt, SingleGroupProvider, "r*", ["r1", "r2"]);
+test(olrt, SingleGroupProvider, "*r*", ["r1", "r2", "Upper"]);
+test(olrt, SingleGroupProvider, "*", ["r1", "r2", "x", "Upper"]);
+test(olrt, SingleGroupProvider, undefined, ["r1", "r2", "x", "Upper"]);
+test(olrt, SingleGroupProvider, "abc", []);
+test(olrt, SingleGroupProvider, "", []);
 test(olrt, CaseInsensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
 
-test(ogrt, Owner, undefined, undefined);
-test(ogrt, Owner, "r1", "r1");
-test(ogrt, Owner, "r1#master", "r1");
-test(ogrt, Owner, "Upper", "Upper");
-test(ogrt, Owner, "upper", undefined);
+test(ogrt, SingleGroupProvider, undefined, undefined);
+test(ogrt, SingleGroupProvider, "r1", "r1");
+test(ogrt, SingleGroupProvider, "r1#master", "r1");
+test(ogrt, SingleGroupProvider, "Upper", "Upper");
+test(ogrt, SingleGroupProvider, "upper", undefined);
 test(ogrt, CaseInsensitiveOwner, undefined, undefined);
 test(ogrt, CaseInsensitiveOwner, "upper", "Upper");

@@ -1,8 +1,8 @@
 import test from "ava";
-import { Provider, Repository, Branch, PullRequest } from "repository-provider";
+import { SingleGroupProvider, Repository, Branch, PullRequest } from "repository-provider";
 
 test("branch init", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
     urls: ["http://myprovider.com/r1"]
   });
@@ -20,6 +20,8 @@ test("branch init", async t => {
   t.is(b.isLocked, false);
   t.is(b.isArchived, false);
   t.is(b.isDisabled, false);
+  t.is(b.isWritable, true);
+
   t.is(b.homePageURL, undefined);
   t.is(b.issuesURL, undefined);
   t.is(`${b}`, "r1#b1");
@@ -30,7 +32,7 @@ test("branch init", async t => {
 });
 
 test("branch init isDefault", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
     urls: ["http://myprovider.com/r1"]
   });
@@ -42,7 +44,7 @@ test("branch init isDefault", async t => {
 });
 
 test("branch isDefault changed", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
     defaultBranchName: "otherMaster"
   });
@@ -53,7 +55,7 @@ test("branch isDefault changed", async t => {
 });
 
 test("branch delete", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
   const branch = await repository.createBranch("b1");
 
@@ -63,7 +65,7 @@ test("branch delete", async t => {
 });
 
 test("branch entries", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
 
   const b = new Branch(repository, "b1");
@@ -77,7 +79,7 @@ test("branch entries", async t => {
 });
 
 test("branch entries implicit async itrator", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
 
   const b = new Branch(repository, "b1");
@@ -91,7 +93,7 @@ test("branch entries implicit async itrator", async t => {
 });
 
 test("branch entry", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
 
   const b = new Branch(repository, "b1");
@@ -105,7 +107,7 @@ test("branch entry", async t => {
 });
 
 test("branch create", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = new Repository(provider, "r1");
 
   const b1 = await repository.createBranch("b1");
@@ -115,7 +117,7 @@ test("branch create", async t => {
 });
 
 test("branch equals", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = new Repository(provider, "r1");
 
   const b1 = await repository.createBranch("b1");

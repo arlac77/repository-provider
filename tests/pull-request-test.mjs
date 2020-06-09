@@ -1,8 +1,8 @@
 import test from "ava";
-import { Provider, PullRequest } from "repository-provider";
+import { SingleGroupProvider, PullRequest } from "repository-provider";
 
 test("pullRequest list", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
 
   const prs = await repository.pullRequests;
@@ -11,7 +11,7 @@ test("pullRequest list", async t => {
 });
 
 test("pullRequest create numeric", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");
@@ -21,7 +21,7 @@ test("pullRequest create numeric", async t => {
 });
 
 test("pullRequest create", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");
@@ -59,7 +59,7 @@ test("pullRequest create", async t => {
 });
 
 test("pullRequest equal", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");
@@ -73,7 +73,7 @@ test("pullRequest equal", async t => {
 });
 
 test("pullRequest create without options", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");
@@ -91,7 +91,7 @@ test("pullRequest create without options", async t => {
 });
 
 test("pullRequest modify", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");
@@ -109,7 +109,7 @@ test("pullRequest modify", async t => {
 });
 
 test("pullRequest modify invalid state", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");

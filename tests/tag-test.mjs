@@ -1,8 +1,8 @@
 import test from "ava";
-import { Tag, Provider } from "repository-provider";
+import { Tag, SingleGroupProvider } from "repository-provider";
 
 test("tag init", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
   });
 
@@ -13,6 +13,7 @@ test("tag init", async t => {
   t.is(b.name, "t1");
   t.is(b.owner, provider);
   t.is(b.ref, "refs/tags/t1");
+  t.is(b.isWritable, false);
   t.is(b.entryClass, undefined);
  // t.is(await repository.tags("t1"), b);
 });

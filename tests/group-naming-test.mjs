@@ -1,8 +1,8 @@
 import test from "ava";
-import { Provider, RepositoryGroup, Repository } from "repository-provider";
+import { MultiGroupProvider, RepositoryGroup, Repository } from "repository-provider";
 
 function rgnt(t, gn, rn, options, fn) {
-  const provider = new Provider();
+  const provider = new MultiGroupProvider();
   const group = new RepositoryGroup(provider, gn);
   const repository = new Repository(group, rn, options);
   t.is(repository.fullName, fn);

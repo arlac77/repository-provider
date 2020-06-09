@@ -1,46 +1,11 @@
-import { matcher } from "matching-iterator";
-import { Owner } from "./owner.mjs";
-import { RepositoryGroup } from "./repository-group.mjs";
-import { RepositoryOwnerMixin } from "./owner-mixin.mjs";
-import { Repository } from "./repository.mjs";
-import { Ref } from "./ref.mjs";
-import { Branch } from "./branch.mjs";
-import { Tag } from "./tag.mjs";
-import { IssueMixin } from "./issue-mixin.mjs";
+import { definePropertiesFromOptions, asArray } from "./util.mjs";
 import { PullRequest } from "./pull-request.mjs";
+import { RepositoryGroup } from "./repository-group.mjs";
+import { Repository } from "./repository.mjs";
+import { Branch } from "./branch.mjs";
 import { Hook } from "./hook.mjs";
-import { Milestone } from "./milestone.mjs";
 
-import {
-  definePropertiesFromOptions,
-  asArray,
-  generateBranchName,
-  mapAttributes
-} from "./util.mjs";
-
-export {
-  Repository,
-  Ref,
-  Tag,
-  Branch,
-  PullRequest,
-  Owner,
-  RepositoryOwnerMixin,
-  RepositoryGroup,
-  Hook,
-  IssueMixin,
-  Milestone,
-  generateBranchName,
-  definePropertiesFromOptions,
-  mapAttributes
-};
-
-/**
- * Base repository provider acts as a source of repositories
- * @param {Object} options
- * @property {Map<string,RepositoryGroup>} _repositoryGroups
- */
-export class Provider extends Owner {
+export class BaseProvider {
   /**
    * Extract options suitable for the constructor
    * form the given set of environment variables
@@ -111,8 +76,7 @@ export class Provider extends Owner {
        * in case there are several provider able to support a given source which one sould be used ?
        * this defines the order
        */
-      priority: 0,
-      ...super.defaultOptions
+      priority: 0
     };
   }
 
@@ -127,14 +91,8 @@ export class Provider extends Owner {
     return this.areOptionsSufficciant(options) ? new this(options) : undefined;
   }
 
-  constructor(options) {
-    super();
-
-    definePropertiesFromOptions(this, options, {
-      _repositoryGroups: { value: new Map() }
-    });
-
-    this.trace(level => options);
+  constructor(options, properties) {
+    definePropertiesFromOptions(this, options, properties);
   }
 
   /**
@@ -142,47 +100,6 @@ export class Provider extends Owner {
    */
   equals(other) {
     return this === other;
-  }
-
-  /**
-   * Lookup a repository group
-   * @param {string} name of the group
-   * @return {Promise<RepositoryGroup>}
-   */
-  async repositoryGroup(name) {
-    if (name === undefined) {
-      return undefined;
-    }
-    await this.initializeRepositories();
-    return this._repositoryGroups.get(this.normalizeGroupName(name, true));
-  }
-
-  /**
-   * Create a new repository group
-   * If there is already a group for the given name it will be returend instead
-   * @param {string} name of the group
-   * @param {Object} options
-   * @return {Promise<RepositoryGroup>}
-   */
-  async createRepositoryGroup(name, options) {
-    return this.addRepositoryGroup(name, options);
-  }
-
-  /**
-   * Add a new repository group (not provider specific actions are executed)
-   * @param {string} name of the group
-   * @param {Object} options
-   * @return {RepositoryGroup}
-   */
-  addRepositoryGroup(name, options) {
-    const normalizedName = this.normalizeGroupName(name, true);
-
-    let repositoryGroup = this._repositoryGroups.get(normalizedName);
-    if (repositoryGroup === undefined) {
-      repositoryGroup = new this.repositoryGroupClass(this, name, options);
-      this._repositoryGroups.set(normalizedName, repositoryGroup);
-    }
-    return repositoryGroup;
   }
 
   /**
@@ -223,9 +140,27 @@ export class Provider extends Owner {
   }
 
   normalizeGroupName(name, forLookup) {
-    return forLookup && !this.areGroupNamesCaseSensitive
+    return name && forLookup && !this.areGroupNamesCaseSensitive
       ? name.toLowerCase()
       : name;
+  }
+
+  /**
+   * Are repositroy names case sensitive.
+   * Overwrite and return false if you want to have case insensitive repository lookup
+   * @return {boolean} true
+   */
+  get areRepositoryNamesCaseSensitive() {
+    return true;
+  }
+
+  /**
+   * Are repositroy group names case sensitive.
+   * Overwrite and return false if you want to have case insensitive group lookup
+   * @return {boolean} true
+   */
+  get areGroupNamesCaseSensitive() {
+    return true;
   }
 
   /**
@@ -304,8 +239,6 @@ export class Provider extends Owner {
       return {};
     }
 
-    await this.initializeRepositories();
-
     const { base, group, repository, branch } = this.parseName(name);
 
     if (base !== undefined) {
@@ -326,13 +259,7 @@ export class Provider extends Owner {
       return {};
     }
 
-    const r = await super.repository(repository);
-
-    if (r !== undefined) {
-      return { repository: r, branch };
-    }
-
-    for (const p of this._repositoryGroups.values()) {
+    for await (const p of this.repositoryGroups()) {
       const r = await p.repository(repository);
       if (r !== undefined) {
         return { repository: r, branch };
@@ -353,6 +280,32 @@ export class Provider extends Owner {
   }
 
   /**
+   * List repositories
+   * @param {string[]|string} patterns
+   * @return {Iterator<Repository>} all matching repos of the provider
+   */
+  async *repositories(patterns) {
+    if (patterns === undefined) {
+      for await (const group of this.repositoryGroups()) {
+        yield* group.repositories();
+      }
+    } else {
+      for (const pattern of asArray(patterns)) {
+        const [groupPattern, repoPattern] = pattern.split(/\//);
+
+        for await (const group of this.repositoryGroups(groupPattern)) {
+          yield* group.repositories(repoPattern);
+        }
+      }
+    }
+  }
+
+  async createRepository(name, options) {
+    const rg = await this.repositoryGroup(name);
+    return rg.createRepository(name, options);
+  }
+
+  /**
    * Lookup a branch in the provider and all of its repository groups
    * @param {string} name of the branch
    * @return {Promise<Branch>}
@@ -368,52 +321,22 @@ export class Provider extends Owner {
   }
 
   /**
-   * List groups
+   * List branches
    * @param {string[]|string} patterns
-   * @return {Iterator<RepositoryGroup>} all matching repositories groups of the provider
+   * @return {Iterator<Branch>} all matching branches of the provider
    */
-  async *repositoryGroups(patterns) {
-    await this.initializeRepositories();
-    yield* matcher(this._repositoryGroups.values(), patterns, {
-      caseSensitive: this.areGroupNamesCaseSensitive,
-      name: "name"
-    });
-  }
-
-  /**
-   * List repositories
-   * @param {string[]|string} patterns
-   * @return {Iterator<Repository>} all matching repos of the provider
-   */
-  async *repositories(patterns) {
+  async *branches(patterns) {
     if (patterns === undefined) {
-      await this.initializeRepositories();
-
-      for (const group of this._repositoryGroups.values()) {
-        yield* group.repositories();
+      for await (const group of this.repositoryGroups()) {
+        yield* group.branches();
       }
     } else {
       for (const pattern of asArray(patterns)) {
         const [groupPattern, repoPattern] = pattern.split(/\//);
 
         for await (const group of this.repositoryGroups(groupPattern)) {
-          yield* group.repositories(repoPattern);
+          yield* group.branches(repoPattern);
         }
-      }
-    }
-  }
-
-  /**
-   * List branches
-   * @param {string[]|string} patterns
-   * @return {Iterator<Branch>} all matching branches of the provider
-   */
-  async *branches(patterns) {
-    for (const pattern of asArray(patterns)) {
-      const [groupPattern, repoPattern] = pattern.split(/\//);
-
-      for await (const group of this.repositoryGroups(groupPattern)) {
-        yield* group.branches(repoPattern);
       }
     }
   }
@@ -424,11 +347,17 @@ export class Provider extends Owner {
    * @return {Iterator<Branch>} all matching tags of the provider
    */
   async *tags(patterns) {
-    for (const pattern of asArray(patterns)) {
-      const [groupPattern, repoPattern] = pattern.split(/\//);
+    if (patterns === undefined) {
+      for await (const group of this.repositoryGroups()) {
+        yield* group.tags();
+      }
+    } else {
+      for (const pattern of asArray(patterns)) {
+        const [groupPattern, repoPattern] = pattern.split(/\//);
 
-      for await (const group of this.repositoryGroups(groupPattern)) {
-        yield* group.tags(repoPattern);
+        for await (const group of this.repositoryGroups(groupPattern)) {
+          yield* group.tags(repoPattern);
+        }
       }
     }
   }
@@ -482,6 +411,34 @@ export class Provider extends Owner {
 
     return json;
   }
-}
 
-export default Provider;
+  /**
+   * @return {Class} repository class used by the Provider
+   */
+  get repositoryClass() {
+    return Repository;
+  }
+
+  /**
+   * @return {Class} branch class used by the Provider
+   */
+  get branchClass() {
+    return Branch;
+  }
+
+  /**
+   * @return {Class} entry class used by the Provider
+   */
+  get entryClass() {
+    return undefined;
+  }
+
+  /**
+   * @return {Class} pull request class used by the Provider
+   */
+  get pullRequestClass() {
+    return PullRequest;
+  }
+
+  initializeRepositories() {}
+}

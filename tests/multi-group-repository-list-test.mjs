@@ -1,8 +1,8 @@
 import test from "ava";
 import { repositoryListTest } from "repository-provider-test-support";
-import { Provider } from "repository-provider";
+import { MultiGroupProvider } from "repository-provider";
 
-const provider = new Provider();
+const provider = new MultiGroupProvider();
 
 test.before(async t => {
   const g1 = await provider.addRepositoryGroup("g1");
@@ -29,6 +29,6 @@ test(repositoryListTest, provider, undefined, { ...g1Result, ...g2Result });
 test(repositoryListTest, provider, "*/x*");
 test(repositoryListTest, provider, "g3/*", undefined);
 
-test(repositoryListTest, new Provider(), undefined, undefined);
-test(repositoryListTest, new Provider(), "*", undefined);
-test("empty array *", repositoryListTest, new Provider(), ["*"], undefined);
+test(repositoryListTest, new MultiGroupProvider(), undefined, undefined);
+test(repositoryListTest, new MultiGroupProvider(), "*", undefined);
+test("empty array *", repositoryListTest, new MultiGroupProvider(), ["*"], undefined);

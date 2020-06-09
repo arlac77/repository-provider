@@ -1,9 +1,9 @@
 import test from "ava";
 import { providerParseNameTest } from "repository-provider-test-support";
 
-import { Provider } from "repository-provider";
+import { BaseProvider } from "repository-provider";
 
-class MyProvider extends Provider {
+class MyProvider extends BaseProvider {
   get repositoryBases() {
     return ["https://github.com/", "http://otherdomain.com"];
   }
@@ -20,16 +20,16 @@ providerNameTest.title = (
   expectedName = name
 ) => `${providedTitle} ${provider.name} '${name}' = '${expectedName}'`.trim();
 
-test(providerNameTest, new Provider(), "", "");
-test(providerNameTest, new Provider(), "abc", "abc");
-test(providerNameTest, new Provider(), "abc#branch", "abc");
-test(providerNameTest, new Provider(), " abc", "abc");
-test(providerNameTest, new Provider(), "abc ", "abc");
-test(providerNameTest, new Provider(), " abc ", "abc");
-test(providerNameTest, new Provider(), "abc/def", "abc/def");
-test(providerNameTest, new Provider(), "abc/def#mybranch", "abc/def");
-test(providerNameTest, new Provider(), "abc/def.git", "abc/def");
-test(providerNameTest, new Provider(), "abc/def.git#mybranch", "abc/def");
+test(providerNameTest, new BaseProvider(), "", "");
+test(providerNameTest, new BaseProvider(), "abc", "abc");
+test(providerNameTest, new BaseProvider(), "abc#branch", "abc");
+test(providerNameTest, new BaseProvider(), " abc", "abc");
+test(providerNameTest, new BaseProvider(), "abc ", "abc");
+test(providerNameTest, new BaseProvider(), " abc ", "abc");
+test(providerNameTest, new BaseProvider(), "abc/def", "abc/def");
+test(providerNameTest, new BaseProvider(), "abc/def#mybranch", "abc/def");
+test(providerNameTest, new BaseProvider(), "abc/def.git", "abc/def");
+test(providerNameTest, new BaseProvider(), "abc/def.git#mybranch", "abc/def");
 
 test(providerParseNameTest, new MyProvider(), {
   "": { repository: "" },

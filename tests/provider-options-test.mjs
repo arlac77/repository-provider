@@ -1,13 +1,13 @@
 import test from "ava";
-import { Provider } from "repository-provider";
+import { BaseProvider } from "repository-provider";
 
 test("provider default env options", async t => {
-  t.is(Provider.optionsFromEnvironment(), undefined);
-  t.is(Provider.optionsFromEnvironment({}), undefined);
-  t.true(Provider.areOptionsSufficciant());
+  t.is(BaseProvider.optionsFromEnvironment(), undefined);
+  t.is(BaseProvider.optionsFromEnvironment({}), undefined);
+  t.true(BaseProvider.areOptionsSufficciant());
 });
 
-class MyProvider extends Provider {
+class MyProvider extends BaseProvider {
   static areOptionsSufficciant(options) {
     return options.authentication ? true : false;
   }
@@ -69,18 +69,17 @@ test("initialize", async t => {
 });
 
 test("new provider", async t => {
-  const provider = new Provider({ key: "value" });
+  const provider = new BaseProvider({ key: "value" });
   t.is(provider.priority, 0);
-  t.is(provider.name, "Provider");
-  t.is(`${provider}`, "Provider");
+  t.is(provider.name, "BaseProvider");
+  t.is(`${provider}`, "BaseProvider");
   t.deepEqual(provider.toJSON(), {
-    name: "Provider",
-    logLevel: "info",
+    name: "BaseProvider",
     priority: 0
   });
 });
 
 test("provider with priority", async t => {
-  const provider = new Provider({ priority: 77 });
+  const provider = new BaseProvider({ priority: 77 });
   t.is(provider.priority, 77);
 });

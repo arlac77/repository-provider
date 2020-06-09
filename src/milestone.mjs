@@ -1,19 +1,24 @@
+import { NamedObject } from "./named-object.mjs";
+
 /**
  */
-export class Milestone {
-    static get defaultOptions() {
-      return {
-        id: undefined,
-        state: undefined,
-        title: undefined,
-        description: undefined
-      };
-    }
-  
-    constructor(owner, options) {
-      definePropertiesFromOptions(this, options);
-      owner.addMilestone(this);
-    }
+export class Milestone extends NamedObject {
+  static get defaultOptions() {
+    return {
+      ...super.defaultOptions,
+      id: undefined,
+      state: undefined,
+      title: undefined
+    };
+  }
 
-    async *issues() {}
-}  
+  constructor(owner, name, options) {
+    super(name, options, {
+      owner: { value: owner }
+    });
+
+    owner._addMilestone(this);
+  }
+
+  async *issues() {}
+}

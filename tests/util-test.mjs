@@ -1,5 +1,5 @@
 import test from "ava";
-import { Provider, RepositoryGroup, Branch } from "repository-provider";
+import { SingleGroupProvider, RepositoryGroup, Branch } from "repository-provider";
 import {
   generateBranchName,
   definePropertiesFromOptions,
@@ -7,7 +7,7 @@ import {
 } from "../src/util.mjs";
 
 async function gbnt(t, branchNames, pattern, result) {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
 
   for (const bn of branchNames) {
@@ -45,6 +45,6 @@ test(
   ojt,
   new RepositoryGroup(undefined, "a", { id: 1 }),
   undefined,
-  ["logLevel"],
-  { id: 1, displayName: "a" }
+  [],
+  { id: 1 }
 );

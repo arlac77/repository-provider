@@ -1,8 +1,6 @@
-import { LogLevelMixin } from "loglevel-mixin";
 import { matcher } from "matching-iterator";
-import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
+import { optionJSON } from "./util.mjs";
 import { NamedObject } from "./named-object.mjs";
-
 
 /**
  * Abstract repository
@@ -19,488 +17,483 @@ import { NamedObject } from "./named-object.mjs";
  * @property {Map<string,Branch>} branches
  * @property {Map<string,PullRequest>} pullRequests
  */
-export const Repository = LogLevelMixin(
-  class Repository extends NamedObject {
-    /**
-     * options
-     */
-    static get defaultOptions() {
-      return {
-        ...super.defaultOptions,
- 
-        /**
-         * Unique id within the provider.
-         * @return {string}
-         */
-        id: undefined,
+export class Repository extends NamedObject {
+  /**
+   * options
+   */
+  static get defaultOptions() {
+    return {
+      ...super.defaultOptions,
 
-        /**
-         * Unique id.
-         * @return {string}
-         */
-        uuid: undefined,
+      /**
+       * Unique id within the provider.
+       * @return {string}
+       */
+      id: undefined,
 
-        /**
-         * The name of the default branch
-         * @return {string}
-         */
-        defaultBranchName: "master",
+      /**
+       * Unique id.
+       * @return {string}
+       */
+      uuid: undefined,
 
-        /**
-         * URLs of the repository
-         * @return {string[]}
-         */
-        urls: undefined,
+      /**
+       * The name of the default branch
+       * @return {string}
+       */
+      defaultBranchName: "master",
 
-        /**
-         * The url of home page.
-         * @return {string}
-         */
-        homePageURL: undefined,
+      /**
+       * URLs of the repository
+       * @return {string[]}
+       */
+      urls: undefined,
 
-        /**
-         * The url of issue tracking system.
-         * @return {string}
-         */
-        issuesURL: undefined,
+      /**
+       * The url of home page.
+       * @return {string}
+       */
+      homePageURL: undefined,
 
-        isArchived: undefined,
-        isLocked: undefined,
-        isDisabled: undefined,
-        isTemplate: undefined
-      };
-    }
+      /**
+       * The url of issue tracking system.
+       * @return {string}
+       */
+      issuesURL: undefined,
 
-    constructor(owner, name, options) {
-      super(owner.normalizeRepositoryName(name, false), options, {
-          owner: { value: owner },
-          _branches: { value: new Map() },
-          _tags: { value: new Map() },
-          _pullRequests: { value: new Map() },
-          _hooks: { value: [] }
-        }
-      );
-    }
+      isArchived: undefined,
+      isLocked: undefined,
+      isDisabled: undefined,
+      isTemplate: undefined
+    };
+  }
 
-    /**
-     * full repository name within the provider
-     * @return {string} full repo name
-     */
-    get fullName() {
-      return this.owner === this.provider || this.owner.name === undefined
-        ? this.name
-        : [this.owner.name, this.name].join("/");
-    }
+  constructor(owner, name, options) {
+    super(owner.normalizeRepositoryName(name, false), options, {
+      owner: { value: owner },
+      _branches: { value: new Map() },
+      _tags: { value: new Map() },
+      _pullRequests: { value: new Map() },
+      _hooks: { value: [] }
+    });
+  }
 
-    /**
-     * the owners provider
-     * @return {Provider}
-     */
-    get provider() {
-      return this.owner.provider;
-    }
+  /**
+   * Full repository name within the provider
+   * @return {string} full repo name
+   */
+  get fullName() {
+    return this.owner === this.provider ||
+      this.owner.name === undefined ||
+      this.owner.name === ""
+      ? this.name
+      : [this.owner.name, this.name].join("/");
+  }
 
-    logger(...args) {
-      this.provider.logger(...args);
-    }
+  /**
+   * the owners provider
+   * @return {Provider}
+   */
+  get provider() {
+    return this.owner.provider;
+  }
 
-    /**
-     * Check for equality
-     * @param {Repository} other
-     * @return {boolean} true if name and provider are equal
-     */
-    equals(other) {
-      if (other === undefined) {
-        return false;
-      }
-
-      return (
-        this.fullName === other.fullName && this.provider.equals(other.provider)
-      );
-    }
-
-    /**
-     * Lookup entries form the head of the default branch
-     * {@link Branch#entry}
-     * @return {Entry}
-     */
-    async entry(name) {
-      return (await this.defaultBranch).entry(name);
-    }
-
-    /**
-     * List entries of the default branch
-     * @param {string[]} matchingPatterns
-     * @return {Entry} all matching entries in the branch
-     */
-    async *entries(...args) {
-      yield* (await this.defaultBranch).entries(...args);
-    }
-
-    /**
-     * get exactly one matching entry by name or undefined if no such entry is found
-     * @param {string} name
-     * @return {Promise<Entry>}
-     */
-    async maybeEntry(name) {
-      return (await this.defaultBranch).maybeEntry(name);
-    }
-
-    /**
-     * urls to access the repo
-     * @return {string[]}
-     */
-    get urls() {
-      return [];
-    }
-
-    /**
-     * preffered url to access the repo
-     * @return {string}
-     */
-    get url() {
-      return this.urls[0];
-    }
-
-    /**
-     * The url of issue tracking system.
-     * @return {string}
-     */
-    get issuesURL() {
-      return undefined;
-    }
-
-    /**
-     * The url of home page.
-     * @return {string}
-     */
-    get homePageURL() {
-      return undefined;
-    }
-
-    /**
-     * Name without owner
-     * @return {string} name
-     */
-    get condensedName() {
-      return this.name;
-    }
-
-    /**
-     * By default we are not archived
-     * @return {boolean} false
-     */
-    get isArchived() {
+  /**
+   * Check for equality
+   * @param {Repository} other
+   * @return {boolean} true if name and provider are equal
+   */
+  equals(other) {
+    if (other === undefined) {
       return false;
     }
 
-    /**
-     * By default we are not locked
-     * @return {boolean} false
-     */
-    get isLocked() {
-      return false;
+    return (
+      this.fullName === other.fullName && this.provider.equals(other.provider)
+    );
+  }
+
+  /**
+   * Lookup entries form the head of the default branch
+   * {@link Branch#entry}
+   * @return {Entry}
+   */
+  async entry(name) {
+    return (await this.defaultBranch).entry(name);
+  }
+
+  /**
+   * List entries of the default branch
+   * @param {string[]} matchingPatterns
+   * @return {Entry} all matching entries in the branch
+   */
+  async *entries(...args) {
+    yield* (await this.defaultBranch).entries(...args);
+  }
+
+  /**
+   * get exactly one matching entry by name or undefined if no such entry is found
+   * @param {string} name
+   * @return {Promise<Entry>}
+   */
+  async maybeEntry(name) {
+    return (await this.defaultBranch).maybeEntry(name);
+  }
+
+  /**
+   * urls to access the repo
+   * @return {string[]}
+   */
+  get urls() {
+    return [];
+  }
+
+  /**
+   * preffered url to access the repo
+   * @return {string}
+   */
+  get url() {
+    return this.urls[0];
+  }
+
+  /**
+   * The url of issue tracking system.
+   * @return {string}
+   */
+  get issuesURL() {
+    return undefined;
+  }
+
+  /**
+   * The url of home page.
+   * @return {string}
+   */
+  get homePageURL() {
+    return undefined;
+  }
+
+  /**
+   * Name without owner
+   * @return {string} name
+   */
+  get condensedName() {
+    return this.name;
+  }
+
+  /**
+   * By default we are not archived
+   * @return {boolean} false
+   */
+  get isArchived() {
+    return false;
+  }
+
+  /**
+   * By default we are not locked
+   * @return {boolean} false
+   */
+  get isLocked() {
+    return false;
+  }
+
+  /**
+   * By default we are not disabled
+   * @return {boolean} false
+   */
+  get isDisabled() {
+    return false;
+  }
+
+  /**
+   * By default we are not a template
+   * @return {boolean} false
+   */
+  get isTemplate() {
+    return false;
+  }
+
+  /**
+   * Lookup branch by name
+   * @param {string} name
+   * @return {Promise<Branch>}
+   */
+  async branch(name) {
+    await this.initializeBranches();
+    return this._branches.get(name);
+  }
+
+  /**
+   * Lookup the default branch
+   * @return {Promise<Branch>} branch named after defaultBranchName
+   */
+  get defaultBranch() {
+    return this.branch(this.defaultBranchName);
+  }
+
+  /**
+   * @return {Iterator<Branch>} of all branches
+   */
+  async *branches(patterns) {
+    await this.initializeBranches();
+    yield* matcher(this._branches.values(), patterns, {
+      name: "name"
+    });
+  }
+
+  /**
+   * Create a new {@link Branch} by cloning a given source branch
+   * @param {string} name of the new branch
+   * @param {Branch} source branch defaults to the defaultBranch
+   * @param {Object} options
+   * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
+   */
+  async createBranch(name, source, options) {
+    await this.initializeBranches();
+    return this.addBranch(name, options);
+  }
+
+  /**
+   * Add a new {@link Branch}.
+   * Internal branch creation does not call repository.initialize()
+   * @param {string} name of the new branch
+   * @param {Object} options
+   * @return {Promise<Branch>} newly created branch
+   */
+  addBranch(name, options) {
+    let branch = this._branches.get(name);
+    if (branch === undefined) {
+      branch = new this.branchClass(this, name, options);
     }
 
-    /**
-     * By default we are not disabled
-     * @return {boolean} false
-     */
-    get isDisabled() {
-      return false;
-    }
+    return branch;
+  }
 
-    /**
-     * By default we are not a template
-     * @return {boolean} false
-     */
-    get isTemplate() {
-      return false;
-    }
+  _addBranch(branch) {
+    this._branches.set(branch.name, branch);
+  }
 
-    /**
-     * Lookup branch by name
-     * @param {string} name
-     * @return {Promise<Branch>}
-     */
-    async branch(name) {
-      await this.initializeBranches();
-      return this._branches.get(name);
-    }
+  /**
+   * Delete a {@link Branch}
+   * @param {string} name of the branch
+   * @return {Promise<undefined>}
+   */
+  async deleteBranch(name) {
+    this._branches.delete(name);
+  }
 
-    /**
-     * Lookup the default branch
-     * @return {Promise<Branch>} branch named after defaultBranchName
-     */
-    get defaultBranch() {
-      return this.branch(this.defaultBranchName);
-    }
+  _addTag(tag) {
+    this._tags.set(tag.name, tag);
+  }
 
-    /**
-     * @return {Iterator<Branch>} of all branches
-     */
-    async *branches(patterns) {
-      await this.initializeBranches();
-      yield* matcher(this._branches.values(), patterns, {
-        name: "name"
-      });
-    }
+  /**
+   * @return {Iterator<String>} of all tags
+   */
+  async *tags(patterns) {
+    await this.initializeTags();
 
-    /**
-     * Create a new {@link Branch} by cloning a given source branch
-     * @param {string} name of the new branch
-     * @param {Branch} source branch defaults to the defaultBranch
-     * @param {Object} options
-     * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
-     */
-    async createBranch(name, source, options) {
-      await this.initializeBranches();
-      return this.addBranch(name, options);
-    }
+    yield* matcher(this._tags.values(), patterns, {
+      name: "name"
+    });
+  }
 
-    /**
-     * Add a new {@link Branch}.
-     * Internal branch creation does not call repository.initialize()
-     * @param {string} name of the new branch
-     * @param {Object} options
-     * @return {Promise<Branch>} newly created branch
-     */
-    addBranch(name, options) {
-      let branch = this._branches.get(name);
-      if (branch === undefined) {
-        branch = new this.branchClass(this, name, options);
-      }
+  /**
+   * @return {Iterator<String>} of all tags
+   */
+  async tag(name) {
+    await this.initializeTags();
+    return this._tags.get(name);
+  }
 
-      return branch;
-    }
+  /**
+   * Delete the repository from the {@link Provider}.
+   * {@link Provider#deleteRepository}
+   * @return {Promise<undefined>}
+   */
+  async delete() {
+    return this.owner.deleteRepository(this.name);
+  }
 
-    _addBranch(branch) {
-      this._branches.set(branch.name, branch);
-    }
+  /**
+   * create a pull request (or deliver an already present for thefiven name)
+   * @param {string} name of the pr
+   * @param {Branch} source branch
+   * @param {Object} options
+   * @return {PullRequest}
+   */
+  async createPullRequest(name, source, options) {
+    await this.initializePullRequests();
+    return this.addPullRequest(name, source, options);
+  }
 
-    /**
-     * Delete a {@link Branch}
-     * @param {string} name of the branch
-     * @return {Promise<undefined>}
-     */
-    async deleteBranch(name) {
-      this._branches.delete(name);
-    }
-
-    _addTag(tag) {
-      this._tags.set(tag.name, tag);
-    }
-
-    /**
-     * @return {Iterator<String>} of all tags
-     */
-    async *tags(patterns) {
-      await this.initializeTags();
-
-      yield* matcher(this._tags.values(), patterns, {
-        name: "name"
-      });
-    }
-
-    /**
-     * @return {Iterator<String>} of all tags
-     */
-    async tag(name) {
-      await this.initializeTags();
-      return this._tags.get(name);
-    }
-
-    /**
-     * Delete the repository from the {@link Provider}.
-     * {@link Provider#deleteRepository}
-     * @return {Promise<undefined>}
-     */
-    async delete() {
-      return this.owner.deleteRepository(this.name);
-    }
-
-    /**
-     * create a pull request (or deliver an already present for thefiven name)
-     * @param {string} name of the pr
-     * @param {Branch} source branch
-     * @param {Object} options
-     * @return {PullRequest}
-     */
-    async createPullRequest(name, source, options) {
-      await this.initializePullRequests();
-      return this.addPullRequest(name, source, options);
-    }
-
-    /**
-     * Add a pull request
-     * @param {PullRequest} pullRequest
-     * @return {Promise}
-     */
-    addPullRequest(name, source, options) {
-      let pr = this._pullRequests.get(name);
-      if (pr === undefined) {
-        pr = new this.pullRequestClass(name, source, this, options);
-        this._pullRequests.set(pr.name, pr);
-      }
-      return pr;
-    }
-
-    _addPullRequest(pr) {
+  /**
+   * Add a pull request
+   * @param {PullRequest} pullRequest
+   * @return {Promise}
+   */
+  addPullRequest(name, source, options) {
+    let pr = this._pullRequests.get(name);
+    if (pr === undefined) {
+      pr = new this.pullRequestClass(name, source, this, options);
       this._pullRequests.set(pr.name, pr);
     }
+    return pr;
+  }
 
-    /**
-     * Deliver all {@link PullRequest}s
-     * @return {Iterator<PullRequest>} of all pull requests
-     */
-    async *pullRequests() {
-      await this.initializePullRequests();
+  _addPullRequest(pr) {
+    this._pullRequests.set(pr.name, pr);
+  }
 
-      for (const pr of this._pullRequests.values()) {
-        yield pr;
-      }
-    }
+  /**
+   * Deliver all {@link PullRequest}s
+   * @return {Iterator<PullRequest>} of all pull requests
+   */
+  async *pullRequests() {
+    await this.initializePullRequests();
 
-    /**
-     * The @{link PullRequest} for a given name
-     * @param {string} name
-     * @return {Promise<PullRequest>}
-     */
-    async pullRequest(name) {
-      await this.initializePullRequests();
-      return this._pullRequests.get(name);
-    }
-
-    /**
-     * Delete a {@link PullRequest}
-     * @param {string} name
-     * @return {Promise}
-     */
-    async deletePullRequest(name) {
-      this._pullRequests.delete(name);
-    }
-
-    /**
-     * Add a hook
-     * @param {Hook} hook
-     */
-    addHook(hook) {
-      this._hooks.push(hook);
-    }
-
-    _addHook(hook) {
-      this._hooks.push(hook);
-    }
-
-    /**
-     * Add a hook
-     * @param {Hook} hook
-     */
-    async createHook(hook) {
-      this.addHook(hook);
-    }
-
-    /**
-     * List hooks
-     * @param {string} filter
-     * @return {Hook} all matching hook of the repository
-     */
-    async *hooks() {
-      await this.initializeHooks();
-      for (const hook of this._hooks) {
-        yield hook;
-      }
-    }
-
-    /**
-     * @return {string} 'git'
-     */
-    get type() {
-      return "git";
-    }
-
-    /**
-     * Get sha of a ref
-     * @param {string} ref
-     * @return {string} sha of the ref
-     */
-    async refId(ref) {
-      return undefined;
-    }
-
-    /**
-     * By default we use the providers implementation.
-     * @return {Class} as defined in the provider
-     */
-    get repositoryClass() {
-      return this.provider.repositoryClass;
-    }
-
-    /**
-     * By default we use the providers implementation.
-     * @return {Class} as defined in the provider
-     */
-    get pullRequestClass() {
-      return this.provider.pullRequestClass;
-    }
-
-    /**
-     * By default we use the providers implementation.
-     * @return {Class} as defined in the provider
-     */
-    get branchClass() {
-      return this.provider.branchClass;
-    }
-
-    /**
-     * By default we use the providers implementation.
-     * @return {Class} as defined in the provider
-     */
-    get entryClass() {
-      return this.provider.entryClass;
-    }
-
-    /**
-     * By default we use the providers implementation.
-     * @return {Class} as defined in the provider
-     */
-    get hookClass() {
-      return this.provider.hookClass;
-    }
-
-    toString() {
-      return this.fullName;
-    }
-
-    /**
-     * provide name and all defined defaultOptions
-     */
-    toJSON() {
-      return optionJSON(this, {
-        name: this.name,
-        fullName: this.fullName,
-        urls: this.urls
-      });
-    }
-
-    initialize() {}
-
-    initializeHooks() {
-      return this.initialize();
-    }
-
-    initializeBranches() {
-      return this.initialize();
-    }
-
-    initializeTags() {
-      return this.initialize();
-    }
-
-    async initializePullRequests() {
-      for await (const pr of this.pullRequestClass.list(this)) {
-        this._pullRequests.set(pr.name, pr);
-      }
+    for (const pr of this._pullRequests.values()) {
+      yield pr;
     }
   }
-);
+
+  /**
+   * The @{link PullRequest} for a given name
+   * @param {string} name
+   * @return {Promise<PullRequest>}
+   */
+  async pullRequest(name) {
+    await this.initializePullRequests();
+    return this._pullRequests.get(name);
+  }
+
+  /**
+   * Delete a {@link PullRequest}
+   * @param {string} name
+   * @return {Promise}
+   */
+  async deletePullRequest(name) {
+    this._pullRequests.delete(name);
+  }
+
+  /**
+   * Add a hook
+   * @param {Hook} hook
+   */
+  addHook(hook) {
+    this._hooks.push(hook);
+  }
+
+  _addHook(hook) {
+    this._hooks.push(hook);
+  }
+
+  /**
+   * Add a hook
+   * @param {Hook} hook
+   */
+  async createHook(hook) {
+    this.addHook(hook);
+  }
+
+  /**
+   * List hooks
+   * @param {string} filter
+   * @return {Hook} all matching hook of the repository
+   */
+  async *hooks() {
+    await this.initializeHooks();
+    for (const hook of this._hooks) {
+      yield hook;
+    }
+  }
+
+  /**
+   * @return {string} 'git'
+   */
+  get type() {
+    return "git";
+  }
+
+  /**
+   * Get sha of a ref
+   * @param {string} ref
+   * @return {string} sha of the ref
+   */
+  async refId(ref) {
+    return undefined;
+  }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
+  get repositoryClass() {
+    return this.provider.repositoryClass;
+  }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
+  get pullRequestClass() {
+    return this.provider.pullRequestClass;
+  }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
+  get branchClass() {
+    return this.provider.branchClass;
+  }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
+  get entryClass() {
+    return this.provider.entryClass;
+  }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
+  get hookClass() {
+    return this.provider.hookClass;
+  }
+
+  toString() {
+    return this.fullName;
+  }
+
+  /**
+   * provide name and all defined defaultOptions
+   */
+  toJSON() {
+    return optionJSON(this, {
+      name: this.name,
+      fullName: this.fullName,
+      urls: this.urls
+    });
+  }
+
+  initialize() {}
+
+  initializeHooks() {
+    return this.initialize();
+  }
+
+  initializeBranches() {
+    return this.initialize();
+  }
+
+  initializeTags() {
+    return this.initialize();
+  }
+
+  async initializePullRequests() {
+    for await (const pr of this.pullRequestClass.list(this)) {
+      this._pullRequests.set(pr.name, pr);
+    }
+  }
+}

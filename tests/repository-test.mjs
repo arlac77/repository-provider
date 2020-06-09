@@ -1,22 +1,20 @@
 import test from "ava";
 import { repositoryEqualityTest } from "repository-provider-test-support";
 import {
-  Provider,
-  Owner,
-  RepositoryGroup,
+  SingleGroupProvider,
   Repository,
   Branch,
   PullRequest
 } from "repository-provider";
 
 test("repository init with options", async t => {
-  const owner = new Owner();
-  const repository = new Repository(owner, "r1", {
+  const provider = new SingleGroupProvider();
+  const repository = new Repository(provider, "r1", {
     description: "a description",
     id: "4711",
     uuid: "12345"
   });
-  t.is(repository.owner, owner);
+  t.is(repository.owner, provider);
   t.is(repository.name, "r1");
   t.is(repository.fullName, "r1");
   t.is(repository.type, "git");
@@ -57,9 +55,8 @@ test("repository init with options", async t => {
 });
 
 test("repository init with more options", async t => {
-  const provider = new Provider();
-  const group = new RepositoryGroup(provider, "g1");
-  const repository = new Repository(group, "r1", {
+  const provider = new SingleGroupProvider();
+  const repository = new Repository(provider, "r1", {
     fullName: "g1/r1",
     description: "a description",
     id: "4712",
@@ -69,9 +66,9 @@ test("repository init with more options", async t => {
     urls: ["http:/myprovider/orner1/r1.git"]
   });
 
-  t.is(repository.owner, group);
+  t.is(repository.owner, provider);
   t.is(repository.name, "r1");
-  t.is(repository.fullName, "g1/r1");
+  t.is(repository.fullName, "r1");
   t.is(repository.type, "git");
   t.is(repository.id, "4712");
   t.is(repository.description, "a description");
@@ -81,9 +78,9 @@ test("repository init with more options", async t => {
 });
 
 test("repository init without options", t => {
-  const owner = new Owner();
-  const repository = new Repository(owner, "r1");
-  t.is(repository.owner, owner);
+  const provider = new SingleGroupProvider();
+  const repository = new Repository(provider, "r1");
+  t.is(repository.owner, provider);
   t.is(repository.name, "r1");
   t.is(repository.fullName, "r1");
   t.is(`${repository}`, "r1");
@@ -92,15 +89,15 @@ test("repository init without options", t => {
 });
 
 test("repository normalize name", t => {
-  const owner = new Owner();
-  const repository = new Repository(owner, "r1#branch");
-  t.is(repository.owner, owner);
+  const provider = new SingleGroupProvider();
+  const repository = new Repository(provider, "r1#branch");
+  t.is(repository.owner, provider);
   t.is(repository.name, "r1");
   t.is(repository.fullName, "r1");
 });
 
 test("repository branch create", async t => {
-  const provider = new Provider();
+  const provider = new SingleGroupProvider();
   const repository = new Repository(provider, "r1#branch");
   const b1 = await repository.createBranch("b1");
   t.is(b1.name, "b1");
@@ -109,8 +106,8 @@ test("repository branch create", async t => {
 });
 
 test("repository classes", t => {
-  const owner = new Provider();
-  const repository = new Repository(owner, "r1#branch");
+  const provider = new SingleGroupProvider();
+  const repository = new Repository(provider, "r1#branch");
   t.is(repository.branchClass, Branch);
   t.is(repository.entryClass, undefined);
   t.is(repository.pullRequestClass, PullRequest);
@@ -126,9 +123,9 @@ class MyRepository extends Repository {
 }
 
 test("defaultOption", t => {
-  const repository = new MyRepository(new Provider(), "r1", { id: "xxx" });
+  const repository = new MyRepository(new SingleGroupProvider(), "r1", { id: "xxx" });
   t.is(repository.myAttribute, 77);
   t.is(repository.id, "xxx");
 });
 
-test(repositoryEqualityTest, new Provider(), "r1", "r2");
+test(repositoryEqualityTest, new SingleGroupProvider(), "r1", "r2");

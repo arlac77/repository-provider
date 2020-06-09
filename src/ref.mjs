@@ -1,4 +1,3 @@
-import { definePropertiesFromOptions, optionJSON, mapAttributes } from "./util.mjs";
 import { NamedObject } from "./named-object.mjs";
 
 /**
@@ -128,21 +127,21 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * forwarded from the repository
+   * Forwarded from the repository
    */
   get isLocked() {
     return this.repository.isLocked;
   }
 
   /**
-   * forwarded from the repository
+   * Forwarded from the repository
    */
   get isArchived() {
     return this.repository.isArchived;
   }
 
   /**
-   * forwarded from the repository
+   * Forwarded from the repository
    */
   get isDisabled() {
     return this.repository.isDisabled;
@@ -153,6 +152,15 @@ export class Ref extends NamedObject {
    * @return false
    */
   get isProtected() {
+    return false;
+  }
+
+  /**
+   *
+   * @return false
+   */
+  get isWritable()
+  {
     return false;
   }
 }

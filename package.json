@@ -6,9 +6,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "main": "./src/provider.mjs",
+  "main": "./src/index.mjs",
   "exports": {
-    ".": "./src/provider.mjs"
+    ".": "./src/index.mjs"
   },
   "description": "abstract interface to git repository providers like github bitbucket",
   "keywords": [
@@ -25,11 +25,10 @@
   "scripts": {
     "test": "ava --timeout 2m",
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
-    "docs": "documentation readme ./src/provider.mjs --section=API",
-    "lint": "documentation lint ./src/provider.mjs"
+    "docs": "documentation readme ./src/index.mjs --section=API",
+    "lint": "documentation lint ./src/index.mjs"
   },
   "dependencies": {
-    "loglevel-mixin": "^5.0.3",
     "matching-iterator": "^1.0.0"
   },
   "devDependencies": {

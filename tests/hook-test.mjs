@@ -1,8 +1,8 @@
 import test from "ava";
-import { Owner, Repository, Hook } from "repository-provider";
+import { SingleGroupProvider, Repository, Hook } from "repository-provider";
 
 test("add hook", async t => {
-  const repository = new Repository(new Owner(), "r1");
+  const repository = new Repository(new SingleGroupProvider(), "r1");
 
   const hook = new Hook(repository, "hook1", new Set(["a"]), {
     id: 77,
