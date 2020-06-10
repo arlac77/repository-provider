@@ -388,7 +388,7 @@ export class BaseProvider {
   }
 
   /**
-   * we are our own provider
+   * We are our own provider
    * @return {Provider} this
    */
   get provider() {
@@ -400,7 +400,7 @@ export class BaseProvider {
   }
 
   /**
-   * list all defined entries from defaultOptions
+   * List all defined entries from defaultOptions
    *
    */
   toJSON() {
