@@ -1,5 +1,5 @@
 import { matcher } from "matching-iterator";
-import { BaseProvider } from "./base-provider.mjs";
+import { BaseProvider } from "./base-provider.mjs";
 
 /**
  * Provider supporting serveral repository groups
