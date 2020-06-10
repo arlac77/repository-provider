@@ -76,7 +76,7 @@ export class BaseProvider {
   static get defaultOptions() {
     return {
       /**
-       * in case there are several provider able to support a given source which one sould be used ?
+       * In case there are several provider able to support a given source which one sould be used ?
        * this defines the order
        */
       priority: 0
