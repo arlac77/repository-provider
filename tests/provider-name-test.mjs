@@ -87,10 +87,11 @@ test(providerParseNameTest, new MyProvider(), {
     group: "arlac77",
     repository: "sync-test-repository"
   },
-  "git@bitbucket.org:arlac77/sync-test-repository.git": {
+  "git@bitbucket.org:arlac77/sync-test-repository.git#mybranch": {
     base: "git@bitbucket.org:",
     group: "arlac77",
-    repository: "sync-test-repository"
+    repository: "sync-test-repository",
+    branch: "mybranch"
   },
   "git@bitbucket.org/arlac77/sync-test-repository.git": {
     base: "git@bitbucket.org/",
