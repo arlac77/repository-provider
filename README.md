@@ -87,29 +87,31 @@ console.log(await readme.getString());
         -   [Parameters](#parameters-12)
 -   [priority](#priority)
 -   [SingleGroupProvider](#singlegroupprovider)
-    -   [repositoryGroups](#repositorygroups)
-        -   [Parameters](#parameters-13)
--   [MultiGroupProvider](#multigroupprovider)
-    -   [Parameters](#parameters-14)
     -   [repositoryGroup](#repositorygroup)
-        -   [Parameters](#parameters-15)
-    -   [repositoryGroups](#repositorygroups-1)
+        -   [Parameters](#parameters-13)
+    -   [repositoryGroups](#repositorygroups)
+        -   [Parameters](#parameters-14)
+-   [MultiGroupProvider](#multigroupprovider)
+    -   [Parameters](#parameters-15)
+    -   [repositoryGroup](#repositorygroup-1)
         -   [Parameters](#parameters-16)
-    -   [createRepositoryGroup](#createrepositorygroup)
+    -   [repositoryGroups](#repositorygroups-1)
         -   [Parameters](#parameters-17)
-    -   [addRepositoryGroup](#addrepositorygroup)
+    -   [createRepositoryGroup](#createrepositorygroup)
         -   [Parameters](#parameters-18)
--   [RepositoryGroup](#repositorygroup-1)
-    -   [Parameters](#parameters-19)
+    -   [addRepositoryGroup](#addrepositorygroup)
+        -   [Parameters](#parameters-19)
+-   [RepositoryGroup](#repositorygroup-2)
+    -   [Parameters](#parameters-20)
     -   [Properties](#properties)
     -   [repositoryClass](#repositoryclass-1)
     -   [branchClass](#branchclass-1)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass-1)
     -   [branch](#branch-1)
-        -   [Parameters](#parameters-20)
-    -   [branches](#branches-1)
         -   [Parameters](#parameters-21)
+    -   [branches](#branches-1)
+        -   [Parameters](#parameters-22)
     -   [attributeMapping](#attributemapping)
 -   [id](#id)
 -   [id](#id-1)
@@ -120,27 +122,27 @@ console.log(await readme.getString());
 -   [url](#url)
 -   [avatarURL](#avatarurl)
 -   [NamedObject](#namedobject)
-    -   [Parameters](#parameters-22)
+    -   [Parameters](#parameters-23)
     -   [Properties](#properties-1)
     -   [equals](#equals-1)
-        -   [Parameters](#parameters-23)
+        -   [Parameters](#parameters-24)
     -   [toJSON](#tojson-1)
     -   [defaultOptions](#defaultoptions)
     -   [attributeMapping](#attributemapping-1)
 -   [description](#description)
 -   [Repository](#repository-1)
-    -   [Parameters](#parameters-24)
+    -   [Parameters](#parameters-25)
     -   [Properties](#properties-2)
     -   [fullName](#fullname)
     -   [provider](#provider-1)
     -   [equals](#equals-2)
-        -   [Parameters](#parameters-25)
-    -   [entry](#entry)
         -   [Parameters](#parameters-26)
-    -   [entries](#entries)
+    -   [entry](#entry)
         -   [Parameters](#parameters-27)
-    -   [maybeEntry](#maybeentry)
+    -   [entries](#entries)
         -   [Parameters](#parameters-28)
+    -   [maybeEntry](#maybeentry)
+        -   [Parameters](#parameters-29)
     -   [urls](#urls)
     -   [url](#url-1)
     -   [issuesURL](#issuesurl)
@@ -151,38 +153,38 @@ console.log(await readme.getString());
     -   [isDisabled](#isdisabled)
     -   [isTemplate](#istemplate)
     -   [branch](#branch-2)
-        -   [Parameters](#parameters-29)
+        -   [Parameters](#parameters-30)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches-2)
-        -   [Parameters](#parameters-30)
-    -   [createBranch](#createbranch)
         -   [Parameters](#parameters-31)
-    -   [addBranch](#addbranch)
+    -   [createBranch](#createbranch)
         -   [Parameters](#parameters-32)
-    -   [deleteBranch](#deletebranch)
+    -   [addBranch](#addbranch)
         -   [Parameters](#parameters-33)
-    -   [tags](#tags-1)
+    -   [deleteBranch](#deletebranch)
         -   [Parameters](#parameters-34)
-    -   [tag](#tag)
+    -   [tags](#tags-1)
         -   [Parameters](#parameters-35)
+    -   [tag](#tag)
+        -   [Parameters](#parameters-36)
     -   [delete](#delete)
     -   [createPullRequest](#createpullrequest)
-        -   [Parameters](#parameters-36)
-    -   [addPullRequest](#addpullrequest)
         -   [Parameters](#parameters-37)
+    -   [addPullRequest](#addpullrequest)
+        -   [Parameters](#parameters-38)
     -   [pullRequests](#pullrequests)
     -   [pullRequest](#pullrequest)
-        -   [Parameters](#parameters-38)
-    -   [deletePullRequest](#deletepullrequest)
         -   [Parameters](#parameters-39)
-    -   [addHook](#addhook)
+    -   [deletePullRequest](#deletepullrequest)
         -   [Parameters](#parameters-40)
-    -   [createHook](#createhook)
+    -   [addHook](#addhook)
         -   [Parameters](#parameters-41)
+    -   [createHook](#createhook)
+        -   [Parameters](#parameters-42)
     -   [hooks](#hooks)
     -   [type](#type-1)
     -   [refId](#refid)
-        -   [Parameters](#parameters-42)
+        -   [Parameters](#parameters-43)
     -   [repositoryClass](#repositoryclass-2)
     -   [pullRequestClass](#pullrequestclass-2)
     -   [branchClass](#branchclass-2)
@@ -195,19 +197,19 @@ console.log(await readme.getString());
 -   [homePageURL](#homepageurl-1)
 -   [issuesURL](#issuesurl-1)
 -   [Ref](#ref)
-    -   [Parameters](#parameters-43)
+    -   [Parameters](#parameters-44)
     -   [equals](#equals-3)
-        -   [Parameters](#parameters-44)
+        -   [Parameters](#parameters-45)
     -   [ref](#ref-1)
     -   [refId](#refid-1)
-        -   [Parameters](#parameters-45)
-    -   [entries](#entries-1)
         -   [Parameters](#parameters-46)
+    -   [entries](#entries-1)
+        -   [Parameters](#parameters-47)
     -   [asyncIterator](#asynciterator)
     -   [maybeEntry](#maybeentry-1)
-        -   [Parameters](#parameters-47)
-    -   [entry](#entry-1)
         -   [Parameters](#parameters-48)
+    -   [entry](#entry-1)
+        -   [Parameters](#parameters-49)
     -   [provider](#provider-2)
     -   [owner](#owner)
     -   [issuesURL](#issuesurl-2)
@@ -222,7 +224,7 @@ console.log(await readme.getString());
 -   [CommitResult](#commitresult)
     -   [Properties](#properties-3)
 -   [Branch](#branch-3)
-    -   [Parameters](#parameters-49)
+    -   [Parameters](#parameters-50)
     -   [Properties](#properties-4)
     -   [fullName](#fullname-1)
     -   [fullCondensedName](#fullcondensedname)
@@ -230,55 +232,55 @@ console.log(await readme.getString());
     -   [isDefault](#isdefault)
     -   [delete](#delete-1)
     -   [commit](#commit)
-        -   [Parameters](#parameters-50)
-    -   [removeEntries](#removeentries)
         -   [Parameters](#parameters-51)
+    -   [removeEntries](#removeentries)
+        -   [Parameters](#parameters-52)
     -   [entryClass](#entryclass-2)
     -   [createPullRequest](#createpullrequest-1)
-        -   [Parameters](#parameters-52)
+        -   [Parameters](#parameters-53)
     -   [pullRequestClass](#pullrequestclass-3)
     -   [createBranch](#createbranch-1)
-        -   [Parameters](#parameters-53)
+        -   [Parameters](#parameters-54)
 -   [Issue](#issue)
 -   [PullRequest](#pullrequest-1)
-    -   [Parameters](#parameters-54)
+    -   [Parameters](#parameters-55)
     -   [Properties](#properties-5)
     -   [repository](#repository-2)
     -   [provider](#provider-3)
     -   [equals](#equals-4)
-        -   [Parameters](#parameters-55)
+        -   [Parameters](#parameters-56)
     -   [delete](#delete-2)
     -   [merge](#merge)
-        -   [Parameters](#parameters-56)
+        -   [Parameters](#parameters-57)
     -   [decline](#decline)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-57)
-    -   [open](#open)
         -   [Parameters](#parameters-58)
+    -   [open](#open)
+        -   [Parameters](#parameters-59)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-59)
+    -   [Parameters](#parameters-60)
     -   [Properties](#properties-6)
     -   [equals](#equals-5)
-        -   [Parameters](#parameters-60)
+        -   [Parameters](#parameters-61)
     -   [toJSON](#tojson-3)
 -   [Milestone](#milestone)
-    -   [Parameters](#parameters-61)
--   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-62)
--   [optionJSON](#optionjson)
+-   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-63)
--   [generateBranchName](#generatebranchname)
+-   [optionJSON](#optionjson)
     -   [Parameters](#parameters-64)
--   [mapAttributes](#mapattributes)
+-   [generateBranchName](#generatebranchname)
     -   [Parameters](#parameters-65)
+-   [mapAttributes](#mapattributes)
+    -   [Parameters](#parameters-66)
 
 ## BaseProvider
 
@@ -417,13 +419,13 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### provider
 
-we are our own provider
+We are our own provider
 
 Returns **Provider** this
 
 ### toJSON
 
-list all defined entries from defaultOptions
+List all defined entries from defaultOptions
 
 ### repositoryClass
 
@@ -481,14 +483,24 @@ Returns **Provider** newly created provider or undefined if options are not suff
 
 ## priority
 
-in case there are several provider able to support a given source which one sould be used ?
+In case there are several provider able to support a given source which one sould be used ?
 this defines the order
 
 ## SingleGroupProvider
 
 **Extends RepositoryOwner(BaseProvider)**
 
-Provider with a single set of repositoies
+Provider with a single set of repositories
+
+### repositoryGroup
+
+List groups
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[RepositoryGroup](#repositorygroup)** deliver the one and only present group
 
 ### repositoryGroups
 
@@ -498,7 +510,7 @@ List groups
 
 -   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator&lt;[RepositoryGroup](#repositorygroup)>** all matching repositories groups of the provider
+Returns **Iterator&lt;[RepositoryGroup](#repositorygroup)>** always deliver the one and only present group
 
 ## MultiGroupProvider
 
