@@ -127,19 +127,10 @@ export class BaseProvider {
    * @return {string} normalized name
    */
   normalizeRepositoryName(name, forLookup) {
-    name = name.trim();
-    for (const b of this.repositoryBases) {
-      if (name.startsWith(b)) {
-        name = name.slice(b.length);
-        break;
-      }
-    }
-
-    name = name.replace(/\.git(#.*)?$/, "").replace(/#.*$/, "");
-
+    const { repository } = this.parseName(name);
     return forLookup && !this.areRepositoryNamesCaseSensitive
-      ? name.toLowerCase()
-      : name;
+      ? repository.toLowerCase()
+      : repository;
   }
 
   normalizeGroupName(name, forLookup) {
