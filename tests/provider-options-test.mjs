@@ -1,7 +1,7 @@
 import test from "ava";
 import { BaseProvider } from "repository-provider";
 
-test("provider default env options", async t => {
+test("provider default env options", t => {
   t.is(BaseProvider.optionsFromEnvironment(), undefined);
   t.is(BaseProvider.optionsFromEnvironment({}), undefined);
   t.true(BaseProvider.areOptionsSufficciant());
@@ -35,7 +35,7 @@ class MyProvider extends BaseProvider {
   }
 }
 
-test("provider env options", async t => {
+test("provider env options", t => {
   t.deepEqual(
     MyProvider.optionsFromEnvironment({
       GITEA_API: "http:/somewhere/api",
@@ -50,7 +50,7 @@ test("provider env options", async t => {
   );
 });
 
-test("provider env options multiple keys on template", async t => {
+test("provider env options multiple keys on template", t => {
   t.deepEqual(
     MyProvider.optionsFromEnvironment({
       BITBUCKET_USERNAME: "aName",
@@ -62,13 +62,13 @@ test("provider env options multiple keys on template", async t => {
   );
 });
 
-test("initialize", async t => {
+test("initialize", t => {
   const provider = MyProvider.initialize(undefined, { GITEA_TOKEN: "abc" });
   t.is(provider.name, "MyProvider");
   t.is(MyProvider.initialize(undefined, undefined), undefined);
 });
 
-test("new provider", async t => {
+test("new provider", t => {
   const provider = new BaseProvider({ key: "value" });
   t.is(provider.priority, 0);
   t.is(provider.name, "BaseProvider");
@@ -79,7 +79,7 @@ test("new provider", async t => {
   });
 });
 
-test("provider with priority", async t => {
+test("provider with priority", t => {
   const provider = new BaseProvider({ priority: 77 });
   t.is(provider.priority, 77);
 });
