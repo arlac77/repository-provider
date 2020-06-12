@@ -211,13 +211,9 @@ export class BaseProvider {
     const parts = name.split(/\//);
 
     if (parts.length >= 2) {
-      if (rightAligned) {
-        result.group = parts[parts.length - 2];
-        result.repository = parts[parts.length - 1];
-      } else {
-        result.group = parts[0];
-        result.repository = parts[1];
-      }
+      const i = rightAligned ? parts.length - 2 : 0;
+      result.group = parts[i];
+      result.repository = parts[i + 1];
     } else {
       result.repository = name;
     }
