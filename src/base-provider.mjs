@@ -1,4 +1,5 @@
-import { definePropertiesFromOptions, asArray } from "./util.mjs";
+import { asArray } from "./util.mjs";
+import { definePropertiesFromOptions } from "./attribute.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
 import { Repository } from "./repository.mjs";

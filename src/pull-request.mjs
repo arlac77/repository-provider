@@ -1,8 +1,10 @@
 import {
   notImplementedError,
+} from "./util.mjs";
+import {
   definePropertiesFromOptions,
   optionJSON
-} from "./util.mjs";
+} from "./attribute.mjs";
 
 /**
  * Abstract pull request

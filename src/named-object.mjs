@@ -1,4 +1,4 @@
-import { definePropertiesFromOptions, mapAttributes, optionJSON } from "./util.mjs";
+import { definePropertiesFromOptions, mapAttributes, optionJSON } from "./attribute.mjs";
 
 /**
  * @param {string} name

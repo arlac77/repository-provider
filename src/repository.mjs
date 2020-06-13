@@ -1,5 +1,5 @@
 import { matcher } from "matching-iterator";
-import { optionJSON } from "./util.mjs";
+import { optionJSON } from "./attribute.mjs";
 import { NamedObject } from "./named-object.mjs";
 
 /**

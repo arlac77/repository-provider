@@ -1,10 +1,9 @@
 import test from "ava";
-import { SingleGroupProvider, RepositoryGroup, Branch } from "repository-provider";
-import {
+import { SingleGroupProvider, RepositoryGroup, Branch,
   generateBranchName,
   definePropertiesFromOptions,
   optionJSON
-} from "../src/util.mjs";
+} from "repository-provider";
 
 async function gbnt(t, branchNames, pattern, result) {
   const provider = new SingleGroupProvider();

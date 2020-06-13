@@ -1,5 +1,5 @@
 import test from "ava";
-import { mapAttributes } from "../src/util.mjs";
+import { mapAttributes } from "repository-provider";
 
 function amt(t, a, b, c) {
   t.deepEqual(mapAttributes(a, b), c);
