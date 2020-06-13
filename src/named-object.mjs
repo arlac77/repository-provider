@@ -40,7 +40,9 @@ export class NamedObject {
        * Avatar.
        * @return {string}
        */
-      avatarURL: {}
+      avatarURL: {},
+
+      homePageURL: {}
     };
   }
 
