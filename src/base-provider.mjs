@@ -7,7 +7,7 @@ import { Branch } from "./branch.mjs";
 import { Hook } from "./hook.mjs";
 
 /**
- * 
+ *
  */
 export class BaseProvider {
   /**
@@ -117,7 +117,7 @@ export class BaseProvider {
    * @return {string[]} common base urls of all repositories
    */
   get repositoryBases() {
-    return [];
+    return ["/"];
   }
 
   /**
@@ -179,23 +179,17 @@ export class BaseProvider {
       }
     }
 
-    if (name.startsWith("/")) {
-      name = name.slice(1);
-    }
+    let rightAligned;
 
-    let rightAligned = false;
-
-    name = name.replace(/(#(.*))$/,(match, x, branch) => {
-      result.branch = branch;
-      rightAligned = true;
-      return '';
+    name = name.replace(/((\.git)?(#(.*))?)$/, (match, a, b, c, branch) => {
+      if (branch) {
+        result.branch = branch;
+      }
+      rightAligned = a.length > 0;
+  
+      return "";
     });
-
-    if (name.endsWith(".git")) {
-      name = name.slice(0, name.length - 4);
-      rightAligned = true;
-    }
-
+  
     let m = name.match(/^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/);
     if (m) {
       result.base = m[0];
