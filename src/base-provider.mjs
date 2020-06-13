@@ -185,19 +185,18 @@ export class BaseProvider {
 
     let rightAligned = false;
 
-    let m = name.match(/#(.*)$/);
-    if (m) {
-      result.branch = m[1];
-      name = name.replace(/#.*$/, "");
+    name = name.replace(/(#(.*))$/,(match, x, branch) => {
+      result.branch = branch;
       rightAligned = true;
-    }
+      return '';
+    });
 
     if (name.endsWith(".git")) {
       name = name.slice(0, name.length - 4);
       rightAligned = true;
     }
 
-    m = name.match(/^git@[^:\/]+[:\/]/);
+    let m = name.match(/^git@[^:\/]+[:\/]/);
     if (m) {
       result.base = m[0];
       name = name.slice(result.base.length);
