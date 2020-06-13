@@ -23,28 +23,16 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
       ...super.attributes,
 
       /**
-       * Unique id.
-       * @return {string}
-       */
-      uuid: undefined,
-
-      /**
        * Type of the repository group either User or Organization.
        * @return {string}
        */
-      type: undefined,
+      type: {},
 
       /**
        * Group home.
        * @return {string}
        */
-      url: undefined,
-
-      /**
-       * Avatar.
-       * @return {string}
-       */
-      avatarURL: undefined
+      url: {}
     };
   }
 

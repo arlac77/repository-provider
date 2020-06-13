@@ -117,13 +117,15 @@ class MyRepository extends Repository {
   static get attributes() {
     return {
       ...super.attributes,
-      myAttribute: 77
+      myAttribute: { default: 77 }
     };
   }
 }
 
 test("defaultOption", t => {
-  const repository = new MyRepository(new SingleGroupProvider(), "r1", { id: "xxx" });
+  const repository = new MyRepository(new SingleGroupProvider(), "r1", {
+    id: "xxx"
+  });
   t.is(repository.myAttribute, 77);
   t.is(repository.id, "xxx");
 });

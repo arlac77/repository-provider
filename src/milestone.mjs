@@ -6,7 +6,7 @@ export class Milestone extends NamedObject {
   static get attributes() {
     return {
       ...super.attributes,
-      state: undefined
+      state: {}
     };
   }
 

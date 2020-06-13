@@ -16,13 +16,13 @@ export function definePropertiesFromOptions(
   const after = {};
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
+
+      // TODO can be removed later
       if (typeof attribute !== "object") {
         attribute = { default: attribute };
       }
 
       let value = options[name] || attribute.default;
-
-      //console.log(name, value);
 
       if (
         object.hasOwnProperty(name) ||
@@ -36,7 +36,6 @@ export function definePropertiesFromOptions(
       if (value !== undefined) {
         const path = name.split(/\./);
 
-        //console.log("A", path, value);
         const p0 = path[0];
 
         if (properties[p0] === undefined) {
@@ -50,15 +49,11 @@ export function definePropertiesFromOptions(
 
           properties[p0] = { value: {} };
         } else {
-          //console.log("ALREADY there", path, path.length, properties[p0]);
-
           if (path.length === 1) {
             after[name] = value;
             return;
           }
         }
-
-        //console.log("B", path, value);
 
         let parent = properties[p0].value;
 
@@ -66,7 +61,6 @@ export function definePropertiesFromOptions(
           const key = path[n];
 
           if (n === path.length - 1) {
-         //   console.log(key, parent[key]);
             parent[key] = value;
           }
           if (parent[key] === undefined) {
@@ -74,8 +68,6 @@ export function definePropertiesFromOptions(
           }
           parent = parent[key];
         }
-
-        //console.log(path, p0, JSON.stringify(properties[p0]));
       }
     });
   }

@@ -28,7 +28,19 @@ export class NamedObject {
        * Unique id within the provider.
        * @return {string}
        */
-      id: {}
+      id: {},
+
+      /**
+       * Unique id.
+       * @return {string}
+       */
+      uuid: {},
+
+      /**
+       * Avatar.
+       * @return {string}
+       */
+      avatarURL: {}
     };
   }
 

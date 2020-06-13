@@ -26,12 +26,6 @@ export class Repository extends NamedObject {
       ...super.attributes,
 
       /**
-       * Unique id.
-       * @return {string}
-       */
-      uuid: undefined,
-
-      /**
        * The name of the default branch
        * @return {string}
        */
@@ -41,24 +35,23 @@ export class Repository extends NamedObject {
        * URLs of the repository
        * @return {string[]}
        */
-      urls: undefined,
+      urls: {},
 
       /**
        * The url of home page.
        * @return {string}
        */
-      homePageURL: undefined,
+      homePageURL: {},
 
       /**
        * The url of issue tracking system.
        * @return {string}
        */
-      issuesURL: undefined,
-
-      isArchived: undefined,
-      isLocked: undefined,
-      isDisabled: undefined,
-      isTemplate: undefined
+      issuesURL: {},
+      isArchived: { default: false },
+      isLocked: { default: false },
+      isDisabled: { default: false },
+      isTemplate: { default: false }
     };
   }
 
