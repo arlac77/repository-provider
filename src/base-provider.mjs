@@ -74,13 +74,15 @@ export class BaseProvider {
     return true;
   }
 
-  static get defaultOptions() {
+  static get attributes() {
     return {
       /**
        * In case there are several provider able to support a given source which one sould be used ?
        * this defines the order
        */
-      priority: 0
+      priority: {
+        default: 0
+      }
     };
   }
 
@@ -376,13 +378,13 @@ export class BaseProvider {
   }
 
   /**
-   * List all defined entries from defaultOptions
+   * List all defined entries from attributes
    *
    */
   toJSON() {
     const json = { name: this.name };
 
-    Object.keys(this.constructor.defaultOptions).forEach(k => {
+    Object.keys(this.constructor.attributes).forEach(k => {
       if (this[k] !== undefined && typeof this[k] !== "function") {
         json[k] = this[k];
       }

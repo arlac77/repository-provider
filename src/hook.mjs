@@ -7,15 +7,14 @@ import { NamedObject } from "./named-object.mjs";
  * @property {Set<string>} events
  */
 export class Hook extends NamedObject {
-  static get defaultOptions() {
+  static get attributes() {
     return {
-      ...super.defaultOptions,
-      id: undefined,
-      url: "",
-      secret: undefined,
-      content_type: "json",
-      insecure_ssl: false,
-      active: true
+      ...super.attributes,
+      url: {},
+      secret: { private: true },
+      content_type: { default: "json" },
+      insecure_ssl: { default: false },
+      active: { default: true }
     };
   }
 
@@ -38,7 +37,7 @@ export class Hook extends NamedObject {
   }
 
   /**
-   * provide name, events and all defined defaultOptions
+   * provide name, events and all defined attributes
    */
   toJSON() {
     return optionJSON(this, { name: this.name, events: [...this.events] });

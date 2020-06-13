@@ -1,22 +1,34 @@
-import { definePropertiesFromOptions, mapAttributes, optionJSON } from "./attribute.mjs";
+import {
+  definePropertiesFromOptions,
+  mapAttributes,
+  optionJSON
+} from "./attribute.mjs";
 
 /**
  * @param {string} name
  * @param {Object} options
- * 
+ *
  * @property {string} name
  */
 export class NamedObject {
   /**
    * options
    */
-  static get defaultOptions() {
+  static get attributes() {
     return {
       /**
        * The description of the repository content.
        * @return {string}
        */
-      description: undefined
+      description: {
+        description: "human readable description"
+      },
+
+      /**
+       * Unique id within the provider.
+       * @return {string}
+       */
+      id: {}
     };
   }
 
@@ -24,19 +36,22 @@ export class NamedObject {
    * Map attributes between external and internal representation
    * @return {Object}
    */
-  static get attributeMapping()
-  {
+  static get attributeMapping() {
     return {};
   }
 
-  constructor( name, options, additionaProperties) {
-    definePropertiesFromOptions(this, mapAttributes(options, this.constructor.attributeMapping), {
-      name: { value: name },
-      ...additionaProperties
-    });
+  constructor(name, options, additionaProperties) {
+    definePropertiesFromOptions(
+      this,
+      mapAttributes(options, this.constructor.attributeMapping),
+      {
+        name: { value: name },
+        ...additionaProperties
+      }
+    );
   }
-  
-   /**
+
+  /**
    * Check for equality
    * @param {NamedObject} other
    * @return {boolean} true if names are equal
@@ -58,7 +73,7 @@ export class NamedObject {
   }
 
   /**
-   * Provide name and all defined defaultOptions
+   * Provide name and all defined attributes
    */
   toJSON() {
     return optionJSON(this, {

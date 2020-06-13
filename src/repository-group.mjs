@@ -18,15 +18,9 @@ import { Branch } from "./branch.mjs";
  */
 
 export class RepositoryGroup extends RepositoryOwner(NamedObject) {
-  static get defaultOptions() {
+  static get attributes() {
     return {
-      ...super.defaultOptions,
-
-      /**
-       * Unique id within the provider.
-       * @return {string}
-       */
-      id: undefined,
+      ...super.attributes,
 
       /**
        * Unique id.

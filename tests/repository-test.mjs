@@ -114,9 +114,9 @@ test("repository classes", t => {
 });
 
 class MyRepository extends Repository {
-  static get defaultOptions() {
+  static get attributes() {
     return {
-      ...super.defaultOptions,
+      ...super.attributes,
       myAttribute: 77
     };
   }

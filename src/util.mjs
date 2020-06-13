@@ -19,8 +19,6 @@ export async function generateBranchName(repository, pattern) {
   //const present = new Set();
 
   for await (const b of repository.branches(pattern)) {
-    //console.log("FOUND", b.name);
-    //present.add(b.name);
     n++;
   }
 

@@ -7,15 +7,15 @@ export class Ref extends NamedObject {
   /**
    * options
    */
-  static get defaultOptions() {
+  static get attributes() {
     return {
-      ...super.defaultOptions,
+      ...super.attributes,
  
       /**
        * Can the brach be modified.
        * @return {string}
        */
-      isProtected: undefined
+      isProtected: {}
     };
   }
 

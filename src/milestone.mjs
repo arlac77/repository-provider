@@ -3,12 +3,10 @@ import { NamedObject } from "./named-object.mjs";
 /**
  */
 export class Milestone extends NamedObject {
-  static get defaultOptions() {
+  static get attributes() {
     return {
-      ...super.defaultOptions,
-      id: undefined,
-      state: undefined,
-      title: undefined
+      ...super.attributes,
+      state: undefined
     };
   }
 

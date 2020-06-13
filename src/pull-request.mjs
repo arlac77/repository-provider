@@ -76,7 +76,7 @@ export class PullRequest {
     return new this(source, destination, "0", options);
   }
 
-  static get defaultOptions() {
+  static get attributes() {
     return {
       /**
        * internal id.
@@ -234,7 +234,7 @@ export class PullRequest {
       [this.number, this.title],
       ["source", this.source],
       ["destination", this.destination],
-      ...Object.keys(this.constructor.defaultOptions)
+      ...Object.keys(this.constructor.attributes)
         .filter(k => k !== "id" && k !== "title" && k !== "body")
         .map(k => [k, this[k]]),
       ]

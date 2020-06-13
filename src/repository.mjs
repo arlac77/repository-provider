@@ -21,15 +21,9 @@ export class Repository extends NamedObject {
   /**
    * options
    */
-  static get defaultOptions() {
+  static get attributes() {
     return {
-      ...super.defaultOptions,
-
-      /**
-       * Unique id within the provider.
-       * @return {string}
-       */
-      id: undefined,
+      ...super.attributes,
 
       /**
        * Unique id.
@@ -41,7 +35,7 @@ export class Repository extends NamedObject {
        * The name of the default branch
        * @return {string}
        */
-      defaultBranchName: "master",
+      defaultBranchName: { default: "master" },
 
       /**
        * URLs of the repository
@@ -470,7 +464,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Provide name and all defined defaultOptions
+   * Provide name and all defined attributes
    */
   toJSON() {
     return optionJSON(this, {

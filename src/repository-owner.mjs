@@ -98,7 +98,6 @@ export default function RepoositoryOwner(base) {
       this._repositories.delete(this.normalizeRepositoryName(name, true));
     }
 
-
     initializeRepositories() {
     }
   };
