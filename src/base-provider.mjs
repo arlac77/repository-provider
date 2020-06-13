@@ -179,6 +179,13 @@ export class BaseProvider {
         break;
       }
     }
+    name = name.replace(
+      /^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/,
+      (m, base) => {
+        result.base = base;
+        return "";
+      }
+    );
 
     let rightAligned;
 
@@ -187,15 +194,8 @@ export class BaseProvider {
         result.branch = branch;
       }
       rightAligned = a.length > 0;
-
       return "";
     });
-
-    const m = name.match(/^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/);
-    if (m) {
-      result.base = m[0];
-      name = name.slice(result.base.length);
-    }
 
     const parts = name.split(/\//);
 
