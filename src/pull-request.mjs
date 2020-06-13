@@ -7,14 +7,14 @@ import { NamedObject } from "./named-object.mjs";
  * {@link Repository#addPullRequest}
  * @param {Branch} source merge source
  * @param {Branch} destination merge target
- * @param {string} number
+ * @param {string} name
  * @param {Object} options
  * @param {string} [options.title]
  * @param {string} [options.state]
  * @param {boolean} [options.merged]
  * @param {boolean} [options.locked]
 
- * @property {string} number
+ * @property {string} name
  * @property {Branch} source
  * @property {Branch} destination
  * @property {string} [title]
