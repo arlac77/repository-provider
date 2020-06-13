@@ -91,7 +91,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * the owners provider
+   * The owners provider
    * @return {Provider}
    */
   get provider() {
@@ -132,7 +132,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * get exactly one matching entry by name or undefined if no such entry is found
+   * Get exactly one matching entry by name or undefined if no such entry is found
    * @param {string} name
    * @return {Promise<Entry>}
    */
@@ -149,7 +149,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * preffered url to access the repo
+   * Preffered url to access the repo
    * @return {string}
    */
   get url() {
@@ -316,7 +316,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * create a pull request (or deliver an already present for thefiven name)
+   * Create a pull request (or deliver an already present for thefiven name)
    * @param {string} name of the pr
    * @param {Branch} source branch
    * @param {Object} options
@@ -470,7 +470,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * provide name and all defined defaultOptions
+   * Provide name and all defined defaultOptions
    */
   toJSON() {
     return optionJSON(this, {
