@@ -165,9 +165,10 @@ export class BaseProvider {
    * @return {Object}
    */
   parseName(name) {
-    name = name.trim();
-    name = name.replace(/^([\w\-\+]+:\/\/)[^\@]+@/, (match, g1) => g1);
-    name = name.replace(/^git\+/, "");
+    name = name.replace(
+      /^\s*(git\+)?(([\w\-\+]+:\/\/)[^\@]+@)?/,
+      (m, a, b, r) => r || ""
+    );
 
     const result = {};
 
@@ -181,16 +182,16 @@ export class BaseProvider {
 
     let rightAligned;
 
-    name = name.replace(/((\.git)?(#(.*))?)$/, (match, a, b, c, branch) => {
+    name = name.replace(/((\.git)?(#([^\s]*))?)\s*$/, (m, a, b, c, branch) => {
       if (branch) {
         result.branch = branch;
       }
       rightAligned = a.length > 0;
-  
+
       return "";
     });
-  
-    let m = name.match(/^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/);
+
+    const m = name.match(/^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/);
     if (m) {
       result.base = m[0];
       name = name.slice(result.base.length);
