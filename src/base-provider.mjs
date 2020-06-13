@@ -196,13 +196,7 @@ export class BaseProvider {
       rightAligned = true;
     }
 
-    let m = name.match(/^git@[^:\/]+[:\/]/);
-    if (m) {
-      result.base = m[0];
-      name = name.slice(result.base.length);
-    }
-
-    m = name.match(/^[\w\-^+]+:\/\/[^\/]+\//);
+    let m = name.match(/^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/);
     if (m) {
       result.base = m[0];
       name = name.slice(result.base.length);
