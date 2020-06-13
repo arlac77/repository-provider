@@ -1,10 +1,6 @@
-import {
-  notImplementedError,
-} from "./util.mjs";
-import {
-  definePropertiesFromOptions,
-  optionJSON
-} from "./attribute.mjs";
+import { notImplementedError } from "./util.mjs";
+import { optionJSON } from "./attribute.mjs";
+import { NamedObject } from "./named-object.mjs";
 
 /**
  * Abstract pull request
@@ -26,7 +22,7 @@ import {
  * @property {boolean} [merged]
  * @property {boolean} [locked]
  */
-export class PullRequest {
+export class PullRequest extends NamedObject {
   /**
    * All valid states
    * @return {Set<string>} valid states
@@ -40,7 +36,7 @@ export class PullRequest {
    * @return {Set<string>} states to list by default
    */
   static get defaultListStates() {
-    return new Set(['OPEN']);
+    return new Set(["OPEN"]);
   }
 
   /**
@@ -78,12 +74,7 @@ export class PullRequest {
 
   static get attributes() {
     return {
-      /**
-       * internal id.
-       * @return {string}
-       */
-      id: undefined,
-
+      ...super.attributes,
       /**
        * the one line description of the pull request.
        * @return {string}
@@ -103,7 +94,9 @@ export class PullRequest {
        * - CLOSED
        * @return {string}
        */
-      state: "OPEN",
+      state: {
+        default: "OPEN"
+      },
 
       /**
        * locked state of the pull request.
@@ -115,27 +108,18 @@ export class PullRequest {
        * merged state of the pull request.
        * @return {boolean}
        */
-      merged: false
+      merged: {
+        default: false
+      }
     };
   }
 
-  constructor(source, destination, number, options) {
+  constructor(source, destination, name, options) {
     let state;
 
-    const properties = {
-      number: { value: number.toString() },
+    super(name, options, {
       source: { value: source },
       destination: { value: destination },
-      merged: {
-        set(value) {
-          if (value) {
-            state = "MERGED";
-          }
-        },
-        get() {
-          return state === "MERGED";
-        }
-      },
       state: {
         set(value) {
           value = value.toUpperCase();
@@ -147,17 +131,25 @@ export class PullRequest {
           return state;
         }
       }
-    };
-
-    definePropertiesFromOptions(this, options, properties);
+    });
 
     if (destination !== undefined) {
       destination._addPullRequest(this);
     }
   }
 
-  get name() {
-    return this.number;
+  set merged(flag) {
+    if (flag) {
+      this.state = "MERGED";
+    }
+  }
+
+  get merged() {
+    return this.state === "MERGED";
+  }
+
+  get number() {
+    return this.name;
   }
 
   /**
@@ -184,11 +176,7 @@ export class PullRequest {
    * @return {boolean} true if number and repository are equal
    */
   equals(other) {
-    if(other === undefined) {
-      return false;
-    }
-
-    return this.number === other.number && this.repository.equals(other.repository);
+    return super.equals(other) && this.repository.equals(other.repository);
   }
 
   async write() {
@@ -235,9 +223,9 @@ export class PullRequest {
       ["source", this.source],
       ["destination", this.destination],
       ...Object.keys(this.constructor.attributes)
-        .filter(k => k !== "id" && k !== "title" && k !== "body")
-        .map(k => [k, this[k]]),
-      ]
+        .filter(k => k !== "id" && k !== "title" && k !== "body" && this[k] !== undefined)
+        .map(k => [k, this[k]])
+    ]
       .map(([k, v]) => `${k}: ${v}`)
       .join(", ");
   }

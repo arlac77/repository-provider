@@ -21,48 +21,23 @@ export class BaseProvider {
       return undefined;
     }
 
+    const attributes = this.attributes;
     let options;
 
-    const o = this.environmentOptions;
-
-    for (let [k, v] of Object.entries(o)) {
-      if (env[k] !== undefined) {
-        if (options === undefined) {
-          options = {};
-        }
-
-        if (typeof v === "string") {
-          v = { path: v, template: {} };
-        }
-
-        let t = options;
-
-        const keyPath = v.path.split(/\./);
-
-        for (let n = 0; ; n++) {
-          const key = keyPath[n];
-
-          if (n === keyPath.length - 1) {
-            t[key] = v.parse ? v.parse(env[k]) : env[k];
-            break;
+    for (let [envName, value] of Object.entries(env)) {
+      for(const [name, attribute] of Object.entries(attributes)) {
+        if(asArray(attribute.env).find(e => e === envName)) {
+          if (options === undefined) {
+            options = {};
           }
-          if (t[key] === undefined) {
-            t[key] = v.template;
-          }
-          t = t[key];
+          options[name] = value;
+          Object.assign(options,attribute.additionalAttributes);
+          break;
         }
       }
     }
 
     return options;
-  }
-
-  /**
-   * Known mapping from environment variable to options
-   * @return {Object} with the mapping of environmentvaraible names to option keys
-   */
-  static get environmentOptions() {
-    return {};
   }
 
   /**

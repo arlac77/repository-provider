@@ -14,29 +14,68 @@ export function definePropertiesFromOptions(
 ) {
   const attributes = object.constructor.attributes;
   const after = {};
-
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
-      if (object.hasOwnProperty(name)) {
+      if (typeof attribute !== "object") {
+        attribute = { default: attribute };
+      }
+
+      let value = options[name] || attribute.default;
+
+      //console.log(name, value);
+
+      if (
+        object.hasOwnProperty(name) ||
+        name === "merged" // TODO hack
+        /*|| object.constructor.prototype[name] !== undefined*/
+      ) {
+        after[name] = value;
         return;
       }
 
-      let value = options[name];
-
-      if (value === undefined) {
-        if (typeof attribute === "object") {
-          value = attribute.default;
-        } else {
-          value = attribute;
-        }
-      }
-
       if (value !== undefined) {
-        if (properties[name] === undefined) {
-          properties[name] = { value };
+        const path = name.split(/\./);
+
+        //console.log("A", path, value);
+        const p0 = path[0];
+
+        if (properties[p0] === undefined) {
+          if (path.length === 1) {
+            if (attribute.set) {
+              value = attribute.set(value);
+            }
+            properties[p0] = { value };
+            return;
+          }
+
+          properties[p0] = { value: {} };
         } else {
-          after[name] = value;
+          //console.log("ALREADY there", path, path.length, properties[p0]);
+
+          if (path.length === 1) {
+            after[name] = value;
+            return;
+          }
         }
+
+        //console.log("B", path, value);
+
+        let parent = properties[p0].value;
+
+        for (let n = 1; n < path.length; n++) {
+          const key = path[n];
+
+          if (n === path.length - 1) {
+         //   console.log(key, parent[key]);
+            parent[key] = value;
+          }
+          if (parent[key] === undefined) {
+            parent[key] = {};
+          }
+          parent = parent[key];
+        }
+
+        //console.log(path, p0, JSON.stringify(properties[p0]));
       }
     });
   }

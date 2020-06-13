@@ -9,27 +9,31 @@ test("provider default env options", t => {
 
 class MyProvider extends BaseProvider {
   static areOptionsSufficciant(options) {
-    return options.authentication ? true : false;
+    return options["authentication.token"] ? true : false;
   }
 
-  static get environmentOptions() {
+  static get attributes() {
     return {
-      GIT_CLONE_OPTIONS: {
-        path: "cloneOptions",
+      ...super.attributes,
+      cloneOptions: {
+        env: "GIT_CLONE_OPTIONS",
         parse: value => value.split(/\s+/)
       },
-      GITEA_TOKEN: {
-        path: "authentication.token",
-        template: { type: "token" }
+      "authentication.token": {
+        env: ["GITEA_TOKEN","XXX_TOKEN"],
+        additionalAttributes: { "authentication.type": "token" },
+        private: true
       },
-      GITEA_API: "api",
-      BITBUCKET_USERNAME: {
-        path: "authentication.username",
-        template: { type: "basic" }
+      api: {
+        env: "GITEA_API"
       },
-      BITBUCKET_PASSWORD: {
-        path: "authentication.password",
-        template: { type: "basic" }
+      "authentication.username": {
+        env: "BITBUCKET_USERNAME"
+      },
+      "authentication.password": {
+        env: "BITBUCKET_PASSWORD",
+        additionalAttributes: { "authentication.type": "basic" },
+        private: true
       }
     };
   }
@@ -38,14 +42,27 @@ class MyProvider extends BaseProvider {
 test("provider env options", t => {
   t.deepEqual(
     MyProvider.optionsFromEnvironment({
-      GITEA_API: "http:/somewhere/api",
+      GITEA_API: "http://somewhere/api",
       GITEA_TOKEN: "abc",
       GIT_CLONE_OPTIONS: "-A 1"
     }),
     {
-      authentication: { type: "token", token: "abc" },
-      api: "http:/somewhere/api",
-      cloneOptions: ["-A", "1"]
+      "authentication.token": "abc",
+      "authentication.type": "token",
+      api: "http://somewhere/api",
+      cloneOptions: "-A 1"
+    }
+  );
+});
+
+test("provider env options 2nd. efrom list", t => {
+  t.deepEqual(
+    MyProvider.optionsFromEnvironment({
+      XXX_TOKEN: "abc",
+    }),
+    {
+      "authentication.token": "abc",
+      "authentication.type": "token"
     }
   );
 });
@@ -57,7 +74,9 @@ test("provider env options multiple keys on template", t => {
       BITBUCKET_PASSWORD: "aSecret"
     }),
     {
-      authentication: { type: "basic", username: "aName", password: "aSecret" }
+      "authentication.username": "aName",
+      "authentication.password": "aSecret",
+      "authentication.type": "basic"
     }
   );
 });
