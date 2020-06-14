@@ -16,12 +16,6 @@ export function definePropertiesFromOptions(
   const after = {};
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
-
-      // TODO can be removed later
-      if (typeof attribute !== "object") {
-        attribute = { default: attribute };
-      }
-
       let value = options[name] || attribute.default;
 
       if (
@@ -61,7 +55,7 @@ export function definePropertiesFromOptions(
           const key = path[n];
 
           if (n === path.length - 1) {
-            parent[key] = value;
+            parent[key] = attribute.set ? attribute.set(value) : value;
           }
           if (parent[key] === undefined) {
             parent[key] = {};
