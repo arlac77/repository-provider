@@ -80,7 +80,6 @@ console.log(await readme.getString());
     -   [pullRequestClass](#pullrequestclass)
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-10)
-    -   [environmentOptions](#environmentoptions)
     -   [areOptionsSufficciant](#areoptionssufficciant)
         -   [Parameters](#parameters-11)
     -   [initialize](#initialize)
@@ -113,23 +112,20 @@ console.log(await readme.getString());
     -   [branches](#branches-1)
         -   [Parameters](#parameters-22)
     -   [attributeMapping](#attributemapping)
--   [id](#id)
--   [id](#id-1)
--   [id](#id-2)
--   [uuid](#uuid)
--   [uuid](#uuid-1)
 -   [type](#type)
 -   [url](#url)
--   [avatarURL](#avatarurl)
 -   [NamedObject](#namedobject)
     -   [Parameters](#parameters-23)
     -   [Properties](#properties-1)
     -   [equals](#equals-1)
         -   [Parameters](#parameters-24)
     -   [toJSON](#tojson-1)
-    -   [defaultOptions](#defaultoptions)
+    -   [attributes](#attributes)
     -   [attributeMapping](#attributemapping-1)
 -   [description](#description)
+-   [id](#id)
+-   [uuid](#uuid)
+-   [avatarURL](#avatarurl)
 -   [Repository](#repository-1)
     -   [Parameters](#parameters-25)
     -   [Properties](#properties-2)
@@ -191,7 +187,7 @@ console.log(await readme.getString());
     -   [entryClass](#entryclass-1)
     -   [hookClass](#hookclass-1)
     -   [toJSON](#tojson-2)
-    -   [defaultOptions](#defaultoptions-1)
+    -   [attributes](#attributes-1)
 -   [defaultBranchName](#defaultbranchname)
 -   [urls](#urls-1)
 -   [homePageURL](#homepageurl-1)
@@ -219,7 +215,7 @@ console.log(await readme.getString());
     -   [isDisabled](#isdisabled-1)
     -   [isProtected](#isprotected)
     -   [isWritable](#iswritable)
-    -   [defaultOptions](#defaultoptions-2)
+    -   [attributes](#attributes-2)
 -   [isProtected](#isprotected-1)
 -   [CommitResult](#commitresult)
     -   [Properties](#properties-3)
@@ -425,7 +421,7 @@ Returns **Provider** this
 
 ### toJSON
 
-List all defined entries from defaultOptions
+List all defined entries from attributes
 
 ### repositoryClass
 
@@ -453,12 +449,6 @@ form the given set of environment variables
 -   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** undefined if no suitable environment variables have been found
-
-### environmentOptions
-
-Known mapping from environment variable to options
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** with the mapping of environmentvaraible names to option keys
 
 ### areOptionsSufficciant
 
@@ -639,36 +629,6 @@ Returns **Iterator&lt;[Branch](#branch)>** all matching branches of the owner
 
 Map attributes between external and internal representation
 
-## id
-
-Unique id within the provider.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## id
-
-Unique id within the provider.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## id
-
-internal id.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## uuid
-
-Unique id.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## uuid
-
-Unique id.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
 ## type
 
 Type of the repository group either User or Organization.
@@ -678,12 +638,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## url
 
 Group home.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## avatarURL
-
-Avatar.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -711,9 +665,9 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### toJSON
 
-Provide name and all defined defaultOptions
+Provide name and all defined attributes
 
-### defaultOptions
+### attributes
 
 options
 
@@ -726,6 +680,24 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## description
 
 The description of the repository content.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## id
+
+Unique id within the provider.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## uuid
+
+Unique id.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## avatarURL
+
+Avatar.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -1058,9 +1030,9 @@ Returns **Class** as defined in the provider
 
 ### toJSON
 
-Provide name and all defined defaultOptions
+Provide name and all defined attributes
 
-### defaultOptions
+### attributes
 
 options
 
@@ -1216,7 +1188,7 @@ Returns **any** false
 
 Returns **any** false
 
-### defaultOptions
+### attributes
 
 options
 
@@ -1350,6 +1322,8 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ## PullRequest
 
+**Extends NamedObject**
+
 Abstract pull request
 [Repository#addPullRequest](#repositoryaddpullrequest)
 
@@ -1357,7 +1331,7 @@ Abstract pull request
 
 -   `source` **[Branch](#branch)** merge source
 -   `destination` **[Branch](#branch)** merge target
--   `number` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
     -   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
@@ -1366,7 +1340,7 @@ Abstract pull request
 
 ### Properties
 
--   `number` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `source` **[Branch](#branch)** 
 -   `destination` **[Branch](#branch)** 
 -   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
@@ -1523,7 +1497,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### toJSON
 
-provide name, events and all defined defaultOptions
+provide name, events and all defined attributes
 
 ## Milestone
 
@@ -1548,7 +1522,7 @@ Already present properties (direct) are skipped
 ### Parameters
 
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor (optional, default `{}`)
 -   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
 
 ## optionJSON
