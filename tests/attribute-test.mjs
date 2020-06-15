@@ -1,9 +1,23 @@
 import test from "ava";
 import {
+  getAttribute,
   RepositoryGroup,
   definePropertiesFromOptions,
   optionJSON
 } from "repository-provider";
+
+function gat(t, object, key, expected) {
+  const value = getAttribute(object, key);
+  t.is(value, expected);
+}
+
+gat.title = (providedTitle, object, key) =>
+  `getAttribute ${
+    providedTitle ? providedTitle + " " : ""
+  }${key}`.trim();
+
+test(gat, { a:1 }, 'a', 1);
+test(gat, { a: {b: 1} }, 'a.b', 1);
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);

@@ -67,6 +67,17 @@ export function definePropertiesFromOptions(
   Object.assign(object, after);
 }
 
+export function getAttribute(object, name)
+{
+  let value = object;
+
+  for(const p of name.split(/\./)) {
+    value = value[p];
+  }
+
+  return value; 
+}
+
 /**
  * Create json based on present options.
  * In other words only produce key value pairs if value is defined.
