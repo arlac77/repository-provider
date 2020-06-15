@@ -135,6 +135,20 @@ export class BaseProvider {
     return true;
   }
 
+  supportsBase(base) {
+    if(base === undefined) {
+      return true;
+    }
+
+    for (const b of this.repositoryBases) {
+      if(b === base) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   /**
    * Parses repository name and tries to split it into
    * base, group, repository and branch

@@ -13,6 +13,12 @@ class MyProvider extends BaseProvider {
   }
 }
 
+test("supports name", t => {
+  const provider = new MyProvider();
+  t.true(provider.supportsBase("https://github.com/"));
+  t.true(provider.supportsBase(undefined));
+});
+
 test(providerParseNameTest, new BaseProvider(), repositories);
 test(providerParseNameTest, new MyProvider(), repositories);
 

@@ -18,27 +18,33 @@ export class MultiGroupProvider extends BaseProvider {
    * @return {Repository}
    */
   async repository(name) {
-    const { group, repository } = this.parseName(name);
+    const { base, group, repository } = this.parseName(name);
 
-    if (group !== undefined) {
-      const rg = await this.repositoryGroup(group);
+    if (this.supportsBase(base)) {
+      if (group !== undefined) {
+        const rg = await this.repositoryGroup(group);
 
-      if (rg !== undefined) {
-        return await rg.repository(repository);
+        if (rg !== undefined) {
+          return await rg.repository(repository);
+        }
       }
     }
   }
 
   async branch(name) {
-    const { group, repository, branch } = this.parseName(name);
+    const { base, group, repository, branch } = this.parseName(name);
 
-    if (group !== undefined) {
-      const rg = await this.repositoryGroup(group);
+    if (this.supportsBase(base)) {
+      if (group !== undefined) {
+        const rg = await this.repositoryGroup(group);
 
-      if (rg !== undefined) {
-        const r = await rg.repository(repository);
-        if (r !== undefined) {
-          return r.branch(branch === undefined ? r.defaultBranchName : branch);
+        if (rg !== undefined) {
+          const r = await rg.repository(repository);
+          if (r !== undefined) {
+            return r.branch(
+              branch === undefined ? r.defaultBranchName : branch
+            );
+          }
         }
       }
     }
@@ -49,8 +55,11 @@ export class MultiGroupProvider extends BaseProvider {
    * @return {RepositoryGroup}
    */
   async repositoryGroup(name) {
-    await this.initializeRepositories();
-    return this._repositoryGroups.get(this.normalizeGroupName(name, true));
+    const { base } = this.parseName(name);
+    if (this.supportsBase(base)) {
+      await this.initializeRepositories();
+      return this._repositoryGroups.get(this.normalizeGroupName(name, true));
+    }
   }
 
   /**
