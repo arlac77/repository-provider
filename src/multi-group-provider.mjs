@@ -13,9 +13,40 @@ export class MultiGroupProvider extends BaseProvider {
   }
 
   /**
+   * Lookup a repository in the provider and all of its repository groups
+   * @param {string} name of the repository
+   * @return {Repository}
+   */
+  async repository(name) {
+    const { group, repository } = this.parseName(name);
+
+    if (group !== undefined) {
+      const rg = await this.repositoryGroup(group);
+
+      if (rg !== undefined) {
+        return await rg.repository(repository);
+      }
+    }
+  }
+
+  async branch(name) {
+    const { group, repository, branch } = this.parseName(name);
+
+    if (group !== undefined) {
+      const rg = await this.repositoryGroup(group);
+
+      if (rg !== undefined) {
+        const r = await rg.repository(repository);
+        if (r !== undefined) {
+          return r.branch(branch === undefined ? r.defaultBranchName : branch);
+        }
+      }
+    }
+  }
+  /**
    * Lookup a repository group
    * @param {string} name of the group
-   * @return {Promise<RepositoryGroup>}
+   * @return {RepositoryGroup}
    */
   async repositoryGroup(name) {
     await this.initializeRepositories();
@@ -40,7 +71,7 @@ export class MultiGroupProvider extends BaseProvider {
    * If there is already a group for the given name it will be returend instead
    * @param {string} name of the group
    * @param {Object} options
-   * @return {Promise<RepositoryGroup>}
+   * @return {RepositoryGroup}
    */
   async createRepositoryGroup(name, options) {
     return this.addRepositoryGroup(name, options);
@@ -62,5 +93,4 @@ export class MultiGroupProvider extends BaseProvider {
     }
     return repositoryGroup;
   }
-
 }

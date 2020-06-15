@@ -142,6 +142,8 @@ export class BaseProvider {
    * @return {Object}
    */
   parseName(name) {
+    if(name === undefined) { return {}; }
+
     name = name.replace(
       /^\s*(git\+)?(([\w\-\+]+:\/\/)[^\@]+@)?/,
       (m, a, b, r) => r || ""
@@ -188,54 +190,6 @@ export class BaseProvider {
   }
 
   /**
-   * @param {string} name
-   */
-  async decomposeName(name) {
-    if (name === undefined) {
-      return {};
-    }
-
-    const { base, group, repository, branch } = this.parseName(name);
-
-    if (base !== undefined) {
-      if (!this.repositoryBases.find(x => x === base)) {
-        return {};
-      }
-    }
-
-    if (group !== undefined) {
-      const rg = await this.repositoryGroup(group);
-      if (rg !== undefined) {
-        const r = await rg.repository(repository);
-        if (r !== undefined) {
-          return { repository: r, branch };
-        }
-      }
-
-      return {};
-    }
-
-    for await (const p of this.repositoryGroups()) {
-      const r = await p.repository(repository);
-      if (r !== undefined) {
-        return { repository: r, branch };
-      }
-    }
-
-    return {};
-  }
-
-  /**
-   * Lookup a repository in the provider and all of its repository groups
-   * @param {string} name of the repository
-   * @return {Promise<Repository>}
-   */
-  async repository(name) {
-    const { repository } = await this.decomposeName(name, "R");
-    return repository;
-  }
-
-  /**
    * List repositories
    * @param {string[]|string} patterns
    * @return {Iterator<Repository>} all matching repos of the provider
@@ -259,21 +213,6 @@ export class BaseProvider {
   async createRepository(name, options) {
     const rg = await this.repositoryGroup(name);
     return rg.createRepository(name, options);
-  }
-
-  /**
-   * Lookup a branch in the provider and all of its repository groups
-   * @param {string} name of the branch
-   * @return {Promise<Branch>}
-   */
-  async branch(name) {
-    const { repository, branch } = await this.decomposeName(name, "B");
-
-    return repository === undefined
-      ? undefined
-      : repository.branch(
-          branch === undefined ? repository.defaultBranchName : branch
-        );
   }
 
   /**
