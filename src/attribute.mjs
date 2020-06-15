@@ -17,7 +17,7 @@ export function definePropertiesFromOptions(
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
       let value = options[name] || attribute.default;
-      if (attribute.set) {
+      if (attribute.set && value !== undefined) {
         value = attribute.set(value);
       }
 
