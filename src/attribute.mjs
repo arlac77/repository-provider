@@ -17,6 +17,9 @@ export function definePropertiesFromOptions(
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
       let value = options[name] || attribute.default;
+      if (attribute.set) {
+        value = attribute.set(value);
+      }
 
       if (
         object.hasOwnProperty(name) ||
@@ -29,19 +32,15 @@ export function definePropertiesFromOptions(
 
       if (value !== undefined) {
         const path = name.split(/\./);
+        let key = path[0];
 
-        const p0 = path[0];
-
-        if (properties[p0] === undefined) {
+        if (properties[key] === undefined) {
           if (path.length === 1) {
-            if (attribute.set) {
-              value = attribute.set(value);
-            }
-            properties[p0] = { value };
+            properties[key] = { value };
             return;
           }
 
-          properties[p0] = { value: {} };
+          properties[key] = { value: {} };
         } else {
           if (path.length === 1) {
             after[name] = value;
@@ -49,19 +48,17 @@ export function definePropertiesFromOptions(
           }
         }
 
-        let parent = properties[p0].value;
+        let parent = properties[key].value;
 
         for (let n = 1; n < path.length; n++) {
-          const key = path[n];
+          key = path[n];
 
-          if (n === path.length - 1) {
-            parent[key] = attribute.set ? attribute.set(value) : value;
-          }
           if (parent[key] === undefined) {
             parent[key] = {};
           }
           parent = parent[key];
         }
+        parent[key] = value;
       }
     });
   }
