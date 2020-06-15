@@ -17,7 +17,11 @@ export function definePropertiesFromOptions(
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
       let value = options[name] || attribute.default;
-      if (attribute.set && value !== undefined) {
+      if (value === undefined) {
+        return;
+      }
+
+      if (attribute.set) {
         value = attribute.set(value);
       }
 
@@ -30,36 +34,38 @@ export function definePropertiesFromOptions(
         return;
       }
 
-      if (value !== undefined) {
-        const path = name.split(/\./);
-        let key = path[0];
+      const path = name.split(/\./);
+      let key = path[0];
 
-        if (properties[key] === undefined) {
-          if (path.length === 1) {
-            properties[key] = { value };
-            return;
-          }
-
-          properties[key] = { value: {} };
-        } else {
-          if (path.length === 1) {
-            after[name] = value;
-            return;
-          }
+      if (properties[key] === undefined) {
+        if (path.length === 1) {
+          properties[key] = { value };
+          return;
         }
+        properties[key] = { value: {} };
 
-        let parent = properties[key].value;
-
-        for (let n = 1; n < path.length; n++) {
-          key = path[n];
-
-          if (parent[key] === undefined) {
-            parent[key] = {};
-          }
-          parent = parent[key];
+      } else {
+        if (path.length === 1) {
+          after[name] = value;
+          return;
         }
-        parent[key] = value;
       }
+
+      // TODO only 2 leyvels for now
+      properties[key].value[path[1]] = value;
+
+      /*
+
+      for (let n = 0; n < path.length; n++) {
+        key = path[n];
+
+        if (parent[key] === undefined) {
+          parent[key] = {};
+        }
+        parent = parent[key];
+      }
+*/
+     // parent[key] = value;
     });
   }
 
@@ -67,15 +73,14 @@ export function definePropertiesFromOptions(
   Object.assign(object, after);
 }
 
-export function getAttribute(object, name)
-{
+export function getAttribute(object, name) {
   let value = object;
 
-  for(const p of name.split(/\./)) {
+  for (const p of name.split(/\./)) {
     value = value[p];
   }
 
-  return value; 
+  return value;
 }
 
 /**

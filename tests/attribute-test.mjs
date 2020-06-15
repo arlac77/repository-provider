@@ -12,12 +12,10 @@ function gat(t, object, key, expected) {
 }
 
 gat.title = (providedTitle, object, key) =>
-  `getAttribute ${
-    providedTitle ? providedTitle + " " : ""
-  }${key}`.trim();
+  `getAttribute ${providedTitle ? providedTitle + " " : ""}${key}`.trim();
 
-test(gat, { a:1 }, 'a', 1);
-test(gat, { a: {b: 1} }, 'a.b', 1);
+test(gat, { a: 1 }, "a", 1);
+test(gat, { a: { b: 1 } }, "a.b", 1);
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);
@@ -31,14 +29,19 @@ dpot.title = (providedTitle, a, b) =>
 
 class MyClass {
   static get attributes() {
-    att1 : {}
+    return {
+      att1: {},
+      "authentification.token": {}
+    };
   }
 }
 
-test(dpot, { b:7 }, undefined, (t, object) => t.is(object.b, 7));
+test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
 test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
 test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
-//test(dpot, new MyClass(), { att1: 77 }, (t, object) => t.is(object.att1, 77));
+test(dpot, new MyClass(), { "authentification.token": "abc" }, (t, object) =>
+  t.is(object.authentification.token, "abc")
+);
 
 function ojt(t, object, initial, skip, result) {
   t.deepEqual(optionJSON(object, initial, skip), result);
