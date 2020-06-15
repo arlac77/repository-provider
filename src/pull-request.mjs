@@ -221,7 +221,7 @@ export class PullRequest extends NamedObject {
 
   toString() {
     return [
-      [this.number, this.title],
+      [this.name, this.title],
       ["source", this.source],
       ["destination", this.destination],
       ...Object.keys(this.constructor.attributes)
@@ -236,7 +236,7 @@ export class PullRequest extends NamedObject {
     return optionJSON(this, {
       source: this.source,
       destination: this.destination,
-      number: this.number
+      name: this.name
     });
   }
 }
