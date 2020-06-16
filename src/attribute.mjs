@@ -12,8 +12,8 @@ export function definePropertiesFromOptions(
   options = {},
   properties = {}
 ) {
-  const attributes = object.constructor.attributes;
   const after = {};
+  const attributes = object.constructor.attributes;
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
       let value = options[name] || attribute.default;
@@ -51,11 +51,10 @@ export function definePropertiesFromOptions(
         }
       }
 
-      // TODO only 2 leyvels for now
+      // TODO only 2 levels for now
       properties[key].value[path[1]] = value;
 
       /*
-
       for (let n = 0; n < path.length; n++) {
         key = path[n];
 
@@ -64,8 +63,8 @@ export function definePropertiesFromOptions(
         }
         parent = parent[key];
       }
+     parent[key] = value;
 */
-     // parent[key] = value;
     });
   }
 
