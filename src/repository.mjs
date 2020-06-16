@@ -51,10 +51,10 @@ export class Repository extends NamedObject {
        */
       issuesURL: {},
 
-      isArchived: { default: false },
-      isLocked: { default: false },
-      isDisabled: { default: false },
-      isTemplate: { default: false }
+      isArchived: { type: "boolean", default: false },
+      isLocked: { type: "boolean", default: false },
+      isDisabled: { type: "boolean", default: false },
+      isTemplate: { type: "boolean", default: false }
     };
   }
 
@@ -165,7 +165,6 @@ export class Repository extends NamedObject {
   get homePageURL() {
     return undefined;
   }
-
 
   /**
    * Name without owner

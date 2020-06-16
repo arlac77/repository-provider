@@ -13,7 +13,7 @@ export class Hook extends NamedObject {
       url: { description: "target url" },
       secret: { private: true },
       content_type: { default: "json" },
-      insecure_ssl: { default: false },
+      insecure_ssl: { type: "boolean", default: false },
       active: { type: "boolean", default: true }
     };
   }

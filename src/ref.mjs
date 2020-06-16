@@ -10,17 +10,17 @@ export class Ref extends NamedObject {
   static get attributes() {
     return {
       ...super.attributes,
- 
+
       /**
        * Can the branch be modified.
        * @return {string}
        */
-      isProtected: {}
+      isProtected: { type: "boolean" }
     };
   }
 
   constructor(repository, name, options) {
-    super(name,options, { repository: { value: repository }});
+    super(name, options, { repository: { value: repository } });
   }
 
   /**
@@ -159,8 +159,7 @@ export class Ref extends NamedObject {
    *
    * @return false
    */
-  get isWritable()
-  {
+  get isWritable() {
     return false;
   }
 }
