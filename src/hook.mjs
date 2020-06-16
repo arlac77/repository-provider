@@ -10,11 +10,11 @@ export class Hook extends NamedObject {
   static get attributes() {
     return {
       ...super.attributes,
-      url: {},
+      url: { description: "target url" },
       secret: { private: true },
       content_type: { default: "json" },
       insecure_ssl: { default: false },
-      active: { default: true }
+      active: { type: "boolean", default: true }
     };
   }
 

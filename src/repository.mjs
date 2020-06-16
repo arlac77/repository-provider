@@ -37,6 +37,8 @@ export class Repository extends NamedObject {
        */
       urls: {},
 
+      cloneURL: {},
+
       /**
        * The url of home page.
        * @return {string}
@@ -48,6 +50,7 @@ export class Repository extends NamedObject {
        * @return {string}
        */
       issuesURL: {},
+
       isArchived: { default: false },
       isLocked: { default: false },
       isDisabled: { default: false },
@@ -143,6 +146,10 @@ export class Repository extends NamedObject {
     return this.urls[0];
   }
 
+  get cloneURL() {
+    return this.url;
+  }
+
   /**
    * The url of issue tracking system.
    * @return {string}
@@ -158,6 +165,7 @@ export class Repository extends NamedObject {
   get homePageURL() {
     return undefined;
   }
+
 
   /**
    * Name without owner

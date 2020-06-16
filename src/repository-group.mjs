@@ -26,13 +26,7 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
        * Type of the repository group either User or Organization.
        * @return {string}
        */
-      type: {},
-
-      /**
-       * Group home.
-       * @return {string}
-       */
-      url: {}
+      type: {}
     };
   }
 

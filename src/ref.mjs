@@ -12,7 +12,7 @@ export class Ref extends NamedObject {
       ...super.attributes,
  
       /**
-       * Can the brach be modified.
+       * Can the branch be modified.
        * @return {string}
        */
       isProtected: {}

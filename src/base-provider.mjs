@@ -135,6 +135,11 @@ export class BaseProvider {
     return true;
   }
 
+  /**
+   * Does the provider support the base name
+   * @param {string} base
+   * @return {boolean} true if base is supported or base is undefined
+   */
   supportsBase(base) {
     if(base === undefined) {
       return true;
@@ -156,14 +161,14 @@ export class BaseProvider {
    * @return {Object}
    */
   parseName(name) {
-    if(name === undefined) { return {}; }
+    const result = {};
+
+    if(name === undefined) { return result; }
 
     name = name.replace(
       /^\s*(git\+)?(([\w\-\+]+:\/\/)[^\@]+@)?/,
       (m, a, b, r) => r || ""
     );
-
-    const result = {};
 
     for (const b of this.repositoryBases) {
       if (name.startsWith(b)) {

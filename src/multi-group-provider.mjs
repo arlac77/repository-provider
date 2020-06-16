@@ -49,6 +49,7 @@ export class MultiGroupProvider extends BaseProvider {
       }
     }
   }
+
   /**
    * Lookup a repository group
    * @param {string} name of the group

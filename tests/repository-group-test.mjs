@@ -13,20 +13,20 @@ test("repository-group create with options", t => {
     description: "a description",
     id: "4711",
     uuid: "12345",
-    url: "http://somewhere/rg"
+    homePageURL: "http://somewhere/rg"
   });
   t.is(rg.name, "rg");
   t.is(rg.description, "a description");
   t.is(rg.id, "4711");
   t.is(rg.uuid, "12345");
-  t.is(rg.url, "http://somewhere/rg");
+  t.is(rg.homePageURL, "http://somewhere/rg");
   //t.is(rg.toString(), "rg");
   t.deepEqual(rg.toJSON(), {
     name: "rg",
     uuid: "12345",
     id: "4711",
     description: "a description",
-    url: "http://somewhere/rg"
+    homePageURL: "http://somewhere/rg"
   });
 });
 
@@ -47,7 +47,6 @@ test("repository-group add repo", async t => {
   const r1 = rg.addRepository("r1");
   t.is(await rg.repository("r1"), r1);
 });
-
 
 
 test("owner create repository", async t => {
