@@ -82,6 +82,14 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * url name of the repo
+   * @return {string}
+   */
+  get slug() {
+    return `${this.owner.name}/${this.name}`;
+  }
+
+  /**
    * The owners provider
    * @return {Provider}
    */
