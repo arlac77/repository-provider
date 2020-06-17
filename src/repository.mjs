@@ -50,7 +50,8 @@ export class Repository extends NamedObject {
        * @return {string}
        */
       issuesURL: {},
-
+      size: { type: "integer" },
+      language: { type: "string" },
       isArchived: { type: "boolean", default: false },
       isLocked: { type: "boolean", default: false },
       isDisabled: { type: "boolean", default: false },
