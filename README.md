@@ -130,6 +130,7 @@ console.log(await readme.getString());
     -   [Parameters](#parameters-25)
     -   [Properties](#properties-2)
     -   [fullName](#fullname)
+    -   [slug](#slug)
     -   [provider](#provider-1)
     -   [equals](#equals-2)
         -   [Parameters](#parameters-26)
@@ -731,6 +732,12 @@ Abstract repository
 Full repository name within the provider
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** full repo name
+
+### slug
+
+url name of the repo
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### provider
 
