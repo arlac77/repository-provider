@@ -4,14 +4,10 @@ import { BaseProvider } from "repository-provider";
 test("provider default env options", t => {
   t.is(BaseProvider.optionsFromEnvironment(), undefined);
   t.is(BaseProvider.optionsFromEnvironment({}), undefined);
-  t.true(BaseProvider.areOptionsSufficciant());
+  t.true(BaseProvider.areOptionsSufficcient());
 });
 
 class MyProvider extends BaseProvider {
-  static areOptionsSufficciant(options) {
-    return options["authentication.token"] ? true : false;
-  }
-
   static get attributes() {
     return {
       ...super.attributes,
@@ -22,7 +18,8 @@ class MyProvider extends BaseProvider {
       "authentication.token": {
         env: ["GITEA_TOKEN","XXX_TOKEN"],
         additionalAttributes: { "authentication.type": "token" },
-        private: true
+        private: true,
+        mandatory: true
       },
       api: {
         env: "GITEA_API"

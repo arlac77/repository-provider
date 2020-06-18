@@ -41,11 +41,18 @@ export class BaseProvider {
   }
 
   /**
-   * Check if given options are sufficint to create a provider
+   * Check if given options are sufficient to create a provider
    * @param {Object} options
-   * @return {boolean} true if options ar sufficiant to construct a provider
+   * @return {boolean} true if options ar sufficient to construct a provider
    */
-  static areOptionsSufficciant(options) {
+  static areOptionsSufficcient(options) {
+    for(const [name,attribute] of Object.entries(this.attributes)
+       .filter(([name,attribute]) => attribute.mandatory)) {
+      if(options[name] === undefined) {
+        return false;
+      }
+    }
+
     return true;
   }
 
@@ -69,7 +76,7 @@ export class BaseProvider {
    */
   static initialize(options, env) {
     options = { ...options, ...this.optionsFromEnvironment(env) };
-    return this.areOptionsSufficciant(options) ? new this(options) : undefined;
+    return this.areOptionsSufficcient(options) ? new this(options) : undefined;
   }
 
   constructor(options, properties) {
