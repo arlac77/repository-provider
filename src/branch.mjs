@@ -1,4 +1,3 @@
-import { notImplementedError } from "./util.mjs";
 import { Ref } from "./ref.mjs";
 
 /**
@@ -90,7 +89,6 @@ export class Branch extends Ref {
    * @return {CommitResult}
    */
   async commit(message, updates, options) {
-    return notImplementedError();
   }
 
   /**

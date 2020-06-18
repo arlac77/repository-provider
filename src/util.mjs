@@ -1,6 +1,3 @@
-export function notImplementedError() {
-  return new Error("not implemented");
-}
 
 export function asArray(value) {
   return Array.isArray(value) ? value : [value];

@@ -1,4 +1,3 @@
-import { notImplementedError } from "./util.mjs";
 import { optionJSON } from "./attribute.mjs";
 import { NamedObject } from "./named-object.mjs";
 
@@ -216,7 +215,6 @@ export class PullRequest extends NamedObject {
    * Decline the pull request
    */
   async decline() {
-    return notImplementedError();
   }
 
   toString() {

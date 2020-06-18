@@ -155,6 +155,10 @@ export class Repository extends NamedObject {
     return this.urls[0];
   }
 
+  /**
+   * The url used fro cloning the repo.
+   * @return {string}
+   */
   get cloneURL() {
     return this.url;
   }
