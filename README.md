@@ -76,7 +76,7 @@ console.log(await readme.getString());
     -   [pullRequestClass](#pullrequestclass)
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-8)
-    -   [areOptionsSufficciant](#areoptionssufficciant)
+    -   [areOptionsSufficcient](#areoptionssufficcient)
         -   [Parameters](#parameters-9)
     -   [initialize](#initialize)
         -   [Parameters](#parameters-10)
@@ -142,6 +142,7 @@ console.log(await readme.getString());
         -   [Parameters](#parameters-29)
     -   [urls](#urls)
     -   [url](#url-1)
+    -   [cloneURL](#cloneurl)
     -   [issuesURL](#issuesurl)
     -   [homePageURL](#homepageurl)
     -   [condensedName](#condensedname)
@@ -435,15 +436,15 @@ form the given set of environment variables
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** undefined if no suitable environment variables have been found
 
-### areOptionsSufficciant
+### areOptionsSufficcient
 
-Check if given options are sufficint to create a provider
+Check if given options are sufficient to create a provider
 
 #### Parameters
 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if options ar sufficiant to construct a provider
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if options ar sufficient to construct a provider
 
 ### initialize
 
@@ -795,6 +796,12 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 ### url
 
 Preffered url to access the repo
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### cloneURL
+
+The url used fro cloning the repo.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
