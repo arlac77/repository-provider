@@ -219,66 +219,69 @@ console.log(await readme.getString());
     -   [isWritable](#iswritable)
     -   [attributes](#attributes-2)
 -   [isProtected](#isprotected-1)
--   [CommitResult](#commitresult)
-    -   [Properties](#properties-3)
--   [Branch](#branch-2)
+-   [Commit](#commit)
     -   [Parameters](#parameters-50)
+    -   [Properties](#properties-3)
+-   [CommitResult](#commitresult)
     -   [Properties](#properties-4)
+-   [Branch](#branch-2)
+    -   [Parameters](#parameters-51)
+    -   [Properties](#properties-5)
     -   [fullName](#fullname-1)
     -   [fullCondensedName](#fullcondensedname)
     -   [url](#url-2)
     -   [isDefault](#isdefault)
     -   [delete](#delete-1)
-    -   [commit](#commit)
-        -   [Parameters](#parameters-51)
-    -   [removeEntries](#removeentries)
+    -   [commit](#commit-1)
         -   [Parameters](#parameters-52)
+    -   [removeEntries](#removeentries)
+        -   [Parameters](#parameters-53)
     -   [entryClass](#entryclass-2)
     -   [createPullRequest](#createpullrequest-1)
-        -   [Parameters](#parameters-53)
+        -   [Parameters](#parameters-54)
     -   [pullRequestClass](#pullrequestclass-3)
     -   [createBranch](#createbranch-1)
-        -   [Parameters](#parameters-54)
+        -   [Parameters](#parameters-55)
 -   [Issue](#issue)
 -   [PullRequest](#pullrequest-1)
-    -   [Parameters](#parameters-55)
-    -   [Properties](#properties-5)
+    -   [Parameters](#parameters-56)
+    -   [Properties](#properties-6)
     -   [repository](#repository-3)
     -   [provider](#provider-3)
     -   [equals](#equals-4)
-        -   [Parameters](#parameters-56)
+        -   [Parameters](#parameters-57)
     -   [delete](#delete-2)
     -   [merge](#merge)
-        -   [Parameters](#parameters-57)
+        -   [Parameters](#parameters-58)
     -   [decline](#decline)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-58)
-    -   [open](#open)
         -   [Parameters](#parameters-59)
+    -   [open](#open)
+        -   [Parameters](#parameters-60)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook)
-    -   [Parameters](#parameters-60)
-    -   [Properties](#properties-6)
+    -   [Parameters](#parameters-61)
+    -   [Properties](#properties-7)
     -   [equals](#equals-5)
-        -   [Parameters](#parameters-61)
+        -   [Parameters](#parameters-62)
     -   [toJSON](#tojson-3)
 -   [Milestone](#milestone)
-    -   [Parameters](#parameters-62)
--   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-63)
--   [optionJSON](#optionjson)
+-   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-64)
--   [mapAttributes](#mapattributes)
+-   [optionJSON](#optionjson)
     -   [Parameters](#parameters-65)
--   [generateBranchName](#generatebranchname)
+-   [mapAttributes](#mapattributes)
     -   [Parameters](#parameters-66)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-67)
 
 ## BaseProvider
 
@@ -1213,6 +1216,18 @@ options
 Can the branch be modified.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## Commit
+
+### Parameters
+
+-   `repository`  
+
+### Properties
+
+-   `repository` **[Repository](#repository)** 
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## CommitResult
 
