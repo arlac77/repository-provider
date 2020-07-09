@@ -418,7 +418,7 @@ export class Repository extends NamedObject {
 
   /**
    * Get Hook
-   * @param {String} id
+   * @param {string} id
    * @return {Hook} for the given id
    */
   async hook(id) {
