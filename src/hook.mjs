@@ -10,6 +10,7 @@ export class Hook extends NamedObject {
   static get attributes() {
     return {
       ...super.attributes,
+      id: { description: "identifier of the hook" },
       url: { description: "target url" },
       secret: { private: true },
       content_type: { default: "json" },
