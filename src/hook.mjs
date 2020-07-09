@@ -6,11 +6,11 @@ import { NamedObject } from "./named-object.mjs";
  * @property {URL} url
  * @property {Set<string>} events
  */
-export class Hook extends NamedObject {
+export class Hook extends BaseObject {
   static get attributes() {
     return {
       ...super.attributes,
-      id: { description: "identifier of the hook" },
+      name: { },
       url: { description: "target url" },
       secret: { private: true },
       content_type: { default: "json" },
@@ -19,8 +19,9 @@ export class Hook extends NamedObject {
     };
   }
 
-  constructor(repository, name, events = new Set(["*"]), options) {
-    super(name, options, {
+  constructor(repository, id, events = new Set(["*"]), options) {
+    super(options, {
+      id: { value: id },
       repository: { value: repository },
       events: { value: events }
     });
@@ -41,6 +42,6 @@ export class Hook extends NamedObject {
    * provide name, events and all defined attributes
    */
   toJSON() {
-    return optionJSON(this, { name: this.name, events: [...this.events] });
+    return optionJSON(this, { id: this.id, events: [...this.events] });
   }
 }

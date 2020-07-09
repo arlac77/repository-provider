@@ -1,8 +1,5 @@
-import {
-  definePropertiesFromOptions,
-  mapAttributes,
-  optionJSON
-} from "./attribute.mjs";
+import { optionJSON } from "./attribute.mjs";
+import { BaseObject } from "./base-object.mjs";
 
 /**
  * @param {string} name
@@ -10,59 +7,12 @@ import {
  *
  * @property {string} name
  */
-export class NamedObject {
-  /**
-   * options
-   */
-  static get attributes() {
-    return {
-      /**
-       * The description of the repository content.
-       * @return {string}
-       */
-      description: {
-        description: "human readable description"
-      },
-
-      /**
-       * Unique id within the provider.
-       * @return {string}
-       */
-      id: {},
-
-      /**
-       * Unique id.
-       * @return {string}
-       */
-      uuid: {},
-
-      /**
-       * Avatar.
-       * @return {string}
-       */
-      avatarURL: {},
-
-      homePageURL: {}
-    };
-  }
-
-  /**
-   * Map attributes between external and internal representation
-   * @return {Object}
-   */
-  static get attributeMapping() {
-    return {};
-  }
-
-  constructor(name, options, additionaProperties) {
-    definePropertiesFromOptions(
-      this,
-      mapAttributes(options, this.constructor.attributeMapping),
-      {
+export class NamedObject extend BaseObject {
+  constructor(name, options, additionalProperties) {
+    super( options, {
         name: { value: name },
-        ...additionaProperties
-      }
-    );
+        ...additionalProperties
+      });
   }
 
   /**
@@ -71,11 +21,7 @@ export class NamedObject {
    * @return {boolean} true if names are equal
    */
   equals(other) {
-    if (other === undefined) {
-      return false;
-    }
-
-    return this.name === other.name;
+    return super.equals(other) && this.name === other.name;
   }
 
   get displayName() {
