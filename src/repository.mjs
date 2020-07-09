@@ -423,7 +423,7 @@ export class Repository extends NamedObject {
    */
   async hook(id) {
     for await (const hook of this.hooks()) {
-      if(hook.id === id) {
+      if(hook.id == id) { // string of number
         return hook;
       }
     }

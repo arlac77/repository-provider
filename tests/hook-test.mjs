@@ -14,6 +14,7 @@ test("add hook", async t => {
   t.is(repository._hooks.length, 1);
 
   t.is(await repository.hook(77), hook);
+  t.is(await repository.hook("77"), hook);
 
   /*
   let n = 0;
