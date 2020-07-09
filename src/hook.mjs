@@ -1,5 +1,5 @@
 import { optionJSON } from "./attribute.mjs";
-import { NamedObject } from "./named-object.mjs";
+import { BaseObject } from "./base-object.mjs";
 
 /**
  * @property {Repository} repository
