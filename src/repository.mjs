@@ -417,6 +417,19 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * Get Hook
+   * @param {String} id
+   * @return {Hook} for the given id
+   */
+  async hook(id) {
+    for await (const hook of this.hooks()) {
+      if(hook.id === id) {
+        return hook;
+      }
+    }
+  }
+
+  /**
    * @return {string} 'git'
    */
   get type() {
