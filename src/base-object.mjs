@@ -22,7 +22,7 @@ export class BaseObject {
        * Unique id within the provider.
        * @return {string}
        */
-      id: {},
+      id: { type: "string" },
 
       /**
        * Unique id.
