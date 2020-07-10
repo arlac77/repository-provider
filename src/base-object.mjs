@@ -1,7 +1,4 @@
-import {
-  definePropertiesFromOptions,
-  mapAttributes
-} from "./attribute.mjs";
+import { definePropertiesFromOptions, mapAttributes } from "./attribute.mjs";
 
 /**
  * @param {Object} options
@@ -64,6 +61,6 @@ export class BaseObject {
    * @return {boolean} true if other is present
    */
   equals(other) {
-    return other === undefined;
+    return other !== undefined;
   }
 }

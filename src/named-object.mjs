@@ -7,12 +7,12 @@ import { BaseObject } from "./base-object.mjs";
  *
  * @property {string} name
  */
-export class NamedObject extend BaseObject {
+export class NamedObject extends BaseObject {
   constructor(name, options, additionalProperties) {
-    super( options, {
-        name: { value: name },
-        ...additionalProperties
-      });
+    super(options, {
+      name: { value: name },
+      ...additionalProperties
+    });
   }
 
   /**

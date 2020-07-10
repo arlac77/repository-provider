@@ -4,8 +4,9 @@ import { SingleGroupProvider, Repository, Hook } from "repository-provider";
 test("add hook", async t => {
   const repository = new Repository(new SingleGroupProvider(), "r1");
 
-  const hook = new Hook(repository, "hook1", new Set(["a"]), {
-    id: 77,
+  const hook = new Hook(repository, 77, new Set(["a"]), {
+    name: "hook1",
+   // id: 77,
     url: "http://somewere.com/path"
   });
 
@@ -25,7 +26,7 @@ test("add hook", async t => {
   t.is(n, 1);
   */
   t.is(hook.name, "hook1");
-  //t.is(hook.displayName, "hook1");
+  t.is(hook.displayName, 77);
   t.deepEqual(hook.events, new Set(["a"]));
 
   t.is(hook.id, 77);

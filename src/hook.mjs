@@ -29,6 +29,10 @@ export class Hook extends BaseObject {
     repository._addHook(this);
   }
 
+  get displayName() {
+    return this.id;
+  }
+  
   /**
    * Check for equality
    * @param {Hook} other
