@@ -16,21 +16,27 @@ export function definePropertiesFromOptions(
   const attributes = object.constructor.attributes;
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
-      if(properties[name] !== undefined && properties[name].value) { return; }
+      if (properties[name] !== undefined && properties[name].value) {
+        return;
+      }
 
-      let value = options[name] || attribute.default;
+      let value = options[name];
+      if (value === undefined) {
+        value = attribute.default;
+      }
+
       if (value === undefined) {
         return;
       }
 
       if (attribute.set) {
         value = attribute.set(value);
-      }
-      else {
-        switch(attribute.type) {
+      } else {
+        switch (attribute.type) {
           case "boolean":
-            value = value === 0 || value === '0' || value === false ? false : true;
-          break;
+            value =
+              value === 0 || value === "0" || value === false ? false : true;
+            break;
         }
       }
 
@@ -52,7 +58,6 @@ export function definePropertiesFromOptions(
           return;
         }
         properties[key] = { value: {} };
-
       } else {
         if (path.length === 1) {
           after[name] = value;
