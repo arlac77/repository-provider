@@ -31,11 +31,18 @@ class MyClass {
   static get attributes() {
     return {
       att1: {},
+      att2: { type: "boolean" },
       "authentification.token": {}
     };
   }
 }
 
+test(dpot, { att2: 0 }, undefined, (t, object) => t.is(object.att2, false));
+test(dpot, { att2: false }, undefined, (t, object) => t.is(object.att2, false));
+test(dpot, { att2: "0" }, undefined, (t, object) => t.is(object.att2, false));
+test(dpot, { att2: "1" }, undefined, (t, object) => t.is(object.att2, true));
+test(dpot, { att2: true }, undefined, (t, object) => t.is(object.att2, true));
+test(dpot, { att2: 7 }, undefined, (t, object) => t.is(object.att2, true));
 test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
 test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
 test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));

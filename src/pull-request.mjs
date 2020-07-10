@@ -78,13 +78,13 @@ export class PullRequest extends NamedObject {
        * the one line description of the pull request.
        * @return {string}
        */
-      title: {},
+      title: { type: "string" },
 
       /**
        * the description of the pull request.
        * @return {string}
        */
-      body: {},
+      body: { type: "string" },
 
       /**
        * state of the pull request.
@@ -101,7 +101,8 @@ export class PullRequest extends NamedObject {
        * locked state of the pull request.
        * @return {boolean}
        */
-      locked: { 
+      locked: {
+        type: "boolean",
         default: false
       },
 
@@ -110,6 +111,7 @@ export class PullRequest extends NamedObject {
        * @return {boolean}
        */
       merged: {
+        type: "boolean",
         default: false
       }
     };

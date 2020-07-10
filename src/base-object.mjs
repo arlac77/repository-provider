@@ -14,6 +14,7 @@ export class BaseObject {
        * @return {string}
        */
       description: {
+        type: "string",
         description: "human readable description"
       },
 
@@ -27,15 +28,15 @@ export class BaseObject {
        * Unique id.
        * @return {string}
        */
-      uuid: {},
+      uuid: { type: "string" },
 
       /**
        * Avatar.
        * @return {string}
        */
-      avatarURL: {},
+      avatarURL: { type: "url" },
 
-      homePageURL: {}
+      homePageURL: { type: "url" }
     };
   }
 

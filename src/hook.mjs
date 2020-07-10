@@ -10,10 +10,10 @@ export class Hook extends BaseObject {
   static get attributes() {
     return {
       ...super.attributes,
-      name: { },
-      url: { description: "target url" },
+      name: { type: "string" },
+      url: { type: "url", description: "target url" },
       secret: { private: true },
-      content_type: { default: "json" },
+      content_type: { type: "string", default: "json" },
       insecure_ssl: { type: "boolean", default: false },
       active: { type: "boolean", default: true }
     };

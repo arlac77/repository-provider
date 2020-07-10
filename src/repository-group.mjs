@@ -31,7 +31,7 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
       /**
        * api url
        */
-      url: {}
+      url: { type: "url" }
     };
   }
 

@@ -29,7 +29,7 @@ export class Repository extends NamedObject {
        * The name of the default branch
        * @return {string}
        */
-      defaultBranchName: { default: "master" },
+      defaultBranchName: { type: "string", default: "master" },
 
       /**
        * URLs of the repository
@@ -37,19 +37,19 @@ export class Repository extends NamedObject {
        */
       urls: {},
 
-      cloneURL: {},
+      cloneURL: { type: "url" },
 
       /**
        * The url of home page.
        * @return {string}
        */
-      homePageURL: {},
+      homePageURL: { type: "url" },
 
       /**
        * The url of issue tracking system.
        * @return {string}
        */
-      issuesURL: {},
+      issuesURL: { type: "url" },
       size: { type: "integer" },
       language: { type: "string" },
       isArchived: { type: "boolean", default: false },

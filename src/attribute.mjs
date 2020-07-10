@@ -26,6 +26,13 @@ export function definePropertiesFromOptions(
       if (attribute.set) {
         value = attribute.set(value);
       }
+      else {
+        switch(attribute.type) {
+          case "boolean":
+            value = value === 0 || value === '0' || value === false ? false : true;
+          break;
+        }
+      }
 
       if (
         object.hasOwnProperty(name) ||
