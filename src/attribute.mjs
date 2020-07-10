@@ -16,6 +16,8 @@ export function definePropertiesFromOptions(
   const attributes = object.constructor.attributes;
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
+      if(properties[name] !== undefined && properties[name].value) { return; }
+
       let value = options[name] || attribute.default;
       if (value === undefined) {
         return;
