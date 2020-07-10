@@ -120,12 +120,6 @@ console.log(await readme.getString());
     -   [equals](#equals-1)
         -   [Parameters](#parameters-24)
     -   [toJSON](#tojson-1)
-    -   [attributes](#attributes)
-    -   [attributeMapping](#attributemapping-1)
--   [description](#description)
--   [id](#id)
--   [uuid](#uuid)
--   [avatarURL](#avatarurl)
 -   [Repository](#repository-2)
     -   [Parameters](#parameters-25)
     -   [Properties](#properties-2)
@@ -180,34 +174,36 @@ console.log(await readme.getString());
     -   [createHook](#createhook)
         -   [Parameters](#parameters-42)
     -   [hooks](#hooks)
+    -   [hook](#hook)
+        -   [Parameters](#parameters-43)
     -   [type](#type-1)
     -   [refId](#refid)
-        -   [Parameters](#parameters-43)
+        -   [Parameters](#parameters-44)
     -   [repositoryClass](#repositoryclass-2)
     -   [pullRequestClass](#pullrequestclass-2)
     -   [branchClass](#branchclass-2)
     -   [entryClass](#entryclass-1)
     -   [hookClass](#hookclass-1)
     -   [toJSON](#tojson-2)
-    -   [attributes](#attributes-1)
+    -   [attributes](#attributes)
 -   [defaultBranchName](#defaultbranchname)
 -   [urls](#urls-1)
 -   [homePageURL](#homepageurl-1)
 -   [issuesURL](#issuesurl-1)
 -   [Ref](#ref)
-    -   [Parameters](#parameters-44)
+    -   [Parameters](#parameters-45)
     -   [equals](#equals-3)
-        -   [Parameters](#parameters-45)
+        -   [Parameters](#parameters-46)
     -   [ref](#ref-1)
     -   [refId](#refid-1)
-        -   [Parameters](#parameters-46)
-    -   [entries](#entries-1)
         -   [Parameters](#parameters-47)
+    -   [entries](#entries-1)
+        -   [Parameters](#parameters-48)
     -   [asyncIterator](#asynciterator)
     -   [maybeEntry](#maybeentry-1)
-        -   [Parameters](#parameters-48)
-    -   [entry](#entry-1)
         -   [Parameters](#parameters-49)
+    -   [entry](#entry-1)
+        -   [Parameters](#parameters-50)
     -   [provider](#provider-2)
     -   [owner](#owner)
     -   [issuesURL](#issuesurl-2)
@@ -217,15 +213,15 @@ console.log(await readme.getString());
     -   [isDisabled](#isdisabled-1)
     -   [isProtected](#isprotected)
     -   [isWritable](#iswritable)
-    -   [attributes](#attributes-2)
+    -   [attributes](#attributes-1)
 -   [isProtected](#isprotected-1)
 -   [Commit](#commit)
-    -   [Parameters](#parameters-50)
+    -   [Parameters](#parameters-51)
     -   [Properties](#properties-3)
 -   [CommitResult](#commitresult)
     -   [Properties](#properties-4)
 -   [Branch](#branch-2)
-    -   [Parameters](#parameters-51)
+    -   [Parameters](#parameters-52)
     -   [Properties](#properties-5)
     -   [fullName](#fullname-1)
     -   [fullCondensedName](#fullcondensedname)
@@ -233,55 +229,65 @@ console.log(await readme.getString());
     -   [isDefault](#isdefault)
     -   [delete](#delete-1)
     -   [commit](#commit-1)
-        -   [Parameters](#parameters-52)
-    -   [removeEntries](#removeentries)
         -   [Parameters](#parameters-53)
+    -   [removeEntries](#removeentries)
+        -   [Parameters](#parameters-54)
     -   [entryClass](#entryclass-2)
     -   [createPullRequest](#createpullrequest-1)
-        -   [Parameters](#parameters-54)
+        -   [Parameters](#parameters-55)
     -   [pullRequestClass](#pullrequestclass-3)
     -   [createBranch](#createbranch-1)
-        -   [Parameters](#parameters-55)
+        -   [Parameters](#parameters-56)
 -   [Issue](#issue)
 -   [PullRequest](#pullrequest-1)
-    -   [Parameters](#parameters-56)
+    -   [Parameters](#parameters-57)
     -   [Properties](#properties-6)
     -   [repository](#repository-3)
     -   [provider](#provider-3)
     -   [equals](#equals-4)
-        -   [Parameters](#parameters-57)
+        -   [Parameters](#parameters-58)
     -   [delete](#delete-2)
     -   [merge](#merge)
-        -   [Parameters](#parameters-58)
+        -   [Parameters](#parameters-59)
     -   [decline](#decline)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-59)
-    -   [open](#open)
         -   [Parameters](#parameters-60)
+    -   [open](#open)
+        -   [Parameters](#parameters-61)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
--   [Hook](#hook)
-    -   [Parameters](#parameters-61)
+-   [Hook](#hook-1)
+    -   [Parameters](#parameters-62)
     -   [Properties](#properties-7)
     -   [equals](#equals-5)
-        -   [Parameters](#parameters-62)
+        -   [Parameters](#parameters-63)
     -   [toJSON](#tojson-3)
--   [Milestone](#milestone)
-    -   [Parameters](#parameters-63)
--   [definePropertiesFromOptions](#definepropertiesfromoptions)
+-   [BaseObject](#baseobject)
     -   [Parameters](#parameters-64)
--   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-65)
--   [mapAttributes](#mapattributes)
+    -   [equals](#equals-6)
+        -   [Parameters](#parameters-65)
+    -   [attributes](#attributes-2)
+    -   [attributeMapping](#attributemapping-1)
+-   [description](#description)
+-   [id](#id)
+-   [uuid](#uuid)
+-   [avatarURL](#avatarurl)
+-   [Milestone](#milestone)
     -   [Parameters](#parameters-66)
--   [generateBranchName](#generatebranchname)
+-   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-67)
+-   [optionJSON](#optionjson)
+    -   [Parameters](#parameters-68)
+-   [mapAttributes](#mapattributes)
+    -   [Parameters](#parameters-69)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-70)
 
 ## BaseProvider
 
@@ -650,11 +656,13 @@ api url
 
 ## NamedObject
 
+**Extends BaseObject**
+
 ### Parameters
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `additionaProperties`  
+-   `additionalProperties`  
 
 ### Properties
 
@@ -673,40 +681,6 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### toJSON
 
 Provide name and all defined attributes
-
-### attributes
-
-options
-
-### attributeMapping
-
-Map attributes between external and internal representation
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-## description
-
-The description of the repository content.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## id
-
-Unique id within the provider.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## uuid
-
-Unique id.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## avatarURL
-
-Avatar.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## Repository
 
@@ -1002,6 +976,16 @@ Add a hook
 List hooks
 
 Returns **[Hook](#hook)** all hooks of the repository
+
+### hook
+
+Get Hook
+
+#### Parameters
+
+-   `id` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** 
+
+Returns **[Hook](#hook)** for the given id
 
 ### type
 
@@ -1501,12 +1485,12 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ## Hook
 
-**Extends NamedObject**
+**Extends BaseObject**
 
 ### Parameters
 
 -   `repository`  
--   `name`  
+-   `id`  
 -   `events`   (optional, default `new Set(["*"])`)
 -   `options`  
 
@@ -1529,6 +1513,57 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### toJSON
 
 provide name, events and all defined attributes
+
+## BaseObject
+
+### Parameters
+
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `additionalProperties`  
+
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[BaseObject](#baseobject)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other is present
+
+### attributes
+
+options
+
+### attributeMapping
+
+Map attributes between external and internal representation
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+## description
+
+The description of the repository content.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## id
+
+Unique id within the provider.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## uuid
+
+Unique id.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## avatarURL
+
+Avatar.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## Milestone
 
