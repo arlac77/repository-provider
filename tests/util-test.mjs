@@ -1,6 +1,8 @@
 import test from "ava";
-import { SingleGroupProvider, RepositoryGroup, Branch,
-  generateBranchName,
+import {
+  SingleGroupProvider,
+  Branch,
+  generateBranchName
 } from "repository-provider";
 
 async function gbnt(t, branchNames, pattern, result) {
@@ -22,4 +24,3 @@ test(gbnt, ["b1"], "b*", "b2");
 test(gbnt, ["b1", "b2"], "b*", "b3");
 test(gbnt, ["b1", "b2", "b3"], "b*", "b4");
 test(gbnt, ["b1", "mkpr/1"], "mkpr/*", "mkpr/2");
-
