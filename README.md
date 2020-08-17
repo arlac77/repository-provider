@@ -114,26 +114,20 @@ console.log(await readme.getString());
     -   [attributeMapping](#attributemapping)
 -   [type](#type)
 -   [url](#url)
--   [NamedObject](#namedobject)
+-   [Repository](#repository-2)
     -   [Parameters](#parameters-23)
     -   [Properties](#properties-1)
-    -   [equals](#equals-1)
-        -   [Parameters](#parameters-24)
-    -   [toJSON](#tojson-1)
--   [Repository](#repository-2)
-    -   [Parameters](#parameters-25)
-    -   [Properties](#properties-2)
     -   [fullName](#fullname)
     -   [slug](#slug)
     -   [provider](#provider-1)
-    -   [equals](#equals-2)
-        -   [Parameters](#parameters-26)
+    -   [equals](#equals-1)
+        -   [Parameters](#parameters-24)
     -   [entry](#entry)
-        -   [Parameters](#parameters-27)
+        -   [Parameters](#parameters-25)
     -   [entries](#entries)
-        -   [Parameters](#parameters-28)
+        -   [Parameters](#parameters-26)
     -   [maybeEntry](#maybeentry)
-        -   [Parameters](#parameters-29)
+        -   [Parameters](#parameters-27)
     -   [urls](#urls)
     -   [url](#url-1)
     -   [cloneURL](#cloneurl)
@@ -145,51 +139,57 @@ console.log(await readme.getString());
     -   [isDisabled](#isdisabled)
     -   [isTemplate](#istemplate)
     -   [branch](#branch-1)
-        -   [Parameters](#parameters-30)
+        -   [Parameters](#parameters-28)
     -   [defaultBranch](#defaultbranch)
     -   [branches](#branches-2)
-        -   [Parameters](#parameters-31)
+        -   [Parameters](#parameters-29)
     -   [createBranch](#createbranch)
-        -   [Parameters](#parameters-32)
+        -   [Parameters](#parameters-30)
     -   [addBranch](#addbranch)
-        -   [Parameters](#parameters-33)
+        -   [Parameters](#parameters-31)
     -   [deleteBranch](#deletebranch)
-        -   [Parameters](#parameters-34)
+        -   [Parameters](#parameters-32)
     -   [tags](#tags-1)
-        -   [Parameters](#parameters-35)
+        -   [Parameters](#parameters-33)
     -   [tag](#tag)
-        -   [Parameters](#parameters-36)
+        -   [Parameters](#parameters-34)
     -   [delete](#delete)
     -   [createPullRequest](#createpullrequest)
-        -   [Parameters](#parameters-37)
+        -   [Parameters](#parameters-35)
     -   [addPullRequest](#addpullrequest)
-        -   [Parameters](#parameters-38)
+        -   [Parameters](#parameters-36)
     -   [pullRequests](#pullrequests)
     -   [pullRequest](#pullrequest)
-        -   [Parameters](#parameters-39)
+        -   [Parameters](#parameters-37)
     -   [deletePullRequest](#deletepullrequest)
-        -   [Parameters](#parameters-40)
+        -   [Parameters](#parameters-38)
     -   [addHook](#addhook)
-        -   [Parameters](#parameters-41)
+        -   [Parameters](#parameters-39)
     -   [createHook](#createhook)
-        -   [Parameters](#parameters-42)
+        -   [Parameters](#parameters-40)
     -   [hooks](#hooks)
     -   [hook](#hook)
-        -   [Parameters](#parameters-43)
+        -   [Parameters](#parameters-41)
     -   [type](#type-1)
     -   [refId](#refid)
-        -   [Parameters](#parameters-44)
+        -   [Parameters](#parameters-42)
     -   [repositoryClass](#repositoryclass-2)
     -   [pullRequestClass](#pullrequestclass-2)
     -   [branchClass](#branchclass-2)
     -   [entryClass](#entryclass-1)
     -   [hookClass](#hookclass-1)
-    -   [toJSON](#tojson-2)
+    -   [toJSON](#tojson-1)
     -   [attributes](#attributes)
 -   [defaultBranchName](#defaultbranchname)
 -   [urls](#urls-1)
 -   [homePageURL](#homepageurl-1)
 -   [issuesURL](#issuesurl-1)
+-   [NamedObject](#namedobject)
+    -   [Parameters](#parameters-43)
+    -   [Properties](#properties-2)
+    -   [equals](#equals-2)
+        -   [Parameters](#parameters-44)
+    -   [toJSON](#tojson-2)
 -   [Ref](#ref)
     -   [Parameters](#parameters-45)
     -   [equals](#equals-3)
@@ -654,34 +654,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 api url
 
-## NamedObject
-
-**Extends BaseObject**
-
-### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `additionalProperties`  
-
-### Properties
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### equals
-
-Check for equality
-
-#### Parameters
-
--   `other` **[NamedObject](#namedobject)** 
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal
-
-### toJSON
-
-Provide name and all defined attributes
-
 ## Repository
 
 **Extends NamedObject**
@@ -1062,6 +1034,34 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 The url of issue tracking system.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## NamedObject
+
+**Extends BaseObject**
+
+### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `additionalProperties`  
+
+### Properties
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[NamedObject](#namedobject)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal
+
+### toJSON
+
+Provide name and all defined attributes
 
 ## Ref
 
