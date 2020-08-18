@@ -29,7 +29,7 @@
     "lint": "documentation lint ./src/index.mjs"
   },
   "dependencies": {
-    "matching-iterator": "^1.1.1"
+    "matching-iterator": "^1.1.2"
   },
   "devDependencies": {
     "ava": "^3.11.1",
