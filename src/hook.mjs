@@ -12,7 +12,7 @@ export class Hook extends BaseObject {
       ...super.attributes,
       name: { type: "string" },
       url: { type: "url", description: "target url" },
-      secret: { private: true },
+      secret: { type: "string", private: true },
       content_type: { type: "string", default: "json" },
       insecure_ssl: { type: "boolean", default: false },
       active: { type: "boolean", default: true }
