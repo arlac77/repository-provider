@@ -58,19 +58,6 @@ export class PullRequest extends NamedObject {
    */
   static async *list(repository, filter) {}
 
-  /**
-   * Opens a new pull request
-   * @param {Branch} source
-   * @param {Branch} destination
-   * @param {Object} options
-   * @param {string} options.title
-   * @param {string} options.body
-   * @return {PullRequest}
-   */
-  static async open(source, destination, options) {
-    return new this(source, destination, "0", options);
-  }
-
   static get attributes() {
     return {
       ...super.attributes,
