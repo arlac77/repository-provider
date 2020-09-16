@@ -226,4 +226,12 @@ export class PullRequest extends NamedObject {
       name: this.name
     });
   }
+
+  /**
+   * Short human readable identifier with provider and branch
+   * @return {string}
+   */
+  get identifier() {
+    return `${this.destination.provider.name}/${this.destination.fullCondensedName}[${this.name}]`;
+  }
 }

@@ -43,6 +43,8 @@ test("pullRequest create", async t => {
   t.is(pr.locked, false);
   t.is(pr.merged, false);
   t.is(pr.id, "123456");
+  t.is(pr.identifier, "SingleGroupProvider/r1#b2[4711]");
+
   t.is(
     `${pr}`,
     "4711: a title, source: r1#b1, destination: r1#b2, state: CLOSED, locked: false, merged: false"
