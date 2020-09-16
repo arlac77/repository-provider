@@ -255,23 +255,21 @@ console.log(await readme.getString());
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
         -   [Parameters](#parameters-60)
-    -   [open](#open)
-        -   [Parameters](#parameters-61)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook-1)
-    -   [Parameters](#parameters-62)
+    -   [Parameters](#parameters-61)
     -   [Properties](#properties-7)
     -   [equals](#equals-5)
-        -   [Parameters](#parameters-63)
+        -   [Parameters](#parameters-62)
     -   [toJSON](#tojson-3)
 -   [BaseObject](#baseobject)
-    -   [Parameters](#parameters-64)
+    -   [Parameters](#parameters-63)
     -   [equals](#equals-6)
-        -   [Parameters](#parameters-65)
+        -   [Parameters](#parameters-64)
     -   [attributes](#attributes-2)
     -   [attributeMapping](#attributemapping-1)
 -   [description](#description)
@@ -279,15 +277,15 @@ console.log(await readme.getString());
 -   [uuid](#uuid)
 -   [avatarURL](#avatarurl)
 -   [Milestone](#milestone)
-    -   [Parameters](#parameters-66)
+    -   [Parameters](#parameters-65)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-67)
+    -   [Parameters](#parameters-66)
 -   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-68)
+    -   [Parameters](#parameters-67)
 -   [mapAttributes](#mapattributes)
-    -   [Parameters](#parameters-69)
+    -   [Parameters](#parameters-68)
 -   [generateBranchName](#generatebranchname)
-    -   [Parameters](#parameters-70)
+    -   [Parameters](#parameters-69)
 
 ## BaseProvider
 
@@ -1434,20 +1432,6 @@ result will be filtered by source branch, destination branch and states
     -   `filter.states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
 
 Returns **Iterator&lt;[PullRequest](#pullrequest)>** 
-
-### open
-
-Opens a new pull request
-
-#### Parameters
-
--   `source` **[Branch](#branch)** 
--   `destination` **[Branch](#branch)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-    -   `options.body` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-Returns **[PullRequest](#pullrequest)** 
 
 ## title
 
