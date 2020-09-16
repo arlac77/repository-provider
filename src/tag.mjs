@@ -9,4 +9,14 @@ export class Tag extends Ref {
   get refType() {
     return "tags";
   }
+
+  /**
+   * 
+   * @return {boolean} false
+   */
+  get isWritable()
+  {
+    return false;
+  }
+
 }

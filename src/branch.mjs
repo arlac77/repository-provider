@@ -17,7 +17,7 @@ import { Ref } from "./ref.mjs";
  * @property {string} name
  */
 export class Branch extends Ref {
-  constructor(repository, name =repository.defaultBranchName, options) {
+  constructor(repository, name = repository.defaultBranchName, options) {
     super(repository, name, options);
     repository._addBranch(this);
   }
@@ -67,11 +67,6 @@ export class Branch extends Ref {
     return this.name === this.repository.defaultBranchName;
   }
 
-  get isWritable()
-  {
-    return !this.isArchived;
-  }
-
   /**
    * Delete the branch from the {@link Repository}.
    * @see {@link Repository#deleteBranch}
@@ -84,16 +79,15 @@ export class Branch extends Ref {
   /**
    * Commit entries
    * @param {string} message commit message
-   * @param {Entry[]} updates content to be commited
+   * @param {ConentEntry[]} updates content to be commited
    * @param {Object} options
    * @return {CommitResult}
    */
-  async commit(message, updates, options) {
-  }
+  async commit(message, updates, options) {}
 
   /**
    * Remove entries form the branch
-   * @param {Iterator <Entry>} entries
+   * @param {Iterator <ConentEntry>} entries
    */
   async removeEntries(entries) {}
 
