@@ -100,11 +100,15 @@ export class Branch extends Ref {
         ? options.pullRequestBranch
         : await this.createBranch(options.pullRequestBranch);
 
-    await prBranch.commit(message, updates);
-
-    const pullRequest = await prBranch.createPullRequest(this, options);
-
-    return pullRequest;
+    try {
+      await prBranch.commit(message, updates);
+      return await prBranch.createPullRequest(this, options);
+    } catch (e) {
+      if (!options.pullRequestBranch instanceof Branch) {
+        await prBranch.delete();
+      }
+      throw e;
+    }
   }
 
   /**
