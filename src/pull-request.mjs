@@ -58,6 +58,17 @@ export class PullRequest extends NamedObject {
    */
   static async *list(repository, filter) {}
 
+  /**
+   * Open a pull request
+   *
+   * @param {Branch} source
+   * @param {Branch} destination
+   * @param {Object} options
+   */
+  static async open(source, destination, options) {
+    return new this(source, destination, "-1", options);
+  }
+
   static get attributes() {
     return {
       ...super.attributes,
@@ -203,8 +214,7 @@ export class PullRequest extends NamedObject {
   /**
    * Decline the pull request
    */
-  async decline() {
-  }
+  async decline() {}
 
   toString() {
     return [
@@ -212,7 +222,10 @@ export class PullRequest extends NamedObject {
       ["source", this.source],
       ["destination", this.destination],
       ...Object.keys(this.constructor.attributes)
-        .filter(k => k !== "id" && k !== "title" && k !== "body" && this[k] !== undefined)
+        .filter(
+          k =>
+            k !== "id" && k !== "title" && k !== "body" && this[k] !== undefined
+        )
         .map(k => [k, this[k]])
     ]
       .map(([k, v]) => `${k}: ${v}`)

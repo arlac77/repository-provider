@@ -87,16 +87,19 @@ export class Branch extends Ref {
 
   /**
    * Commit entries into a pull request.
-   * 
+   *
    * @param {string} message commit message
    * @param {ConentEntry[]} updates content to be commited
    * @param {Object} options
+   * @param {Branch|string} options.pullRequestBranch
    * @return {PullRequest}
    */
   async commitIntoPullRequest(message, updates, options) {
-    prBranchName = "pr";
+    const prBranch =
+      options.pullRequestBranch instanceof Branch
+        ? options.pullRequestBranch
+        : await this.createBranch(options.pullRequestBranch);
 
-    const prBranch = await this.createBranch(prBranchName);
     await prBranch.commit(message, updates);
 
     const pullRequest = await prBranch.createPullRequest(this, options);
