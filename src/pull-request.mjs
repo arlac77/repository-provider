@@ -92,7 +92,8 @@ export class PullRequest extends NamedObject {
        * @return {string}
        */
       state: {
-        default: "OPEN"
+        default: "OPEN",
+        type: "string"
       },
 
       /**
