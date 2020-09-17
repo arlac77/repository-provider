@@ -230,46 +230,54 @@ console.log(await readme.getString());
     -   [delete](#delete-1)
     -   [commit](#commit-1)
         -   [Parameters](#parameters-53)
-    -   [removeEntries](#removeentries)
+    -   [commitIntoPullRequest](#commitintopullrequest)
         -   [Parameters](#parameters-54)
+    -   [removeEntries](#removeentries)
+        -   [Parameters](#parameters-55)
     -   [entryClass](#entryclass-2)
     -   [createPullRequest](#createpullrequest-1)
-        -   [Parameters](#parameters-55)
+        -   [Parameters](#parameters-56)
     -   [pullRequestClass](#pullrequestclass-3)
     -   [createBranch](#createbranch-1)
-        -   [Parameters](#parameters-56)
+        -   [Parameters](#parameters-57)
+-   [Tag](#tag-1)
+    -   [Parameters](#parameters-58)
+    -   [isWritable](#iswritable-1)
 -   [Issue](#issue)
 -   [PullRequest](#pullrequest-1)
-    -   [Parameters](#parameters-57)
+    -   [Parameters](#parameters-59)
     -   [Properties](#properties-6)
     -   [repository](#repository-3)
     -   [provider](#provider-3)
     -   [equals](#equals-4)
-        -   [Parameters](#parameters-58)
+        -   [Parameters](#parameters-60)
     -   [delete](#delete-2)
     -   [merge](#merge)
-        -   [Parameters](#parameters-59)
+        -   [Parameters](#parameters-61)
     -   [decline](#decline)
+    -   [identifier](#identifier)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list)
-        -   [Parameters](#parameters-60)
+        -   [Parameters](#parameters-62)
+    -   [open](#open)
+        -   [Parameters](#parameters-63)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
 -   [Hook](#hook-1)
-    -   [Parameters](#parameters-61)
+    -   [Parameters](#parameters-64)
     -   [Properties](#properties-7)
     -   [equals](#equals-5)
-        -   [Parameters](#parameters-62)
+        -   [Parameters](#parameters-65)
     -   [toJSON](#tojson-3)
 -   [BaseObject](#baseobject)
-    -   [Parameters](#parameters-63)
+    -   [Parameters](#parameters-66)
     -   [equals](#equals-6)
-        -   [Parameters](#parameters-64)
+        -   [Parameters](#parameters-67)
     -   [attributes](#attributes-2)
     -   [attributeMapping](#attributemapping-1)
 -   [description](#description)
@@ -277,15 +285,15 @@ console.log(await readme.getString());
 -   [uuid](#uuid)
 -   [avatarURL](#avatarurl)
 -   [Milestone](#milestone)
-    -   [Parameters](#parameters-65)
--   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-66)
--   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-67)
--   [mapAttributes](#mapattributes)
     -   [Parameters](#parameters-68)
--   [generateBranchName](#generatebranchname)
+-   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-69)
+-   [optionJSON](#optionjson)
+    -   [Parameters](#parameters-70)
+-   [mapAttributes](#mapattributes)
+    -   [Parameters](#parameters-71)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-72)
 
 ## BaseProvider
 
@@ -886,7 +894,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 -   `patterns` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>)** 
 
-Returns **Iterator&lt;Tag>** of all tags
+Returns **Iterator&lt;[Tag](#tag)>** of all tags
 
 ### tag
 
@@ -894,7 +902,7 @@ Returns **Iterator&lt;Tag>** of all tags
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **Tag** 
+Returns **[Tag](#tag)** 
 
 ### delete
 
@@ -1107,13 +1115,13 @@ List entries of the branch
 
 -   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
-Returns **Entry** all matching entries in the branch
+Returns **ConentEntry** all matching entries in the branch
 
 ### asyncIterator
 
 List all entries of the branch
 
-Returns **asyncIterator&lt;Entry>** all entries in the branch
+Returns **asyncIterator&lt;ConentEntry>** all entries in the branch
 
 ### maybeEntry
 
@@ -1123,7 +1131,7 @@ Get exactly one matching entry by name or undefine if no such entry is found
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Entry>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;ConentEntry>** 
 
 ### entry
 
@@ -1133,7 +1141,7 @@ Get exactly one matching entry by name (throws if entry is not found)
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Entry>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;ConentEntry>** 
 
 ### provider
 
@@ -1187,7 +1195,7 @@ Returns **any** false
 
 ### isWritable
 
-Returns **any** false
+Returns **any** true if not [isArchived](isArchived) and [isDisabled](isDisabled) and [isLocked](isLocked)
 
 ### attributes
 
@@ -1281,10 +1289,23 @@ Commit entries
 #### Parameters
 
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
--   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Entry>** content to be commited
+-   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ConentEntry>** content to be commited
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[CommitResult](#commitresult)** 
+
+### commitIntoPullRequest
+
+Commit entries into a pull request.
+
+#### Parameters
+
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
+-   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ConentEntry>** content to be commited
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.pullRequestBranch` **([Branch](#branch) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
+
+Returns **[PullRequest](#pullrequest)** 
 
 ### removeEntries
 
@@ -1292,7 +1313,7 @@ Remove entries form the branch
 
 #### Parameters
 
--   `entries` **Iterator&lt;Entry>** 
+-   `entries` **Iterator&lt;ConentEntry>** 
 
 ### entryClass
 
@@ -1328,6 +1349,22 @@ Simply calls Repository.createBranch() with the receiver as source branch
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** newly created branch (or already present old one with the same name)
+
+## Tag
+
+**Extends Ref**
+
+Tag refs
+
+### Parameters
+
+-   `repository`  
+-   `name`  
+-   `options`  
+
+### isWritable
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
 ## Issue
 
@@ -1400,6 +1437,12 @@ Merge the pull request
 
 Decline the pull request
 
+### identifier
+
+Short human readable identifier with provider and branch
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ### validStates
 
 All valid states
@@ -1432,6 +1475,16 @@ result will be filtered by source branch, destination branch and states
     -   `filter.states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
 
 Returns **Iterator&lt;[PullRequest](#pullrequest)>** 
+
+### open
+
+Open a pull request
+
+#### Parameters
+
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ## title
 
