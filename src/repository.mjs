@@ -55,7 +55,8 @@ export class Repository extends NamedObject {
       isArchived: { type: "boolean", default: false },
       isLocked: { type: "boolean", default: false },
       isDisabled: { type: "boolean", default: false },
-      isTemplate: { type: "boolean", default: false }
+      isTemplate: { type: "boolean", default: false },
+      isFork: { type: "boolean", default: false }
     };
   }
 
