@@ -1,4 +1,5 @@
 import { Ref } from "./ref.mjs";
+import { PullRequest } from "./pull-request.mjs";
 
 /**
  * @typedef {Object} CommitResult
@@ -92,9 +93,21 @@ export class Branch extends Ref {
    * @param {ConentEntry[]} updates content to be commited
    * @param {Object} options
    * @param {Branch|string} options.pullRequestBranch
+   * @param {boolean} options.dry do not create a branch and do not commit only create tmp pr
    * @return {PullRequest}
    */
   async commitIntoPullRequest(message, updates, options) {
+    if (options.dry) {
+      return new PullRequest(
+        options.pullRequestBranch instanceof Branch
+          ? options.pullRequestBranch
+          : undefined,
+        this,
+        "DRY",
+        options
+      );
+    }
+
     const prBranch =
       options.pullRequestBranch instanceof Branch
         ? options.pullRequestBranch
