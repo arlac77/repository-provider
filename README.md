@@ -1304,6 +1304,7 @@ Commit entries into a pull request.
 -   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ConentEntry>** content to be commited
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.pullRequestBranch` **([Branch](#branch) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
+    -   `options.dry` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a branch and do not commit only create tmp pr
 
 Returns **[PullRequest](#pullrequest)** 
 
