@@ -11,5 +11,6 @@ export * from "./issue.mjs";
 export * from "./pull-request.mjs";
 export * from "./hook.mjs";
 export * from "./milestone.mjs";
+export * from "./review.mjs";
 export * from "./attribute.mjs";
 export * from "./util.mjs";

@@ -222,6 +222,12 @@ export class PullRequest extends NamedObject {
    */
   async decline() {}
 
+  /**
+   * @return {Interaor<Review>}
+   */
+  async * reviews() {
+  }
+
   toString() {
     return [
       [this.name, this.title],
