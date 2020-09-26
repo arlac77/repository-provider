@@ -112,6 +112,11 @@ export class PullRequest extends NamedObject {
       merged: {
         type: "boolean",
         default: false
+      },
+
+      draft: {
+        type: "boolean",
+        default: false
       }
     };
   }
