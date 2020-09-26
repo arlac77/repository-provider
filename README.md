@@ -255,6 +255,7 @@ console.log(await readme.getString());
     -   [merge](#merge)
         -   [Parameters](#parameters-61)
     -   [decline](#decline)
+    -   [reviews](#reviews)
     -   [identifier](#identifier)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
@@ -286,6 +287,7 @@ console.log(await readme.getString());
 -   [avatarURL](#avatarurl)
 -   [Milestone](#milestone)
     -   [Parameters](#parameters-68)
+-   [Review](#review)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-69)
 -   [optionJSON](#optionjson)
@@ -1438,6 +1440,10 @@ Merge the pull request
 
 Decline the pull request
 
+### reviews
+
+Returns **Interaor&lt;[Review](#review)>** 
+
 ### identifier
 
 Short human readable identifier with provider and branch
@@ -1612,6 +1618,10 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 -   `owner`  
 -   `name`  
 -   `options`  
+
+## Review
+
+**Extends BaseObject**
 
 ## definePropertiesFromOptions
 
