@@ -35,7 +35,7 @@
     "ava": "^3.13.0",
     "c8": "^7.3.1",
     "documentation": "^13.0.2",
-    "repository-provider-test-support": "^1.0.1",
+    "repository-provider-test-support": "^1.0.10",
     "semantic-release": "^17.1.2"
   },
   "engines": {
