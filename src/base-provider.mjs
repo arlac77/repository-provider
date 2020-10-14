@@ -215,30 +215,50 @@ export class BaseProvider {
     return result;
   }
 
-  /**
-   * List repositories
-   * @param {string[]|string} patterns
-   * @return {Iterator<Repository>} all matching repos of the provider
-   */
-  async *repositories(patterns) {
+  async createRepository(name, options) {
+    const rg = await this.repositoryGroup(name);
+    return rg.createRepository(name, options);
+  }
+
+  async *listGroups(patterns) {
     if (patterns === undefined) {
       for await (const group of this.repositoryGroups()) {
-        yield* group.repositories();
+        yield group;
       }
     } else {
       for (const pattern of asArray(patterns)) {
         const [groupPattern, repoPattern] = pattern.split(/\//);
 
         for await (const group of this.repositoryGroups(groupPattern)) {
-          yield* group.repositories(repoPattern);
+          yield group;
         }
       }
     }
   }
 
-  async createRepository(name, options) {
-    const rg = await this.repositoryGroup(name);
-    return rg.createRepository(name, options);
+  async *list(type,patterns) {
+    if (patterns === undefined) {
+      for await (const group of this.repositoryGroups()) {
+        yield* group[type]();
+      }
+    } else {
+      for (const pattern of asArray(patterns)) {
+        const [groupPattern, repoPattern] = pattern.split(/\//);
+
+        for await (const group of this.repositoryGroups(groupPattern)) {
+          yield* group[type](repoPattern);
+        }
+      }
+    }
+  }
+
+  /**
+   * List repositories
+   * @param {string[]|string} patterns
+   * @return {Iterator<Repository>} all matching repos of the provider
+   */
+  async *repositories(patterns) {
+    yield *this.list('repositories', patterns);
   }
 
   /**
@@ -247,19 +267,7 @@ export class BaseProvider {
    * @return {Iterator<Branch>} all matching branches of the provider
    */
   async *branches(patterns) {
-    if (patterns === undefined) {
-      for await (const group of this.repositoryGroups()) {
-        yield* group.branches();
-      }
-    } else {
-      for (const pattern of asArray(patterns)) {
-        const [groupPattern, repoPattern] = pattern.split(/\//);
-
-        for await (const group of this.repositoryGroups(groupPattern)) {
-          yield* group.branches(repoPattern);
-        }
-      }
-    }
+    yield * this.list('branches', patterns);
   }
 
   /**
@@ -268,19 +276,7 @@ export class BaseProvider {
    * @return {Iterator<Branch>} all matching tags of the provider
    */
   async *tags(patterns) {
-    if (patterns === undefined) {
-      for await (const group of this.repositoryGroups()) {
-        yield* group.tags();
-      }
-    } else {
-      for (const pattern of asArray(patterns)) {
-        const [groupPattern, repoPattern] = pattern.split(/\//);
-
-        for await (const group of this.repositoryGroups(groupPattern)) {
-          yield* group.tags(repoPattern);
-        }
-      }
-    }
+    yield * this.list('tags', patterns);
   }
 
   /**
