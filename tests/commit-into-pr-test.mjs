@@ -26,5 +26,5 @@ test("commit with PR DRY", async t => {
 
   t.is(pr.number, "DRY");
   t.is(pr.title, "a title");
-  t.is(pr.identifier, "SingleGroupProvider/r1[DRY]");
+  t.is(pr.identifier, "SingleGroupProvider:r1[DRY]");
 });

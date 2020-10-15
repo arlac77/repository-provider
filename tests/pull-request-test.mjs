@@ -44,7 +44,7 @@ test("pullRequest create", async t => {
   t.is(pr.merged, false);
   t.is(pr.draft, false);
   t.is(pr.id, "123456");
-  t.is(pr.identifier, "SingleGroupProvider/r1#b2[4711]");
+  t.is(pr.identifier, "SingleGroupProvider:r1#b2[4711]");
 
   t.is(
     `${pr}`,
