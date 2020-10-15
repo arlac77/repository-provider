@@ -25,13 +25,13 @@ export class BaseProvider {
     let options;
 
     for (let [envName, value] of Object.entries(env)) {
-      for(const [name, attribute] of Object.entries(attributes)) {
-        if(asArray(attribute.env).find(e => e === envName)) {
+      for (const [name, attribute] of Object.entries(attributes)) {
+        if (asArray(attribute.env).find(e => e === envName)) {
           if (options === undefined) {
             options = {};
           }
           options[name] = value;
-          Object.assign(options,attribute.additionalAttributes);
+          Object.assign(options, attribute.additionalAttributes);
           break;
         }
       }
@@ -46,9 +46,10 @@ export class BaseProvider {
    * @return {boolean} true if options ar sufficient to construct a provider
    */
   static areOptionsSufficcient(options) {
-    for(const [name,attribute] of Object.entries(this.attributes)
-       .filter(([name,attribute]) => attribute.mandatory)) {
-      if(options[name] === undefined) {
+    for (const [name, attribute] of Object.entries(this.attributes).filter(
+      ([name, attribute]) => attribute.mandatory
+    )) {
+      if (options[name] === undefined) {
         return false;
       }
     }
@@ -148,12 +149,12 @@ export class BaseProvider {
    * @return {boolean} true if base is supported or base is undefined
    */
   supportsBase(base) {
-    if(base === undefined) {
+    if (base === undefined) {
       return true;
     }
 
     for (const b of this.repositoryBases) {
-      if(b === base) {
+      if (b === base) {
         return true;
       }
     }
@@ -170,7 +171,9 @@ export class BaseProvider {
   parseName(name) {
     const result = {};
 
-    if(name === undefined) { return result; }
+    if (name === undefined) {
+      return result;
+    }
 
     name = name.replace(
       /^\s*(git\+)?(([\w\-\+]+:\/\/)[^\@]+@)?/,
@@ -236,7 +239,13 @@ export class BaseProvider {
     }
   }
 
-  async *list(type,patterns) {
+  /**
+   * List provider objects of a given type
+   *
+   * @param {string} type name of the method to deliver typed iterator
+   * @param {string|string[]} patterns group / repository filter
+   */
+  async *list(type, patterns) {
     if (patterns === undefined) {
       for await (const group of this.repositoryGroups()) {
         yield* group[type]();
@@ -258,7 +267,7 @@ export class BaseProvider {
    * @return {Iterator<Repository>} all matching repos of the provider
    */
   async *repositories(patterns) {
-    yield *this.list('repositories', patterns);
+    yield* this.list("repositories", patterns);
   }
 
   /**
@@ -267,7 +276,7 @@ export class BaseProvider {
    * @return {Iterator<Branch>} all matching branches of the provider
    */
   async *branches(patterns) {
-    yield * this.list('branches', patterns);
+    yield* this.list("branches", patterns);
   }
 
   /**
@@ -276,7 +285,7 @@ export class BaseProvider {
    * @return {Iterator<Branch>} all matching tags of the provider
    */
   async *tags(patterns) {
-    yield * this.list('tags', patterns);
+    yield* this.list("tags", patterns);
   }
 
   /**
