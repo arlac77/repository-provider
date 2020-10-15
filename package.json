@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "ava": "^3.13.0",
-    "c8": "^7.3.3",
+    "c8": "^7.3.4",
     "documentation": "^13.0.2",
     "repository-provider-test-support": "^1.0.13",
     "semantic-release": "^17.2.1"
