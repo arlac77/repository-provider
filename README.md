@@ -124,6 +124,7 @@ console.log(await readme.getString());
     -   [fullName](#fullname)
     -   [slug](#slug)
     -   [provider](#provider-1)
+    -   [identifier](#identifier)
     -   [equals](#equals-2)
         -   [Parameters](#parameters-27)
     -   [entry](#entry)
@@ -223,6 +224,7 @@ console.log(await readme.getString());
     -   [Properties](#properties-5)
     -   [fullName](#fullname-1)
     -   [fullCondensedName](#fullcondensedname)
+    -   [identifier](#identifier-1)
     -   [url](#url-2)
     -   [isDefault](#isdefault)
     -   [delete](#delete-1)
@@ -254,7 +256,7 @@ console.log(await readme.getString());
         -   [Parameters](#parameters-62)
     -   [decline](#decline)
     -   [reviews](#reviews)
-    -   [identifier](#identifier)
+    -   [identifier](#identifier-2)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
@@ -737,6 +739,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 The owners provider
 
 Returns **Provider** 
+
+### identifier
+
+Short human readable identifier with provider and branch.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### equals
 
@@ -1269,6 +1277,12 @@ Repository fullName and branch name combined.
 But skipping the branch name if it is the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
+
+### identifier
+
+Short human readable identifier with provider and branch.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### url
 
