@@ -231,8 +231,8 @@ export class PullRequest extends NamedObject {
   toString() {
     return [
       [this.name, this.title],
-      ["source", this.source],
-      ["destination", this.destination],
+      ["source", this.source.identifier],
+      ["destination", this.destination.identifier],
       ...Object.keys(this.constructor.attributes)
         .filter(
           k =>
@@ -257,6 +257,6 @@ export class PullRequest extends NamedObject {
    * @return {string}
    */
   get identifier() {
-    return `${this.destination.provider.name}:${this.destination.fullCondensedName}[${this.name}]`;
+    return `${this.destination.identifier}[${this.name}]`;
   }
 }

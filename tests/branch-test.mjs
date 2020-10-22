@@ -24,7 +24,7 @@ test("branch init", async t => {
 
   t.is(b.homePageURL, undefined);
   t.is(b.issuesURL, undefined);
-  t.is(`${b}`, "r1#b1");
+  t.is(`${b}`, "SingleGroupProvider:r1#b1");
   t.is(b.ref, "refs/heads/b1");
   t.is(b.pullRequestClass, PullRequest);
   t.is(b.entryClass, undefined);

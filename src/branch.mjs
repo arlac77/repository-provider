@@ -42,8 +42,16 @@ export class Branch extends Ref {
       : `${this.repository.fullName}#${this.name}`;
   }
 
+  /**
+   * Short human readable identifier with provider and branch.
+   * @return {string}
+   */
+  get identifier() {
+    return `${this.provider.name}:${this.fullCondensedName}`;
+  }
+
   toString() {
-    return this.fullCondensedName;
+    return this.identifier;
   }
 
   /**

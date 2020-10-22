@@ -99,6 +99,14 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * Short human readable identifier with provider and branch.
+   * @return {string}
+   */
+  get identifier() {
+    return `${this.provider.name}:${this.fullName}`;
+  }
+
+  /**
    * Check for equality
    * @param {Repository} other
    * @return {boolean} true if name and provider are equal
@@ -424,7 +432,8 @@ export class Repository extends NamedObject {
    */
   async hook(id) {
     for await (const hook of this.hooks()) {
-      if(hook.id == id) { // string of number
+      if (hook.id == id) {
+        // string of number
         return hook;
       }
     }
