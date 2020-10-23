@@ -54,6 +54,10 @@ export class Branch extends Ref {
     return this.identifier;
   }
 
+  get slug() {
+    return this.repository.slug;
+  }
+
   /**
    * Deliver repository and branch url combined
    * @return {string} 'repoUrl#branch'

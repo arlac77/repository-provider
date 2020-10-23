@@ -12,6 +12,8 @@ test("branch init", async t => {
   t.is(b.repository, repository);
   t.is(b.provider, provider);
   t.is(b.name, "b1");
+  t.is(b.slug, "SingleGroupProvider/r1");
+
   t.is(b.owner, provider);
   t.is(b.fullName, "r1#b1");
   t.is(b.fullCondensedName, "r1#b1");
