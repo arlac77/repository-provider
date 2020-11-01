@@ -492,7 +492,7 @@ this defines the order
 
 **Extends RepositoryOwner(BaseProvider)**
 
-Provider with a single set of repositories
+Provider holding a single set of repositories (no repository groups)
 
 ### repository
 
@@ -506,7 +506,7 @@ Returns **[Repository](#repository)**
 
 ### repositoryGroup
 
-List groups
+get a single Group
 
 #### Parameters
 
