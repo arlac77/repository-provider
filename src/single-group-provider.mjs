@@ -2,7 +2,7 @@ import { BaseProvider } from "./base-provider.mjs";
 import RepositoryOwner from "./repository-owner.mjs";
 
 /**
- * Provider with a single set of repositories
+ * Provider holding a single set of repositories (no repository groups)
  */
 export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
 
@@ -27,9 +27,8 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
         );
   }
 
-
   /**
-   * List groups
+   * get a single Group
    * @param {string} name 
    * @return {RepositoryGroup} deliver the one and only present group 
    */
