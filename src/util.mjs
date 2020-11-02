@@ -3,6 +3,16 @@ export function asArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
+export function stripBaseName(name, repositoryBases)
+{
+  for (const b of repositoryBases) {
+    if (name.startsWith(b)) {
+      return name.slice(b.length);
+    }
+  }
+  return name;
+}
+
 /**
  * Find a new branch name for a given pattern
  * '*' will be replaced by a number

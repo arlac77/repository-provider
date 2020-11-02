@@ -1,4 +1,4 @@
-import { asArray } from "./util.mjs";
+import { asArray, stripBaseName } from "./util.mjs";
 import { definePropertiesFromOptions } from "./attribute.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
@@ -119,6 +119,13 @@ export class BaseProvider {
       : repository;
   }
 
+  /**
+   * Bring a group name into its normal form by removing any clutter
+   * like .git suffix or #branch names
+   * @param {string} name
+   * @param {boolean} forLookup
+   * @return {string} normalized name
+   */
   normalizeGroupName(name, forLookup) {
     return name && forLookup && !this.areGroupNamesCaseSensitive
       ? name.toLowerCase()
@@ -145,7 +152,7 @@ export class BaseProvider {
 
   /**
    * Does the provider support the base name
-   * @param {string} base
+   * @param {string} base to be checked
    * @return {boolean} true if base is supported or base is undefined
    */
   supportsBase(base) {
@@ -172,18 +179,9 @@ export class BaseProvider {
     if (patterns === undefined) {
       return undefined;
     }
-    const normalize = pattern => {
-      for (const b of this.repositoryBases) {
-        if (pattern.startsWith(b)) {
-          pattern = pattern.slice(b.length);
-          break;
-        }
-      }
-      return pattern;
-    };
     return Array.isArray(patterns)
-      ? patterns.map(p => normalize(p))
-      : normalize(patterns);
+      ? patterns.map(p => stripBaseName(p, this.repositoryBases))
+      : stripBaseName(patterns, this.repositoryBases);
   }
 
   /**
@@ -276,15 +274,10 @@ export class BaseProvider {
       }
     } else {
       for (let pattern of asArray(patterns)) {
-
-        for (const b of this.repositoryBases) {
-          if (pattern.startsWith(b)) {
-            pattern = pattern.slice(b.length);
-            break;
-          }
-        }
-
-        const [groupPattern, repoPattern] = pattern.split(/\//);
+        const [groupPattern, repoPattern] = stripBaseName(
+          pattern,
+          this.repositoryBases
+        ).split(/\//);
 
         for await (const group of this.repositoryGroups(groupPattern)) {
           yield* group[type](repoPattern);
