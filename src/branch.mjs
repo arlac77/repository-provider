@@ -104,32 +104,31 @@ export class Branch extends Ref {
    * @param {string} message commit message
    * @param {ConentEntry[]} updates content to be commited
    * @param {Object} options
-   * @param {Branch|string} options.pullRequestBranch
-   * @param {boolean} options.dry do not create a branch and do not commit only create tmp pr
+   * @param {Branch|string} options.pullRequestBranch to commit into
+   * @param {boolean} options.dry do not create a branch and do not commit only create tmp PR
    * @return {PullRequest}
    */
   async commitIntoPullRequest(message, updates, options) {
+    const isBranch = options.pullRequestBranch instanceof Branch;
+
     if (options.dry) {
       return new PullRequest(
-        options.pullRequestBranch instanceof Branch
-          ? options.pullRequestBranch
-          : undefined,
+        isBranch ? options.pullRequestBranch : undefined,
         this,
         "DRY",
         options
       );
     }
 
-    const prBranch =
-      options.pullRequestBranch instanceof Branch
-        ? options.pullRequestBranch
-        : await this.createBranch(options.pullRequestBranch);
+    const prBranch = isBranch
+      ? options.pullRequestBranch
+      : await this.createBranch(options.pullRequestBranch);
 
     try {
       await prBranch.commit(message, updates);
       return await prBranch.createPullRequest(this, options);
     } catch (e) {
-      if (!options.pullRequestBranch instanceof Branch) {
+      if (!isBranch) {
         await prBranch.delete();
       }
       throw e;
