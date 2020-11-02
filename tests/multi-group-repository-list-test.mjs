@@ -32,10 +32,12 @@ const g2Result = {
 test(repositoryListTest, provider, "g1/*", g1Result);
 test(repositoryListTest, provider, "https://myrepo/g1/*", g1Result);
 test(repositoryListTest, provider, "*", { ...g1Result, ...g2Result });
+test(repositoryListTest, provider, "https://myrepo/*", { ...g1Result, ...g2Result });
 test(repositoryListTest, provider, "*/r*", { ...g1Result, ...g2Result });
 test(repositoryListTest, provider, "https://myrepo/*/r*", { ...g1Result, ...g2Result });
 test(repositoryListTest, provider, undefined, { ...g1Result, ...g2Result });
 test(repositoryListTest, provider, "*/x*");
+test(repositoryListTest, provider, "https://myrepo/*/x*");
 test(repositoryListTest, provider, "g3/*", undefined);
 test(repositoryListTest, provider, "https://myrepo/g3/*", undefined);
 
