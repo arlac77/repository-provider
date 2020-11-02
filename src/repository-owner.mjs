@@ -2,13 +2,12 @@ import { matcher } from "matching-iterator";
 
 export default function RepoositoryOwner(base) {
   return class RepoositoryOwner extends base {
-
     constructor(...args) {
-        super(...args);
+      super(...args);
 
-        Object.defineProperties(this,{ _repositories: { value: new Map() } });
-      }
-    
+      Object.defineProperties(this, { _repositories: { value: new Map() } });
+    }
+
     /**
      * Normalizes a repository name
      * strips branch away
@@ -55,10 +54,14 @@ export default function RepoositoryOwner(base) {
      */
     async *repositories(patterns) {
       await this.initializeRepositories();
-      yield* matcher(this._repositories.values(), patterns, {
-        caseSensitive: this.areRepositoryNamesCaseSensitive,
-        name: "name"
-      });
+      yield* matcher(
+        this._repositories.values(),
+        this.removeProviderBase(patterns),
+        {
+          caseSensitive: this.areRepositoryNamesCaseSensitive,
+          name: "name"
+        }
+      );
     }
 
     /**
@@ -98,7 +101,6 @@ export default function RepoositoryOwner(base) {
       this._repositories.delete(this.normalizeRepositoryName(name, true));
     }
 
-    initializeRepositories() {
-    }
+    initializeRepositories() {}
   };
 }

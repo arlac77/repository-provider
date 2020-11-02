@@ -48,6 +48,10 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
     });
   }
 
+  removeProviderBase(patterns) {
+    return this.provider.removeProviderBase(patterns);
+  }
+
   get areRepositoryNamesCaseSensitive() {
     return this.provider.areRepositoryNamesCaseSensitive;
   }
@@ -87,7 +91,6 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   get pullRequestClass() {
     return this.provider.pullRequestClass;
   }
-
 
   /**
    * Lookup a branch

@@ -1,7 +1,13 @@
 import test from "ava";
 import { SingleGroupProvider } from "repository-provider";
 
-class CaseInsensitiveOwner extends SingleGroupProvider {
+class CaseSensitiveOwner extends SingleGroupProvider {
+  get repositoryBases() {
+    return ["https://myrepo/"];
+  }
+}
+
+class CaseInsensitiveOwner extends CaseSensitiveOwner {
   get areRepositoryNamesCaseSensitive() {
     return false;
   }
@@ -52,19 +58,22 @@ async function createOwner(factory) {
   return owner;
 }
 
-test(olrt, SingleGroupProvider, "r1", ["r1"]);
-test(olrt, SingleGroupProvider, "r*", ["r1", "r2"]);
-test(olrt, SingleGroupProvider, "*r*", ["r1", "r2", "Upper"]);
-test(olrt, SingleGroupProvider, "*", ["r1", "r2", "x", "Upper"]);
-test(olrt, SingleGroupProvider, undefined, ["r1", "r2", "x", "Upper"]);
-test(olrt, SingleGroupProvider, "abc", []);
-test(olrt, SingleGroupProvider, "", []);
-test(olrt, CaseInsensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
 
-test(ogrt, SingleGroupProvider, undefined, undefined);
-test(ogrt, SingleGroupProvider, "r1", "r1");
-test(ogrt, SingleGroupProvider, "r1#master", "r1");
-test(ogrt, SingleGroupProvider, "Upper", "Upper");
-test(ogrt, SingleGroupProvider, "upper", undefined);
+test(olrt, CaseSensitiveOwner, "r1", ["r1"]);
+test(olrt, CaseSensitiveOwner, "r*", ["r1", "r2"]);
+test(olrt, CaseSensitiveOwner, "https://myrepo/r*", ["r1", "r2"]);
+test(olrt, CaseSensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
+test(olrt, CaseSensitiveOwner, "*", ["r1", "r2", "x", "Upper"]);
+test(olrt, CaseSensitiveOwner, undefined, ["r1", "r2", "x", "Upper"]);
+test(olrt, CaseSensitiveOwner, "abc", []);
+test(olrt, CaseSensitiveOwner, "", []);
+test(olrt, CaseInsensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
+test(olrt, CaseInsensitiveOwner, "https://myrepo/*r*", ["r1", "r2", "Upper"]);
+
+test(ogrt, CaseSensitiveOwner, undefined, undefined);
+test(ogrt, CaseSensitiveOwner, "r1", "r1");
+test(ogrt, CaseSensitiveOwner, "r1#master", "r1");
+test(ogrt, CaseSensitiveOwner, "Upper", "Upper");
+test(ogrt, CaseSensitiveOwner, "upper", undefined);
 test(ogrt, CaseInsensitiveOwner, undefined, undefined);
 test(ogrt, CaseInsensitiveOwner, "upper", "Upper");

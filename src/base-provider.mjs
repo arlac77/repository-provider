@@ -163,6 +163,30 @@ export class BaseProvider {
   }
 
   /**
+   * strip away any provider base
+   *
+   * @param {string|string[]} patterns
+   * @returns {string|string[]} stripped patterns
+   */
+  removeProviderBase(patterns) {
+    if (patterns === undefined) {
+      return undefined;
+    }
+    const normalize = pattern => {
+      for (const b of this.repositoryBases) {
+        if (pattern.startsWith(b)) {
+          pattern = pattern.slice(b.length);
+          break;
+        }
+      }
+      return pattern;
+    };
+    return Array.isArray(patterns)
+      ? patterns.map(p => normalize(p))
+      : normalize(patterns);
+  }
+
+  /**
    * Parses repository name and tries to split it into
    * base, group, repository and branch
    * @param {string} name
@@ -251,7 +275,15 @@ export class BaseProvider {
         yield* group[type]();
       }
     } else {
-      for (const pattern of asArray(patterns)) {
+      for (let pattern of asArray(patterns)) {
+
+        for (const b of this.repositoryBases) {
+          if (pattern.startsWith(b)) {
+            pattern = pattern.slice(b.length);
+            break;
+          }
+        }
+
         const [groupPattern, repoPattern] = pattern.split(/\//);
 
         for await (const group of this.repositoryGroups(groupPattern)) {
