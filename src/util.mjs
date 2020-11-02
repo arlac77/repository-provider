@@ -1,12 +1,19 @@
-
 export function asArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-export function stripBaseName(name, repositoryBases)
-{
+/**
+ *
+ * @param {string} name
+ * @param {string[]} repositoryBases all possible bases
+ * @param {Function} whenFound to be called with the found base name
+ */
+export function stripBaseName(name, repositoryBases, whenFound) {
   for (const b of repositoryBases) {
     if (name.startsWith(b)) {
+      if (whenFound) {
+        whenFound(b);
+      }
       return name.slice(b.length);
     }
   }
@@ -32,4 +39,3 @@ export async function generateBranchName(repository, pattern) {
   const name = pattern.replace(/\*/, n);
   return name;
 }
-

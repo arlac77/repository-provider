@@ -1,8 +1,14 @@
 import test from "ava";
 import { stripBaseName } from "../src/util.mjs";
 
-async function sbnt(t, name, bases = [], expected) {
-  t.is(stripBaseName(name, bases), expected);
+async function sbnt(t, name, bases = [], expected, expectExtractedBase) {
+  t.is(stripBaseName(name, bases), expected, "stripped name");
+
+  let extractedBase;
+
+  stripBaseName(name, bases, found => (extractedBase = found));
+
+  t.is(extractedBase, expectExtractedBase, "extracted baseName");
 }
 
 sbnt.title = (providedTitle = "", name, bases) =>
@@ -15,5 +21,6 @@ test(
   sbnt,
   "https://github.com/arlac77/myrepo.git",
   ["https://github.com/"],
-  "arlac77/myrepo.git"
+  "arlac77/myrepo.git",
+  "https://github.com/"
 );

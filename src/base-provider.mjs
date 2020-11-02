@@ -202,13 +202,12 @@ export class BaseProvider {
       (m, a, b, r) => r || ""
     );
 
-    for (const b of this.repositoryBases) {
-      if (name.startsWith(b)) {
-        result.base = b;
-        name = name.slice(b.length);
-        break;
-      }
-    }
+    name = stripBaseName(
+      name,
+      this.repositoryBases,
+      extractedBase => (result.base = extractedBase)
+    );
+
     name = name.replace(
       /^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/,
       (m, base) => {
@@ -252,7 +251,10 @@ export class BaseProvider {
       }
     } else {
       for (const pattern of asArray(patterns)) {
-        const [groupPattern, repoPattern] = pattern.split(/\//);
+        const [groupPattern, repoPattern] = stripBaseName(
+          pattern,
+          this.repositoryBases
+        ).split(/\//);
 
         for await (const group of this.repositoryGroups(groupPattern)) {
           yield group;
