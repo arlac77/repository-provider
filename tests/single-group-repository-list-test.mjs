@@ -67,13 +67,17 @@ test(olrt, CaseSensitiveOwner, "*", ["r1", "r2", "x", "Upper"]);
 test(olrt, CaseSensitiveOwner, undefined, ["r1", "r2", "x", "Upper"]);
 test(olrt, CaseSensitiveOwner, "abc", []);
 test(olrt, CaseSensitiveOwner, "", []);
+test(olrt, CaseSensitiveOwner, "https://myrepo/", []);
 test(olrt, CaseInsensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
 test(olrt, CaseInsensitiveOwner, "https://myrepo/*r*", ["r1", "r2", "Upper"]);
 
 test(ogrt, CaseSensitiveOwner, undefined, undefined);
 test(ogrt, CaseSensitiveOwner, "r1", "r1");
 test(ogrt, CaseSensitiveOwner, "r1#master", "r1");
+test(ogrt, CaseSensitiveOwner, "https://myrepo/r1#master", "r1");
 test(ogrt, CaseSensitiveOwner, "Upper", "Upper");
+test(ogrt, CaseSensitiveOwner, "https://myrepo/Upper", "Upper");
 test(ogrt, CaseSensitiveOwner, "upper", undefined);
 test(ogrt, CaseInsensitiveOwner, undefined, undefined);
 test(ogrt, CaseInsensitiveOwner, "upper", "Upper");
+test(ogrt, CaseInsensitiveOwner, "https://myrepo/upper", "Upper");
