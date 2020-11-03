@@ -293,7 +293,7 @@ export class BaseProvider {
    * @param {string[]|string} patterns
    * @return {Iterator<Projects>} all matching projects of the provider
    */
-  async *repositories(patterns) {
+  async *projects(patterns) {
     yield* this.list("projects", patterns);
   }
 
