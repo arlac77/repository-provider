@@ -135,3 +135,14 @@ export function mapAttributes(object, mapping) {
           .map(([name, value]) => [mapping[name] ? mapping[name] : name, value])
       );
 }
+
+/**
+ * Same as mapAttributes but with the inverse mapping
+ * Filters out null, undefined and empty strings
+ * @param {Object} object
+ * @param {Object} mapping
+ * @return {Object} keys renamed after mapping
+ */
+export function mapAttributesInverse(object, mapping) {
+  return mapAttributes(object,Object.fromEntries(Object.entries(mapping).map((k,v)=>[v,k])));
+}
