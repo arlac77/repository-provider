@@ -7,6 +7,7 @@ export * from "./ref.mjs";
 export * from "./commit.mjs";
 export * from "./branch.mjs";
 export * from "./tag.mjs";
+export * from "./project.mjs";
 export * from "./issue.mjs";
 export * from "./pull-request.mjs";
 export * from "./hook.mjs";

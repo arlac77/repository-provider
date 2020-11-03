@@ -142,6 +142,9 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   }
 
   async tag(name) {}
-
   async *tags(patterns) {}
+
+
+  async project(name) {}
+  async *projects(patterns) {}
 }
