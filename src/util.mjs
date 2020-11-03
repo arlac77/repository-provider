@@ -1,12 +1,19 @@
+/**
+ * Convert scalar into an array.
+ * The value undefined will be represented as an empty array. 
+ * @param {any|Array} value
+ * @return {Array} value encapsulated in an array 
+ */
 export function asArray(value) {
-  return Array.isArray(value) ? value : [value];
+  return Array.isArray(value) ? value : value === undefined ? [] : [value];
 }
 
 /**
- *
+ * Strip repository base name away.
  * @param {string} name
  * @param {string[]} repositoryBases all possible bases
  * @param {Function} whenFound to be called with the found base name
+ * @return {string} name without base
  */
 export function stripBaseName(name, repositoryBases, whenFound) {
   for (const b of repositoryBases) {
@@ -36,6 +43,5 @@ export async function generateBranchName(repository, pattern) {
     n++;
   }
 
-  const name = pattern.replace(/\*/, n);
-  return name;
+  return pattern.replace(/\*/, n);
 }
