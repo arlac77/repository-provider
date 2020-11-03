@@ -2,6 +2,12 @@ import test from "ava";
 import { groupListTest } from "repository-provider-test-support";
 import { MultiGroupProvider } from "repository-provider";
 
+class CaseSensitiveProvider extends MultiGroupProvider {
+  get repositoryBases() {
+    return ["https://myrepo/"];
+  }
+}
+
 function initProvider(factory) {
   const provider = new factory();
 
@@ -12,19 +18,45 @@ function initProvider(factory) {
   return provider;
 }
 
-test(groupListTest, initProvider(MultiGroupProvider), undefined, {
+const allGroups = {
   g1: {},
   g2: {}
-});
-test(groupListTest, initProvider(MultiGroupProvider), "*", { g1: {}, g2: {} });
-test(groupListTest, initProvider(MultiGroupProvider), "*", 3);
-test(groupListTest, initProvider(MultiGroupProvider), "g1", 1);
-test(groupListTest, initProvider(MultiGroupProvider), "*2", 1);
-test(groupListTest, initProvider(MultiGroupProvider), "g*", { g1: {}, g2: {} });
-test(groupListTest, initProvider(MultiGroupProvider), "upper", 0);
-test(groupListTest, initProvider(MultiGroupProvider), "Upper", 1);
+};
 
-class CaseInsensitiveProvider extends MultiGroupProvider {
+test(groupListTest, initProvider(CaseSensitiveProvider), undefined, allGroups);
+test(groupListTest, initProvider(CaseSensitiveProvider), "*", allGroups);
+test(
+  groupListTest,
+  initProvider(CaseSensitiveProvider),
+  "https://user@myrepo/*",
+  allGroups
+);
+test(groupListTest, initProvider(CaseSensitiveProvider), "*", 3);
+test(groupListTest, initProvider(CaseSensitiveProvider), "g1", 1);
+test(
+  groupListTest,
+  initProvider(CaseSensitiveProvider),
+  "https://user@myrepo/g1",
+  1
+);
+test(groupListTest, initProvider(CaseSensitiveProvider), "*2", 1);
+test(groupListTest, initProvider(CaseSensitiveProvider), "g*", allGroups);
+test(groupListTest, initProvider(CaseSensitiveProvider), "upper", 0);
+test(
+  groupListTest,
+  initProvider(CaseSensitiveProvider),
+  "https://user@myrepo/upper",
+  0
+);
+test(groupListTest, initProvider(CaseSensitiveProvider), "Upper", 1);
+test(
+  groupListTest,
+  initProvider(CaseSensitiveProvider),
+  "https://user@myrepo/Upper",
+  1
+);
+
+class CaseInsensitiveProvider extends CaseSensitiveProvider {
   get areRepositoryNamesCaseSensitive() {
     return false;
   }
@@ -34,10 +66,12 @@ class CaseInsensitiveProvider extends MultiGroupProvider {
   }
 }
 
-test(groupListTest, initProvider(CaseInsensitiveProvider), undefined, {
-  g1: {},
-  g2: {}
-});
+test(
+  groupListTest,
+  initProvider(CaseInsensitiveProvider),
+  undefined,
+  allGroups
+);
 test(groupListTest, initProvider(CaseInsensitiveProvider), "*", {
   g1: {},
   g2: {},
@@ -50,7 +84,6 @@ test(groupListTest, initProvider(CaseInsensitiveProvider), "g*", {
   g2: {}
 });
 test(groupListTest, initProvider(CaseInsensitiveProvider), "u*", { Upper: {} });
-
 
 async function pgrt(t, provider, name, result) {
   const group = await provider.repositoryGroup(name);
@@ -69,7 +102,26 @@ async function pgrt(t, provider, name, result) {
 pgrt.title = (providedTitle = "", provider, name, result) =>
   `${provider.name} get group ${providedTitle} '${name}'`.trim();
 
-test(pgrt, initProvider(MultiGroupProvider), "g1", "g1");
-test(pgrt, initProvider(MultiGroupProvider), "Upper", "Upper");
+test(pgrt, initProvider(CaseSensitiveProvider), "g1", "g1");
+test.skip(pgrt, initProvider(CaseSensitiveProvider), "https://myrepo/g1", "g1");
+test(pgrt, initProvider(CaseSensitiveProvider), "Upper", "Upper");
+test.skip(
+  pgrt,
+  initProvider(CaseSensitiveProvider),
+  "https://myrepo/Upper",
+  "Upper"
+);
 test(pgrt, initProvider(CaseInsensitiveProvider), "Upper", "Upper");
+test.skip(
+  pgrt,
+  initProvider(CaseInsensitiveProvider),
+  "https://myrepo/Upper",
+  "Upper"
+);
 test(pgrt, initProvider(CaseInsensitiveProvider), "upper", "Upper");
+test.skip(
+  pgrt,
+  initProvider(CaseInsensitiveProvider),
+  "https://myrepo/upper",
+  "Upper"
+);
