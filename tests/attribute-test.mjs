@@ -32,6 +32,7 @@ class MyClass {
     return {
       att1: {},
       att2: { type: "boolean" },
+      att3: { set: (x) => x * 2 },
       "authentification.token": {}
     };
   }
@@ -43,6 +44,7 @@ test(dpot, new MyClass(), { att2: "0" }, (t, object) => t.is(object.att2, false)
 test(dpot, new MyClass(), { att2: "1" }, (t, object) => t.is(object.att2, true));
 test(dpot, new MyClass(), { att2: true }, (t, object) => t.is(object.att2, true));
 test(dpot, new MyClass(), { att2: 7 }, (t, object) => t.is(object.att2, true));
+test(dpot, new MyClass(), { att3: 7 }, (t, object) => t.is(object.att3, 14));
 
 
 test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
