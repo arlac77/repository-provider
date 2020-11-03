@@ -10,6 +10,7 @@ export function asArray(value) {
 
 /**
  * Strip repository base name away.
+ * A URL auth component will be removed to.
  * @param {string} name
  * @param {string[]} repositoryBases all possible bases
  * @param {Function} whenFound to be called with the found base name
@@ -17,6 +18,11 @@ export function asArray(value) {
  */
 export function stripBaseName(name, repositoryBases, whenFound) {
   for (const b of repositoryBases) {
+    const m = name.match(/^(\w+:)\/\/([^@]+@)/);
+    if(m) {
+      name = m[1] + '//' + name.substring(m[1].length + 2 + m[2].length);
+    }
+
     if (name.startsWith(b)) {
       if (whenFound) {
         whenFound(b);

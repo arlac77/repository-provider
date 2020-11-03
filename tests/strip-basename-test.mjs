@@ -24,3 +24,19 @@ test(
   "arlac77/myrepo.git",
   "https://github.com/"
 );
+
+test(
+  sbnt,
+  "https://user@github.com/arlac77/myrepo.git",
+  ["https://github.com/"],
+  "arlac77/myrepo.git",
+  "https://github.com/"
+);
+
+test(
+  sbnt,
+  "https://user:pass@github.com/arlac77/myrepo.git",
+  ["https://github.com/"],
+  "arlac77/myrepo.git",
+  "https://github.com/"
+);
