@@ -70,10 +70,15 @@ export class MultiGroupProvider extends BaseProvider {
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();
-    yield* matcher(this._repositoryGroups.values(), patterns, {
-      caseSensitive: this.areGroupNamesCaseSensitive,
-      name: "name"
-    });
+
+    yield* matcher(
+      this._repositoryGroups.values(),
+      this.removeProviderBase(patterns),
+      {
+        caseSensitive: this.areGroupNamesCaseSensitive,
+        name: "name"
+      }
+    );
   }
 
   /**
