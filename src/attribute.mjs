@@ -118,7 +118,10 @@ export function optionJSON(object, initial = {}, skip = []) {
 
 /**
  * Rename attributes.
- * Filters out null, undefined and empty strings
+ * Filters out null, undefined and empty strings.
+ * ```js
+ * mapAttributes({a:1},{a:"a'"}) // {"a'": 1}
+ * ```
  * @param {Object} object
  * @param {Object} mapping
  * @return {Object} keys renamed after mapping
@@ -137,12 +140,17 @@ export function mapAttributes(object, mapping) {
 }
 
 /**
- * Same as mapAttributes but with the inverse mapping
+ * Same as mapAttributes but with the inverse mapping.
  * Filters out null, undefined and empty strings
  * @param {Object} object
  * @param {Object} mapping
  * @return {Object} keys renamed after mapping
  */
 export function mapAttributesInverse(object, mapping) {
-  return mapAttributes(object,Object.fromEntries(Object.entries(mapping).map((k,v)=>[v,k])));
+  return mapping === undefined
+    ? object
+    : mapAttributes(
+        object,
+        Object.fromEntries(Object.entries(mapping).map(([k, v]) => [v, k]))
+      );
 }
