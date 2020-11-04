@@ -26,7 +26,8 @@ test("repository-group create with options", t => {
     uuid: "12345",
     id: "4711",
     description: "a description",
-    homePageURL: "http://somewhere/rg"
+    homePageURL: "http://somewhere/rg",
+    isAdmin: false
   });
 });
 
