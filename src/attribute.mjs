@@ -54,6 +54,9 @@ export function definePropertiesFromOptions(
 
       if (properties[key] === undefined) {
         if (path.length === 1) {
+          if(object[key] === value) {
+            return;
+          }
           properties[key] = { value };
           return;
         }

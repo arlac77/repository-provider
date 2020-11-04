@@ -31,7 +31,9 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
       /**
        * api url
        */
-      url: { type: "url" }
+      url: { type: "url" },
+
+      isAdmin: { type: "boolean", default: false }
     };
   }
 
@@ -46,6 +48,11 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
     super(name, options, {
       provider: { value: provider }
     });
+  }
+
+  get isAdmin()
+  {
+    return false;
   }
 
   removeProviderBase(patterns) {

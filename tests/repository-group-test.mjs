@@ -13,12 +13,14 @@ test("repository-group create with options", t => {
     description: "a description",
     id: "4711",
     uuid: "12345",
-    homePageURL: "http://somewhere/rg"
+    homePageURL: "http://somewhere/rg",
+    isAdmin: true
   });
   t.is(rg.name, "rg");
   t.is(rg.description, "a description");
   t.is(rg.id, "4711");
   t.is(rg.uuid, "12345");
+  t.is(rg.isAdmin, true);
   t.is(rg.homePageURL, "http://somewhere/rg");
   //t.is(rg.toString(), "rg");
   t.deepEqual(rg.toJSON(), {
@@ -27,7 +29,7 @@ test("repository-group create with options", t => {
     id: "4711",
     description: "a description",
     homePageURL: "http://somewhere/rg",
-    isAdmin: false
+    isAdmin: true
   });
 });
 
