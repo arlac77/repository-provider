@@ -50,8 +50,7 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
     });
   }
 
-  get isAdmin()
-  {
+  get isAdmin() {
     return false;
   }
 
@@ -125,7 +124,7 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   }
 
   /**
-   * List branches for the owner
+   * List branches for the owner.
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching branches of the owner
    */
@@ -138,10 +137,9 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
       caseSensitive: this.areRepositoriesCaseSensitive
     })) {
       const repository = this._repositories.get(name);
-      const branch =
-        branchPatterns === undefined
-          ? repository.defaultBranch
-          : repository.branch(branchPatterns);
+      const branch = await (branchPatterns === undefined
+        ? repository.defaultBranch
+        : repository.branch(branchPatterns));
       if (branch !== undefined) {
         yield branch;
       }
@@ -150,7 +148,6 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
 
   async tag(name) {}
   async *tags(patterns) {}
-
 
   async project(name) {}
   async *projects(patterns) {}
