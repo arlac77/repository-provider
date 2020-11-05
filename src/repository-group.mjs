@@ -1,7 +1,5 @@
 import RepositoryOwner from "./repository-owner.mjs";
 import { NamedObject } from "./named-object.mjs";
-import { matcher } from "matching-iterator";
-import { Branch } from "./branch.mjs";
 
 /**
  * Abstract repository collection
@@ -97,58 +95,4 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   get pullRequestClass() {
     return this.provider.pullRequestClass;
   }
-
-  /**
-   * Lookup a branch
-   * First lookup repository then the branch
-   * If no branch was specified then the default branch will be delivered.
-   * @see {@link Repository#defaultBranch}
-   * @param {string} name with optional branch name as '#myBranchName'
-   * @return {Promise<Branch|undefined>}
-   */
-  async branch(name) {
-    if (name === undefined) {
-      return undefined;
-    }
-
-    const [repoName, branchName] = name.split(/#/);
-    const repository = await this.repository(repoName);
-
-    if (repository === undefined) {
-      return undefined;
-    }
-
-    return branchName === undefined
-      ? repository.defaultBranch
-      : repository.branch(branchName);
-  }
-
-  /**
-   * List branches for the owner.
-   * @param {string[]|string} patterns
-   * @return {Iterator<Branch>} all matching branches of the owner
-   */
-  async *branches(patterns) {
-    const [repoPatterns, branchPatterns] = patterns.split(/#/);
-
-    await this.initializeRepositories();
-
-    for (const name of matcher(this._repositories.keys(), repoPatterns, {
-      caseSensitive: this.areRepositoriesCaseSensitive
-    })) {
-      const repository = this._repositories.get(name);
-      const branch = await (branchPatterns === undefined
-        ? repository.defaultBranch
-        : repository.branch(branchPatterns));
-      if (branch !== undefined) {
-        yield branch;
-      }
-    }
-  }
-
-  async tag(name) {}
-  async *tags(patterns) {}
-
-  async project(name) {}
-  async *projects(patterns) {}
 }
