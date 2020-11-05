@@ -46,7 +46,6 @@ test("repository-group classes", t => {
 test("repository-group add repo", async t => {
   const provider = new MultiGroupProvider();
   const rg = new RepositoryGroup(provider, "rg");
-
   const r1 = rg.addRepository("r1");
   t.is(await rg.repository("r1"), r1);
 });
@@ -71,7 +70,7 @@ test("owner create repository", async t => {
 test("owner get repository", async t => {
   const provider = new MultiGroupProvider();
   const group = new RepositoryGroup(provider, "g1");
-  await group.createRepository("r1");
+  group.addRepository("r1");
   const repository = await group.repository("r1");
   t.is(repository.name, "r1");
   t.is(repository.condensedName, "r1");
@@ -80,10 +79,10 @@ test("owner get repository", async t => {
 test("owner list branches", async t => {
   const provider = new MultiGroupProvider();
   const group = new RepositoryGroup(provider, "g1");
-  new Branch(await group.createRepository("r1"));
-  new Branch(await group.createRepository("r2"));
-  new Branch(await group.createRepository("x"));
-  new Branch(await group.createRepository("yr2"));
+  new Branch(group.addRepository("r1"));
+  new Branch(group.addRepository("r2"));
+  new Branch(group.addRepository("x"));
+  new Branch(group.addRepository("yr2"));
 
   const m = {};
 
@@ -98,7 +97,7 @@ test("owner list branches", async t => {
 test("owner get repository with branch", async t => {
   const provider = new MultiGroupProvider();
   const group = new RepositoryGroup(provider, "g1");
-  await group.createRepository("r1");
+  group.addRepository("r1");
   const repository = await group.repository("r1#master");
   t.is(repository.name, "r1");
   t.is(repository.condensedName, "r1");
@@ -107,7 +106,7 @@ test("owner get repository with branch", async t => {
 test("owner repository urls", async t => {
   const provider = new MultiGroupProvider();
   const group = new RepositoryGroup(provider, "g1");
-  const repository = await group.createRepository("r1");
+  const repository = group.addRepository("r1");
   t.deepEqual(repository.urls, []);
 });
 
