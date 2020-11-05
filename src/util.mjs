@@ -1,8 +1,8 @@
 /**
  * Convert scalar into an array.
- * The value undefined will be represented as an empty array. 
+ * The value undefined will be represented as an empty array.
  * @param {any|Array} value
- * @return {Array} value encapsulated in an array 
+ * @return {Array} value encapsulated in an array
  */
 export function asArray(value) {
   return Array.isArray(value) ? value : value === undefined ? [] : [value];
@@ -19,8 +19,8 @@ export function asArray(value) {
 export function stripBaseName(name, repositoryBases, whenFound) {
   for (const b of repositoryBases) {
     const m = name.match(/^(\w+:)\/\/([^@]+@)/);
-    if(m) {
-      name = m[1] + '//' + name.substring(m[1].length + 2 + m[2].length);
+    if (m) {
+      name = m[1] + "//" + name.substring(m[1].length + 2 + m[2].length);
     }
 
     if (name.startsWith(b)) {
@@ -43,7 +43,11 @@ export function stripBaseName(name, repositoryBases, whenFound) {
  * @return {string[]} names without base
  */
 export function stripBaseNames(names, repositoryBases, whenFound) {
-  return names.map(name => stripBaseName(name, repositoryBases, whenFound));
+  return names === undefined
+    ? undefined
+    : Array.isArray(names)
+    ? names.map(name => stripBaseName(name, repositoryBases, whenFound))
+    : stripBaseName(names, repositoryBases, whenFound);
 }
 
 /**

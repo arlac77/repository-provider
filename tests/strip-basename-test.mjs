@@ -1,6 +1,13 @@
 import test from "ava";
 import { stripBaseName, stripBaseNames } from "../src/util.mjs";
 
+function quote(names) {
+  return names === undefined
+    ? "undefined"
+    : Array.isArray(names)
+    ? "[" + names.map(n => "'" + n + "'").join(",") + "]"
+    : "'" + names + "'";
+}
 async function sbnt(t, name, bases = [], expected, expectExtractedBase) {
   t.is(stripBaseName(name, bases), expected, "stripped name");
 
@@ -12,9 +19,7 @@ async function sbnt(t, name, bases = [], expected, expectExtractedBase) {
 }
 
 sbnt.title = (providedTitle = "", name, bases) =>
-  `stripBaseName ${providedTitle} '${name}' [${bases
-    .map(n => `'${n}'`)
-    .join(",")}]`.trim();
+  `stripBaseName ${providedTitle} ${quote(name)} ${quote(bases)}`.trim();
 
 test(sbnt, "", [], "");
 test(
@@ -52,9 +57,7 @@ async function sbnst(t, names, bases = [], expected, expectExtractedBases) {
 }
 
 sbnst.title = (providedTitle = "", names, bases) =>
-  `stripBaseNames ${providedTitle} '${names}' [${bases
-    .map(n => `'${n}'`)
-    .join(",")}]`.trim();
+  `stripBaseNames ${providedTitle} ${quote(names)} ${quote(bases)}`.trim();
 
 test(
   sbnst,
@@ -63,3 +66,15 @@ test(
   ["arlac77/myrepo.git"],
   ["https://github.com/"]
 );
+
+test(
+  sbnst,
+  "https://user:pass@github.com/arlac77/myrepo.git",
+  ["https://github.com/"],
+  "arlac77/myrepo.git",
+  ["https://github.com/"]
+);
+
+test(sbnst, [], ["https://github.com/"], [], []);
+
+test(sbnst, undefined, ["https://github.com/"], undefined, []);
