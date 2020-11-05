@@ -34,7 +34,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
 }
 
 /**
- * Loops ofer names and executes stripBaseName
+ * Loops over names and executes stripBaseName
  *
  * @param {string[]} names
  * @param {*} repositoryBases
