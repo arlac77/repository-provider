@@ -64,11 +64,16 @@ export class BaseProvider {
        * this defines the order
        */
       priority: {
+        type: "number",
         default: 0
       }
     };
   }
 
+  get priority() {
+    return 0;
+  }
+  
   /**
    * Creates a new provider for a given set of options
    * @param {Object} options additional options
