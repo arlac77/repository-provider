@@ -51,10 +51,9 @@ test("repository-group add repo", async t => {
   t.is(await rg.repository("r1"), r1);
 });
 
-
 test("owner create repository", async t => {
   const provider = new MultiGroupProvider();
-  const group = new RepositoryGroup(provider,"g1");
+  const group = new RepositoryGroup(provider, "g1");
   const repository = await group.createRepository("r1", {
     id: 123,
     description: "a description"
@@ -71,7 +70,7 @@ test("owner create repository", async t => {
 
 test("owner get repository", async t => {
   const provider = new MultiGroupProvider();
-  const group = new RepositoryGroup(provider,"g1");
+  const group = new RepositoryGroup(provider, "g1");
   await group.createRepository("r1");
   const repository = await group.repository("r1");
   t.is(repository.name, "r1");
@@ -80,7 +79,7 @@ test("owner get repository", async t => {
 
 test("owner list branches", async t => {
   const provider = new MultiGroupProvider();
-  const group = new RepositoryGroup(provider,"g1");
+  const group = new RepositoryGroup(provider, "g1");
   new Branch(await group.createRepository("r1"));
   new Branch(await group.createRepository("r2"));
   new Branch(await group.createRepository("x"));
@@ -98,7 +97,7 @@ test("owner list branches", async t => {
 
 test("owner get repository with branch", async t => {
   const provider = new MultiGroupProvider();
-  const group = new RepositoryGroup(provider,"g1");
+  const group = new RepositoryGroup(provider, "g1");
   await group.createRepository("r1");
   const repository = await group.repository("r1#master");
   t.is(repository.name, "r1");
@@ -107,21 +106,21 @@ test("owner get repository with branch", async t => {
 
 test("owner repository urls", async t => {
   const provider = new MultiGroupProvider();
-  const group = new RepositoryGroup(provider,"g1");
+  const group = new RepositoryGroup(provider, "g1");
   const repository = await group.createRepository("r1");
   t.deepEqual(repository.urls, []);
 });
 
 test("owner get undefined repository", async t => {
   const provider = new MultiGroupProvider();
-  const group = new RepositoryGroup(provider,"g1");
+  const group = new RepositoryGroup(provider, "g1");
   const repository = await group.repository(undefined);
   t.is(repository, undefined);
 });
 
 test("owner get undefined repository + branch", async t => {
   const provider = new MultiGroupProvider();
-  const group = new RepositoryGroup(provider,"g1");
+  const group = new RepositoryGroup(provider, "g1");
   const branch = await group.branch(undefined);
   t.is(branch, undefined);
 });
