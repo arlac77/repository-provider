@@ -29,6 +29,14 @@ export async function ownerTypeListTest(t, type, owner, pattern, expected) {
   }
 }
 
+function quote(names) {
+  return names === undefined
+    ? "undefined"
+    : Array.isArray(names)
+    ? "[" + names.map(n => "'" + n + "'").join(",") + "]"
+    : "'" + names + "'";
+}
+
 ownerTypeListTest.title = (
   providedTitle = `owner list`,
   type,
@@ -36,13 +44,7 @@ ownerTypeListTest.title = (
   pattern,
   expected
 ) =>
-  `${providedTitle} ${type} ${
-    pattern === undefined
-      ? "undefined"
-      : Array.isArray(pattern)
-      ? pattern.map(p => "'" + p + "'").join(",")
-      : "'" + pattern + "'"
-  } = ${
+  `${providedTitle} ${type} ${quote(pattern)} = ${
     typeof expected === "number"
       ? "#" + expected
       : expected

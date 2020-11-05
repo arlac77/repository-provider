@@ -181,12 +181,7 @@ export class BaseProvider {
    * @returns {string|string[]} stripped patterns
    */
   removeProviderBase(patterns) {
-    if (patterns === undefined) {
-      return undefined;
-    }
-    return Array.isArray(patterns)
-      ? stripBaseNames(patterns, this.repositoryBases)
-      : stripBaseName(patterns, this.repositoryBases);
+    return stripBaseNames(patterns, this.repositoryBases);
   }
 
   /**
