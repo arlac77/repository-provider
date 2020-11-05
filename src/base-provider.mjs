@@ -1,4 +1,4 @@
-import { asArray, stripBaseName } from "./util.mjs";
+import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
 import { definePropertiesFromOptions } from "./attribute.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
@@ -73,7 +73,7 @@ export class BaseProvider {
   get priority() {
     return 0;
   }
-  
+
   /**
    * Creates a new provider for a given set of options
    * @param {Object} options additional options
@@ -185,7 +185,7 @@ export class BaseProvider {
       return undefined;
     }
     return Array.isArray(patterns)
-      ? patterns.map(p => stripBaseName(p, this.repositoryBases))
+      ? stripBaseNames(patterns, this.repositoryBases)
       : stripBaseName(patterns, this.repositoryBases);
   }
 

@@ -37,7 +37,11 @@ ownerTypeListTest.title = (
   expected
 ) =>
   `${providedTitle} ${type} ${
-    pattern === undefined ? "undefined" : "'" + pattern + "'"
+    pattern === undefined
+      ? "undefined"
+      : Array.isArray(pattern)
+      ? pattern.map(p => "'" + p + "'").join(",")
+      : "'" + pattern + "'"
   } = ${
     typeof expected === "number"
       ? "#" + expected

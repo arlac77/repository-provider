@@ -34,6 +34,19 @@ export function stripBaseName(name, repositoryBases, whenFound) {
 }
 
 /**
+ * Loops ofer names and executes stripBaseName
+ *
+ * @param {string[]} names
+ * @param {*} repositoryBases
+ * @param {string[]} repositoryBases all possible bases
+ * @param {Function} whenFound to be called with the found base name
+ * @return {string[]} names without base
+ */
+export function stripBaseNames(names, repositoryBases, whenFound) {
+  return names.map(name => stripBaseName(name, repositoryBases, whenFound));
+}
+
+/**
  * Find a new branch name for a given pattern
  * '*' will be replaced by a number
  * 'something/*' will get to something/1 something/2 ...
