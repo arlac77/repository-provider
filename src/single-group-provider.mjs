@@ -1,11 +1,10 @@
 import { BaseProvider } from "./base-provider.mjs";
-import RepositoryOwner from "./repository-owner.mjs";
+import { RepositoryOwner } from "./repository-owner.mjs";
 
 /**
  * Provider holding a single set of repositories (no repository groups)
  */
 export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
-
   /**
    * Lookup a repository in the provider and all of its repository groups
    * @param {string} name of the repository
@@ -22,15 +21,13 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
 
     return r === undefined
       ? undefined
-      : r.branch(
-          branch === undefined ? repository.defaultBranchName : branch
-        );
+      : r.branch(branch === undefined ? repository.defaultBranchName : branch);
   }
 
   /**
    * get a single Group
-   * @param {string} name 
-   * @return {RepositoryGroup} deliver the one and only present group 
+   * @param {string} name
+   * @return {RepositoryGroup} deliver the one and only present group
    */
   async repositoryGroup(name) {
     return name === undefined ? undefined : this;
@@ -39,7 +36,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   /**
    * List groups
    * @param {string[]|string} patterns
-   * @return {Iterator<RepositoryGroup>} always deliver the one and only present group 
+   * @return {Iterator<RepositoryGroup>} always deliver the one and only present group
    */
   async *repositoryGroups(patterns) {
     yield this;

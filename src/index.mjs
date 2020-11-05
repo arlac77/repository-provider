@@ -1,3 +1,5 @@
+export * from "./named-object.mjs";
+export * from "./repository-owner.mjs";
 export * from "./base-provider.mjs";
 export * from "./single-group-provider.mjs";
 export * from "./multi-group-provider.mjs";

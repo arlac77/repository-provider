@@ -1,8 +1,8 @@
 import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
 
-export default function RepoositoryOwner(base) {
-  return class RepoositoryOwner extends base {
+export function RepositoryOwner(base) {
+  return class RepositoryOwner extends base {
     constructor(...args) {
       super(...args);
 
