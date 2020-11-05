@@ -78,7 +78,7 @@ export default function RepoositoryOwner(base) {
 
     /**
      * Add a {@link Repository} to the group.
-     * Only adds the repository to the in memory representation (does not execute any provider actions)
+     * Only adds the repository to the in memory representation (does not execute any provider actions).
      * @param {string} name
      * @param {Object} options
      * @return {Promise<Repository>} newly created repository
