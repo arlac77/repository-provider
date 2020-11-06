@@ -2,7 +2,7 @@ export async function ownerTypeListTest(t, type, owner, pattern, expected) {
   const items = {};
 
   for await (const item of owner[type](pattern)) {
-    items[item.name] = item;
+    items[item.fullName] = item;
   }
 
   if (typeof expected === "number") {
@@ -16,8 +16,10 @@ export async function ownerTypeListTest(t, type, owner, pattern, expected) {
   }
 
   if (expected === undefined) {
-    t.is(Object.keys(iterms).length, 0);
+    t.is(Object.keys(items).length, 0);
   } else {
+    t.true(Object.keys(items).length >= expected.length);
+
     for (const name of expected) {
       const item = items[name];
 

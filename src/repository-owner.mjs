@@ -1,5 +1,6 @@
 import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
+import { asArray } from "./util.mjs";
 
 export function RepositoryOwner(base) {
   return class RepositoryOwner extends base {
@@ -63,6 +64,27 @@ export function RepositoryOwner(base) {
           name: "name"
         }
       );
+    }
+
+    async *_list(type, patterns, split, defaultItem) {
+      await this.initializeRepositories();
+
+      for (const pattern of asArray(patterns)) {
+        const [repoPattern, typePattern] = split(pattern);
+
+        for (const name of matcher(this._repositories.keys(), repoPattern, {
+          caseSensitive: this.areRepositoriesCaseSensitive
+        })) {
+          const repository = this._repositories.get(name);
+
+          if((typePattern === undefined && defaultItem)) {
+            yield await defaultItem(repository);
+          }
+          else {
+            yield *repository[type](typePattern);
+          }
+        }
+      }
     }
 
     /**
@@ -135,25 +157,24 @@ export function RepositoryOwner(base) {
      * @return {Iterator<Branch>} all matching branches of the owner
      */
     async *branches(patterns) {
-      const [repoPatterns, branchPatterns] = patterns.split(/#/);
-
-      await this.initializeRepositories();
-
-      for (const name of matcher(this._repositories.keys(), repoPatterns, {
-        caseSensitive: this.areRepositoriesCaseSensitive
-      })) {
-        const repository = this._repositories.get(name);
-        const branch = await (branchPatterns === undefined
-          ? repository.defaultBranch
-          : repository.branch(branchPatterns));
-        if (branch !== undefined) {
-          yield branch;
-        }
-      }
+      yield* this._list(
+        "branches",
+        patterns,
+        pattern => pattern.split(/#/),
+        repository => repository.defaultBranch
+      );
     }
 
+
     async tag(name) {}
-    async *tags(patterns) {}
+
+    async *tags(patterns) {
+      yield* this._list(
+        "tags",
+        patterns,
+        pattern => pattern.split(/#/)
+      );
+    }
 
     async project(name) {}
     async *projects(patterns) {}
