@@ -23,40 +23,6 @@ export class Branch extends Ref {
     repository._addBranch(this);
   }
 
-  /**
-   * Repository and branch name combined
-   * @return {string} 'repo#branch'
-   */
-  get fullName() {
-    return `${this.repository.fullName}#${this.name}`;
-  }
-
-  /**
-   * Repository fullName and branch name combined.
-   * But skipping the branch name if it is the default branch
-   * @return {string} 'user/repo#branch'
-   */
-  get fullCondensedName() {
-    return this.isDefault
-      ? this.repository.fullName
-      : `${this.repository.fullName}#${this.name}`;
-  }
-
-  /**
-   * Short human readable identifier with provider and branch.
-   * @return {string}
-   */
-  get identifier() {
-    return `${this.provider.name}:${this.fullCondensedName}`;
-  }
-
-  toString() {
-    return this.identifier;
-  }
-
-  get slug() {
-    return this.repository.slug;
-  }
 
   /**
    * Deliver repository and branch url combined
