@@ -22,6 +22,16 @@ sbnt.title = (providedTitle = "", name, bases) =>
   `stripBaseName ${providedTitle} ${quote(name)} ${quote(bases)}`.trim();
 
 test(sbnt, "", [], "");
+
+test(sbnt, "arlac77/myrepo.git", ["https://github.com/"], "arlac77/myrepo.git");
+
+test(
+  sbnt,
+  "arlac77/myrepo.git#master",
+  ["https://github.com/"],
+  "arlac77/myrepo.git#master"
+);
+
 test(
   sbnt,
   "https://github.com/arlac77/myrepo.git",
@@ -35,6 +45,22 @@ test(
   "https://user@github.com/arlac77/myrepo.git",
   ["https://github.com/"],
   "arlac77/myrepo.git",
+  "https://github.com/"
+);
+
+test(
+  sbnt,
+  "https://user@github.com/arlac77/myrepo.git#master",
+  ["https://github.com/"],
+  "arlac77/myrepo.git#master",
+  "https://github.com/"
+);
+
+test(
+  sbnt,
+  "https://user@github.com/arlac77/myrepo.git#*",
+  ["https://github.com/"],
+  "arlac77/myrepo.git#*",
   "https://github.com/"
 );
 
