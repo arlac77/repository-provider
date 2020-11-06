@@ -4,6 +4,7 @@ import {
   RepositoryOwner,
   NamedObject,
   Branch,
+  Tag,
   Repository,
   stripBaseNames
 } from "repository-provider";
@@ -29,14 +30,24 @@ const allBranches = [
   "x#master",
   "yr2#master"
 ];
+
+const allTags = ["r1#1.0.0","r1#2.0.0","r1#3.0.0"];
+
 const allRepositories = [...new Set(withoutBranch(allBranches))];
 
-function createOwner(names = allBranches) {
+function createOwner(names = [...allBranches, ...allTags]) {
   const owner = new MyOwnerClass();
 
   for (const name of names) {
     const [r, b] = name.split(/#/);
-    new Branch(owner.addRepository(r), b);
+
+    const repo = owner.addRepository(r);
+
+    if (b.match(/^[\d\.]+$/)) {
+      new Tag(repo, b);
+    } else {
+      new Branch(repo, b);
+    }
   }
   return owner;
 }
@@ -82,4 +93,12 @@ test(ownerTypeListTest, "branches", createOwner(), "*#master", [
   "yr2#master"
 ]);
 test(ownerTypeListTest, "branches", createOwner(), "*#*", allBranches);
-test.skip(ownerTypeListTest, "branches", createOwner(), "https://mydomain.com/*#*", allBranches);
+test.skip(
+  ownerTypeListTest,
+  "branches",
+  createOwner(),
+  "https://mydomain.com/*#*",
+  allBranches
+);
+
+test(ownerTypeListTest, "tags", createOwner(), "r1#*", ["r1#1.0.0","r1#2.0.0","r1#3.0.0"]);

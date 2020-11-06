@@ -77,11 +77,10 @@ export function RepositoryOwner(base) {
         })) {
           const repository = this._repositories.get(name);
 
-          if((typePattern === undefined && defaultItem)) {
+          if (typePattern === undefined && defaultItem) {
             yield await defaultItem(repository);
-          }
-          else {
-            yield *repository[type](typePattern);
+          } else {
+            yield* repository[type](typePattern);
           }
         }
       }
@@ -165,18 +164,16 @@ export function RepositoryOwner(base) {
       );
     }
 
-
     async tag(name) {}
 
     async *tags(patterns) {
-      yield* this._list(
-        "tags",
-        patterns,
-        pattern => pattern.split(/#/)
-      );
+      yield* this._list("tags", patterns, pattern => pattern.split(/#/));
     }
 
     async project(name) {}
-    async *projects(patterns) {}
+
+    async *projects(patterns) {
+      yield* this._list("projects", patterns);
+    }
   };
 }
