@@ -1,3 +1,30 @@
+function quote(names) {
+  return names === undefined
+    ? "undefined"
+    : Array.isArray(names)
+    ? "[" + names.map(n => "'" + n + "'").join(",") + "]"
+    : "'" + names + "'";
+}
+
+export async function ownerTypeLookupTest(t, type, owner, name, expected) {
+  const item = await owner[type](name);
+
+  if (expected === undefined) {
+    t.is(item, undefined);
+  } else {
+    t.is(item.fullName, expected);
+  }
+}
+
+ownerTypeLookupTest.title = (
+  providedTitle = `owner lookup`,
+  type,
+  owner,
+  name,
+  expected
+) =>
+  `${providedTitle} ${type} ${quote(name)} = ${quote(expected)}`.trim();
+
 export async function ownerTypeListTest(t, type, owner, pattern, expected) {
   const items = {};
 
@@ -29,14 +56,6 @@ export async function ownerTypeListTest(t, type, owner, pattern, expected) {
       );
     }
   }
-}
-
-function quote(names) {
-  return names === undefined
-    ? "undefined"
-    : Array.isArray(names)
-    ? "[" + names.map(n => "'" + n + "'").join(",") + "]"
-    : "'" + names + "'";
 }
 
 ownerTypeListTest.title = (

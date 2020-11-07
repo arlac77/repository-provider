@@ -66,6 +66,23 @@ export function RepositoryOwner(base) {
       );
     }
 
+    async _lookup(type, name, split, defaultItem) {
+      if (name !== undefined) {
+        await this.initializeRepositories();
+
+        const [repoName, typeName] = split(name);
+        const repository = this._repositories.get(repoName);
+
+        if (repository) {
+          if (typeName === undefined && defaultItem) {
+            return defaultItem(repository);
+          } else {
+            return repository[type](typeName);
+          }
+        }
+      }
+    }
+
     async *_list(type, patterns, split, defaultItem) {
       await this.initializeRepositories();
 
@@ -134,20 +151,12 @@ export function RepositoryOwner(base) {
      * @return {Promise<Branch|undefined>}
      */
     async branch(name) {
-      if (name === undefined) {
-        return undefined;
-      }
-
-      const [repoName, branchName] = name.split(/#/);
-      const repository = await this.repository(repoName);
-
-      if (repository === undefined) {
-        return undefined;
-      }
-
-      return branchName === undefined
-        ? repository.defaultBranch
-        : repository.branch(branchName);
+      return this._lookup(
+        "branch",
+        name,
+        name => name.split(/#/),
+        repository => repository.defaultBranch
+      );
     }
 
     /**
@@ -164,13 +173,17 @@ export function RepositoryOwner(base) {
       );
     }
 
-    async tag(name) {}
+    async tag(name) {
+      return this._lookup("tag", name, name => name.split(/#/));
+    }
 
     async *tags(patterns) {
       yield* this._list("tags", patterns, pattern => pattern.split(/#/));
     }
 
-    async project(name) {}
+    async project(name) {
+      return this._lookup("project", name);
+    }
 
     async *projects(patterns) {
       yield* this._list("projects", patterns);

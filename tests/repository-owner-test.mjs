@@ -1,5 +1,8 @@
 import test from "ava";
-import { ownerTypeListTest } from "./helpers/repository-owner-test-support.mjs";
+import {
+  ownerTypeListTest,
+  ownerTypeLookupTest
+} from "./helpers/repository-owner-test-support.mjs";
 import {
   RepositoryOwner,
   NamedObject,
@@ -31,7 +34,7 @@ const allBranches = [
   "yr2#master"
 ];
 
-const allTags = ["r1#1.0.0","r1#2.0.0","r1#3.0.0"];
+const allTags = ["r1#1.0.0", "r1#2.0.0", "r1#3.0.0"];
 
 const allRepositories = [...new Set(withoutBranch(allBranches))];
 
@@ -101,4 +104,19 @@ test.skip(
   allBranches
 );
 
-test(ownerTypeListTest, "tags", createOwner(), "r1#*", ["r1#1.0.0","r1#2.0.0","r1#3.0.0"]);
+test(ownerTypeListTest, "tags", createOwner(), "r1#*", [
+  "r1#1.0.0",
+  "r1#2.0.0",
+  "r1#3.0.0"
+]);
+
+test(ownerTypeLookupTest, "branch", createOwner(), "r1#master", "r1#master");
+test(ownerTypeLookupTest, "branch", createOwner(), "r1#b1", "r1#b1");
+test(ownerTypeLookupTest, "branch", createOwner(), "r1#notexisting", undefined);
+test(ownerTypeLookupTest, "branch", createOwner(), "rx#master", undefined);
+test(ownerTypeLookupTest, "branch", createOwner(), "r1", "r1#master");
+
+test(ownerTypeLookupTest, "tag", createOwner(), "r1#1.0.0", "r1#1.0.0");
+test(ownerTypeLookupTest, "tag", createOwner(), "r1#9.9.9", undefined);
+test(ownerTypeLookupTest, "tag", createOwner(), "r1", undefined);
+test(ownerTypeLookupTest, "tag", createOwner(), undefined, undefined);
