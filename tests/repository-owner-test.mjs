@@ -110,7 +110,7 @@ test(ownerTypeListTest, "branches", createOwner(), "r1#*", [
 ]);
 test(ownerTypeListTest, "branches", createOwner(), "r1#*2", ["r1#b2"]);
 test(ownerTypeListTest, "branches", createOwner(), "r1#master", ["r1#master"]);
-test.skip(
+test(
   ownerTypeListTest,
   "branches",
   createOwner(),
@@ -125,7 +125,7 @@ test(ownerTypeListTest, "branches", createOwner(), "*#master", [
   "yr2#master"
 ]);
 test(ownerTypeListTest, "branches", createOwner(), "*#*", allBranches);
-test.skip(
+test(
   ownerTypeListTest,
   "branches",
   createOwner(),

@@ -86,6 +86,8 @@ export function RepositoryOwner(base) {
     async *_list(type, patterns, split, defaultItem) {
       await this.initializeRepositories();
 
+      patterns = this.removeProviderBase(patterns);
+
       for (const pattern of asArray(patterns)) {
         const [repoPattern, typePattern] = split
           ? split(pattern)
