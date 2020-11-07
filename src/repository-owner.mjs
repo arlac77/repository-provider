@@ -70,7 +70,7 @@ export function RepositoryOwner(base) {
       if (name !== undefined) {
         await this.initializeRepositories();
 
-        const [repoName, typeName] = split(name);
+        const [repoName, typeName] = split ? split(name) : name.split("/");
         const repository = this._repositories.get(repoName);
 
         if (repository) {
@@ -87,7 +87,9 @@ export function RepositoryOwner(base) {
       await this.initializeRepositories();
 
       for (const pattern of asArray(patterns)) {
-        const [repoPattern, typePattern] = split(pattern);
+        const [repoPattern, typePattern] = split
+          ? split(pattern)
+          : pattern.split("/");
 
         for (const name of matcher(this._repositories.keys(), repoPattern, {
           caseSensitive: this.areRepositoriesCaseSensitive
@@ -179,6 +181,14 @@ export function RepositoryOwner(base) {
 
     async *tags(patterns) {
       yield* this._list("tags", patterns, pattern => pattern.split(/#/));
+    }
+
+    async pullRequest(name) {
+      return this._lookup("pullRequest", name);
+    }
+
+    async *pullRequests(patterns) {
+      yield* this._list("pullRequests", patterns);
     }
 
     async project(name) {

@@ -12,6 +12,7 @@ export async function ownerTypeLookupTest(t, type, owner, name, expected) {
   if (expected === undefined) {
     t.is(item, undefined);
   } else {
+    t.truthy(item);
     t.is(item.fullName, expected);
   }
 }
