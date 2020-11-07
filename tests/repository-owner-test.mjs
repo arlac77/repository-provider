@@ -39,7 +39,7 @@ const allBranches = [
   "yr2#master"
 ];
 const allTags = ["r1#1.0.0", "r1#2.0.0", "r1#3.0.0"];
-const allRepositories = [...new Set(withoutBranch(allBranches))];
+const allRepositories = [...new Set(withoutBranch(allBranches)) /*,"r3"*/];
 const allHooks = ["r1/h1", "r1/h2"];
 const allPullRequests = ["r1/p1", "r1/p2"];
 
@@ -53,7 +53,10 @@ function createOwner(
 
   for (const name of branches) {
     const [r, b] = name.split(/#/);
-    new Branch(owner.addRepository(r), b);
+    const repository = owner.addRepository(r);
+    if (b) {
+      new Branch(repository, b);
+    }
   }
 
   for (const name of tags) {

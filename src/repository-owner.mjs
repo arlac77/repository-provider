@@ -97,7 +97,10 @@ export function RepositoryOwner(base) {
           const repository = this._repositories.get(name);
 
           if (typePattern === undefined && defaultItem) {
-            yield await defaultItem(repository);
+            const item = await defaultItem(repository);
+            if (item !== undefined) {
+              yield item;
+            }
           } else {
             yield* repository[type](typePattern);
           }
