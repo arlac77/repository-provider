@@ -2,7 +2,7 @@ import test from "ava";
 import {
   ownerTypeListTest,
   ownerTypeLookupTest
-} from "./helpers/repository-owner-test-support.mjs";
+} from "repository-provider-test-support";
 import {
   RepositoryOwner,
   Repository,
@@ -107,6 +107,13 @@ test(ownerTypeListTest, "branches", createOwner(), "r1#*", [
 ]);
 test(ownerTypeListTest, "branches", createOwner(), "r1#*2", ["r1#b2"]);
 test(ownerTypeListTest, "branches", createOwner(), "r1#master", ["r1#master"]);
+test.skip(
+  ownerTypeListTest,
+  "branches",
+  createOwner(),
+  "https://mydomain.com/r1#master",
+  ["r1#master"]
+);
 test(ownerTypeListTest, "branches", createOwner(), ["r1#master"], 1);
 test(ownerTypeListTest, "branches", createOwner(), "*#master", [
   "r1#master",
