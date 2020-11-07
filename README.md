@@ -217,6 +217,9 @@ console.log(await readme.getString());
         -   [Parameters](#parameters-54)
     -   [provider](#provider-2)
     -   [owner](#owner)
+    -   [fullName](#fullname-1)
+    -   [fullCondensedName](#fullcondensedname)
+    -   [identifier](#identifier-1)
     -   [issuesURL](#issuesurl-2)
     -   [homePageURL](#homepageurl-2)
     -   [isLocked](#islocked-1)
@@ -234,9 +237,6 @@ console.log(await readme.getString());
 -   [Branch](#branch-1)
     -   [Parameters](#parameters-56)
     -   [Properties](#properties-5)
-    -   [fullName](#fullname-1)
-    -   [fullCondensedName](#fullcondensedname)
-    -   [identifier](#identifier-1)
     -   [url](#url-2)
     -   [isDefault](#isdefault)
     -   [delete](#delete-1)
@@ -1247,6 +1247,25 @@ By default we provide the repository owner
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+### fullName
+
+Repository and branch name combined
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
+
+### fullCondensedName
+
+Repository fullName and branch name combined.
+But skipping the branch name if it is the default branch
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
+
+### identifier
+
+Short human readable identifier with provider and branch.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ### issuesURL
 
 -   **See: [Repository#issuesURL](#repositoryissuesurl)
@@ -1335,25 +1354,6 @@ Abstract branch
 -   `repository` **[Repository](#repository)** 
 -   `provider` **Provider** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### fullName
-
-Repository and branch name combined
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
-
-### fullCondensedName
-
-Repository fullName and branch name combined.
-But skipping the branch name if it is the default branch
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
-
-### identifier
-
-Short human readable identifier with provider and branch.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### url
 
