@@ -456,43 +456,43 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * By default we use the providers implementation.
-   * @return {Class} as defined in the provider
+   * By default we use the owners implementation.
+   * @return {Class} as defined in the owner
    */
   get repositoryClass() {
-    return this.provider.repositoryClass;
+    return this.owner.repositoryClass;
   }
 
   /**
-   * By default we use the providers implementation.
-   * @return {Class} as defined in the provider
+   * By default we use the owners implementation.
+   * @return {Class} as defined in the owner
    */
   get pullRequestClass() {
-    return this.provider.pullRequestClass;
+    return this.owner.pullRequestClass;
   }
 
   /**
-   * By default we use the providers implementation.
-   * @return {Class} as defined in the provider
+   * By default we use the owners implementation.
+   * @return {Class} as defined in the owner
    */
   get branchClass() {
-    return this.provider.branchClass;
+    return this.owner.branchClass;
   }
 
   /**
-   * By default we use the providers implementation.
-   * @return {Class} as defined in the provider
+   * By default we use the owners implementation.
+   * @return {Class} as defined in the owner
    */
   get entryClass() {
-    return this.provider.entryClass;
+    return this.owner.entryClass;
   }
 
   /**
-   * By default we use the providers implementation.
-   * @return {Class} as defined in the provider
+   * By default we use the owners implementation.
+   * @return {Class} as defined in the owner
    */
   get hookClass() {
-    return this.provider.hookClass;
+    return this.owner.hookClass;
   }
 
   toString() {
