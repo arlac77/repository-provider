@@ -71,9 +71,13 @@ function createOwner(
 
   for (const name of pullRequests) {
     const [r, b] = name.split("/");
-    new PullRequest(owner.addRepository(r), undefined, b);
+    
+    const repository = owner.addRepository(r);
+    const pr = new PullRequest(repository, undefined, b);
+    repository._addPullRequest(pr);
   }
 
+  //console.log([...owner._repositories.get("r1")._pullRequests.keys()]);
   return owner;
 }
 
@@ -144,6 +148,7 @@ test(ownerTypeListTest, "tags", createOwner(), "https://mydomain.com/r1#*", [
   "r1#2.0.0",
   "r1#3.0.0"
 ]);
+test.skip(ownerTypeListTest, "pullRequests", createOwner(), "r1/*", ["r1/p1"]);
 
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#master", "r1#master");
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#b1", "r1#b1");
@@ -152,7 +157,13 @@ test(ownerTypeLookupTest, "branch", createOwner(), "rx#master", undefined);
 test(ownerTypeLookupTest, "branch", createOwner(), "r1", "r1#master");
 
 test(ownerTypeLookupTest, "tag", createOwner(), "r1#1.0.0", "r1#1.0.0");
-test(ownerTypeLookupTest, "tag", createOwner(), "https://mydomain.com/r1#1.0.0", "r1#1.0.0");
+test(
+  ownerTypeLookupTest,
+  "tag",
+  createOwner(),
+  "https://mydomain.com/r1#1.0.0",
+  "r1#1.0.0"
+);
 
 test(ownerTypeLookupTest, "tag", createOwner(), "r1#9.9.9", undefined);
 test(ownerTypeLookupTest, "tag", createOwner(), "r1", undefined);
