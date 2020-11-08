@@ -15,14 +15,6 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
     return await super.repository(repository);
   }
 
-  async branch(name) {
-    const { repository, branch } = this.parseName(name);
-    const r = await super.repository(repository);
-
-    return r === undefined
-      ? undefined
-      : r.branch(branch === undefined ? repository.defaultBranchName : branch);
-  }
 
   /**
    * get a single Group
