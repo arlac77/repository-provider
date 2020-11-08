@@ -15,7 +15,6 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
     return await super.repository(repository);
   }
 
-
   /**
    * get a single Group
    * @param {string} name

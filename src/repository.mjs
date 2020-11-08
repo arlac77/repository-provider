@@ -66,6 +66,7 @@ export class Repository extends NamedObject {
       _branches: { value: new Map() },
       _tags: { value: new Map() },
       _pullRequests: { value: new Map() },
+      _milestones: { value: new Map() },
       _hooks: { value: [] }
     });
   }

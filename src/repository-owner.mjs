@@ -206,6 +206,14 @@ export function RepositoryOwner(base) {
       yield* this._list("projects", patterns);
     }
 
+    async milestone(name) {
+      return this._lookup("milestone", name);
+    }
+
+    async *milestones(patterns) {
+      yield* this._list("milestones", patterns);
+    }
+
     async *hooks(patterns) {
       yield* this._list("hooks", patterns);
     }
