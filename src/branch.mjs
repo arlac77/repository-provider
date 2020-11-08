@@ -71,7 +71,7 @@ export class Branch extends Ref {
    * @param {ConentEntry[]} updates content to be commited
    * @param {Object} options
    * @param {Branch|string} options.pullRequestBranch to commit into
-   * @param {boolean} options.dry do not create a branch and do not commit only create tmp PR
+   * @param {boolean} options.dry do not create a branch and do not commit only create dummy PR
    * @return {PullRequest}
    */
   async commitIntoPullRequest(message, updates, options) {
