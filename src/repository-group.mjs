@@ -95,4 +95,12 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   get pullRequestClass() {
     return this.provider.pullRequestClass;
   }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
+  get hookClass() {
+    return this.provider.hookClass;
+  }
 }
