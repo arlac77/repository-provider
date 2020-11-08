@@ -205,5 +205,9 @@ export function RepositoryOwner(base) {
     async *projects(patterns) {
       yield* this._list("projects", patterns);
     }
+
+    async *hooks(patterns) {
+      yield* this._list("hooks", patterns);
+    }
   };
 }

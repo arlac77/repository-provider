@@ -149,6 +149,7 @@ test(ownerTypeListTest, "tags", createOwner(), "https://mydomain.com/r1#*", [
   "r1#3.0.0"
 ]);
 test.skip(ownerTypeListTest, "pullRequests", createOwner(), "r1/*", ["r1/p1"]);
+test.skip(ownerTypeListTest, "hooks", createOwner(), "r1/*", ["r1/h1"]);
 
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#master", "r1#master");
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#b1", "r1#b1");
