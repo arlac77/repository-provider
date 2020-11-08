@@ -60,8 +60,6 @@ export function stripBaseNames(names, repositoryBases, whenFound) {
 export async function generateBranchName(repository, pattern) {
   let n = 1;
 
-  //const present = new Set();
-
   for await (const b of repository.branches(pattern)) {
     n++;
   }
