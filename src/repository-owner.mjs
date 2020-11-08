@@ -70,6 +70,8 @@ export function RepositoryOwner(base) {
       if (name !== undefined) {
         await this.initializeRepositories();
 
+        name = this.removeProviderBase(name);
+
         const [repoName, typeName] = split ? split(name) : name.split("/");
         const repository = this._repositories.get(repoName);
 
