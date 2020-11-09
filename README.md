@@ -127,6 +127,7 @@ console.log(await readme.getString());
     -   [branchClass](#branchclass-1)
     -   [contentClass](#contentclass)
     -   [pullRequestClass](#pullrequestclass-1)
+    -   [hookClass](#hookclass-1)
     -   [attributeMapping](#attributemapping-1)
 -   [type](#type)
 -   [url](#url)
@@ -194,7 +195,7 @@ console.log(await readme.getString());
     -   [pullRequestClass](#pullrequestclass-2)
     -   [branchClass](#branchclass-2)
     -   [entryClass](#entryclass-1)
-    -   [hookClass](#hookclass-1)
+    -   [hookClass](#hookclass-2)
     -   [toJSON](#tojson-2)
     -   [attributes](#attributes-1)
 -   [defaultBranchName](#defaultbranchname)
@@ -756,6 +757,12 @@ By default we use the providers implementation.
 
 Returns **Class** as defined in the provider
 
+### hookClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the provider
+
 ### attributeMapping
 
 Map attributes between external and internal representation
@@ -1097,33 +1104,33 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### repositoryClass
 
-By default we use the providers implementation.
+By default we use the owners implementation.
 
-Returns **Class** as defined in the provider
+Returns **Class** as defined in the owner
 
 ### pullRequestClass
 
-By default we use the providers implementation.
+By default we use the owners implementation.
 
-Returns **Class** as defined in the provider
+Returns **Class** as defined in the owner
 
 ### branchClass
 
-By default we use the providers implementation.
+By default we use the owners implementation.
 
-Returns **Class** as defined in the provider
+Returns **Class** as defined in the owner
 
 ### entryClass
 
-By default we use the providers implementation.
+By default we use the owners implementation.
 
-Returns **Class** as defined in the provider
+Returns **Class** as defined in the owner
 
 ### hookClass
 
-By default we use the providers implementation.
+By default we use the owners implementation.
 
-Returns **Class** as defined in the provider
+Returns **Class** as defined in the owner
 
 ### toJSON
 
@@ -1398,7 +1405,7 @@ Commit entries into a pull request.
 -   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ConentEntry>** content to be commited
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.pullRequestBranch` **([Branch](#branch) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** to commit into
-    -   `options.dry` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a branch and do not commit only create tmp PR
+    -   `options.dry` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a branch and do not commit only create dummy PR
 
 Returns **[PullRequest](#pullrequest)** 
 
