@@ -2,6 +2,12 @@ import { Ref } from "./ref.mjs";
 import { PullRequest } from "./pull-request.mjs";
 
 /**
+ * @typedef {Object} Commit
+ * @property {string} message
+ * @property {ContentEntry[]} updates
+ */
+
+/**
  * @typedef {Object} CommitResult
  * @property {string} ref
  */
@@ -22,7 +28,6 @@ export class Branch extends Ref {
     super(repository, name, options);
     repository._addBranch(this);
   }
-
 
   /**
    * Deliver repository and branch url combined
@@ -65,16 +70,15 @@ export class Branch extends Ref {
   async commit(message, updates, options) {}
 
   /**
-   * Commit entries into a pull request.
+   * Add commits into a pull request.
    *
-   * @param {string} message commit message
-   * @param {ConentEntry[]} updates content to be commited
+   * @param {Commit|AsyncIterator<Commit>} commits content to be commited
    * @param {Object} options
    * @param {Branch|string} options.pullRequestBranch to commit into
    * @param {boolean} options.dry do not create a branch and do not commit only create dummy PR
    * @return {PullRequest}
    */
-  async commitIntoPullRequest(message, updates, options) {
+  async commitIntoPullRequest(commits, options) {
     const isBranch = options.pullRequestBranch instanceof Branch;
 
     if (options.dry) {
@@ -91,8 +95,14 @@ export class Branch extends Ref {
       : await this.createBranch(options.pullRequestBranch);
 
     try {
-      await prBranch.commit(message, updates);
-      return await prBranch.createPullRequest(this, options);
+      if (commits.next) {
+        for await (const commit of commits) {
+          await prBranch.commit(commit.message, commit.entries);
+        }
+      } else {
+        await prBranch.commit(commits.message, commits.entries);
+      }
+      return prBranch.createPullRequest(this, options);
     } catch (e) {
       if (!isBranch) {
         await prBranch.delete();

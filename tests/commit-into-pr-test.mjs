@@ -5,10 +5,13 @@ test("commit with PR", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const branch = await repository.createBranch("master");
-  const pr = await branch.commitIntoPullRequest("my message", [], {
-    pullRequestBranch: "pr1",
-    title: "a title"
-  });
+  const pr = await branch.commitIntoPullRequest(
+    { message: "my message", entries: [] },
+    {
+      pullRequestBranch: "pr1",
+      title: "a title"
+    }
+  );
 
   t.true(pr.number !== undefined);
   t.is(pr.title, "a title");
@@ -18,7 +21,43 @@ test("commit with PR DRY", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");
   const branch = await repository.createBranch("master");
-  const pr = await branch.commitIntoPullRequest("my message", [], {
+  const pr = await branch.commitIntoPullRequest(
+    { message: "my message", entries: [] },
+    {
+      pullRequestBranch: "pr1",
+      title: "a title",
+      dry: true
+    }
+  );
+
+  t.is(pr.number, "DRY");
+  t.is(pr.title, "a title");
+  t.is(pr.identifier, "SingleGroupProvider:r1[DRY]");
+});
+
+async function* commits() {
+  yield { message: "m1", entries: [] };
+  yield { message: "m2", entries: [] };
+}
+
+test("iterator commit with PR", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.createRepository("r1");
+  const branch = await repository.createBranch("master");
+  const pr = await branch.commitIntoPullRequest(commits(), {
+    pullRequestBranch: "pr1",
+    title: "a title"
+  });
+
+  t.true(pr.number !== undefined);
+  t.is(pr.title, "a title");
+});
+
+test("iterator commit with PR DRY", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.createRepository("r1");
+  const branch = await repository.createBranch("master");
+  const pr = await branch.commitIntoPullRequest(commits(), {
     pullRequestBranch: "pr1",
     title: "a title",
     dry: true
