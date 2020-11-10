@@ -35,6 +35,23 @@ test("commit with PR DRY", async t => {
   t.is(pr.identifier, "SingleGroupProvider:r1[DRY]");
 });
 
+test("commit with PR EMPTY", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.createRepository("r1");
+  const branch = await repository.createBranch("master");
+  const pr = await branch.commitIntoPullRequest(
+    undefined,
+    {
+      pullRequestBranch: "pr1",
+      title: "a title"
+    }
+  );
+
+  t.is(pr.number, "EMPTY");
+  t.is(pr.title, "a title");
+  t.is(pr.identifier, "SingleGroupProvider:r1[EMPTY]");
+});
+
 async function* commits() {
   yield { message: "m1", entries: [] };
   yield { message: "m2", entries: [] };

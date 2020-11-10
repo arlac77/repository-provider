@@ -76,6 +76,7 @@ export class Branch extends Ref {
    * @param {Object} options
    * @param {Branch|string} options.pullRequestBranch to commit into
    * @param {boolean} options.dry do not create a branch and do not commit only create dummy PR
+   * @param {boolean} options.skipWithoutCommits do not create a PR if no commits are given
    * @return {PullRequest}
    */
   async commitIntoPullRequest(commits, options) {
@@ -95,14 +96,28 @@ export class Branch extends Ref {
       : await this.createBranch(options.pullRequestBranch);
 
     try {
-      if (commits.next) {
-        for await (const commit of commits) {
-          await prBranch.commit(commit.message, commit.entries);
+      let n = 0;
+      if (commits) {
+        if (commits.next) {
+          for await (const commit of commits) {
+            n++;
+            await prBranch.commit(commit.message, commit.entries);
+          }
+        } else {
+          n++;
+          await prBranch.commit(commits.message, commits.entries);
         }
-      } else {
-        await prBranch.commit(commits.message, commits.entries);
       }
-      return prBranch.createPullRequest(this, options);
+      if (n > 0 && !options.skipWithoutCommits) {
+        return prBranch.createPullRequest(this, options);
+      } else {
+        return new PullRequest(
+          isBranch ? options.pullRequestBranch : undefined,
+          this,
+          "EMPTY",
+          options
+        );
+      }
     } catch (e) {
       if (!isBranch) {
         await prBranch.delete();
