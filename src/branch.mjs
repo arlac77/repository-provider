@@ -77,6 +77,7 @@ export class Branch extends Ref {
    * @param {Branch|string} options.pullRequestBranch to commit into
    * @param {boolean} options.dry do not create a branch and do not commit only create dummy PR
    * @param {boolean} options.skipWithoutCommits do not create a PR if no commits are given
+   * @param {boolean} options.bodyFromCommitMessages generate body from commit messages
    * @return {PullRequest}
    */
   async commitIntoPullRequest(commits, options) {
@@ -96,19 +97,33 @@ export class Branch extends Ref {
       : await this.createBranch(options.pullRequestBranch);
 
     try {
-      let n = 0;
+      let body = '';
+
       if (commits) {
+        function c2m(commit) {
+          body += `${commit.entries.map(e => e.name).join(',')}
+---
+- ${commit.message}
+
+`;
+        }
+
         if (commits.next) {
           for await (const commit of commits) {
-            n++;
             await prBranch.commit(commit.message, commit.entries);
+            c2m(commit);
           }
         } else {
-          n++;
           await prBranch.commit(commits.message, commits.entries);
+          c2m(commits);
         }
       }
-      if (n > 0 && !options.skipWithoutCommits) {
+      
+      if(options.bodyFromCommitMessages) {
+        options.body = body;
+      }
+
+      if (body.length > 0 && !options.skipWithoutCommits) {
         return prBranch.createPullRequest(this, options);
       } else {
         return new PullRequest(

@@ -63,11 +63,37 @@ test("iterator commit with PR", async t => {
   const branch = await repository.createBranch("master");
   const pr = await branch.commitIntoPullRequest(commits(), {
     pullRequestBranch: "pr1",
-    title: "a title"
+    title: "a title",
+    body: "a body"
   });
 
   t.true(pr.number !== undefined);
   t.is(pr.title, "a title");
+  t.is(pr.body, "a body");
+});
+
+test("iterator commit with PR bodyFromCommitMessages", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.createRepository("r1");
+  const branch = await repository.createBranch("master");
+  const pr = await branch.commitIntoPullRequest(commits(), {
+    pullRequestBranch: "pr1",
+    title: "a title",
+    bodyFromCommitMessages: true
+  });
+
+  t.true(pr.number !== undefined);
+  t.is(pr.title, "a title");
+  t.is(pr.body, `
+---
+- m1
+
+
+---
+- m2
+
+`);
+  
 });
 
 test("iterator commit with PR DRY", async t => {
