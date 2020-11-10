@@ -233,15 +233,17 @@ console.log(await readme.getString());
 -   [Commit](#commit)
     -   [Parameters](#parameters-55)
     -   [Properties](#properties-3)
--   [CommitResult](#commitresult)
+-   [Commit](#commit-1)
     -   [Properties](#properties-4)
+-   [CommitResult](#commitresult)
+    -   [Properties](#properties-5)
 -   [Branch](#branch-1)
     -   [Parameters](#parameters-56)
-    -   [Properties](#properties-5)
+    -   [Properties](#properties-6)
     -   [url](#url-2)
     -   [isDefault](#isdefault)
     -   [delete](#delete-1)
-    -   [commit](#commit-1)
+    -   [commit](#commit-2)
         -   [Parameters](#parameters-57)
     -   [commitIntoPullRequest](#commitintopullrequest)
         -   [Parameters](#parameters-58)
@@ -262,7 +264,7 @@ console.log(await readme.getString());
     -   [Parameters](#parameters-64)
 -   [PullRequest](#pullrequest-1)
     -   [Parameters](#parameters-65)
-    -   [Properties](#properties-6)
+    -   [Properties](#properties-7)
     -   [repository](#repository-3)
     -   [provider](#provider-3)
     -   [equals](#equals-5)
@@ -287,7 +289,7 @@ console.log(await readme.getString());
 -   [merged](#merged)
 -   [Hook](#hook-1)
     -   [Parameters](#parameters-70)
-    -   [Properties](#properties-7)
+    -   [Properties](#properties-8)
     -   [equals](#equals-6)
         -   [Parameters](#parameters-71)
     -   [toJSON](#tojson-3)
@@ -1333,6 +1335,15 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 -   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+## Commit
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ContentEntry>** 
+
 ## CommitResult
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -1397,15 +1408,15 @@ Returns **[CommitResult](#commitresult)**
 
 ### commitIntoPullRequest
 
-Commit entries into a pull request.
+Add commits into a pull request.
 
 #### Parameters
 
--   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
--   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ConentEntry>** content to be commited
+-   `commits`  
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.pullRequestBranch` **([Branch](#branch) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** to commit into
     -   `options.dry` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a branch and do not commit only create dummy PR
+-   `content` **([Commit](#commit) | AsyncIterator&lt;[Commit](#commit)>)** to be commited
 
 Returns **[PullRequest](#pullrequest)** 
 
