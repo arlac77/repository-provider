@@ -1412,11 +1412,12 @@ Add commits into a pull request.
 
 #### Parameters
 
--   `commits`  
+-   `commits` **([Commit](#commit) | AsyncIterator&lt;[Commit](#commit)>)** to be commited
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.pullRequestBranch` **([Branch](#branch) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** to commit into
     -   `options.dry` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a branch and do not commit only create dummy PR
--   `content` **([Commit](#commit) | AsyncIterator&lt;[Commit](#commit)>)** to be commited
+    -   `options.skipWithoutCommits` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a PR if no commits are given
+    -   `options.bodyFromCommitMessages` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** generate body from commit messages
 
 Returns **[PullRequest](#pullrequest)** 
 
