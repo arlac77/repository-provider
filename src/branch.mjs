@@ -92,10 +92,7 @@ export class Branch extends Ref {
       );
     }
 
-    const prBranch = isBranch
-      ? options.pullRequestBranch
-      : await this.createBranch(options.pullRequestBranch);
-
+    let prBranch;
     try {
       let body = "";
 
@@ -108,14 +105,23 @@ export class Branch extends Ref {
 `;
         }
 
+        const exec = async commit =>
+        {
+          if(prBranch === undefined) {
+            prBranch = isBranch
+              ? options.pullRequestBranch
+              : await this.createBranch(options.pullRequestBranch);
+          }
+          await prBranch.commit(commit.message, commit.entries);
+          c2m(commit);
+        };
+
         if (commits.next) {
           for await (const commit of commits) {
-            await prBranch.commit(commit.message, commit.entries);
-            c2m(commit);
+            await exec(commit);
           }
         } else {
-          await prBranch.commit(commits.message, commits.entries);
-          c2m(commits);
+          await exec(commits);
         }
       }
 
@@ -134,7 +140,7 @@ export class Branch extends Ref {
         );
       }
     } catch (e) {
-      if (!isBranch) {
+      if (!isBranch && prBranch) {
         await prBranch.delete();
       }
       throw e;
