@@ -105,9 +105,8 @@ export class Branch extends Ref {
 `;
         }
 
-        const exec = async commit =>
-        {
-          if(prBranch === undefined) {
+        const exec = async commit => {
+          if (prBranch === undefined) {
             prBranch = isBranch
               ? options.pullRequestBranch
               : await this.createBranch(options.pullRequestBranch);
@@ -148,7 +147,7 @@ export class Branch extends Ref {
   }
 
   /**
-   * Remove entries form the branch
+   * Remove entries form the branch.
    * @param {Iterator <ConentEntry>} entries
    */
   async removeEntries(entries) {}
@@ -162,7 +161,7 @@ export class Branch extends Ref {
   }
 
   /**
-   * Create a pull request
+   * Create a pull request.
    * @param {Branch} toBranch
    * @param {Object} options
    * @return {Promise<PullRequest>}
