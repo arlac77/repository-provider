@@ -48,6 +48,7 @@ test("commit with PR EMPTY", async t => {
   );
 
   t.is(pr.number, "EMPTY");
+  t.is(pr.empty, true);
   t.is(pr.title, "a title");
   t.is(pr.identifier, "SingleGroupProvider:r1[EMPTY]");
 });
@@ -107,6 +108,7 @@ test("iterator commit with PR DRY", async t => {
   });
 
   t.is(pr.number, "DRY");
+  t.is(pr.dry, true);
   t.is(pr.title, "a title");
   t.is(pr.identifier, "SingleGroupProvider:r1[DRY]");
 });

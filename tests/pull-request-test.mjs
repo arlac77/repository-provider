@@ -43,12 +43,14 @@ test("pullRequest create", async t => {
   t.is(pr.locked, false);
   t.is(pr.merged, false);
   t.is(pr.draft, false);
+  t.is(pr.dry, false);
+  t.is(pr.empty, undefined);
   t.is(pr.id, "123456");
   t.is(pr.identifier, "SingleGroupProvider:r1#b2[4711]");
 
   t.is(
     `${pr}`,
-    "4711: a title, source: SingleGroupProvider:r1#b1, destination: SingleGroupProvider:r1#b2, state: CLOSED, locked: false, merged: false, draft: false"
+    "4711: a title, source: SingleGroupProvider:r1#b1, destination: SingleGroupProvider:r1#b2, state: CLOSED, locked: false, merged: false, draft: false, dry: false"
   );
 
   t.is(await repository.pullRequest("4711"), pr);

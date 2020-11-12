@@ -97,11 +97,11 @@ export class Branch extends Ref {
       : await this.createBranch(options.pullRequestBranch);
 
     try {
-      let body = '';
+      let body = "";
 
       if (commits) {
         function c2m(commit) {
-          body += `${commit.entries.map(e => e.name).join(',')}
+          body += `${commit.entries.map(e => e.name).join(",")}
 ---
 - ${commit.message}
 
@@ -118,8 +118,8 @@ export class Branch extends Ref {
           c2m(commits);
         }
       }
-      
-      if(options.bodyFromCommitMessages) {
+
+      if (options.bodyFromCommitMessages) {
         options.body = body;
       }
 
@@ -130,7 +130,7 @@ export class Branch extends Ref {
           isBranch ? options.pullRequestBranch : undefined,
           this,
           "EMPTY",
-          options
+          { ...options, empty: true }
         );
       }
     } catch (e) {

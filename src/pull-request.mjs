@@ -117,6 +117,15 @@ export class PullRequest extends NamedObject {
       draft: {
         type: "boolean",
         default: false
+      },
+
+      dry: {
+        type: "boolean",
+        default: false
+      },
+
+      empty: {
+        type: "boolean"
       }
     };
   }
@@ -157,6 +166,10 @@ export class PullRequest extends NamedObject {
 
   get number() {
     return this.name;
+  }
+
+  get dry() {
+    return false;
   }
 
   /**
@@ -225,8 +238,7 @@ export class PullRequest extends NamedObject {
   /**
    * @return {Interaor<Review>}
    */
-  async * reviews() {
-  }
+  async *reviews() {}
 
   toString() {
     return [
