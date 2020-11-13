@@ -1423,7 +1423,7 @@ Returns **[PullRequest](#pullrequest)**
 
 ### removeEntries
 
-Remove entries form the branch
+Remove entries form the branch.
 
 #### Parameters
 
@@ -1437,7 +1437,7 @@ Returns **Class** as defined in the repository
 
 ### createPullRequest
 
-Create a pull request
+Create a pull request.
 
 #### Parameters
 
