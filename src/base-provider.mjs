@@ -7,7 +7,20 @@ import { Branch } from "./branch.mjs";
 import { Hook } from "./hook.mjs";
 
 /**
- *
+ * @typedef {Object} MessageDestination
+ * @param {Function} info
+ * @param {Function} warn
+ * @param {Function} error
+ */
+
+const dummMessageDestination = {
+  info() {},
+  warn() {},
+  error() {}
+}
+
+/**
+ * @propery {MessageDestination} messageDestination
  */
 export class BaseProvider {
   /**
@@ -86,6 +99,7 @@ export class BaseProvider {
   }
 
   constructor(options, properties) {
+    this.messageDestination = dummMessageDestination;
     definePropertiesFromOptions(this, options, properties);
   }
 
@@ -404,7 +418,7 @@ export class BaseProvider {
 
   initializeRepositories() {}
 
-  info() {}
-  warn() {}
-  error() {}
+  info(...args) { return this.messageDestination.info(...args); }
+  warn(...args) { return this.messageDestination.warn(...args); }
+  error(...args) { return this.messageDestination.error(...args); }
 }
