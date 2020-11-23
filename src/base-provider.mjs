@@ -403,4 +403,8 @@ export class BaseProvider {
   }
 
   initializeRepositories() {}
+
+  info() {}
+  warn() {}
+  error() {}
 }
