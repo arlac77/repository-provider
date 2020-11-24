@@ -73,11 +73,12 @@ export class BaseProvider {
       priority: {
         type: "number",
         default: 0
-      }/*,
+      },
       messageDestination: {
         type: "object",
-        default: console
-      }*/
+        default: console,
+        writeable: true
+      }
     };
   }
 
@@ -97,7 +98,6 @@ export class BaseProvider {
   }
 
   constructor(options, properties) {
-    this.messageDestination = options && options.messageDestination || console;
     definePropertiesFromOptions(this, options, properties);
   }
 

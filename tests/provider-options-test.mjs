@@ -91,7 +91,8 @@ test("new provider", t => {
   t.is(`${provider}`, "BaseProvider");
   t.deepEqual(provider.toJSON(), {
     name: "BaseProvider",
-    priority: 0
+    priority: 0,
+    messageDestination: console
   });
 });
 

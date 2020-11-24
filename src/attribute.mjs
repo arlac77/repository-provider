@@ -40,7 +40,7 @@ export function definePropertiesFromOptions(
         }
       }
 
-      if (
+      if (attribute.writeable ||
         object.hasOwnProperty(name) ||
         name === "merged" // TODO hack
         /*|| object.constructor.prototype[name] !== undefined*/

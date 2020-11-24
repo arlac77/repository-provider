@@ -2,6 +2,7 @@ import test from "ava";
 import {
   getAttribute,
   RepositoryGroup,
+  BaseObject,
   definePropertiesFromOptions,
   optionJSON
 } from "repository-provider";
@@ -16,7 +17,7 @@ gat.title = (providedTitle, object, key) =>
 
 test(gat, { a: 1 }, "a", 1);
 test(gat, { a: { b: 1 } }, "a.b", 1);
-test(gat, { }, "x.y.z", undefined);
+test(gat, {}, "x.y.z", undefined);
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);
@@ -72,13 +73,22 @@ ojt.title = (providedTitle, a, b) =>
   )} ${b}`.trim();
 
 test(ojt, {}, undefined, undefined, {});
-test(
-  ojt,
-  new RepositoryGroup(undefined, "a", { id: 1 }),
-  undefined,
-  [],
-  {
-    id: 1,
-    isAdmin: false
-  }
-);
+test(ojt, new RepositoryGroup(undefined, "a", { id: 1 }), undefined, [], {
+  id: 1,
+  isAdmin: false
+});
+
+test("writeable attribute", t => {
+  let object = new BaseObject();
+
+  object.description = "d1";
+
+  t.is(object.description, "d1");
+
+  object = new BaseObject({ description: "x" });
+  t.is(object.description, "x");
+
+  object.description = "d1";
+
+  t.is(object.description, "d1");
+});
