@@ -16,6 +16,7 @@ gat.title = (providedTitle, object, key) =>
 
 test(gat, { a: 1 }, "a", 1);
 test(gat, { a: { b: 1 } }, "a.b", 1);
+test(gat, { }, "x.y.z", undefined);
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);

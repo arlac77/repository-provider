@@ -91,7 +91,7 @@ export function definePropertiesFromOptions(
 
 /**
  * Deliver attribute value.
- * @param {object} object
+ * @param {Object} object
  * @param {string} name
  * @returns {any} value associated with the given property name
  */
@@ -100,6 +100,9 @@ export function getAttribute(object, name) {
 
   for (const p of name.split(/\./)) {
     value = value[p];
+    if(value === undefined) {
+      break;
+    }
   }
 
   return value;
