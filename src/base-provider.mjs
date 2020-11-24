@@ -13,12 +13,6 @@ import { Hook } from "./hook.mjs";
  * @param {Function} error
  */
 
-const dummMessageDestination = {
-  info() {},
-  warn() {},
-  error() {}
-}
-
 /**
  * @propery {MessageDestination} messageDestination
  */
@@ -79,7 +73,11 @@ export class BaseProvider {
       priority: {
         type: "number",
         default: 0
-      }
+      }/*,
+      messageDestination: {
+        type: "object",
+        default: console
+      }*/
     };
   }
 
@@ -99,7 +97,7 @@ export class BaseProvider {
   }
 
   constructor(options, properties) {
-    this.messageDestination = dummMessageDestination;
+    this.messageDestination = options && options.messageDestination || console;
     definePropertiesFromOptions(this, options, properties);
   }
 
