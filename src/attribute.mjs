@@ -89,6 +89,12 @@ export function definePropertiesFromOptions(
   Object.assign(object, after);
 }
 
+/**
+ * Deliver attribute value.
+ * @param {object} object
+ * @param {string} name
+ * @returns {any} value associated with the given property name
+ */
 export function getAttribute(object, name) {
   let value = object;
 
