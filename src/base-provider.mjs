@@ -187,16 +187,6 @@ export class BaseProvider {
   }
 
   /**
-   * strip away any provider base
-   *
-   * @param {string|string[]} patterns
-   * @returns {string|string[]} stripped patterns
-   */
-  removeProviderBase(patterns) {
-    return stripBaseNames(patterns, this.repositoryBases);
-  }
-
-  /**
    * Parses repository name and tries to split it into
    * base, group, repository and branch
    * @param {string} name

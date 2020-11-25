@@ -1,6 +1,6 @@
 import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
-import { asArray, stripBaseName } from "./util.mjs";
+import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
 
 export function RepositoryOwner(base) {
   return class RepositoryOwner extends base {
@@ -70,7 +70,7 @@ export function RepositoryOwner(base) {
       await this.initializeRepositories();
       yield* matcher(
         this._repositories.values(),
-        this.removeProviderBase(patterns),
+        stripBaseNames(patterns, this.provider.repositoryBases),
         {
           caseSensitive: this.areRepositoryNamesCaseSensitive,
           name: "name"
@@ -83,7 +83,7 @@ export function RepositoryOwner(base) {
       if (name !== undefined) {
         await this.initializeRepositories();
 
-        name = this.removeProviderBase(name);
+        name = stripBaseName(name, this.provider.repositoryBases);
 
         const [repoName, typeName] = split ? split(name) : name.split("/");
         const repository = this._repositories.get(repoName);
@@ -101,7 +101,7 @@ export function RepositoryOwner(base) {
     async *_list(type, patterns, split, defaultItem) {
       await this.initializeRepositories();
 
-      patterns = this.removeProviderBase(patterns);
+      patterns = stripBaseNames(patterns, this.provider.repositoryBases);
 
       for (const pattern of asArray(patterns)) {
         const [repoPattern, typePattern] = split

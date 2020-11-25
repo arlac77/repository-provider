@@ -1,5 +1,6 @@
 import { matcher } from "matching-iterator";
 import { BaseProvider } from "./base-provider.mjs";
+import { stripBaseNames } from "./util.mjs";
 
 /**
  * Provider supporting serveral repository groups
@@ -59,7 +60,7 @@ export class MultiGroupProvider extends BaseProvider {
     const { base } = this.parseName(name);
 
     if (this.supportsBase(base)) {
-      name = this.removeProviderBase(name);
+      name = stripBaseNames(name, this.provider.repositoryBases);
       await this.initializeRepositories();
       return this._repositoryGroups.get(this.normalizeGroupName(name, true));
     }
@@ -75,7 +76,7 @@ export class MultiGroupProvider extends BaseProvider {
 
     yield* matcher(
       this._repositoryGroups.values(),
-      this.removeProviderBase(patterns),
+      stripBaseNames(patterns,this.provider.repositoryBases),
       {
         caseSensitive: this.areGroupNamesCaseSensitive,
         name: "name"

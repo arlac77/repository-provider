@@ -52,10 +52,6 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
     return false;
   }
 
-  removeProviderBase(patterns) {
-    return this.provider.removeProviderBase(patterns);
-  }
-
   get areRepositoryNamesCaseSensitive() {
     return this.provider.areRepositoryNamesCaseSensitive;
   }
