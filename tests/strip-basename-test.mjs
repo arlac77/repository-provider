@@ -8,7 +8,7 @@ function quote(names) {
     ? "[" + names.map(n => "'" + n + "'").join(",") + "]"
     : "'" + names + "'";
 }
-async function sbnt(t, name, bases = [], expected, expectExtractedBase) {
+async function sbnt(t, name, bases, expected, expectExtractedBase) {
   t.is(stripBaseName(name, bases), expected, "stripped name");
 
   let extractedBase;
@@ -72,7 +72,7 @@ test(
   "https://github.com/"
 );
 
-async function sbnst(t, names, bases = [], expected, expectExtractedBases) {
+async function sbnst(t, names, bases, expected, expectExtractedBases) {
   t.deepEqual(stripBaseNames(names, bases), expected, "stripped name");
 
   const extractedBases = [];
