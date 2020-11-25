@@ -2,12 +2,23 @@ import test from "ava";
 import { SingleGroupProvider } from "repository-provider";
 
 class CaseSensitiveOwner extends SingleGroupProvider {
+
+  get name() {
+    return "csp";
+  }
+
   get repositoryBases() {
-    return ["https://myrepo/"];
+    const srp = super.repositoryBases;
+    return ["https://myrepo/", srp[0], srp[1]];
   }
 }
 
 class CaseInsensitiveOwner extends CaseSensitiveOwner {
+
+  get name() {
+    return "cip";
+  }
+
   get areRepositoryNamesCaseSensitive() {
     return false;
   }
@@ -62,22 +73,31 @@ async function createOwner(factory) {
 test(olrt, CaseSensitiveOwner, "r1", ["r1"]);
 test(olrt, CaseSensitiveOwner, "r*", ["r1", "r2"]);
 test(olrt, CaseSensitiveOwner, "https://myrepo/r*", ["r1", "r2"]);
+test.skip(olrt, CaseSensitiveOwner, "otherProvider:r*", ["r1", "r2"]);
+test(olrt, CaseSensitiveOwner, "csp:r*", ["r1", "r2"]);
 test(olrt, CaseSensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
 test(olrt, CaseSensitiveOwner, "*", ["r1", "r2", "x", "Upper"]);
 test(olrt, CaseSensitiveOwner, undefined, ["r1", "r2", "x", "Upper"]);
 test(olrt, CaseSensitiveOwner, "abc", []);
 test(olrt, CaseSensitiveOwner, "", []);
 test(olrt, CaseSensitiveOwner, "https://myrepo/", []);
+
 test(olrt, CaseInsensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
 test(olrt, CaseInsensitiveOwner, "https://myrepo/*r*", ["r1", "r2", "Upper"]);
 
+
 test(ogrt, CaseSensitiveOwner, undefined, undefined);
+test(ogrt, CaseSensitiveOwner, "otherProvider:r1", undefined);
+test(ogrt, CaseSensitiveOwner, "csp:r1", "r1");
 test(ogrt, CaseSensitiveOwner, "r1", "r1");
 test(ogrt, CaseSensitiveOwner, "r1#master", "r1");
 test(ogrt, CaseSensitiveOwner, "https://myrepo/r1#master", "r1");
 test(ogrt, CaseSensitiveOwner, "Upper", "Upper");
 test(ogrt, CaseSensitiveOwner, "https://myrepo/Upper", "Upper");
 test(ogrt, CaseSensitiveOwner, "upper", undefined);
+
 test(ogrt, CaseInsensitiveOwner, undefined, undefined);
 test(ogrt, CaseInsensitiveOwner, "upper", "Upper");
+test.skip(ogrt, CaseInsensitiveOwner, "otherProvider:upper", "Upper");
+test(ogrt, CaseInsensitiveOwner, "cip:upper", "Upper");
 test(ogrt, CaseInsensitiveOwner, "https://myrepo/upper", "Upper");

@@ -11,8 +11,10 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
    * @return {Repository}
    */
   async repository(name) {
-    const { repository } = this.parseName(name);
-    return await super.repository(repository);
+    const { base, repository } = this.parseName(name);
+    if (this.supportsBase(base)) {
+      return await super.repository(repository);
+    }
   }
 
   /**
@@ -21,7 +23,13 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
    * @return {RepositoryGroup} deliver the one and only present group
    */
   async repositoryGroup(name) {
-    return name === undefined ? undefined : this;
+    if (name !== undefined) {
+      const { base } = this.parseName(name);
+
+      if (this.supportsBase(base)) {
+        return this;
+      }
+    }
   }
 
   /**
