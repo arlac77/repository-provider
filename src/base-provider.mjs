@@ -247,8 +247,9 @@ export class BaseProvider {
   }
 
   async createRepository(name, options) {
-    const rg = await this.repositoryGroup(name);
-    return rg.createRepository(name, options);
+    const { group, repository } = this.parseName(name);
+    const rg = await this.repositoryGroup(group);
+    return rg.createRepository(repository, options);
   }
 
   async *listGroups(patterns) {

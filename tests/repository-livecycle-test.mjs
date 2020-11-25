@@ -28,4 +28,14 @@ repositoryCreateTest.title = (
 
 test(repositoryCreateTest, new SingleGroupProvider(), "r1", {});
 test(repositoryCreateTest, new SingleGroupProvider(), "r1#b1", {}, "r1");
-test.skip(repositoryCreateTest, new MultiGroupProvider(), "g1/r1", {});
+
+
+function prepareMultiGroupProvider()
+{
+  const provider = new MultiGroupProvider();
+
+  provider.addRepositoryGroup("g1");
+  return provider;
+}
+
+test(repositoryCreateTest, prepareMultiGroupProvider(), "g1/r1", {});
