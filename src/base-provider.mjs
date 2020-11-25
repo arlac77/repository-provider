@@ -74,6 +74,11 @@ export class BaseProvider {
         type: "number",
         default: 0
       },
+
+      name: {
+        type: "string"
+      },
+
       messageDestination: {
         type: "object",
         default: console,

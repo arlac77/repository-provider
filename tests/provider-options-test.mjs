@@ -100,3 +100,8 @@ test("provider with priority", t => {
   const provider = new BaseProvider({ priority: 77 });
   t.is(provider.priority, 77);
 });
+
+test("provider with name", t => {
+  const sp = new BaseProvider({ name: "myName"});
+  t.is(sp.name, "myName");
+});
