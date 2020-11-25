@@ -8,8 +8,7 @@ class CaseSensitiveProvider extends MultiGroupProvider {
   }
 
   get repositoryBases() {
-    const srp = super.repositoryBases;
-    return ["https://myrepo/", srp[0], srp[1]];
+    return super.repositoryBases.concat(["https://myrepo/"]);
   }
 }
 
