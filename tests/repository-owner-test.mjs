@@ -106,7 +106,7 @@ test(
 
 test(ownerTypeListTest, "repositories", createOwner(), ["r*"], ["r1", "r2"]);
 test(ownerTypeListTest, "repositories", createOwner(), "x*", 1);
-test.skip(ownerTypeListTest, "repositories", createOwner(), "x*#master", 1);
+test(ownerTypeListTest, "repositories", createOwner(), "x*#master", 1);
 
 test(ownerTypeListTest, "branches", createOwner(), "r1", 1);
 test(ownerTypeListTest, "branches", createOwner(), "r1#*", [

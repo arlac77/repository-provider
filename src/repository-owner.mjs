@@ -56,17 +56,19 @@ export function RepositoryOwner(base) {
      */
     async *repositories(patterns) {
       patterns = asArray(patterns);
-      for(let p of patterns) {
+      for (let p of patterns) {
         p = stripBaseName(p, this.provider.repositoryBases);
 
         const m = p.match(/^(\w+:)/);
-        if(m) {
-          if(!this.supportsBase(m[1])) {
+        if (m) {
+          if (!this.supportsBase(m[1])) {
             return;
           }
         }
       }
+      patterns = patterns.map(p => p.replace(/#.*$/, ""));
 
+      //console.log("repositories", patterns);
       await this.initializeRepositories();
       yield* matcher(
         this._repositories.values(),
@@ -76,7 +78,6 @@ export function RepositoryOwner(base) {
           name: "name"
         }
       );
-    
     }
 
     async _lookup(type, name, split, defaultItem) {
