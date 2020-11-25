@@ -69,6 +69,7 @@ async function createOwner(factory) {
 test(olrt, CaseSensitiveOwner, "r1", ["r1"]);
 test(olrt, CaseSensitiveOwner, "r*", ["r1", "r2"]);
 test(olrt, CaseSensitiveOwner, "https://myrepo/r*", ["r1", "r2"]);
+test(olrt, CaseSensitiveOwner, "otherProvider:xyz", []);
 test.skip(olrt, CaseSensitiveOwner, "otherProvider:r*", ["r1", "r2"]);
 test(olrt, CaseSensitiveOwner, "csp:r*", ["r1", "r2"]);
 test(olrt, CaseSensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
