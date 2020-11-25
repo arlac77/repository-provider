@@ -15,6 +15,16 @@ import {
 } from "repository-provider";
 
 class MyOwnerClass extends RepositoryOwner(NamedObject) {
+
+  get provider() {
+    return { repositoryBases: [] };
+  }
+
+  supportsBase()
+  {
+    return true;
+  }
+
   removeProviderBase(names) {
     return names ? stripBaseNames(names, ["https://mydomain.com/"]) : undefined;
   }

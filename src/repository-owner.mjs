@@ -1,6 +1,6 @@
 import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
-import { asArray } from "./util.mjs";
+import { asArray, stripBaseName } from "./util.mjs";
 
 export function RepositoryOwner(base) {
   return class RepositoryOwner extends base {
@@ -55,6 +55,18 @@ export function RepositoryOwner(base) {
      * @return {Iterator<Repository>} all matching repositories of the owner
      */
     async *repositories(patterns) {
+      patterns = asArray(patterns);
+      for(let p of patterns) {
+        p = stripBaseName(p, this.provider.repositoryBases);
+
+        const m = p.match(/^(\w+:)/);
+        if(m) {
+          if(!this.supportsBase(m[1])) {
+            return;
+          }
+        }
+      }
+
       await this.initializeRepositories();
       yield* matcher(
         this._repositories.values(),
@@ -64,6 +76,7 @@ export function RepositoryOwner(base) {
           name: "name"
         }
       );
+    
     }
 
     async _lookup(type, name, split, defaultItem) {
