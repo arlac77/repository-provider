@@ -119,7 +119,7 @@ export class BaseProvider {
    * @return {string[]} common base urls of all repositories
    */
   get repositoryBases() {
-    return ["/",this.name + ':'];
+    return ["/", this.name + ":"];
   }
 
   /**
@@ -416,7 +416,13 @@ export class BaseProvider {
 
   initializeRepositories() {}
 
-  info(...args) { return this.messageDestination.info(...args); }
-  warn(...args) { return this.messageDestination.warn(...args); }
-  error(...args) { return this.messageDestination.error(...args); }
+  info(...args) {
+    return this.messageDestination.info(...args);
+  }
+  warn(...args) {
+    return this.messageDestination.warn(...args);
+  }
+  error(...args) {
+    return this.messageDestination.error(...args);
+  }
 }
