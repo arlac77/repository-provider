@@ -94,6 +94,6 @@ test(ogrt, CaseSensitiveOwner, "upper", undefined);
 
 test(ogrt, CaseInsensitiveOwner, undefined, undefined);
 test(ogrt, CaseInsensitiveOwner, "upper", "Upper");
-test.skip(ogrt, CaseInsensitiveOwner, "otherProvider:upper", "Upper");
+test(ogrt, CaseInsensitiveOwner, "otherProvider:upper", undefined);
 test(ogrt, CaseInsensitiveOwner, "cip:upper", "Upper");
 test(ogrt, CaseInsensitiveOwner, "https://myrepo/upper", "Upper");
