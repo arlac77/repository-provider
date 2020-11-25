@@ -2,19 +2,16 @@ import test from "ava";
 import { SingleGroupProvider } from "repository-provider";
 
 class CaseSensitiveOwner extends SingleGroupProvider {
-
   get name() {
     return "csp";
   }
 
   get repositoryBases() {
-    const srp = super.repositoryBases;
-    return ["https://myrepo/", srp[0], srp[1]];
+    return super.repositoryBases.concat(["https://myrepo/"]);
   }
 }
 
 class CaseInsensitiveOwner extends CaseSensitiveOwner {
-
   get name() {
     return "cip";
   }
@@ -69,7 +66,6 @@ async function createOwner(factory) {
   return owner;
 }
 
-
 test(olrt, CaseSensitiveOwner, "r1", ["r1"]);
 test(olrt, CaseSensitiveOwner, "r*", ["r1", "r2"]);
 test(olrt, CaseSensitiveOwner, "https://myrepo/r*", ["r1", "r2"]);
@@ -84,7 +80,6 @@ test(olrt, CaseSensitiveOwner, "https://myrepo/", []);
 
 test(olrt, CaseInsensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
 test(olrt, CaseInsensitiveOwner, "https://myrepo/*r*", ["r1", "r2", "Upper"]);
-
 
 test(ogrt, CaseSensitiveOwner, undefined, undefined);
 test(ogrt, CaseSensitiveOwner, "otherProvider:r1", undefined);
