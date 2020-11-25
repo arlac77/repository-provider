@@ -3,8 +3,13 @@ import { groupListTest } from "repository-provider-test-support";
 import { MultiGroupProvider } from "repository-provider";
 
 class CaseSensitiveProvider extends MultiGroupProvider {
+  get name() {
+    return "csp";
+  }
+
   get repositoryBases() {
-    return ["https://myrepo/"];
+    const srp = super.repositoryBases;
+    return ["https://myrepo/", srp[0], srp[1]];
   }
 }
 
@@ -24,7 +29,10 @@ const allGroups = {
 };
 
 test(groupListTest, initProvider(CaseSensitiveProvider), undefined, allGroups);
+test(groupListTest, initProvider(CaseSensitiveProvider), "unknownBase:*", 0);
+test(groupListTest, initProvider(CaseSensitiveProvider), "csp:*", allGroups);
 test(groupListTest, initProvider(CaseSensitiveProvider), "*", allGroups);
+
 test(
   groupListTest,
   initProvider(CaseSensitiveProvider),
@@ -57,6 +65,10 @@ test(
 );
 
 class CaseInsensitiveProvider extends CaseSensitiveProvider {
+  get name() {
+    return "cip";
+  }
+
   get areRepositoryNamesCaseSensitive() {
     return false;
   }
@@ -103,23 +115,25 @@ pgrt.title = (providedTitle = "", provider, name, result) =>
   `${provider.name} get group ${providedTitle} '${name}'`.trim();
 
 test(pgrt, initProvider(CaseSensitiveProvider), "g1", "g1");
-test.skip(pgrt, initProvider(CaseSensitiveProvider), "https://myrepo/g1", "g1");
+test(pgrt, initProvider(CaseSensitiveProvider), "unknownBase:g1", undefined);
+test(pgrt, initProvider(CaseSensitiveProvider), "csp:g1", "g1");
+test(pgrt, initProvider(CaseSensitiveProvider), "https://myrepo/g1", "g1");
 test(pgrt, initProvider(CaseSensitiveProvider), "Upper", "Upper");
-test.skip(
+test(
   pgrt,
   initProvider(CaseSensitiveProvider),
   "https://myrepo/Upper",
   "Upper"
 );
 test(pgrt, initProvider(CaseInsensitiveProvider), "Upper", "Upper");
-test.skip(
+test(
   pgrt,
   initProvider(CaseInsensitiveProvider),
   "https://myrepo/Upper",
   "Upper"
 );
 test(pgrt, initProvider(CaseInsensitiveProvider), "upper", "Upper");
-test.skip(
+test(
   pgrt,
   initProvider(CaseInsensitiveProvider),
   "https://myrepo/upper",

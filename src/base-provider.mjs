@@ -119,7 +119,7 @@ export class BaseProvider {
    * @return {string[]} common base urls of all repositories
    */
   get repositoryBases() {
-    return ["/"];
+    return ["/",this.name + ':'];
   }
 
   /**
