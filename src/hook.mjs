@@ -29,6 +29,10 @@ export class Hook extends BaseObject {
     repository._addHook(this);
   }
 
+  get fullName() {
+    return `${this.repository.fullName}/${this.id}`;
+  }
+
   get displayName() {
     return this.id;
   }

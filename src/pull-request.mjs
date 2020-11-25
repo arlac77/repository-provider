@@ -164,6 +164,10 @@ export class PullRequest extends NamedObject {
     return this.state === "MERGED";
   }
 
+  get fullName() {
+    return `${this.source.repository.fullName}/${this.name}`;
+  }
+
   get number() {
     return this.name;
   }

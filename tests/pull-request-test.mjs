@@ -34,6 +34,7 @@ test("pullRequest create", async t => {
   });
 
   t.is(pr.number, "4711");
+  t.is(pr.fullName, "r1/4711");
   t.is(pr.source, b1);
   t.is(pr.destination, b2);
   t.is(pr.provider, provider);

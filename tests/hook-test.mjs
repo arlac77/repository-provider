@@ -27,6 +27,7 @@ test("add hook", async t => {
   */
   t.is(hook.name, "hook1");
   t.is(hook.displayName, 77);
+  t.is(hook.fullName, "r1/77");
   t.deepEqual(hook.events, new Set(["a"]));
 
   t.is(hook.id, 77);

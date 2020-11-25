@@ -10,12 +10,10 @@ import {
   Branch,
   Tag,
   Hook,
-  PullRequest,
-  stripBaseNames
+  PullRequest
 } from "repository-provider";
 
 class MyOwnerClass extends RepositoryOwner(NamedObject) {
-
   get provider() {
     return { repositoryBases: ["https://mydomain.com/"] };
   }
@@ -23,6 +21,7 @@ class MyOwnerClass extends RepositoryOwner(NamedObject) {
   get repositoryClass() {
     return Repository;
   }
+
   get pullRequestClass() {
     return PullRequest;
   }
@@ -51,13 +50,15 @@ function createOwner(
   pullRequests = allPullRequests,
   hooks = allHooks
 ) {
+  const bm = {};
   const owner = new MyOwnerClass();
 
   for (const name of branches) {
     const [r, b] = name.split(/#/);
     const repository = owner.addRepository(r);
     if (b) {
-      new Branch(repository, b);
+      const bo = new Branch(repository, b);
+      bm[bo.fullCondensedName] = bo;
     }
   }
 
@@ -72,11 +73,10 @@ function createOwner(
   }
 
   for (const name of pullRequests) {
-    const [r, b] = name.split("/");
-
-    const repository = owner.addRepository(r);
-    const pr = new PullRequest(repository, undefined, b);
-    repository._addPullRequest(pr);
+    const [b, p] = name.split("/");
+    const branch = bm[b];
+    const pr = new PullRequest( branch, undefined, p);
+    branch.repository._addPullRequest(pr);
   }
 
   //console.log([...owner._repositories.get("r1")._pullRequests.keys()]);
@@ -150,8 +150,8 @@ test(ownerTypeListTest, "tags", createOwner(), "https://mydomain.com/r1#*", [
   "r1#2.0.0",
   "r1#3.0.0"
 ]);
-test.skip(ownerTypeListTest, "pullRequests", createOwner(), "r1/*", ["r1/p1"]);
-test.skip(ownerTypeListTest, "hooks", createOwner(), "r1/*", ["r1/h1"]);
+test(ownerTypeListTest, "pullRequests", createOwner(), "r1/*", ["r1/p1"]);
+test(ownerTypeListTest, "hooks", createOwner(), "r1/*", ["r1/h1"]);
 
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#master", "r1#master");
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#b1", "r1#b1");
@@ -173,4 +173,4 @@ test(ownerTypeLookupTest, "tag", createOwner(), "r1", undefined);
 test(ownerTypeLookupTest, "tag", createOwner(), undefined, undefined);
 
 test(ownerTypeLookupTest, "pullRequest", createOwner(), undefined, undefined);
-test.skip(ownerTypeLookupTest, "pullRequest", createOwner(), "r1/p1", "r1/p1");
+test(ownerTypeLookupTest, "pullRequest", createOwner(), "r1/p1", "r1/p1");
