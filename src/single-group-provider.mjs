@@ -1,5 +1,6 @@
 import { BaseProvider } from "./base-provider.mjs";
 import { RepositoryOwner } from "./repository-owner.mjs";
+import { stripBaseNames } from "./util.mjs";
 
 /**
  * Provider holding a single set of repositories (no repository groups)
@@ -18,7 +19,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   }
 
   /**
-   * get a single Group
+   * Get a single Group
    * @param {string} name
    * @return {RepositoryGroup} deliver the one and only present group
    */
@@ -38,6 +39,14 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
    * @return {Iterator<RepositoryGroup>} always deliver the one and only present group
    */
   async *repositoryGroups(patterns) {
-    yield this;
+    let found;
+
+    stripBaseNames(patterns, this.repositoryBases, () => {
+      found = true;
+    });
+
+    if (found) {
+      yield this;
+    }
   }
 }
