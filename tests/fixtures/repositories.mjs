@@ -60,8 +60,8 @@ export const otherRepositories = {
 
 export const fragmentRepositories = {
   "": { repository: "" },
-  "/": { base: "/", repository: "" },
-  "/abc": { base: "/", repository: "abc" },
+//  "/": { base: "/", repository: "" },
+//  "/abc": { base: "/", repository: "abc" },
 
   "abc/def/g": { group: "abc", repository: "def" },
   "xxx/abc/def.git#mybranch": {
