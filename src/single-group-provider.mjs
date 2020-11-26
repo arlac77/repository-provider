@@ -18,7 +18,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   }
 
   /**
-   * get a single Group
+   * Get a single Group
    * @param {string} name
    * @return {RepositoryGroup} deliver the one and only present group
    */
@@ -38,6 +38,6 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
    * @return {Iterator<RepositoryGroup>} always deliver the one and only present group
    */
   async *repositoryGroups(patterns) {
-    yield this;
+    //yield this;
   }
 }
