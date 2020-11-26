@@ -5,7 +5,7 @@ import { MultiGroupProvider } from "repository-provider";
 
 class MyProvider extends MultiGroupProvider {
   get repositoryBases() {
-    return ["https://myrepo/"];
+    return super.repositoryBases.concat(["https://myrepo/"]);
   }
 }
 

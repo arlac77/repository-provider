@@ -9,7 +9,7 @@ import { BaseProvider } from "repository-provider";
 
 class MyProvider extends BaseProvider {
   get repositoryBases() {
-    return ["https://github.com/", "http://otherdomain.com/", "/"];
+    return super.repositoryBases.concat(["https://github.com/", "http://otherdomain.com/"]);
   }
 }
 
