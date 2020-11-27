@@ -295,24 +295,26 @@ console.log(await readme.getString());
 -   [Milestone](#milestone)
     -   [Parameters](#parameters-72)
 -   [Review](#review)
--   [definePropertiesFromOptions](#definepropertiesfromoptions)
+-   [Application](#application)
     -   [Parameters](#parameters-73)
--   [getAttribute](#getattribute)
+-   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-74)
--   [optionJSON](#optionjson)
+-   [getAttribute](#getattribute)
     -   [Parameters](#parameters-75)
--   [mapAttributes](#mapattributes)
+-   [optionJSON](#optionjson)
     -   [Parameters](#parameters-76)
--   [mapAttributesInverse](#mapattributesinverse)
+-   [mapAttributes](#mapattributes)
     -   [Parameters](#parameters-77)
--   [asArray](#asarray)
+-   [mapAttributesInverse](#mapattributesinverse)
     -   [Parameters](#parameters-78)
--   [stripBaseName](#stripbasename)
+-   [asArray](#asarray)
     -   [Parameters](#parameters-79)
--   [stripBaseNames](#stripbasenames)
+-   [stripBaseName](#stripbasename)
     -   [Parameters](#parameters-80)
--   [generateBranchName](#generatebranchname)
+-   [stripBaseNames](#stripbasenames)
     -   [Parameters](#parameters-81)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-82)
 
 ## BaseObject
 
@@ -634,7 +636,7 @@ Returns **[Repository](#repository)**
 
 ### repositoryGroup
 
-get a single Group
+Get a single Group
 
 #### Parameters
 
@@ -1360,7 +1362,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 -   **See: [Repository#\_addBranch](Repository#_addBranch)
     **
 
-Abstract branch
+Abstract branch.
 
 ### Parameters
 
@@ -1376,13 +1378,13 @@ Abstract branch
 
 ### url
 
-Deliver repository and branch url combined
+Deliver repository and branch url combined.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
 
 ### isDefault
 
-Are we the default branch
+Are we the default branch.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name is the repository default branch
 
@@ -1397,7 +1399,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### commit
 
-Commit entries
+Commit entries.
 
 #### Parameters
 
@@ -1428,7 +1430,7 @@ Remove entries form the branch.
 
 #### Parameters
 
--   `entries` **Iterator&lt;ConentEntry>** 
+-   `entries` **Iterator&lt;ContentEntry>** 
 
 ### entryClass
 
@@ -1699,6 +1701,16 @@ provide name, events and all defined attributes
 ## Review
 
 **Extends BaseObject**
+
+## Application
+
+**Extends NamedObject**
+
+### Parameters
+
+-   `owner`  
+-   `name`  
+-   `options`  
 
 ## definePropertiesFromOptions
 
