@@ -13,7 +13,7 @@ import { PullRequest } from "./pull-request.mjs";
  */
 
 /**
- * Abstract branch
+ * Abstract branch.
  * @see {@link Repository#_addBranch}
  * @param {Repository} repository
  * @param {string} name
@@ -30,7 +30,7 @@ export class Branch extends Ref {
   }
 
   /**
-   * Deliver repository and branch url combined
+   * Deliver repository and branch url combined.
    * @return {string} 'repoUrl#branch'
    */
   get url() {
@@ -44,7 +44,7 @@ export class Branch extends Ref {
   }
 
   /**
-   * Are we the default branch
+   * Are we the default branch.
    * @return {boolean} true if name is the repository default branch
    */
   get isDefault() {
@@ -61,7 +61,7 @@ export class Branch extends Ref {
   }
 
   /**
-   * Commit entries
+   * Commit entries.
    * @param {string} message commit message
    * @param {ConentEntry[]} updates content to be commited
    * @param {Object} options
@@ -148,7 +148,7 @@ export class Branch extends Ref {
 
   /**
    * Remove entries form the branch.
-   * @param {Iterator <ConentEntry>} entries
+   * @param {Iterator <ContentEntry>} entries
    */
   async removeEntries(entries) {}
 
