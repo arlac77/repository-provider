@@ -63,6 +63,10 @@ test(dpot, new MyClass(), { "authentification.token": "abc" }, (t, object) =>
   t.is(object.authentification.token, "abc")
 );
 
+test(dpot, new MyClass(), { "something" : "a"}, (t, object) =>
+  t.is(object.authentification.token, undefined )
+);
+
 function ojt(t, object, initial, skip, result) {
   t.deepEqual(optionJSON(object, initial, skip), result);
 }

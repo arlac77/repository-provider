@@ -1,6 +1,6 @@
 /**
- * Create properties from options and default options
- * Already present properties (direct) are skipped
+ * Create properties from options and default options.
+ * Already present properties (direct) are skipped.
  * @see Object.definedProperties()
  * @see Object.hasOwnProperty()
  * @param {Object} object target object
@@ -26,6 +26,12 @@ export function definePropertiesFromOptions(
       }
 
       if (value === undefined) {
+        const path = name.split(/\./);
+        if (path.length > 1) {
+          if (getAttribute(object, name) === undefined) {
+            properties[path[0]] = { value: {} };
+          }
+        }
         return;
       }
 
@@ -40,7 +46,8 @@ export function definePropertiesFromOptions(
         }
       }
 
-      if (attribute.writeable ||
+      if (
+        attribute.writeable ||
         object.hasOwnProperty(name) ||
         name === "merged" // TODO hack
         /*|| object.constructor.prototype[name] !== undefined*/
@@ -54,7 +61,7 @@ export function definePropertiesFromOptions(
 
       if (properties[key] === undefined) {
         if (path.length === 1) {
-          if(object[key] === value) {
+          if (object[key] === value) {
             return;
           }
           properties[key] = { value };
@@ -100,7 +107,7 @@ export function getAttribute(object, name) {
 
   for (const p of name.split(/\./)) {
     value = value[p];
-    if(value === undefined) {
+    if (value === undefined) {
       break;
     }
   }
