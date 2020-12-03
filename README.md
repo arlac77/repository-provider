@@ -1719,8 +1719,8 @@ provide name, events and all defined attributes
 -   **See: Object.hasOwnProperty()
     **
 
-Create properties from options and default options
-Already present properties (direct) are skipped
+Create properties from options and default options.
+Already present properties (direct) are skipped.
 
 ### Parameters
 
