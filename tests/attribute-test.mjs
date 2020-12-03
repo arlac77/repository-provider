@@ -35,7 +35,8 @@ class MyClass {
       att1: {},
       att2: { type: "boolean" },
       att3: { set: x => x * 2 },
-      "authentification.token": {}
+      "authentification.token": {},
+      "a.b.c.d": { default: 7 }
     };
   }
 }
@@ -65,6 +66,10 @@ test(dpot, new MyClass(), { "authentification.token": "abc" }, (t, object) =>
 
 test(dpot, new MyClass(), { "something" : "a"}, (t, object) =>
   t.is(object.authentification.token, undefined )
+);
+
+test.skip(dpot, new MyClass(), { "something" : "b"}, (t, object) =>
+  t.is(object.a.b.c.d, z )
 );
 
 function ojt(t, object, initial, skip, result) {
