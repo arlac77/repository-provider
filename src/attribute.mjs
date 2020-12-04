@@ -20,16 +20,20 @@ export function definePropertiesFromOptions(
         return;
       }
 
+      const path = name.split(/\./);
+      const first = path.shift();
+
       let value = options[name];
       if (value === undefined) {
         value = attribute.default;
       }
 
       if (value === undefined) {
-        const path = name.split(/\./);
-        if (path.length > 1) {
-          if (getAttribute(object, name) === undefined) {
-            properties[path[0]] = { value: {} };
+        if (path.length) {
+          if (getAttribute(object, first) === undefined) {
+            const slice = {};
+            setAttribute(slice, path.join("."), undefined);
+            properties[first] = { value: slice };
           }
         }
         return;
@@ -56,44 +60,39 @@ export function definePropertiesFromOptions(
         return;
       }
 
-      const path = name.split(/\./);
-      let key = path[0];
-
-      if (properties[key] === undefined) {
-        if (path.length === 1) {
-          if (object[key] === value) {
-            return;
-          }
-          properties[key] = { value };
-          return;
-        }
-        properties[key] = { value: {} };
-      } else {
-        if (path.length === 1) {
-          after[name] = value;
-          return;
-        }
+      if(path.length) {
+        const slice = {};
+        setAttribute(slice, path.join("."), value);
+        properties[first] = { value: slice };
       }
-
-      // TODO only 2 levels for now
-      properties[key].value[path[1]] = value;
-
-      /*
-      for (let n = 0; n < path.length; n++) {
-        key = path[n];
-
-        if (parent[key] === undefined) {
-          parent[key] = {};
-        }
-        parent = parent[key];
+      else {
+        properties[first] = { value };
       }
-     parent[key] = value;
-*/
     });
   }
 
   Object.defineProperties(object, properties);
   Object.assign(object, after);
+}
+
+/**
+ * Set Object attribute.
+ * @param {Object} object
+ * @param {string} name
+ * @param {any} value
+ */
+export function setAttribute(object, name, value) {
+  const parts = name.split(/\./);
+  const last = parts.pop();
+
+  for (const p of parts) {
+    if (object[p] === undefined) {
+      object[p] = {};
+    }
+    object = object[p];
+  }
+
+  object[last] = value;
 }
 
 /**
