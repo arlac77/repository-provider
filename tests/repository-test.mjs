@@ -18,6 +18,7 @@ test("repository init with options", async t => {
   t.is(repository.name, "r1");
   t.is(repository.slug, "SingleGroupProvider/r1");
   t.is(repository.fullName, "r1");
+  t.is(repository.identifier, "SingleGroupProvider:r1");
   t.is(repository.type, "git");
   t.is(repository.description, "a description");
   t.is(repository.id, "4711");
