@@ -8,7 +8,7 @@ function mat(t, a, b, c) {
 mat.title = (providedTitle = "", a, b, c) =>
   `attribute mapping ${providedTitle} ${JSON.stringify(a)} ${JSON.stringify(
     b
-  )}`.trim();
+  )} -> ${JSON.stringify(c)}`.trim();
 
 function mait(t, a, b, c) {
   t.deepEqual(mapAttributesInverse(a, b), c);
@@ -17,7 +17,7 @@ function mait(t, a, b, c) {
 mait.title = (providedTitle = "", a, b, c) =>
   `attribute mapping inverse ${providedTitle} ${JSON.stringify(
     a
-  )} ${JSON.stringify(b)}`.trim();
+  )} ${JSON.stringify(b)} -> ${JSON.stringify(c)}`.trim();
 
 test(mat, undefined, undefined, undefined);
 test(mat, undefined, { a: "a'" }, undefined);
@@ -35,9 +35,29 @@ test(
 );
 
 test(
+  mat,
+  { a: 1, b: "2" },
+  { a: "a.b" },
+  {
+    a: { b: 1 },
+    b: "2"
+  }
+);
+
+test(
   mait,
   { "a'": 1, b: "2" },
   { a: "a'" },
+  {
+    a: 1,
+    b: "2"
+  }
+);
+
+test.skip(
+  mait,
+  { "a": { b: 1 }, b: "2" },
+  { "a.b": "a" },
   {
     a: 1,
     b: "2"

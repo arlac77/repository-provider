@@ -144,16 +144,18 @@ export function optionJSON(object, initial = {}, skip = []) {
  * @return {Object} keys renamed after mapping
  */
 export function mapAttributes(object, mapping) {
-  return object === undefined
-    ? undefined
-    : Object.fromEntries(
-        Object.entries(object)
-          .filter(
-            ([name, value]) =>
-              value !== undefined && value !== null && value !== ""
-          )
-          .map(([name, value]) => [mapping[name] ? mapping[name] : name, value])
-      );
+  if (object !== undefined) {
+    const o = {};
+
+    for (const k of Object.keys(object)) {
+      const v = getAttribute(object, k);
+      if (v !== undefined && v !== null && v !== "") {
+        setAttribute(o, mapping[k] || k, v);
+      }
+    }
+
+    return o;
+  }
 }
 
 /**
