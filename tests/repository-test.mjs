@@ -27,6 +27,8 @@ test("repository init with options", async t => {
   t.is(repository.homePageURL, undefined);
   t.is(repository.isArchived, false);
   t.is(repository.isFork, false);
+  t.is(repository.isTemplate, false);
+  t.is(repository.isDisabled, false);
   t.is(repository.toString(), "r1");
   t.deepEqual(repository.toJSON(), {
     defaultBranchName: "master",
