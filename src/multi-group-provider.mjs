@@ -3,7 +3,7 @@ import { BaseProvider } from "./base-provider.mjs";
 import { stripBaseNames } from "./util.mjs";
 
 /**
- * Provider supporting serveral repository groups
+ * Provider supporting serveral repository groups.
  *
  */
 export class MultiGroupProvider extends BaseProvider {
@@ -52,7 +52,7 @@ export class MultiGroupProvider extends BaseProvider {
   }
 
   /**
-   * Lookup a repository group
+   * Lookup a repository group.
    * @param {string} name of the group
    * @return {RepositoryGroup}
    */
@@ -67,7 +67,7 @@ export class MultiGroupProvider extends BaseProvider {
   }
 
   /**
-   * List groups
+   * List groups.
    * @param {string[]|string} patterns
    * @return {Iterator<RepositoryGroup>} all matching repositories groups of the provider
    */
