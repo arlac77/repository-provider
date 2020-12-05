@@ -2,7 +2,7 @@ import { RepositoryOwner } from "./repository-owner.mjs";
 import { NamedObject } from "./named-object.mjs";
 
 /**
- * Abstract repository collection
+ * Abstract repository collection.
  * @param {Provider} provider
  * @param {string} name of the group
  * @param {Object} options
