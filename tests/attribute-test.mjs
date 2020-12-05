@@ -1,6 +1,7 @@
 import test from "ava";
 import {
   getAttribute,
+  setAttribute,
   RepositoryGroup,
   BaseObject,
   definePropertiesFromOptions,
@@ -36,6 +37,7 @@ class MyClass {
       att2: { type: "boolean" },
       att3: { set: x => x * 2 },
       "authentification.token": {},
+      "authentification.user": { default: "hugo"},
       "a.b.c.d": { default: 7 }
     };
   }
@@ -60,16 +62,23 @@ test(dpot, new MyClass(), { att3: 7 }, (t, object) => t.is(object.att3, 14));
 test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
 test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
 test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
-test(dpot, new MyClass(), { "authentification.token": "abc" }, (t, object) =>
-  t.is(object.authentification.token, "abc")
+test(
+  dpot,
+  new MyClass(),
+  { "authentification.token": "abc", "authentification.user": "emil" },
+  (t, object) => {
+    t.is(object.authentification.token, "abc");
+    t.is(object.authentification.user, "emil");
+  }
 );
 
-test(dpot, new MyClass(), { "something" : "a"}, (t, object) =>
-  t.is(object.authentification.token, undefined )
-);
+test(dpot, new MyClass(), { something: "a" }, (t, object) => {
+  t.is(object.authentification.token, undefined);
+  t.is(object.authentification.user, "hugo");
+});
 
-test.skip(dpot, new MyClass(), { "something" : "b"}, (t, object) =>
-  t.is(object.a.b.c.d, z )
+test(dpot, new MyClass(), { something: "b" }, (t, object) =>
+  t.is(object.a.b.c.d, 7)
 );
 
 function ojt(t, object, initial, skip, result) {
@@ -101,3 +110,17 @@ test("writeable attribute", t => {
 
   t.is(object.description, "d1");
 });
+
+function sat(t, object, key, value, expected) {
+  setAttribute(object, key, value);
+  t.deepEqual(object, expected);
+}
+
+sat.title = (providedTitle, object, key, value) =>
+  `setAttribute ${
+    providedTitle ? providedTitle + " " : ""
+  }${key}=${value}`.trim();
+
+test(sat, {}, "a", 1, { a: 1 });
+test(sat, {}, "a.b", 1, { a: { b: 1 } });
+test(sat, { a: { x: 7 } }, "a.b.c.d", 1, { a: { x: 7, b: { c: { d: 1 } } } });

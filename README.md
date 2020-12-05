@@ -299,22 +299,24 @@ console.log(await readme.getString());
     -   [Parameters](#parameters-73)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-74)
--   [getAttribute](#getattribute)
+-   [setAttribute](#setattribute)
     -   [Parameters](#parameters-75)
--   [optionJSON](#optionjson)
+-   [getAttribute](#getattribute)
     -   [Parameters](#parameters-76)
--   [mapAttributes](#mapattributes)
+-   [optionJSON](#optionjson)
     -   [Parameters](#parameters-77)
--   [mapAttributesInverse](#mapattributesinverse)
+-   [mapAttributes](#mapattributes)
     -   [Parameters](#parameters-78)
--   [asArray](#asarray)
+-   [mapAttributesInverse](#mapattributesinverse)
     -   [Parameters](#parameters-79)
--   [stripBaseName](#stripbasename)
+-   [asArray](#asarray)
     -   [Parameters](#parameters-80)
--   [stripBaseNames](#stripbasenames)
+-   [stripBaseName](#stripbasename)
     -   [Parameters](#parameters-81)
--   [generateBranchName](#generatebranchname)
+-   [stripBaseNames](#stripbasenames)
     -   [Parameters](#parameters-82)
+-   [generateBranchName](#generatebranchname)
+    -   [Parameters](#parameters-83)
 
 ## BaseObject
 
@@ -1625,13 +1627,13 @@ Open a pull request
 
 ## title
 
-the one line description of the pull request.
+The one line description of the pull request.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## body
 
-the description of the pull request.
+The description of the pull request.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -1647,13 +1649,13 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## locked
 
-locked state of the pull request.
+Locked state of the pull request.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## merged
 
-merged state of the pull request.
+Merged state of the pull request.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
@@ -1727,6 +1729,16 @@ Already present properties (direct) are skipped.
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor (optional, default `{}`)
 -   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
+
+## setAttribute
+
+Set Object attribute.
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `value` **any** 
 
 ## getAttribute
 

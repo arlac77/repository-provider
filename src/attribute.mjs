@@ -20,17 +20,32 @@ export function definePropertiesFromOptions(
         return;
       }
 
+      const path = name.split(/\./);
+      const first = path.shift();
+
       let value = options[name];
       if (value === undefined) {
         value = attribute.default;
       }
 
-      if (value === undefined) {
-        const path = name.split(/\./);
-        if (path.length > 1) {
-          if (getAttribute(object, name) === undefined) {
-            properties[path[0]] = { value: {} };
+      const pv = value => {
+        if (path.length) {
+          const remaining = path.join(".");
+          if (properties[first]) {
+            setAttribute(properties[first].value, remaining, value);
+          } else {
+            const slice = {};
+            setAttribute(slice, remaining, value);
+            properties[first] = { value: slice };
           }
+        } else {
+          properties[first] = { value };
+        }
+      };
+
+      if (value === undefined) {
+        if (path.length && getAttribute(object, first) === undefined) {
+          pv(undefined);
         }
         return;
       }
@@ -46,54 +61,37 @@ export function definePropertiesFromOptions(
         }
       }
 
-      if (
-        attribute.writeable ||
-        object.hasOwnProperty(name) ||
-        name === "merged" // TODO hack
-        /*|| object.constructor.prototype[name] !== undefined*/
-      ) {
+      if (attribute.writeable || object.hasOwnProperty(name)) {
         after[name] = value;
         return;
       }
 
-      const path = name.split(/\./);
-      let key = path[0];
-
-      if (properties[key] === undefined) {
-        if (path.length === 1) {
-          if (object[key] === value) {
-            return;
-          }
-          properties[key] = { value };
-          return;
-        }
-        properties[key] = { value: {} };
-      } else {
-        if (path.length === 1) {
-          after[name] = value;
-          return;
-        }
-      }
-
-      // TODO only 2 levels for now
-      properties[key].value[path[1]] = value;
-
-      /*
-      for (let n = 0; n < path.length; n++) {
-        key = path[n];
-
-        if (parent[key] === undefined) {
-          parent[key] = {};
-        }
-        parent = parent[key];
-      }
-     parent[key] = value;
-*/
+      pv(value);
     });
   }
 
   Object.defineProperties(object, properties);
   Object.assign(object, after);
+}
+
+/**
+ * Set Object attribute.
+ * @param {Object} object
+ * @param {string} name
+ * @param {any} value
+ */
+export function setAttribute(object, name, value) {
+  const parts = name.split(/\./);
+  const last = parts.pop();
+
+  for (const p of parts) {
+    if (object[p] === undefined) {
+      object[p] = {};
+    }
+    object = object[p];
+  }
+
+  object[last] = value;
 }
 
 /**
@@ -146,16 +144,18 @@ export function optionJSON(object, initial = {}, skip = []) {
  * @return {Object} keys renamed after mapping
  */
 export function mapAttributes(object, mapping) {
-  return object === undefined
-    ? undefined
-    : Object.fromEntries(
-        Object.entries(object)
-          .filter(
-            ([name, value]) =>
-              value !== undefined && value !== null && value !== ""
-          )
-          .map(([name, value]) => [mapping[name] ? mapping[name] : name, value])
-      );
+  if (object !== undefined) {
+    const o = {};
+
+    for (const k of Object.keys(object)) {
+      const v = getAttribute(object, k);
+      if (v !== undefined && v !== null && v !== "") {
+        setAttribute(o, mapping[k] || k, v);
+      }
+    }
+
+    return o;
+  }
 }
 
 /**

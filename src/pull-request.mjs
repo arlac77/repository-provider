@@ -73,13 +73,13 @@ export class PullRequest extends NamedObject {
     return {
       ...super.attributes,
       /**
-       * the one line description of the pull request.
+       * The one line description of the pull request.
        * @return {string}
        */
       title: { type: "string" },
 
       /**
-       * the description of the pull request.
+       * The description of the pull request.
        * @return {string}
        */
       body: { type: "string" },
@@ -93,25 +93,28 @@ export class PullRequest extends NamedObject {
        */
       state: {
         default: "OPEN",
-        type: "string"
+        type: "string",
+        writeable: true
       },
 
       /**
-       * locked state of the pull request.
+       * Locked state of the pull request.
        * @return {boolean}
        */
       locked: {
         type: "boolean",
-        default: false
+        default: false,
+        writeable: true
       },
 
       /**
-       * merged state of the pull request.
+       * Merged state of the pull request.
        * @return {boolean}
        */
       merged: {
         type: "boolean",
-        default: false
+        default: false,
+        writeable: true
       },
 
       draft: {
