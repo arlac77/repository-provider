@@ -37,6 +37,7 @@ class MyClass {
       att2: { type: "boolean" },
       att3: { set: x => x * 2 },
       "authentification.token": {},
+      "authentification.user": { default: "hugo"},
       "a.b.c.d": { default: 7 }
     };
   }
@@ -61,13 +62,20 @@ test(dpot, new MyClass(), { att3: 7 }, (t, object) => t.is(object.att3, 14));
 test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
 test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
 test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
-test(dpot, new MyClass(), { "authentification.token": "abc" }, (t, object) =>
-  t.is(object.authentification.token, "abc")
+test(
+  dpot,
+  new MyClass(),
+  { "authentification.token": "abc", "authentification.user": "emil" },
+  (t, object) => {
+    t.is(object.authentification.token, "abc");
+    t.is(object.authentification.user, "emil");
+  }
 );
 
-test(dpot, new MyClass(), { something: "a" }, (t, object) =>
-  t.is(object.authentification.token, undefined)
-);
+test(dpot, new MyClass(), { something: "a" }, (t, object) => {
+  t.is(object.authentification.token, undefined);
+  t.is(object.authentification.user, "hugo");
+});
 
 test(dpot, new MyClass(), { something: "b" }, (t, object) =>
   t.is(object.a.b.c.d, 7)

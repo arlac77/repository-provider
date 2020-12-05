@@ -31,9 +31,14 @@ export function definePropertiesFromOptions(
       if (value === undefined) {
         if (path.length) {
           if (getAttribute(object, first) === undefined) {
-            const slice = {};
-            setAttribute(slice, path.join("."), undefined);
-            properties[first] = { value: slice };
+            if(properties[first]) {
+              setAttribute(properties[first].value, path.join("."), undefined);
+            }
+            else {
+              const slice = {};
+              setAttribute(slice, path.join("."), undefined);
+              properties[first] = { value: slice };  
+            }
           }
         }
         return;
@@ -61,9 +66,14 @@ export function definePropertiesFromOptions(
       }
 
       if(path.length) {
-        const slice = {};
-        setAttribute(slice, path.join("."), value);
-        properties[first] = { value: slice };
+        if(properties[first]) {
+          setAttribute(properties[first].value, path.join("."), value);
+        }
+        else {
+          const slice = {};
+          setAttribute(slice, path.join("."), value);
+          properties[first] = { value: slice };  
+        }
       }
       else {
         properties[first] = { value };
