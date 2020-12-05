@@ -28,16 +28,31 @@ export function definePropertiesFromOptions(
         value = attribute.default;
       }
 
+      const pv = value => {
+        if (path.length) {
+          const remaining = path.join(".");
+          if (properties[first]) {
+            setAttribute(properties[first].value, remaining, value);
+          } else {
+            const slice = {};
+            setAttribute(slice, remaining, value);
+            properties[first] = { value: slice };
+          }
+        } else {
+          properties[first] = { value };
+        }
+      };
+
       if (value === undefined) {
         if (path.length) {
+          const remaining = path.join(".");
           if (getAttribute(object, first) === undefined) {
-            if(properties[first]) {
-              setAttribute(properties[first].value, path.join("."), undefined);
-            }
-            else {
+            if (properties[first]) {
+              setAttribute(properties[first].value, remaining, undefined);
+            } else {
               const slice = {};
-              setAttribute(slice, path.join("."), undefined);
-              properties[first] = { value: slice };  
+              setAttribute(slice, remaining, undefined);
+              properties[first] = { value: slice };
             }
           }
         }
@@ -55,29 +70,12 @@ export function definePropertiesFromOptions(
         }
       }
 
-      if (
-        attribute.writeable ||
-        object.hasOwnProperty(name) ||
-        name === "merged" // TODO hack
-        /*|| object.constructor.prototype[name] !== undefined*/
-      ) {
+      if (attribute.writeable || object.hasOwnProperty(name)) {
         after[name] = value;
         return;
       }
 
-      if(path.length) {
-        if(properties[first]) {
-          setAttribute(properties[first].value, path.join("."), value);
-        }
-        else {
-          const slice = {};
-          setAttribute(slice, path.join("."), value);
-          properties[first] = { value: slice };  
-        }
-      }
-      else {
-        properties[first] = { value };
-      }
+      pv(value);
     });
   }
 

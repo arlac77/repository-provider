@@ -108,12 +108,13 @@ export class PullRequest extends NamedObject {
       },
 
       /**
-       * merged state of the pull request.
+       * Merged state of the pull request.
        * @return {boolean}
        */
       merged: {
         type: "boolean",
-        default: false
+        default: false,
+        writeable: true
       },
 
       draft: {
