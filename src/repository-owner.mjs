@@ -2,6 +2,10 @@ import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
 import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
 
+/**
+ * Mixin to define a class able to handle a collection of repositoreis.
+ * @param {Class} base to be extendet
+ */
 export function RepositoryOwner(base) {
   return class RepositoryOwner extends base {
     constructor(...args) {
@@ -11,8 +15,8 @@ export function RepositoryOwner(base) {
     }
 
     /**
-     * Normalizes a repository name
-     * strips branch away
+     * Normalizes a repository name.
+     * Strips branch away.
      * @param {string} name
      * @param {boolean} forLookup
      * @return {string} normalized name
@@ -35,7 +39,7 @@ export function RepositoryOwner(base) {
     }
 
     /**
-     * Lookup a repository
+     * Lookup a repository.
      * @param {string} name of the repository may contain a #branch
      * @return {Promise<Repository>}
      */
@@ -50,7 +54,7 @@ export function RepositoryOwner(base) {
     }
 
     /**
-     * List repositories for the owner
+     * List repositories for the owner.
      * @param {string[]|string} matchingPatterns
      * @return {Iterator<Repository>} all matching repositories of the owner
      */
@@ -155,7 +159,7 @@ export function RepositoryOwner(base) {
     }
 
     /**
-     * Delete a repository
+     * Delete a repository.
      * @param {string} name
      * @return {Promise<undefined>}
      */
@@ -166,8 +170,8 @@ export function RepositoryOwner(base) {
     initializeRepositories() {}
 
     /**
-     * Lookup a branch
-     * First lookup repository then the branch
+     * Lookup a branch.
+     * First lookup repository then the branch.
      * If no branch was specified then the default branch will be delivered.
      * @see {@link Repository#defaultBranch}
      * @param {string} name with optional branch name as '#myBranchName'
