@@ -29,7 +29,7 @@ export class NamedObject extends BaseObject {
   }
 
   toString() {
-    return this.mame;
+    return this.name;
   }
 
   /**

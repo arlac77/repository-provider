@@ -5,6 +5,9 @@ test("name object init without options", async t => {
   const no = new NamedObject("n1");
 
   t.is(no.name, "n1");
+  t.is(no.toString(), "n1");
+  t.is("" + no, "n1");
+
   t.is(no.displayName, "n1");
   t.deepEqual(no.toJSON(), {
     name: "n1"
