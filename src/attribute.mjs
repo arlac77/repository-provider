@@ -44,17 +44,8 @@ export function definePropertiesFromOptions(
       };
 
       if (value === undefined) {
-        if (path.length) {
-          const remaining = path.join(".");
-          if (getAttribute(object, first) === undefined) {
-            if (properties[first]) {
-              setAttribute(properties[first].value, remaining, undefined);
-            } else {
-              const slice = {};
-              setAttribute(slice, remaining, undefined);
-              properties[first] = { value: slice };
-            }
-          }
+        if (path.length && getAttribute(object, first) === undefined) {
+          pv(undefined);
         }
         return;
       }
