@@ -12,15 +12,14 @@ export function definePropertiesFromOptions(
   options = {},
   properties = {}
 ) {
+  const applyLater = {};
+
   const attributes = object.constructor.attributes;
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
-      if (properties[name] !== undefined && properties[name].value) {
-        return;
-      }
-
       const path = name.split(/\./);
       const first = path.shift();
+      const property = properties[first];
 
       let value = options[name];
       if (value === undefined) {
@@ -30,15 +29,28 @@ export function definePropertiesFromOptions(
       const pv = value => {
         if (path.length) {
           const remaining = path.join(".");
-          if (properties[first]) {
-            setAttribute(properties[first].value, remaining, value);
+          if (property) {
+            setAttribute(property.value, remaining, value);
           } else {
             const slice = {};
             setAttribute(slice, remaining, value);
-            properties[first] = { value: slice };
+            properties[first] = { configurable: true, value: slice };
           }
         } else {
-          properties[first] = { writable: attribute.writable, value };
+          const op = Object.getOwnPropertyDescriptor(
+            object.constructor.prototype,
+            first
+          );
+          if (op && op.writable) {
+          } else {
+            if (property) {
+              if (value !== undefined) {
+                applyLater[first] = value;
+              }
+            } else {
+              properties[first] = { writable: attribute.writable, value };
+            }
+          }
         }
       };
 
@@ -59,12 +71,18 @@ export function definePropertiesFromOptions(
             break;
         }
       }
-            
+
       pv(value);
     });
   }
 
+  //console.log(properties, applyLater);
+
   Object.defineProperties(object, properties);
+
+  for (const [k, v] of Object.entries(applyLater)) {
+    object[k] = v;
+  }
 }
 
 /**

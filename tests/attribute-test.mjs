@@ -3,7 +3,6 @@ import {
   getAttribute,
   setAttribute,
   RepositoryGroup,
-  BaseObject,
   definePropertiesFromOptions,
   optionJSON
 } from "repository-provider";
@@ -33,13 +32,21 @@ dpot.title = (providedTitle, a, b) =>
 class MyClass {
   static get attributes() {
     return {
-      att1: {},
+      att1: { writable: true },
       att2: { type: "boolean" },
       att3: { set: x => x * 2 },
       "authentification.token": {},
-      "authentification.user": { default: "hugo"},
+      "authentification.user": { default: "hugo" },
       "a.b.c.d": { default: 7 }
     };
+  }
+
+  constructor(options, additionalProperties) {
+    definePropertiesFromOptions(
+      this,
+      options,
+      additionalProperties
+    );
   }
 }
 
@@ -97,18 +104,18 @@ test(ojt, new RepositoryGroup(undefined, "a", { id: 1 }), undefined, [], {
 });
 
 test("writable attribute", t => {
-  let object = new BaseObject();
+  let object = new MyClass();
 
-  object.description = "d1";
+  object.att1 = "d1";
 
-  t.is(object.description, "d1");
+  t.is(object.att1, "d1");
 
-  object = new BaseObject({ description: "x" });
-  t.is(object.description, "x");
+  object = new MyClass({ att1: "x" });
+  t.is(object.att1, "x");
 
-  object.description = "d1";
+  object.att1 = "d1";
 
-  t.is(object.description, "d1");
+  t.is(object.att1, "d1");
 });
 
 function sat(t, object, key, value, expected) {

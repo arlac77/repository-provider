@@ -103,7 +103,7 @@ test("pullRequest modify", async t => {
   const b2 = await repository.createBranch("b2");
 
   const pr = new PullRequest(b1, b2, "4711");
-
+  t.is(pr.state, "OPEN");
   pr.merged = true;
   t.is(pr.merged, true);
   t.is(pr.state, "MERGED");

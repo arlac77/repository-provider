@@ -6,7 +6,6 @@ test("add hook", async t => {
 
   const hook = new Hook(repository, 77, new Set(["a"]), {
     name: "hook1",
-    id: 77,
     url: "http://somewere.com/path"
   });
 

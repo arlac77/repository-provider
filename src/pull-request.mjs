@@ -2,7 +2,7 @@ import { optionJSON } from "./attribute.mjs";
 import { NamedObject } from "./named-object.mjs";
 
 /**
- * Abstract pull request
+ * Abstract pull request.
  * {@link Repository#addPullRequest}
  * @param {Branch} source merge source
  * @param {Branch} destination merge target
@@ -94,7 +94,6 @@ export class PullRequest extends NamedObject {
       state: {
         default: "OPEN",
         type: "string",
-        set: (value) => value.toUpperCase(),
         writable: true
       },
 
@@ -135,7 +134,7 @@ export class PullRequest extends NamedObject {
   }
 
   constructor(source, destination, name, options) {
-    let state;
+    let state = "OPEN";
 
     super(name, options, {
       source: { value: source },
@@ -150,22 +149,22 @@ export class PullRequest extends NamedObject {
         get() {
           return state;
         }
+      },
+      merged: {
+        set(value) {
+          if (value) {
+            state = "MERGED";
+          }
+        },
+        get() {
+          return state === "MERGED";
+        }
       }
     });
 
     if (destination !== undefined) {
       destination._addPullRequest(this);
     }
-  }
-
-  set merged(flag) {
-    if (flag) {
-      this.state = "MERGED";
-    }
-  }
-
-  get merged() {
-    return this.state === "MERGED";
   }
 
   get fullName() {
