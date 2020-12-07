@@ -76,6 +76,7 @@ export function definePropertiesFromOptions(
 
 /**
  * Set Object attribute.
+ * The name may be a property path like 'a.b.c'.
  * @param {Object} object
  * @param {string} name
  * @param {any} value
@@ -96,6 +97,7 @@ export function setAttribute(object, name, value) {
 
 /**
  * Deliver attribute value.
+ * The name may be a property path like 'a.b.c'.
  * @param {Object} object
  * @param {string} name
  * @returns {any} value associated with the given property name
