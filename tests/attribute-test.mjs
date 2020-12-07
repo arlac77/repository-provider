@@ -105,7 +105,7 @@ test(dpct, MyClass, { something: "b" }, (t, object) => t.is(object.a.b.c.d, 7));
 
 test(dpct, MyClass, { att4: 77 }, (t, object) => {
   t.is(object.att4, 77);
-  // t.is(object._att4, 77);
+   t.is(object._att4, 77);
 });
 
 function ojt(t, object, initial, skip, result) {

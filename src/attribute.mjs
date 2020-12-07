@@ -41,15 +41,13 @@ export function definePropertiesFromOptions(
             object.constructor.prototype,
             first
           );
-          if (op && op.writable) {
-          } else {
-            if (property) {
-              if (value !== undefined) {
-                applyLater[first] = value;
-              }
-            } else {
-              properties[first] = { writable: attribute.writable, value };
+
+          if ((op && (op.writable || op.set)) || property) {
+            if (value !== undefined) {
+              applyLater[first] = value;
             }
+          } else {
+            properties[first] = { writable: attribute.writable, value };
           }
         }
       };
