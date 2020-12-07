@@ -76,13 +76,8 @@ export function definePropertiesFromOptions(
     });
   }
 
-  //console.log(properties, applyLater);
-
   Object.defineProperties(object, properties);
-
-  for (const [k, v] of Object.entries(applyLater)) {
-    object[k] = v;
-  }
+  Object.assign(object, applyLater);
 }
 
 /**
