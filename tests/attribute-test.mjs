@@ -29,12 +29,25 @@ dpot.title = (providedTitle, a, b) =>
     providedTitle ? providedTitle + " " : ""
   }${JSON.stringify(a)} ${JSON.stringify(b)}`.trim();
 
+function dpct(t, clazz, options, expected) {
+  const object = new clazz(options);
+  expected(t, object);
+}
+
+dpct.title = (providedTitle, clazz, options) =>
+  `constructor options ${providedTitle ? providedTitle + " " : ""}${
+    clazz.name
+  } ${JSON.stringify(options)}`.trim();
+
 class MyClass {
   static get attributes() {
     return {
       att1: { writable: true },
       att2: { type: "boolean" },
       att3: { set: x => x * 2 },
+      att4: {
+        /*writable: true*/
+      },
       "authentification.token": {},
       "authentification.user": { default: "hugo" },
       "a.b.c.d": { default: 7 }
@@ -42,11 +55,14 @@ class MyClass {
   }
 
   constructor(options, additionalProperties) {
-    definePropertiesFromOptions(
-      this,
-      options,
-      additionalProperties
-    );
+    definePropertiesFromOptions(this, options, additionalProperties);
+  }
+
+  get att4() {
+    return 77;
+  }
+  set att4(value) {
+    this._att4 = value;
   }
 }
 
@@ -69,9 +85,10 @@ test(dpot, new MyClass(), { att3: 7 }, (t, object) => t.is(object.att3, 14));
 test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
 test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
 test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
+
 test(
-  dpot,
-  new MyClass(),
+  dpct,
+  MyClass,
   { "authentification.token": "abc", "authentification.user": "emil" },
   (t, object) => {
     t.is(object.authentification.token, "abc");
@@ -79,14 +96,17 @@ test(
   }
 );
 
-test(dpot, new MyClass(), { something: "a" }, (t, object) => {
+test(dpct, MyClass, { something: "a" }, (t, object) => {
   t.is(object.authentification.token, undefined);
   t.is(object.authentification.user, "hugo");
 });
 
-test(dpot, new MyClass(), { something: "b" }, (t, object) =>
-  t.is(object.a.b.c.d, 7)
-);
+test(dpct, MyClass, { something: "b" }, (t, object) => t.is(object.a.b.c.d, 7));
+
+test(dpct, MyClass, { att4: 77 }, (t, object) => {
+  t.is(object.att4, 77);
+  // t.is(object._att4, 77);
+});
 
 function ojt(t, object, initial, skip, result) {
   t.deepEqual(optionJSON(object, initial, skip), result);
