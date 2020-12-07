@@ -12,7 +12,6 @@ export function definePropertiesFromOptions(
   options = {},
   properties = {}
 ) {
-  const after = {};
   const attributes = object.constructor.attributes;
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
@@ -39,7 +38,7 @@ export function definePropertiesFromOptions(
             properties[first] = { value: slice };
           }
         } else {
-          properties[first] = { value };
+          properties[first] = { writable: attribute.writable, value };
         }
       };
 
@@ -60,18 +59,12 @@ export function definePropertiesFromOptions(
             break;
         }
       }
-
-      if (attribute.writeable || object.hasOwnProperty(name)) {
-        after[name] = value;
-        return;
-      }
-
+            
       pv(value);
     });
   }
 
   Object.defineProperties(object, properties);
-  Object.assign(object, after);
 }
 
 /**

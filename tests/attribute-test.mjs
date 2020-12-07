@@ -96,7 +96,7 @@ test(ojt, new RepositoryGroup(undefined, "a", { id: 1 }), undefined, [], {
   isAdmin: false
 });
 
-test("writeable attribute", t => {
+test("writable attribute", t => {
   let object = new BaseObject();
 
   object.description = "d1";

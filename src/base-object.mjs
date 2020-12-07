@@ -16,7 +16,7 @@ export class BaseObject {
       description: {
         type: "string",
         description: "human readable description",
-        writeable: true
+        writable: true
       },
 
       /**

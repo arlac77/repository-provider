@@ -82,7 +82,7 @@ export class BaseProvider {
       messageDestination: {
         type: "object",
         default: console,
-        writeable: true
+        writable: true
       }
     };
   }

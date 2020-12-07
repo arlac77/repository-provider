@@ -94,7 +94,8 @@ export class PullRequest extends NamedObject {
       state: {
         default: "OPEN",
         type: "string",
-        writeable: true
+        set: (value) => value.toUpperCase(),
+        writable: true
       },
 
       /**
@@ -104,7 +105,7 @@ export class PullRequest extends NamedObject {
       locked: {
         type: "boolean",
         default: false,
-        writeable: true
+        writable: true
       },
 
       /**
@@ -114,7 +115,7 @@ export class PullRequest extends NamedObject {
       merged: {
         type: "boolean",
         default: false,
-        writeable: true
+        writable: true
       },
 
       draft: {
