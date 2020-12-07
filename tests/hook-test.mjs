@@ -41,4 +41,8 @@ test("add hook", async t => {
     content_type: "json",
     url: "http://somewere.com/path"
   });
+
+  t.true(hook.equals(hook));
+  t.false(hook.equals(undefined));
+  t.false(hook.equals({}));
 });

@@ -91,6 +91,7 @@ test("pullRequest create without options", async t => {
   t.is(pr.destination, b2);
   t.is(pr.locked, false);
   t.is(pr.merged, false);
+  t.is(pr.dry, false);
   //t.is(pr.toString(), "p1: merged: false");
 
   t.is(pr.repository, repository);
