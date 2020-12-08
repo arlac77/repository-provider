@@ -22,7 +22,11 @@ export function definePropertiesFromOptions(
       const property = properties[first];
 
       let value = options[name];
-      if (value === undefined) {
+      if (
+        value === undefined &&
+        attribute.default !== undefined &&
+        attribute.default !== getAttribute(object, name)
+      ) {
         value = attribute.default;
       }
 
@@ -53,7 +57,7 @@ export function definePropertiesFromOptions(
       };
 
       if (value === undefined) {
-        if (path.length && getAttribute(object, first) === undefined) {
+        if (path.length && object[first] === undefined) {
           pv(undefined);
         }
         return;
