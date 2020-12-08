@@ -30,43 +30,6 @@ export function definePropertiesFromOptions(
         value = attribute.default;
       }
 
-      const pv = value => {
-        if (path.length) {
-          const remaining = path.join(".");
-          if (property) {
-            setAttribute(property.value, remaining, value);
-          } else {
-            const slice = {};
-            setAttribute(slice, remaining, value);
-            properties[first] = { configurable: true, value: slice };
-          }
-        } else {
-          const op = Object.getOwnPropertyDescriptor(
-            object.constructor.prototype,
-            first
-          );
-
-          if ((op && (op.writable || op.set)) || property) {
-            if (value !== undefined) {
-              applyLater[first] = value;
-            }
-          } else {
-            properties[first] = { value };
-            properties[first] = { value };
-            if (attribute.writable) {
-              properties[first].writable = true;
-            }
-          }
-        }
-      };
-
-      if (value === undefined) {
-        if (path.length && object[first] === undefined) {
-          pv(undefined);
-        }
-        return;
-      }
-
       if (attribute.set) {
         value = attribute.set(value);
       } else {
@@ -80,7 +43,32 @@ export function definePropertiesFromOptions(
         }
       }
 
-      pv(value);
+      if (path.length) {
+        const remaining = path.join(".");
+        if (property) {
+          setAttribute(property.value, remaining, value);
+        } else {
+          const slice = {};
+          setAttribute(slice, remaining, value);
+          properties[first] = { configurable: true, value: slice };
+        }
+      } else {
+        if (value !== undefined) {
+          const op = Object.getOwnPropertyDescriptor(
+            object.constructor.prototype,
+            first
+          );
+
+          if ((op && (op.writable || op.set)) || property) {
+            applyLater[first] = value;
+          } else {
+            properties[first] = { value };
+            if (attribute.writable) {
+              properties[first].writable = true;
+            }
+          }
+        }
+      }
     });
   }
 
