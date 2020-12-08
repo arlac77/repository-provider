@@ -56,7 +56,6 @@ export function definePropertiesFromOptions(
             if (attribute.writable) {
               properties[first].writable = true;
             }
-
           }
         }
       };
@@ -73,8 +72,10 @@ export function definePropertiesFromOptions(
       } else {
         switch (attribute.type) {
           case "boolean":
-            value =
-              value === 0 || value === "0" || value === false ? false : true;
+            if (value !== undefined) {
+              value =
+                value === 0 || value === "0" || value === false ? false : true;
+            }
             break;
         }
       }
