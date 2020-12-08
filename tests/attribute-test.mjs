@@ -30,14 +30,14 @@ dpot.title = (providedTitle, object, options) =>
     providedTitle ? providedTitle + " " : ""
   }${JSON.stringify(object)} ${JSON.stringify(options)}`.trim();
 
+test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
+test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
+test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
+
 function dpct(t, clazz, options, expected) {
   const object = new clazz(options);
   expected(t, object);
 }
-
-test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
-test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
-test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
 
 dpct.title = (providedTitle, clazz, options) =>
   `constructor options ${providedTitle ? providedTitle + " " : ""}${
@@ -47,12 +47,11 @@ dpct.title = (providedTitle, clazz, options) =>
 class MyClass {
   static get attributes() {
     return {
-      att1: { writable: true },
-      att2: { type: "boolean" },
-      att3: { set: x => x * 2 },
-      att4: {
-        /*writable: true*/
-      },
+      read_only: { },
+      rw: { writable: true },
+      att_setter: { set: x => x * 2 },
+      boolean_conversion: { type: "boolean" },
+      preexisting_property: { },
       "authentification.token": {},
       "authentification.user": { default: "hugo" },
       "a.b.c.d": { default: 7 }
@@ -63,22 +62,37 @@ class MyClass {
     definePropertiesFromOptions(this, options, additionalProperties);
   }
 
-  get att4() {
-    return 77;
-  }
-  set att4(value) {
-    this._att4 = value;
-  }
+  get preexisting_property() { return 77; }
+  set preexisting_property(value) { this._preexisting_property = value; }
 }
 
 
-test(dpct, MyClass, { att2: 0 }, (t, object) => t.is(object.att2, false));
-test(dpct, MyClass, { att2: false }, (t, object) => t.is(object.att2, false));
-test(dpct, MyClass, { att2: "0" }, (t, object) => t.is(object.att2, false));
-test(dpct, MyClass, { att2: "1" }, (t, object) => t.is(object.att2, true));
-test(dpct, MyClass, { att2: true }, (t, object) => t.is(object.att2, true));
-test(dpct, MyClass, { att2: 7 }, (t, object) => t.is(object.att2, true));
-test(dpct, MyClass, { att3: 7 }, (t, object) => t.is(object.att3, 14));
+test(dpct, MyClass, { boolean_conversion: 0 }, (t, o) => t.is(o.boolean_conversion, false));
+test(dpct, MyClass, { boolean_conversion: false }, (t, o) => t.is(o.boolean_conversion, false));
+test(dpct, MyClass, { boolean_conversion: "0" }, (t, o) => t.is(o.boolean_conversion, false));
+test(dpct, MyClass, { boolean_conversion: "1" }, (t, o) => t.is(o.boolean_conversion, true));
+test(dpct, MyClass, { boolean_conversion: true }, (t, o) => t.is(o.boolean_conversion, true));
+test(dpct, MyClass, { boolean_conversion: 7 }, (t, o) => t.is(o.boolean_conversion, true));
+test(dpct, MyClass, { att_setter: 7 }, (t, o) => t.is(o.att_setter, 14));
+test(dpct, MyClass, { read_only: 1 }, (t, o) => {
+  t.is(o.read_only, 1);
+  try {
+    o.read_only = 2;
+    t.fail();
+  }
+  catch(e) {
+    t.true(true);
+  }
+});
+test(dpct, MyClass, { rw: 1 }, (t, o) => {
+  t.is(o.rw, 1);
+  o.rw = 2;
+  t.is(o.rw, 2);
+ });
+test(dpct, MyClass, undefined, (t, o) => {
+  o.rw = 2;
+  t.is(o.rw, 2);
+ });
 
 test(
   dpct,
@@ -95,11 +109,11 @@ test(dpct, MyClass, { something: "a" }, (t, object) => {
   t.is(object.authentification.user, "hugo");
 });
 
-test(dpct, MyClass, { something: "b" }, (t, object) => t.is(object.a.b.c.d, 7));
+test("default with deep path",dpct, MyClass, { something: "b" }, (t, object) => t.is(object.a.b.c.d, 7));
 
-test(dpct, MyClass, { att4: 77 }, (t, object) => {
-  t.is(object.att4, 77);
-  t.is(object._att4, 77);
+test(dpct, MyClass, { preexisting_property: 77 }, (t, object) => {
+  t.is(object.preexisting_property, 77);
+  t.is(object._preexisting_property, 77);
 });
 
 function ojt(t, object, initial, skip, result) {
@@ -115,21 +129,6 @@ test(ojt, {}, undefined, undefined, {});
 test(ojt, new RepositoryGroup(undefined, "a", { id: 1 }), undefined, [], {
   id: 1,
   isAdmin: false
-});
-
-test("writable attribute", t => {
-  let object = new MyClass();
-
-  object.att1 = "d1";
-
-  t.is(object.att1, "d1");
-
-  object = new MyClass({ att1: "x" });
-  t.is(object.att1, "x");
-
-  object.att1 = "d1";
-
-  t.is(object.att1, "d1");
 });
 
 function sat(t, object, key, value, expected) {
