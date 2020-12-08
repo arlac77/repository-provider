@@ -9,7 +9,7 @@
  *     return { with_default: { default: 77 }};
  *   }
  * }
- * 
+ *
  * definePropertiesFromOptions(new aClass());
  * // equivalent to
  * Object.definedProperties(new aClass(),{ with_default: { value: 77 }})
@@ -72,13 +72,13 @@ export function definePropertiesFromOptions(
             first
           );
 
-          if ((op && op.set) || property) {
+          if ((op && op.set) || (property && property.set)) {
             applyLater[first] = value;
           } else {
-            properties[first] = { value };
-            if (attribute.writable) {
-              properties[first].writable = true;
-            }
+            properties[first] = Object.assign(
+              { value, writable: attribute.writable },
+              property
+            );
           }
         }
       }
