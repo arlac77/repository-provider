@@ -72,7 +72,7 @@ export function definePropertiesFromOptions(
             first
           );
 
-          if ((op && (op.writable || op.set)) || property) {
+          if ((op && op.set) || property) {
             applyLater[first] = value;
           } else {
             properties[first] = { value };
