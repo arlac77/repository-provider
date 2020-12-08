@@ -34,6 +34,10 @@ function dpct(t, clazz, options, expected) {
   expected(t, object);
 }
 
+test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
+test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
+test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
+
 dpct.title = (providedTitle, clazz, options) =>
   `constructor options ${providedTitle ? providedTitle + " " : ""}${
     clazz.name
@@ -66,25 +70,14 @@ class MyClass {
   }
 }
 
-test(dpot, new MyClass(), { att2: 0 }, (t, object) => t.is(object.att2, false));
-test(dpot, new MyClass(), { att2: false }, (t, object) =>
-  t.is(object.att2, false)
-);
-test(dpot, new MyClass(), { att2: "0" }, (t, object) =>
-  t.is(object.att2, false)
-);
-test(dpot, new MyClass(), { att2: "1" }, (t, object) =>
-  t.is(object.att2, true)
-);
-test(dpot, new MyClass(), { att2: true }, (t, object) =>
-  t.is(object.att2, true)
-);
-test(dpot, new MyClass(), { att2: 7 }, (t, object) => t.is(object.att2, true));
-test(dpot, new MyClass(), { att3: 7 }, (t, object) => t.is(object.att3, 14));
 
-test(dpot, { b: 7 }, undefined, (t, object) => t.is(object.b, 7));
-test(dpot, {}, {}, (t, object) => t.is(object.a, undefined));
-test(dpot, {}, { name: "a" }, (t, object) => t.is(object.a, undefined));
+test(dpct, MyClass, { att2: 0 }, (t, object) => t.is(object.att2, false));
+test(dpct, MyClass, { att2: false }, (t, object) => t.is(object.att2, false));
+test(dpct, MyClass, { att2: "0" }, (t, object) => t.is(object.att2, false));
+test(dpct, MyClass, { att2: "1" }, (t, object) => t.is(object.att2, true));
+test(dpct, MyClass, { att2: true }, (t, object) => t.is(object.att2, true));
+test(dpct, MyClass, { att2: 7 }, (t, object) => t.is(object.att2, true));
+test(dpct, MyClass, { att3: 7 }, (t, object) => t.is(object.att3, 14));
 
 test(
   dpct,
@@ -105,7 +98,7 @@ test(dpct, MyClass, { something: "b" }, (t, object) => t.is(object.a.b.c.d, 7));
 
 test(dpct, MyClass, { att4: 77 }, (t, object) => {
   t.is(object.att4, 77);
-   t.is(object._att4, 77);
+  t.is(object._att4, 77);
 });
 
 function ojt(t, object, initial, skip, result) {
