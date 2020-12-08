@@ -1,8 +1,21 @@
 /**
  * Create properties from options and default options.
  * Already present properties (direct) are skipped.
+ * The attribute list from the class will be applied to the
+ * options and merged with the given set of properties.
+ * ```js
+ * class aClass {
+ *   static get attributes() {
+ *     return { with_default: { default: 77 }};
+ *   }
+ * }
+ * 
+ * definePropertiesFromOptions(new aClass());
+ * // equivalent to
+ * Object.definedProperties(new aClass(),{ with_default: { value: 77 }})
+ * ```
  * @see Object.definedProperties()
- * @see Object.hasOwnProperty()
+ * @see Object.getOwnPropertyDescriptor()
  * @param {Object} object target object
  * @param {Object} options as passed to object constructor
  * @param {Object} properties object properties
