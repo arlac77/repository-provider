@@ -13,8 +13,9 @@ function gat(t, object, key, expected) {
 }
 
 gat.title = (providedTitle, object, key) =>
-  `getAttribute ${providedTitle ? providedTitle + " " : ""}${key}`.trim();
+  `getAttribute ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(object)} ${key}`.trim();
 
+test(gat, undefined, "a", undefined);
 test(gat, { a: 1 }, "a", 1);
 test(gat, { a: { b: 1 } }, "a.b", 1);
 test(gat, {}, "x.y.z", undefined);
@@ -24,10 +25,10 @@ function dpot(t, object, options, expected) {
   expected(t, object);
 }
 
-dpot.title = (providedTitle, a, b) =>
+dpot.title = (providedTitle, object, options) =>
   `definePropertiesFromOptions ${
     providedTitle ? providedTitle + " " : ""
-  }${JSON.stringify(a)} ${JSON.stringify(b)}`.trim();
+  }${JSON.stringify(object)} ${JSON.stringify(options)}`.trim();
 
 function dpct(t, clazz, options, expected) {
   const object = new clazz(options);

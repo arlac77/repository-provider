@@ -119,10 +119,10 @@ export function getAttribute(object, name) {
   let value = object;
 
   for (const p of name.split(/\./)) {
-    value = value[p];
     if (value === undefined) {
       break;
     }
+    value = value[p];
   }
 
   return value;
