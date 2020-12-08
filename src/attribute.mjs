@@ -51,7 +51,12 @@ export function definePropertiesFromOptions(
               applyLater[first] = value;
             }
           } else {
-            properties[first] = { writable: attribute.writable, value };
+            properties[first] = { value };
+            properties[first] = { value };
+            if (attribute.writable) {
+              properties[first].writable = true;
+            }
+
           }
         }
       };
