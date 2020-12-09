@@ -101,7 +101,7 @@ export function setAttribute(object, name, value) {
   const last = parts.pop();
 
   for (const p of parts) {
-    if (object[p] === undefined) {
+    if (object[p] === undefined || typeof object[p] !== 'object') {
       object[p] = {};
     }
     object = object[p];

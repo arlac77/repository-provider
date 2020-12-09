@@ -13,7 +13,9 @@ function gat(t, object, key, expected) {
 }
 
 gat.title = (providedTitle, object, key) =>
-  `getAttribute ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(object)} ${key}`.trim();
+  `getAttribute ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(
+    object
+  )} ${key}`.trim();
 
 test(gat, undefined, "a", undefined);
 test(gat, { a: 1 }, "a", 1);
@@ -47,11 +49,11 @@ dpct.title = (providedTitle, clazz, options) =>
 class MyClass {
   static get attributes() {
     return {
-      read_only: { },
+      read_only: {},
       rw: { writable: true },
       att_setter: { set: x => x * 2 },
       boolean_conversion: { type: "boolean" },
-      preexisting_property: { },
+      preexisting_property: {},
       "authentification.token": {},
       "authentification.user": { default: "hugo" },
       "a.b.c.d": { default: 7 }
@@ -62,25 +64,39 @@ class MyClass {
     definePropertiesFromOptions(this, options, additionalProperties);
   }
 
-  get preexisting_property() { return 77; }
-  set preexisting_property(value) { this._preexisting_property = value; }
+  get preexisting_property() {
+    return 77;
+  }
+  set preexisting_property(value) {
+    this._preexisting_property = value;
+  }
 }
 
-
-test(dpct, MyClass, { boolean_conversion: 0 }, (t, o) => t.is(o.boolean_conversion, false));
-test(dpct, MyClass, { boolean_conversion: false }, (t, o) => t.is(o.boolean_conversion, false));
-test(dpct, MyClass, { boolean_conversion: "0" }, (t, o) => t.is(o.boolean_conversion, false));
-test(dpct, MyClass, { boolean_conversion: "1" }, (t, o) => t.is(o.boolean_conversion, true));
-test(dpct, MyClass, { boolean_conversion: true }, (t, o) => t.is(o.boolean_conversion, true));
-test(dpct, MyClass, { boolean_conversion: 7 }, (t, o) => t.is(o.boolean_conversion, true));
+test(dpct, MyClass, { boolean_conversion: 0 }, (t, o) =>
+  t.is(o.boolean_conversion, false)
+);
+test(dpct, MyClass, { boolean_conversion: false }, (t, o) =>
+  t.is(o.boolean_conversion, false)
+);
+test(dpct, MyClass, { boolean_conversion: "0" }, (t, o) =>
+  t.is(o.boolean_conversion, false)
+);
+test(dpct, MyClass, { boolean_conversion: "1" }, (t, o) =>
+  t.is(o.boolean_conversion, true)
+);
+test(dpct, MyClass, { boolean_conversion: true }, (t, o) =>
+  t.is(o.boolean_conversion, true)
+);
+test(dpct, MyClass, { boolean_conversion: 7 }, (t, o) =>
+  t.is(o.boolean_conversion, true)
+);
 test(dpct, MyClass, { att_setter: 7 }, (t, o) => t.is(o.att_setter, 14));
 test(dpct, MyClass, { read_only: 1 }, (t, o) => {
   t.is(o.read_only, 1);
   try {
     o.read_only = 2;
     t.fail();
-  }
-  catch(e) {
+  } catch (e) {
     t.true(true);
   }
 });
@@ -88,11 +104,11 @@ test(dpct, MyClass, { rw: 1 }, (t, o) => {
   t.is(o.rw, 1);
   o.rw = 2;
   t.is(o.rw, 2);
- });
+});
 test(dpct, MyClass, undefined, (t, o) => {
   o.rw = 2;
   t.is(o.rw, 2);
- });
+});
 
 test(
   dpct,
@@ -109,7 +125,9 @@ test(dpct, MyClass, { something: "a" }, (t, object) => {
   t.is(object.authentification.user, "hugo");
 });
 
-test("default with deep path",dpct, MyClass, { something: "b" }, (t, object) => t.is(object.a.b.c.d, 7));
+test("default with deep path", dpct, MyClass, { something: "b" }, (t, object) =>
+  t.is(object.a.b.c.d, 7)
+);
 
 test(dpct, MyClass, { preexisting_property: 77 }, (t, object) => {
   t.is(object.preexisting_property, 77);
@@ -137,11 +155,14 @@ function sat(t, object, key, value, expected) {
 }
 
 sat.title = (providedTitle, object, key, value, expected) =>
-  `setAttribute ${
-    providedTitle ? providedTitle + " " : ""
-  }${JSON.stringify(object)} ${key}=${value} => ${JSON.stringify(expected)}`.trim();
+  `setAttribute ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(
+    object
+  )} ${key}=${value} => ${JSON.stringify(expected)}`.trim();
 
 test(sat, {}, "a", 1, { a: 1 });
 test(sat, {}, "a.b", 1, { a: { b: 1 } });
-test(sat, { a: { b: "x" }}, "a.b", 1, { a: { b: 1 } });
+test(sat, { a: { b: "x" } }, "a.b", 1, { a: { b: 1 } });
+
+test(sat, { a: 1 }, "a.b", 1, { a: { b: 1 } });
+test(sat, { a: "1" }, "a.b", 1, { a: { b: 1 } });
 test(sat, { a: { x: 7 } }, "a.b.c.d", 1, { a: { x: 7, b: { c: { d: 1 } } } });
