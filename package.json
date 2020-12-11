@@ -6,7 +6,6 @@
   },
   "sideEffects": false,
   "type": "module",
-  "main": "./src/index.mjs",
   "exports": {
     ".": "./src/index.mjs"
   },
