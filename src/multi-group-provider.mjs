@@ -14,7 +14,7 @@ export class MultiGroupProvider extends BaseProvider {
   }
 
   /**
-   * Lookup a repository in the provider and all of its repository groups
+   * Lookup a repository in the provider and all of its repository groups.
    * @param {string} name of the repository
    * @return {Repository}
    */
@@ -85,7 +85,7 @@ export class MultiGroupProvider extends BaseProvider {
   }
 
   /**
-   * Create a new repository group
+   * Create a new repository group.
    * If there is already a group for the given name it will be returend instead
    * @param {string} name of the group
    * @param {Object} options
@@ -96,7 +96,7 @@ export class MultiGroupProvider extends BaseProvider {
   }
 
   /**
-   * Add a new repository group (not provider specific actions are executed)
+   * Add a new repository group (not provider specific actions are executed).
    * @param {string} name of the group
    * @param {Object} options
    * @return {RepositoryGroup}
