@@ -682,7 +682,7 @@ Provider supporting serveral repository groups.
 
 ### repository
 
-Lookup a repository in the provider and all of its repository groups
+Lookup a repository in the provider and all of its repository groups.
 
 #### Parameters
 
@@ -712,7 +712,7 @@ Returns **Iterator&lt;[RepositoryGroup](#repositorygroup)>** all matching reposi
 
 ### createRepositoryGroup
 
-Create a new repository group
+Create a new repository group.
 If there is already a group for the given name it will be returend instead
 
 #### Parameters
@@ -724,7 +724,7 @@ Returns **[RepositoryGroup](#repositorygroup)**
 
 ### addRepositoryGroup
 
-Add a new repository group (not provider specific actions are executed)
+Add a new repository group (not provider specific actions are executed).
 
 #### Parameters
 
