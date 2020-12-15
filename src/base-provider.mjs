@@ -272,7 +272,7 @@ export class BaseProvider {
   }
 
   /**
-   * List provider objects of a given type
+   * List provider objects of a given type.
    *
    * @param {string} type name of the method to deliver typed iterator
    * @param {string|string[]} patterns group / repository filter
@@ -297,7 +297,7 @@ export class BaseProvider {
   }
 
   /**
-   * List Projects
+   * List Projects.
    * @param {string[]|string} patterns
    * @return {Iterator<Projects>} all matching projects of the provider
    */
@@ -306,7 +306,7 @@ export class BaseProvider {
   }
 
   /**
-   * List repositories
+   * List repositories.
    * @param {string[]|string} patterns
    * @return {Iterator<Repository>} all matching repos of the provider
    */
@@ -315,7 +315,7 @@ export class BaseProvider {
   }
 
   /**
-   * List branches
+   * List branches.
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching branches of the provider
    */
@@ -324,7 +324,7 @@ export class BaseProvider {
   }
 
   /**
-   * List tags
+   * List tags.
    * @param {string[]|string} patterns
    * @return {Iterator<Branch>} all matching tags of the provider
    */
@@ -347,7 +347,7 @@ export class BaseProvider {
   }
 
   /**
-   * Deliver the provider name
+   * Deliver the provider name.
    * @return {string} class name by default
    */
   get name() {
@@ -355,7 +355,7 @@ export class BaseProvider {
   }
 
   /**
-   * We are our own provider
+   * We are our own provider.
    * @return {Provider} this
    */
   get provider() {
@@ -367,7 +367,7 @@ export class BaseProvider {
   }
 
   /**
-   * List all defined entries from attributes
+   * List all defined entries from attributes.
    *
    */
   toJSON() {
