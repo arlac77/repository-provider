@@ -438,8 +438,8 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### repositoryBases
 
-All possible base urls
-For github something like
+All possible base urls.
+For github something like:
 
 -   git@github.com
 -   git://github.com
@@ -452,7 +452,7 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 ### normalizeRepositoryName
 
 Bring a repository name into its normal form by removing any clutter
-like .git suffix or #branch names
+like .git suffix or #branch names.
 
 #### Parameters
 
@@ -464,7 +464,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### normalizeGroupName
 
 Bring a group name into its normal form by removing any clutter
-like .git suffix or #branch names
+like .git suffix or #branch names.
 
 #### Parameters
 
@@ -489,7 +489,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### supportsBase
 
-Does the provider support the base name
+Does the provider support the base name.
 
 #### Parameters
 
@@ -500,7 +500,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### parseName
 
 Parses repository name and tries to split it into
-base, group, repository and branch
+base, group, repository and branch.
 
 #### Parameters
 
@@ -610,7 +610,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### areOptionsSufficcient
 
-Check if given options are sufficient to create a provider
+Check if given options are sufficient to create a provider.
 
 #### Parameters
 
@@ -620,7 +620,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### initialize
 
-Creates a new provider for a given set of options
+Creates a new provider for a given set of options.
 
 #### Parameters
 
