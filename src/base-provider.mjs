@@ -92,7 +92,7 @@ export class BaseProvider {
   }
 
   /**
-   * Creates a new provider for a given set of options
+   * Creates a new provider for a given set of options.
    * @param {Object} options additional options
    * @param {Object} env taken from process.env
    * @return {Provider} newly created provider or undefined if options are not sufficient to construct a provider
@@ -114,8 +114,8 @@ export class BaseProvider {
   }
 
   /**
-   * All possible base urls
-   * For github something like
+   * All possible base urls.
+   * For github something like:
    * - git@github.com
    * - git://github.com
    * - git+ssh://github.com
@@ -129,7 +129,7 @@ export class BaseProvider {
 
   /**
    * Bring a repository name into its normal form by removing any clutter
-   * like .git suffix or #branch names
+   * like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
    * @return {string} normalized name
@@ -143,7 +143,7 @@ export class BaseProvider {
 
   /**
    * Bring a group name into its normal form by removing any clutter
-   * like .git suffix or #branch names
+   * like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
    * @return {string} normalized name
