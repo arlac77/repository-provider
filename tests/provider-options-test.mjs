@@ -16,7 +16,7 @@ class MyProvider extends BaseProvider {
         parse: value => value.split(/\s+/)
       },
       "authentication.token": {
-        env: ["GITEA_TOKEN","XXX_TOKEN"],
+        env: ["GITEA_TOKEN", "XXX_TOKEN"],
         additionalAttributes: { "authentication.type": "token" },
         private: true,
         mandatory: true
@@ -36,47 +36,67 @@ class MyProvider extends BaseProvider {
   }
 }
 
-test("provider env options", t => {
-  t.deepEqual(
-    MyProvider.optionsFromEnvironment({
-      GITEA_API: "http://somewhere/api",
-      GITEA_TOKEN: "abc",
-      GIT_CLONE_OPTIONS: "-A 1"
-    }),
-    {
-      "authentication.token": "abc",
-      "authentication.type": "token",
-      api: "http://somewhere/api",
-      cloneOptions: "-A 1"
-    }
+async function pot(t, factory, env, expected, areOptionsSufficcient = true) {
+  const oFromEnv = factory.optionsFromEnvironment(env);
+  t.deepEqual(oFromEnv, expected, "optionsFromEnvironment");
+  t.is(
+    factory.areOptionsSufficcient(oFromEnv),
+    areOptionsSufficcient,
+    "areOptionsSufficcient"
   );
-});
+}
 
-test("provider env options 2nd. efrom list", t => {
-  t.deepEqual(
-    MyProvider.optionsFromEnvironment({
-      XXX_TOKEN: "abc",
-    }),
-    {
-      "authentication.token": "abc",
-      "authentication.type": "token"
-    }
-  );
-});
+pot.title = (
+  providedTitle = "optionsFromEnvironment",
+  factory,
+  env,
+  expected
+) => `${providedTitle} ${factory.name} ${JSON.stringify(env)}`.trim();
 
-test("provider env options multiple keys on template", t => {
-  t.deepEqual(
-    MyProvider.optionsFromEnvironment({
-      BITBUCKET_USERNAME: "aName",
-      BITBUCKET_PASSWORD: "aSecret"
-    }),
-    {
-      "authentication.username": "aName",
-      "authentication.password": "aSecret",
-      "authentication.type": "basic"
-    }
-  );
-});
+test(
+  pot,
+  MyProvider,
+  {
+    GITEA_API: "http://somewhere/api",
+    GITEA_TOKEN: "abc",
+    GIT_CLONE_OPTIONS: "-A 1"
+  },
+  {
+    "authentication.token": "abc",
+    "authentication.type": "token",
+    api: "http://somewhere/api",
+    cloneOptions: "-A 1"
+  },
+  true
+);
+
+test(
+  pot,
+  MyProvider,
+  {
+    XXX_TOKEN: "abc"
+  },
+  {
+    "authentication.token": "abc",
+    "authentication.type": "token"
+  },
+  true
+);
+
+test(
+  pot,
+  MyProvider,
+  {
+    BITBUCKET_USERNAME: "aName",
+    BITBUCKET_PASSWORD: "aSecret"
+  },
+  {
+    "authentication.username": "aName",
+    "authentication.password": "aSecret",
+    "authentication.type": "basic"
+  },
+  false
+);
 
 test("initialize", t => {
   const provider = MyProvider.initialize(undefined, { GITEA_TOKEN: "abc" });
@@ -102,6 +122,6 @@ test("provider with priority", t => {
 });
 
 test("provider with name", t => {
-  const sp = new BaseProvider({ name: "myName"});
+  const sp = new BaseProvider({ name: "myName" });
   t.is(sp.name, "myName");
 });
