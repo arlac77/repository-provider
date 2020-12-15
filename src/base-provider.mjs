@@ -48,7 +48,7 @@ export class BaseProvider {
   }
 
   /**
-   * Check if given options are sufficient to create a provider
+   * Check if given options are sufficient to create a provider.
    * @param {Object} options
    * @return {boolean} true if options ar sufficient to construct a provider
    */
@@ -173,7 +173,7 @@ export class BaseProvider {
   }
 
   /**
-   * Does the provider support the base name
+   * Does the provider support the base name.
    * @param {string} base to be checked
    * @return {boolean} true if base is supported or base is undefined
    */
@@ -193,7 +193,7 @@ export class BaseProvider {
 
   /**
    * Parses repository name and tries to split it into
-   * base, group, repository and branch
+   * base, group, repository and branch.
    * @param {string} name
    * @return {Object}
    */
