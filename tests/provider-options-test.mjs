@@ -1,4 +1,6 @@
 import test from "ava";
+import { providerOptionsFromEnvironmentTest } from "repository-provider-test-support";
+
 import { BaseProvider } from "repository-provider";
 
 test("provider default env options", t => {
@@ -36,25 +38,8 @@ class MyProvider extends BaseProvider {
   }
 }
 
-async function pot(t, factory, env, expected, areOptionsSufficcient = true) {
-  const oFromEnv = factory.optionsFromEnvironment(env);
-  t.deepEqual(oFromEnv, expected, "optionsFromEnvironment");
-  t.is(
-    factory.areOptionsSufficcient(oFromEnv),
-    areOptionsSufficcient,
-    "areOptionsSufficcient"
-  );
-}
-
-pot.title = (
-  providedTitle = "optionsFromEnvironment",
-  factory,
-  env,
-  expected
-) => `${providedTitle} ${factory.name} ${JSON.stringify(env)}`.trim();
-
 test(
-  pot,
+  providerOptionsFromEnvironmentTest,
   MyProvider,
   {
     GITEA_API: "http://somewhere/api",
@@ -71,7 +56,7 @@ test(
 );
 
 test(
-  pot,
+  providerOptionsFromEnvironmentTest,
   MyProvider,
   {
     XXX_TOKEN: "abc"
@@ -84,7 +69,7 @@ test(
 );
 
 test(
-  pot,
+  providerOptionsFromEnvironmentTest,
   MyProvider,
   {
     BITBUCKET_USERNAME: "aName",
