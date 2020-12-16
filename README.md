@@ -510,7 +510,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### list
 
-List provider objects of a given type
+List provider objects of a given type.
 
 #### Parameters
 
@@ -519,7 +519,7 @@ List provider objects of a given type
 
 ### projects
 
-List Projects
+List Projects.
 
 #### Parameters
 
@@ -529,7 +529,7 @@ Returns **Iterator&lt;Projects>** all matching projects of the provider
 
 ### repositories
 
-List repositories
+List repositories.
 
 #### Parameters
 
@@ -539,7 +539,7 @@ Returns **Iterator&lt;[Repository](#repository)>** all matching repos of the pro
 
 ### branches
 
-List branches
+List branches.
 
 #### Parameters
 
@@ -549,7 +549,7 @@ Returns **Iterator&lt;[Branch](#branch)>** all matching branches of the provider
 
 ### tags
 
-List tags
+List tags.
 
 #### Parameters
 
@@ -567,19 +567,19 @@ Returns **Class** hook class used by the Provider
 
 ### name
 
-Deliver the provider name
+Deliver the provider name.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name by default
 
 ### provider
 
-We are our own provider
+We are our own provider.
 
 Returns **Provider** this
 
 ### toJSON
 
-List all defined entries from attributes
+List all defined entries from attributes.
 
 ### repositoryClass
 
