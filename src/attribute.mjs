@@ -1,3 +1,12 @@
+
+/**
+ * @typedef {Object} Attribute
+ *
+ * @property {string} type
+ * @property {boolean} writable
+ * @property {boolean} private
+ */
+
 /**
  * Create properties from options and default options.
  * Already present properties (direct) are skipped.
@@ -19,15 +28,16 @@
  * @param {Object} object target object
  * @param {Object} options as passed to object constructor
  * @param {Object} properties object properties
+ * @param {Object} attributes
  */
 export function definePropertiesFromOptions(
   object,
   options = {},
-  properties = {}
+  properties = {},
+  attributes = object.constructor.attributes
 ) {
   const applyLater = {};
 
-  const attributes = object.constructor.attributes;
   if (attributes !== undefined) {
     Object.entries(attributes).forEach(([name, attribute]) => {
       const path = name.split(/\./);
