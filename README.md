@@ -303,6 +303,8 @@ console.log(await readme.getString());
 -   [Review](#review)
 -   [Application](#application)
     -   [Parameters](#parameters-74)
+-   [Attribute](#attribute)
+    -   [Properties](#properties-9)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-75)
 -   [setAttribute](#setattribute)
@@ -1728,6 +1730,16 @@ provide name, events and all defined attributes
 -   `name`  
 -   `options`  
 
+## Attribute
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `writable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+-   `private` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
 ## definePropertiesFromOptions
 
 -   **See: Object.definedProperties()
@@ -1757,6 +1769,7 @@ Object.definedProperties(new aClass(),{ with_default: { value: 77 }})
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor (optional, default `{}`)
 -   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
+-   `attributes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `object.constructor.attributes`)
 
 ## setAttribute
 
