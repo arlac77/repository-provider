@@ -14,7 +14,7 @@ import { Hook } from "./hook.mjs";
  */
 
 /**
- * @propery {MessageDestination} messageDestination
+ * @property {MessageDestination} messageDestination
  */
 export class BaseProvider {
   /**
