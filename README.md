@@ -67,6 +67,7 @@ console.log(await readme.getString());
     -   [Parameters](#parameters-5)
 -   [BaseProvider](#baseprovider)
     -   [Parameters](#parameters-6)
+    -   [Properties](#properties-1)
     -   [equals](#equals-2)
         -   [Parameters](#parameters-7)
     -   [repositoryBases](#repositorybases)
@@ -127,7 +128,7 @@ console.log(await readme.getString());
         -   [Parameters](#parameters-28)
 -   [RepositoryGroup](#repositorygroup-2)
     -   [Parameters](#parameters-29)
-    -   [Properties](#properties-1)
+    -   [Properties](#properties-2)
     -   [repositoryClass](#repositoryclass-1)
     -   [branchClass](#branchclass-1)
     -   [contentClass](#contentclass)
@@ -138,7 +139,7 @@ console.log(await readme.getString());
 -   [url](#url)
 -   [Repository](#repository-2)
     -   [Parameters](#parameters-30)
-    -   [Properties](#properties-2)
+    -   [Properties](#properties-3)
     -   [fullName](#fullname)
     -   [slug](#slug)
     -   [provider](#provider-1)
@@ -237,14 +238,14 @@ console.log(await readme.getString());
 -   [isProtected](#isprotected-1)
 -   [Commit](#commit)
     -   [Parameters](#parameters-56)
-    -   [Properties](#properties-3)
--   [Commit](#commit-1)
     -   [Properties](#properties-4)
--   [CommitResult](#commitresult)
+-   [Commit](#commit-1)
     -   [Properties](#properties-5)
+-   [CommitResult](#commitresult)
+    -   [Properties](#properties-6)
 -   [Branch](#branch-1)
     -   [Parameters](#parameters-57)
-    -   [Properties](#properties-6)
+    -   [Properties](#properties-7)
     -   [url](#url-2)
     -   [isDefault](#isdefault)
     -   [delete](#delete-1)
@@ -269,7 +270,7 @@ console.log(await readme.getString());
     -   [Parameters](#parameters-65)
 -   [PullRequest](#pullrequest-1)
     -   [Parameters](#parameters-66)
-    -   [Properties](#properties-7)
+    -   [Properties](#properties-8)
     -   [repository](#repository-3)
     -   [provider](#provider-3)
     -   [equals](#equals-5)
@@ -294,7 +295,7 @@ console.log(await readme.getString());
 -   [merged](#merged)
 -   [Hook](#hook-1)
     -   [Parameters](#parameters-71)
-    -   [Properties](#properties-8)
+    -   [Properties](#properties-9)
     -   [equals](#equals-6)
         -   [Parameters](#parameters-72)
     -   [toJSON](#tojson-3)
@@ -304,7 +305,7 @@ console.log(await readme.getString());
 -   [Application](#application)
     -   [Parameters](#parameters-74)
 -   [Attribute](#attribute)
-    -   [Properties](#properties-9)
+    -   [Properties](#properties-10)
 -   [definePropertiesFromOptions](#definepropertiesfromoptions)
     -   [Parameters](#parameters-75)
 -   [setAttribute](#setattribute)
@@ -429,6 +430,10 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 -   `options`  
 -   `properties`  
+
+### Properties
+
+-   `messageDestination` **[MessageDestination](#messagedestination)** 
 
 ### equals
 
