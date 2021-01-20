@@ -45,279 +45,279 @@ console.log(await readme.getString());
 
 ### Table of Contents
 
--   [BaseObject](#baseobject)
+-   [Application](#application)
     -   [Parameters](#parameters)
+-   [Attribute](#attribute)
+    -   [Properties](#properties)
+-   [definePropertiesFromOptions](#definepropertiesfromoptions)
+    -   [Parameters](#parameters-1)
+-   [setAttribute](#setattribute)
+    -   [Parameters](#parameters-2)
+-   [getAttribute](#getattribute)
+    -   [Parameters](#parameters-3)
+-   [optionJSON](#optionjson)
+    -   [Parameters](#parameters-4)
+-   [mapAttributes](#mapattributes)
+    -   [Parameters](#parameters-5)
+-   [mapAttributesInverse](#mapattributesinverse)
+    -   [Parameters](#parameters-6)
+-   [BaseObject](#baseobject)
+    -   [Parameters](#parameters-7)
     -   [equals](#equals)
-        -   [Parameters](#parameters-1)
+        -   [Parameters](#parameters-8)
     -   [attributes](#attributes)
     -   [attributeMapping](#attributemapping)
 -   [description](#description)
 -   [id](#id)
 -   [uuid](#uuid)
 -   [avatarURL](#avatarurl)
--   [NamedObject](#namedobject)
-    -   [Parameters](#parameters-2)
-    -   [Properties](#properties)
-    -   [equals](#equals-1)
-        -   [Parameters](#parameters-3)
-    -   [toJSON](#tojson)
--   [RepositoryOwner](#repositoryowner)
-    -   [Parameters](#parameters-4)
 -   [MessageDestination](#messagedestination)
-    -   [Parameters](#parameters-5)
+    -   [Parameters](#parameters-9)
 -   [BaseProvider](#baseprovider)
-    -   [Parameters](#parameters-6)
+    -   [Parameters](#parameters-10)
     -   [Properties](#properties-1)
-    -   [equals](#equals-2)
-        -   [Parameters](#parameters-7)
+    -   [equals](#equals-1)
+        -   [Parameters](#parameters-11)
     -   [repositoryBases](#repositorybases)
     -   [normalizeRepositoryName](#normalizerepositoryname)
-        -   [Parameters](#parameters-8)
+        -   [Parameters](#parameters-12)
     -   [normalizeGroupName](#normalizegroupname)
-        -   [Parameters](#parameters-9)
+        -   [Parameters](#parameters-13)
     -   [areRepositoryNamesCaseSensitive](#arerepositorynamescasesensitive)
     -   [areGroupNamesCaseSensitive](#aregroupnamescasesensitive)
     -   [supportsBase](#supportsbase)
-        -   [Parameters](#parameters-10)
-    -   [parseName](#parsename)
-        -   [Parameters](#parameters-11)
-    -   [list](#list)
-        -   [Parameters](#parameters-12)
-    -   [projects](#projects)
-        -   [Parameters](#parameters-13)
-    -   [repositories](#repositories)
         -   [Parameters](#parameters-14)
-    -   [branches](#branches)
+    -   [parseName](#parsename)
         -   [Parameters](#parameters-15)
-    -   [tags](#tags)
+    -   [list](#list)
         -   [Parameters](#parameters-16)
+    -   [projects](#projects)
+        -   [Parameters](#parameters-17)
+    -   [repositories](#repositories)
+        -   [Parameters](#parameters-18)
+    -   [branches](#branches)
+        -   [Parameters](#parameters-19)
+    -   [tags](#tags)
+        -   [Parameters](#parameters-20)
     -   [repositoryGroupClass](#repositorygroupclass)
     -   [hookClass](#hookclass)
     -   [name](#name)
     -   [provider](#provider)
-    -   [toJSON](#tojson-1)
+    -   [toJSON](#tojson)
     -   [repositoryClass](#repositoryclass)
     -   [branchClass](#branchclass)
     -   [entryClass](#entryclass)
     -   [pullRequestClass](#pullrequestclass)
     -   [optionsFromEnvironment](#optionsfromenvironment)
-        -   [Parameters](#parameters-17)
-    -   [areOptionsSufficcient](#areoptionssufficcient)
-        -   [Parameters](#parameters-18)
-    -   [initialize](#initialize)
-        -   [Parameters](#parameters-19)
--   [priority](#priority)
--   [SingleGroupProvider](#singlegroupprovider)
-    -   [repository](#repository)
-        -   [Parameters](#parameters-20)
-    -   [repositoryGroup](#repositorygroup)
         -   [Parameters](#parameters-21)
-    -   [repositoryGroups](#repositorygroups)
+    -   [areOptionsSufficcient](#areoptionssufficcient)
         -   [Parameters](#parameters-22)
--   [MultiGroupProvider](#multigroupprovider)
-    -   [Parameters](#parameters-23)
-    -   [repository](#repository-1)
-        -   [Parameters](#parameters-24)
-    -   [repositoryGroup](#repositorygroup-1)
-        -   [Parameters](#parameters-25)
-    -   [repositoryGroups](#repositorygroups-1)
-        -   [Parameters](#parameters-26)
-    -   [createRepositoryGroup](#createrepositorygroup)
-        -   [Parameters](#parameters-27)
-    -   [addRepositoryGroup](#addrepositorygroup)
-        -   [Parameters](#parameters-28)
--   [RepositoryGroup](#repositorygroup-2)
-    -   [Parameters](#parameters-29)
-    -   [Properties](#properties-2)
-    -   [repositoryClass](#repositoryclass-1)
-    -   [branchClass](#branchclass-1)
-    -   [contentClass](#contentclass)
-    -   [pullRequestClass](#pullrequestclass-1)
-    -   [hookClass](#hookclass-1)
-    -   [attributeMapping](#attributemapping-1)
--   [type](#type)
--   [url](#url)
--   [Repository](#repository-2)
-    -   [Parameters](#parameters-30)
-    -   [Properties](#properties-3)
-    -   [fullName](#fullname)
-    -   [slug](#slug)
-    -   [provider](#provider-1)
-    -   [identifier](#identifier)
-    -   [equals](#equals-3)
-        -   [Parameters](#parameters-31)
-    -   [entry](#entry)
-        -   [Parameters](#parameters-32)
-    -   [entries](#entries)
-        -   [Parameters](#parameters-33)
-    -   [maybeEntry](#maybeentry)
-        -   [Parameters](#parameters-34)
-    -   [urls](#urls)
-    -   [url](#url-1)
-    -   [cloneURL](#cloneurl)
-    -   [issuesURL](#issuesurl)
-    -   [homePageURL](#homepageurl)
-    -   [condensedName](#condensedname)
-    -   [isArchived](#isarchived)
-    -   [isLocked](#islocked)
-    -   [isDisabled](#isdisabled)
-    -   [isTemplate](#istemplate)
-    -   [branch](#branch)
-        -   [Parameters](#parameters-35)
-    -   [defaultBranch](#defaultbranch)
-    -   [branches](#branches-1)
-        -   [Parameters](#parameters-36)
-    -   [createBranch](#createbranch)
-        -   [Parameters](#parameters-37)
-    -   [addBranch](#addbranch)
-        -   [Parameters](#parameters-38)
-    -   [deleteBranch](#deletebranch)
-        -   [Parameters](#parameters-39)
-    -   [tags](#tags-1)
-        -   [Parameters](#parameters-40)
-    -   [tag](#tag)
-        -   [Parameters](#parameters-41)
-    -   [delete](#delete)
-    -   [createPullRequest](#createpullrequest)
-        -   [Parameters](#parameters-42)
-    -   [addPullRequest](#addpullrequest)
-        -   [Parameters](#parameters-43)
-    -   [pullRequests](#pullrequests)
-    -   [pullRequest](#pullrequest)
-        -   [Parameters](#parameters-44)
-    -   [deletePullRequest](#deletepullrequest)
-        -   [Parameters](#parameters-45)
-    -   [addHook](#addhook)
-        -   [Parameters](#parameters-46)
-    -   [createHook](#createhook)
-        -   [Parameters](#parameters-47)
-    -   [hooks](#hooks)
-    -   [hook](#hook)
-        -   [Parameters](#parameters-48)
-    -   [type](#type-1)
-    -   [refId](#refid)
-        -   [Parameters](#parameters-49)
-    -   [repositoryClass](#repositoryclass-2)
-    -   [pullRequestClass](#pullrequestclass-2)
-    -   [branchClass](#branchclass-2)
-    -   [entryClass](#entryclass-1)
-    -   [hookClass](#hookclass-2)
-    -   [toJSON](#tojson-2)
-    -   [attributes](#attributes-1)
--   [defaultBranchName](#defaultbranchname)
--   [urls](#urls-1)
--   [homePageURL](#homepageurl-1)
--   [issuesURL](#issuesurl-1)
--   [Ref](#ref)
-    -   [Parameters](#parameters-50)
-    -   [equals](#equals-4)
-        -   [Parameters](#parameters-51)
-    -   [ref](#ref-1)
-    -   [refId](#refid-1)
-        -   [Parameters](#parameters-52)
-    -   [entries](#entries-1)
-        -   [Parameters](#parameters-53)
-    -   [asyncIterator](#asynciterator)
-    -   [maybeEntry](#maybeentry-1)
-        -   [Parameters](#parameters-54)
-    -   [entry](#entry-1)
-        -   [Parameters](#parameters-55)
-    -   [provider](#provider-2)
-    -   [owner](#owner)
-    -   [fullName](#fullname-1)
-    -   [fullCondensedName](#fullcondensedname)
-    -   [identifier](#identifier-1)
-    -   [issuesURL](#issuesurl-2)
-    -   [homePageURL](#homepageurl-2)
-    -   [isLocked](#islocked-1)
-    -   [isArchived](#isarchived-1)
-    -   [isDisabled](#isdisabled-1)
-    -   [isProtected](#isprotected)
-    -   [isWritable](#iswritable)
-    -   [attributes](#attributes-2)
--   [isProtected](#isprotected-1)
+    -   [initialize](#initialize)
+        -   [Parameters](#parameters-23)
+-   [priority](#priority)
 -   [Commit](#commit)
-    -   [Parameters](#parameters-56)
-    -   [Properties](#properties-4)
+    -   [Properties](#properties-2)
 -   [Commit](#commit-1)
-    -   [Properties](#properties-5)
+    -   [Parameters](#parameters-24)
+    -   [Properties](#properties-3)
 -   [CommitResult](#commitresult)
-    -   [Properties](#properties-6)
--   [Branch](#branch-1)
-    -   [Parameters](#parameters-57)
-    -   [Properties](#properties-7)
-    -   [url](#url-2)
+    -   [Properties](#properties-4)
+-   [Branch](#branch)
+    -   [Parameters](#parameters-25)
+    -   [Properties](#properties-5)
+    -   [url](#url)
     -   [isDefault](#isdefault)
-    -   [delete](#delete-1)
+    -   [delete](#delete)
     -   [commit](#commit-2)
-        -   [Parameters](#parameters-58)
+        -   [Parameters](#parameters-26)
     -   [commitIntoPullRequest](#commitintopullrequest)
-        -   [Parameters](#parameters-59)
+        -   [Parameters](#parameters-27)
     -   [removeEntries](#removeentries)
-        -   [Parameters](#parameters-60)
-    -   [entryClass](#entryclass-2)
-    -   [createPullRequest](#createpullrequest-1)
-        -   [Parameters](#parameters-61)
-    -   [pullRequestClass](#pullrequestclass-3)
-    -   [createBranch](#createbranch-1)
-        -   [Parameters](#parameters-62)
--   [Tag](#tag-1)
-    -   [Parameters](#parameters-63)
-    -   [isWritable](#iswritable-1)
--   [Project](#project)
-    -   [Parameters](#parameters-64)
+        -   [Parameters](#parameters-28)
+    -   [entryClass](#entryclass-1)
+    -   [createPullRequest](#createpullrequest)
+        -   [Parameters](#parameters-29)
+    -   [pullRequestClass](#pullrequestclass-1)
+    -   [createBranch](#createbranch)
+        -   [Parameters](#parameters-30)
+-   [Hook](#hook)
+    -   [Parameters](#parameters-31)
+    -   [Properties](#properties-6)
+    -   [equals](#equals-2)
+        -   [Parameters](#parameters-32)
+    -   [toJSON](#tojson-1)
 -   [Issue](#issue)
-    -   [Parameters](#parameters-65)
--   [PullRequest](#pullrequest-1)
-    -   [Parameters](#parameters-66)
+    -   [Parameters](#parameters-33)
+-   [Milestone](#milestone)
+    -   [Parameters](#parameters-34)
+-   [MultiGroupProvider](#multigroupprovider)
+    -   [Parameters](#parameters-35)
+    -   [repository](#repository)
+        -   [Parameters](#parameters-36)
+    -   [repositoryGroup](#repositorygroup)
+        -   [Parameters](#parameters-37)
+    -   [repositoryGroups](#repositorygroups)
+        -   [Parameters](#parameters-38)
+    -   [createRepositoryGroup](#createrepositorygroup)
+        -   [Parameters](#parameters-39)
+    -   [addRepositoryGroup](#addrepositorygroup)
+        -   [Parameters](#parameters-40)
+-   [NamedObject](#namedobject)
+    -   [Parameters](#parameters-41)
+    -   [Properties](#properties-7)
+    -   [equals](#equals-3)
+        -   [Parameters](#parameters-42)
+    -   [toJSON](#tojson-2)
+-   [Project](#project)
+    -   [Parameters](#parameters-43)
+-   [PullRequest](#pullrequest)
+    -   [Parameters](#parameters-44)
     -   [Properties](#properties-8)
-    -   [repository](#repository-3)
-    -   [provider](#provider-3)
-    -   [equals](#equals-5)
-        -   [Parameters](#parameters-67)
-    -   [delete](#delete-2)
+    -   [repository](#repository-1)
+    -   [provider](#provider-1)
+    -   [equals](#equals-4)
+        -   [Parameters](#parameters-45)
+    -   [delete](#delete-1)
     -   [merge](#merge)
-        -   [Parameters](#parameters-68)
+        -   [Parameters](#parameters-46)
     -   [decline](#decline)
     -   [reviews](#reviews)
-    -   [identifier](#identifier-2)
+    -   [identifier](#identifier)
     -   [validStates](#validstates)
     -   [defaultListStates](#defaultliststates)
     -   [validMergeMethods](#validmergemethods)
     -   [list](#list-1)
-        -   [Parameters](#parameters-69)
+        -   [Parameters](#parameters-47)
     -   [open](#open)
-        -   [Parameters](#parameters-70)
+        -   [Parameters](#parameters-48)
 -   [title](#title)
 -   [body](#body)
 -   [state](#state)
 -   [locked](#locked)
 -   [merged](#merged)
--   [Hook](#hook-1)
-    -   [Parameters](#parameters-71)
+-   [Ref](#ref)
+    -   [Parameters](#parameters-49)
+    -   [equals](#equals-5)
+        -   [Parameters](#parameters-50)
+    -   [ref](#ref-1)
+    -   [refId](#refid)
+        -   [Parameters](#parameters-51)
+    -   [entries](#entries)
+        -   [Parameters](#parameters-52)
+    -   [asyncIterator](#asynciterator)
+    -   [maybeEntry](#maybeentry)
+        -   [Parameters](#parameters-53)
+    -   [entry](#entry)
+        -   [Parameters](#parameters-54)
+    -   [provider](#provider-2)
+    -   [owner](#owner)
+    -   [fullName](#fullname)
+    -   [fullCondensedName](#fullcondensedname)
+    -   [identifier](#identifier-1)
+    -   [issuesURL](#issuesurl)
+    -   [homePageURL](#homepageurl)
+    -   [isLocked](#islocked)
+    -   [isArchived](#isarchived)
+    -   [isDisabled](#isdisabled)
+    -   [isProtected](#isprotected)
+    -   [isWritable](#iswritable)
+    -   [attributes](#attributes-1)
+-   [isProtected](#isprotected-1)
+-   [RepositoryGroup](#repositorygroup-1)
+    -   [Parameters](#parameters-55)
     -   [Properties](#properties-9)
-    -   [equals](#equals-6)
-        -   [Parameters](#parameters-72)
-    -   [toJSON](#tojson-3)
--   [Milestone](#milestone)
-    -   [Parameters](#parameters-73)
--   [Review](#review)
--   [Application](#application)
-    -   [Parameters](#parameters-74)
--   [Attribute](#attribute)
+    -   [repositoryClass](#repositoryclass-1)
+    -   [branchClass](#branchclass-1)
+    -   [contentClass](#contentclass)
+    -   [pullRequestClass](#pullrequestclass-2)
+    -   [hookClass](#hookclass-1)
+    -   [attributeMapping](#attributemapping-1)
+-   [type](#type)
+-   [url](#url-1)
+-   [RepositoryOwner](#repositoryowner)
+    -   [Parameters](#parameters-56)
+-   [Repository](#repository-2)
+    -   [Parameters](#parameters-57)
     -   [Properties](#properties-10)
--   [definePropertiesFromOptions](#definepropertiesfromoptions)
-    -   [Parameters](#parameters-75)
--   [setAttribute](#setattribute)
-    -   [Parameters](#parameters-76)
--   [getAttribute](#getattribute)
-    -   [Parameters](#parameters-77)
--   [optionJSON](#optionjson)
-    -   [Parameters](#parameters-78)
--   [mapAttributes](#mapattributes)
-    -   [Parameters](#parameters-79)
--   [mapAttributesInverse](#mapattributesinverse)
+    -   [fullName](#fullname-1)
+    -   [slug](#slug)
+    -   [provider](#provider-3)
+    -   [identifier](#identifier-2)
+    -   [equals](#equals-6)
+        -   [Parameters](#parameters-58)
+    -   [entry](#entry-1)
+        -   [Parameters](#parameters-59)
+    -   [entries](#entries-1)
+        -   [Parameters](#parameters-60)
+    -   [maybeEntry](#maybeentry-1)
+        -   [Parameters](#parameters-61)
+    -   [urls](#urls)
+    -   [url](#url-2)
+    -   [cloneURL](#cloneurl)
+    -   [issuesURL](#issuesurl-1)
+    -   [homePageURL](#homepageurl-1)
+    -   [condensedName](#condensedname)
+    -   [isArchived](#isarchived-1)
+    -   [isLocked](#islocked-1)
+    -   [isDisabled](#isdisabled-1)
+    -   [isTemplate](#istemplate)
+    -   [branch](#branch-1)
+        -   [Parameters](#parameters-62)
+    -   [defaultBranch](#defaultbranch)
+    -   [branches](#branches-1)
+        -   [Parameters](#parameters-63)
+    -   [createBranch](#createbranch-1)
+        -   [Parameters](#parameters-64)
+    -   [addBranch](#addbranch)
+        -   [Parameters](#parameters-65)
+    -   [deleteBranch](#deletebranch)
+        -   [Parameters](#parameters-66)
+    -   [tags](#tags-1)
+        -   [Parameters](#parameters-67)
+    -   [tag](#tag)
+        -   [Parameters](#parameters-68)
+    -   [delete](#delete-2)
+    -   [createPullRequest](#createpullrequest-1)
+        -   [Parameters](#parameters-69)
+    -   [addPullRequest](#addpullrequest)
+        -   [Parameters](#parameters-70)
+    -   [pullRequests](#pullrequests)
+    -   [pullRequest](#pullrequest-1)
+        -   [Parameters](#parameters-71)
+    -   [deletePullRequest](#deletepullrequest)
+        -   [Parameters](#parameters-72)
+    -   [addHook](#addhook)
+        -   [Parameters](#parameters-73)
+    -   [createHook](#createhook)
+        -   [Parameters](#parameters-74)
+    -   [hooks](#hooks)
+    -   [hook](#hook-1)
+        -   [Parameters](#parameters-75)
+    -   [type](#type-1)
+    -   [refId](#refid-1)
+        -   [Parameters](#parameters-76)
+    -   [repositoryClass](#repositoryclass-2)
+    -   [pullRequestClass](#pullrequestclass-3)
+    -   [branchClass](#branchclass-2)
+    -   [entryClass](#entryclass-2)
+    -   [hookClass](#hookclass-2)
+    -   [toJSON](#tojson-3)
+    -   [attributes](#attributes-2)
+-   [defaultBranchName](#defaultbranchname)
+-   [urls](#urls-1)
+-   [homePageURL](#homepageurl-2)
+-   [issuesURL](#issuesurl-2)
+-   [Review](#review)
+-   [SingleGroupProvider](#singlegroupprovider)
+    -   [repository](#repository-3)
+        -   [Parameters](#parameters-77)
+    -   [repositoryGroup](#repositorygroup-2)
+        -   [Parameters](#parameters-78)
+    -   [repositoryGroups](#repositorygroups-1)
+        -   [Parameters](#parameters-79)
+-   [Tag](#tag-1)
     -   [Parameters](#parameters-80)
+    -   [isWritable](#iswritable-1)
 -   [asArray](#asarray)
     -   [Parameters](#parameters-81)
 -   [stripBaseName](#stripbasename)
@@ -326,6 +326,121 @@ console.log(await readme.getString());
     -   [Parameters](#parameters-83)
 -   [generateBranchName](#generatebranchname)
     -   [Parameters](#parameters-84)
+
+## Application
+
+**Extends NamedObject**
+
+### Parameters
+
+-   `owner`  
+-   `name`  
+-   `options`  
+
+## Attribute
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `writable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+-   `private` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+## definePropertiesFromOptions
+
+-   **See: Object.definedProperties()
+    **
+-   **See: Object.getOwnPropertyDescriptor()
+    **
+
+Create properties from options and default options.
+Already present properties (direct) are skipped.
+The attribute list from the class will be applied to the
+options and merged with the given set of properties.
+
+```js
+class aClass {
+  static get attributes() {
+    return { with_default: { default: 77 }};
+  }
+}
+
+definePropertiesFromOptions(new aClass());
+// equivalent to
+Object.definedProperties(new aClass(),{ with_default: { value: 77 }})
+```
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor (optional, default `{}`)
+-   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
+-   `attributes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `object.constructor.attributes`)
+
+## setAttribute
+
+Set Object attribute.
+The name may be a property path like 'a.b.c'.
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `value` **any** 
+
+## getAttribute
+
+Deliver attribute value.
+The name may be a property path like 'a.b.c'.
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **any** value associated with the given property name
+
+## optionJSON
+
+Create json based on present options.
+In other words only produce key value pairs if value is defined.
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `initial` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
+-   `skip` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** keys not to put in the result (optional, default `[]`)
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** initial + defined values
+
+## mapAttributes
+
+Rename attributes.
+Filters out null, undefined and empty strings.
+
+```js
+mapAttributes({a:1},{a:"a'"}) // {"a'": 1}
+```
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `mapping` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
+
+## mapAttributesInverse
+
+Same as mapAttributes but with the inverse mapping.
+Filters out null, undefined and empty strings
+
+### Parameters
+
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `mapping` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
 
 ## BaseObject
 
@@ -377,42 +492,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 Avatar.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## NamedObject
-
-**Extends BaseObject**
-
-### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `additionalProperties`  
-
-### Properties
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### equals
-
-Check for equality
-
-#### Parameters
-
--   `other` **[NamedObject](#namedobject)** 
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal
-
-### toJSON
-
-Provide name and all defined attributes
-
-## RepositoryOwner
-
-Mixin to define a class able to handle a collection of repositoreis.
-
-### Parameters
-
--   `base` **Class** to be extendet
 
 ## MessageDestination
 
@@ -641,41 +720,197 @@ Returns **Provider** newly created provider or undefined if options are not suff
 In case there are several provider able to support a given source which one sould be used ?
 this defines the order
 
-## SingleGroupProvider
+## Commit
 
-**Extends RepositoryOwner(BaseProvider)**
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
-Provider holding a single set of repositories (no repository groups)
+### Properties
 
-### repository
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ContentEntry>** 
 
-Lookup a repository in the provider and all of its repository groups
+## Commit
 
-#### Parameters
+### Parameters
 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the repository
+-   `repository`  
 
-Returns **[Repository](#repository)** 
+### Properties
 
-### repositoryGroup
+-   `repository` **[Repository](#repository)** 
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Get a single Group
+## CommitResult
 
-#### Parameters
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
+### Properties
+
+-   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## Branch
+
+**Extends Ref**
+
+-   **See: [Repository#\_addBranch](Repository#_addBranch)
+    **
+
+Abstract branch.
+
+### Parameters
+
+-   `repository` **[Repository](#repository)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `repository.defaultBranchName`)
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+### Properties
+
+-   `repository` **[Repository](#repository)** 
+-   `provider` **Provider** 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[RepositoryGroup](#repositorygroup)** deliver the one and only present group
+### url
 
-### repositoryGroups
+Deliver repository and branch url combined.
 
-List groups
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
+
+### isDefault
+
+Are we the default branch.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name is the repository default branch
+
+### delete
+
+-   **See: [Repository#deleteBranch](#repositorydeletebranch)
+    **
+
+Delete the branch from the [Repository](#repository).
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+
+### commit
+
+Commit entries.
 
 #### Parameters
 
--   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
+-   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
+-   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ConentEntry>** content to be commited
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **Iterator&lt;[RepositoryGroup](#repositorygroup)>** always deliver the one and only present group
+Returns **[CommitResult](#commitresult)** 
+
+### commitIntoPullRequest
+
+Add commits into a pull request.
+
+#### Parameters
+
+-   `commits` **([Commit](#commit) | AsyncIterator&lt;[Commit](#commit)>)** to be commited
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.pullRequestBranch` **([Branch](#branch) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** to commit into
+    -   `options.dry` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a branch and do not commit only create dummy PR
+    -   `options.skipWithoutCommits` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a PR if no commits are given
+    -   `options.bodyFromCommitMessages` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** generate body from commit messages
+
+Returns **[PullRequest](#pullrequest)** 
+
+### removeEntries
+
+Remove entries form the branch.
+
+#### Parameters
+
+-   `entries` **Iterator&lt;ContentEntry>** 
+
+### entryClass
+
+By default we use the providers implementation.
+
+Returns **Class** as defined in the repository
+
+### createPullRequest
+
+Create a pull request.
+
+#### Parameters
+
+-   `toBranch` **[Branch](#branch)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[PullRequest](#pullrequest)>** 
+
+### pullRequestClass
+
+By default we use the repository implementation.
+
+Returns **Class** as defined in the repository
+
+### createBranch
+
+Create a new [Branch](#branch) by cloning a given source branch.
+Simply calls Repository.createBranch() with the receiver as source branch
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the new branch
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** newly created branch (or already present old one with the same name)
+
+## Hook
+
+**Extends BaseObject**
+
+### Parameters
+
+-   `repository`  
+-   `id`  
+-   `events`   (optional, default `new Set(["*"])`)
+-   `options`  
+
+### Properties
+
+-   `repository` **[Repository](#repository)** 
+-   `url` **[URL](https://developer.mozilla.org/docs/Web/API/URL/URL)** 
+-   `events` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[Hook](#hook)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and repository are equal
+
+### toJSON
+
+provide name, events and all defined attributes
+
+## Issue
+
+**Extends NamedObject**
+
+### Parameters
+
+-   `owner`  
+-   `name`  
+-   `options`  
+
+## Milestone
+
+**Extends NamedObject**
+
+### Parameters
+
+-   `owner`  
+-   `name`  
+-   `options`  
 
 ## MultiGroupProvider
 
@@ -739,6 +974,355 @@ Add a new repository group (not provider specific actions are executed).
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[RepositoryGroup](#repositorygroup)** 
+
+## NamedObject
+
+**Extends BaseObject**
+
+### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `additionalProperties`  
+
+### Properties
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[NamedObject](#namedobject)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal
+
+### toJSON
+
+Provide name and all defined attributes
+
+## Project
+
+**Extends NamedObject**
+
+### Parameters
+
+-   `owner`  
+-   `name`  
+-   `options`  
+
+## PullRequest
+
+**Extends NamedObject**
+
+Abstract pull request.
+[Repository#addPullRequest](#repositoryaddpullrequest)
+
+### Parameters
+
+-   `source` **[Branch](#branch)** merge source
+-   `destination` **[Branch](#branch)** merge target
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+    -   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+    -   `options.merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+    -   `options.locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+
+### Properties
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
+-   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+-   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+-   `merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+-   `locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+
+### repository
+
+Returns **[Repository](#repository)** destination repository
+
+### provider
+
+Returns **Provider** 
+
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[PullRequest](#pullrequest)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if number and repository are equal
+
+### delete
+
+-   **See: [Repository#deletePullRequest](#repositorydeletepullrequest)
+    **
+
+Delete the pull request from the [Repository](#repository).
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+
+### merge
+
+Merge the pull request
+
+#### Parameters
+
+-   `method` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### decline
+
+Decline the pull request
+
+### reviews
+
+Returns **Interaor&lt;[Review](#review)>** 
+
+### identifier
+
+Short human readable identifier with provider and branch.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### validStates
+
+All valid states
+
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid states
+
+### defaultListStates
+
+States to list pull request by default
+
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** states to list by default
+
+### validMergeMethods
+
+All valid merge methods
+
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid merge methods
+
+### list
+
+List all pull request for a given repo
+result will be filtered by source branch, destination branch and states
+
+#### Parameters
+
+-   `repository` **[Repository](#repository)** 
+-   `filter` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `filter.source` **[Branch](#branch)?** 
+    -   `filter.destination` **[Branch](#branch)?** 
+    -   `filter.states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
+
+Returns **Iterator&lt;[PullRequest](#pullrequest)>** 
+
+### open
+
+Open a pull request
+
+#### Parameters
+
+-   `source` **[Branch](#branch)** 
+-   `destination` **[Branch](#branch)** 
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+## title
+
+The one line description of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## body
+
+The description of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## state
+
+state of the pull request.
+
+-   OPEN
+-   MERGED
+-   CLOSED
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## locked
+
+Locked state of the pull request.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+## merged
+
+Merged state of the pull request.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+## Ref
+
+**Extends NamedObject**
+
+Base for Branch and Tag
+
+### Parameters
+
+-   `repository`  
+-   `name`  
+-   `options`  
+
+### equals
+
+Check for equality
+
+#### Parameters
+
+-   `other` **[Branch](#branch)** 
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and repository are equal
+
+### ref
+
+ref name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** git ref of the Ref
+
+### refId
+
+Get sha of a ref
+
+#### Parameters
+
+-   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `this.ref`)
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the ref
+
+### entries
+
+List entries of the branch
+
+#### Parameters
+
+-   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+
+Returns **ConentEntry** all matching entries in the branch
+
+### asyncIterator
+
+List all entries of the branch
+
+Returns **asyncIterator&lt;ConentEntry>** all entries in the branch
+
+### maybeEntry
+
+Get exactly one matching entry by name or undefine if no such entry is found
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;ConentEntry>** 
+
+### entry
+
+Get exactly one matching entry by name (throws if entry is not found)
+
+#### Parameters
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;ConentEntry>** 
+
+### provider
+
+The provider we live in
+
+Returns **Provider** 
+
+### owner
+
+-   **See: [Repository#owner](Repository#owner)
+    **
+
+Branch owner
+By default we provide the repository owner
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### fullName
+
+Repository and branch name combined
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
+
+### fullCondensedName
+
+Repository fullName and branch name combined.
+But skipping the branch name if it is the default branch
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
+
+### identifier
+
+Short human readable identifier with provider and branch.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### issuesURL
+
+-   **See: [Repository#issuesURL](#repositoryissuesurl)
+    **
+
+Url of issue tracking system.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
+
+### homePageURL
+
+-   **See: [Repository#homePageURL](#repositoryhomepageurl)
+    **
+
+Url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
+
+### isLocked
+
+Forwarded from the repository
+
+### isArchived
+
+Forwarded from the repository
+
+### isDisabled
+
+Forwarded from the repository
+
+### isProtected
+
+Returns **any** false
+
+### isWritable
+
+Returns **any** true if not [isArchived](isArchived) and [isDisabled](isDisabled) and [isLocked](isLocked)
+
+### attributes
+
+options
+
+## isProtected
+
+Can the branch be modified.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## RepositoryGroup
 
@@ -804,6 +1388,14 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## url
 
 api url
+
+## RepositoryOwner
+
+Mixin to define a class able to handle a collection of repositoreis.
+
+### Parameters
+
+-   `base` **Class** to be extendet
 
 ## Repository
 
@@ -1192,303 +1784,45 @@ The url of issue tracking system.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-## Ref
+## Review
 
-**Extends NamedObject**
+**Extends BaseObject**
 
-Base for Branch and Tag
+## SingleGroupProvider
 
-### Parameters
+**Extends RepositoryOwner(BaseProvider)**
 
--   `repository`  
--   `name`  
--   `options`  
+Provider holding a single set of repositories (no repository groups)
 
-### equals
+### repository
 
-Check for equality
+Lookup a repository in the provider and all of its repository groups
 
 #### Parameters
 
--   `other` **[Branch](#branch)** 
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the repository
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and repository are equal
+Returns **[Repository](#repository)** 
 
-### ref
+### repositoryGroup
 
-ref name
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** git ref of the Ref
-
-### refId
-
-Get sha of a ref
-
-#### Parameters
-
--   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `this.ref`)
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the ref
-
-### entries
-
-List entries of the branch
-
-#### Parameters
-
--   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
-
-Returns **ConentEntry** all matching entries in the branch
-
-### asyncIterator
-
-List all entries of the branch
-
-Returns **asyncIterator&lt;ConentEntry>** all entries in the branch
-
-### maybeEntry
-
-Get exactly one matching entry by name or undefine if no such entry is found
+Get a single Group
 
 #### Parameters
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;ConentEntry>** 
+Returns **[RepositoryGroup](#repositorygroup)** deliver the one and only present group
 
-### entry
+### repositoryGroups
 
-Get exactly one matching entry by name (throws if entry is not found)
+List groups
 
 #### Parameters
 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;ConentEntry>** 
-
-### provider
-
-The provider we live in
-
-Returns **Provider** 
-
-### owner
-
--   **See: [Repository#owner](Repository#owner)
-    **
-
-Branch owner
-By default we provide the repository owner
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### fullName
-
-Repository and branch name combined
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
-
-### fullCondensedName
-
-Repository fullName and branch name combined.
-But skipping the branch name if it is the default branch
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
-
-### identifier
-
-Short human readable identifier with provider and branch.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### issuesURL
-
--   **See: [Repository#issuesURL](#repositoryissuesurl)
-    **
-
-Url of issue tracking system.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
-
-### homePageURL
-
--   **See: [Repository#homePageURL](#repositoryhomepageurl)
-    **
-
-Url of home page.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
-
-### isLocked
-
-Forwarded from the repository
-
-### isArchived
-
-Forwarded from the repository
-
-### isDisabled
-
-Forwarded from the repository
-
-### isProtected
-
-Returns **any** false
-
-### isWritable
-
-Returns **any** true if not [isArchived](isArchived) and [isDisabled](isDisabled) and [isLocked](isLocked)
-
-### attributes
-
-options
-
-## isProtected
-
-Can the branch be modified.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## Commit
-
-### Parameters
-
--   `repository`  
-
-### Properties
-
--   `repository` **[Repository](#repository)** 
--   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## Commit
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
--   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ContentEntry>** 
-
-## CommitResult
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
--   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## Branch
-
-**Extends Ref**
-
--   **See: [Repository#\_addBranch](Repository#_addBranch)
-    **
-
-Abstract branch.
-
-### Parameters
-
--   `repository` **[Repository](#repository)** 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `repository.defaultBranchName`)
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-### Properties
-
--   `repository` **[Repository](#repository)** 
--   `provider` **Provider** 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### url
-
-Deliver repository and branch url combined.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
-
-### isDefault
-
-Are we the default branch.
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name is the repository default branch
-
-### delete
-
--   **See: [Repository#deleteBranch](#repositorydeletebranch)
-    **
-
-Delete the branch from the [Repository](#repository).
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
-
-### commit
-
-Commit entries.
-
-#### Parameters
-
--   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
--   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;ConentEntry>** content to be commited
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-Returns **[CommitResult](#commitresult)** 
-
-### commitIntoPullRequest
-
-Add commits into a pull request.
-
-#### Parameters
-
--   `commits` **([Commit](#commit) | AsyncIterator&lt;[Commit](#commit)>)** to be commited
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `options.pullRequestBranch` **([Branch](#branch) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** to commit into
-    -   `options.dry` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a branch and do not commit only create dummy PR
-    -   `options.skipWithoutCommits` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a PR if no commits are given
-    -   `options.bodyFromCommitMessages` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** generate body from commit messages
-
-Returns **[PullRequest](#pullrequest)** 
-
-### removeEntries
-
-Remove entries form the branch.
-
-#### Parameters
-
--   `entries` **Iterator&lt;ContentEntry>** 
-
-### entryClass
-
-By default we use the providers implementation.
-
-Returns **Class** as defined in the repository
-
-### createPullRequest
-
-Create a pull request.
-
-#### Parameters
-
--   `toBranch` **[Branch](#branch)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[PullRequest](#pullrequest)>** 
-
-### pullRequestClass
-
-By default we use the repository implementation.
-
-Returns **Class** as defined in the repository
-
-### createBranch
-
-Create a new [Branch](#branch) by cloning a given source branch.
-Simply calls Repository.createBranch() with the receiver as source branch
-
-#### Parameters
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the new branch
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** newly created branch (or already present old one with the same name)
+Returns **Iterator&lt;[RepositoryGroup](#repositorygroup)>** always deliver the one and only present group
 
 ## Tag
 
@@ -1505,340 +1839,6 @@ Tag refs
 ### isWritable
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
-
-## Project
-
-**Extends NamedObject**
-
-### Parameters
-
--   `owner`  
--   `name`  
--   `options`  
-
-## Issue
-
-**Extends NamedObject**
-
-### Parameters
-
--   `owner`  
--   `name`  
--   `options`  
-
-## PullRequest
-
-**Extends NamedObject**
-
-Abstract pull request.
-[Repository#addPullRequest](#repositoryaddpullrequest)
-
-### Parameters
-
--   `source` **[Branch](#branch)** merge source
--   `destination` **[Branch](#branch)** merge target
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `options.title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
-    -   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
-    -   `options.merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
-    -   `options.locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
-
-### Properties
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `source` **[Branch](#branch)** 
--   `destination` **[Branch](#branch)** 
--   `title` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
--   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
--   `merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
--   `locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
-
-### repository
-
-Returns **[Repository](#repository)** destination repository
-
-### provider
-
-Returns **Provider** 
-
-### equals
-
-Check for equality
-
-#### Parameters
-
--   `other` **[PullRequest](#pullrequest)** 
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if number and repository are equal
-
-### delete
-
--   **See: [Repository#deletePullRequest](#repositorydeletepullrequest)
-    **
-
-Delete the pull request from the [Repository](#repository).
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
-
-### merge
-
-Merge the pull request
-
-#### Parameters
-
--   `method` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### decline
-
-Decline the pull request
-
-### reviews
-
-Returns **Interaor&lt;[Review](#review)>** 
-
-### identifier
-
-Short human readable identifier with provider and branch.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### validStates
-
-All valid states
-
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid states
-
-### defaultListStates
-
-States to list pull request by default
-
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** states to list by default
-
-### validMergeMethods
-
-All valid merge methods
-
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid merge methods
-
-### list
-
-List all pull request for a given repo
-result will be filtered by source branch, destination branch and states
-
-#### Parameters
-
--   `repository` **[Repository](#repository)** 
--   `filter` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `filter.source` **[Branch](#branch)?** 
-    -   `filter.destination` **[Branch](#branch)?** 
-    -   `filter.states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
-
-Returns **Iterator&lt;[PullRequest](#pullrequest)>** 
-
-### open
-
-Open a pull request
-
-#### Parameters
-
--   `source` **[Branch](#branch)** 
--   `destination` **[Branch](#branch)** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-## title
-
-The one line description of the pull request.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## body
-
-The description of the pull request.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## state
-
-state of the pull request.
-
--   OPEN
--   MERGED
--   CLOSED
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## locked
-
-Locked state of the pull request.
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
-
-## merged
-
-Merged state of the pull request.
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
-
-## Hook
-
-**Extends BaseObject**
-
-### Parameters
-
--   `repository`  
--   `id`  
--   `events`   (optional, default `new Set(["*"])`)
--   `options`  
-
-### Properties
-
--   `repository` **[Repository](#repository)** 
--   `url` **[URL](https://developer.mozilla.org/docs/Web/API/URL/URL)** 
--   `events` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
-
-### equals
-
-Check for equality
-
-#### Parameters
-
--   `other` **[Hook](#hook)** 
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and repository are equal
-
-### toJSON
-
-provide name, events and all defined attributes
-
-## Milestone
-
-**Extends NamedObject**
-
-### Parameters
-
--   `owner`  
--   `name`  
--   `options`  
-
-## Review
-
-**Extends BaseObject**
-
-## Application
-
-**Extends NamedObject**
-
-### Parameters
-
--   `owner`  
--   `name`  
--   `options`  
-
-## Attribute
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
--   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `writable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
--   `private` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
-
-## definePropertiesFromOptions
-
--   **See: Object.definedProperties()
-    **
--   **See: Object.getOwnPropertyDescriptor()
-    **
-
-Create properties from options and default options.
-Already present properties (direct) are skipped.
-The attribute list from the class will be applied to the
-options and merged with the given set of properties.
-
-```js
-class aClass {
-  static get attributes() {
-    return { with_default: { default: 77 }};
-  }
-}
-
-definePropertiesFromOptions(new aClass());
-// equivalent to
-Object.definedProperties(new aClass(),{ with_default: { value: 77 }})
-```
-
-### Parameters
-
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor (optional, default `{}`)
--   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
--   `attributes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `object.constructor.attributes`)
-
-## setAttribute
-
-Set Object attribute.
-The name may be a property path like 'a.b.c'.
-
-### Parameters
-
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `value` **any** 
-
-## getAttribute
-
-Deliver attribute value.
-The name may be a property path like 'a.b.c'.
-
-### Parameters
-
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-Returns **any** value associated with the given property name
-
-## optionJSON
-
-Create json based on present options.
-In other words only produce key value pairs if value is defined.
-
-### Parameters
-
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `initial` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
--   `skip` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** keys not to put in the result (optional, default `[]`)
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** initial + defined values
-
-## mapAttributes
-
-Rename attributes.
-Filters out null, undefined and empty strings.
-
-```js
-mapAttributes({a:1},{a:"a'"}) // {"a'": 1}
-```
-
-### Parameters
-
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `mapping` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
-
-## mapAttributesInverse
-
-Same as mapAttributes but with the inverse mapping.
-Filters out null, undefined and empty strings
-
-### Parameters
-
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
--   `mapping` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
 
 ## asArray
 
