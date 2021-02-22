@@ -3,11 +3,11 @@ import { RepositoryOwner } from "./repository-owner.mjs";
 import { stripBaseNames } from "./util.mjs";
 
 /**
- * Provider holding a single set of repositories (no repository groups)
+ * Provider holding a single set of repositories (no repository groups).
  */
 export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   /**
-   * Lookup a repository in the provider and all of its repository groups
+   * Lookup a repository in the provider and all of its repository groups.
    * @param {string} name of the repository
    * @return {Repository}
    */
@@ -19,7 +19,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   }
 
   /**
-   * Get a single Group
+   * Get a single Group.
    * @param {string} name
    * @return {RepositoryGroup} deliver the one and only present group
    */
@@ -34,7 +34,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   }
 
   /**
-   * List groups
+   * List groups.
    * @param {string[]|string} patterns
    * @return {Iterator<RepositoryGroup>} always deliver the one and only present group
    */

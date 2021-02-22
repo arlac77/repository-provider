@@ -59,7 +59,7 @@ export const otherRepositories = {
 };
 
 export const fragmentRepositories = {
-  "": { repository: "" },
+  "": {},
   "abc/def/g": { group: "abc", repository: "def" },
   "xxx/abc/def.git#mybranch": {
     group: "abc",

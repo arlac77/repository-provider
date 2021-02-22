@@ -199,7 +199,7 @@ export class BaseProvider {
    * @param {boolean} groupFocus if only one path component is given
    * @return {Object}
    */
-  parseName(name,groupFocus=false) {
+  parseName(name, groupFocus = false) {
     const result = {};
 
     if (name === undefined) {
@@ -235,18 +235,19 @@ export class BaseProvider {
       return "";
     });
 
-    const parts = name.split(/\//);
+    if (name.length) {
+      const parts = name.split(/\//);
 
-    if (parts.length >= 2) {
-      const i = rightAligned ? parts.length - 2 : 0;
-      result.group = parts[i];
-      result.repository = parts[i + 1];
-    } else {
-      if(groupFocus) {
-        result.group = name;
-      }
-      else {
-        result.repository = name;
+      if (parts.length >= 2) {
+        const i = rightAligned ? parts.length - 2 : 0;
+        result.group = parts[i];
+        result.repository = parts[i + 1];
+      } else {
+        if (groupFocus) {
+          result.group = name;
+        } else {
+          result.repository = name;
+        }
       }
     }
 
