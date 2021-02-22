@@ -26,10 +26,8 @@ async function olgt(t, factory, pattern, result) {
   }
 }
 
-olgt.title = (providedTitle = "", factory, pattern, result) =>
-  `${factory.name} list groups${
-    providedTitle ? " " + providedTitle : ""
-  } '${pattern}'`.trim();
+olgt.title = (providedTitle = "list groups", factory, pattern, result) =>
+  `${factory.name} ${providedTitle} '${pattern}'`.trim();
 
 async function oggt(t, factory, name, result) {
   const owner = new factory();
@@ -46,10 +44,8 @@ async function oggt(t, factory, name, result) {
   }
 }
 
-oggt.title = (providedTitle = "", factory, name, result) =>
-  `${factory.name} get group${
-    providedTitle ? " " + providedTitle : ""
-  } '${name}'`.trim();
+oggt.title = (providedTitle = "get group", factory, name, result) =>
+  `${factory.name} ${providedTitle} '${name}'`.trim();
 
 test(olgt, CaseSensitiveOwner, undefined, 0);
 test(olgt, CaseSensitiveOwner, "", 0);
