@@ -218,7 +218,7 @@ export class BaseProvider {
     );
 
     name = name.replace(
-      /^(git@[^:\/]+[:\/]|[\w\-^+]+:\/\/[^\/]+\/)/,
+      /^(git@[^:\/]+[:\/]|[\w\-^+]+:(\/\/[^\/]+\/)?)/,
       (m, base) => {
         result.base = base;
         return "";

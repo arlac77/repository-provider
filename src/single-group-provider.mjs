@@ -19,7 +19,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   }
 
   /**
-   * Get a single Group.
+   * Get a single group.
    * @param {string} name
    * @return {RepositoryGroup} deliver the one and only present group
    */

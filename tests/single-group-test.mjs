@@ -50,6 +50,8 @@ oggt.title = (providedTitle = "get group", factory, name, result) =>
 test(olgt, CaseSensitiveOwner, undefined, 0);
 test(olgt, CaseSensitiveOwner, "", 0);
 test(olgt, CaseSensitiveOwner, "csp:*", 1);
+
 test(oggt, CaseSensitiveOwner, undefined, undefined);
 test(oggt, CaseSensitiveOwner, "csp:", "csp");
-test.skip(oggt, CaseSensitiveOwner, "otherProvider:r1", undefined);
+test(oggt, CaseSensitiveOwner, "csp:r1", "csp");
+test(oggt, CaseSensitiveOwner, "otherProvider:r1", undefined);
