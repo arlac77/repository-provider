@@ -1,4 +1,4 @@
-import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
+import { asArray, stripBaseName } from "./util.mjs";
 import { definePropertiesFromOptions } from "./attribute.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
@@ -149,9 +149,10 @@ export class BaseProvider {
    * @return {string} normalized name
    */
   normalizeGroupName(name, forLookup) {
-    return name && forLookup && !this.areGroupNamesCaseSensitive
-      ? name.toLowerCase()
-      : name;
+    const { group } = this.parseName(name, true);
+    return group && forLookup && !this.areGroupNamesCaseSensitive
+      ? group.toLowerCase()
+      : group;
   }
 
   /**
@@ -195,9 +196,10 @@ export class BaseProvider {
    * Parses repository name and tries to split it into
    * base, group, repository and branch.
    * @param {string} name
+   * @param {boolean} groupFocus if only one path component is given
    * @return {Object}
    */
-  parseName(name) {
+  parseName(name,groupFocus=false) {
     const result = {};
 
     if (name === undefined) {
@@ -240,7 +242,12 @@ export class BaseProvider {
       result.group = parts[i];
       result.repository = parts[i + 1];
     } else {
-      result.repository = name;
+      if(groupFocus) {
+        result.group = name;
+      }
+      else {
+        result.repository = name;
+      }
     }
 
     return result;
