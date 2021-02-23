@@ -260,25 +260,6 @@ export class BaseProvider {
     return rg.createRepository(repository, options);
   }
 
-  async *listGroups(patterns) {
-    if (patterns === undefined) {
-      for await (const group of this.repositoryGroups()) {
-        yield group;
-      }
-    } else {
-      for (const pattern of asArray(patterns)) {
-        const [groupPattern, repoPattern] = stripBaseName(
-          pattern,
-          this.repositoryBases
-        ).split(/\//);
-
-        for await (const group of this.repositoryGroups(groupPattern)) {
-          yield group;
-        }
-      }
-    }
-  }
-
   /**
    * List provider objects of a given type.
    *
@@ -376,7 +357,7 @@ export class BaseProvider {
 
   /**
    * List all defined entries from attributes.
-   *
+   * return {object} 
    */
   toJSON() {
     const json = { name: this.name };
