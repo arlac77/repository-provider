@@ -591,6 +591,7 @@ base, group, repository and branch.
 #### Parameters
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `groupFocus` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** if only one path component is given (optional, default `false`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
@@ -1792,11 +1793,11 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 **Extends RepositoryOwner(BaseProvider)**
 
-Provider holding a single set of repositories (no repository groups)
+Provider holding a single set of repositories (no repository groups).
 
 ### repository
 
-Lookup a repository in the provider and all of its repository groups
+Lookup a repository in the provider and all of its repository groups.
 
 #### Parameters
 
@@ -1806,7 +1807,7 @@ Returns **[Repository](#repository)**
 
 ### repositoryGroup
 
-Get a single Group
+Get a single group.
 
 #### Parameters
 
@@ -1816,7 +1817,7 @@ Returns **[RepositoryGroup](#repositorygroup)** deliver the one and only present
 
 ### repositoryGroups
 
-List groups
+List groups.
 
 #### Parameters
 
