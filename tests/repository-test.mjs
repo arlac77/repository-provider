@@ -137,3 +137,18 @@ test("defaultOption", t => {
 });
 
 test(repositoryEqualityTest, new SingleGroupProvider(), "r1", "r2");
+
+test("reposotory entry", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.addRepository("r1");
+
+  new Branch(repository, "master");
+
+  await t.throwsAsync(async () => repository.entry("aFile"), {
+    instanceOf: Error,
+    message: `No such entry 'aFile'`
+  });
+
+  t.is(await repository.maybeEntry("aFile"), undefined);
+});
+
