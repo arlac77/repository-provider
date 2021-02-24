@@ -441,6 +441,7 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * Get type of the repository.
    * @return {string} 'git'
    */
   get type() {
@@ -448,7 +449,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Get sha of a ref
+   * Get sha of a ref.
    * @param {string} ref
    * @return {string} sha of the ref
    */
