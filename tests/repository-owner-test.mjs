@@ -10,7 +10,8 @@ import {
   Branch,
   Tag,
   Hook,
-  PullRequest
+  PullRequest,
+  Milestone
 } from "repository-provider";
 
 class MyOwnerClass extends RepositoryOwner(NamedObject) {
@@ -43,12 +44,14 @@ const allTags = ["r1#1.0.0", "r1#2.0.0", "r1#3.0.0"];
 const allRepositories = [...new Set(withoutBranch(allBranches)) /*,"r3"*/];
 const allHooks = ["r1/h1", "r1/h2"];
 const allPullRequests = ["r1/p1", "r1/p2"];
+const allMilestones = ["r1/m1", "r1/m2"];
 
 function createOwner(
   branches = allBranches,
   tags = allTags,
   pullRequests = allPullRequests,
-  hooks = allHooks
+  hooks = allHooks,
+  milestones = allMilestones
 ) {
   const bm = {};
   const owner = new MyOwnerClass();
@@ -77,6 +80,11 @@ function createOwner(
     const branch = bm[b];
     const pr = new PullRequest( branch, undefined, p);
     branch.repository._addPullRequest(pr);
+  }
+
+  for (const name of milestones) {
+    const [r, b] = name.split("/");
+    new Milestone(owner.addRepository(r), b);
   }
 
   //console.log([...owner._repositories.get("r1")._pullRequests.keys()]);

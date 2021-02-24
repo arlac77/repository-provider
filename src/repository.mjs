@@ -16,6 +16,7 @@ import { NamedObject } from "./named-object.mjs";
  * @property {string} [id] from options.id
  * @property {Map<string,Branch>} branches
  * @property {Map<string,PullRequest>} pullRequests
+ * @property {Map<string,Milestone>} milestones
  */
 export class Repository extends NamedObject {
   /**
@@ -438,6 +439,10 @@ export class Repository extends NamedObject {
         return hook;
       }
     }
+  }
+
+  _addMilestone(milestone) {
+    this._milestones.set(milestone.name, milestone);
   }
 
   /**

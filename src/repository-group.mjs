@@ -36,7 +36,7 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   }
 
   /**
-   * Map attributes between external and internal representation
+   * Map attributes between external and internal representation.
    */
   static get attributeMapping() {
     return {};
