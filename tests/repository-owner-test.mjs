@@ -174,3 +174,8 @@ test(ownerTypeLookupTest, "tag", createOwner(), undefined, undefined);
 
 test(ownerTypeLookupTest, "pullRequest", createOwner(), undefined, undefined);
 test(ownerTypeLookupTest, "pullRequest", createOwner(), "r1/p1", "r1/p1");
+
+
+test(ownerTypeLookupTest, "application", createOwner(), undefined, undefined);
+test(ownerTypeLookupTest, "milestone", createOwner(), undefined, undefined);
+test(ownerTypeLookupTest, "project", createOwner(), undefined, undefined);
