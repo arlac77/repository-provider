@@ -30,6 +30,7 @@ test("repository init with options", async t => {
   t.is(repository.isTemplate, false);
   t.is(repository.isDisabled, false);
   t.is(repository.toString(), "r1");
+  t.is(await repository.refId('branches/master'), undefined);
   t.deepEqual(repository.toJSON(), {
     defaultBranchName: "master",
     description: "a description",
