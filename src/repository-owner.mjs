@@ -132,7 +132,7 @@ export function RepositoryOwner(base) {
 
     /**
      * Create a new {@link Repository} in the provider.
-     * If there is already if repository for the given name it will be returned
+     * If there is already if repository for the given name it will be returned.
      * @param {string} name
      * @param {Object} options
      * @return {Promise<Repository>} newly created repository (if not already present)
