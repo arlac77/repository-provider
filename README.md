@@ -667,6 +667,7 @@ Returns **Provider** this
 ### toJSON
 
 List all defined entries from attributes.
+return {object}
 
 ### repositoryClass
 
@@ -1711,11 +1712,13 @@ Returns **[Hook](#hook)** for the given id
 
 ### type
 
+Get type of the repository.
+
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'git'
 
 ### refId
 
-Get sha of a ref
+Get sha of a ref.
 
 #### Parameters
 
