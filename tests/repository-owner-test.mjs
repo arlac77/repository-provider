@@ -11,7 +11,8 @@ import {
   Tag,
   Hook,
   PullRequest,
-  Milestone
+  Milestone,
+  Project
 } from "repository-provider";
 
 class MyOwnerClass extends RepositoryOwner(NamedObject) {
@@ -45,13 +46,15 @@ const allRepositories = [...new Set(withoutBranch(allBranches)) /*,"r3"*/];
 const allHooks = ["r1/h1", "r1/h2"];
 const allPullRequests = ["r1/p1", "r1/p2"];
 const allMilestones = ["r1/m1", "r1/m2"];
+const allProjects = ["r1/p1", "r1/p2"];
 
 function createOwner(
   branches = allBranches,
   tags = allTags,
   pullRequests = allPullRequests,
   hooks = allHooks,
-  milestones = allMilestones
+  milestones = allMilestones,
+  projects = allProjects
 ) {
   const bm = {};
   const owner = new MyOwnerClass();
@@ -85,6 +88,11 @@ function createOwner(
   for (const name of milestones) {
     const [r, b] = name.split("/");
     new Milestone(owner.addRepository(r), b);
+  }
+
+  for (const name of projects) {
+    const [r, b] = name.split("/");
+    new Project(owner.addRepository(r), b);
   }
 
   //console.log([...owner._repositories.get("r1")._pullRequests.keys()]);
@@ -183,7 +191,11 @@ test(ownerTypeLookupTest, "tag", createOwner(), undefined, undefined);
 test(ownerTypeLookupTest, "pullRequest", createOwner(), undefined, undefined);
 test(ownerTypeLookupTest, "pullRequest", createOwner(), "r1/p1", "r1/p1");
 
-
 test(ownerTypeLookupTest, "application", createOwner(), undefined, undefined);
+
+
 test(ownerTypeLookupTest, "milestone", createOwner(), undefined, undefined);
+test.skip(ownerTypeLookupTest, "milestone", createOwner(), "r1/m1", "r1/m1");
+
 test(ownerTypeLookupTest, "project", createOwner(), undefined, undefined);
+test.skip(ownerTypeLookupTest, "project", createOwner(), "r1/p1", "r1/p1");

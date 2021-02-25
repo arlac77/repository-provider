@@ -68,6 +68,7 @@ export class Repository extends NamedObject {
       _tags: { value: new Map() },
       _pullRequests: { value: new Map() },
       _milestones: { value: new Map() },
+      _projects: { value: new Map() },
       _hooks: { value: [] }
     });
   }
@@ -443,6 +444,20 @@ export class Repository extends NamedObject {
 
   _addMilestone(milestone) {
     this._milestones.set(milestone.name, milestone);
+  }
+
+  async milestone(name) {
+    //console.log("MILESTONE", name, [...this._milestones.keys()]);
+    return this._milestones.get(name);
+  }
+
+  _addProject(project) {
+    this._projects.set(project.name, project);
+  }
+
+  async project(name) {
+    //console.log("PROJECT", name, [...this._projects.keys()]);
+    return this._projects.get(name);
   }
 
   /**
