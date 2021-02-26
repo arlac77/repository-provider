@@ -688,7 +688,7 @@ Returns **Class** pull request class used by the Provider
 ### optionsFromEnvironment
 
 Extract options suitable for the constructor
-form the given set of environment variables
+form the given set of environment variables.
 
 #### Parameters
 
