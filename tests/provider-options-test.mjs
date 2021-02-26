@@ -86,6 +86,8 @@ test(
 test("initialize", t => {
   const provider = MyProvider.initialize(undefined, { GITEA_TOKEN: "abc" });
   t.is(provider.name, "MyProvider");
+  t.is(provider.authentication.token, "abc");
+
   t.is(MyProvider.initialize(undefined, undefined), undefined);
 });
 
@@ -109,4 +111,11 @@ test("provider with priority", t => {
 test("provider with name", t => {
   const sp = new BaseProvider({ name: "myName" });
   t.is(sp.name, "myName");
+});
+
+
+test.skip("initialize several", t => {
+  const provider = MyProvider.initialize({ instance: "GITEA2" }, { GITEA_TOKEN: "abc", GITEA2_TOKEN: "cde" });
+  t.is(provider.name, "MyProvider");
+  t.is(provider.authentication.token, "cde");
 });
