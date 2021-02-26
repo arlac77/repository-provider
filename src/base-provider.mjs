@@ -19,7 +19,7 @@ import { Hook } from "./hook.mjs";
 export class BaseProvider {
   /**
    * Extract options suitable for the constructor
-   * form the given set of environment variables
+   * form the given set of environment variables.
    * @param {Object} env taken from process.env
    * @return {Object} undefined if no suitable environment variables have been found
    */
