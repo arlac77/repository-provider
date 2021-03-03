@@ -18,32 +18,49 @@ import { Hook } from "./hook.mjs";
  */
 export class BaseProvider {
   /**
+   * @return {string} identifier for environment options
+   */
+  static get instanceIdentifier() {
+    return "";
+  }
+
+  /**
    * Extract options suitable for the constructor
    * form the given set of environment variables.
    * @param {Object} env taken from process.env
+   * @param {string} instanceIdentifier
    * @return {Object} undefined if no suitable environment variables have been found
    */
-  static optionsFromEnvironment(env) {
-    if (env === undefined) {
-      return undefined;
-    }
-
-    const attributes = this.attributes;
+  static optionsFromEnvironment(
+    env,
+    instanceIdentifier = this.instanceIdentifier
+  ) {
     let options;
 
-    for (let [envName, value] of Object.entries(env)) {
-      for (const [name, attribute] of Object.entries(attributes)) {
-        if (asArray(attribute.env).find(e => e === envName)) {
-          if (options === undefined) {
-            options = {};
+    if (env !== undefined) {
+      const attributes = this.attributes;
+
+      for (let [envName, value] of Object.entries(env)) {
+        for (const [name, attribute] of Object.entries(attributes)) {
+          if (
+            asArray(attribute.env).find(
+              e =>
+                e.replace(
+                  "{{instanceIdentifier}}",
+                  () => instanceIdentifier
+                ) === envName
+            )
+          ) {
+            if (options === undefined) {
+              options = {};
+            }
+            options[name] = value;
+            Object.assign(options, attribute.additionalAttributes);
+            break;
           }
-          options[name] = value;
-          Object.assign(options, attribute.additionalAttributes);
-          break;
         }
       }
     }
-
     return options;
   }
 
@@ -94,12 +111,19 @@ export class BaseProvider {
   /**
    * Creates a new provider for a given set of options.
    * @param {Object} options additional options
+   * @param {string?} options.instanceIdentifier
    * @param {Object} env taken from process.env
    * @return {Provider} newly created provider or undefined if options are not sufficient to construct a provider
    */
-  static initialize(options, env) {
-    options = { ...options, ...this.optionsFromEnvironment(env) };
-    return this.areOptionsSufficcient(options) ? new this(options) : undefined;
+  static initialize(options = {}, env) {
+    options = {
+      ...options,
+      ...this.optionsFromEnvironment(env, options.instanceIdentifier)
+    };
+
+    if (this.areOptionsSufficcient(options)) {
+      return new this(options);
+    }
   }
 
   constructor(options, properties) {
@@ -357,7 +381,7 @@ export class BaseProvider {
 
   /**
    * List all defined entries from attributes.
-   * return {object} 
+   * return {object}
    */
   toJSON() {
     const json = { name: this.name };
@@ -404,7 +428,7 @@ export class BaseProvider {
   info(...args) {
     return this.messageDestination.info(...args);
   }
-  
+
   warn(...args) {
     return this.messageDestination.warn(...args);
   }

@@ -9,7 +9,31 @@ test("provider default env options", t => {
   t.true(BaseProvider.areOptionsSufficcient());
 });
 
-class MyProvider extends BaseProvider {
+class MyProviderA extends BaseProvider {
+  static get instanceIdentifier() {
+    return "BITBUCKET_";
+  }
+
+  static get attributes() {
+    return {
+      ...super.attributes,
+      "authentication.username": {
+        env: "{{instanceIdentifier}}USERNAME"
+      },
+      "authentication.password": {
+        env: "{{instanceIdentifier}}PASSWORD",
+        additionalAttributes: { "authentication.type": "basic" },
+        private: true
+      }
+    };
+  }
+}
+
+class MyProviderB extends BaseProvider {
+  static get instanceIdentifier() {
+    return "GITEA_";
+  }
+
   static get attributes() {
     return {
       ...super.attributes,
@@ -18,21 +42,13 @@ class MyProvider extends BaseProvider {
         parse: value => value.split(/\s+/)
       },
       "authentication.token": {
-        env: ["GITEA_TOKEN", "XXX_TOKEN"],
+        env: ["{{instanceIdentifier}}TOKEN", "XXX_TOKEN"],
         additionalAttributes: { "authentication.type": "token" },
         private: true,
         mandatory: true
       },
       api: {
-        env: "GITEA_API"
-      },
-      "authentication.username": {
-        env: "BITBUCKET_USERNAME"
-      },
-      "authentication.password": {
-        env: "BITBUCKET_PASSWORD",
-        additionalAttributes: { "authentication.type": "basic" },
-        private: true
+        env: "{{instanceIdentifier}}API"
       }
     };
   }
@@ -40,7 +56,7 @@ class MyProvider extends BaseProvider {
 
 test(
   providerOptionsFromEnvironmentTest,
-  MyProvider,
+  MyProviderB,
   {
     GITEA_API: "http://somewhere/api",
     GITEA_TOKEN: "abc",
@@ -57,7 +73,7 @@ test(
 
 test(
   providerOptionsFromEnvironmentTest,
-  MyProvider,
+  MyProviderB,
   {
     XXX_TOKEN: "abc"
   },
@@ -70,7 +86,7 @@ test(
 
 test(
   providerOptionsFromEnvironmentTest,
-  MyProvider,
+  MyProviderA,
   {
     BITBUCKET_USERNAME: "aName",
     BITBUCKET_PASSWORD: "aSecret"
@@ -80,15 +96,15 @@ test(
     "authentication.password": "aSecret",
     "authentication.type": "basic"
   },
-  false
+  true
 );
 
 test("initialize", t => {
-  const provider = MyProvider.initialize(undefined, { GITEA_TOKEN: "abc" });
-  t.is(provider.name, "MyProvider");
+  const provider = MyProviderB.initialize(undefined, { GITEA_TOKEN: "abc" });
+  t.is(provider.name, "MyProviderB");
   t.is(provider.authentication.token, "abc");
 
-  t.is(MyProvider.initialize(undefined, undefined), undefined);
+  t.is(MyProviderB.initialize(undefined, undefined), undefined);
 });
 
 test("new provider", t => {
@@ -113,9 +129,20 @@ test("provider with name", t => {
   t.is(sp.name, "myName");
 });
 
+test("initialize several with instanceIdentifier", t => {
+  const env = { GITEA_TOKEN: "abc", GITEA2_TOKEN: "cde" };
 
-test.skip("initialize several", t => {
-  const provider = MyProvider.initialize({ instance: "GITEA2" }, { GITEA_TOKEN: "abc", GITEA2_TOKEN: "cde" });
-  t.is(provider.name, "MyProvider");
-  t.is(provider.authentication.token, "cde");
+  const provider1 = MyProviderB.initialize(
+    { instanceIdentifier: "GITEA_" },
+    env
+  );
+  t.is(provider1.name, "MyProviderB");
+  t.is(provider1.authentication.token, "abc");
+
+  const provider2 = MyProviderB.initialize(
+    { instanceIdentifier: "GITEA2_" },
+    env
+  );
+  t.is(provider2.name, "MyProviderB");
+  t.is(provider2.authentication.token, "cde");
 });
