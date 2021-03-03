@@ -108,6 +108,7 @@ console.log(await readme.getString());
     -   [branchClass](#branchclass)
     -   [entryClass](#entryclass)
     -   [pullRequestClass](#pullrequestclass)
+    -   [instanceIdentifier](#instanceidentifier)
     -   [optionsFromEnvironment](#optionsfromenvironment)
         -   [Parameters](#parameters-21)
     -   [areOptionsSufficcient](#areoptionssufficcient)
@@ -685,6 +686,10 @@ Returns **Class** entry class used by the Provider
 
 Returns **Class** pull request class used by the Provider
 
+### instanceIdentifier
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** identifier for environment options
+
 ### optionsFromEnvironment
 
 Extract options suitable for the constructor
@@ -693,6 +698,7 @@ form the given set of environment variables.
 #### Parameters
 
 -   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
+-   `instanceIdentifier` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `this.instanceIdentifier`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** undefined if no suitable environment variables have been found
 
@@ -712,7 +718,8 @@ Creates a new provider for a given set of options.
 
 #### Parameters
 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** additional options
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** additional options (optional, default `{}`)
+    -   `options.instanceIdentifier` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 -   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
 
 Returns **Provider** newly created provider or undefined if options are not sufficient to construct a provider
