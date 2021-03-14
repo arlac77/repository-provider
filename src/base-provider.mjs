@@ -99,7 +99,8 @@ export class BaseProvider {
       messageDestination: {
         type: "object",
         default: console,
-        writable: true
+        writable: true,
+        private: true
       }
     };
   }
@@ -386,8 +387,8 @@ export class BaseProvider {
   toJSON() {
     const json = { name: this.name };
 
-    Object.keys(this.constructor.attributes).forEach(k => {
-      if (this[k] !== undefined && typeof this[k] !== "function") {
+    Object.entries(this.constructor.attributes).forEach(([k,v]) => {
+      if (!v.private && this[k] !== undefined && typeof this[k] !== "function") {
         json[k] = this[k];
       }
     });
