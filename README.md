@@ -1427,24 +1427,25 @@ Abstract repository
 -   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.description
 -   `id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.id
 -   `branches` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Branch](#branch)>** 
+-   `tags` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Tag](#tag)>** 
 -   `pullRequests` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [PullRequest](#pullrequest)>** 
 -   `milestones` **[Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Milestone](#milestone)>** 
 
 ### fullName
 
-Full repository name within the provider
+Full repository name within the provider.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** full repo name
 
 ### slug
 
-url name of the repo
+URL name of the repo.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### provider
 
-The owners provider
+The owners provider.
 
 Returns **Provider** 
 
@@ -1456,7 +1457,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### equals
 
-Check for equality
+Check for equality.
 
 #### Parameters
 
@@ -1466,7 +1467,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### entry
 
-Lookup entries form the head of the default branch
+Lookup entries form the head of the default branch.
 [Branch#entry](Branch#entry)
 
 #### Parameters
@@ -1477,7 +1478,7 @@ Returns **Entry**
 
 ### entries
 
-List entries of the default branch
+List entries of the default branch.
 
 #### Parameters
 
@@ -1487,7 +1488,7 @@ Returns **Entry** all matching entries in the branch
 
 ### maybeEntry
 
-Get exactly one matching entry by name or undefined if no such entry is found
+Get exactly one matching entry by name or undefined if no such entry is found.
 
 #### Parameters
 
@@ -1497,13 +1498,13 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### urls
 
-urls to access the repo
+urls to access the repo.
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
 ### url
 
-Preffered url to access the repo
+Preffered url to access the repo.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -1527,19 +1528,19 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### condensedName
 
-Name without owner
+Name without owner.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
 
 ### isArchived
 
-By default we are not archived
+By default we are not archived.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
 ### isLocked
 
-By default we are not locked
+By default we are not locked.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
@@ -1557,7 +1558,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### branch
 
-Lookup branch by name
+Lookup branch by name.
 
 #### Parameters
 
@@ -1567,7 +1568,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### defaultBranch
 
-Lookup the default branch
+Lookup the default branch.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Branch](#branch)>** branch named after defaultBranchName
 
@@ -1581,7 +1582,7 @@ Returns **Iterator&lt;[Branch](#branch)>** of all branches
 
 ### createBranch
 
-Create a new [Branch](#branch) by cloning a given source branch
+Create a new [Branch](#branch) by cloning a given source branch.
 
 #### Parameters
 
@@ -1605,7 +1606,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### deleteBranch
 
-Delete a [Branch](#branch)
+Delete a [Branch](#branch).
 
 #### Parameters
 
@@ -1622,6 +1623,8 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 Returns **Iterator&lt;[Tag](#tag)>** of all tags
 
 ### tag
+
+Get a Tag.
 
 #### Parameters
 
@@ -1668,7 +1671,7 @@ Returns **Iterator&lt;[PullRequest](#pullrequest)>** of all pull requests
 
 ### pullRequest
 
-The @{link PullRequest} for a given name
+The @{link PullRequest} for a given name.
 
 #### Parameters
 
@@ -1678,7 +1681,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### deletePullRequest
 
-Delete a [PullRequest](#pullrequest)
+Delete a [PullRequest](#pullrequest).
 
 #### Parameters
 
@@ -1688,7 +1691,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### addHook
 
-Add a hook
+Add a Hook.
 
 #### Parameters
 
@@ -1696,7 +1699,7 @@ Add a hook
 
 ### createHook
 
-Add a hook
+Add a new Hook.
 
 #### Parameters
 
@@ -1704,13 +1707,13 @@ Add a hook
 
 ### hooks
 
-List hooks
+List hooks.
 
 Returns **[Hook](#hook)** all hooks of the repository
 
 ### hook
 
-Get Hook
+Get a Hook.
 
 #### Parameters
 
