@@ -15,6 +15,7 @@ import { NamedObject } from "./named-object.mjs";
  * @property {string} [description] from options.description
  * @property {string} [id] from options.id
  * @property {Map<string,Branch>} branches
+ * @property {Map<string,Tag>} tags 
  * @property {Map<string,PullRequest>} pullRequests
  * @property {Map<string,Milestone>} milestones
  */
@@ -74,7 +75,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Full repository name within the provider
+   * Full repository name within the provider.
    * @return {string} full repo name
    */
   get fullName() {
@@ -86,7 +87,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * url name of the repo
+   * URL name of the repo.
    * @return {string}
    */
   get slug() {
@@ -94,7 +95,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * The owners provider
+   * The owners provider.
    * @return {Provider}
    */
   get provider() {
@@ -110,7 +111,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Check for equality
+   * Check for equality.
    * @param {Repository} other
    * @return {boolean} true if name and provider are equal
    */
@@ -125,7 +126,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Lookup entries form the head of the default branch
+   * Lookup entries form the head of the default branch.
    * {@link Branch#entry}
    * @return {Entry}
    */
@@ -134,7 +135,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * List entries of the default branch
+   * List entries of the default branch.
    * @param {string[]} matchingPatterns
    * @return {Entry} all matching entries in the branch
    */
@@ -143,7 +144,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Get exactly one matching entry by name or undefined if no such entry is found
+   * Get exactly one matching entry by name or undefined if no such entry is found.
    * @param {string} name
    * @return {Promise<Entry>}
    */
@@ -152,7 +153,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * urls to access the repo
+   * urls to access the repo.
    * @return {string[]}
    */
   get urls() {
@@ -160,7 +161,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Preffered url to access the repo
+   * Preffered url to access the repo.
    * @return {string}
    */
   get url() {
@@ -192,7 +193,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Name without owner
+   * Name without owner.
    * @return {string} name
    */
   get condensedName() {
@@ -200,7 +201,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * By default we are not archived
+   * By default we are not archived.
    * @return {boolean} false
    */
   get isArchived() {
@@ -208,7 +209,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * By default we are not locked
+   * By default we are not locked.
    * @return {boolean} false
    */
   get isLocked() {
@@ -232,7 +233,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Lookup branch by name
+   * Lookup branch by name.
    * @param {string} name
    * @return {Promise<Branch>}
    */
@@ -242,7 +243,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Lookup the default branch
+   * Lookup the default branch.
    * @return {Promise<Branch>} branch named after defaultBranchName
    */
   get defaultBranch() {
@@ -260,7 +261,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Create a new {@link Branch} by cloning a given source branch
+   * Create a new {@link Branch} by cloning a given source branch.
    * @param {string} name of the new branch
    * @param {Branch} source branch defaults to the defaultBranch
    * @param {Object} options
@@ -292,7 +293,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Delete a {@link Branch}
+   * Delete a {@link Branch}.
    * @param {string} name of the branch
    * @return {Promise<undefined>}
    */
@@ -317,6 +318,7 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * Get a Tag.
    * @param {string} name
    * @return {Tag}
    */
@@ -379,7 +381,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * The @{link PullRequest} for a given name
+   * The @{link PullRequest} for a given name.
    * @param {string} name
    * @return {Promise<PullRequest>}
    */
@@ -389,7 +391,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Delete a {@link PullRequest}
+   * Delete a {@link PullRequest}.
    * @param {string} name
    * @return {Promise}
    */
@@ -398,7 +400,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Add a hook
+   * Add a Hook.
    * @param {Hook} hook
    */
   addHook(hook) {
@@ -410,7 +412,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Add a hook
+   * Add a new Hook.
    * @param {Hook} hook
    */
   async createHook(hook) {
@@ -418,7 +420,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * List hooks
+   * List hooks.
    * @return {Hook} all hooks of the repository
    */
   async *hooks() {
@@ -429,7 +431,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Get Hook
+   * Get a Hook.
    * @param {string|number} id
    * @return {Hook} for the given id
    */
