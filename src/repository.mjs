@@ -153,7 +153,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * urls to access the repo.
+   * Urls to access the repo.
    * @return {string[]}
    */
   get urls() {
