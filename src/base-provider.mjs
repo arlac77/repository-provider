@@ -222,7 +222,7 @@ export class BaseProvider {
    * base, group, repository and branch.
    * @param {string} name
    * @param {boolean} groupFocus if only one path component is given
-   * @return {Object}
+   * @return {Object} with separated attributes
    */
   parseName(name, groupFocus = false) {
     const result = {};
