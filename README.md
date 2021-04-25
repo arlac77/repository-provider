@@ -526,11 +526,11 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 All possible base urls.
 For github something like:
 
-*   git@github.com
+*   <git@github.com>
 *   git://github.com
 *   git+ssh://github.com
-*   https://github.com
-*   git+https://github.com
+*   <https://github.com>
+*   git+<https://github.com>
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** common base urls of all repositories
 
