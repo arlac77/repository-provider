@@ -15,7 +15,7 @@ import { NamedObject } from "./named-object.mjs";
  * @property {string} [description] from options.description
  * @property {string} [id] from options.id
  * @property {Map<string,Branch>} branches
- * @property {Map<string,Tag>} tags 
+ * @property {Map<string,Tag>} tags
  * @property {Map<string,PullRequest>} pullRequests
  * @property {Map<string,Milestone>} milestones
  */
@@ -79,9 +79,7 @@ export class Repository extends NamedObject {
    * @return {string} full repo name
    */
   get fullName() {
-    return this.owner === this.provider ||
-      this.owner.name === undefined ||
-      this.owner.name === ""
+    return this.owner === this.provider || this.owner.name === undefined
       ? this.name
       : [this.owner.name, this.name].join("/");
   }
@@ -217,7 +215,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * By default we are not disabled
+   * By default we are not disabled.
    * @return {boolean} false
    */
   get isDisabled() {
@@ -225,7 +223,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * By default we are not a template
+   * By default we are not a template.
    * @return {boolean} false
    */
   get isTemplate() {
