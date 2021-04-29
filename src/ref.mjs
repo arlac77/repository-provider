@@ -24,7 +24,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * Check for equality
+   * Check for equality.
    * @param {Branch} other
    * @return {boolean} true if name and repository are equal
    */
@@ -45,7 +45,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * Get sha of a ref
+   * Get sha of a ref.
    * @param {string} ref
    * @return {string} sha of the ref
    */
@@ -54,14 +54,14 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * List entries of the branch
+   * List entries of the branch.
    * @param {string[]} matchingPatterns
    * @return {ConentEntry} all matching entries in the branch
    */
   async *entries(matchingPatterns) {}
 
   /**
-   * List all entries of the branch
+   * List all entries of the branch.
    * @return {asyncIterator<ConentEntry>} all entries in the branch
    */
   async *[Symbol.asyncIterator]() {
@@ -69,7 +69,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * Get exactly one matching entry by name or undefine if no such entry is found
+   * Get exactly one matching entry by name or undefine if no such entry is found.
    * @param {string} name
    * @return {Promise<ConentEntry>}
    */
@@ -78,7 +78,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * Get exactly one matching entry by name (throws if entry is not found)
+   * Get exactly one matching entry by name (throws if entry is not found).
    * @param {string} name
    * @return {Promise<ConentEntry>}
    */
@@ -91,7 +91,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * The provider we live in
+   * The provider we live in.
    * @return {Provider}
    */
   get provider() {
@@ -99,7 +99,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * Branch owner
+   * Branch owner.
    * By default we provide the repository owner
    * @see {@link Repository#owner}
    * @return {string}
@@ -112,8 +112,8 @@ export class Ref extends NamedObject {
     return this.repository.slug;
   }
 
-    /**
-   * Repository and branch name combined
+  /**
+   * Repository and branch name combined.
    * @return {string} 'repo#branch'
    */
   get fullName() {
@@ -194,9 +194,12 @@ export class Ref extends NamedObject {
    *
    * @return true if not {@link isArchived} and {@link isDisabled} and {@link isLocked}
    */
-  get isWritable()
-  {
-    return !this.isArchived && !this.isDisabled && !this.isLocked && !this.isProtected;
+  get isWritable() {
+    return (
+      !this.isArchived &&
+      !this.isDisabled &&
+      !this.isLocked &&
+      !this.isProtected
+    );
   }
-
 }
