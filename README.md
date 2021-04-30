@@ -1189,7 +1189,7 @@ Base for Branch and Tag
 
 ### equals
 
-Check for equality
+Check for equality.
 
 #### Parameters
 
@@ -1205,7 +1205,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### refId
 
-Get sha of a ref
+Get sha of a ref.
 
 #### Parameters
 
@@ -1215,7 +1215,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### entries
 
-List entries of the branch
+List entries of the branch.
 
 #### Parameters
 
@@ -1225,13 +1225,13 @@ Returns **ConentEntry** all matching entries in the branch
 
 ### asyncIterator
 
-List all entries of the branch
+List all entries of the branch.
 
 Returns **asyncIterator\<ConentEntry>** all entries in the branch
 
 ### maybeEntry
 
-Get exactly one matching entry by name or undefine if no such entry is found
+Get exactly one matching entry by name or undefine if no such entry is found.
 
 #### Parameters
 
@@ -1241,7 +1241,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### entry
 
-Get exactly one matching entry by name (throws if entry is not found)
+Get exactly one matching entry by name (throws if entry is not found).
 
 #### Parameters
 
@@ -1251,7 +1251,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### provider
 
-The provider we live in
+The provider we live in.
 
 Returns **Provider** 
 
@@ -1259,14 +1259,14 @@ Returns **Provider**
 
 *   **See**: [Repository#owner](Repository#owner)
 
-Branch owner
+Branch owner.
 By default we provide the repository owner
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### fullName
 
-Repository and branch name combined
+Repository and branch name combined.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repo#branch'
 
@@ -1544,13 +1544,13 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### isDisabled
 
-By default we are not disabled
+By default we are not disabled.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
 ### isTemplate
 
-By default we are not a template
+By default we are not a template.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
