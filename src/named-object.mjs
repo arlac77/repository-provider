@@ -24,6 +24,10 @@ export class NamedObject extends BaseObject {
     return super.equals(other) && this.name === other.name;
   }
 
+  /**
+   * Beatified name use for human displaying only.
+   * @return {string} human readable name
+   */
   get displayName() {
     return this.name;
   }
