@@ -168,6 +168,7 @@ console.log(await readme.getString());
     *   [Properties](#properties-7)
     *   [equals](#equals-3)
         *   [Parameters](#parameters-42)
+    *   [displayName](#displayname)
     *   [toJSON](#tojson-2)
 *   [Project](#project)
     *   [Parameters](#parameters-43)
@@ -1005,6 +1006,12 @@ Check for equality
 *   `other` **[NamedObject](#namedobject)** 
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal
+
+### displayName
+
+Beatified name use for human displaying only.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** human readable name
 
 ### toJSON
 
