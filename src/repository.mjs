@@ -447,7 +447,6 @@ export class Repository extends NamedObject {
   }
 
   async milestone(name) {
-    //console.log("MILESTONE", name, [...this._milestones.keys()]);
     return this._milestones.get(name);
   }
 
@@ -456,7 +455,6 @@ export class Repository extends NamedObject {
   }
 
   async project(name) {
-    //console.log("PROJECT", name, [...this._projects.keys()]);
     return this._projects.get(name);
   }
 

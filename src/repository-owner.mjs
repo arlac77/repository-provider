@@ -72,7 +72,6 @@ export function RepositoryOwner(base) {
       }
       patterns = patterns.map(p => p.replace(/#.*$/, ""));
 
-      //console.log("repositories", patterns);
       await this.initializeRepositories();
       yield* matcher(
         this._repositories.values(),
