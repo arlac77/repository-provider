@@ -34,7 +34,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
 }
 
 /**
- * Loops over names and executes stripBaseName
+ * Loops over names and executes stripBaseName.
  *
  * @param {string[]} names
  * @param {*} repositoryBases
@@ -51,8 +51,8 @@ export function stripBaseNames(names, repositoryBases, whenFound) {
 }
 
 /**
- * Find a new branch name for a given pattern
- * '*' will be replaced by a number
+ * Find a new branch name for a given pattern.
+ * '*' will be replaced by a number.
  * 'something/*' will get to something/1 something/2 ...
  * @param {Repository} repository
  * @param {string} pattern
@@ -60,7 +60,7 @@ export function stripBaseNames(names, repositoryBases, whenFound) {
 export async function generateBranchName(repository, pattern) {
   let n = 1;
 
-  for await (const b of repository.branches(pattern)) {
+  for await (const b /* UNUSED_DECL*/ of repository.branches(pattern)) {
     n++;
   }
 
