@@ -42,7 +42,7 @@ export class BaseObject {
   }
 
   /**
-   * Map attributes between external and internal representation
+   * Map attributes between external and internal representation.
    * @return {Object}
    */
   static get attributeMapping() {

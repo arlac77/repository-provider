@@ -38,7 +38,7 @@ export class Hook extends BaseObject {
   }
   
   /**
-   * Check for equality
+   * Check for equality.
    * @param {Hook} other
    * @return {boolean} true if name and repository are equal
    */
@@ -47,7 +47,7 @@ export class Hook extends BaseObject {
   }
 
   /**
-   * provide name, events and all defined attributes
+   * Provide name, events and all defined attributes.
    */
   toJSON() {
     return optionJSON(this, { id: this.id, events: [...this.events] });
