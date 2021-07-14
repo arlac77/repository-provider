@@ -465,7 +465,7 @@ options
 
 ### attributeMapping
 
-Map attributes between external and internal representation
+Map attributes between external and internal representation.
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
@@ -888,7 +888,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### equals
 
-Check for equality
+Check for equality.
 
 #### Parameters
 
@@ -898,7 +898,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### toJSON
 
-provide name, events and all defined attributes
+Provide name, events and all defined attributes.
 
 ## Issue
 
@@ -1886,7 +1886,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## stripBaseNames
 
-Loops over names and executes stripBaseName
+Loops over names and executes stripBaseName.
 
 ### Parameters
 
@@ -1898,8 +1898,8 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 
 ## generateBranchName
 
-Find a new branch name for a given pattern
-'*' will be replaced by a number
+Find a new branch name for a given pattern.
+'*' will be replaced by a number.
 'something/*' will get to something/1 something/2 ...
 
 ### Parameters
