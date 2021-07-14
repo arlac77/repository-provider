@@ -11,6 +11,7 @@ jobs:
           - windows-latest
         node-version:
           - 14.17.3
+          - 16.5.0
     steps:
       - uses: actions/checkout@v2
       - name: Build / Test Node ${{ matrix.node-version }}
