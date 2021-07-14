@@ -2,6 +2,7 @@ import { optionJSON } from "./attribute.mjs";
 import { BaseObject } from "./base-object.mjs";
 
 /**
+ * Object with a name.
  * @param {string} name
  * @param {Object} options
  *
@@ -16,7 +17,7 @@ export class NamedObject extends BaseObject {
   }
 
   /**
-   * Check for equality
+   * Check for equality.
    * @param {NamedObject} other
    * @return {boolean} true if names are equal
    */
@@ -37,7 +38,7 @@ export class NamedObject extends BaseObject {
   }
 
   /**
-   * Provide name and all defined attributes
+   * Provide name and all defined attributes.
    */
   toJSON() {
     return optionJSON(this, {
