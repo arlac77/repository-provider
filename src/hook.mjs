@@ -2,6 +2,12 @@ import { optionJSON } from "./attribute.mjs";
 import { BaseObject } from "./base-object.mjs";
 
 /**
+ * Repository hook.
+ * @param {Repository} repository
+ * @param {string} id
+ * @param {Set<string>} events
+ * @param {Object} options
+ * 
  * @property {Repository} repository
  * @property {URL} url
  * @property {Set<string>} events
@@ -36,7 +42,7 @@ export class Hook extends BaseObject {
   get displayName() {
     return this.id;
   }
-  
+
   /**
    * Check for equality.
    * @param {Hook} other
