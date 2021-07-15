@@ -263,6 +263,7 @@ console.log(await readme.getString());
     *   [isLocked](#islocked-1)
     *   [isDisabled](#isdisabled-1)
     *   [isTemplate](#istemplate)
+    *   [update](#update)
     *   [branch](#branch-1)
         *   [Parameters](#parameters-62)
     *   [defaultBranch](#defaultbranch)
@@ -873,12 +874,14 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 **Extends BaseObject**
 
+Repository hook.
+
 ### Parameters
 
-*   `repository`  
-*   `id`  
-*   `events`   (optional, default `new Set(["*"])`)
-*   `options`  
+*   `repository` **[Repository](#repository)** 
+*   `id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `events` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**  (optional, default `new Set(["*"])`)
+*   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### Properties
 
@@ -987,6 +990,8 @@ Returns **[RepositoryGroup](#repositorygroup)**
 
 **Extends BaseObject**
 
+Object with a name.
+
 ### Parameters
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
@@ -999,7 +1004,7 @@ Returns **[RepositoryGroup](#repositorygroup)**
 
 ### equals
 
-Check for equality
+Check for equality.
 
 #### Parameters
 
@@ -1015,7 +1020,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### toJSON
 
-Provide name and all defined attributes
+Provide name and all defined attributes.
 
 ## Project
 
@@ -1560,6 +1565,10 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 By default we are not a template.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
+
+### update
+
+Updates repositroy attributes.
 
 ### branch
 
