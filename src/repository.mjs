@@ -342,7 +342,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Create a pull request (or deliver an already present for thefiven name)
+   * Create a pull request (or deliver an already present for thefiven name).
    * @param {string} name of the pr
    * @param {Branch} source branch
    * @param {Object} options
@@ -354,7 +354,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Add a pull request
+   * Add a pull request.
    * @param {string} name
    * @param {Branch} source
    * @param {Object} options
@@ -374,7 +374,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Deliver all {@link PullRequest}s
+   * Deliver all {@link PullRequest}s.
    * @return {Iterator<PullRequest>} of all pull requests
    */
   async *pullRequests() {
