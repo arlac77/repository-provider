@@ -117,6 +117,10 @@ export class PullRequest extends NamedObject {
         writable: true
       },
 
+      /**
+       * Draft state of the pull request.
+       * @return {boolean}
+       */
       draft: {
         type: "boolean",
         default: false
