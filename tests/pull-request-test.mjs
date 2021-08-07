@@ -48,7 +48,7 @@ test("pullRequest create", async t => {
   t.is(pr.empty, undefined);
   t.is(pr.id, "123456");
   t.is(pr.identifier, "SingleGroupProvider:r1#b2[4711]");
-  t.is(pr.url, "/r1/pulls/4711");
+  t.is(pr.url, "/r1/pull/4711");
 
   t.is(
     `${pr}`,
