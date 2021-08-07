@@ -169,6 +169,7 @@ export class PullRequest extends NamedObject {
   }
 
   get fullName() {
+    // TODO use destination
     return `${this.source.repository.fullName}/${this.name}`;
   }
 
@@ -176,8 +177,8 @@ export class PullRequest extends NamedObject {
    * URL of the pull request.
    * @return {string} url
    */
-  get url() {
-    return `${this.provider.url}${this.source.repository.fullName}/pull/${this.name}`;
+  get url() {    
+    return `${this.provider.url}${this.destination.repository.fullName}/pull/${this.name}`;
   }
 
   get number() {
