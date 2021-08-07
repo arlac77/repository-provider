@@ -96,6 +96,10 @@ export class BaseProvider {
         type: "string"
       },
 
+      url: {
+        type: "string"
+      },
+
       messageDestination: {
         type: "object",
         default: console,
@@ -374,6 +378,14 @@ export class BaseProvider {
    */
   get provider() {
     return this;
+  }
+
+  /**
+   * @return url otf the provider.
+   */
+  get url() 
+  {
+    return "/";
   }
 
   toString() {

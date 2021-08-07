@@ -20,6 +20,7 @@ import { NamedObject } from "./named-object.mjs";
  * @property {string} [state]
  * @property {boolean} [merged]
  * @property {boolean} [locked]
+ * @property {string} url
  */
 export class PullRequest extends NamedObject {
   /**
@@ -169,6 +170,10 @@ export class PullRequest extends NamedObject {
 
   get fullName() {
     return `${this.source.repository.fullName}/${this.name}`;
+  }
+
+  get url() {
+    return `${this.provider.url}${this.source.repository.fullName}/pulls/${this.name}`;
   }
 
   get number() {

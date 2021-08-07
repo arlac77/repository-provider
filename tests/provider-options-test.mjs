@@ -108,13 +108,14 @@ test("initialize", t => {
 });
 
 test("new provider", t => {
-  const provider = new BaseProvider({ key: "value" });
+  const provider = new BaseProvider({ key: "value", url: "http://somewhere/" });
   t.is(provider.priority, 0);
   t.is(provider.name, "BaseProvider");
   t.is(`${provider}`, "BaseProvider");
   t.deepEqual(provider.toJSON(), {
     name: "BaseProvider",
-    priority: 0
+    priority: 0,
+    url: "http://somewhere/"
   });
 });
 
