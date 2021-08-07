@@ -168,9 +168,12 @@ export class PullRequest extends NamedObject {
     }
   }
 
+  /**
+   * Name of the PR together with the repository.
+   * @return {string} PR full name
+   */
   get fullName() {
-    // TODO use destination
-    return `${this.source.repository.fullName}/${this.name}`;
+    return `${this.destination.repository.fullName}/${this.name}`;
   }
 
   /**
