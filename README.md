@@ -103,6 +103,7 @@ console.log(await readme.getString());
     *   [hookClass](#hookclass)
     *   [name](#name)
     *   [provider](#provider)
+    *   [url](#url)
     *   [toJSON](#tojson)
     *   [repositoryClass](#repositoryclass)
     *   [branchClass](#branchclass)
@@ -126,7 +127,7 @@ console.log(await readme.getString());
 *   [Branch](#branch)
     *   [Parameters](#parameters-25)
     *   [Properties](#properties-5)
-    *   [url](#url)
+    *   [url](#url-1)
     *   [isDefault](#isdefault)
     *   [delete](#delete)
     *   [commit](#commit-2)
@@ -175,6 +176,8 @@ console.log(await readme.getString());
 *   [PullRequest](#pullrequest)
     *   [Parameters](#parameters-44)
     *   [Properties](#properties-8)
+    *   [fullName](#fullname)
+    *   [url](#url-2)
     *   [repository](#repository-1)
     *   [provider](#provider-1)
     *   [equals](#equals-4)
@@ -213,7 +216,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-54)
     *   [provider](#provider-2)
     *   [owner](#owner)
-    *   [fullName](#fullname)
+    *   [fullName](#fullname-1)
     *   [fullCondensedName](#fullcondensedname)
     *   [identifier](#identifier-1)
     *   [issuesURL](#issuesurl)
@@ -235,13 +238,13 @@ console.log(await readme.getString());
     *   [hookClass](#hookclass-1)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type)
-*   [url](#url-1)
+*   [url](#url-3)
 *   [RepositoryOwner](#repositoryowner)
     *   [Parameters](#parameters-56)
 *   [Repository](#repository-2)
     *   [Parameters](#parameters-57)
     *   [Properties](#properties-10)
-    *   [fullName](#fullname-1)
+    *   [fullName](#fullname-2)
     *   [slug](#slug)
     *   [provider](#provider-3)
     *   [identifier](#identifier-2)
@@ -254,7 +257,7 @@ console.log(await readme.getString());
     *   [maybeEntry](#maybeentry-1)
         *   [Parameters](#parameters-61)
     *   [urls](#urls)
-    *   [url](#url-2)
+    *   [url](#url-4)
     *   [cloneURL](#cloneurl)
     *   [issuesURL](#issuesurl-1)
     *   [homePageURL](#homepageurl-1)
@@ -665,6 +668,10 @@ We are our own provider.
 
 Returns **Provider** this
 
+### url
+
+Returns **any** url otf the provider.
+
 ### toJSON
 
 List all defined entries from attributes.
@@ -1060,6 +1067,19 @@ Abstract pull request.
 *   `state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 *   `merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
 *   `locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+*   `url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### fullName
+
+Name of the PR together with the repository.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** PR full name
+
+### url
+
+URL of the pull request.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
 
 ### repository
 
