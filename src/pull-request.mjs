@@ -172,8 +172,12 @@ export class PullRequest extends NamedObject {
     return `${this.source.repository.fullName}/${this.name}`;
   }
 
+  /**
+   * URL of the pull request.
+   * @return {string} url
+   */
   get url() {
-    return `${this.provider.url}${this.source.repository.fullName}/pulls/${this.name}`;
+    return `${this.provider.url}${this.source.repository.fullName}/pull/${this.name}`;
   }
 
   get number() {
