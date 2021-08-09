@@ -8,6 +8,7 @@ import { Hook } from "./hook.mjs";
 
 /**
  * @typedef {Object} MessageDestination
+ * Endpoint to deliver log messages to.
  * @param {Function} info
  * @param {Function} warn
  * @param {Function} error
