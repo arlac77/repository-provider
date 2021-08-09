@@ -200,6 +200,7 @@ console.log(await readme.getString());
 *   [state](#state)
 *   [locked](#locked)
 *   [merged](#merged)
+*   [draft](#draft)
 *   [Ref](#ref)
     *   [Parameters](#parameters-49)
     *   [equals](#equals-5)
@@ -605,7 +606,7 @@ List provider objects of a given type.
 
 #### Parameters
 
-*   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the method to deliver typed iterator
+*   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the method to deliver typed iterator projects,repositories,branches,tags
 *   `patterns` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>)** group / repository filter
 
 ### projects
@@ -1207,6 +1208,12 @@ Merged state of the pull request.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
+## draft
+
+Draft state of the pull request.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
 ## Ref
 
 **Extends NamedObject**
@@ -1675,7 +1682,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### createPullRequest
 
-Create a pull request (or deliver an already present for thefiven name)
+Create a pull request (or deliver an already present for thefiven name).
 
 #### Parameters
 
@@ -1687,7 +1694,7 @@ Returns **[PullRequest](#pullrequest)**
 
 ### addPullRequest
 
-Add a pull request
+Add a pull request.
 
 #### Parameters
 
@@ -1699,7 +1706,7 @@ Returns **[PullRequest](#pullrequest)**
 
 ### pullRequests
 
-Deliver all [PullRequest](#pullrequest)s
+Deliver all [PullRequest](#pullrequest)s.
 
 Returns **Iterator<[PullRequest](#pullrequest)>** of all pull requests
 
