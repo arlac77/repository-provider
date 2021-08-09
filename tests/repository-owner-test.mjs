@@ -81,7 +81,7 @@ function createOwner(
   for (const name of pullRequests) {
     const [b, p] = name.split("/");
     const branch = bm[b];
-    const pr = new PullRequest( branch, undefined, p);
+    const pr = new PullRequest( undefined, branch, p);
     branch.repository._addPullRequest(pr);
   }
 

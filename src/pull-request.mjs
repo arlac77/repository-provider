@@ -20,6 +20,7 @@ import { NamedObject } from "./named-object.mjs";
  * @property {string} [state]
  * @property {boolean} [merged]
  * @property {boolean} [locked]
+ * @property {string} url
  */
 export class PullRequest extends NamedObject {
   /**
@@ -171,8 +172,20 @@ export class PullRequest extends NamedObject {
     }
   }
 
+  /**
+   * Name of the PR together with the repository.
+   * @return {string} PR full name
+   */
   get fullName() {
-    return `${this.source.repository.fullName}/${this.name}`;
+    return `${this.destination.repository.fullName}/${this.name}`;
+  }
+
+  /**
+   * URL of the pull request.
+   * @return {string} url
+   */
+  get url() {    
+    return `${this.provider.url}${this.destination.repository.fullName}/pull/${this.name}`;
   }
 
   get number() {
