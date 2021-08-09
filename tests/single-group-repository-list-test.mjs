@@ -73,11 +73,15 @@ test(olrt, CaseSensitiveOwner, "otherProvider:xyz", []);
 test(olrt, CaseSensitiveOwner, "otherProvider:r*", []);
 test(olrt, CaseSensitiveOwner, "csp:r*", ["r1", "r2"]);
 test(olrt, CaseSensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
+
+test(olrt, CaseSensitiveOwner, "csp:", ["r1", "r2", "x", "Upper"]);
+test(olrt, CaseSensitiveOwner, "csp:*", ["r1", "r2", "x", "Upper"]);
 test(olrt, CaseSensitiveOwner, "*", ["r1", "r2", "x", "Upper"]);
 test(olrt, CaseSensitiveOwner, undefined, ["r1", "r2", "x", "Upper"]);
+test(olrt, CaseSensitiveOwner, "", ["r1", "r2", "x", "Upper"]);
+test(olrt, CaseSensitiveOwner, "https://myrepo/", ["r1", "r2", "x", "Upper"]);
+
 test(olrt, CaseSensitiveOwner, "abc", []);
-test(olrt, CaseSensitiveOwner, "", []);
-test(olrt, CaseSensitiveOwner, "https://myrepo/", []);
 
 test(olrt, CaseInsensitiveOwner, "*r*", ["r1", "r2", "Upper"]);
 test(olrt, CaseInsensitiveOwner, "https://myrepo/*r*", ["r1", "r2", "Upper"]);

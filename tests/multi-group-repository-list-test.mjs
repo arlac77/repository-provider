@@ -29,13 +29,18 @@ const g2Result = {
   "g2/r1": { name: "r1" }
 };
 
+const allResult = { ...g1Result, ...g2Result };
+
 test(repositoryListTest, provider, "g1/*", g1Result);
 test(repositoryListTest, provider, "https://myrepo/g1/*", g1Result);
-test(repositoryListTest, provider, "*", { ...g1Result, ...g2Result });
-test(repositoryListTest, provider, "https://myrepo/*", { ...g1Result, ...g2Result });
-test(repositoryListTest, provider, "*/r*", { ...g1Result, ...g2Result });
-test(repositoryListTest, provider, "https://myrepo/*/r*", { ...g1Result, ...g2Result });
-test(repositoryListTest, provider, undefined, { ...g1Result, ...g2Result });
+
+test(repositoryListTest, provider, "*", allResult);
+test(repositoryListTest, provider, "", allResult);
+test(repositoryListTest, provider, "https://myrepo/*", allResult);
+test(repositoryListTest, provider, "*/r*", allResult);
+test(repositoryListTest, provider, "https://myrepo/*/r*", allResult);
+test(repositoryListTest, provider, undefined, allResult);
+
 test(repositoryListTest, provider, "*/x*");
 test(repositoryListTest, provider, "https://myrepo/*/x*");
 test(repositoryListTest, provider, "g3/*", undefined);
