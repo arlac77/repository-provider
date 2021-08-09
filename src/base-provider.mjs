@@ -293,7 +293,7 @@ export class BaseProvider {
   /**
    * List provider objects of a given type.
    *
-   * @param {string} type name of the method to deliver typed iterator
+   * @param {string} type name of the method to deliver typed iterator projects,repositories,branches,tags
    * @param {string|string[]} patterns group / repository filter
    */
   async *list(type, patterns) {
