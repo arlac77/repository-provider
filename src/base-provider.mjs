@@ -293,7 +293,7 @@ export class BaseProvider {
   /**
    * List provider objects of a given type.
    *
-   * @param {string} type name of the method to deliver typed iterator projects,repositories,branches,tags
+   * @param {string} type name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
    * @param {string|string[]} patterns group / repository filter
    */
   async *list(type, patterns) {
@@ -316,12 +316,21 @@ export class BaseProvider {
   }
 
   /**
-   * List Projects.
+   * List projects.
    * @param {string[]|string} patterns
    * @return {Iterator<Projects>} all matching projects of the provider
    */
   async *projects(patterns) {
     yield* this.list("projects", patterns);
+  }
+
+  /**
+   * List milestones.
+   * @param {string[]|string} patterns
+   * @return {Iterator<Milestone>} all matching milestones of the provider
+   */
+  async *projects(patterns) {
+    yield* this.list("milestones", patterns);
   }
 
   /**
@@ -345,10 +354,28 @@ export class BaseProvider {
   /**
    * List tags.
    * @param {string[]|string} patterns
-   * @return {Iterator<Branch>} all matching tags of the provider
+   * @return {Iterator<Tag>} all matching tags of the provider
    */
   async *tags(patterns) {
     yield* this.list("tags", patterns);
+  }
+
+  /**
+   * List hooks.
+   * @param {string[]|string} patterns
+   * @return {Iterator<Hook>} all matching hooks of the provider
+   */
+  async *hooks(patterns) {
+    yield* this.list("hooks", patterns);
+  }
+
+  /**
+   * List pull requests.
+   * @param {string[]|string} patterns
+   * @return {Iterator<PullRequest>} all matching pullRequests of the provider
+   */
+  async *pullRequests(patterns) {
+    yield* this.list("pullRequests", patterns);
   }
 
   /**
@@ -384,8 +411,7 @@ export class BaseProvider {
   /**
    * @return url otf the provider.
    */
-  get url() 
-  {
+  get url() {
     return "/";
   }
 
@@ -400,8 +426,12 @@ export class BaseProvider {
   toJSON() {
     const json = { name: this.name };
 
-    Object.entries(this.constructor.attributes).forEach(([k,v]) => {
-      if (!v.private && this[k] !== undefined && typeof this[k] !== "function") {
+    Object.entries(this.constructor.attributes).forEach(([k, v]) => {
+      if (
+        !v.private &&
+        this[k] !== undefined &&
+        typeof this[k] !== "function"
+      ) {
         json[k] = this[k];
       }
     });
