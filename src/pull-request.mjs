@@ -241,10 +241,10 @@ export class PullRequest extends NamedObject {
   }
 
   /**
-   * Merge the pull request
+   * Merge the pull request.
    * @param {string} method
    */
-  async merge(method) {
+  async merge(method = "MERGE") {
     method = method.toUpperCase();
     if (this.constructor.validMergeMethods.has(method)) {
       await this._merge(method);
@@ -255,7 +255,7 @@ export class PullRequest extends NamedObject {
   }
 
   /**
-   * Decline the pull request
+   * Decline the pull request.
    */
   async decline() {}
 
