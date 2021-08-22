@@ -1146,15 +1146,15 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### merge
 
-Merge the pull request
+Merge the pull request.
 
 #### Parameters
 
-*   `method` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `method` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `"MERGE"`)
 
 ### decline
 
-Decline the pull request
+Decline the pull request.
 
 ### reviews
 
