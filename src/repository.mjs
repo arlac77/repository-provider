@@ -537,6 +537,18 @@ export class Repository extends NamedObject {
     });
   }
 
+  info(...args) {
+    return this.owner.info(...args);
+  }
+
+  warn(...args) {
+    return this.owner.warn(...args);
+  }
+
+  error(...args) {
+    return this.owner.error(...args);
+  }
+
   initialize() {}
 
   initializeHooks() {

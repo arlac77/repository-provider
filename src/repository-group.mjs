@@ -99,4 +99,16 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   get hookClass() {
     return this.provider.hookClass;
   }
+
+  info(...args) {
+    return this.provider.info(...args);
+  }
+
+  warn(...args) {
+    return this.provider.warn(...args);
+  }
+
+  error(...args) {
+    return this.provider.error(...args);
+  }
 }
