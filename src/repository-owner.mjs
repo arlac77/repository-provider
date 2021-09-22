@@ -3,7 +3,7 @@ import { Branch } from "./branch.mjs";
 import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
 
 /**
- * Mixin to define a class able to handle a collection of repositoreis.
+ * Mixin to define a class able to handle a collection of repositories.
  * @param {Class} base to be extendet
  */
 export function RepositoryOwner(base) {
