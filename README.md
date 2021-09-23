@@ -1472,7 +1472,7 @@ api url
 
 ## RepositoryOwner
 
-Mixin to define a class able to handle a collection of repositoreis.
+Mixin to define a class able to handle a collection of repositories.
 
 ### Parameters
 
