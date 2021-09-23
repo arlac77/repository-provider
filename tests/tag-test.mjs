@@ -1,4 +1,6 @@
 import test from "ava";
+import { createMessageDestination } from "./helpers/messages.mjs";
+
 import { Tag, SingleGroupProvider } from "repository-provider";
 
 test("tag init", async t => {
@@ -16,4 +18,21 @@ test("tag init", async t => {
   t.is(b.isWritable, false);
   t.is(b.entryClass, undefined);
  // t.is(await repository.tags("t1"), b);
+});
+
+
+test("logging", async t => {
+  const { messageDestination, messages } = createMessageDestination();
+  const provider = new SingleGroupProvider({messageDestination});
+
+  const repository = await provider.addRepository("r1");
+  const tag = new Tag(repository, "t1");
+
+  tag.info("info");
+  tag.error("error");
+  tag.warn("warn");
+
+  t.deepEqual(messages.info, ["info"]);
+  t.deepEqual(messages.error, ["error"]);
+  t.deepEqual(messages.warn, ["warn"]);
 });

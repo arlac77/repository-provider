@@ -1,5 +1,6 @@
 import test from "ava";
 import { providerTest } from "repository-provider-test-support";
+import { createMessageDestination } from "./helpers/messages.mjs";
 import { SingleGroupProvider, MultiGroupProvider } from "repository-provider";
 
 test(providerTest, new SingleGroupProvider());
@@ -15,14 +16,19 @@ test("messageDestination default", t => {
 });
 
 test("messageDestination", t => {
-  let info;
+  const { messageDestination, messages } = createMessageDestination();
+
   const sp = new SingleGroupProvider({
-    messageDestination: { info: (...args) => (info = [...args]) }
+    messageDestination
   });
 
   sp.info("info");
+  sp.error("error");
+  sp.warn("warn");
 
-  t.deepEqual(info, ["info"]);
+  t.deepEqual(messages.info, ["info"]);
+  t.deepEqual(messages.error, ["error"]);
+  t.deepEqual(messages.warn, ["warn"]);
 
   const myMessageDestination = {};
   sp.messageDestination = myMessageDestination;

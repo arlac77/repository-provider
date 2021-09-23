@@ -1,5 +1,6 @@
 import test from "ava";
 import { repositoryEqualityTest } from "repository-provider-test-support";
+import { createMessageDestination } from "./helpers/messages.mjs";
 import {
   SingleGroupProvider,
   Repository,
@@ -153,3 +154,16 @@ test("reposotory entry", async t => {
   t.is(await repository.maybeEntry("aFile"), undefined);
 });
 
+test("logging", async t => {
+  const { messageDestination, messages } = createMessageDestination();
+  const provider = new SingleGroupProvider({messageDestination});
+  const repository = await provider.addRepository("r1");
+
+  repository.info("info");
+  repository.error("error");
+  repository.warn("warn");
+
+  t.deepEqual(messages.info, ["info"]);
+  t.deepEqual(messages.error, ["error"]);
+  t.deepEqual(messages.warn, ["warn"]);
+});
