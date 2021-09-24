@@ -1,6 +1,5 @@
 import test from "ava";
-import { repositoryEqualityTest } from "repository-provider-test-support";
-import { createMessageDestination } from "./helpers/messages.mjs";
+import { repositoryEqualityTest, createMessageDestination } from "repository-provider-test-support";
 import {
   SingleGroupProvider,
   Repository,

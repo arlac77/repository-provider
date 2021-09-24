@@ -1,6 +1,5 @@
 import test from "ava";
-import { providerTest } from "repository-provider-test-support";
-import { createMessageDestination } from "./helpers/messages.mjs";
+import { providerTest, createMessageDestination } from "repository-provider-test-support";
 import { SingleGroupProvider, MultiGroupProvider } from "repository-provider";
 
 test(providerTest, new SingleGroupProvider());

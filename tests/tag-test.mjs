@@ -1,5 +1,5 @@
 import test from "ava";
-import { createMessageDestination } from "./helpers/messages.mjs";
+import { createMessageDestination } from "repository-provider-test-support";
 
 import { Tag, SingleGroupProvider } from "repository-provider";
 
