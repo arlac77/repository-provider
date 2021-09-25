@@ -123,6 +123,8 @@ console.log(await readme.getString());
     *   [initialize](#initialize)
         *   [Parameters](#parameters-26)
 *   [priority](#priority)
+*   [name](#name-1)
+*   [messageDestination](#messagedestination-1)
 *   [Commit](#commit)
     *   [Properties](#properties-2)
 *   [Commit](#commit-1)
@@ -773,6 +775,14 @@ Returns **Provider** newly created provider or undefined if options are not suff
 
 In case there are several provider able to support a given source which one sould be used ?
 this defines the order
+
+## name
+
+Name of the provider
+
+## messageDestination
+
+to forward info/warn and error messages to
 
 ## Commit
 
