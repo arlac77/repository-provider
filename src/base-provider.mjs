@@ -93,6 +93,9 @@ export class BaseProvider {
         default: 0
       },
 
+      /**
+       * Name of the provider
+       */
       name: {
         type: "string"
       },
@@ -101,6 +104,9 @@ export class BaseProvider {
         type: "string"
       },
 
+      /**
+       * to forward info/warn and error messages to
+       */
       messageDestination: {
         type: "object",
         default: console,
