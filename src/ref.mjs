@@ -56,13 +56,13 @@ export class Ref extends NamedObject {
   /**
    * List entries of the branch.
    * @param {string[]} matchingPatterns
-   * @return {ConentEntry} all matching entries in the branch
+   * @return {ContentEntry} all matching entries in the branch
    */
   async *entries(matchingPatterns) {}
 
   /**
    * List all entries of the branch.
-   * @return {asyncIterator<ConentEntry>} all entries in the branch
+   * @return {asyncIterator<ContentEntry>} all entries in the branch
    */
   async *[Symbol.asyncIterator]() {
     return yield* this.entries();
@@ -71,7 +71,7 @@ export class Ref extends NamedObject {
   /**
    * Get exactly one matching entry by name or undefine if no such entry is found.
    * @param {string} name
-   * @return {Promise<ConentEntry>}
+   * @return {Promise<ContentEntry>}
    */
   async maybeEntry(name) {
     return (await this.entries(name).next()).value;
@@ -80,7 +80,7 @@ export class Ref extends NamedObject {
   /**
    * Get exactly one matching entry by name (throws if entry is not found).
    * @param {string} name
-   * @return {Promise<ConentEntry>}
+   * @return {Promise<ContentEntry>}
    */
   async entry(name) {
     const e = (await this.entries(name).next()).value;

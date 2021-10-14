@@ -63,7 +63,7 @@ export class Branch extends Ref {
   /**
    * Commit entries.
    * @param {string} message commit message
-   * @param {ConentEntry[]} updates content to be commited
+   * @param {ContentEntry[]} updates content to be commited
    * @param {Object} options
    * @return {CommitResult}
    */
