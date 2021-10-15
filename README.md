@@ -860,7 +860,7 @@ Commit entries.
 #### Parameters
 
 *   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
-*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)\<ConentEntry>** content to be commited
+*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)\<ContentEntry>** content to be commited
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[CommitResult](#commitresult)** 
@@ -1306,13 +1306,13 @@ List entries of the branch.
 
 *   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
-Returns **ConentEntry** all matching entries in the branch
+Returns **ContentEntry** all matching entries in the branch
 
 ### asyncIterator
 
 List all entries of the branch.
 
-Returns **asyncIterator\<ConentEntry>** all entries in the branch
+Returns **asyncIterator\<ContentEntry>** all entries in the branch
 
 ### maybeEntry
 
@@ -1322,7 +1322,7 @@ Get exactly one matching entry by name or undefine if no such entry is found.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ConentEntry>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ContentEntry>** 
 
 ### entry
 
@@ -1332,7 +1332,7 @@ Get exactly one matching entry by name (throws if entry is not found).
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ConentEntry>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ContentEntry>** 
 
 ### provider
 
