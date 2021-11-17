@@ -8,7 +8,7 @@
   "exports": {
     ".": "./src/index.mjs"
   },
-  "description": "abstract interface to git repository providers like github bitbucket",
+  "description": "abstract interface to git repository providers like github, bitbucket and gitlab",
   "keywords": [
     "git",
     "repository-provider"
@@ -39,7 +39,7 @@
     "semantic-release": "^18.0.0"
   },
   "engines": {
-    "node": ">=14.17.6"
+    "node": ">=14.18.1"
   },
   "repository": {
     "type": "git",
