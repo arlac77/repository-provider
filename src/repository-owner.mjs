@@ -239,6 +239,10 @@ export function RepositoryOwner(base) {
       yield* this._list("milestones", patterns);
     }
 
+    async hook(name) {
+      return this._lookup("hook", name);
+    }
+
     async *hooks(patterns) {
       yield* this._list("hooks", patterns);
     }
