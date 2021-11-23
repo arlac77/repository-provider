@@ -1,6 +1,5 @@
 import test from "ava";
 import { createMessageDestination } from "repository-provider-test-support";
-
 import { Tag, SingleGroupProvider } from "repository-provider";
 
 test("tag init", async t => {
