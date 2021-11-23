@@ -21,7 +21,7 @@ test("tag init", async t => {
 });
 
 
-test("logging", async t => {
+test("tag logging", async t => {
   const { messageDestination, messages } = createMessageDestination();
   const provider = new SingleGroupProvider({messageDestination});
 
