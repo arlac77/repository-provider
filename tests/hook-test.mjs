@@ -1,4 +1,5 @@
 import test from "ava";
+import { createMessageDestination } from "repository-provider-test-support";
 import { SingleGroupProvider, Repository, Hook } from "repository-provider";
 
 test("add hook", async t => {
@@ -45,4 +46,24 @@ test("add hook", async t => {
   t.true(hook.equals(hook));
   t.false(hook.equals(undefined));
   t.false(hook.equals({}));
+});
+
+
+test("hook logging", async t => {
+  const { messageDestination, messages } = createMessageDestination();
+  const provider = new SingleGroupProvider({messageDestination});
+
+  const repository = await provider.addRepository("r1");
+  const hook = new Hook(repository, 77, new Set(["a"]), {
+    name: "hook1",
+    url: "http://somewere.com/path"
+  });
+
+  hook.info("info");
+  hook.error("error");
+  hook.warn("warn");
+
+  t.deepEqual(messages.info, ["info"]);
+  t.deepEqual(messages.error, ["error"]);
+  t.deepEqual(messages.warn, ["warn"]);
 });
