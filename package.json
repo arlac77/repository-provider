@@ -36,7 +36,7 @@
     "c8": "^7.10.0",
     "documentation": "^13.2.5",
     "repository-provider-test-support": "^1.8.4",
-    "semantic-release": "^18.0.0"
+    "semantic-release": "^18.0.1"
   },
   "engines": {
     "node": ">=14.18.1"
