@@ -144,7 +144,7 @@ ojt.title = (providedTitle, a, b) =>
   )} ${b}`.trim();
 
 test(ojt, {}, undefined, undefined, {});
-test(ojt, new RepositoryGroup(undefined, "a", { id: 1 }), undefined, [], {
+test(ojt, new RepositoryGroup(undefined, "a", { id: 1 }), undefined, undefined, {
   id: 1,
   isAdmin: false
 });
