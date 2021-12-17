@@ -6,7 +6,7 @@ import { definePropertiesFromOptions, mapAttributes } from "./attribute.mjs";
  */
 export class BaseObject {
   /**
-   * options
+   * Attributes definitions
    */
   static get attributes() {
     return {
@@ -40,6 +40,15 @@ export class BaseObject {
 
       homePageURL: { type: "url", writable: true }
     };
+  }
+
+  /**
+   * @return {Object} writable attributes
+   */
+  static get writableAttributes() {
+    return Object.fromEntries(
+      Object.entries(this.attributes).filter(([k, v]) => v.writable)
+    );
   }
 
   /**
