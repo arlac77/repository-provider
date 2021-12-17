@@ -5,6 +5,7 @@
  * @property {string} type
  * @property {boolean} writable
  * @property {boolean} private
+ * @property {string} description
  */
 
 /**
