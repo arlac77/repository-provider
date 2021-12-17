@@ -5,6 +5,7 @@ import { BaseObject } from "./base-object.mjs";
  * Object with a name.
  * @param {string} name
  * @param {Object} options
+ * @param {Object} additionalProperties
  *
  * @property {string} name
  */
