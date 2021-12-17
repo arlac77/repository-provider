@@ -231,13 +231,6 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Updates repositroy attributes.
-   */
-  async update()
-  {
-  }
-
-  /**
    * Lookup branch by name.
    * @param {string} name
    * @return {Promise<Branch>}
