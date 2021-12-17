@@ -16,12 +16,12 @@ export class Hook extends BaseObject {
   static get attributes() {
     return {
       ...super.attributes,
-      name: { type: "string" },
-      url: { type: "url", description: "target url" },
-      secret: { type: "string", private: true },
-      content_type: { type: "string", default: "json" },
+      name: { type: "string", writable: true },
+      url: { type: "url", description: "target url", writable: true },
+      secret: { type: "string", private: true, writable: true },
+      content_type: { type: "string", default: "json", writable: true },
       insecure_ssl: { type: "boolean", default: false },
-      active: { type: "boolean", default: true }
+      active: { type: "boolean", default: true, writable: true }
     };
   }
 

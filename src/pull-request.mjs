@@ -77,13 +77,13 @@ export class PullRequest extends NamedObject {
        * The one line description of the pull request.
        * @return {string}
        */
-      title: { type: "string" },
+      title: { type: "string", writable: true },
 
       /**
        * The description of the pull request.
        * @return {string}
        */
-      body: { type: "string" },
+      body: { type: "string", writable: true },
 
       /**
        * state of the pull request.

@@ -37,7 +37,7 @@ export class Repository extends NamedObject {
        * URLs of the repository
        * @return {string[]}
        */
-      urls: {},
+      urls: { },
 
       cloneURL: { type: "url" },
 
@@ -51,10 +51,10 @@ export class Repository extends NamedObject {
        * The url of issue tracking system.
        * @return {string}
        */
-      issuesURL: { type: "url" },
+      issuesURL: { type: "url", writable: true },
       size: { type: "integer" },
       language: { type: "string" },
-      isArchived: { type: "boolean", default: false },
+      isArchived: { type: "boolean", default: false, writable: true },
       isLocked: { type: "boolean", default: false },
       isDisabled: { type: "boolean", default: false },
       isTemplate: { type: "boolean", default: false },

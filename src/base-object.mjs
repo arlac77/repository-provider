@@ -38,7 +38,7 @@ export class BaseObject {
        */
       avatarURL: { type: "url" },
 
-      homePageURL: { type: "url" }
+      homePageURL: { type: "url", writable: true }
     };
   }
 
