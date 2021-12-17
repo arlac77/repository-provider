@@ -2,6 +2,7 @@ import { definePropertiesFromOptions, mapAttributes } from "./attribute.mjs";
 
 /**
  * @param {Object} options
+ * @param {Object} additionalProperties
  */
 export class BaseObject {
   /**
