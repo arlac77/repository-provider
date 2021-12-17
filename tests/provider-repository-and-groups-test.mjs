@@ -1,7 +1,6 @@
 import test from "ava";
 import { MultiGroupProvider } from "repository-provider";
 
-
 test("provider repository group create repository", async t => {
   const provider = new MultiGroupProvider();
   t.is(await provider.repositoryGroup("g1"), undefined);

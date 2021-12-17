@@ -1,6 +1,5 @@
 import test from "ava";
 import { providerOptionsFromEnvironmentTest } from "repository-provider-test-support";
-
 import { BaseProvider } from "repository-provider";
 
 test("provider default env options", t => {
