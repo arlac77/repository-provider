@@ -51,7 +51,7 @@ export class Repository extends NamedObject {
        * The url of issue tracking system.
        * @return {string}
        */
-      issuesURL: { type: "url", writable: true },
+      issuesURL: { type: "url" },
       size: { type: "integer" },
       language: { type: "string" },
       isArchived: { type: "boolean", default: false, writable: true },
