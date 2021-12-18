@@ -66,6 +66,7 @@ console.log(await readme.getString());
     *   [equals](#equals)
         *   [Parameters](#parameters-8)
     *   [attributes](#attributes)
+    *   [writableAttributes](#writableattributes)
     *   [attributeMapping](#attributemapping)
 *   [description](#description)
 *   [id](#id)
@@ -178,6 +179,7 @@ console.log(await readme.getString());
     *   [equals](#equals-3)
         *   [Parameters](#parameters-45)
     *   [displayName](#displayname)
+    *   [update](#update)
     *   [toJSON](#tojson-2)
 *   [Project](#project)
     *   [Parameters](#parameters-46)
@@ -275,7 +277,6 @@ console.log(await readme.getString());
     *   [isLocked](#islocked-1)
     *   [isDisabled](#isdisabled-1)
     *   [isTemplate](#istemplate)
-    *   [update](#update)
     *   [branch](#branch-1)
         *   [Parameters](#parameters-65)
     *   [defaultBranch](#defaultbranch)
@@ -361,6 +362,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 *   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 *   `writable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 *   `private` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+*   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## definePropertiesFromOptions
 
@@ -423,7 +425,8 @@ In other words only produce key value pairs if value is defined.
 
 *   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 *   `initial` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
-*   `skip` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** keys not to put in the result (optional, default `[]`)
+*   `attributes`   (optional, default `object.constructor.attributes`)
+*   `attibutes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** to operator on
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** initial + defined values
 
@@ -460,7 +463,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### Parameters
 
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-*   `additionalProperties`  
+*   `additionalProperties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### equals
 
@@ -474,7 +477,11 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### attributes
 
-options
+Attributes definitions
+
+### writableAttributes
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** writable attributes
 
 ### attributeMapping
 
@@ -1050,7 +1057,7 @@ Object with a name.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-*   `additionalProperties`  
+*   `additionalProperties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ### Properties
 
@@ -1071,6 +1078,10 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 Beatified name use for human displaying only.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** human readable name
+
+### update
+
+Preserve object attributes in the backing store.
 
 ### toJSON
 
@@ -1638,10 +1649,6 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 By default we are not a template.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
-
-### update
-
-Updates repositroy attributes.
 
 ### branch
 
