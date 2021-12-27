@@ -1,3 +1,5 @@
+import { Repository } from "./repository.mjs";
+
 /**
  * Convert scalar into an array.
  * The value undefined will be represented as an empty array.

@@ -146,7 +146,7 @@ export function getAttribute(object, name) {
  * In other words only produce key value pairs if value is defined.
  * @param {Object} object
  * @param {Object} initial
- * @param {Object} attibutes to operator on
+ * @param {Object} attributes to operator on
  * @return {Object} initial + defined values
  */
 export function optionJSON(object, initial = {}, attributes=object.constructor.attributes) {

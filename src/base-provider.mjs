@@ -125,7 +125,7 @@ export class BaseProvider {
    * @param {Object} options additional options
    * @param {string?} options.instanceIdentifier
    * @param {Object} env taken from process.env
-   * @return {Provider} newly created provider or undefined if options are not sufficient to construct a provider
+   * @return {BaseProvider} newly created provider or undefined if options are not sufficient to construct a provider
    */
   static initialize(options = {}, env) {
     options = {
