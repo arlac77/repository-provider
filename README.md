@@ -425,8 +425,7 @@ In other words only produce key value pairs if value is defined.
 
 *   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 *   `initial` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
-*   `attributes`   (optional, default `object.constructor.attributes`)
-*   `attibutes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** to operator on
+*   `attributes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** to operator on (optional, default `object.constructor.attributes`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** initial + defined values
 
@@ -776,7 +775,7 @@ Creates a new provider for a given set of options.
     *   `options.instanceIdentifier` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
 *   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
 
-Returns **Provider** newly created provider or undefined if options are not sufficient to construct a provider
+Returns **[BaseProvider](#baseprovider)** newly created provider or undefined if options are not sufficient to construct a provider
 
 ## priority
 
