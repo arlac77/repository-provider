@@ -38,7 +38,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
 /**
  * Loops over names and executes stripBaseName.
  *
- * @param {string[]} names
+ * @param {string|string[]} names
  * @param {*} repositoryBases
  * @param {string[]} repositoryBases all possible bases
  * @param {Function} whenFound to be called with the found base name
@@ -58,6 +58,7 @@ export function stripBaseNames(names, repositoryBases, whenFound) {
  * 'something/*' will get to something/1 something/2 ...
  * @param {Repository} repository
  * @param {string} pattern
+ * @return {string}
  */
 export async function generateBranchName(repository, pattern) {
   let n = 1;

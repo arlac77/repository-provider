@@ -35,7 +35,7 @@ export class NamedObject extends BaseObject {
   }
 
   /**
-   * Preserve object attributes in the backing store.
+   * Save object attributes in the backing store.
    */
   async update()
   {
