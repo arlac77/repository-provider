@@ -51,12 +51,6 @@ export class Repository extends NamedObject {
       cloneURL: { type: "url" },
 
       /**
-       * The url of home page.
-       * @return {string}
-       */
-      homePageURL: { type: "url" },
-
-      /**
        * The url of issue tracking system.
        * @return {string}
        */

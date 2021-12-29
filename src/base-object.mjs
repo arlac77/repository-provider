@@ -38,6 +38,10 @@ export class BaseObject {
        */
       avatarURL: { type: "url" },
 
+      /**
+       * The url of home page.
+       * @return {string}
+       */
       homePageURL: { type: "url", writable: true }
     };
   }
