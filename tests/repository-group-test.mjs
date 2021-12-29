@@ -6,6 +6,7 @@ import {
   Branch,
   PullRequest
 } from "repository-provider";
+import { createMessageDestination } from "repository-provider-test-support";
 
 test("repository-group create with options", t => {
   const provider = new MultiGroupProvider();
@@ -122,4 +123,26 @@ test("owner get undefined repository + branch", async t => {
   const group = new RepositoryGroup(provider, "g1");
   const branch = await group.branch(undefined);
   t.is(branch, undefined);
+});
+
+
+test("messageDestination", t => {
+  const { messageDestination, messages } = createMessageDestination();
+
+  const provider = new MultiGroupProvider({
+    messageDestination
+  });
+  const group = new RepositoryGroup(provider, "g1");
+
+  group.info("info");
+  group.error("error");
+  group.warn("warn");
+
+  t.deepEqual(messages.info, ["info"]);
+  t.deepEqual(messages.error, ["error"]);
+  t.deepEqual(messages.warn, ["warn"]);
+
+  const myMessageDestination = {};
+  group.messageDestination = myMessageDestination;
+  t.is(group.messageDestination, myMessageDestination);
 });
