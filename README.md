@@ -72,6 +72,7 @@ console.log(await readme.getString());
 *   [id](#id)
 *   [uuid](#uuid)
 *   [avatarURL](#avatarurl)
+*   [homePageURL](#homepageurl)
 *   [MessageDestination](#messagedestination)
     *   [Parameters](#parameters-9)
 *   [BaseProvider](#baseprovider)
@@ -94,7 +95,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-16)
     *   [projects](#projects)
         *   [Parameters](#parameters-17)
-    *   [projects](#projects-1)
+    *   [milestones](#milestones)
         *   [Parameters](#parameters-18)
     *   [repositories](#repositories)
         *   [Parameters](#parameters-19)
@@ -211,6 +212,8 @@ console.log(await readme.getString());
 *   [locked](#locked)
 *   [merged](#merged)
 *   [draft](#draft)
+*   [ContentEntry](#contententry)
+    *   [Properties](#properties-9)
 *   [Ref](#ref)
     *   [Parameters](#parameters-52)
     *   [equals](#equals-5)
@@ -231,7 +234,7 @@ console.log(await readme.getString());
     *   [fullCondensedName](#fullcondensedname)
     *   [identifier](#identifier-1)
     *   [issuesURL](#issuesurl)
-    *   [homePageURL](#homepageurl)
+    *   [homePageURL](#homepageurl-1)
     *   [isLocked](#islocked)
     *   [isArchived](#isarchived)
     *   [isDisabled](#isdisabled)
@@ -241,7 +244,7 @@ console.log(await readme.getString());
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
     *   [Parameters](#parameters-58)
-    *   [Properties](#properties-9)
+    *   [Properties](#properties-10)
     *   [repositoryClass](#repositoryclass-1)
     *   [branchClass](#branchclass-1)
     *   [contentClass](#contentclass)
@@ -254,7 +257,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-59)
 *   [Repository](#repository-2)
     *   [Parameters](#parameters-60)
-    *   [Properties](#properties-10)
+    *   [Properties](#properties-11)
     *   [fullName](#fullname-2)
     *   [slug](#slug)
     *   [provider](#provider-3)
@@ -271,7 +274,7 @@ console.log(await readme.getString());
     *   [url](#url-4)
     *   [cloneURL](#cloneurl)
     *   [issuesURL](#issuesurl-1)
-    *   [homePageURL](#homepageurl-1)
+    *   [homePageURL](#homepageurl-2)
     *   [condensedName](#condensedname)
     *   [isArchived](#isarchived-1)
     *   [isLocked](#islocked-1)
@@ -321,7 +324,6 @@ console.log(await readme.getString());
     *   [attributes](#attributes-2)
 *   [defaultBranchName](#defaultbranchname)
 *   [urls](#urls-1)
-*   [homePageURL](#homepageurl-2)
 *   [issuesURL](#issuesurl-2)
 *   [Review](#review)
 *   [SingleGroupProvider](#singlegroupprovider)
@@ -512,6 +514,12 @@ Avatar.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
+## homePageURL
+
+The url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ## MessageDestination
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -631,9 +639,9 @@ List projects.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator\<Projects>** all matching projects of the provider
+Returns **AsyncIterator<[Project](#project)>** all matching projects of the provider
 
-### projects
+### milestones
 
 List milestones.
 
@@ -641,7 +649,7 @@ List milestones.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[Milestone](#milestone)>** all matching milestones of the provider
+Returns **AsyncIterator<[Milestone](#milestone)>** all matching milestones of the provider
 
 ### repositories
 
@@ -651,7 +659,7 @@ List repositories.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[Repository](#repository)>** all matching repos of the provider
+Returns **AsyncIterator<[Repository](#repository)>** all matching repos of the provider
 
 ### branches
 
@@ -661,7 +669,7 @@ List branches.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[Branch](#branch)>** all matching branches of the provider
+Returns **AsyncIterator<[Branch](#branch)>** all matching branches of the provider
 
 ### tags
 
@@ -671,7 +679,7 @@ List tags.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[Tag](#tag)>** all matching tags of the provider
+Returns **AsyncIterator<[Tag](#tag)>** all matching tags of the provider
 
 ### hooks
 
@@ -681,7 +689,7 @@ List hooks.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[Hook](#hook)>** all matching hooks of the provider
+Returns **AsyncIterator<[Hook](#hook)>** all matching hooks of the provider
 
 ### pullRequests
 
@@ -691,7 +699,7 @@ List pull requests.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[PullRequest](#pullrequest)>** all matching pullRequests of the provider
+Returns **AsyncIterator<[PullRequest](#pullrequest)>** all matching pullRequests of the provider
 
 ### repositoryGroupClass
 
@@ -711,7 +719,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 We are our own provider.
 
-Returns **Provider** this
+Returns **[BaseProvider](#baseprovider)** this
 
 ### url
 
@@ -797,7 +805,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 ### Properties
 
 *   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)\<ContentEntry>** 
+*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[ContentEntry](#contententry)>** 
 
 ## Commit
 
@@ -857,7 +865,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Delete the branch from the [Repository](#repository).
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<any>** 
 
 ### commit
 
@@ -866,10 +874,10 @@ Commit entries.
 #### Parameters
 
 *   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
-*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)\<ContentEntry>** content to be commited
+*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[ContentEntry](#contententry)>** content to be commited
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[CommitResult](#commitresult)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[CommitResult](#commitresult)>** 
 
 ### commitIntoPullRequest
 
@@ -885,7 +893,7 @@ Add commits into a pull request.
     *   `options.skipWithoutCommits` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** do not create a PR if no commits are given
     *   `options.bodyFromCommitMessages` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** generate body from commit messages
 
-Returns **[PullRequest](#pullrequest)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[PullRequest](#pullrequest)>** 
 
 ### removeEntries
 
@@ -893,7 +901,7 @@ Remove entries form the branch.
 
 #### Parameters
 
-*   `entries` **Iterator\<ContentEntry>** 
+*   `entries` **AsyncIterator<[ContentEntry](#contententry)>** 
 
 ### entryClass
 
@@ -1001,7 +1009,7 @@ Lookup a repository in the provider and all of its repository groups.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the repository
 
-Returns **[Repository](#repository)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[Repository](#repository)>** 
 
 ### repositoryGroup
 
@@ -1011,7 +1019,7 @@ Lookup a repository group.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
 
-Returns **[RepositoryGroup](#repositorygroup)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[RepositoryGroup](#repositorygroup)>** 
 
 ### repositoryGroups
 
@@ -1021,7 +1029,7 @@ List groups.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[RepositoryGroup](#repositorygroup)>** all matching repositories groups of the provider
+Returns **AsyncIterator<[RepositoryGroup](#repositorygroup)>** all matching repositories groups of the provider
 
 ### createRepositoryGroup
 
@@ -1033,7 +1041,7 @@ If there is already a group for the given name it will be returend instead
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[RepositoryGroup](#repositorygroup)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[RepositoryGroup](#repositorygroup)>** 
 
 ### addRepositoryGroup
 
@@ -1080,7 +1088,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### update
 
-Preserve object attributes in the backing store.
+Save object attributes in the backing store.
 
 ### toJSON
 
@@ -1144,7 +1152,7 @@ Returns **[Repository](#repository)** destination repository
 
 ### provider
 
-Returns **Provider** 
+Returns **[BaseProvider](#baseprovider)** 
 
 ### equals
 
@@ -1178,7 +1186,7 @@ Decline the pull request.
 
 ### reviews
 
-Returns **Interaor<[Review](#review)>** 
+Returns **AsyncIterator<[Review](#review)>** 
 
 ### identifier
 
@@ -1218,7 +1226,7 @@ result will be filtered by source branch, destination branch and states
     *   `filter.destination` **[Branch](#branch)?** 
     *   `filter.states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
 
-Returns **Iterator<[PullRequest](#pullrequest)>** 
+Returns **AsyncIterator<[PullRequest](#pullrequest)>** 
 
 ### open
 
@@ -1270,6 +1278,14 @@ Draft state of the pull request.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
+## ContentEntry
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ## Ref
 
 **Extends NamedObject**
@@ -1288,13 +1304,13 @@ Check for equality.
 
 #### Parameters
 
-*   `other` **[Branch](#branch)** 
+*   `other` **[Ref](#ref)** 
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if name and repository are equal
 
 ### ref
 
-ref name
+ref name.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** git ref of the Ref
 
@@ -1306,7 +1322,7 @@ Get sha of a ref.
 
 *   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `this.ref`)
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the ref
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** sha of the ref
 
 ### entries
 
@@ -1316,13 +1332,13 @@ List entries of the branch.
 
 *   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
-Returns **ContentEntry** all matching entries in the branch
+Returns **AsyncIterator<[ContentEntry](#contententry)>** all matching entries in the branch
 
 ### asyncIterator
 
 List all entries of the branch.
 
-Returns **asyncIterator\<ContentEntry>** all entries in the branch
+Returns **AsyncIterator<[ContentEntry](#contententry)>** all entries in the branch
 
 ### maybeEntry
 
@@ -1332,7 +1348,7 @@ Get exactly one matching entry by name or undefine if no such entry is found.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ContentEntry>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[ContentEntry](#contententry)>** 
 
 ### entry
 
@@ -1342,13 +1358,13 @@ Get exactly one matching entry by name (throws if entry is not found).
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ContentEntry>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[ContentEntry](#contententry)>** 
 
 ### provider
 
 The provider we live in.
 
-Returns **Provider** 
+Returns **[BaseProvider](#baseprovider)** 
 
 ### owner
 
@@ -1432,7 +1448,7 @@ Abstract repository collection.
 
 ### Parameters
 
-*   `provider` **Provider** 
+*   `provider` **[BaseProvider](#baseprovider)** 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the group
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
@@ -1443,7 +1459,7 @@ Abstract repository collection.
 
 ### Properties
 
-*   `provider` **Provider** 
+*   `provider` **[BaseProvider](#baseprovider)** 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### repositoryClass
@@ -1540,7 +1556,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 The owners provider.
 
-Returns **Provider** 
+Returns **[BaseProvider](#baseprovider)** 
 
 ### identifier
 
@@ -1567,7 +1583,7 @@ Lookup entries form the head of the default branch.
 
 *   `name`  
 
-Returns **Entry** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[ContentEntry](#contententry)>** 
 
 ### entries
 
@@ -1577,7 +1593,7 @@ List entries of the default branch.
 
 *   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
-Returns **Entry** all matching entries in the branch
+Returns **AsyncIterator<[ContentEntry](#contententry)>** all matching entries in the branch
 
 ### maybeEntry
 
@@ -1587,7 +1603,7 @@ Get exactly one matching entry by name or undefined if no such entry is found.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<Entry>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[ContentEntry](#contententry)>** 
 
 ### urls
 
@@ -1671,7 +1687,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 *   `patterns`  
 
-Returns **Iterator<[Branch](#branch)>** of all branches
+Returns **AsyncIterator<[Branch](#branch)>** of all branches
 
 ### createBranch
 
@@ -1705,7 +1721,7 @@ Delete a [Branch](#branch).
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the branch
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<any>** 
 
 ### tags
 
@@ -1713,7 +1729,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 *   `patterns` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>)** 
 
-Returns **Iterator<[Tag](#tag)>** of all tags
+Returns **AsyncIterator<[Tag](#tag)>** of all tags
 
 ### tag
 
@@ -1723,14 +1739,14 @@ Get a Tag.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Tag](#tag)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[Tag](#tag)>** 
 
 ### delete
 
 Delete the repository from the [Provider](Provider).
 [Provider#deleteRepository](Provider#deleteRepository)
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<any>** 
 
 ### createPullRequest
 
@@ -1742,7 +1758,7 @@ Create a pull request (or deliver an already present for thefiven name).
 *   `source` **[Branch](#branch)** branch
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[PullRequest](#pullrequest)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[PullRequest](#pullrequest)>** 
 
 ### addPullRequest
 
@@ -1760,7 +1776,7 @@ Returns **[PullRequest](#pullrequest)**
 
 Deliver all [PullRequest](#pullrequest)s.
 
-Returns **Iterator<[PullRequest](#pullrequest)>** of all pull requests
+Returns **AsyncIterator<[PullRequest](#pullrequest)>** of all pull requests
 
 ### pullRequest
 
@@ -1780,7 +1796,7 @@ Delete a [PullRequest](#pullrequest).
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<any>** 
 
 ### addHook
 
@@ -1802,7 +1818,7 @@ Add a new Hook.
 
 List hooks.
 
-Returns **[Hook](#hook)** all hooks of the repository
+Returns **AsyncIterator<[Hook](#hook)>** all hooks of the repository
 
 ### hook
 
@@ -1812,7 +1828,7 @@ Get a Hook.
 
 *   `id` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** 
 
-Returns **[Hook](#hook)** for the given id
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[Hook](#hook)>** for the given id
 
 ### type
 
@@ -1828,7 +1844,7 @@ Get sha of a ref.
 
 *   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sha of the ref
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** sha of the ref
 
 ### repositoryClass
 
@@ -1880,12 +1896,6 @@ URLs of the repository
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
-## homePageURL
-
-The url of home page.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
 ## issuesURL
 
 The url of issue tracking system.
@@ -1910,7 +1920,7 @@ Lookup a repository in the provider and all of its repository groups.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the repository
 
-Returns **[Repository](#repository)** 
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[Repository](#repository)>** 
 
 ### repositoryGroup
 
@@ -1920,7 +1930,7 @@ Get a single group.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[RepositoryGroup](#repositorygroup)** deliver the one and only present group
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[RepositoryGroup](#repositorygroup)>** deliver the one and only present group
 
 ### repositoryGroups
 
@@ -1930,7 +1940,7 @@ List groups.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
 
-Returns **Iterator<[RepositoryGroup](#repositorygroup)>** always deliver the one and only present group
+Returns **AsyncIterator<[RepositoryGroup](#repositorygroup)>** always deliver the one and only present group
 
 ## Tag
 
@@ -1968,7 +1978,7 @@ A URL auth component will be removed to.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 *   `repositoryBases` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** all possible bases
-*   `whenFound` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to be called with the found base name
+*   `whenFound` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** to be called with the found base name
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name without base
 
@@ -1978,9 +1988,9 @@ Loops over names and executes stripBaseName.
 
 ### Parameters
 
-*   `names` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+*   `names` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>)** 
 *   `repositoryBases` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** all possible bases
-*   `whenFound` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to be called with the found base name
+*   `whenFound` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** to be called with the found base name
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** names without base
 
@@ -1994,6 +2004,8 @@ Find a new branch name for a given pattern.
 
 *   `repository` **[Repository](#repository)** 
 *   `pattern` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
 # install
 
