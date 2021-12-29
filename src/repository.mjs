@@ -1,6 +1,15 @@
 import { matcher } from "matching-iterator";
 import { optionJSON } from "./attribute.mjs";
 import { NamedObject } from "./named-object.mjs";
+import { Hook } from "./hook.mjs";
+import { Tag } from "./tag.mjs";
+import { Branch } from "./branch.mjs";
+import { PullRequest } from "./pull-request.mjs";
+
+/**
+ * @typedef {Object} ContentEntry
+ * @property {string} name 
+ */
 
 /**
  * Abstract repository
@@ -126,7 +135,7 @@ export class Repository extends NamedObject {
   /**
    * Lookup entries form the head of the default branch.
    * {@link Branch#entry}
-   * @return {Entry}
+   * @return {Promise<ContentEntry>}
    */
   async entry(name) {
     return (await this.defaultBranch).entry(name);
@@ -135,7 +144,7 @@ export class Repository extends NamedObject {
   /**
    * List entries of the default branch.
    * @param {string[]} matchingPatterns
-   * @return {Entry} all matching entries in the branch
+   * @return {AsyncIterator<ContentEntry>} all matching entries in the branch
    */
   async *entries(matchingPatterns) {
     yield* (await this.defaultBranch).entries(matchingPatterns);
@@ -144,7 +153,7 @@ export class Repository extends NamedObject {
   /**
    * Get exactly one matching entry by name or undefined if no such entry is found.
    * @param {string} name
-   * @return {Promise<Entry>}
+   * @return {Promise<ContentEntry>}
    */
   async maybeEntry(name) {
     return (await this.defaultBranch).maybeEntry(name);
@@ -249,7 +258,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * @return {Iterator<Branch>} of all branches
+   * @return {AsyncIterator<Branch>} of all branches
    */
   async *branches(patterns) {
     await this.initializeBranches();
@@ -293,7 +302,7 @@ export class Repository extends NamedObject {
   /**
    * Delete a {@link Branch}.
    * @param {string} name of the branch
-   * @return {Promise<undefined>}
+   * @return {Promise<any>}
    */
   async deleteBranch(name) {
     this._branches.delete(name);
@@ -305,7 +314,7 @@ export class Repository extends NamedObject {
 
   /**
    * @param {string|string[]} patterns
-   * @return {Iterator<Tag>} of all tags
+   * @return {AsyncIterator<Tag>} of all tags
    */
   async *tags(patterns) {
     await this.initializeTags();
@@ -318,7 +327,7 @@ export class Repository extends NamedObject {
   /**
    * Get a Tag.
    * @param {string} name
-   * @return {Tag}
+   * @return {Promise<Tag>}
    */
   async tag(name) {
     await this.initializeTags();
@@ -328,7 +337,7 @@ export class Repository extends NamedObject {
   /**
    * Delete the repository from the {@link Provider}.
    * {@link Provider#deleteRepository}
-   * @return {Promise<undefined>}
+   * @return {Promise<any>}
    */
   async delete() {
     return this.owner.deleteRepository(this.name);
@@ -368,7 +377,7 @@ export class Repository extends NamedObject {
 
   /**
    * Deliver all {@link PullRequest}s.
-   * @return {Iterator<PullRequest>} of all pull requests
+   * @return {AsyncIterator<PullRequest>} of all pull requests
    */
   async *pullRequests() {
     await this.initializePullRequests();
@@ -391,7 +400,7 @@ export class Repository extends NamedObject {
   /**
    * Delete a {@link PullRequest}.
    * @param {string} name
-   * @return {Promise}
+   * @return {Promise<any>}
    */
   async deletePullRequest(name) {
     this._pullRequests.delete(name);
@@ -419,7 +428,7 @@ export class Repository extends NamedObject {
 
   /**
    * List hooks.
-   * @return {Hook} all hooks of the repository
+   * @return {AsyncIterator<Hook>} all hooks of the repository
    */
   async *hooks() {
     await this.initializeHooks();
@@ -431,7 +440,7 @@ export class Repository extends NamedObject {
   /**
    * Get a Hook.
    * @param {string|number} id
-   * @return {Hook} for the given id
+   * @return {Promise<Hook>} for the given id
    */
   async hook(id) {
     for await (const hook of this.hooks()) {
@@ -469,7 +478,7 @@ export class Repository extends NamedObject {
   /**
    * Get sha of a ref.
    * @param {string} ref
-   * @return {string} sha of the ref
+   * @return {Promise<string>} sha of the ref
    */
   async refId(ref) {
     return undefined;

@@ -1,5 +1,6 @@
 import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
+import { Repository } from "./repository.mjs";
 import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
 
 /**
@@ -55,8 +56,8 @@ export function RepositoryOwner(base) {
 
     /**
      * List repositories for the owner.
-     * @param {string[]|string} matchingPatterns
-     * @return {Iterator<Repository>} all matching repositories of the owner
+     * @param {string[]|string} patterns
+     * @return {AsyncIterator<Repository>} all matching repositories of the owner
      */
     async *repositories(patterns) {
       patterns = asArray(patterns);

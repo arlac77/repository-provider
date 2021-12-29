@@ -4,6 +4,7 @@ import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
 import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
+import { Tag } from "./tag.mjs";
 import { Hook } from "./hook.mjs";
 
 /**
@@ -324,7 +325,7 @@ export class BaseProvider {
   /**
    * List projects.
    * @param {string[]|string} patterns
-   * @return {Iterator<Projects>} all matching projects of the provider
+   * @return {AsyncIterator<Project>} all matching projects of the provider
    */
   async *projects(patterns) {
     yield* this.list("projects", patterns);
@@ -333,7 +334,7 @@ export class BaseProvider {
   /**
    * List milestones.
    * @param {string[]|string} patterns
-   * @return {Iterator<Milestone>} all matching milestones of the provider
+   * @return {AsyncIterator<Milestone>} all matching milestones of the provider
    */
   async *projects(patterns) {
     yield* this.list("milestones", patterns);
@@ -342,7 +343,7 @@ export class BaseProvider {
   /**
    * List repositories.
    * @param {string[]|string} patterns
-   * @return {Iterator<Repository>} all matching repos of the provider
+   * @return {AsyncIterator<Repository>} all matching repos of the provider
    */
   async *repositories(patterns) {
     yield* this.list("repositories", patterns);
@@ -351,7 +352,7 @@ export class BaseProvider {
   /**
    * List branches.
    * @param {string[]|string} patterns
-   * @return {Iterator<Branch>} all matching branches of the provider
+   * @return {AsyncIterator<Branch>} all matching branches of the provider
    */
   async *branches(patterns) {
     yield* this.list("branches", patterns);
@@ -360,7 +361,7 @@ export class BaseProvider {
   /**
    * List tags.
    * @param {string[]|string} patterns
-   * @return {Iterator<Tag>} all matching tags of the provider
+   * @return {AsyncIterator<Tag>} all matching tags of the provider
    */
   async *tags(patterns) {
     yield* this.list("tags", patterns);
@@ -369,7 +370,7 @@ export class BaseProvider {
   /**
    * List hooks.
    * @param {string[]|string} patterns
-   * @return {Iterator<Hook>} all matching hooks of the provider
+   * @return {AsyncIterator<Hook>} all matching hooks of the provider
    */
   async *hooks(patterns) {
     yield* this.list("hooks", patterns);
@@ -378,7 +379,7 @@ export class BaseProvider {
   /**
    * List pull requests.
    * @param {string[]|string} patterns
-   * @return {Iterator<PullRequest>} all matching pullRequests of the provider
+   * @return {AsyncIterator<PullRequest>} all matching pullRequests of the provider
    */
   async *pullRequests(patterns) {
     yield* this.list("pullRequests", patterns);

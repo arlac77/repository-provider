@@ -1,5 +1,6 @@
 import { optionJSON } from "./attribute.mjs";
 import { NamedObject } from "./named-object.mjs";
+import { Branch } from "./branch.mjs";
 
 /**
  * Abstract pull request.
