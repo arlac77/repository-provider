@@ -338,7 +338,7 @@ export class BaseProvider {
    * @param {string[]|string} patterns
    * @return {AsyncIterator<Milestone>} all matching milestones of the provider
    */
-  async *projects(patterns) {
+  async *milestones(patterns) {
     yield* this.list("milestones", patterns);
   }
 
