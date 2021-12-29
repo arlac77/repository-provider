@@ -1,5 +1,6 @@
 import { optionJSON } from "./attribute.mjs";
 import { BaseObject } from "./base-object.mjs";
+import { Repository } from "./repository.mjs";
 
 /**
  * Repository hook.

@@ -1,5 +1,6 @@
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { NamedObject } from "./named-object.mjs";
+import { BaseProvider } from "./base-provider.mjs";
 
 /**
  * Abstract repository collection.

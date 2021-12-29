@@ -55,7 +55,7 @@ export class Branch extends Ref {
   /**
    * Delete the branch from the {@link Repository}.
    * @see {@link Repository#deleteBranch}
-   * @return {Promise<undefined>}
+   * @return {Promise<any>}
    */
   async delete() {
     return this.repository.deleteBranch(this.name);
@@ -66,7 +66,7 @@ export class Branch extends Ref {
    * @param {string} message commit message
    * @param {ContentEntry[]} updates content to be commited
    * @param {Object} options
-   * @return {CommitResult}
+   * @return {Promise<CommitResult>}
    */
   async commit(message, updates, options) {}
 
@@ -79,7 +79,7 @@ export class Branch extends Ref {
    * @param {boolean} options.dry do not create a branch and do not commit only create dummy PR
    * @param {boolean} options.skipWithoutCommits do not create a PR if no commits are given
    * @param {boolean} options.bodyFromCommitMessages generate body from commit messages
-   * @return {PullRequest}
+   * @return {Promise<PullRequest>}
    */
   async commitIntoPullRequest(commits, options) {
     const isBranch = options.pullRequestBranch instanceof Branch;
@@ -149,7 +149,7 @@ export class Branch extends Ref {
 
   /**
    * Remove entries form the branch.
-   * @param {Iterator <ContentEntry>} entries
+   * @param {AsyncIterator<ContentEntry>} entries
    */
   async removeEntries(entries) {}
 

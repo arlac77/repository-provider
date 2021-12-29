@@ -2,7 +2,8 @@ import { NamedObject } from "./named-object.mjs";
 
 /**
  * @typedef {Object} ContentEntry
- * @property {string} name 
+ * @property {string} name
+ * 
  */
 
 /**
@@ -30,7 +31,7 @@ export class Ref extends NamedObject {
 
   /**
    * Check for equality.
-   * @param {Branch} other
+   * @param {Ref} other
    * @return {boolean} true if name and repository are equal
    */
   equals(other) {
@@ -52,7 +53,7 @@ export class Ref extends NamedObject {
   /**
    * Get sha of a ref.
    * @param {string} ref
-   * @return {string} sha of the ref
+   * @return {Promise<string>} sha of the ref
    */
   async refId(ref = this.ref) {
     return this.repository.refId(ref);
@@ -61,13 +62,13 @@ export class Ref extends NamedObject {
   /**
    * List entries of the branch.
    * @param {string[]} matchingPatterns
-   * @return {ContentEntry} all matching entries in the branch
+   * @return {AsyncIterator<ContentEntry>} all matching entries in the branch
    */
   async *entries(matchingPatterns) {}
 
   /**
    * List all entries of the branch.
-   * @return {asyncIterator<ContentEntry>} all entries in the branch
+   * @return {AsyncIterator<ContentEntry>} all entries in the branch
    */
   async *[Symbol.asyncIterator]() {
     return yield* this.entries();
@@ -97,7 +98,7 @@ export class Ref extends NamedObject {
 
   /**
    * The provider we live in.
-   * @return {Provider}
+   * @return {BaseProvider}
    */
   get provider() {
     return this.repository.provider;

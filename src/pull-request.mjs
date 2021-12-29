@@ -1,6 +1,9 @@
 import { optionJSON } from "./attribute.mjs";
 import { NamedObject } from "./named-object.mjs";
 import { Branch } from "./branch.mjs";
+import { Repository } from "./repository.mjs";
+import { Review } from "./review.mjs";
+import { BaseProvider } from "./base-provider.mjs";
 
 /**
  * Abstract pull request.
@@ -56,7 +59,7 @@ export class PullRequest extends NamedObject {
    * @param {Branch?} filter.source
    * @param {Branch?} filter.destination
    * @param {Set<string>?} filter.states
-   * @return {Iterator<PullRequest>}
+   * @return {AsyncIterator<PullRequest>}
    */
   static async *list(repository, filter) {}
 
@@ -207,7 +210,7 @@ export class PullRequest extends NamedObject {
   }
 
   /**
-   * @return {Provider}
+   * @return {BaseProvider}
    */
   get provider() {
     return this.destination === undefined
@@ -261,7 +264,7 @@ export class PullRequest extends NamedObject {
   async decline() {}
 
   /**
-   * @return {Interaor<Review>}
+   * @return {AsyncIterator<Review>}
    */
   async *reviews() {}
 

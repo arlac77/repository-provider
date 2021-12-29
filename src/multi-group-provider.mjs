@@ -1,6 +1,8 @@
 import { matcher } from "matching-iterator";
 import { BaseProvider } from "./base-provider.mjs";
 import { stripBaseNames } from "./util.mjs";
+import { Repository } from "./repository.mjs";
+import { RepositoryGroup } from "./repository-group.mjs";
 
 /**
  * Provider supporting serveral repository groups.
@@ -16,7 +18,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * Lookup a repository in the provider and all of its repository groups.
    * @param {string} name of the repository
-   * @return {Repository}
+   * @return {Promise<Repository>}
    */
   async repository(name) {
     const { base, group, repository } = this.parseName(name);
@@ -54,7 +56,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * Lookup a repository group.
    * @param {string} name of the group
-   * @return {RepositoryGroup}
+   * @return {Promise<RepositoryGroup>}
    */
   async repositoryGroup(name) {
     const { base } = this.parseName(name);
@@ -69,7 +71,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * List groups.
    * @param {string[]|string} patterns
-   * @return {Iterator<RepositoryGroup>} all matching repositories groups of the provider
+   * @return {AsyncIterator<RepositoryGroup>} all matching repositories groups of the provider
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();
@@ -89,7 +91,7 @@ export class MultiGroupProvider extends BaseProvider {
    * If there is already a group for the given name it will be returend instead
    * @param {string} name of the group
    * @param {Object} options
-   * @return {RepositoryGroup}
+   * @return {Promise<RepositoryGroup>}
    */
   async createRepositoryGroup(name, options) {
     return this.addRepositoryGroup(name, options);
