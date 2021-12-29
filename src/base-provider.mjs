@@ -6,6 +6,8 @@ import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
 import { Tag } from "./tag.mjs";
 import { Hook } from "./hook.mjs";
+import { Project } from "./project.mjs";
+import { Milestone } from "./milestone.mjs";
 
 /**
  * @typedef {Object} MessageDestination
@@ -409,7 +411,7 @@ export class BaseProvider {
 
   /**
    * We are our own provider.
-   * @return {Provider} this
+   * @return {BaseProvider} this
    */
   get provider() {
     return this;

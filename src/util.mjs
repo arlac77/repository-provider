@@ -58,7 +58,7 @@ export function stripBaseNames(names, repositoryBases, whenFound) {
  * 'something/*' will get to something/1 something/2 ...
  * @param {Repository} repository
  * @param {string} pattern
- * @return {string}
+ * @return {Promise<string>}
  */
 export async function generateBranchName(repository, pattern) {
   let n = 1;
