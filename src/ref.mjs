@@ -1,6 +1,11 @@
 import { NamedObject } from "./named-object.mjs";
 
 /**
+ * @typedef {Object} ContentEntry
+ * @property {string} name 
+ */
+
+/**
  * Base for Branch and Tag
  */
 export class Ref extends NamedObject {
@@ -37,7 +42,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * ref name
+   * ref name.
    * @return {string} git ref of the Ref
    */
   get ref() {

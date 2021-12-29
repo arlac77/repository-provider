@@ -7,11 +7,6 @@ import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
 
 /**
- * @typedef {Object} ContentEntry
- * @property {string} name 
- */
-
-/**
  * Abstract repository
  * @param {Owner} owner
  * @param {string} name (#branch) will be removed
@@ -97,7 +92,7 @@ export class Repository extends NamedObject {
 
   /**
    * The owners provider.
-   * @return {Provider}
+   * @return {BaseProvider}
    */
   get provider() {
     return this.owner.provider;
@@ -342,7 +337,7 @@ export class Repository extends NamedObject {
    * @param {string} name of the pr
    * @param {Branch} source branch
    * @param {Object} options
-   * @return {PullRequest}
+   * @return {Promise<PullRequest>}
    */
   async createPullRequest(name, source, options) {
     await this.initializePullRequests();

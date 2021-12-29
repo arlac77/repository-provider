@@ -1,5 +1,6 @@
 import { Ref } from "./ref.mjs";
 import { PullRequest } from "./pull-request.mjs";
+import { Branch } from "./branch.mjs";
 
 /**
  * @typedef {Object} Commit

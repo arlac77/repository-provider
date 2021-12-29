@@ -3,7 +3,7 @@ import { NamedObject } from "./named-object.mjs";
 
 /**
  * Abstract repository collection.
- * @param {Provider} provider
+ * @param {BaseProvider} provider
  * @param {string} name of the group
  * @param {Object} options
  * @param {string} [options.description] human readable description
@@ -11,7 +11,7 @@ import { NamedObject } from "./named-object.mjs";
  * @param {string} [options.uuid] internal id
  * @param {string} [options.url] home
  *
- * @property {Provider} provider
+ * @property {BaseProvider} provider
  * @property {string} name
  */
 
