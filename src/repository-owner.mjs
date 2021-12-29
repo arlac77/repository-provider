@@ -161,7 +161,7 @@ export function RepositoryOwner(base) {
     /**
      * Delete a repository.
      * @param {string} name
-     * @return {Promise<undefined>}
+     * @return {Promise<any>}
      */
     async deleteRepository(name) {
       this._repositories.delete(this.normalizeRepositoryName(name, true));
