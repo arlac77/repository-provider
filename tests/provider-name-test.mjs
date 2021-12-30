@@ -1,15 +1,18 @@
 import test from "ava";
 import {
   repositories,
-  fragmentRepositories
-} from "./fixtures/repositories.mjs";
-import { providerParseNameTest } from "repository-provider-test-support";
+  fragmentRepositories,
+  providerParseNameTest
+} from "repository-provider-test-support";
 
 import { BaseProvider } from "repository-provider";
 
 class MyProvider extends BaseProvider {
   get repositoryBases() {
-    return super.repositoryBases.concat(["https://github.com/", "http://otherdomain.com/"]);
+    return super.repositoryBases.concat([
+      "https://github.com/",
+      "http://otherdomain.com/"
+    ]);
   }
 }
 
