@@ -36,6 +36,10 @@ class MyProviderB extends BaseProvider {
   static get attributes() {
     return {
       ...super.attributes,
+      host: {
+        env: "{{instanceIdentifier}}_HOST",
+        default : "somewhere.com"
+      },
       cloneOptions: {
         env: "GIT_CLONE_OPTIONS",
         parse: value => value.split(/\s+/)
@@ -47,11 +51,28 @@ class MyProviderB extends BaseProvider {
         mandatory: true
       },
       api: {
-        env: "{{instanceIdentifier}}API"
+        env: "{{instanceIdentifier}}API",
+        default : (attribute, object) => `http://${object.host}/api`,
       }
     };
   }
 }
+
+test.skip(
+  providerOptionsFromEnvironmentTest,
+  MyProviderB,
+  {
+    GITEA_HOST: "somewhere",
+    GITEA_TOKEN: "abc",
+  },
+  {
+  //  host: "somewhere",
+    api: "http://somewhere/api",
+    "authentication.token": "abc",
+    "authentication.type": "token",
+  },
+  true
+);
 
 test(
   providerOptionsFromEnvironmentTest,

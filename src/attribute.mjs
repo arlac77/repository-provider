@@ -46,8 +46,8 @@ export function definePropertiesFromOptions(
 
       let value = options[name];
       if (value === undefined) {
-        if (typeof attribute.default === "function") {
-          value = attribute.default(attribute, object);
+        if (attribute.getDefault) {
+          value = attribute.getDefault(attribute, object);
         } else if (
           attribute.default !== undefined &&
           attribute.default !== getAttribute(object, name)
@@ -100,6 +100,26 @@ export function definePropertiesFromOptions(
 
   Object.defineProperties(object, properties);
   Object.assign(object, applyLater);
+}
+
+/**
+ * get default values.
+ * @param {Object} attributes
+ * @return {Object} filled with default values
+ */
+export function defaultValues(attributes) {
+  Object.entries(attributes).reduce((a, c) => {
+    const [name, attribute] = c;
+    if (attribute.default !== undefined) {
+      a.push([
+        name,
+        typeof attribute.getDefault
+          ? attribute.getDefault(attribute, object)
+          : attribute.default
+      ]);
+    }
+    return a;
+  }, []);
 }
 
 /**
