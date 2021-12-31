@@ -40,6 +40,9 @@ export class Branch extends Ref {
       : `${this.repository.url}#${this.name}`;
   }
 
+  /**
+   * @return {string} tags
+   */
   get refType() {
     return "heads";
   }

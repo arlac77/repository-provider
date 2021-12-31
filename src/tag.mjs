@@ -9,6 +9,9 @@ export class Tag extends Ref {
     repository._addTag(this);
   }
 
+  /**
+   * @return {string} tags
+   */
   get refType() {
     return "tags";
   }
@@ -21,5 +24,4 @@ export class Tag extends Ref {
   {
     return false;
   }
-
 }
