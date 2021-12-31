@@ -138,6 +138,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-28)
     *   [Properties](#properties-5)
     *   [url](#url-1)
+    *   [refType](#reftype)
     *   [isDefault](#isdefault)
     *   [delete](#delete)
     *   [commit](#commit-2)
@@ -335,6 +336,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-82)
 *   [Tag](#tag-1)
     *   [Parameters](#parameters-83)
+    *   [refType](#reftype-1)
     *   [isWritable](#iswritable-1)
 *   [asArray](#asarray)
     *   [Parameters](#parameters-84)
@@ -564,7 +566,7 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 
 ### normalizeRepositoryName
 
-Bring a repository name into its normal form by removing any clutter
+Bring a repository name into its normal form by removing any clutter.
 like .git suffix or #branch names.
 
 #### Parameters
@@ -576,7 +578,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### normalizeGroupName
 
-Bring a group name into its normal form by removing any clutter
+Bring a group name into its normal form by removing any clutter.
 like .git suffix or #branch names.
 
 #### Parameters
@@ -588,7 +590,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### areRepositoryNamesCaseSensitive
 
-Are repositroy names case sensitive.
+Are repository names case sensitive.
 Overwrite and return false if you want to have case insensitive repository lookup
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true
@@ -852,6 +854,10 @@ Abstract branch.
 Deliver repository and branch url combined.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'repoUrl#branch'
+
+### refType
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** tags
 
 ### isDefault
 
@@ -1953,6 +1959,10 @@ Tag refs
 *   `repository`  
 *   `name`  
 *   `options`  
+
+### refType
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** tags
 
 ### isWritable
 
