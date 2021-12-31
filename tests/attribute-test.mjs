@@ -56,7 +56,10 @@ class MyClass {
       preexisting_property: {},
       "authentification.token": {},
       "authentification.user": { default: "hugo" },
-      "a.b.c.d": { default: 7 }
+      "a.b.c.d": { default: 7 },
+      calculatedDefault: {
+        default: (attribute, object) => object.preexisting_property + 1
+      }
     };
   }
 
@@ -71,7 +74,7 @@ class MyClass {
     this._preexisting_property = value;
   }
 }
-
+test(dpct, MyClass, { other: 1 }, (t, o) => t.is(o.calculatedDefault, 77 + 1));
 test(dpct, MyClass, { boolean_conversion: 0 }, (t, o) =>
   t.is(o.boolean_conversion, false)
 );
@@ -144,10 +147,16 @@ ojt.title = (providedTitle, a, b) =>
   )} ${b}`.trim();
 
 test(ojt, {}, undefined, undefined, {});
-test(ojt, new RepositoryGroup(undefined, "a", { id: 1 }), undefined, undefined, {
-  id: 1,
-  isAdmin: false
-});
+test(
+  ojt,
+  new RepositoryGroup(undefined, "a", { id: 1 }),
+  undefined,
+  undefined,
+  {
+    id: 1,
+    isAdmin: false
+  }
+);
 
 function sat(t, object, key, value, expected) {
   setAttribute(object, key, value);
