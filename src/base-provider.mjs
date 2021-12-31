@@ -126,7 +126,7 @@ export class BaseProvider {
   /**
    * Creates a new provider for a given set of options.
    * @param {Object} options additional options
-   * @param {string?} options.instanceIdentifier
+   * @param {string} [options.instanceIdentifier]
    * @param {Object} env taken from process.env
    * @return {BaseProvider} newly created provider or undefined if options are not sufficient to construct a provider
    */
@@ -167,7 +167,7 @@ export class BaseProvider {
   }
 
   /**
-   * Bring a repository name into its normal form by removing any clutter
+   * Bring a repository name into its normal form by removing any clutter.
    * like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
@@ -181,7 +181,7 @@ export class BaseProvider {
   }
 
   /**
-   * Bring a group name into its normal form by removing any clutter
+   * Bring a group name into its normal form by removing any clutter.
    * like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
@@ -195,7 +195,7 @@ export class BaseProvider {
   }
 
   /**
-   * Are repositroy names case sensitive.
+   * Are repository names case sensitive.
    * Overwrite and return false if you want to have case insensitive repository lookup
    * @return {boolean} true
    */
