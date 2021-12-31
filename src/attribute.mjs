@@ -1,4 +1,3 @@
-
 /**
  * @typedef {Object} Attribute
  *
@@ -46,12 +45,15 @@ export function definePropertiesFromOptions(
       const property = properties[first];
 
       let value = options[name];
-      if (
-        value === undefined &&
-        attribute.default !== undefined &&
-        attribute.default !== getAttribute(object, name)
-      ) {
-        value = attribute.default;
+      if (value === undefined) {
+        if (typeof attribute.default === "function") {
+          value = attribute.default(attribute, object);
+        } else if (
+          attribute.default !== undefined &&
+          attribute.default !== getAttribute(object, name)
+        ) {
+          value = attribute.default;
+        }
       }
 
       if (attribute.set) {
@@ -112,7 +114,7 @@ export function setAttribute(object, name, value) {
   const last = parts.pop();
 
   for (const p of parts) {
-    if (object[p] === undefined || typeof object[p] !== 'object') {
+    if (object[p] === undefined || typeof object[p] !== "object") {
       object[p] = {};
     }
     object = object[p];
@@ -149,15 +151,18 @@ export function getAttribute(object, name) {
  * @param {Object} attributes to operator on
  * @return {Object} initial + defined values
  */
-export function optionJSON(object, initial = {}, attributes=object.constructor.attributes) {
-  return Object.keys(attributes || {})
-    .reduce((a, c) => {
-      const value = object[c];
-      if (value !== undefined && !(value instanceof Function)) {
-        a[c] = value;
-      }
-      return a;
-    }, initial);
+export function optionJSON(
+  object,
+  initial = {},
+  attributes = object.constructor.attributes
+) {
+  return Object.keys(attributes || {}).reduce((a, c) => {
+    const value = object[c];
+    if (value !== undefined && !(value instanceof Function)) {
+      a[c] = value;
+    }
+    return a;
+  }, initial);
 }
 
 /**
