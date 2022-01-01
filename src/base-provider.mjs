@@ -295,8 +295,8 @@ export class BaseProvider {
 
   /**
    * Create a repository.
-   * @param {string} name of group and repository 
-   * @param {Object} options 
+   * @param {string} name of group and repository
+   * @param {Object} options
    * @returns {Promise<Repository>}
    */
   async createRepository(name, options) {
@@ -394,20 +394,6 @@ export class BaseProvider {
   }
 
   /**
-   * @return {Class} repository group class used by the Provider
-   */
-  get repositoryGroupClass() {
-    return RepositoryGroup;
-  }
-
-  /**
-   * @return {Class} hook class used by the Provider
-   */
-  get hookClass() {
-    return Hook;
-  }
-
-  /**
    * Deliver the provider name.
    * @return {string} class name by default
    */
@@ -454,6 +440,34 @@ export class BaseProvider {
     return json;
   }
 
+  initializeRepositories() {}
+
+  info(...args) {
+    return this.messageDestination.info(...args);
+  }
+
+  warn(...args) {
+    return this.messageDestination.warn(...args);
+  }
+
+  error(...args) {
+    return this.messageDestination.error(...args);
+  }
+
+  /**
+   * @return {Class} repository group class used by the Provider
+   */
+  get repositoryGroupClass() {
+    return RepositoryGroup;
+  }
+
+  /**
+   * @return {Class} hook class used by the Provider
+   */
+  get hookClass() {
+    return Hook;
+  }
+
   /**
    * @return {Class} repository class used by the Provider
    */
@@ -480,19 +494,5 @@ export class BaseProvider {
    */
   get pullRequestClass() {
     return PullRequest;
-  }
-
-  initializeRepositories() {}
-
-  info(...args) {
-    return this.messageDestination.info(...args);
-  }
-
-  warn(...args) {
-    return this.messageDestination.warn(...args);
-  }
-
-  error(...args) {
-    return this.messageDestination.error(...args);
   }
 }
