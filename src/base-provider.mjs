@@ -293,6 +293,12 @@ export class BaseProvider {
     return result;
   }
 
+  /**
+   * Create a repository.
+   * @param {string} name of group and repository 
+   * @param {Object} options 
+   * @returns {Promise<Repository>}
+   */
   async createRepository(name, options) {
     const { group, repository } = this.parseName(name);
     const rg = await this.repositoryGroup(group);
@@ -311,7 +317,7 @@ export class BaseProvider {
         yield* group[type]();
       }
     } else {
-      for (let pattern of asArray(patterns)) {
+      for (const pattern of asArray(patterns)) {
         const [groupPattern, repoPattern] = stripBaseName(
           pattern,
           this.repositoryBases
