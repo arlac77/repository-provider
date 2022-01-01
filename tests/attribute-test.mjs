@@ -1,5 +1,6 @@
 import test from "ava";
 import {
+  defaultValues,
   getAttribute,
   setAttribute,
   RepositoryGroup,
@@ -175,3 +176,10 @@ test(sat, { a: { b: "x" } }, "a.b", 1, { a: { b: 1 } });
 test(sat, { a: 1 }, "a.b", 1, { a: { b: 1 } });
 test(sat, { a: "1" }, "a.b", 1, { a: { b: 1 } });
 test(sat, { a: { x: 7 } }, "a.b.c.d", 1, { a: { x: 7, b: { c: { d: 1 } } } });
+
+test("default values", t => {
+  t.deepEqual(
+    { "a.b.c.d": 7, "authentification.user": "hugo", calculatedDefault: 3 },
+    defaultValues(MyClass.attributes, { preexisting_property: 2 })
+  );
+});
