@@ -126,7 +126,7 @@ export class BaseProvider {
   /**
    * Creates a new provider for a given set of options.
    * @param {Object} options additional options
-   * @param {string} [options.instanceIdentifier]
+   * @param {string} [options.instanceIdentifier] name of the provider instance
    * @param {Object} env taken from process.env
    * @return {BaseProvider} newly created provider or undefined if options are not sufficient to construct a provider
    */
@@ -153,7 +153,7 @@ export class BaseProvider {
   }
 
   /**
-   * All possible base urls.
+   * All supported base urls.
    * For github something like:
    * - git@github.com
    * - git://github.com
