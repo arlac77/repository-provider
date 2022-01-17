@@ -36,7 +36,7 @@
     "ava": "^4.0.1",
     "c8": "^7.11.0",
     "documentation": "^13.2.5",
-    "repository-provider-test-support": "^1.9.6",
+    "repository-provider-test-support": "^1.9.8",
     "semantic-release": "^18.0.1",
     "typescript": "^4.6.0-dev.20220117"
   },
