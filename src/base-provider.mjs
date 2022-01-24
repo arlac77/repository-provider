@@ -483,6 +483,13 @@ export class BaseProvider {
   }
 
   /**
+   * @return {Class} branch class used by the Provider
+   */
+  get tagClass() {
+    return Tag;
+  }
+
+  /**
    * @return {Class} entry class used by the Provider
    */
   get entryClass() {

@@ -19,6 +19,21 @@ test("tag init", async t => {
  // t.is(await repository.tags("t1"), b);
 });
 
+test("tag addTag", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.addRepository("r1", {
+  });
+
+  const b = repository.addTag("t1");
+  t.is(b.repository, repository);
+  t.is(b.provider, provider);
+  t.is(b.name, "t1");
+  t.is(b.owner, provider);
+  t.is(b.ref, "refs/tags/t1");
+  t.is(b.isWritable, false);
+
+});
+
 
 test("tag logging", async t => {
   const { messageDestination, messages } = createMessageDestination();

@@ -81,6 +81,14 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
    * By default we use the providers implementation.
    * @return {Class} as defined in the provider
    */
+  get tagClass() {
+    return this.provider.branchClass;
+  }
+
+  /**
+   * By default we use the providers implementation.
+   * @return {Class} as defined in the provider
+   */
   get contentClass() {
     return this.provider.contentClass;
   }

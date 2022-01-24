@@ -274,7 +274,7 @@ export class Repository extends NamedObject {
    * Internal branch creation does not call repository.initialize()
    * @param {string} name of the new branch
    * @param {Object} options
-   * @return {Promise<Branch>} newly created branch
+   * @return {Branch} newly created branch
    */
   addBranch(name, options) {
     let branch = this._branches.get(name);
@@ -318,6 +318,22 @@ export class Repository extends NamedObject {
     yield* matcher(this._tags.values(), patterns, {
       name: "name"
     });
+  }
+
+  /**
+   * Add a new {@link Tag}.
+   * Internal tag creation does not call repository.initialize()
+   * @param {string} name of the new tag
+   * @param {Object} options
+   * @return {Tag} newly created tag
+   */
+  addTag(name, options) {
+    let tag = this._tags.get(name);
+    if (tag === undefined) {
+      tag = new this.tagClass(this, name, options);
+    }
+
+    return tag;
   }
 
   _addTag(tag) {
@@ -496,6 +512,14 @@ export class Repository extends NamedObject {
    */
   get branchClass() {
     return this.owner.branchClass;
+  }
+
+  /**
+   * By default we use the owners implementation.
+   * @return {Class} as defined in the owner
+   */
+  get tagClass() {
+    return this.owner.tagClass;
   }
 
   /**
