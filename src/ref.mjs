@@ -208,16 +208,4 @@ export class Ref extends NamedObject {
       !this.isProtected
     );
   }
-
-  info(...args) {
-    return this.repository.info(...args);
-  }
-
-  warn(...args) {
-    return this.repository.warn(...args);
-  }
-
-  error(...args) {
-    return this.repository.error(...args);
-  }
 }

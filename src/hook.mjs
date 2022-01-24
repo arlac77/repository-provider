@@ -36,6 +36,11 @@ export class Hook extends BaseObject {
     repository._addHook(this);
   }
 
+  get owner()
+  {
+    return this.repository;
+  }
+
   get fullName() {
     return `${this.repository.fullName}/${this.id}`;
   }
@@ -58,17 +63,5 @@ export class Hook extends BaseObject {
    */
   toJSON() {
     return optionJSON(this, { id: this.id, events: [...this.events] });
-  }
-
-  info(...args) {
-    return this.repository.info(...args);
-  }
-
-  warn(...args) {
-    return this.repository.warn(...args);
-  }
-
-  error(...args) {
-    return this.repository.error(...args);
   }
 }

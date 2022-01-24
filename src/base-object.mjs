@@ -72,11 +72,40 @@ export class BaseObject {
   }
 
   /**
+   * Save object attributes in the backing store.
+   */
+  async update() {}
+
+  /**
    * Check for equality
    * @param {BaseObject} other
    * @return {boolean} true if other is present
    */
   equals(other) {
     return other !== undefined;
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  info(...args) {
+    return this.owner.info(...args);
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  warn(...args) {
+    return this.owner.warn(...args);
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  error(...args) {
+    return this.owner.error(...args);
   }
 }

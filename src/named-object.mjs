@@ -34,13 +34,6 @@ export class NamedObject extends BaseObject {
     return this.name;
   }
 
-  /**
-   * Save object attributes in the backing store.
-   */
-  async update()
-  {
-  }
-
   toString() {
     return this.name;
   }
