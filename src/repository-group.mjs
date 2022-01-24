@@ -82,7 +82,7 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
    * @return {Class} as defined in the provider
    */
   get tagClass() {
-    return this.provider.branchClass;
+    return this.provider.tagClass;
   }
 
   /**
