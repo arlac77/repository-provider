@@ -82,6 +82,7 @@ export class Branch extends Ref {
    * @param {boolean} options.dry do not create a branch and do not commit only create dummy PR
    * @param {boolean} options.skipWithoutCommits do not create a PR if no commits are given
    * @param {boolean} options.bodyFromCommitMessages generate body from commit messages
+   * @param {string} [options.body] body of the PR
    * @return {Promise<PullRequest>}
    */
   async commitIntoPullRequest(commits, options) {
