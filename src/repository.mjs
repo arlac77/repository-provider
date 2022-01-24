@@ -42,7 +42,7 @@ export class Repository extends NamedObject {
        * URLs of the repository
        * @return {string[]}
        */
-      urls: { },
+      urls: {},
 
       cloneURL: { type: "url" },
 
@@ -230,6 +230,14 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * Lookup the default branch.
+   * @return {Promise<Branch>} branch named after defaultBranchName
+   */
+  get defaultBranch() {
+    return this.branch(this.defaultBranchName);
+  }
+
+  /**
    * Lookup branch by name.
    * @param {string} name
    * @return {Promise<Branch>}
@@ -237,14 +245,6 @@ export class Repository extends NamedObject {
   async branch(name) {
     await this.initializeBranches();
     return this._branches.get(name);
-  }
-
-  /**
-   * Lookup the default branch.
-   * @return {Promise<Branch>} branch named after defaultBranchName
-   */
-  get defaultBranch() {
-    return this.branch(this.defaultBranchName);
   }
 
   /**
@@ -298,8 +298,14 @@ export class Repository extends NamedObject {
     this._branches.delete(name);
   }
 
-  _addTag(tag) {
-    this._tags.set(tag.name, tag);
+  /**
+   * Get a Tag.
+   * @param {string} name
+   * @return {Promise<Tag>}
+   */
+  async tag(name) {
+    await this.initializeTags();
+    return this._tags.get(name);
   }
 
   /**
@@ -314,14 +320,8 @@ export class Repository extends NamedObject {
     });
   }
 
-  /**
-   * Get a Tag.
-   * @param {string} name
-   * @return {Promise<Tag>}
-   */
-  async tag(name) {
-    await this.initializeTags();
-    return this._tags.get(name);
+  _addTag(tag) {
+    this._tags.set(tag.name, tag);
   }
 
   /**
