@@ -158,14 +158,6 @@ export class Branch extends Ref {
   async removeEntries(entries) {}
 
   /**
-   * By default we use the providers implementation.
-   * @return {Class} as defined in the repository
-   */
-  get entryClass() {
-    return this.repository.entryClass;
-  }
-
-  /**
    * Create a pull request.
    * @param {Branch} toBranch
    * @param {Object} options
