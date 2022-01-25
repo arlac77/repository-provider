@@ -97,14 +97,6 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * The provider we live in.
-   * @return {BaseProvider}
-   */
-  get provider() {
-    return this.repository.provider;
-  }
-
-  /**
    * Branch owner.
    * By default we provide the repository owner
    * @see {@link Repository#owner}
