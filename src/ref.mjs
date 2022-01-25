@@ -1,11 +1,9 @@
 import { NamedObject } from "./named-object.mjs";
-
 /**
  * @typedef {Object} ContentEntry
  * @property {string} name
  * 
  */
-
 /**
  * Base for Branch and Tag
  */

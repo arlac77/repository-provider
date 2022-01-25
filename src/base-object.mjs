@@ -63,6 +63,11 @@ export class BaseObject {
     return {};
   }
 
+  /**
+   * Creates an instance of BaseObject.
+   * @param {*} options
+   * @param {*} additionalProperties
+   */
   constructor(options, additionalProperties) {
     definePropertiesFromOptions(
       this,
@@ -161,7 +166,7 @@ export class BaseObject {
    * By default we use the owners implementation.
    * @return {Class} as defined in the owner
    */
-  get hookClass() {
+   get hookClass() {
     return this.owner.hookClass;
   }
 }
