@@ -184,14 +184,6 @@ export class Branch extends Ref {
   }
 
   /**
-   * By default we use the repository implementation.
-   * @return {Class} as defined in the repository
-   */
-  get pullRequestClass() {
-    return this.repository.pullRequestClass;
-  }
-
-  /**
    * Create a new {@link Branch} by cloning a given source branch.
    * Simply calls Repository.createBranch() with the receiver as source branch
    * @param {string} name the new branch
