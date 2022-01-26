@@ -166,7 +166,6 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-35)
     *   [removeEntries](#removeentries)
         *   [Parameters](#parameters-36)
-    *   [entryClass](#entryclass-2)
     *   [createPullRequest](#createpullrequest)
         *   [Parameters](#parameters-37)
     *   [createBranch](#createbranch)
@@ -484,8 +483,8 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### Parameters
 
-*   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-*   `additionalProperties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+*   `options` **any** 
+*   `additionalProperties` **any** 
 
 ### update
 
@@ -1014,12 +1013,6 @@ Remove entries form the branch.
 
 *   `entries` **AsyncIterator<[ContentEntry](#contententry)>** 
 
-### entryClass
-
-By default we use the providers implementation.
-
-Returns **Class** as defined in the repository
-
 ### createPullRequest
 
 Create a pull request.
@@ -1187,7 +1180,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### displayName
 
-Beatified name use for human displaying only.
+Beautified name use for human displaying only.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** human readable name
 
@@ -2043,7 +2036,7 @@ Loops over names and executes stripBaseName.
 *   `repositoryBases` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** all possible bases
 *   `whenFound` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** to be called with the found base name
 
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** names without base
+Returns **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** names without base
 
 ## generateBranchName
 
