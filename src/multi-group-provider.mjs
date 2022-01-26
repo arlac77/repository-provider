@@ -2,6 +2,7 @@ import { matcher } from "matching-iterator";
 import { BaseProvider } from "./base-provider.mjs";
 import { stripBaseNames } from "./util.mjs";
 import { Repository } from "./repository.mjs";
+import { Branch } from "./branch.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
 
 /**
@@ -34,6 +35,11 @@ export class MultiGroupProvider extends BaseProvider {
     }
   }
 
+  /**
+   * Lookup a branch.
+   * @param {string} name of the branch
+   * @return {Promise<Branch>}
+   */
   async branch(name) {
     const { base, group, repository, branch } = this.parseName(name);
 
@@ -78,7 +84,7 @@ export class MultiGroupProvider extends BaseProvider {
 
     yield* matcher(
       this._repositoryGroups.values(),
-      stripBaseNames(patterns,this.provider.repositoryBases),
+      stripBaseNames(patterns, this.provider.repositoryBases),
       {
         caseSensitive: this.areGroupNamesCaseSensitive,
         name: "name"
