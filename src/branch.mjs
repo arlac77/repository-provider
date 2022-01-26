@@ -49,7 +49,7 @@ export class Branch extends Ref {
 
   /**
    * Are we the default branch.
-   * @return {boolean} true if name is the repository default branch
+   * @return {boolean} true if name matches the repository default branch
    */
   get isDefault() {
     return this.name === this.repository.defaultBranchName;
