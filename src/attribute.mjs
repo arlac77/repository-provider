@@ -34,69 +34,67 @@ export function definePropertiesFromOptions(
   object,
   options = {},
   properties = {},
-  attributes = object.constructor.attributes
+  attributes = object.constructor.attributes || []
 ) {
   const applyLater = {};
 
-  if (attributes !== undefined) {
-    Object.entries(attributes).forEach(([name, attribute]) => {
-      const path = name.split(/\./);
-      const first = path.shift();
-      const property = properties[first];
+  Object.entries(attributes).forEach(([name, attribute]) => {
+    const path = name.split(/\./);
+    const first = path.shift();
+    const property = properties[first];
 
-      let value = options[name];
-      if (value === undefined) {
-        if (attribute.getDefault) {
-          value = attribute.getDefault(attribute, object);
-        } else if (
-          attribute.default !== undefined &&
-          attribute.default !== getAttribute(object, name)
-        ) {
-          value = attribute.default;
-        }
+    let value = options[name];
+    if (value === undefined) {
+      if (attribute.getDefault) {
+        value = attribute.getDefault(attribute, object);
+      } else if (
+        attribute.default !== undefined &&
+        attribute.default !== getAttribute(object, name)
+      ) {
+        value = attribute.default;
       }
+    }
 
-      if (attribute.set) {
-        value = attribute.set(value);
-      } else {
-        switch (attribute.type) {
-          case "boolean":
-            if (value !== undefined) {
-              value =
-                value === 0 || value === "0" || value === false ? false : true;
-            }
-            break;
-        }
-      }
-
-      if (path.length) {
-        const remaining = path.join(".");
-        if (property) {
-          setAttribute(property.value, remaining, value);
-        } else {
-          const slice = {};
-          setAttribute(slice, remaining, value);
-          properties[first] = { configurable: true, value: slice };
-        }
-      } else {
-        if (value !== undefined) {
-          const op = Object.getOwnPropertyDescriptor(
-            object.constructor.prototype,
-            first
-          );
-
-          if ((op && op.set) || (property && property.set)) {
-            applyLater[first] = value;
-          } else {
-            properties[first] = Object.assign(
-              { value, writable: attribute.writable },
-              property
-            );
+    if (attribute.set) {
+      value = attribute.set(value);
+    } else {
+      switch (attribute.type) {
+        case "boolean":
+          if (value !== undefined) {
+            value =
+              value === 0 || value === "0" || value === false ? false : true;
           }
+          break;
+      }
+    }
+
+    if (path.length) {
+      const remaining = path.join(".");
+      if (property) {
+        setAttribute(property.value, remaining, value);
+      } else {
+        const slice = {};
+        setAttribute(slice, remaining, value);
+        properties[first] = { configurable: true, value: slice };
+      }
+    } else {
+      if (value !== undefined) {
+        const op = Object.getOwnPropertyDescriptor(
+          object.constructor.prototype,
+          first
+        );
+
+        if ((op && op.set) || (property && property.set)) {
+          applyLater[first] = value;
+        } else {
+          properties[first] = Object.assign(
+            { value, writable: attribute.writable },
+            property
+          );
         }
       }
-    });
-  }
+    }
+  });
 
   Object.defineProperties(object, properties);
   Object.assign(object, applyLater);
@@ -114,8 +112,7 @@ export function defaultValues(attributes, object) {
 
       if (attribute.default !== undefined) {
         a.push([name, attribute.default]);
-      }
-      else if (attribute.getDefault !== undefined) {
+      } else if (attribute.getDefault !== undefined) {
         a.push([name, attribute.getDefault(attribute, object)]);
       }
 
