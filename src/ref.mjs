@@ -1,9 +1,11 @@
 import { NamedObject } from "./named-object.mjs";
+
 /**
  * @typedef {Object} ContentEntry
  * @property {string} name
  * 
  */
+
 /**
  * Base for Branch and Tag
  */
@@ -59,7 +61,7 @@ export class Ref extends NamedObject {
 
   /**
    * List entries of the branch.
-   * @param {string[]} matchingPatterns
+   * @param {string[]} [matchingPatterns]
    * @return {AsyncIterator<ContentEntry>} all matching entries in the branch
    */
   async *entries(matchingPatterns) {}

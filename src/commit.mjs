@@ -1,3 +1,10 @@
+
+
+/**
+ * @typedef {Object} CommitResult
+ * @property {string} ref
+ */
+
 /**
  * @property {Repository} repository
  * @property {string} message

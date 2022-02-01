@@ -1,17 +1,8 @@
 import { Ref } from "./ref.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Repository } from "./repository.mjs";
+import { Commit } from "./commit.mjs";
 
-/**
- * @typedef {Object} Commit
- * @property {string} message
- * @property {ContentEntry[]} updates
- */
-
-/**
- * @typedef {Object} CommitResult
- * @property {string} ref
- */
 
 /**
  * Abstract branch.
