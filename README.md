@@ -146,33 +146,31 @@ console.log(await readme.getString());
 *   [priority](#priority)
 *   [name](#name-1)
 *   [messageDestination](#messagedestination-1)
-*   [Commit](#commit)
-    *   [Properties](#properties-2)
-*   [Commit](#commit-1)
-    *   [Parameters](#parameters-32)
-    *   [Properties](#properties-3)
-*   [CommitResult](#commitresult)
-    *   [Properties](#properties-4)
 *   [Branch](#branch)
-    *   [Parameters](#parameters-33)
-    *   [Properties](#properties-5)
+    *   [Parameters](#parameters-32)
+    *   [Properties](#properties-2)
     *   [url](#url-1)
     *   [refType](#reftype)
     *   [isDefault](#isdefault)
     *   [delete](#delete)
-    *   [commit](#commit-2)
-        *   [Parameters](#parameters-34)
+    *   [commit](#commit)
+        *   [Parameters](#parameters-33)
     *   [commitIntoPullRequest](#commitintopullrequest)
-        *   [Parameters](#parameters-35)
+        *   [Parameters](#parameters-34)
     *   [removeEntries](#removeentries)
-        *   [Parameters](#parameters-36)
+        *   [Parameters](#parameters-35)
     *   [createPullRequest](#createpullrequest)
-        *   [Parameters](#parameters-37)
+        *   [Parameters](#parameters-36)
     *   [createBranch](#createbranch)
-        *   [Parameters](#parameters-38)
+        *   [Parameters](#parameters-37)
+*   [CommitResult](#commitresult)
+    *   [Properties](#properties-3)
+*   [Commit](#commit-1)
+    *   [Parameters](#parameters-38)
+    *   [Properties](#properties-4)
 *   [Hook](#hook)
     *   [Parameters](#parameters-39)
-    *   [Properties](#properties-6)
+    *   [Properties](#properties-5)
     *   [equals](#equals-2)
         *   [Parameters](#parameters-40)
     *   [toJSON](#tojson-1)
@@ -196,7 +194,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-49)
 *   [NamedObject](#namedobject)
     *   [Parameters](#parameters-50)
-    *   [Properties](#properties-7)
+    *   [Properties](#properties-6)
     *   [equals](#equals-3)
         *   [Parameters](#parameters-51)
     *   [displayName](#displayname)
@@ -205,7 +203,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-52)
 *   [PullRequest](#pullrequest)
     *   [Parameters](#parameters-53)
-    *   [Properties](#properties-8)
+    *   [Properties](#properties-7)
     *   [fullName](#fullname)
     *   [url](#url-2)
     *   [repository](#repository-1)
@@ -232,7 +230,7 @@ console.log(await readme.getString());
 *   [merged](#merged)
 *   [draft](#draft)
 *   [ContentEntry](#contententry)
-    *   [Properties](#properties-9)
+    *   [Properties](#properties-8)
 *   [Ref](#ref)
     *   [Parameters](#parameters-58)
     *   [equals](#equals-5)
@@ -262,7 +260,7 @@ console.log(await readme.getString());
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
     *   [Parameters](#parameters-64)
-    *   [Properties](#properties-10)
+    *   [Properties](#properties-9)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type)
 *   [url](#url-3)
@@ -270,7 +268,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-65)
 *   [Repository](#repository-2)
     *   [Parameters](#parameters-66)
-    *   [Properties](#properties-11)
+    *   [Properties](#properties-10)
     *   [fullName](#fullname-2)
     *   [slug](#slug)
     *   [provider](#provider-3)
@@ -905,35 +903,6 @@ Name of the provider
 
 to forward info/warn and error messages to
 
-## Commit
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
-*   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[ContentEntry](#contententry)>** 
-
-## Commit
-
-### Parameters
-
-*   `repository`  
-
-### Properties
-
-*   `repository` **[Repository](#repository)** 
-*   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-*   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## CommitResult
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
-*   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
 ## Branch
 
 **Extends Ref**
@@ -1037,6 +1006,26 @@ Simply calls Repository.createBranch() with the receiver as source branch
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[Branch](#branch)>** newly created branch (or already present old one with the same name)
+
+## CommitResult
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+*   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## Commit
+
+### Parameters
+
+*   `repository`  
+
+### Properties
+
+*   `repository` **[Repository](#repository)** 
+*   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## Hook
 
@@ -1436,7 +1425,7 @@ List entries of the branch.
 
 #### Parameters
 
-*   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
+*   `matchingPatterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?** 
 
 Returns **AsyncIterator<[ContentEntry](#contententry)>** all matching entries in the branch
 
