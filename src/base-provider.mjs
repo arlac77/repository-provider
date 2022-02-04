@@ -8,6 +8,7 @@ import { Tag } from "./tag.mjs";
 import { Hook } from "./hook.mjs";
 import { Project } from "./project.mjs";
 import { Milestone } from "./milestone.mjs";
+import { BaseObject } from "./base-object.mjs";
 
 /**
  * @typedef {Object} MessageDestination
@@ -20,7 +21,7 @@ import { Milestone } from "./milestone.mjs";
 /**
  * @property {MessageDestination} messageDestination
  */
-export class BaseProvider {
+export class BaseProvider extends BaseObject {
   /**
    * @return {string} identifier for environment options
    */
@@ -87,6 +88,7 @@ export class BaseProvider {
 
   static get attributes() {
     return {
+      ...super.attributes,
       /**
        * In case there are several provider able to support a given source which one sould be used ?
        * this defines the order
@@ -139,10 +141,6 @@ export class BaseProvider {
     if (this.areOptionsSufficcient(options)) {
       return new this(options);
     }
-  }
-
-  constructor(options, properties) {
-    definePropertiesFromOptions(this, options, properties);
   }
 
   /**
@@ -399,6 +397,11 @@ export class BaseProvider {
    */
   get name() {
     return this.constructor.name;
+  }
+
+  get fullName()
+  {
+    return this.name;
   }
 
   /**
