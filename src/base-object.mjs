@@ -65,8 +65,8 @@ export class BaseObject {
 
   /**
    * Creates an instance of BaseObject.
-   * @param {*} options
-   * @param {*} additionalProperties
+   * @param {object} options
+   * @param {object} additionalProperties
    */
   constructor(options, additionalProperties) {
     definePropertiesFromOptions(
