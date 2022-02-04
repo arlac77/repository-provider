@@ -3,8 +3,9 @@
  *
  * @property {string} type
  * @property {boolean} writable
- * @property {boolean} private
+ * @property {boolean} [private] should the value be shown
  * @property {string} description
+ * @property {any} [default]  the default value
  */
 
 /**
