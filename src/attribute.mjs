@@ -44,7 +44,8 @@ export function definePropertiesFromOptions(
     const first = path.shift();
     const property = properties[first];
 
-    let value = options[name];
+    let value = getAttribute(options, name);
+
     if (value === undefined) {
       if (attribute.getDefault) {
         value = attribute.getDefault(attribute, object);
@@ -152,6 +153,10 @@ export function setAttribute(object, name, value) {
  */
 export function getAttribute(object, name) {
   let value = object;
+
+  if(value && value[name] !== undefined) {
+    return value[name];
+  }
 
   for (const p of name.split(/\./)) {
     if (value === undefined) {
