@@ -1,5 +1,4 @@
 import { asArray, stripBaseName } from "./util.mjs";
-import { definePropertiesFromOptions } from "./attribute.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
 import { Repository } from "./repository.mjs";
@@ -102,7 +101,8 @@ export class BaseProvider extends BaseObject {
        * Name of the provider
        */
       name: {
-        type: "string"
+        type: "string",
+        env: ["{{instanceIdentifier}}NAME"]
       },
 
       url: {

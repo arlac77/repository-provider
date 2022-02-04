@@ -127,6 +127,14 @@ test("initialize", t => {
   t.is(MyProviderB.initialize(undefined, undefined), undefined);
 });
 
+test("initialize with name", t => {
+  const provider = MyProviderB.initialize(undefined, { GITEA_NAME: "a name", GITEA_TOKEN: "abc" });
+  t.is(provider.name, "a name");
+  t.is(provider.authentication.token, "abc");
+
+  t.is(MyProviderB.initialize(undefined, undefined), undefined);
+});
+
 test("new provider", t => {
   const provider = new BaseProvider({ key: "value", url: "http://somewhere/" });
   t.is(provider.priority, 0);

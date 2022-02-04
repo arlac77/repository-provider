@@ -6,6 +6,7 @@
  * @property {boolean} [private] should the value be shown
  * @property {string} description
  * @property {any} [default]  the default value
+ * @property {string|string[]} [env] environment variable use to provide the value
  */
 
 /**
