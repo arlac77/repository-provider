@@ -106,6 +106,7 @@ export class BaseProvider extends BaseObject {
       },
 
       url: {
+        description: "home of the provider",
         type: "string"
       },
 
