@@ -400,6 +400,9 @@ export class BaseProvider extends BaseObject {
     return this.constructor.name;
   }
 
+  /**
+   * @return {string} name
+   */
   get fullName()
   {
     return this.name;
