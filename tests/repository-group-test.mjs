@@ -18,6 +18,7 @@ test("repository-group create with options", t => {
     isAdmin: true
   });
   t.is(rg.name, "rg");
+  t.is(rg.fullName, "MultiGroupProvider/rg");
   t.is(rg.description, "a description");
   t.is(rg.id, "4711");
   t.is(rg.uuid, "12345");

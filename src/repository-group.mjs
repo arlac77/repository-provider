@@ -49,6 +49,14 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
     });
   }
 
+  /**
+   * @return {string} name with owner name
+   */
+  get fullName()
+  {
+    return this.owner.name + "/" + this.name;
+  }
+
   get owner()
   {
     return this.provider;
