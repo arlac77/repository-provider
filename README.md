@@ -125,6 +125,7 @@ console.log(await readme.getString());
     *   [pullRequests](#pullrequests)
         *   [Parameters](#parameters-27)
     *   [name](#name)
+    *   [fullName](#fullname)
     *   [provider](#provider-1)
     *   [url](#url)
     *   [toJSON](#tojson)
@@ -203,7 +204,7 @@ console.log(await readme.getString());
 *   [PullRequest](#pullrequest)
     *   [Parameters](#parameters-52)
     *   [Properties](#properties-7)
-    *   [fullName](#fullname)
+    *   [fullName](#fullname-1)
     *   [url](#url-2)
     *   [repository](#repository-1)
     *   [provider](#provider-2)
@@ -245,7 +246,7 @@ console.log(await readme.getString());
     *   [entry](#entry)
         *   [Parameters](#parameters-62)
     *   [owner](#owner)
-    *   [fullName](#fullname-1)
+    *   [fullName](#fullname-2)
     *   [fullCondensedName](#fullcondensedname)
     *   [identifier](#identifier-1)
     *   [issuesURL](#issuesurl)
@@ -260,6 +261,7 @@ console.log(await readme.getString());
 *   [RepositoryGroup](#repositorygroup-1)
     *   [Parameters](#parameters-63)
     *   [Properties](#properties-9)
+    *   [fullName](#fullname-3)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type)
 *   [url](#url-3)
@@ -268,7 +270,7 @@ console.log(await readme.getString());
 *   [Repository](#repository-2)
     *   [Parameters](#parameters-65)
     *   [Properties](#properties-10)
-    *   [fullName](#fullname-2)
+    *   [fullName](#fullname-4)
     *   [slug](#slug)
     *   [provider](#provider-3)
     *   [identifier](#identifier-2)
@@ -805,6 +807,10 @@ Returns **AsyncIterator<[PullRequest](#pullrequest)>** all matching pullRequests
 Deliver the provider name.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name by default
+
+### fullName
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
 
 ### provider
 
@@ -1548,6 +1554,10 @@ Abstract repository collection.
 
 *   `provider` **[BaseProvider](#baseprovider)** 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### fullName
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name with owner name
 
 ### attributeMapping
 
