@@ -119,7 +119,7 @@ test("owner get undefined repository", async t => {
   t.is(repository, undefined);
 });
 
-test("owner get undefined repository + branch", async t => {
+test("owner get undefined branch", async t => {
   const provider = new MultiGroupProvider();
   const group = new RepositoryGroup(provider, "g1");
   const branch = await group.branch(undefined);
