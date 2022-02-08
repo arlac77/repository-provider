@@ -34,6 +34,14 @@ export class NamedObject extends BaseObject {
     return this.name;
   }
 
+  /**
+   * @return {string} name with owner name
+   */
+  get fullName()
+  {
+    return this.owner.name + "/" + this.name;
+  }
+
   toString() {
     return this.name;
   }

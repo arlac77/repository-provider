@@ -195,7 +195,7 @@ test(ownerTypeLookupTest, "application", createOwner(), undefined, undefined);
 
 
 test(ownerTypeLookupTest, "milestone", createOwner(), undefined, undefined);
-test.skip(ownerTypeLookupTest, "milestone", createOwner(), "r1/m1", "r1/m1");
+test(ownerTypeLookupTest, "milestone", createOwner(), "r1/m1", "r1/m1");
 
 test(ownerTypeLookupTest, "project", createOwner(), undefined, undefined);
-test.skip(ownerTypeLookupTest, "project", createOwner(), "r1/p1", "r1/p1");
+test(ownerTypeLookupTest, "project", createOwner(), "r1/p1", "r1/p1");
