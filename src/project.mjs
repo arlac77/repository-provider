@@ -8,4 +8,6 @@ export class Project extends NamedObject {
     super(name, options, {
       owner: { value: owner }
     });
+
+    owner._addProject(this);
   }}
