@@ -37,8 +37,8 @@ class MyProviderB extends BaseProvider {
     return {
       ...super.attributes,
       host: {
-        env: "{{instanceIdentifier}}_HOST",
-        default : "somewhere.com"
+        env: "{{instanceIdentifier}}HOST",
+        default: "somewhere.com"
       },
       cloneOptions: {
         env: "GIT_CLONE_OPTIONS",
@@ -52,24 +52,36 @@ class MyProviderB extends BaseProvider {
       },
       api: {
         env: "{{instanceIdentifier}}API",
-        default : (attribute, object) => `http://${object.host}/api`,
+        getDefault: (attribute, object, properties) =>
+          `http://${object.host||properties.host.value}/api`
       }
     };
   }
 }
+test("MyProviderB.initialize", t => {
+  const p = MyProviderB.initialize(
+    {},
+    {
+      GITEA_HOST: "somewhere",
+      GITEA_TOKEN: "abc"
+    }
+  );
 
-test.skip(
+  t.is(p.host, "somewhere");
+  t.is(p.api, "http://somewhere/api");
+});
+
+test(
   providerOptionsFromEnvironmentTest,
   MyProviderB,
   {
     GITEA_HOST: "somewhere",
-    GITEA_TOKEN: "abc",
+    GITEA_TOKEN: "abc"
   },
   {
-  //  host: "somewhere",
-    api: "http://somewhere/api",
+    host: "somewhere",
     "authentication.token": "abc",
-    "authentication.type": "token",
+    "authentication.type": "token"
   },
   true
 );
@@ -128,7 +140,10 @@ test("initialize", t => {
 });
 
 test("initialize with name", t => {
-  const provider = MyProviderB.initialize(undefined, { GITEA_NAME: "a name", GITEA_TOKEN: "abc" });
+  const provider = MyProviderB.initialize(undefined, {
+    GITEA_NAME: "a name",
+    GITEA_TOKEN: "abc"
+  });
   t.is(provider.name, "a name");
   t.is(provider.authentication.token, "abc");
 

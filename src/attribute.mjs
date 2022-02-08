@@ -49,7 +49,7 @@ export function definePropertiesFromOptions(
 
     if (value === undefined) {
       if (attribute.getDefault) {
-        value = attribute.getDefault(attribute, object);
+        value = attribute.getDefault(attribute, object, properties);
       } else if (
         attribute.default !== undefined &&
         attribute.default !== getAttribute(object, name)
@@ -155,7 +155,7 @@ export function setAttribute(object, name, value) {
 export function getAttribute(object, name) {
   let value = object;
 
-  if(value && value[name] !== undefined) {
+  if (value && value[name] !== undefined) {
     return value[name];
   }
 
