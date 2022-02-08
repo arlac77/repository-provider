@@ -171,9 +171,12 @@ test(ownerTypeListTest, "hooks", createOwner(), "r1/*", ["r1/h1"]);
 
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#master", "r1#master");
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#b1", "r1#b1");
+test(ownerTypeLookupTest, "branch", createOwner(), "https://mydomain.com/r1#b1", "r1#b1");
+
+test(ownerTypeLookupTest, "branch", createOwner(), "r1", "r1#master");
+test(ownerTypeLookupTest, "branch", createOwner(), "https://mydomain.com/r1", "r1#master");
 test(ownerTypeLookupTest, "branch", createOwner(), "r1#notexisting", undefined);
 test(ownerTypeLookupTest, "branch", createOwner(), "rx#master", undefined);
-test(ownerTypeLookupTest, "branch", createOwner(), "r1", "r1#master");
 
 test(ownerTypeLookupTest, "tag", createOwner(), "r1#1.0.0", "r1#1.0.0");
 test(
