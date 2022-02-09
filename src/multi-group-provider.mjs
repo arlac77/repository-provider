@@ -50,7 +50,7 @@ export class MultiGroupProvider extends BaseProvider {
         if (rg !== undefined) {
           const r = await rg.repository(repository);
           if (r !== undefined) {
-            return r.branch( r.defaultBranchName || branch);
+            return r.branch( branch || r.defaultBranchName);
           }
         }
       }
