@@ -6,6 +6,8 @@
  * @property {boolean} [private] should the value be shown
  * @property {string} description
  * @property {any} [default]  the default value
+ * @property {Function} [set] set the value
+ * @property {Function} [get] get the value can be used to calculate default values
  * @property {string|string[]} [env] environment variable use to provide the value
  */
 
@@ -48,8 +50,8 @@ export function definePropertiesFromOptions(
     let value = getAttribute(options, name);
 
     if (value === undefined) {
-      if (attribute.getDefault) {
-        value = attribute.getDefault(attribute, object, properties);
+      if (attribute.get) {
+        value = attribute.get(attribute, object, properties);
       } else if (
         attribute.default !== undefined &&
         attribute.default !== getAttribute(object, name)
@@ -115,8 +117,11 @@ export function defaultValues(attributes, object) {
 
       if (attribute.default !== undefined) {
         a.push([name, attribute.default]);
-      } else if (attribute.getDefault !== undefined) {
-        a.push([name, attribute.getDefault(attribute, object)]);
+      } else if (attribute.get !== undefined) {
+        const value = attribute.get(attribute, object);
+        if(value !== undefined) {
+          a.push([name, value]);
+        }
       }
 
       return a;

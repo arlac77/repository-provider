@@ -52,8 +52,8 @@ class MyProviderB extends BaseProvider {
       },
       api: {
         env: "{{instanceIdentifier}}API",
-        getDefault: (attribute, object, properties) =>
-          `http://${object.host||properties.host.value}/api`
+        get: (attribute, object, properties) =>
+          `http://${object.host || properties.host.value}/api`
       }
     };
   }

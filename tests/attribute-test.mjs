@@ -60,7 +60,7 @@ class MyClass {
       "authentification.user": { default: "hugo" },
       "a.b.c.d": { default: 7 },
       calculatedDefault: {
-        getDefault: (attribute, object) => object.preexisting_property + 1
+        get: (attribute, object) => object.preexisting_property + 1
       }
     };
   }
