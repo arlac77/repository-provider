@@ -4,6 +4,7 @@
  * @property {string} type
  * @property {boolean} writable
  * @property {boolean} [private] should the value be shown
+ * @property {string} [depends] name of an attribute we depend on
  * @property {string} description
  * @property {any} [default]  the default value
  * @property {Function} [set] set the value
