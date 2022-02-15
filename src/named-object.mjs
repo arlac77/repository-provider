@@ -20,7 +20,7 @@ export class NamedObject extends BaseObject {
   /**
    * Check for equality.
    * @param {NamedObject} other
-   * @return {boolean} true if names are equal
+   * @return {boolean} true if names are equal and have the same owner
    */
   equals(other) {
     return super.equals(other) && this.name === other.name;
