@@ -1184,7 +1184,7 @@ Check for equality.
 
 *   `other` **[NamedObject](#namedobject)** 
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal and have the same owner
 
 ### displayName
 
