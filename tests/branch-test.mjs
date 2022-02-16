@@ -80,6 +80,17 @@ test("branch entries", async t => {
   t.is(entries.size, 0);
 });
 
+test("branch maybeEntry", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.addRepository("r1");
+
+  const b = new Branch(repository, "b1");
+
+  const entry = await b.maybeEntry("nonexistant");
+
+  t.is(entry, undefined);
+});
+
 test("branch entries implicit async itrator", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
