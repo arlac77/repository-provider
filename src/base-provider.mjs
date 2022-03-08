@@ -462,49 +462,49 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
-   * @return {Class} repository group class used by the Provider
+   * @return {Function} repository group class used by the Provider
    */
   get repositoryGroupClass() {
     return RepositoryGroup;
   }
 
   /**
-   * @return {Class} hook class used by the Provider
+   * @return {Function} hook class used by the Provider
    */
   get hookClass() {
     return Hook;
   }
 
   /**
-   * @return {Class} repository class used by the Provider
+   * @return {Function} repository class used by the Provider
    */
   get repositoryClass() {
     return Repository;
   }
 
   /**
-   * @return {Class} branch class used by the Provider
+   * @return {Function} branch class used by the Provider
    */
   get branchClass() {
     return Branch;
   }
 
   /**
-   * @return {Class} branch class used by the Provider
+   * @return {Function} branch class used by the Provider
    */
   get tagClass() {
     return Tag;
   }
 
   /**
-   * @return {Class} entry class used by the Provider
+   * @return {Function} entry class used by the Provider
    */
   get entryClass() {
     return undefined;
   }
 
   /**
-   * @return {Class} pull request class used by the Provider
+   * @return {Function} pull request class used by the Provider
    */
   get pullRequestClass() {
     return PullRequest;

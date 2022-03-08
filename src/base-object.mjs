@@ -124,7 +124,7 @@ export class BaseObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Class} as defined in the owner
+   * @return {Function} as defined in the owner
    */
   get repositoryClass() {
     return this.owner.repositoryClass;
@@ -132,7 +132,7 @@ export class BaseObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Class} as defined in the owner
+   * @return {Function} as defined in the owner
    */
   get pullRequestClass() {
     return this.owner.pullRequestClass;
@@ -140,7 +140,7 @@ export class BaseObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Class} as defined in the owner
+   * @return {Function} as defined in the owner
    */
   get branchClass() {
     return this.owner.branchClass;
@@ -148,7 +148,7 @@ export class BaseObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Class} as defined in the owner
+   * @return {Function} as defined in the owner
    */
   get tagClass() {
     return this.owner.tagClass;
@@ -156,7 +156,7 @@ export class BaseObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Class} as defined in the owner
+   * @return {Function} as defined in the owner
    */
   get entryClass() {
     return this.owner.entryClass;
@@ -164,7 +164,7 @@ export class BaseObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Class} as defined in the owner
+   * @return {Function} as defined in the owner
    */
    get hookClass() {
     return this.owner.hookClass;
