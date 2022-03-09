@@ -540,37 +540,37 @@ Forwarded to the owner.
 
 By default we use the owners implementation.
 
-Returns **Class** as defined in the owner
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### pullRequestClass
 
 By default we use the owners implementation.
 
-Returns **Class** as defined in the owner
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### branchClass
 
 By default we use the owners implementation.
 
-Returns **Class** as defined in the owner
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### tagClass
 
 By default we use the owners implementation.
 
-Returns **Class** as defined in the owner
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### entryClass
 
 By default we use the owners implementation.
 
-Returns **Class** as defined in the owner
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### hookClass
 
 By default we use the owners implementation.
 
-Returns **Class** as defined in the owner
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### attributes
 
@@ -832,31 +832,31 @@ return {object}
 
 ### repositoryGroupClass
 
-Returns **Class** repository group class used by the Provider
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** repository group class used by the Provider
 
 ### hookClass
 
-Returns **Class** hook class used by the Provider
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** hook class used by the Provider
 
 ### repositoryClass
 
-Returns **Class** repository class used by the Provider
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** repository class used by the Provider
 
 ### branchClass
 
-Returns **Class** branch class used by the Provider
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** branch class used by the Provider
 
 ### tagClass
 
-Returns **Class** branch class used by the Provider
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** branch class used by the Provider
 
 ### entryClass
 
-Returns **Class** entry class used by the Provider
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** entry class used by the Provider
 
 ### pullRequestClass
 
-Returns **Class** pull request class used by the Provider
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** pull request class used by the Provider
 
 ### instanceIdentifier
 
