@@ -27,7 +27,7 @@
     "docs": "documentation readme --section=API ./src/**/*.mjs",
     "lint": "npm run lint:docs && npm run lint:tsc",
     "lint:docs": "documentation lint ./src/**/*.mjs",
-    "lint:tsc": "tsc --allowJs --checkJs --noEmit -module nodenext -t es2022 ./src/*.mjs"
+    "lint:tsc": "tsc --allowJs --checkJs --noEmit -t es2022 ./src/*.mjs"
   },
   "dependencies": {
     "matching-iterator": "^2.0.3"
