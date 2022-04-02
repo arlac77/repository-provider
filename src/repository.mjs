@@ -84,7 +84,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * URL name of the repo.
+   * Name of the repo as used in the URL.
    * @return {string}
    */
   get slug() {
@@ -166,7 +166,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * The url used fro cloning the repo.
+   * The url used for cloning the repo.
    * @return {string}
    */
   get cloneURL() {
