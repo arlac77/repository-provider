@@ -43,7 +43,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * ref name.
+   * Full ref path.
    * @return {string} git ref of the Ref
    */
   get ref() {
@@ -97,7 +97,7 @@ export class Ref extends NamedObject {
   }
 
   /**
-   * Branch owner.
+   * Ref owner.
    * By default we provide the repository owner
    * @see {@link Repository#owner}
    * @return {string}
@@ -137,6 +137,10 @@ export class Ref extends NamedObject {
     return `${this.provider.name}:${this.fullCondensedName}`;
   }
 
+  /**
+   * Same as identifier.
+   * @return {string}
+   */
   toString() {
     return this.identifier;
   }
