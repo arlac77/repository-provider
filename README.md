@@ -250,6 +250,7 @@ console.log(await readme.getString());
     *   [fullName](#fullname-3)
     *   [fullCondensedName](#fullcondensedname)
     *   [identifier](#identifier-1)
+    *   [toString](#tostring)
     *   [issuesURL](#issuesurl)
     *   [homePageURL](#homepageurl-1)
     *   [isLocked](#islocked)
@@ -1416,7 +1417,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### ref
 
-ref name.
+Full ref path.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** git ref of the Ref
 
@@ -1470,7 +1471,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 *   **See**: [Repository#owner](Repository#owner)
 
-Branch owner.
+Ref owner.
 By default we provide the repository owner
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
@@ -1491,6 +1492,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### identifier
 
 Short human readable identifier with provider and branch.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### toString
+
+Same as identifier.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -1618,7 +1625,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### slug
 
-URL name of the repo.
+Name of the repo as used in the URL.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -1689,7 +1696,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### cloneURL
 
-The url used fro cloning the repo.
+The url used for cloning the repo.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
