@@ -293,6 +293,7 @@ console.log(await readme.getString());
     *   [isLocked](#islocked-1)
     *   [isDisabled](#isdisabled-1)
     *   [isTemplate](#istemplate)
+    *   [delete](#delete-2)
     *   [defaultBranch](#defaultbranch)
     *   [branch](#branch-2)
         *   [Parameters](#parameters-70)
@@ -310,7 +311,6 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-76)
     *   [addTag](#addtag)
         *   [Parameters](#parameters-77)
-    *   [delete](#delete-2)
     *   [createPullRequest](#createpullrequest-1)
         *   [Parameters](#parameters-78)
     *   [addPullRequest](#addpullrequest)
@@ -330,6 +330,7 @@ console.log(await readme.getString());
     *   [type](#type-1)
     *   [refId](#refid-1)
         *   [Parameters](#parameters-85)
+    *   [toString](#tostring-1)
     *   [toJSON](#tojson-3)
     *   [attributes](#attributes-2)
 *   [defaultBranchName](#defaultbranchname)
@@ -1742,6 +1743,13 @@ By default we are not a template.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
+### delete
+
+Delete the repository from the [Provider](Provider).
+[Provider#deleteRepository](Provider#deleteRepository)
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<any>** 
+
 ### defaultBranch
 
 Lookup the default branch.
@@ -1829,13 +1837,6 @@ Internal tag creation does not call repository.initialize()
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Tag](#tag)** newly created tag
-
-### delete
-
-Delete the repository from the [Provider](Provider).
-[Provider#deleteRepository](Provider#deleteRepository)
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<any>** 
 
 ### createPullRequest
 
@@ -1934,6 +1935,12 @@ Get sha of a ref.
 *   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** sha of the ref
+
+### toString
+
+full name.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### toJSON
 
