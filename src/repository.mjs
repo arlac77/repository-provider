@@ -230,6 +230,15 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * Delete the repository from the {@link Provider}.
+   * {@link Provider#deleteRepository}
+   * @return {Promise<any>}
+   */
+  async delete() {
+    return this.owner.deleteRepository(this.name);
+  }
+
+  /**
    * Lookup the default branch.
    * @return {Promise<Branch>} branch named after defaultBranchName
    */
@@ -338,15 +347,6 @@ export class Repository extends NamedObject {
 
   _addTag(tag) {
     this._tags.set(tag.name, tag);
-  }
-
-  /**
-   * Delete the repository from the {@link Provider}.
-   * {@link Provider#deleteRepository}
-   * @return {Promise<any>}
-   */
-  async delete() {
-    return this.owner.deleteRepository(this.name);
   }
 
   /**
@@ -487,9 +487,12 @@ export class Repository extends NamedObject {
    * @return {Promise<string>} sha of the ref
    */
   async refId(ref) {
-    return undefined;
   }
 
+  /**
+   * full name.
+   * @returns {string}
+   */
   toString() {
     return this.fullName;
   }
