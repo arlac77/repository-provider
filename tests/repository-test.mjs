@@ -46,6 +46,7 @@ test("repository init with options", async t => {
     urls: []
   });
 
+  t.deepEqual(await repository.commits().next(), { done: true, value: undefined });
   t.deepEqual(await repository.tags().next(), { done: true, value: undefined });
   t.deepEqual(await repository.hooks().next(), {
     done: true,

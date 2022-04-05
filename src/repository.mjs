@@ -150,6 +150,14 @@ export class Repository extends NamedObject {
   }
 
   /**
+   * List commits of the default branch.
+   * @param {Object} options
+   * @return {AsyncIterator<Commit>} all matching commits in the repository
+   */
+  async *commits(options) {
+  }
+
+  /**
    * Urls to access the repo.
    * @return {string[]}
    */
