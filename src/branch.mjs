@@ -32,7 +32,7 @@ export class Branch extends Ref {
   }
 
   /**
-   * @return {string} tags
+   * @return {string} heades
    */
   get refType() {
     return "heads";

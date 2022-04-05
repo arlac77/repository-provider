@@ -12,9 +12,9 @@ import { BaseObject } from "./base-object.mjs";
 /**
  * @typedef {Object} MessageDestination
  * Endpoint to deliver log messages to.
- * @param {Function} info
- * @param {Function} warn
- * @param {Function} error
+ * @property {Function} info
+ * @property {Function} warn
+ * @property {Function} error
  */
 
 /**
@@ -31,8 +31,8 @@ export class BaseProvider extends BaseObject {
   /**
    * Extract options suitable for the constructor
    * form the given set of environment variables.
-   * @param {Object} env taken from process.env
-   * @param {string} instanceIdentifier
+   * @param {Object} env as of from process.env
+   * @param {string} instanceIdentifier part of variable name.
    * @return {Object} undefined if no suitable environment variables have been found
    */
   static optionsFromEnvironment(
@@ -89,7 +89,7 @@ export class BaseProvider extends BaseObject {
     return {
       ...super.attributes,
       /**
-       * In case there are several provider able to support a given source which one sould be used ?
+       * In case there are several providers able to support a given source which one sould be used ?
        * this defines the order
        */
       priority: {
@@ -98,7 +98,7 @@ export class BaseProvider extends BaseObject {
       },
 
       /**
-       * Name of the provider
+       * Name of the provider.
        */
       name: {
         type: "string",
@@ -111,7 +111,7 @@ export class BaseProvider extends BaseObject {
       },
 
       /**
-       * to forward info/warn and error messages to
+       * To forward info/warn and error messages to
        */
       messageDestination: {
         type: "object",

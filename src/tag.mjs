@@ -17,7 +17,7 @@ export class Tag extends Ref {
   }
 
   /**
-   * 
+   * Tags cannot be written to.
    * @return {boolean} false
    */
   get isWritable()
