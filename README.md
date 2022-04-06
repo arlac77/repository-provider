@@ -90,40 +90,40 @@ console.log(await readme.getString());
 *   [avatarURL](#avatarurl)
 *   [homePageURL](#homepageurl)
 *   [MessageDestination](#messagedestination)
-    *   [Parameters](#parameters-13)
-*   [BaseProvider](#baseprovider)
     *   [Properties](#properties-1)
+*   [BaseProvider](#baseprovider)
+    *   [Properties](#properties-2)
     *   [equals](#equals-1)
-        *   [Parameters](#parameters-14)
+        *   [Parameters](#parameters-13)
     *   [repositoryBases](#repositorybases)
     *   [normalizeRepositoryName](#normalizerepositoryname)
-        *   [Parameters](#parameters-15)
+        *   [Parameters](#parameters-14)
     *   [normalizeGroupName](#normalizegroupname)
-        *   [Parameters](#parameters-16)
+        *   [Parameters](#parameters-15)
     *   [areRepositoryNamesCaseSensitive](#arerepositorynamescasesensitive)
     *   [areGroupNamesCaseSensitive](#aregroupnamescasesensitive)
     *   [supportsBase](#supportsbase)
-        *   [Parameters](#parameters-17)
+        *   [Parameters](#parameters-16)
     *   [parseName](#parsename)
-        *   [Parameters](#parameters-18)
+        *   [Parameters](#parameters-17)
     *   [createRepository](#createrepository)
-        *   [Parameters](#parameters-19)
+        *   [Parameters](#parameters-18)
     *   [list](#list)
-        *   [Parameters](#parameters-20)
+        *   [Parameters](#parameters-19)
     *   [projects](#projects)
-        *   [Parameters](#parameters-21)
+        *   [Parameters](#parameters-20)
     *   [milestones](#milestones)
-        *   [Parameters](#parameters-22)
+        *   [Parameters](#parameters-21)
     *   [repositories](#repositories)
-        *   [Parameters](#parameters-23)
+        *   [Parameters](#parameters-22)
     *   [branches](#branches)
-        *   [Parameters](#parameters-24)
+        *   [Parameters](#parameters-23)
     *   [tags](#tags)
-        *   [Parameters](#parameters-25)
+        *   [Parameters](#parameters-24)
     *   [hooks](#hooks)
-        *   [Parameters](#parameters-26)
+        *   [Parameters](#parameters-25)
     *   [pullRequests](#pullrequests)
-        *   [Parameters](#parameters-27)
+        *   [Parameters](#parameters-26)
     *   [name](#name)
     *   [fullName](#fullname)
     *   [provider](#provider-1)
@@ -138,82 +138,82 @@ console.log(await readme.getString());
     *   [pullRequestClass](#pullrequestclass-1)
     *   [instanceIdentifier](#instanceidentifier)
     *   [optionsFromEnvironment](#optionsfromenvironment)
-        *   [Parameters](#parameters-28)
+        *   [Parameters](#parameters-27)
     *   [areOptionsSufficcient](#areoptionssufficcient)
-        *   [Parameters](#parameters-29)
+        *   [Parameters](#parameters-28)
     *   [initialize](#initialize)
-        *   [Parameters](#parameters-30)
+        *   [Parameters](#parameters-29)
 *   [priority](#priority)
 *   [name](#name-1)
 *   [messageDestination](#messagedestination-1)
 *   [Branch](#branch)
-    *   [Parameters](#parameters-31)
-    *   [Properties](#properties-2)
+    *   [Parameters](#parameters-30)
+    *   [Properties](#properties-3)
     *   [url](#url-1)
     *   [refType](#reftype)
     *   [isDefault](#isdefault)
     *   [delete](#delete)
     *   [commit](#commit)
-        *   [Parameters](#parameters-32)
+        *   [Parameters](#parameters-31)
     *   [commitIntoPullRequest](#commitintopullrequest)
-        *   [Parameters](#parameters-33)
+        *   [Parameters](#parameters-32)
     *   [removeEntries](#removeentries)
-        *   [Parameters](#parameters-34)
+        *   [Parameters](#parameters-33)
     *   [createPullRequest](#createpullrequest)
-        *   [Parameters](#parameters-35)
+        *   [Parameters](#parameters-34)
     *   [createBranch](#createbranch)
-        *   [Parameters](#parameters-36)
+        *   [Parameters](#parameters-35)
 *   [CommitResult](#commitresult)
-    *   [Properties](#properties-3)
-*   [Commit](#commit-1)
-    *   [Parameters](#parameters-37)
     *   [Properties](#properties-4)
-*   [Hook](#hook)
-    *   [Parameters](#parameters-38)
+*   [Commit](#commit-1)
+    *   [Parameters](#parameters-36)
     *   [Properties](#properties-5)
+*   [Hook](#hook)
+    *   [Parameters](#parameters-37)
+    *   [Properties](#properties-6)
     *   [equals](#equals-2)
-        *   [Parameters](#parameters-39)
+        *   [Parameters](#parameters-38)
     *   [toJSON](#tojson-1)
 *   [Issue](#issue)
-    *   [Parameters](#parameters-40)
+    *   [Parameters](#parameters-39)
 *   [Milestone](#milestone)
-    *   [Parameters](#parameters-41)
+    *   [Parameters](#parameters-40)
 *   [MultiGroupProvider](#multigroupprovider)
-    *   [Parameters](#parameters-42)
+    *   [Parameters](#parameters-41)
     *   [repository](#repository)
-        *   [Parameters](#parameters-43)
+        *   [Parameters](#parameters-42)
     *   [branch](#branch-1)
-        *   [Parameters](#parameters-44)
+        *   [Parameters](#parameters-43)
     *   [repositoryGroup](#repositorygroup)
-        *   [Parameters](#parameters-45)
+        *   [Parameters](#parameters-44)
     *   [repositoryGroups](#repositorygroups)
-        *   [Parameters](#parameters-46)
+        *   [Parameters](#parameters-45)
     *   [createRepositoryGroup](#createrepositorygroup)
-        *   [Parameters](#parameters-47)
+        *   [Parameters](#parameters-46)
     *   [addRepositoryGroup](#addrepositorygroup)
-        *   [Parameters](#parameters-48)
+        *   [Parameters](#parameters-47)
 *   [NamedObject](#namedobject)
-    *   [Parameters](#parameters-49)
-    *   [Properties](#properties-6)
+    *   [Parameters](#parameters-48)
+    *   [Properties](#properties-7)
     *   [equals](#equals-3)
-        *   [Parameters](#parameters-50)
+        *   [Parameters](#parameters-49)
     *   [displayName](#displayname)
     *   [fullName](#fullname-1)
     *   [toJSON](#tojson-2)
 *   [Project](#project)
-    *   [Parameters](#parameters-51)
+    *   [Parameters](#parameters-50)
 *   [PullRequest](#pullrequest)
-    *   [Parameters](#parameters-52)
-    *   [Properties](#properties-7)
+    *   [Parameters](#parameters-51)
+    *   [Properties](#properties-8)
     *   [fullName](#fullname-2)
     *   [url](#url-2)
     *   [repository](#repository-1)
     *   [provider](#provider-2)
     *   [equals](#equals-4)
-        *   [Parameters](#parameters-53)
+        *   [Parameters](#parameters-52)
     *   [delete](#delete-1)
     *   [merge](#merge)
-        *   [Parameters](#parameters-54)
+        *   [Parameters](#parameters-53)
     *   [decline](#decline)
     *   [reviews](#reviews)
     *   [identifier](#identifier)
@@ -221,9 +221,9 @@ console.log(await readme.getString());
     *   [defaultListStates](#defaultliststates)
     *   [validMergeMethods](#validmergemethods)
     *   [list](#list-1)
-        *   [Parameters](#parameters-55)
+        *   [Parameters](#parameters-54)
     *   [open](#open)
-        *   [Parameters](#parameters-56)
+        *   [Parameters](#parameters-55)
 *   [title](#title)
 *   [body](#body)
 *   [state](#state)
@@ -231,21 +231,21 @@ console.log(await readme.getString());
 *   [merged](#merged)
 *   [draft](#draft)
 *   [ContentEntry](#contententry)
-    *   [Properties](#properties-8)
+    *   [Properties](#properties-9)
 *   [Ref](#ref)
-    *   [Parameters](#parameters-57)
+    *   [Parameters](#parameters-56)
     *   [equals](#equals-5)
-        *   [Parameters](#parameters-58)
+        *   [Parameters](#parameters-57)
     *   [ref](#ref-1)
     *   [refId](#refid)
-        *   [Parameters](#parameters-59)
+        *   [Parameters](#parameters-58)
     *   [entries](#entries)
-        *   [Parameters](#parameters-60)
+        *   [Parameters](#parameters-59)
     *   [asyncIterator](#asynciterator)
     *   [maybeEntry](#maybeentry)
-        *   [Parameters](#parameters-61)
+        *   [Parameters](#parameters-60)
     *   [entry](#entry)
-        *   [Parameters](#parameters-62)
+        *   [Parameters](#parameters-61)
     *   [owner](#owner)
     *   [fullName](#fullname-3)
     *   [fullCondensedName](#fullcondensedname)
@@ -261,27 +261,29 @@ console.log(await readme.getString());
     *   [attributes](#attributes-1)
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
-    *   [Parameters](#parameters-63)
-    *   [Properties](#properties-9)
+    *   [Parameters](#parameters-62)
+    *   [Properties](#properties-10)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type)
 *   [url](#url-3)
 *   [RepositoryOwner](#repositoryowner)
-    *   [Parameters](#parameters-64)
+    *   [Parameters](#parameters-63)
 *   [Repository](#repository-2)
-    *   [Parameters](#parameters-65)
-    *   [Properties](#properties-10)
+    *   [Parameters](#parameters-64)
+    *   [Properties](#properties-11)
     *   [fullName](#fullname-4)
     *   [slug](#slug)
     *   [provider](#provider-3)
     *   [identifier](#identifier-2)
     *   [equals](#equals-6)
-        *   [Parameters](#parameters-66)
+        *   [Parameters](#parameters-65)
     *   [entry](#entry-1)
-        *   [Parameters](#parameters-67)
+        *   [Parameters](#parameters-66)
     *   [entries](#entries-1)
-        *   [Parameters](#parameters-68)
+        *   [Parameters](#parameters-67)
     *   [maybeEntry](#maybeentry-1)
+        *   [Parameters](#parameters-68)
+    *   [commits](#commits)
         *   [Parameters](#parameters-69)
     *   [urls](#urls)
     *   [url](#url-4)
@@ -622,7 +624,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
-### Parameters
+### Properties
 
 *   `info` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
 *   `warn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
@@ -871,8 +873,8 @@ form the given set of environment variables.
 
 #### Parameters
 
-*   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
-*   `instanceIdentifier` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `this.instanceIdentifier`)
+*   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as of from process.env
+*   `instanceIdentifier` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** part of variable name. (optional, default `this.instanceIdentifier`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** undefined if no suitable environment variables have been found
 
@@ -901,16 +903,16 @@ Returns **[BaseProvider](#baseprovider)** newly created provider or undefined if
 
 ## priority
 
-In case there are several provider able to support a given source which one sould be used ?
+In case there are several providers able to support a given source which one sould be used ?
 this defines the order
 
 ## name
 
-Name of the provider
+Name of the provider.
 
 ## messageDestination
 
-to forward info/warn and error messages to
+To forward info/warn and error messages to
 
 ## Branch
 
@@ -940,7 +942,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### refType
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** tags
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** heades
 
 ### isDefault
 
@@ -1035,6 +1037,8 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 *   `repository` **[Repository](#repository)** 
 *   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 *   `sha` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `author` **User** 
+*   `committer` **User** 
 
 ## Hook
 
@@ -1683,6 +1687,16 @@ Get exactly one matching entry by name or undefined if no such entry is found.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[ContentEntry](#contententry)>** 
 
+### commits
+
+List commits of the default branch.
+
+#### Parameters
+
+*   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **AsyncIterator<[Commit](#commit)>** all matching commits in the repository
+
 ### urls
 
 Urls to access the repo.
@@ -2025,6 +2039,8 @@ Tag refs
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** tags
 
 ### isWritable
+
+Tags cannot be written to.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
