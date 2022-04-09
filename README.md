@@ -1326,8 +1326,8 @@ Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 
 ### list
 
-List all pull request for a given repo
-result will be filtered by source branch, destination branch and states
+List all pull request for a given repo.
+Result will be filtered by source branch, destination branch and states
 
 #### Parameters
 
@@ -1854,7 +1854,7 @@ Returns **[Tag](#tag)** newly created tag
 
 ### createPullRequest
 
-Create a pull request (or deliver an already present for thefiven name).
+Create a pull request (or deliver an already present for the given name).
 
 #### Parameters
 
