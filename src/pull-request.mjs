@@ -52,8 +52,8 @@ export class PullRequest extends NamedObject {
   }
 
   /**
-   * List all pull request for a given repo
-   * result will be filtered by source branch, destination branch and states
+   * List all pull request for a given repo.
+   * Result will be filtered by source branch, destination branch and states
    * @param {Repository} repository
    * @param {Object} filter
    * @param {Branch?} filter.source

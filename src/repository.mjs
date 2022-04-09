@@ -358,7 +358,7 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Create a pull request (or deliver an already present for thefiven name).
+   * Create a pull request (or deliver an already present for the given name).
    * @param {string} name of the pr
    * @param {Branch} source branch
    * @param {Object} options
