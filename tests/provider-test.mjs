@@ -14,22 +14,18 @@ test("messageDestination default", t => {
   t.is(sp.messageDestination, myMessageDestination);
 });
 
-test("messageDestination", t => {
-  const { messageDestination, messages } = createMessageDestination();
+test("provider logging", async t => {
+  const { messageDestination, messages, levels } = createMessageDestination();
+  const provider = new SingleGroupProvider({ messageDestination });
 
-  const sp = new SingleGroupProvider({
-    messageDestination
-  });
+  const repository = await provider.addRepository("r1");
 
-  sp.info("info");
-  sp.error("error");
-  sp.warn("warn");
-
-  t.deepEqual(messages.info, ["info"]);
-  t.deepEqual(messages.error, ["error"]);
-  t.deepEqual(messages.warn, ["warn"]);
+  for (const l of levels) {
+    repository[l](l);
+    t.deepEqual(messages[l], [l], l);
+  }
 
   const myMessageDestination = {};
-  sp.messageDestination = myMessageDestination;
-  t.is(sp.messageDestination, myMessageDestination);
+  provider.messageDestination = myMessageDestination;
+  t.is(provider.messageDestination, myMessageDestination);
 });

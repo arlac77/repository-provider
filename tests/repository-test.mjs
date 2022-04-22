@@ -154,16 +154,14 @@ test("reposotory entry", async t => {
   t.is(await repository.maybeEntry("aFile"), undefined);
 });
 
-test("logging", async t => {
-  const { messageDestination, messages } = createMessageDestination();
-  const provider = new SingleGroupProvider({messageDestination});
+test("repository logging", async t => {
+  const { messageDestination, messages, levels } = createMessageDestination();
+  const provider = new SingleGroupProvider({ messageDestination });
+
   const repository = await provider.addRepository("r1");
 
-  repository.info("info");
-  repository.error("error");
-  repository.warn("warn");
-
-  t.deepEqual(messages.info, ["info"]);
-  t.deepEqual(messages.error, ["error"]);
-  t.deepEqual(messages.warn, ["warn"]);
+  for (const l of levels) {
+    repository[l](l);
+    t.deepEqual(messages[l], [l], l);
+  }
 });

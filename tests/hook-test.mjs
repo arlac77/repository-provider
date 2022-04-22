@@ -48,10 +48,9 @@ test("add hook", async t => {
   t.false(hook.equals({}));
 });
 
-
 test("hook logging", async t => {
-  const { messageDestination, messages } = createMessageDestination();
-  const provider = new SingleGroupProvider({messageDestination});
+  const { messageDestination, messages, levels } = createMessageDestination();
+  const provider = new SingleGroupProvider({ messageDestination });
 
   const repository = await provider.addRepository("r1");
   const hook = new Hook(repository, 77, new Set(["a"]), {
@@ -59,11 +58,8 @@ test("hook logging", async t => {
     url: "http://somewere.com/path"
   });
 
-  hook.info("info");
-  hook.error("error");
-  hook.warn("warn");
-
-  t.deepEqual(messages.info, ["info"]);
-  t.deepEqual(messages.error, ["error"]);
-  t.deepEqual(messages.warn, ["warn"]);
+  for (const l of levels) {
+    hook[l](l);
+    t.deepEqual(messages[l], [l], l);
+  }
 });

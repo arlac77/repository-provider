@@ -449,6 +449,10 @@ export class BaseProvider extends BaseObject {
 
   initializeRepositories() {}
 
+  trace(...args) {
+    return this.messageDestination.trace(...args);
+  }
+
   info(...args) {
     return this.messageDestination.info(...args);
   }

@@ -102,6 +102,14 @@ export class BaseObject {
    * Forwarded to the owner.
    * @param  {...any} args
    */
+  trace(...args) {
+    return this.owner.trace(...args);
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
   info(...args) {
     return this.owner.info(...args);
   }
@@ -166,7 +174,7 @@ export class BaseObject {
    * By default we use the owners implementation.
    * @return {Function} as defined in the owner
    */
-   get hookClass() {
+  get hookClass() {
     return this.owner.hookClass;
   }
 }
