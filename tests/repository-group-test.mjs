@@ -126,22 +126,18 @@ test("owner get undefined branch", async t => {
   t.is(branch, undefined);
 });
 
-
 test("messageDestination", t => {
-  const { messageDestination, messages } = createMessageDestination();
+  const { messageDestination, messages, levels } = createMessageDestination();
 
   const provider = new MultiGroupProvider({
     messageDestination
   });
   const group = new RepositoryGroup(provider, "g1");
 
-  group.info("info");
-  group.error("error");
-  group.warn("warn");
-
-  t.deepEqual(messages.info, ["info"]);
-  t.deepEqual(messages.error, ["error"]);
-  t.deepEqual(messages.warn, ["warn"]);
+  for (const l of levels) {
+    group[l](l);
+    t.deepEqual(messages[l], [l], l);
+  }
 
   const myMessageDestination = {};
   group.messageDestination = myMessageDestination;
