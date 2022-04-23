@@ -31,7 +31,8 @@ export class BaseProvider extends BaseObject {
   /**
    * Extract options suitable for the constructor
    * form the given set of environment variables.
-   * @param {Object} env as of from process.env
+   * Object with the detected key value pairs is delivered.
+   * @param {Object} env as from process.env
    * @param {string} instanceIdentifier part of variable name.
    * @return {Object} undefined if no suitable environment variables have been found
    */
@@ -58,8 +59,11 @@ export class BaseProvider extends BaseObject {
             if (options === undefined) {
               options = {};
             }
-            options[name] = value;
-            Object.assign(options, attribute.additionalAttributes);
+
+            if(options[name] === undefined) {
+              options[name] = value;
+              Object.assign(options, attribute.additionalAttributes);
+            }
             break;
           }
         }

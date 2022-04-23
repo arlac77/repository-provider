@@ -2,7 +2,7 @@ import test from "ava";
 import { providerOptionsFromEnvironmentTest } from "repository-provider-test-support";
 import { BaseProvider } from "repository-provider";
 
-test("provider default env options", t => {
+test("provider default empty env options", t => {
   t.is(BaseProvider.optionsFromEnvironment(), undefined);
   t.is(BaseProvider.optionsFromEnvironment({}), undefined);
   t.true(BaseProvider.areOptionsSufficcient());
@@ -20,7 +20,7 @@ class MyProviderA extends BaseProvider {
         env: "{{instanceIdentifier}}USERNAME"
       },
       "authentication.password": {
-        env: "{{instanceIdentifier}}PASSWORD",
+        env: ["BITBUCKET_APP_PASSWORD", "{{instanceIdentifier}}PASSWORD"],
         additionalAttributes: { "authentication.type": "basic" },
         private: true
       }
@@ -126,6 +126,22 @@ test(
   {
     "authentication.username": "aName",
     "authentication.password": "aSecret",
+    "authentication.type": "basic"
+  },
+  true
+);
+
+test(
+  providerOptionsFromEnvironmentTest,
+  MyProviderA,
+  {
+    BITBUCKET_USERNAME: "aName",
+    BITBUCKET_APP_PASSWORD: "aAppSecret",
+    BITBUCKET_PASSWORD: "aSecret"
+  },
+  {
+    "authentication.username": "aName",
+    "authentication.password": "aAppSecret",
     "authentication.type": "basic"
   },
   true
