@@ -92,14 +92,6 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * The owners provider.
-   * @return {BaseProvider}
-   */
-  get provider() {
-    return this.owner.provider;
-  }
-
-  /**
    * Short human readable identifier with provider and branch.
    * @return {string}
    */
