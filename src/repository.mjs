@@ -100,21 +100,6 @@ export class Repository extends NamedObject {
   }
 
   /**
-   * Check for equality.
-   * @param {Repository} other
-   * @return {boolean} true if name and provider are equal
-   */
-  equals(other) {
-    if (other === undefined) {
-      return false;
-    }
-
-    return (
-      this.fullName === other.fullName && this.provider.equals(other.provider)
-    );
-  }
-
-  /**
    * Lookup entries form the head of the default branch.
    * {@link Branch#entry}
    * @return {Promise<ContentEntry>}
