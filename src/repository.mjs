@@ -260,6 +260,15 @@ export class Repository extends NamedObject {
    * @return {Promise<Branch>}
    */
   async branch(name) {
+    if(name === this.defaultBranchName) {
+      const branch = this._branches.get(name);
+      if(branch) {
+        return branch;
+      }
+      
+      return this.addBranch(name);
+    }
+
     await this.initializeBranches();
     return this._branches.get(name);
   }
