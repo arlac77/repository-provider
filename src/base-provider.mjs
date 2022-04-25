@@ -15,6 +15,7 @@ import { BaseObject } from "./base-object.mjs";
  * @property {Function} info
  * @property {Function} warn
  * @property {Function} error
+ * @property {Function} trace
  */
 
 /**
