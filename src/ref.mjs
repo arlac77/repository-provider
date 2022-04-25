@@ -120,7 +120,7 @@ export class Ref extends NamedObject {
 
   /**
    * Repository fullName and branch name combined.
-   * But skipping the branch name if it is the default branch
+   * But skipping the branch name if it is the default branch.
    * @return {string} 'user/repo#branch'
    */
   get fullCondensedName() {
