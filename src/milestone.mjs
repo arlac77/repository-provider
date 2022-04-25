@@ -1,21 +1,13 @@
-import { NamedObject } from "./named-object.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 
 /**
  */
-export class Milestone extends NamedObject {
+export class Milestone extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
       state: { type: "string" }
     };
-  }
-
-  constructor(owner, name, options) {
-    super(name, options, {
-      owner: { value: owner }
-    });
-
-    owner._addMilestone(this);
   }
 
   async *issues() {}
