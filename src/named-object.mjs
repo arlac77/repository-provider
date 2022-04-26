@@ -23,7 +23,11 @@ export class NamedObject extends BaseObject {
    * @return {boolean} true if names are equal and have the same owner
    */
   equals(other) {
-    return super.equals(other) && this.fullName === other.fullName && this.provider.equals(other.provider);
+    return (
+      super.equals(other) &&
+      this.fullName === other.fullName &&
+      this.provider.equals(other.provider)
+    );
   }
 
   /**
@@ -37,11 +41,13 @@ export class NamedObject extends BaseObject {
   /**
    * @return {string} name with owner name
    */
-  get fullName()
-  {
+  get fullName() {
     return this.owner.name + "/" + this.name;
   }
 
+  /**
+   * @return {string} name
+   */
   toString() {
     return this.name;
   }
