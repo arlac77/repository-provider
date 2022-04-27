@@ -198,6 +198,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-47)
     *   [displayName](#displayname)
     *   [fullName](#fullname-1)
+    *   [toString](#tostring)
     *   [toJSON](#tojson-2)
 *   [OwnedObject](#ownedobject)
     *   [Parameters](#parameters-48)
@@ -251,7 +252,7 @@ console.log(await readme.getString());
     *   [fullName](#fullname-3)
     *   [fullCondensedName](#fullcondensedname)
     *   [identifier](#identifier-1)
-    *   [toString](#tostring)
+    *   [toString](#tostring-1)
     *   [issuesURL](#issuesurl)
     *   [homePageURL](#homepageurl-1)
     *   [isLocked](#islocked)
@@ -330,7 +331,7 @@ console.log(await readme.getString());
     *   [type](#type-1)
     *   [refId](#refid-1)
         *   [Parameters](#parameters-82)
-    *   [toString](#tostring-1)
+    *   [toString](#tostring-2)
     *   [toJSON](#tojson-3)
     *   [attributes](#attributes-2)
 *   [defaultBranchName](#defaultbranchname)
@@ -1191,6 +1192,10 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### fullName
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name with owner name
+
+### toString
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
 
 ### toJSON
 
