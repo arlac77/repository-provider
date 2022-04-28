@@ -17,6 +17,10 @@ export class Hook extends OwnedObject {
     };
   }
 
+  static get registerInstanceMethodName() {
+    return "_addHook";
+  }
+
   constructor(owner, name, events = new Set(["*"]), options) {
     super(owner, name, options, {
       events: { value: events }
