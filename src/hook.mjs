@@ -1,19 +1,10 @@
 import { optionJSON } from "./attribute.mjs";
-import { NamedObject } from "./named-object.mjs";
-import { Repository } from "./repository.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 
 /**
  * Repository hook.
- * @param {Repository} repository
- * @param {string} id
- * @param {Set<string>} events
- * @param {Object} options
- * 
- * @property {Repository} repository
- * @property {URL} url
- * @property {Set<string>} events
  */
-export class Hook extends NamedObject {
+export class Hook extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
@@ -26,27 +17,10 @@ export class Hook extends NamedObject {
     };
   }
 
-  constructor(repository, name, events = new Set(["*"]), options) {
-    super(name, options, {
-      repository: { value: repository },
+  constructor(owner, name, events = new Set(["*"]), options) {
+    super(owner, name, options, {
       events: { value: events }
     });
-
-    repository._addHook(this);
-  }
-
-  get owner()
-  {
-    return this.repository;
-  }
-
-  /**
-   * Check for equality.
-   * @param {Hook} other
-   * @return {boolean} true if name and repository are equal
-   */
-  equals(other) {
-    return super.equals(other) && this.repository.equals(other.repository);
   }
 
   /**

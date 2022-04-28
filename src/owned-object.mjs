@@ -13,8 +13,9 @@ export class OwnedObject extends NamedObject {
     return "_add" + this.name;
   }
 
-  constructor(owner, name, options) {
+  constructor(owner, name, options, additionalProperties) {
     super(name, options, {
+      ...additionalProperties,
       owner: { value: owner }
     });
 
