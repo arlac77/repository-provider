@@ -1,5 +1,5 @@
 import { optionJSON } from "./attribute.mjs";
-import { BaseObject } from "./base-object.mjs";
+import { NamedObject } from "./named-object.mjs";
 import { Repository } from "./repository.mjs";
 
 /**
@@ -13,11 +13,11 @@ import { Repository } from "./repository.mjs";
  * @property {URL} url
  * @property {Set<string>} events
  */
-export class Hook extends BaseObject {
+export class Hook extends NamedObject {
   static get attributes() {
     return {
       ...super.attributes,
-      name: { type: "string", writable: true },
+      id: { type: "string", writable: true },
       url: { type: "url", description: "target url", writable: true },
       secret: { type: "string", private: true, writable: true },
       content_type: { type: "string", default: "json", writable: true },
@@ -26,9 +26,8 @@ export class Hook extends BaseObject {
     };
   }
 
-  constructor(repository, id, events = new Set(["*"]), options) {
-    super(options, {
-      id: { value: id },
+  constructor(repository, name, events = new Set(["*"]), options) {
+    super(name, options, {
       repository: { value: repository },
       events: { value: events }
     });
@@ -39,14 +38,6 @@ export class Hook extends BaseObject {
   get owner()
   {
     return this.repository;
-  }
-
-  get fullName() {
-    return `${this.repository.fullName}/${this.id}`;
-  }
-
-  get displayName() {
-    return this.id;
   }
 
   /**
@@ -62,6 +53,6 @@ export class Hook extends BaseObject {
    * Provide name, events and all defined attributes.
    */
   toJSON() {
-    return optionJSON(this, { id: this.id, events: [...this.events] });
+    return optionJSON(this, { name: this.name, id: this.id, events: [...this.events] });
   }
 }
