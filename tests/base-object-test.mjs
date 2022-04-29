@@ -7,3 +7,8 @@ test("object writableAttributes", t => {
     "homePageURL"
   ]);
 });
+
+test("object base ics", t => {
+  const b = new BaseObject();
+  t.false(b.isWritable);
+});

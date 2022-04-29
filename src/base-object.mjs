@@ -81,6 +81,10 @@ export class BaseObject {
    */
   async update() {}
 
+  get isWritable() {
+    return false;
+  }
+
   /**
    * Check for equality
    * @param {BaseObject} other
