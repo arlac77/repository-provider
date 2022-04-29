@@ -103,7 +103,7 @@ export class Ref extends NamedObject {
    * @return {string}
    */
   get owner() {
-    return this.repository.owner;
+    return this.repository;
   }
 
   get slug() {
