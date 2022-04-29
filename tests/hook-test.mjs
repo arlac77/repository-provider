@@ -53,10 +53,7 @@ test("hook logging", async t => {
   const provider = new SingleGroupProvider({ messageDestination });
 
   const repository = await provider.addRepository("r1");
-  const hook = new Hook(repository, 77, new Set(["a"]), {
-    name: "hook1",
-    url: "http://somewere.com/path"
-  });
+  const hook = new Hook(repository, "hook1", new Set(["a"]));
 
   for (const l of levels) {
     hook[l](l);
