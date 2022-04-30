@@ -15,13 +15,4 @@ export class Tag extends Ref {
   get refType() {
     return "tags";
   }
-
-  /**
-   * Tags cannot be written to.
-   * @return {boolean} false
-   */
-  get isWritable()
-  {
-    return false;
-  }
 }

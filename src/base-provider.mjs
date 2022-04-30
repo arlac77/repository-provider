@@ -428,10 +428,6 @@ export class BaseProvider extends BaseObject {
     return "/";
   }
 
-  toString() {
-    return this.name;
-  }
-
   /**
    * List all defined entries from attributes.
    * return {object}

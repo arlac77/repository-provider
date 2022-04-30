@@ -81,6 +81,17 @@ export class BaseObject {
    */
   async update() {}
 
+  /**
+   * @return {string} name
+   */
+  toString() {
+    return this.name;
+  }
+
+  /**
+   * By default cannot be written to.
+   * @return {boolean} false
+   */
   get isWritable() {
     return false;
   }
