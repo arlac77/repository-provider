@@ -191,17 +191,4 @@ export class Ref extends NamedObject {
   get isProtected() {
     return false;
   }
-
-  /**
-   *
-   * @return true if not {@link isArchived} and {@link isDisabled} and {@link isLocked}
-   */
-  get isWritable() {
-    return (
-      !this.isArchived &&
-      !this.isDisabled &&
-      !this.isLocked &&
-      !this.isProtected
-    );
-  }
 }

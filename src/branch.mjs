@@ -39,6 +39,19 @@ export class Branch extends Ref {
   }
 
   /**
+   *
+   * @return true if not {@link isArchived} and {@link isDisabled} and {@link isLocked}
+   */
+  get isWritable() {
+    return (
+      !this.isArchived &&
+      !this.isDisabled &&
+      !this.isLocked &&
+      !this.isProtected
+    );
+  }
+  
+  /**
    * Are we the default branch.
    * @return {boolean} true if name matches the repository default branch
    */
