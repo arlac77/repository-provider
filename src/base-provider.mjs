@@ -406,14 +406,6 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
-   * @return {string} name
-   */
-  get fullName()
-  {
-    return this.name;
-  }
-
-  /**
    * We are our own provider.
    * @return {BaseProvider} this
    */

@@ -89,6 +89,22 @@ export class BaseObject {
   }
 
   /**
+   * Beautified name use for human displaying only.
+   * @return {string} human readable name
+   */
+  get displayName() {
+    return this.name;
+  }
+
+  /**
+   * Complete name in the hierachy.
+   * @return {string}
+   */
+  get fullName() {
+    return this.name;
+  }
+
+  /**
    * By default cannot be written to.
    * @return {boolean} false
    */

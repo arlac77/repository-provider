@@ -29,15 +29,6 @@ export class NamedObject extends BaseObject {
       this.provider.equals(other.provider)
     );
   }
-
-  /**
-   * Beautified name use for human displaying only.
-   * @return {string} human readable name
-   */
-  get displayName() {
-    return this.name;
-  }
-
   /**
    * @return {string} name with owner name
    */
