@@ -65,6 +65,8 @@ console.log(await readme.getString());
 *   [BaseObject](#baseobject)
     *   [Parameters](#parameters-7)
     *   [update](#update)
+    *   [toString](#tostring)
+    *   [isWritable](#iswritable)
     *   [equals](#equals)
         *   [Parameters](#parameters-8)
     *   [provider](#provider)
@@ -152,6 +154,7 @@ console.log(await readme.getString());
     *   [Properties](#properties-3)
     *   [url](#url-1)
     *   [refType](#reftype)
+    *   [isWritable](#iswritable-1)
     *   [isDefault](#isdefault)
     *   [delete](#delete)
     *   [commit](#commit)
@@ -195,7 +198,6 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-46)
     *   [displayName](#displayname)
     *   [fullName](#fullname-1)
-    *   [toString](#tostring)
     *   [toJSON](#tojson-2)
 *   [OwnedObject](#ownedobject)
     *   [Parameters](#parameters-47)
@@ -256,7 +258,6 @@ console.log(await readme.getString());
     *   [isArchived](#isarchived)
     *   [isDisabled](#isdisabled)
     *   [isProtected](#isprotected)
-    *   [isWritable](#iswritable)
     *   [attributes](#attributes-1)
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
@@ -345,7 +346,6 @@ console.log(await readme.getString());
 *   [Tag](#tag-1)
     *   [Parameters](#parameters-85)
     *   [refType](#reftype-1)
-    *   [isWritable](#iswritable-1)
 *   [asArray](#asarray)
     *   [Parameters](#parameters-86)
 *   [stripBaseName](#stripbasename)
@@ -489,6 +489,16 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### update
 
 Save object attributes in the backing store.
+
+### toString
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
+
+### isWritable
+
+By default cannot be written to.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
 ### equals
 
@@ -944,6 +954,10 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** heades
 
+### isWritable
+
+Returns **any** true if not [isArchived](isArchived) and [isDisabled](isDisabled) and [isLocked](isLocked)
+
 ### isDefault
 
 Are we the default branch.
@@ -1173,10 +1187,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### fullName
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name with owner name
-
-### toString
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
 
 ### toJSON
 
@@ -1527,10 +1537,6 @@ Forwarded from the repository
 ### isProtected
 
 Returns **any** false
-
-### isWritable
-
-Returns **any** true if not [isArchived](isArchived) and [isDisabled](isDisabled) and [isLocked](isLocked)
 
 ### attributes
 
@@ -2011,12 +2017,6 @@ Tag refs
 ### refType
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** tags
-
-### isWritable
-
-Tags cannot be written to.
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
 ## asArray
 
