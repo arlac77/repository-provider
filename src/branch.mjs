@@ -16,9 +16,13 @@ import { Commit } from "./commit.mjs";
  * @property {string} name
  */
 export class Branch extends Ref {
+
+  static get registerInstanceMethodName() {
+    return "_addBranch";
+  }
+
   constructor(repository, name = repository.defaultBranchName, options) {
     super(repository, name, options);
-    repository._addBranch(this);
   }
 
   /**
