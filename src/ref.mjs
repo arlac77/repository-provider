@@ -1,4 +1,4 @@
-import { NamedObject } from "./named-object.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 
 /**
  * @typedef {Object} ContentEntry
@@ -9,7 +9,7 @@ import { NamedObject } from "./named-object.mjs";
 /**
  * Base for Branch and Tag
  */
-export class Ref extends NamedObject {
+export class Ref extends OwnedObject {
   /**
    * options
    */
@@ -23,10 +23,6 @@ export class Ref extends NamedObject {
        */
       isProtected: { type: "boolean" }
     };
-  }
-
-  constructor(repository, name, options) {
-    super(name, options, { repository: { value: repository } });
   }
 
   /**
@@ -102,8 +98,8 @@ export class Ref extends NamedObject {
    * @see {@link Repository#owner}
    * @return {string}
    */
-  get owner() {
-    return this.repository;
+  get repository() {
+    return this.owner;
   }
 
   get slug() {
