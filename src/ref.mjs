@@ -25,15 +25,6 @@ export class Ref extends OwnedObject {
     };
   }
 
-  /**
-   * Check for equality.
-   * @param {Ref} other
-   * @return {boolean} true if name and repository are equal
-   */
-  equals(other) {
-    return super.equals(other) && this.repository.equals(other.repository);
-  }
-
   get refType() {
     return "unknown";
   }

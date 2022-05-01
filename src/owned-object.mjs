@@ -5,9 +5,9 @@ import { NamedObject } from "./named-object.mjs";
  */
 export class OwnedObject extends NamedObject {
   /**
-   * Method name to be called to register one instance in the owner. 
+   * Method name to be called to register one instance in the owner.
    * sample: Application => _addApplication
-   * @return {string} 
+   * @return {string}
    */
   static get registerInstanceMethodName() {
     return "_add" + this.name;
@@ -20,5 +20,14 @@ export class OwnedObject extends NamedObject {
     });
 
     owner[this.constructor.registerInstanceMethodName](this);
+  }
+
+  /**
+   * Check for equality.
+   * @param {OwnedObject} other
+   * @return {boolean} true if receiver and owner are equal
+   */
+  equals(other) {
+    return super.equals(other) && this.owner.equals(other.owner);
   }
 }
