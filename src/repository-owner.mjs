@@ -153,9 +153,14 @@ export function RepositoryOwner(base) {
       let repository = this._repositories.get(normalizedName);
       if (repository === undefined) {
         repository = new this.repositoryClass(this, name, options);
-        this._repositories.set(normalizedName, repository);
       }
       return repository;
+    }
+
+    _addRepository(repository)
+    {
+      const normalizedName = this.normalizeRepositoryName(repository.name, true);
+      this._repositories.set(normalizedName, repository);
     }
 
     /**

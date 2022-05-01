@@ -1,6 +1,6 @@
 import { matcher } from "matching-iterator";
 import { optionJSON } from "./attribute.mjs";
-import { NamedObject } from "./named-object.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
@@ -24,7 +24,12 @@ import { BaseProvider } from "./base-provider.mjs";
  * @property {Map<string,PullRequest>} pullRequests
  * @property {Map<string,Milestone>} milestones
  */
-export class Repository extends NamedObject {
+export class Repository extends OwnedObject {
+
+  static get registerInstanceMethodName() {
+    return "_addRepository";
+  }
+
   /**
    * options
    */
@@ -62,8 +67,7 @@ export class Repository extends NamedObject {
   }
 
   constructor(owner, name, options) {
-    super(owner.normalizeRepositoryName(name, false), options, {
-      owner: { value: owner },
+    super(owner, owner.normalizeRepositoryName(name, false), options, {
       _branches: { value: new Map() },
       _tags: { value: new Map() },
       _pullRequests: { value: new Map() },
