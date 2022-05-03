@@ -21,8 +21,8 @@ export class Branch extends Ref {
     return "_addBranch";
   }
 
-  constructor(repository, name = repository.defaultBranchName, options) {
-    super(repository, name, options);
+  constructor(owner, name = repository.defaultBranchName, options) {
+    super(owner, name, options);
   }
 
   /**
@@ -31,8 +31,8 @@ export class Branch extends Ref {
    */
   get url() {
     return this.isDefault
-      ? this.repository.url
-      : `${this.repository.url}#${this.name}`;
+      ? this.owner.url
+      : `${this.owner.url}#${this.name}`;
   }
 
   /**
@@ -60,7 +60,7 @@ export class Branch extends Ref {
    * @return {boolean} true if name matches the repository default branch
    */
   get isDefault() {
-    return this.name === this.repository.defaultBranchName;
+    return this.name === this.owner.defaultBranchName;
   }
 
   /**
@@ -69,7 +69,7 @@ export class Branch extends Ref {
    * @return {Promise<any>}
    */
   async delete() {
-    return this.repository.deleteBranch(this.name);
+    return this.owner.deleteBranch(this.name);
   }
 
   /**
@@ -191,6 +191,6 @@ export class Branch extends Ref {
    * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
    */
   async createBranch(name, options) {
-    return this.repository.createBranch(name, this, options);
+    return this.owner.createBranch(name, this, options);
   }
 }
