@@ -940,9 +940,10 @@ Abstract branch.
 
 ### Parameters
 
-*   `repository` **[Repository](#repository)** 
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `repository.defaultBranchName`)
+*   `owner`  
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `owner.defaultBranchName`)
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+*   `repository` **[Repository](#repository)** 
 
 ### Properties
 
@@ -1182,7 +1183,7 @@ Check for equality.
 
 *   `other` **[NamedObject](#namedobject)** 
 
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal and have the same owner
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal and have the same provider
 
 ### fullName
 
@@ -1190,7 +1191,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### toJSON
 
-Provide name and all defined attributes.
+Provided name and all defined attributes.
 
 ## OwnedObject
 
