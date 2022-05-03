@@ -20,7 +20,7 @@ export class NamedObject extends BaseObject {
   /**
    * Check for equality.
    * @param {NamedObject} other
-   * @return {boolean} true if names are equal and have the same owner
+   * @return {boolean} true if names are equal and have the same provider
    */
   equals(other) {
     return (
@@ -37,7 +37,7 @@ export class NamedObject extends BaseObject {
   }
  
   /**
-   * Provide name and all defined attributes.
+   * Provided name and all defined attributes.
    */
   toJSON() {
     return optionJSON(this, {
