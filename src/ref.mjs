@@ -43,7 +43,7 @@ export class Ref extends OwnedObject {
    * @return {Promise<string>} sha of the ref
    */
   async refId(ref = this.ref) {
-    return this.repository.refId(ref);
+    return this.owner.refId(ref);
   }
 
   /**
@@ -94,7 +94,7 @@ export class Ref extends OwnedObject {
   }
 
   get slug() {
-    return this.repository.slug;
+    return this.owner.slug;
   }
 
   /**
@@ -102,7 +102,7 @@ export class Ref extends OwnedObject {
    * @return {string} 'repo#branch'
    */
   get fullName() {
-    return `${this.repository.fullName}#${this.name}`;
+    return `${this.owner.fullName}#${this.name}`;
   }
 
   /**
@@ -112,8 +112,8 @@ export class Ref extends OwnedObject {
    */
   get fullCondensedName() {
     return this.isDefault
-      ? this.repository.fullName
-      : `${this.repository.fullName}#${this.name}`;
+      ? this.owner.fullName
+      : `${this.owner.fullName}#${this.name}`;
   }
 
   /**
@@ -138,7 +138,7 @@ export class Ref extends OwnedObject {
    * @return {string} as provided from the repository
    */
   get issuesURL() {
-    return this.repository.issuesURL;
+    return this.owner.issuesURL;
   }
 
   /**
@@ -147,28 +147,28 @@ export class Ref extends OwnedObject {
    * @return {string} as provided from the repository
    */
   get homePageURL() {
-    return this.repository.homePageURL;
+    return this.owner.homePageURL;
   }
 
   /**
    * Forwarded from the repository
    */
   get isLocked() {
-    return this.repository.isLocked;
+    return this.owner.isLocked;
   }
 
   /**
    * Forwarded from the repository
    */
   get isArchived() {
-    return this.repository.isArchived;
+    return this.owner.isArchived;
   }
 
   /**
    * Forwarded from the repository
    */
   get isDisabled() {
-    return this.repository.isDisabled;
+    return this.owner.isDisabled;
   }
 
   /**
