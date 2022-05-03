@@ -21,7 +21,7 @@ export class Branch extends Ref {
     return "_addBranch";
   }
 
-  constructor(owner, name = repository.defaultBranchName, options) {
+  constructor(owner, name = owner.defaultBranchName, options) {
     super(owner, name, options);
   }
 
