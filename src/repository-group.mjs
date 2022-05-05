@@ -1,5 +1,5 @@
 import { RepositoryOwner } from "./repository-owner.mjs";
-import { NamedObject } from "./named-object.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
 
 /**
@@ -16,7 +16,12 @@ import { BaseProvider } from "./base-provider.mjs";
  * @property {string} name
  */
 
-export class RepositoryGroup extends RepositoryOwner(NamedObject) {
+export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
+
+  static get registerInstanceMethodName() {
+    return "_addRepositoryGroup";
+  }
+
   static get attributes() {
     return {
       ...super.attributes,
@@ -43,15 +48,9 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
     return {};
   }
 
-  constructor(provider, name, options) {
-    super(name, options, {
-      provider: { value: provider }
-    });
-  }
-
-  get owner()
+  get provider()
   {
-    return this.provider;
+    return this.owner;
   }
 
   get isAdmin() {
@@ -59,10 +58,10 @@ export class RepositoryGroup extends RepositoryOwner(NamedObject) {
   }
 
   get areRepositoryNamesCaseSensitive() {
-    return this.provider.areRepositoryNamesCaseSensitive;
+    return this.owner.areRepositoryNamesCaseSensitive;
   }
 
   get areRepositoryGroupNamesCaseSensitive() {
-    return this.provider.areRepositoryGroupNamesCaseSensitive;
+    return this.owner.areRepositoryGroupNamesCaseSensitive;
   }
 }

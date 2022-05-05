@@ -5,7 +5,8 @@ import {
   setAttribute,
   RepositoryGroup,
   definePropertiesFromOptions,
-  optionJSON
+  optionJSON,
+  MultiGroupProvider
 } from "repository-provider";
 
 function gat(t, object, key, expected) {
@@ -151,7 +152,7 @@ ojt.title = (providedTitle, a, b) =>
 test(ojt, {}, undefined, undefined, {});
 test(
   ojt,
-  new RepositoryGroup(undefined, "a", { id: 1 }),
+  new RepositoryGroup(new MultiGroupProvider(), "a", { id: 1 }),
   undefined,
   undefined,
   {
