@@ -10,11 +10,8 @@ import { RepositoryGroup } from "./repository-group.mjs";
  *
  */
 export class MultiGroupProvider extends BaseProvider {
-  constructor(options) {
-    super(options, {
-      _repositoryGroups: { value: new Map() }
-    });
-  }
+
+  #repositoryGroups = new Map();
 
   /**
    * Lookup a repository in the provider and all of its repository groups.
@@ -68,7 +65,7 @@ export class MultiGroupProvider extends BaseProvider {
     if (this.supportsBase(base)) {
       name = stripBaseNames(name, this.provider.repositoryBases);
       await this.initializeRepositories();
-      return this._repositoryGroups.get(this.normalizeGroupName(name, true));
+      return this.#repositoryGroups.get(this.normalizeGroupName(name, true));
     }
   }
 
@@ -81,7 +78,7 @@ export class MultiGroupProvider extends BaseProvider {
     await this.initializeRepositories();
 
     yield* matcher(
-      this._repositoryGroups.values(),
+      this.#repositoryGroups.values(),
       stripBaseNames(patterns, this.provider.repositoryBases),
       {
         caseSensitive: this.areGroupNamesCaseSensitive,
@@ -110,10 +107,10 @@ export class MultiGroupProvider extends BaseProvider {
   addRepositoryGroup(name, options) {
     const normalizedName = this.normalizeGroupName(name, true);
 
-    let repositoryGroup = this._repositoryGroups.get(normalizedName);
+    let repositoryGroup = this.#repositoryGroups.get(normalizedName);
     if (repositoryGroup === undefined) {
       repositoryGroup = new this.repositoryGroupClass(this, name, options);
-      this._repositoryGroups.set(normalizedName, repositoryGroup);
+      this.#repositoryGroups.set(normalizedName, repositoryGroup);
     }
     return repositoryGroup;
   }
