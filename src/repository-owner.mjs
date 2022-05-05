@@ -146,12 +146,7 @@ export function RepositoryOwner(base) {
      * @return {Promise<Repository>} newly created repository
      */
     addRepository(name, options) {
-      const normalizedName = this.normalizeRepositoryName(name, true);
-      let repository = this.#repositories.get(normalizedName);
-      if (repository === undefined) {
-        repository = new this.repositoryClass(this, name, options);
-      }
-      return repository;
+      return this.#repositories.get(this.normalizeRepositoryName(name, true)) || new this.repositoryClass(this, name, options);
     }
 
     _addRepository(repository)

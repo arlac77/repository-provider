@@ -242,12 +242,7 @@ export class Repository extends OwnedObject {
    */
   async branch(name) {
     if(name === this.defaultBranchName) {
-      const branch = this._branches.get(name);
-      if(branch) {
-        return branch;
-      }
-      
-      return this.addBranch(name);
+      return this._branches.get(name) || this.addBranch(name);
     }
 
     await this.initializeBranches();
@@ -284,12 +279,7 @@ export class Repository extends OwnedObject {
    * @return {Branch} newly created branch
    */
   addBranch(name, options) {
-    let branch = this._branches.get(name);
-    if (branch === undefined) {
-      branch = new this.branchClass(this, name, options);
-    }
-
-    return branch;
+    return this._branches.get(name) || new this.branchClass(this, name, options);
   }
 
   _addBranch(branch) {
@@ -335,12 +325,7 @@ export class Repository extends OwnedObject {
    * @return {Tag} newly created tag
    */
   addTag(name, options) {
-    let tag = this._tags.get(name);
-    if (tag === undefined) {
-      tag = new this.tagClass(this, name, options);
-    }
-
-    return tag;
+    return this._tags.get(name) || new this.tagClass(this, name, options);
   }
 
   _addTag(tag) {
