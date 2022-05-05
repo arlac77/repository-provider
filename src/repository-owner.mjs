@@ -9,11 +9,8 @@ import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
  */
 export function RepositoryOwner(base) {
   return class RepositoryOwner extends base {
-    constructor(...args) {
-      super(...args);
 
-      Object.defineProperties(this, { _repositories: { value: new Map() } });
-    }
+    #repositories = new Map();
 
     /**
      * Normalizes a repository name.
@@ -51,7 +48,7 @@ export function RepositoryOwner(base) {
 
       await this.initializeRepositories();
 
-      return this._repositories.get(this.normalizeRepositoryName(name, true));
+      return this.#repositories.get(this.normalizeRepositoryName(name, true));
     }
 
     /**
@@ -75,7 +72,7 @@ export function RepositoryOwner(base) {
 
       await this.initializeRepositories();
       yield* matcher(
-        this._repositories.values(),
+        this.#repositories.values(),
         stripBaseNames(patterns, this.provider.repositoryBases),
         {
           caseSensitive: this.areRepositoryNamesCaseSensitive,
@@ -91,7 +88,7 @@ export function RepositoryOwner(base) {
         name = stripBaseName(name, this.provider.repositoryBases);
 
         const [repoName, typeName] = split ? split(name) : name.split("/");
-        const repository = this._repositories.get(repoName);
+        const repository = this.#repositories.get(repoName);
 
         if (repository) {
           if (typeName === undefined && defaultItem) {
@@ -113,10 +110,10 @@ export function RepositoryOwner(base) {
           ? split(pattern)
           : pattern.split("/");
 
-        for (const name of matcher(this._repositories.keys(), repoPattern, {
+        for (const name of matcher(this.#repositories.keys(), repoPattern, {
           caseSensitive: this.areRepositoriesCaseSensitive
         })) {
-          const repository = this._repositories.get(name);
+          const repository = this.#repositories.get(name);
 
           if (typePattern === undefined && defaultItem) {
             const item = await defaultItem(repository);
@@ -150,7 +147,7 @@ export function RepositoryOwner(base) {
      */
     addRepository(name, options) {
       const normalizedName = this.normalizeRepositoryName(name, true);
-      let repository = this._repositories.get(normalizedName);
+      let repository = this.#repositories.get(normalizedName);
       if (repository === undefined) {
         repository = new this.repositoryClass(this, name, options);
       }
@@ -160,7 +157,7 @@ export function RepositoryOwner(base) {
     _addRepository(repository)
     {
       const normalizedName = this.normalizeRepositoryName(repository.name, true);
-      this._repositories.set(normalizedName, repository);
+      this.#repositories.set(normalizedName, repository);
     }
 
     /**
@@ -169,7 +166,7 @@ export function RepositoryOwner(base) {
      * @return {Promise<any>}
      */
     async deleteRepository(name) {
-      this._repositories.delete(this.normalizeRepositoryName(name, true));
+      this.#repositories.delete(this.normalizeRepositoryName(name, true));
     }
 
     initializeRepositories() {}
