@@ -63,9 +63,8 @@ export class MultiGroupProvider extends BaseProvider {
     const { base } = this.parseName(name);
 
     if (this.supportsBase(base)) {
-      name = stripBaseNames(name, this.provider.repositoryBases);
       await this.initializeRepositories();
-      return this.#repositoryGroups.get(this.normalizeGroupName(name, true));
+      return this.#repositoryGroups.get(this.normalizeGroupName(stripBaseNames(name, this.provider.repositoryBases), true));
     }
   }
 
