@@ -66,15 +66,15 @@ export class Repository extends OwnedObject {
     };
   }
 
+  #branches = new Map();
+  #tags = new Map();
+  #projects = new Map();
+  #milestones = new Map();
+  #pullRequests = new Map();
+  #hooks = [];
+
   constructor(owner, name, options) {
-    super(owner, owner.normalizeRepositoryName(name, false), options, {
-      _branches: { value: new Map() },
-      _tags: { value: new Map() },
-      _pullRequests: { value: new Map() },
-      _milestones: { value: new Map() },
-      _projects: { value: new Map() },
-      _hooks: { value: [] }
-    });
+    super(owner, owner.normalizeRepositoryName(name, false), options);
   }
 
   /**
@@ -242,11 +242,11 @@ export class Repository extends OwnedObject {
    */
   async branch(name) {
     if(name === this.defaultBranchName) {
-      return this._branches.get(name) || this.addBranch(name);
+      return this.#branches.get(name) || this.addBranch(name);
     }
 
     await this.initializeBranches();
-    return this._branches.get(name);
+    return this.#branches.get(name);
   }
 
   /**
@@ -254,7 +254,7 @@ export class Repository extends OwnedObject {
    */
   async *branches(patterns) {
     await this.initializeBranches();
-    yield* matcher(this._branches.values(), patterns, {
+    yield* matcher(this.#branches.values(), patterns, {
       name: "name"
     });
   }
@@ -279,11 +279,11 @@ export class Repository extends OwnedObject {
    * @return {Branch} newly created branch
    */
   addBranch(name, options) {
-    return this._branches.get(name) || new this.branchClass(this, name, options);
+    return this.#branches.get(name) || new this.branchClass(this, name, options);
   }
 
   _addBranch(branch) {
-    this._branches.set(branch.name, branch);
+    this.#branches.set(branch.name, branch);
   }
 
   /**
@@ -292,7 +292,7 @@ export class Repository extends OwnedObject {
    * @return {Promise<any>}
    */
   async deleteBranch(name) {
-    this._branches.delete(name);
+    this.#branches.delete(name);
   }
 
   /**
@@ -302,7 +302,7 @@ export class Repository extends OwnedObject {
    */
   async tag(name) {
     await this.initializeTags();
-    return this._tags.get(name);
+    return this.#tags.get(name);
   }
 
   /**
@@ -312,7 +312,7 @@ export class Repository extends OwnedObject {
   async *tags(patterns) {
     await this.initializeTags();
 
-    yield* matcher(this._tags.values(), patterns, {
+    yield* matcher(this.#tags.values(), patterns, {
       name: "name"
     });
   }
@@ -325,11 +325,11 @@ export class Repository extends OwnedObject {
    * @return {Tag} newly created tag
    */
   addTag(name, options) {
-    return this._tags.get(name) || new this.tagClass(this, name, options);
+    return this.#tags.get(name) || new this.tagClass(this, name, options);
   }
 
   _addTag(tag) {
-    this._tags.set(tag.name, tag);
+    this.#tags.set(tag.name, tag);
   }
 
   /**
@@ -355,13 +355,13 @@ export class Repository extends OwnedObject {
     let pr = this._pullRequests.get(name);
     if (pr === undefined) {
       pr = new this.pullRequestClass(name, source, this, options);
-      this._pullRequests.set(pr.name, pr);
+      this.#pullRequests.set(pr.name, pr);
     }
     return pr;
   }
 
   _addPullRequest(pr) {
-    this._pullRequests.set(pr.name, pr);
+    this.#pullRequests.set(pr.name, pr);
   }
 
   /**
@@ -371,7 +371,7 @@ export class Repository extends OwnedObject {
   async *pullRequests() {
     await this.initializePullRequests();
 
-    for (const pr of this._pullRequests.values()) {
+    for (const pr of this.#pullRequests.values()) {
       yield pr;
     }
   }
@@ -383,7 +383,7 @@ export class Repository extends OwnedObject {
    */
   async pullRequest(name) {
     await this.initializePullRequests();
-    return this._pullRequests.get(name);
+    return this.#pullRequests.get(name);
   }
 
   /**
@@ -392,7 +392,7 @@ export class Repository extends OwnedObject {
    * @return {Promise<any>}
    */
   async deletePullRequest(name) {
-    this._pullRequests.delete(name);
+    this.#pullRequests.delete(name);
   }
 
   /**
@@ -400,11 +400,11 @@ export class Repository extends OwnedObject {
    * @param {Hook} hook
    */
   addHook(hook) {
-    this._hooks.push(hook);
+    this.#hooks.push(hook);
   }
 
   _addHook(hook) {
-    this._hooks.push(hook);
+    this.#hooks.push(hook);
   }
 
   /**
@@ -421,7 +421,7 @@ export class Repository extends OwnedObject {
    */
   async *hooks() {
     await this.initializeHooks();
-    for (const hook of this._hooks) {
+    for (const hook of this.#hooks) {
       yield hook;
     }
   }
@@ -441,19 +441,19 @@ export class Repository extends OwnedObject {
   }
 
   _addMilestone(milestone) {
-    this._milestones.set(milestone.name, milestone);
+    this.#milestones.set(milestone.name, milestone);
   }
 
   async milestone(name) {
-    return this._milestones.get(name);
+    return this.#milestones.get(name);
   }
 
   _addProject(project) {
-    this._projects.set(project.name, project);
+    this.#projects.set(project.name, project);
   }
 
   async project(name) {
-    return this._projects.get(name);
+    return this.#projects.get(name);
   }
 
   /**
@@ -507,7 +507,7 @@ export class Repository extends OwnedObject {
 
   async initializePullRequests() {
     for await (const pr of this.pullRequestClass.list(this)) {
-      this._pullRequests.set(pr.name, pr);
+      this.#pullRequests.set(pr.name, pr);
     }
   }
 }
