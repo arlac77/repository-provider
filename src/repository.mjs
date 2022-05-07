@@ -352,7 +352,7 @@ export class Repository extends OwnedObject {
    * @return {PullRequest}
    */
   addPullRequest(name, source, options) {
-    let pr = this._pullRequests.get(name);
+    let pr = this.#pullRequests.get(name);
     if (pr === undefined) {
       pr = new this.pullRequestClass(name, source, this, options);
       this.#pullRequests.set(pr.name, pr);
