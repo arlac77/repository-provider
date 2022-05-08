@@ -227,12 +227,6 @@ export class PullRequest extends NamedObject {
     return super.equals(other) && this.repository.equals(other.repository);
   }
 
-  async write() {
-    this._write();
-  }
-
-  async _write() {}
-
   /**
    * Delete the pull request from the {@link Repository}.
    * @see {@link Repository#deletePullRequest}
