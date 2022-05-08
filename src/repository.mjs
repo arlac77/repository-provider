@@ -249,6 +249,11 @@ export class Repository extends OwnedObject {
     return this.#branches.get(name);
   }
 
+  get hasBranches()
+  {
+    return this.#branches.size > 0;
+  }
+
   /**
    * @return {AsyncIterator<Branch>} of all branches
    */
