@@ -142,12 +142,12 @@ export class PullRequest extends NamedObject {
     };
   }
 
-  constructor(source, destination, name, options) {
+  constructor(source, owner, name, options) {
     let state = "OPEN";
 
     super(name, options, {
       source: { value: source },
-      destination: { value: destination },
+      owner: { value: owner },
       state: {
         set(value) {
           value = value.toUpperCase();
@@ -171,9 +171,14 @@ export class PullRequest extends NamedObject {
       }
     });
 
-    if (destination !== undefined) {
-      destination._addPullRequest(this);
+    if (owner !== undefined) {
+      owner._addPullRequest(this);
     }
+  }
+
+  get destination()
+  {
+    return this.owner;
   }
 
   /**
@@ -181,7 +186,7 @@ export class PullRequest extends NamedObject {
    * @return {string} PR full name
    */
   get fullName() {
-    return `${this.destination.repository.fullName}/${this.name}`;
+    return `${this.owner.repository.fullName}/${this.name}`;
   }
 
   /**
@@ -189,7 +194,7 @@ export class PullRequest extends NamedObject {
    * @return {string} url
    */
   get url() {    
-    return `${this.provider.url}${this.destination.repository.fullName}/pull/${this.name}`;
+    return `${this.provider.url}${this.owner.repository.fullName}/pull/${this.name}`;
   }
 
   get number() {
@@ -204,18 +209,18 @@ export class PullRequest extends NamedObject {
    * @return {Repository} destination repository
    */
   get repository() {
-    return this.destination === undefined
+    return this.owner === undefined
       ? undefined
-      : this.destination.repository;
+      : this.owner.repository;
   }
 
   /**
    * @return {BaseProvider}
    */
   get provider() {
-    return this.destination === undefined
+    return this.owner === undefined
       ? undefined
-      : this.destination.provider;
+      : this.owner.provider;
   }
 
   /**
@@ -233,9 +238,9 @@ export class PullRequest extends NamedObject {
    * @return {Promise}
    */
   async delete() {
-    return this.destination === undefined
+    return this.owner === undefined
       ? undefined
-      : this.destination.deletePullRequest(this.number);
+      : this.owner.deletePullRequest(this.number);
   }
 
   /**
@@ -291,6 +296,6 @@ export class PullRequest extends NamedObject {
    * @return {string}
    */
   get identifier() {
-    return `${this.destination.identifier}[${this.name}]`;
+    return `${this.owner.identifier}[${this.name}]`;
   }
 }
