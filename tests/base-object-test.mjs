@@ -1,14 +1,20 @@
 import test from "ava";
 import { BaseObject } from "repository-provider";
 
-test("object writableAttributes", t => {
+test("BaseObject writableAttributes", t => {
   t.deepEqual(Object.keys(BaseObject.writableAttributes), [
     "description",
     "homePageURL"
   ]);
 });
 
-test("object base ics", t => {
+test("BaseObject isWritable", t => {
   const b = new BaseObject();
   t.false(b.isWritable);
+});
+
+test("BaseObject update", async t => {
+  const b = new BaseObject();
+  await b.update();
+  t.true(true);
 });

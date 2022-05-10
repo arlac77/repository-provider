@@ -5,7 +5,7 @@ import { SingleGroupProvider, Repository, Hook } from "repository-provider";
 test("add hook", async t => {
   const repository = new Repository(new SingleGroupProvider(), "r1");
 
-  const hook = new Hook(repository, "hook1", new Set(["a"]), {
+  const hook = new Repository.hookClass(repository, "hook1", new Set(["a"]), {
     id: 77,
     url: "http://somewere.com/path"
   });
