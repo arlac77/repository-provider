@@ -1,5 +1,5 @@
 import { optionJSON } from "./attribute.mjs";
-import { NamedObject } from "./named-object.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
 import { Review } from "./review.mjs";
@@ -26,7 +26,12 @@ import { BaseProvider } from "./base-provider.mjs";
  * @property {boolean} [locked]
  * @property {string} url
  */
-export class PullRequest extends NamedObject {
+export class PullRequest extends OwnedObject {
+
+  static get registerInstanceMethodName() {
+    return "_addPullRequest";
+  }
+
   /**
    * All valid states
    * @return {Set<string>} valid states
@@ -145,9 +150,8 @@ export class PullRequest extends NamedObject {
   constructor(source, owner, name, options) {
     let state = "OPEN";
 
-    super(name, options, {
+    super(owner, name, options, {
       source: { value: source },
-      owner: { value: owner },
       state: {
         set(value) {
           value = value.toUpperCase();
@@ -170,10 +174,6 @@ export class PullRequest extends NamedObject {
         }
       }
     });
-
-    if (owner !== undefined) {
-      owner._addPullRequest(this);
-    }
   }
 
   get destination()
@@ -186,7 +186,7 @@ export class PullRequest extends NamedObject {
    * @return {string} PR full name
    */
   get fullName() {
-    return `${this.owner.repository.fullName}/${this.name}`;
+    return `${this.repository.fullName}/${this.name}`;
   }
 
   /**
@@ -194,7 +194,7 @@ export class PullRequest extends NamedObject {
    * @return {string} url
    */
   get url() {    
-    return `${this.provider.url}${this.owner.repository.fullName}/pull/${this.name}`;
+    return `${this.provider.url}${this.repository.fullName}/pull/${this.name}`;
   }
 
   get number() {
@@ -271,7 +271,7 @@ export class PullRequest extends NamedObject {
     return [
       [this.name, this.title],
       ["source", this.source.identifier],
-      ["destination", this.destination.identifier],
+      ["destination", this.owner.identifier],
       ...Object.keys(this.constructor.attributes)
         .filter(
           k =>
@@ -286,7 +286,7 @@ export class PullRequest extends NamedObject {
   toJSON() {
     return optionJSON(this, {
       source: this.source,
-      destination: this.destination,
+      destination: this.owner,
       name: this.name
     });
   }
