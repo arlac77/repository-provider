@@ -240,7 +240,7 @@ export class PullRequest extends OwnedObject {
   async delete() {
     return this.owner === undefined
       ? undefined
-      : this.owner.deletePullRequest(this.number);
+      : this.owner.deletePullRequest(this.name);
   }
 
   /**
