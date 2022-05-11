@@ -28,7 +28,7 @@ import { BaseProvider } from "./base-provider.mjs";
  */
 export class PullRequest extends OwnedObject {
 
-  static get registerInstanceMethodName() {
+  static get addMethodName() {
     return "_addPullRequest";
   }
 

@@ -17,7 +17,7 @@ import { Commit } from "./commit.mjs";
  */
 export class Branch extends Ref {
 
-  static get registerInstanceMethodName() {
+  static get addMethodName() {
     return "_addBranch";
   }
 

@@ -18,7 +18,7 @@ import { BaseProvider } from "./base-provider.mjs";
 
 export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
 
-  static get registerInstanceMethodName() {
+  static get addMethodName() {
     return "_addRepositoryGroup";
   }
 

@@ -5,7 +5,7 @@ import { Ref } from "./ref.mjs";
  */
 export class Tag extends Ref {
 
-  static get registerInstanceMethodName() {
+  static get addMethodName() {
     return "_addTag";
   }
 

@@ -9,7 +9,7 @@ export class OwnedObject extends NamedObject {
    * sample: Application => _addApplication
    * @return {string}
    */
-  static get registerInstanceMethodName() {
+  static get addMethodName() {
     return "_add" + this.name;
   }
 
@@ -19,7 +19,7 @@ export class OwnedObject extends NamedObject {
       owner: { value: owner }
     });
 
-    owner[this.constructor.registerInstanceMethodName](this);
+    owner[this.constructor.addMethodName](this);
   }
 
   /**

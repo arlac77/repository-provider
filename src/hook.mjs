@@ -17,7 +17,7 @@ export class Hook extends OwnedObject {
     };
   }
 
-  static get registerInstanceMethodName() {
+  static get addMethodName() {
     return "_addHook";
   }
 
