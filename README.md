@@ -1224,7 +1224,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## PullRequest
 
-**Extends NamedObject**
+**Extends OwnedObject**
 
 Abstract pull request.
 [Repository#addPullRequest](#repositoryaddpullrequest)
@@ -1232,7 +1232,7 @@ Abstract pull request.
 ### Parameters
 
 *   `source` **[Branch](#branch)** merge source
-*   `destination` **[Branch](#branch)** merge target
+*   `owner`  
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
@@ -1240,6 +1240,7 @@ Abstract pull request.
     *   `options.state` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
     *   `options.merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
     *   `options.locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+*   `destination` **[Branch](#branch)** merge target
 
 ### Properties
 
