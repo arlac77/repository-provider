@@ -478,14 +478,6 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * full name.
-   * @returns {string}
-   */
-  toString() {
-    return this.fullName;
-  }
-
-  /**
    * Provide name and all defined attributes
    */
   toJSON() {

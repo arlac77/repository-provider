@@ -5,6 +5,7 @@ test("name object init without options", t => {
   const no = new NamedObject("n1");
 
   t.is(no.name, "n1");
+  t.is(no.fullName, "n1");
   t.is(no.toString(), "n1");
   t.is("" + no, "n1");
 

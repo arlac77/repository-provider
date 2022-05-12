@@ -82,10 +82,10 @@ export class BaseObject {
   async update() {}
 
   /**
-   * @return {string} name
+   * @return {string} fullName
    */
   toString() {
-    return this.name;
+    return this.fullName;
   }
 
   /**
