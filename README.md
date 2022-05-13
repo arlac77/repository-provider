@@ -202,7 +202,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-46)
     *   [equals](#equals-3)
         *   [Parameters](#parameters-47)
-    *   [registerInstanceMethodName](#registerinstancemethodname)
+    *   [addMethodName](#addmethodname)
 *   [Project](#project)
 *   [PullRequest](#pullrequest)
     *   [Parameters](#parameters-48)
@@ -327,7 +327,6 @@ console.log(await readme.getString());
     *   [type](#type-1)
     *   [refId](#refid-1)
         *   [Parameters](#parameters-79)
-    *   [toString](#tostring-2)
     *   [toJSON](#tojson-3)
     *   [attributes](#attributes-2)
 *   [defaultBranchName](#defaultbranchname)
@@ -489,7 +488,7 @@ Save object attributes in the backing store.
 
 ### toString
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** fullName
 
 ### displayName
 
@@ -1211,7 +1210,7 @@ Check for equality.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if receiver and owner are equal
 
-### registerInstanceMethodName
+### addMethodName
 
 Method name to be called to register one instance in the owner.
 sample: Application => \_addApplication
@@ -1920,12 +1919,6 @@ Get sha of a ref.
 *   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** sha of the ref
-
-### toString
-
-full name.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ### toJSON
 
