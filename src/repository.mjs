@@ -69,6 +69,7 @@ export class Repository extends OwnedObject {
   #branches = new Map();
   #tags = new Map();
   #projects = new Map();
+  #applications = new Map();
   #milestones = new Map();
   #pullRequests = new Map();
   #hooks = [];
@@ -459,6 +460,14 @@ export class Repository extends OwnedObject {
 
   async project(name) {
     return this.#projects.get(name);
+  }
+
+  _addApplication(application) {
+    this.#applications.set(application.name, application);
+  }
+
+  async application(name) {
+    return this.#applications.get(name);
   }
 
   /**
