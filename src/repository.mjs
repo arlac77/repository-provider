@@ -97,14 +97,6 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * Short human readable identifier with provider and branch.
-   * @return {string}
-   */
-  get identifier() {
-    return `${this.provider.name}:${this.fullName}`;
-  }
-
-  /**
    * Lookup entries form the head of the default branch.
    * {@link Branch#entry}
    * @return {Promise<ContentEntry>}

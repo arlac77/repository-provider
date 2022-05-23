@@ -105,6 +105,22 @@ export class BaseObject {
   }
 
   /**
+   * Complete name in the hierachy.
+   * @return {string}
+   */
+   get fullCondensedName() {
+    return this.fullName;
+  }
+
+  /**
+   * Short human readable identifier with provider and branch.
+   * @return {string}
+   */
+  get identifier() {
+    return `${this.provider.name}:${this.fullCondensedName}`;
+  }
+
+  /**
    * By default cannot be written to.
    * @return {boolean} false
    */

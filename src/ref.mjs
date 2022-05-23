@@ -117,14 +117,6 @@ export class Ref extends OwnedObject {
   }
 
   /**
-   * Short human readable identifier with provider and branch.
-   * @return {string}
-   */
-  get identifier() {
-    return `${this.provider.name}:${this.fullCondensedName}`;
-  }
-
-  /**
    * Same as identifier.
    * @return {string}
    */
