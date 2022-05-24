@@ -68,6 +68,8 @@ console.log(await readme.getString());
     *   [toString](#tostring)
     *   [displayName](#displayname)
     *   [fullName](#fullname)
+    *   [fullCondensedName](#fullcondensedname)
+    *   [identifier](#identifier)
     *   [isWritable](#iswritable)
     *   [equals](#equals)
         *   [Parameters](#parameters-8)
@@ -218,7 +220,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-50)
     *   [decline](#decline)
     *   [reviews](#reviews)
-    *   [identifier](#identifier)
+    *   [identifier](#identifier-1)
     *   [validStates](#validstates)
     *   [defaultListStates](#defaultliststates)
     *   [validMergeMethods](#validmergemethods)
@@ -247,8 +249,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-56)
     *   [repository](#repository-2)
     *   [fullName](#fullname-3)
-    *   [fullCondensedName](#fullcondensedname)
-    *   [identifier](#identifier-1)
+    *   [fullCondensedName](#fullcondensedname-1)
     *   [toString](#tostring-1)
     *   [issuesURL](#issuesurl)
     *   [homePageURL](#homepageurl-1)
@@ -271,7 +272,6 @@ console.log(await readme.getString());
     *   [Properties](#properties-10)
     *   [fullName](#fullname-4)
     *   [slug](#slug)
-    *   [identifier](#identifier-2)
     *   [entry](#entry-1)
         *   [Parameters](#parameters-60)
     *   [entries](#entries-1)
@@ -499,6 +499,18 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### fullName
 
 Complete name in the hierachy.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### fullCondensedName
+
+Complete name in the hierachy.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### identifier
+
+Short human readable identifier with provider and branch.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -1484,12 +1496,6 @@ But skipping the branch name if it is the default branch.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
 
-### identifier
-
-Short human readable identifier with provider and branch.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
 ### toString
 
 Same as identifier.
@@ -1617,12 +1623,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### slug
 
 Name of the repo as used in the URL.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### identifier
-
-Short human readable identifier with provider and branch.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
