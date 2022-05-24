@@ -9,7 +9,7 @@ import { BaseProvider } from "./base-provider.mjs";
  * Abstract pull request.
  * {@link Repository#addPullRequest}
  * @param {Branch} source merge source
- * @param {Branch} destination merge target
+ * @param {Branch} owner merge target
  * @param {string} name
  * @param {Object} options
  * @param {string} [options.title]

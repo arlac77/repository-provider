@@ -7,7 +7,7 @@ import { Commit } from "./commit.mjs";
 /**
  * Abstract branch.
  * @see {@link Repository#_addBranch}
- * @param {Repository} repository
+ * @param {RepositoryOwner} owner
  * @param {string} name
  * @param {Object} options
  *
