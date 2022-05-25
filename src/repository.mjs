@@ -491,7 +491,6 @@ export class Repository extends OwnedObject {
     return optionJSON(this, {
       name: this.name,
       fullName: this.fullName,
-      urls: this.urls
     });
   }
 
