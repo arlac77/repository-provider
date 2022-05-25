@@ -193,7 +193,7 @@ export function optionJSON(
   initial = {},
   attributes = object.constructor.attributes
 ) {
-  return Object.keys(attributes || {}).reduce((a, c) => {
+  return attributes ? Object.keys(attributes).reduce((a, c) => {
     const value = object[c];
     if (value !== undefined && !(value instanceof Function)) {
       if (value instanceof Set) {
@@ -203,7 +203,7 @@ export function optionJSON(
       }
     }
     return a;
-  }, initial);
+  }, initial) : initial;
 }
 
 /**
