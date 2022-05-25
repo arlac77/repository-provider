@@ -5,9 +5,10 @@ import { SingleGroupProvider, Repository, Hook } from "repository-provider";
 test("add hook", async t => {
   const repository = new Repository(new SingleGroupProvider(), "r1");
 
-  const hook = new repository.hookClass(repository, "hook1", new Set(["a"]), {
+  const hook = new repository.hookClass(repository, "hook1", {
     id: 77,
-    url: "http://somewere.com/path"
+    url: "http://somewere.com/path",
+    events: new Set(["a"])
   });
 
   t.is(hook.owner, repository);
@@ -51,7 +52,7 @@ test("hook logging", async t => {
   const provider = new SingleGroupProvider({ messageDestination });
 
   const repository = await provider.addRepository("r1");
-  const hook = new Hook(repository, "hook1", new Set(["a"]));
+  const hook = new Hook(repository, "hook1", {});
 
   for (const l of levels) {
     hook[l](l);

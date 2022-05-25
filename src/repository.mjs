@@ -25,7 +25,6 @@ import { BaseProvider } from "./base-provider.mjs";
  * @property {Map<string,Milestone>} milestones
  */
 export class Repository extends OwnedObject {
-
   static get addMethodName() {
     return "_addRepository";
   }
@@ -128,8 +127,7 @@ export class Repository extends OwnedObject {
    * @param {Object} options
    * @return {AsyncIterator<Commit>} all matching commits in the repository
    */
-  async *commits(options) {
-  }
+  async *commits(options) {}
 
   /**
    * Urls to access the repo.
@@ -234,7 +232,7 @@ export class Repository extends OwnedObject {
    * @return {Promise<Branch>}
    */
   async branch(name) {
-    if(name === this.defaultBranchName) {
+    if (name === this.defaultBranchName) {
       return this.#branches.get(name) || this.addBranch(name);
     }
 
@@ -245,8 +243,7 @@ export class Repository extends OwnedObject {
   /**
    * @return {boolean} true if there is at least one branch
    */
-  get hasBranches()
-  {
+  get hasBranches() {
     return this.#branches.size > 0;
   }
 
@@ -280,7 +277,9 @@ export class Repository extends OwnedObject {
    * @return {Branch} newly created branch
    */
   addBranch(name, options) {
-    return this.#branches.get(name) || new this.branchClass(this, name, options);
+    return (
+      this.#branches.get(name) || new this.branchClass(this, name, options)
+    );
   }
 
   _addBranch(branch) {
@@ -326,7 +325,7 @@ export class Repository extends OwnedObject {
    * @return {Tag} newly created tag
    */
   addTag(name, options) {
-    return this.#tags.get(name) || new this.tagClass(this, name, options);
+    return this.#tags.get(name) || new this.tagClass(this, name, options);
   }
 
   _addTag(tag) {
@@ -397,11 +396,16 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * Add a Hook.
-   * @param {Hook} hook
+   * Add a new {@link Hook}.
+   * @param {string} name of the new hoook name
+   * @param {Object} options
+   * @return {Hook} newly created hook
    */
-  addHook(hook) {
-    this.#hooks.push(hook);
+  addHook(name, ...args) {
+    return (
+      this.#hooks.find(hook => hook.name == name) ||
+      new this.hookClass(this, name, ...args)
+    );
   }
 
   _addHook(hook) {
@@ -478,8 +482,7 @@ export class Repository extends OwnedObject {
    * @param {string} ref
    * @return {Promise<string>} sha of the ref
    */
-  async refId(ref) {
-  }
+  async refId(ref) {}
 
   /**
    * Provide name and all defined attributes
