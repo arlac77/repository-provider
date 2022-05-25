@@ -192,7 +192,7 @@ export class BaseProvider extends BaseObject {
    * @return {string} normalized name
    */
   normalizeGroupName(name, forLookup) {
-    const { group } = this.parseName(name, true);
+    const { group } = this.parseName(name, "group");
     return group && forLookup && !this.areGroupNamesCaseSensitive
       ? group.toLowerCase()
       : group;
@@ -239,10 +239,10 @@ export class BaseProvider extends BaseObject {
    * Parses repository name and tries to split it into
    * base, group, repository and branch.
    * @param {string} name
-   * @param {boolean} groupFocus if only one path component is given
+   * @param {string} focus where lies the focus if only one path component is given
    * @return {Object} with separated attributes
    */
-  parseName(name, groupFocus = false) {
+  parseName(name, focus = "repository") {
     const result = {};
 
     if (name === undefined) {
@@ -286,11 +286,7 @@ export class BaseProvider extends BaseObject {
         result.group = parts[i];
         result.repository = parts[i + 1];
       } else {
-        if (groupFocus) {
-          result.group = name;
-        } else {
-          result.repository = name;
-        }
+        result[focus] = name;
       }
     }
 
