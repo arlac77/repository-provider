@@ -1,4 +1,3 @@
-import { optionJSON } from "./attribute.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 
 /**
@@ -19,12 +18,5 @@ export class Hook extends OwnedObject {
 
   static get addMethodName() {
     return "_addHook";
-  }
-
-  /**
-   * Provide name, events and all defined attributes.
-   */
-  toJSON() {
-    return optionJSON(this, { name: this.name, id: this.id });
   }
 }
