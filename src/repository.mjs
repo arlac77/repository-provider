@@ -242,6 +242,9 @@ export class Repository extends OwnedObject {
     return this.#branches.get(name);
   }
 
+  /**
+   * @return {boolean} true if there is at least one branch
+   */
   get hasBranches()
   {
     return this.#branches.size > 0;
