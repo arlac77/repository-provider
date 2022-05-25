@@ -401,10 +401,10 @@ export class Repository extends OwnedObject {
    * @param {Object} options
    * @return {Hook} newly created hook
    */
-  addHook(name, ...args) {
+  addHook(name, options) {
     return (
       this.#hooks.find(hook => hook.name == name) ||
-      new this.hookClass(this, name, ...args)
+      new this.hookClass(this, name, options)
     );
   }
 
