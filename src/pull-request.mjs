@@ -209,9 +209,7 @@ export class PullRequest extends OwnedObject {
    * @return {Repository} destination repository
    */
   get repository() {
-    return this.owner === undefined
-      ? undefined
-      : this.owner.repository;
+    return this.owner && this.owner.repository;
   }
 
   /**
@@ -236,9 +234,7 @@ export class PullRequest extends OwnedObject {
    * @return {Promise}
    */
   async delete() {
-    return this.owner === undefined
-      ? undefined
-      : this.owner.deletePullRequest(this.name);
+    return this.owner && this.owner.deletePullRequest(this.name);
   }
 
   /**
