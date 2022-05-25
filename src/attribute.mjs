@@ -65,6 +65,11 @@ export function definePropertiesFromOptions(
       value = attribute.set(value);
     } else {
       switch (attribute.type) {
+        case "set":
+          if (Array.isArray(value)) {
+            value = new Set(value);
+          }
+          break;
         case "boolean":
           if (value !== undefined) {
             value =
@@ -120,7 +125,7 @@ export function defaultValues(attributes, object) {
         a.push([name, attribute.default]);
       } else if (attribute.get !== undefined) {
         const value = attribute.get(attribute, object);
-        if(value !== undefined) {
+        if (value !== undefined) {
           a.push([name, value]);
         }
       }
@@ -191,7 +196,11 @@ export function optionJSON(
   return Object.keys(attributes || {}).reduce((a, c) => {
     const value = object[c];
     if (value !== undefined && !(value instanceof Function)) {
-      a[c] = value;
+      if (value instanceof Set) {
+        a[c] = [...value];
+      } else {
+        a[c] = value;
+      }
     }
     return a;
   }, initial);

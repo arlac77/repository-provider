@@ -22,7 +22,7 @@ gat.title = (providedTitle, object, key) =>
 test(gat, undefined, "a", undefined);
 test(gat, { a: 1 }, "a", 1);
 test(gat, { a: { b: 1 } }, "a.b", 1);
-test(gat, { "a.b" : 1 }, "a.b", 1);
+test(gat, { "a.b": 1 }, "a.b", 1);
 test(gat, {}, "x.y.z", undefined);
 
 function dpot(t, object, options, expected) {
@@ -56,6 +56,7 @@ class MyClass {
       rw: { writable: true },
       att_setter: { set: x => x * 2 },
       boolean_conversion: { type: "boolean" },
+      set_conversion: { type: "set" },
       preexisting_property: {},
       "authentification.token": {},
       "authentification.user": { default: "hugo" },
@@ -96,6 +97,14 @@ test(dpct, MyClass, { boolean_conversion: true }, (t, o) =>
 test(dpct, MyClass, { boolean_conversion: 7 }, (t, o) =>
   t.is(o.boolean_conversion, true)
 );
+
+test(dpct, MyClass, { set_conversion: ["a", "b"] }, (t, o) =>
+  t.deepEqual(o.set_conversion, new Set(["a", "b"]))
+);
+test(dpct, MyClass, { set_conversion: new Set(["a", "b"]) }, (t, o) =>
+  t.deepEqual(o.set_conversion, new Set(["a", "b"]))
+);
+
 test(dpct, MyClass, { att_setter: 7 }, (t, o) => t.is(o.att_setter, 14));
 test(dpct, MyClass, { read_only: 1 }, (t, o) => {
   t.is(o.read_only, 1);
