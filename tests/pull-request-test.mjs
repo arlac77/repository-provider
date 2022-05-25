@@ -50,6 +50,20 @@ test("pullRequest create", async t => {
   t.is(pr.identifier, "SingleGroupProvider:r1#b2[4711]");
   t.is(pr.url, "/r1/pull/4711");
 
+  t.deepEqual(pr.toJSON(),{
+  	name: "4711",
+  	body: 'the body',
+  	destination: b1,
+  	draft: false,
+  	dry: false,
+  	id: '123456',
+  	locked: false,
+  	merged: false,
+  	source: b2,
+  	state: 'CLOSED',
+  	title: 'a title'
+  });
+  
   t.is(
     `${pr}`,
     "4711: a title, source: SingleGroupProvider:r1#b1, destination: SingleGroupProvider:r1#b2, state: CLOSED, locked: false, merged: false, draft: false, dry: false"
