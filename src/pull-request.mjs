@@ -218,9 +218,7 @@ export class PullRequest extends OwnedObject {
    * @return {BaseProvider}
    */
   get provider() {
-    return this.owner === undefined
-      ? undefined
-      : this.owner.provider;
+    return this.owner && this.owner.provider;
   }
 
   /**
