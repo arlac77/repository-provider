@@ -1,7 +1,9 @@
 import test from "ava";
 import { Project } from "repository-provider";
 
-test("init Project", async t => {
+test("Project type", t => t.is(Project.type, "project"));
+
+test("init Project", t => {
   let theProject;
   const owner = { name: "o1", _addProject: (project) => { theProject = project; } };
   const p = new Project(owner, "p1");

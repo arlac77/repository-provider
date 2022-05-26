@@ -5,6 +5,14 @@ import { definePropertiesFromOptions, mapAttributes } from "./attribute.mjs";
  * @param {Object} additionalProperties
  */
 export class BaseObject {
+
+  /**
+   * @return {string} type we represent
+   */
+  static get type() {
+    return this.name.toLocaleLowerCase();
+  }
+
   /**
    * Attributes definitions
    */

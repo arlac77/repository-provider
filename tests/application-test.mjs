@@ -1,9 +1,16 @@
 import test from "ava";
 import { Application } from "repository-provider";
 
-test("init Application", async t => {
+test("Application type", t => t.is(Application.type, "application"));
+
+test("init Application", t => {
   let theApp;
-  const owner = { name: "o1", _addApplication: (app) => { theApp = app; } };
+  const owner = {
+    name: "o1",
+    _addApplication: app => {
+      theApp = app;
+    }
+  };
   const a1 = new Application(owner, "a1");
 
   t.is(theApp, a1);

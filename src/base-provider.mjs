@@ -22,6 +22,11 @@ import { BaseObject } from "./base-object.mjs";
  * @property {MessageDestination} messageDestination
  */
 export class BaseProvider extends BaseObject {
+
+  static get type() {
+    return "provider";
+  }
+
   /**
    * @return {string} identifier for environment options
    */

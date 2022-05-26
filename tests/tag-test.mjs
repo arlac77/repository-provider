@@ -2,6 +2,8 @@ import test from "ava";
 import { createMessageDestination } from "repository-provider-test-support";
 import { Tag, SingleGroupProvider } from "repository-provider";
 
+test("Tag type", t => t.is(Tag.type, "tag"));
+
 test("tag init", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {});

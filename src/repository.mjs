@@ -25,6 +25,7 @@ import { BaseProvider } from "./base-provider.mjs";
  * @property {Map<string,Milestone>} milestones
  */
 export class Repository extends OwnedObject {
+
   static get addMethodName() {
     return "_addRepository";
   }

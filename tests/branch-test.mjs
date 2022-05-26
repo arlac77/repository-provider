@@ -1,6 +1,8 @@
 import test from "ava";
 import { SingleGroupProvider, Repository, Branch, PullRequest } from "repository-provider";
 
+test("Branch type", t => t.is(Branch.type, "branch"));
+
 test("branch init", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
