@@ -1,6 +1,9 @@
 import test from "ava";
 import { SingleGroupProvider } from "repository-provider";
 
+test("SingleGroupProvider type", t => t.is(SingleGroupProvider.type, "provider"));
+test("SingleGroupProvider collection name", t => t.is(SingleGroupProvider.collectionName, "providers"));
+
 class CaseSensitiveOwner extends SingleGroupProvider {
   get name() {
     return "csp";

@@ -13,13 +13,6 @@ export class OwnedObject extends NamedObject {
     return "_add" + this.name;
   }
 
-  /**
-   * @return {string} name of the collection holding ous in the owner
-   */
-  static get collectionName() {
-    return this.name.toLocaleLowerCase() + "s";
-  }
-
   constructor(owner, name, options, additionalProperties) {
     super(name, options, {
       ...additionalProperties,

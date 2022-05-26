@@ -1,6 +1,9 @@
 import test from "ava";
 import { MultiGroupProvider } from "repository-provider";
 
+test("MultiGroupProvider type", t => t.is(MultiGroupProvider.type, "provider"));
+test("MultiGroupProvider collection name", t => t.is(MultiGroupProvider.collectionName, "providers"));
+
 export async function groupTest(t, provider, name, expected) {
   const group = await provider.repositoryGroup(name);
 

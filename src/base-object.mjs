@@ -14,6 +14,13 @@ export class BaseObject {
   }
 
   /**
+   * @return {string} name of the collection holding us in the owner
+   */
+   static get collectionName() {
+    return this.type.toLocaleLowerCase() + "s";
+  }
+
+  /**
    * Attributes definitions
    */
   static get attributes() {
