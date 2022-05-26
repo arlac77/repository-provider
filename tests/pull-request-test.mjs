@@ -1,6 +1,10 @@
 import test from "ava";
 import { SingleGroupProvider, PullRequest } from "repository-provider";
 
+test("PullRequest type", t => t.is(PullRequest.type, "pullrequest"));
+test("PullRequest collection name", t => t.is(PullRequest.collectionName, "pullRequests"));
+
+
 test("pullRequest list", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.createRepository("r1");

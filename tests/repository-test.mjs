@@ -7,6 +7,9 @@ import {
   PullRequest
 } from "repository-provider";
 
+test("Repository type", t => t.is(Repository.type, "repository"));
+test("Repository collection name", t => t.is(Repository.collectionName, "repositories"));
+
 test("repository init with options", async t => {
   const provider = new SingleGroupProvider();
   const repository = new Repository(provider, "r1", {

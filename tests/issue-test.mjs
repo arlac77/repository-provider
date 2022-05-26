@@ -1,7 +1,10 @@
 import test from "ava";
 import { Issue } from "repository-provider";
 
-test("init Issue", async t => {
+test("Issue type", t => t.is(Issue.type, "issue"));
+test("Issue collection name", t => t.is(Issue.collectionName, "issues"));
+
+test("init Issue", t => {
   let theIssue;
 
   const owner = { _addIssue: (issue) => { theIssue = issue; } };

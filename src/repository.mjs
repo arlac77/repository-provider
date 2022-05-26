@@ -29,6 +29,10 @@ export class Repository extends OwnedObject {
   static get addMethodName() {
     return "_addRepository";
   }
+  
+  static get collectionName() {
+    return "repositories";
+  }
 
   /**
    * options

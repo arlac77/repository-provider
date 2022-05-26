@@ -3,6 +3,7 @@ import { createMessageDestination } from "repository-provider-test-support";
 import { Tag, SingleGroupProvider } from "repository-provider";
 
 test("Tag type", t => t.is(Tag.type, "tag"));
+test("Tag collection name", t => t.is(Tag.collectionName, "tags"));
 
 test("tag init", async t => {
   const provider = new SingleGroupProvider();

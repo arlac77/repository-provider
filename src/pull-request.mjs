@@ -27,9 +27,12 @@ import { BaseProvider } from "./base-provider.mjs";
  * @property {string} url
  */
 export class PullRequest extends OwnedObject {
-
   static get addMethodName() {
     return "_addPullRequest";
+  }
+
+  static get collectionName() {
+    return "pullRequests";
   }
 
   /**
@@ -176,8 +179,7 @@ export class PullRequest extends OwnedObject {
     });
   }
 
-  get destination()
-  {
+  get destination() {
     return this.owner;
   }
 
@@ -193,7 +195,7 @@ export class PullRequest extends OwnedObject {
    * URL of the pull request.
    * @return {string} url
    */
-  get url() {    
+  get url() {
     return `${this.provider.url}${this.repository.fullName}/pull/${this.name}`;
   }
 

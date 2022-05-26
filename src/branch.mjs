@@ -20,6 +20,10 @@ export class Branch extends Ref {
   static get addMethodName() {
     return "_addBranch";
   }
+  
+  static get collectionName() {
+    return "branches";
+  }
 
   constructor(owner, name = owner.defaultBranchName, options) {
     super(owner, name, options);

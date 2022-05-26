@@ -1,7 +1,7 @@
-import { BaseObject } from "./base-object.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 
 /**
- * 
+ *
  */
-export class Review extends BaseObject {
+export class Review extends OwnedObject {
 }

@@ -1,7 +1,7 @@
 import { OwnedObject } from "./owned-object.mjs";
 
 /**
- * 
+ *
  */
 export class Issue extends OwnedObject {
   async *labels() {}

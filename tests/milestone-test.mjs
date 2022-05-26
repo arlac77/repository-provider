@@ -2,6 +2,7 @@ import test from "ava";
 import { Milestone } from "repository-provider";
 
 test("Milestone type", t => t.is(Milestone.type, "milestone"));
+test("Milestone collection name", t => t.is(Milestone.collectionName, "milestones"));
 
 test("init Milestone", t => {
   let theMilestone;

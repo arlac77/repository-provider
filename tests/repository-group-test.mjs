@@ -9,6 +9,7 @@ import {
 import { createMessageDestination } from "repository-provider-test-support";
 
 test("RepositoryGroup type", t => t.is(RepositoryGroup.type, "repositorygroup"));
+test("RepositoryGroup collection name", t => t.is(RepositoryGroup.collectionName, "repositorygroups"));
 
 test("repository-group create with options", t => {
   const provider = new MultiGroupProvider();

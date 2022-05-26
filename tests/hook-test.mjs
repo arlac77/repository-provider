@@ -3,6 +3,7 @@ import { createMessageDestination } from "repository-provider-test-support";
 import { SingleGroupProvider, Repository, Hook } from "repository-provider";
 
 test("Hook type", t => t.is(Hook.type, "hook"));
+test("Hook collection name", t => t.is(Hook.collectionName, "hooks"));
 
 test("add hook", async t => {
   const repository = new Repository(new SingleGroupProvider(), "r1");
