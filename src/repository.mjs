@@ -49,9 +49,9 @@ export class Repository extends OwnedObject {
 
       /**
        * URLs of the repository
-       * @return {string[]}
+       * @return {string}
        */
-      urls: {},
+      url: { type: "string" },
 
       cloneURL: { type: "url" },
 
@@ -135,20 +135,12 @@ export class Repository extends OwnedObject {
   async *commits(options) {}
 
   /**
-   * Urls to access the repo.
-   * @return {string[]}
-   */
-  get urls() {
-    return [];
-  }
-
-  /**
    * Preffered url to access the repo.
    * @return {string}
    */
-  get url() {
+  /*get url() {
     return this.urls[0];
-  }
+  }*/
 
   /**
    * The url used for cloning the repo.

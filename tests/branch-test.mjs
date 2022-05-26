@@ -7,7 +7,7 @@ test("Branch collection name", t => t.is(Branch.collectionName, "branches"));
 test("branch init", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
-    urls: ["http://myprovider.com/r1"]
+    url: "http://myprovider.com/r1"
   });
 
   const b = new Branch(repository, "b1");
@@ -40,7 +40,7 @@ test("branch init", async t => {
 test("branch init isDefault", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
-    urls: ["http://myprovider.com/r1"]
+    url: "http://myprovider.com/r1"
   });
   const b = new Branch(repository, "master");
   t.is(b.fullName, "r1#master");

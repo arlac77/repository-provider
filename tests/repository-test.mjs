@@ -46,8 +46,7 @@ test("repository init with options", async t => {
     isDisabled: false,
     isLocked: false,
     isTemplate: false,
-    isFork: false,
-    urls: []
+    isFork: false
   });
 
   t.deepEqual(await repository.commits().next(), { done: true, value: undefined });
@@ -75,7 +74,7 @@ test("repository init with more options", async t => {
     uuid: "12345",
     isArchived: true,
     isTemplate: true,
-    urls: ["http:/myprovider/orner1/r1.git"]
+    url: "http:/myprovider/orner1/r1.git"
   });
 
   t.is(repository.owner, provider);
@@ -86,7 +85,7 @@ test("repository init with more options", async t => {
   t.is(repository.description, "a description");
   t.is(repository.isArchived, true);
   t.is(repository.isTemplate, true);
-  t.deepEqual(repository.urls, ["http:/myprovider/orner1/r1.git"]);
+  t.deepEqual(repository.url, "http:/myprovider/orner1/r1.git");
 });
 
 test("repository init without options", t => {
