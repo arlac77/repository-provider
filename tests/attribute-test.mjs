@@ -149,27 +149,6 @@ test(dpct, MyClass, { preexisting_property: 77 }, (t, object) => {
   t.is(object._preexisting_property, 77);
 });
 
-function ojt(t, object, initial, skip, result) {
-  t.deepEqual(optionJSON(object, initial, skip), result);
-}
-
-ojt.title = (providedTitle, a, b) =>
-  `optionJSON ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(
-    a
-  )} ${b}`.trim();
-
-test(ojt, {}, undefined, undefined, {});
-test(
-  ojt,
-  new RepositoryGroup(new MultiGroupProvider(), "a", { id: 1 }),
-  undefined,
-  undefined,
-  {
-    id: 1,
-    isAdmin: false
-  }
-);
-
 function sat(t, object, key, value, expected) {
   setAttribute(object, key, value);
   t.deepEqual(object, expected);
@@ -194,3 +173,24 @@ test("default values", t => {
     defaultValues(MyClass.attributes, { preexisting_property: 2 })
   );
 });
+
+function ojt(t, object, initial, result) {
+  t.deepEqual(optionJSON(object, initial), result);
+}
+
+ojt.title = (providedTitle, a, b) =>
+  `optionJSON ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(
+    a
+  )} ${b}`.trim();
+
+test(ojt, {}, undefined, {});
+
+test(
+  ojt,
+  new RepositoryGroup(new MultiGroupProvider(), "a", { id: 1 }),
+  undefined,
+  {
+    id: 1,
+    isAdmin: false
+  }
+);
