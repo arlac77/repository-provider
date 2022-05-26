@@ -150,6 +150,10 @@ export class PullRequest extends OwnedObject {
 
       empty: {
         type: "boolean"
+      },
+
+      url: {
+        type: "string"
       }
     };
   }
@@ -200,6 +204,7 @@ export class PullRequest extends OwnedObject {
    * @return {string} url
    */
   get url() {
+    // TODO repo url
     return `${this.provider.url}${this.repository.fullName}/pull/${this.name}`;
   }
 
