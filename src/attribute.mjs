@@ -193,17 +193,19 @@ export function optionJSON(
   initial = {},
   attributes = object.constructor.attributes
 ) {
-  return attributes ? Object.keys(attributes).reduce((a, c) => {
-    const value = object[c];
-    if (value !== undefined && !(value instanceof Function)) {
-      if (value instanceof Set) {
-        a[c] = [...value];
-      } else {
-        a[c] = value;
-      }
-    }
-    return a;
-  }, initial) : initial;
+  return attributes
+    ? Object.keys(attributes).reduce((a, c) => {
+        const value = object[c];
+        if (value !== undefined && !(value instanceof Function)) {
+          if (value instanceof Set) {
+            a[c] = [...value];
+          } else {
+            a[c] = value;
+          }
+        }
+        return a;
+      }, initial)
+    : initial;
 }
 
 /**
