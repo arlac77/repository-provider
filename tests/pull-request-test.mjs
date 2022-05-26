@@ -65,7 +65,8 @@ test("pullRequest create", async t => {
   	merged: false,
   	source: b2,
   	state: 'CLOSED',
-  	title: 'a title'
+  	title: 'a title',
+    url: "/r1/pull/4711"
   });
   
   t.is(

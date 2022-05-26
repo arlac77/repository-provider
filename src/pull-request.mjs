@@ -280,7 +280,7 @@ export class PullRequest extends OwnedObject {
       ...Object.keys(this.constructor.attributes)
         .filter(
           k =>
-            k !== "id" && k !== "title" && k !== "body" && this[k] !== undefined
+            k !== "id" && k !== "title" && k !== "body" && k !== "url" && this[k] !== undefined
         )
         .map(k => [k, this[k]])
     ]
