@@ -280,7 +280,7 @@ export class PullRequest extends OwnedObject {
       ...Object.keys(this.constructor.attributes)
         .filter(
           k =>
-            k !== "id" && k !== "title" && k !== "body" && k !== "url" && this[k] !== undefined
+            k !== "id" && k !== "title" && k !== "body" && k !== "url" && k !== "name" && this[k] !== undefined
         )
         .map(k => [k, this[k]])
     ]
@@ -291,8 +291,7 @@ export class PullRequest extends OwnedObject {
   toJSON() {
     return optionJSON(this, {
       source: this.source,
-      destination: this.owner,
-      name: this.name
+      destination: this.owner
     });
   }
 

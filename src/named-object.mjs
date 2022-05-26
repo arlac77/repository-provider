@@ -10,6 +10,18 @@ import { BaseObject } from "./base-object.mjs";
  * @property {string} name
  */
 export class NamedObject extends BaseObject {
+  /**
+   * options
+   */
+  static get attributes() {
+    return {
+      ...super.attributes,
+      name: {
+        type: "string"
+      }
+    };
+  }
+
   constructor(name, options, additionalProperties) {
     super(options, {
       name: { value: name },
@@ -35,7 +47,7 @@ export class NamedObject extends BaseObject {
   get fullName() {
     return this.owner ? this.owner.name + "/" + this.name : this.name;
   }
- 
+
   /**
    * Provided name and all defined attributes.
    */

@@ -191,6 +191,7 @@ test(
   undefined,
   {
     id: 1,
-    isAdmin: false
+    isAdmin: false,
+    name: "a"
   }
 );
