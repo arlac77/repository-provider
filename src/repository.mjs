@@ -48,10 +48,10 @@ export class Repository extends OwnedObject {
       defaultBranchName: { type: "string", default: "master" },
 
       /**
-       * URLs of the repository
+       * URL of the repository
        * @return {string}
        */
-      url: { type: "string" },
+      url: { type: "url" },
 
       cloneURL: { type: "url" },
 
@@ -135,14 +135,6 @@ export class Repository extends OwnedObject {
   async *commits(options) {}
 
   /**
-   * Preffered url to access the repo.
-   * @return {string}
-   */
-  /*get url() {
-    return this.urls[0];
-  }*/
-
-  /**
    * The url used for cloning the repo.
    * @return {string}
    */
@@ -164,14 +156,6 @@ export class Repository extends OwnedObject {
    */
   get homePageURL() {
     return undefined;
-  }
-
-  /**
-   * Name without owner.
-   * @return {string} name
-   */
-  get condensedName() {
-    return this.name;
   }
 
   /**

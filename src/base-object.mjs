@@ -127,6 +127,10 @@ export class BaseObject {
     return this.fullName;
   }
 
+  get condensedName() {
+  	return this.name;
+  }
+  
   /**
    * Short human readable identifier with provider and branch.
    * @return {string}
