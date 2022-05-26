@@ -31,6 +31,10 @@ export class PullRequest extends OwnedObject {
     return "_addPullRequest";
   }
 
+  static get type() {
+    return "pull-request";
+  }
+
   static get collectionName() {
     return "pullRequests";
   }

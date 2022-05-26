@@ -1,7 +1,7 @@
 import test from "ava";
 import { SingleGroupProvider, PullRequest } from "repository-provider";
 
-test("PullRequest type", t => t.is(PullRequest.type, "pullrequest"));
+test("PullRequest type", t => t.is(PullRequest.type, "pull-request"));
 test("PullRequest collection name", t => t.is(PullRequest.collectionName, "pullRequests"));
 
 
