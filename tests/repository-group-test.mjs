@@ -108,11 +108,11 @@ test("owner get repository with branch", async t => {
   t.is(repository.condensedName, "r1");
 });
 
-test("owner repository urls", async t => {
+test("owner repository url", async t => {
   const provider = new MultiGroupProvider();
   const group = new RepositoryGroup(provider, "g1");
   const repository = group.addRepository("r1");
-  t.deepEqual(repository.urls, []);
+  t.is(repository.url, undefined);
 });
 
 test("owner get undefined repository", async t => {
