@@ -38,13 +38,13 @@ export class BaseObject {
        * Unique id within the provider.
        * @return {string}
        */
-      id: { type: "string" },
+      id: { isKey: true, type: "string" },
 
       /**
        * Unique id.
        * @return {string}
        */
-      uuid: { type: "string" }
+      uuid: { isKey: true, type: "string" }
     };
   }
 

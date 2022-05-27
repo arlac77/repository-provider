@@ -17,7 +17,8 @@ export class NamedObject extends BaseObject {
     return {
       ...super.attributes,
       name: {
-        type: "string"
+        type: "string",
+        isKey: true
       },
       /**
        * Avatar.
