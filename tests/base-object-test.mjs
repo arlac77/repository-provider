@@ -3,8 +3,7 @@ import { BaseObject } from "repository-provider";
 
 test("BaseObject writableAttributes", t => {
   t.deepEqual(Object.keys(BaseObject.writableAttributes), [
-    "description",
-    "homePageURL"
+    "description"
   ]);
 });
 

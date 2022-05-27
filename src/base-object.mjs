@@ -5,7 +5,6 @@ import { definePropertiesFromOptions, mapAttributes } from "./attribute.mjs";
  * @param {Object} additionalProperties
  */
 export class BaseObject {
-
   /**
    * @return {string} type we represent
    */
@@ -16,7 +15,7 @@ export class BaseObject {
   /**
    * @return {string} name of the collection holding us in the owner
    */
-   static get collectionName() {
+  static get collectionName() {
     return this.type.toLocaleLowerCase() + "s";
   }
 
@@ -45,19 +44,7 @@ export class BaseObject {
        * Unique id.
        * @return {string}
        */
-      uuid: { type: "string" },
-
-      /**
-       * Avatar.
-       * @return {string}
-       */
-      avatarURL: { type: "url" },
-
-      /**
-       * The url of home page.
-       * @return {string}
-       */
-      homePageURL: { type: "url", writable: true }
+      uuid: { type: "string" }
     };
   }
 
@@ -128,9 +115,9 @@ export class BaseObject {
   }
 
   get condensedName() {
-  	return this.name;
+    return this.name;
   }
-  
+
   /**
    * Short human readable identifier with provider and branch.
    * @return {string}
@@ -170,9 +157,9 @@ export class BaseObject {
    */
   get api() {
     // TODO move into owner-object
-  	return this.owner && this.owner.api;
+    return this.owner && this.owner.api;
   }
-  
+
   /**
    * Forwarded to the owner.
    * @param  {...any} args

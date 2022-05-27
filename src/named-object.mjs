@@ -18,7 +18,18 @@ export class NamedObject extends BaseObject {
       ...super.attributes,
       name: {
         type: "string"
-      }
+      },
+      /**
+       * Avatar.
+       * @return {string}
+       */
+      avatarURL: { type: "url" },
+
+      /**
+       * The url of home page.
+       * @return {string}
+       */
+      homePageURL: { type: "url", writable: true }
     };
   }
 
