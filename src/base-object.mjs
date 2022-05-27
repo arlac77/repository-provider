@@ -169,7 +169,8 @@ export class BaseObject {
    * @return {string} url
    */
   get api() {
-  	return this.owner.api;
+    // TODO move into owner-object
+  	return this.owner && this.owner.api;
   }
   
   /**
