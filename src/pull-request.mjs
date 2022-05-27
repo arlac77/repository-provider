@@ -153,7 +153,7 @@ export class PullRequest extends OwnedObject {
       },
 
       url: {
-        type: "string"
+        type: "url"
       }
     };
   }
@@ -277,12 +277,16 @@ export class PullRequest extends OwnedObject {
       [this.name, this.title],
       ["source", this.source.identifier],
       ["destination", this.owner.identifier],
-      ...Object.keys(this.constructor.attributes)
+      ...Object.entries(this.constructor.attributes)
         .filter(
-          k =>
-            k !== "id" && k !== "title" && k !== "body" && k !== "url" && k !== "name" && this[k] !== undefined
+          ([k, v]) =>
+            !v.isKey &&
+            v.type !== "url" &&
+            k !== "title" &&
+            k !== "body" &&
+            this[k] !== undefined
         )
-        .map(k => [k, this[k]])
+        .map(([k]) => [k, this[k]])
     ]
       .map(([k, v]) => `${k}: ${v}`)
       .join(", ");
