@@ -22,6 +22,14 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
     return "_addRepositoryGroup";
   }
 
+  static get type() {
+    return "repository-group";
+  }
+
+  static get collectionName() {
+    return "repositoryGroups";
+  }
+
   static get attributes() {
     return {
       ...super.attributes,
