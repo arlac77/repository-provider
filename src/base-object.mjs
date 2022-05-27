@@ -164,6 +164,10 @@ export class BaseObject {
     return this.owner.provider;
   }
 
+  /**
+   * API as given by the owner.
+   * @return {string} url
+   */
   get api() {
   	return this.owner.api;
   }
