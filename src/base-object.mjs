@@ -123,7 +123,7 @@ export class BaseObject {
    * Complete name in the hierachy.
    * @return {string}
    */
-   get fullCondensedName() {
+  get fullCondensedName() {
     return this.fullName;
   }
 
@@ -164,6 +164,10 @@ export class BaseObject {
     return this.owner.provider;
   }
 
+  get api() {
+  	return this.owner.api;
+  }
+  
   /**
    * Forwarded to the owner.
    * @param  {...any} args
