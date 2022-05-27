@@ -74,6 +74,7 @@ console.log(await readme.getString());
     *   [equals](#equals)
         *   [Parameters](#parameters-8)
     *   [provider](#provider)
+    *   [api](#api)
     *   [trace](#trace)
         *   [Parameters](#parameters-9)
     *   [info](#info)
@@ -200,6 +201,7 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-44)
     *   [fullName](#fullname-1)
     *   [toJSON](#tojson-1)
+    *   [attributes](#attributes-1)
 *   [OwnedObject](#ownedobject)
     *   [Parameters](#parameters-45)
     *   [equals](#equals-3)
@@ -257,7 +259,7 @@ console.log(await readme.getString());
     *   [isArchived](#isarchived)
     *   [isDisabled](#isdisabled)
     *   [isProtected](#isprotected)
-    *   [attributes](#attributes-1)
+    *   [attributes](#attributes-2)
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
     *   [Parameters](#parameters-56)
@@ -265,6 +267,7 @@ console.log(await readme.getString());
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type-1)
 *   [url](#url-3)
+*   [url](#url-4)
 *   [RepositoryOwner](#repositoryowner)
     *   [Parameters](#parameters-57)
 *   [Repository](#repository-3)
@@ -280,12 +283,9 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-61)
     *   [commits](#commits)
         *   [Parameters](#parameters-62)
-    *   [urls](#urls)
-    *   [url](#url-4)
     *   [cloneURL](#cloneurl)
     *   [issuesURL](#issuesurl-1)
     *   [homePageURL](#homepageurl-2)
-    *   [condensedName](#condensedname)
     *   [isArchived](#isarchived-1)
     *   [isLocked](#islocked-1)
     *   [isDisabled](#isdisabled-1)
@@ -329,9 +329,8 @@ console.log(await readme.getString());
     *   [refId](#refid-1)
         *   [Parameters](#parameters-78)
     *   [toJSON](#tojson-2)
-    *   [attributes](#attributes-2)
+    *   [attributes](#attributes-3)
 *   [defaultBranchName](#defaultbranchname)
-*   [urls](#urls-1)
 *   [issuesURL](#issuesurl-2)
 *   [Review](#review)
 *   [SingleGroupProvider](#singlegroupprovider)
@@ -536,6 +535,12 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 The provider we live in.
 
 Returns **[BaseProvider](#baseprovider)** 
+
+### api
+
+API as given by the owner.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
 
 ### trace
 
@@ -1196,6 +1201,10 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 Provided name and all defined attributes.
 
+### attributes
+
+options
+
 ## OwnedObject
 
 **Extends NamedObject**
@@ -1576,6 +1585,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 api url
 
+## url
+
+URL of the repository
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
 ## RepositoryOwner
 
 Mixin to define a class able to handle a collection of repositories.
@@ -1663,18 +1678,6 @@ List commits of the default branch.
 
 Returns **AsyncIterator<[Commit](#commit)>** all matching commits in the repository
 
-### urls
-
-Urls to access the repo.
-
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
-
-### url
-
-Preffered url to access the repo.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
 ### cloneURL
 
 The url used for cloning the repo.
@@ -1692,12 +1695,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 The url of home page.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### condensedName
-
-Name without owner.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name
 
 ### isArchived
 
@@ -1936,12 +1933,6 @@ options
 The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## urls
-
-URLs of the repository
-
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 
 ## issuesURL
 
