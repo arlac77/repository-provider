@@ -97,8 +97,6 @@ console.log(await readme.getString());
 *   [description](#description)
 *   [id](#id)
 *   [uuid](#uuid)
-*   [avatarURL](#avatarurl)
-*   [homePageURL](#homepageurl)
 *   [MessageDestination](#messagedestination)
     *   [Properties](#properties-1)
 *   [BaseProvider](#baseprovider)
@@ -202,6 +200,8 @@ console.log(await readme.getString());
     *   [fullName](#fullname-1)
     *   [toJSON](#tojson-1)
     *   [attributes](#attributes-1)
+*   [avatarURL](#avatarurl)
+*   [homePageURL](#homepageurl)
 *   [OwnedObject](#ownedobject)
     *   [Parameters](#parameters-45)
     *   [equals](#equals-3)
@@ -647,18 +647,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ## uuid
 
 Unique id.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## avatarURL
-
-Avatar.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-## homePageURL
-
-The url of home page.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -1204,6 +1192,18 @@ Provided name and all defined attributes.
 ### attributes
 
 options
+
+## avatarURL
+
+Avatar.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## homePageURL
+
+The url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 ## OwnedObject
 
