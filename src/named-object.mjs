@@ -20,11 +20,6 @@ export class NamedObject extends BaseObject {
         type: "string",
         isKey: true
       },
-      /**
-       * Avatar.
-       * @return {string}
-       */
-      avatarURL: { type: "url" },
 
       /**
        * The url of home page.

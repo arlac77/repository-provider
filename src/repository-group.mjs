@@ -45,6 +45,12 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
        */
       url: { type: "url" },
 
+      /**
+       * Avatar.
+       * @return {string}
+       */
+      avatarURL: { type: "url" },
+
       isAdmin: { type: "boolean", default: false }
     };
   }
