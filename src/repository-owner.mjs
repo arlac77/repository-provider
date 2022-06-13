@@ -81,7 +81,15 @@ export function RepositoryOwner(base) {
       );
     }
 
-    async _lookup(type, name, split, defaultItem) {
+    /**
+     * Lookup entity of a given type and name.
+     * @param {string} type 
+     * @param {string} name 
+     * @param {function} split 
+     * @param {Object} defaultItem 
+     * @returns {NamedObject} from a repository
+     */
+    async lookup(type, name, split, defaultItem) {
       if (name !== undefined) {
         await this.initializeRepositories();
 
@@ -100,7 +108,15 @@ export function RepositoryOwner(base) {
       }
     }
 
-    async *_list(type, patterns, split, defaultItem) {
+    /**
+     * List entities for a given type and pattern.
+     * @param {string} type 
+     * @param {string|string[]} patterns 
+     * @param {function} split 
+     * @param {Object} defaultItem
+     * @return {AsyncIterator<NamedObject>} matching type and pattern
+     */
+    async *list(type, patterns, split, defaultItem) {
       await this.initializeRepositories();
 
       patterns = stripBaseNames(patterns, this.provider.repositoryBases);
@@ -175,7 +191,7 @@ export function RepositoryOwner(base) {
      * @return {Promise<Branch|undefined>}
      */
     async branch(name) {
-      return this._lookup(
+      return this.lookup(
         "branch",
         name,
         name => name.split(/#/),
@@ -189,7 +205,7 @@ export function RepositoryOwner(base) {
      * @return {AsyncIterator<Branch>} all matching branches of the owner
      */
     async *branches(patterns) {
-      yield* this._list(
+      yield* this.list(
         "branches",
         patterns,
         pattern => pattern.split(/#/),
@@ -198,51 +214,51 @@ export function RepositoryOwner(base) {
     }
 
     async tag(name) {
-      return this._lookup("tag", name, name => name.split(/#/));
+      return this.lookup("tag", name, name => name.split(/#/));
     }
 
     async *tags(patterns) {
-      yield* this._list("tags", patterns, pattern => pattern.split(/#/));
+      yield* this.list("tags", patterns, pattern => pattern.split(/#/));
     }
 
     async pullRequest(name) {
-      return this._lookup("pullRequest", name);
+      return this.lookup("pullRequest", name);
     }
 
     async *pullRequests(patterns) {
-      yield* this._list("pullRequests", patterns);
+      yield* this.list("pullRequests", patterns);
     }
 
     async project(name) {
-      return this._lookup("project", name);
+      return this.lookup("project", name);
     }
 
     async *projects(patterns) {
-      yield* this._list("projects", patterns);
+      yield* this.list("projects", patterns);
     }
 
     async application(name) {
-      return this._lookup("application", name);
+      return this.lookup("application", name);
     }
 
     async *applications(patterns) {
-      yield* this._list("applications", patterns);
+      yield* this.list("applications", patterns);
     }
 
     async milestone(name) {
-      return this._lookup("milestone", name);
+      return this.lookup("milestone", name);
     }
 
     async *milestones(patterns) {
-      yield* this._list("milestones", patterns);
+      yield* this.list("milestones", patterns);
     }
 
     async hook(name) {
-      return this._lookup("hook", name);
+      return this.lookup("hook", name);
     }
 
     async *hooks(patterns) {
-      yield* this._list("hooks", patterns);
+      yield* this.list("hooks", patterns);
     }
   };
 }
