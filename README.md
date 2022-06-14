@@ -200,7 +200,6 @@ console.log(await readme.getString());
     *   [fullName](#fullname-1)
     *   [toJSON](#tojson-1)
     *   [attributes](#attributes-1)
-*   [avatarURL](#avatarurl)
 *   [homePageURL](#homepageurl)
 *   [OwnedObject](#ownedobject)
     *   [Parameters](#parameters-45)
@@ -268,6 +267,7 @@ console.log(await readme.getString());
 *   [type](#type-1)
 *   [url](#url-3)
 *   [url](#url-4)
+*   [avatarURL](#avatarurl)
 *   [RepositoryOwner](#repositoryowner)
     *   [Parameters](#parameters-57)
 *   [Repository](#repository-3)
@@ -1193,12 +1193,6 @@ Provided name and all defined attributes.
 
 options
 
-## avatarURL
-
-Avatar.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
 ## homePageURL
 
 The url of home page.
@@ -1588,6 +1582,12 @@ api url
 ## url
 
 URL of the repository
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## avatarURL
+
+Avatar.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
