@@ -41,7 +41,6 @@ test("repository init with options", async t => {
     id: "4711",
     uuid: "12345",
     name: "r1",
-    fullName: "r1",
     isArchived: false,
     isDisabled: false,
     isLocked: false,

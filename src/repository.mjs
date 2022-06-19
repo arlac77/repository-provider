@@ -465,16 +465,6 @@ export class Repository extends OwnedObject {
    */
   async refId(ref) {}
 
-  /**
-   * Provide name and all defined attributes
-   */
-  toJSON() {
-    return optionJSON(this, {
-      name: this.name,
-      fullName: this.fullName,
-    });
-  }
-
   initialize() {}
 
   initializeHooks() {
