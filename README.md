@@ -328,7 +328,6 @@ console.log(await readme.getString());
     *   [type](#type-2)
     *   [refId](#refid-1)
         *   [Parameters](#parameters-78)
-    *   [toJSON](#tojson-2)
     *   [attributes](#attributes-3)
 *   [defaultBranchName](#defaultbranchname)
 *   [issuesURL](#issuesurl-2)
@@ -1919,10 +1918,6 @@ Get sha of a ref.
 *   `ref` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** sha of the ref
-
-### toJSON
-
-Provide name and all defined attributes
 
 ### attributes
 
