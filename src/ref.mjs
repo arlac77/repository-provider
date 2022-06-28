@@ -39,11 +39,10 @@ export class Ref extends OwnedObject {
 
   /**
    * Get sha of a ref.
-   * @param {string} ref
    * @return {Promise<string>} sha of the ref
    */
-  async refId(ref = this.ref) {
-    return this.owner.refId(ref);
+  async refId() {
+    return this.owner.refId(this.ref);
   }
 
   /**
