@@ -18,10 +18,17 @@ export class Ref extends OwnedObject {
       ...super.attributes,
 
       /**
-       * Can the branch be modified.
+       * Can the ref be modified.
        * @return {string}
        */
-      isProtected: { type: "boolean" }
+      isProtected: { type: "boolean", default: false }
+    };
+  }
+
+  static get attributeMapping() {
+    return {
+      ...super.attributeMapping,
+      protected: "isProtected"
     };
   }
 
