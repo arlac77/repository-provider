@@ -1,5 +1,4 @@
 
-
 /**
  * @typedef {Object} CommitResult
  * @property {string} ref

@@ -3,7 +3,6 @@ import { PullRequest } from "./pull-request.mjs";
 import { Repository } from "./repository.mjs";
 import { Commit } from "./commit.mjs";
 
-
 /**
  * Abstract branch.
  * @see {@link Repository#_addBranch}

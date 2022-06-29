@@ -1,11 +1,9 @@
 import { matcher } from "matching-iterator";
-import { optionJSON } from "./attribute.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { BaseProvider } from "./base-provider.mjs";
 
 /**
  * Abstract repository
