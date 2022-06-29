@@ -1427,7 +1427,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### refId
 
-Get sha of a ref.
+Get sha of our ref.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** sha of the ref
 
@@ -1533,7 +1533,7 @@ options
 
 ## isProtected
 
-Can the branch be modified.
+Can the ref be modified.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
