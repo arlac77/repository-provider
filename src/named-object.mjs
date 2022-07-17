@@ -48,6 +48,7 @@ export class NamedObject extends BaseObject {
       this.provider.equals(other.provider)
     );
   }
+  
   /**
    * @return {string} name with owner name
    */
