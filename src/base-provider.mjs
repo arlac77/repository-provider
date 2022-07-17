@@ -415,7 +415,7 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
-   * @return url otf the provider.
+   * @return url of the provider.
    */
   get url() {
     return "/";
