@@ -852,7 +852,7 @@ Returns **[BaseProvider](#baseprovider)** this
 
 ### url
 
-Returns **any** url otf the provider.
+Returns **any** url of the provider.
 
 ### toJSON
 
