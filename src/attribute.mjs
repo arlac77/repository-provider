@@ -95,7 +95,7 @@ export function definePropertiesFromOptions(
           first
         );
 
-        if ((op && op.set) || (property && property.set)) {
+        if (op?.set || property?.set) {
           applyLater[first] = value;
         } else {
           properties[first] = Object.assign(

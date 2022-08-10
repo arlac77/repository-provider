@@ -157,7 +157,7 @@ export class BaseObject {
    */
   get api() {
     // TODO move into owner-object
-    return this.owner && this.owner.api;
+    return this.owner?.api;
   }
 
   /**

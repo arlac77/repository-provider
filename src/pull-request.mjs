@@ -220,14 +220,14 @@ export class PullRequest extends OwnedObject {
    * @return {Repository} destination repository
    */
   get repository() {
-    return this.owner && this.owner.repository;
+    return this.owner?.repository;
   }
 
   /**
    * @return {BaseProvider}
    */
   get provider() {
-    return this.owner && this.owner.provider;
+    return this.owner?.provider;
   }
 
   /**
@@ -245,7 +245,7 @@ export class PullRequest extends OwnedObject {
    * @return {Promise}
    */
   async delete() {
-    return this.owner && this.owner.deletePullRequest(this.name);
+    return this.owner?.deletePullRequest(this.name);
   }
 
   /**
