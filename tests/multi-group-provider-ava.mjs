@@ -51,5 +51,5 @@ test("create group", async t => {
   await p.createRepositoryGroup("g1");
 
   const g1 = await p.repositoryGroup("g1");
-  t.assert(g1.name, "g1");
+  t.is(g1.name, "g1");
 });
