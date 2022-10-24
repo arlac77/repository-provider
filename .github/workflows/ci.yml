@@ -13,9 +13,9 @@ jobs:
           - 16.18.0
           - 18.11.0
     steps:
+      - name: Test Node ${{ matrix.node-version }}
       - uses: actions/checkout@v3
-      - name: Build / Test Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v3.5.1
+      - uses: actions/setup-node@v3.5.1
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -31,7 +31,14 @@ jobs:
         continue-on-error: true
   test-browser:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser:
+          - chromium
+          - firefox
+          - webkit
     steps:
+      - name: Test Browser ${{ matrix.browser }}
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3.5.1
         with:
@@ -40,7 +47,7 @@ jobs:
       - run: npm ci
       - run: npm run test:browser-ava --if-present
         env:
-          BROWSER: chromium
+          BROWSER: ${{ matrix.browser }}
   release:
     needs:
       - test-node
