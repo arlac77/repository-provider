@@ -275,7 +275,7 @@ export class PullRequest extends OwnedObject {
   toString() {
     return [
       [this.name, this.title],
-      ["source", this.source.identifier],
+      ["source", this.source?.identifier],
       ["destination", this.owner.identifier],
       ...Object.entries(this.constructor.attributes)
         .filter(
