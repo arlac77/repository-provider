@@ -164,20 +164,18 @@ export function setAttribute(object, name, value) {
  * @returns {any} value associated with the given property name
  */
 export function getAttribute(object, name) {
-  let value = object;
-
-  if (value && value[name] !== undefined) {
-    return value[name];
+  if (object && object[name] !== undefined) {
+    return object[name];
   }
 
   for (const p of name.split(/\./)) {
-    if (value === undefined) {
+    if (object === undefined) {
       break;
     }
-    value = value[p];
+    object = object[p];
   }
 
-  return value;
+  return object;
 }
 
 /**
