@@ -24,6 +24,8 @@ test(gat, { a: 1 }, "a", 1);
 test(gat, { a: { b: 1 } }, "a.b", 1);
 test(gat, { "a.b": 1 }, "a.b", 1);
 test(gat, {}, "x.y.z", undefined);
+test(gat, [1,2], "[1]", 2);
+test(gat, [1,{b:3}], "[1].b", 3);
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);

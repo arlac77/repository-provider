@@ -157,6 +157,35 @@ export function setAttribute(object, name, value) {
 }
 
 /**
+ * Split property path into tokens
+ * @param {string} string 
+ * @return {Iterator<string>}
+ */
+function* tokens(string) {
+  let identifier = "";
+
+  for (const c of string) {
+    switch (c) {
+      case ".":
+      case "[":
+      case "]":
+        if (identifier.length) {
+          yield identifier;
+          identifier = "";
+        }
+        yield c;
+        break;
+      default:
+        identifier += c;
+    }
+  }
+
+  if (identifier.length) {
+    yield identifier;
+  }
+}
+
+/**
  * Deliver attribute value.
  * The name may be a property path like 'a.b.c'.
  * @param {Object} object
@@ -168,11 +197,20 @@ export function getAttribute(object, name) {
     return object[name];
   }
 
-  for (const p of name.split(/\./)) {
-    if (object === undefined) {
-      break;
+  for (const token of tokens(name)) {
+    switch (token) {
+      case ".":
+      case "[":
+      case "]":
+        break;
+
+      default:
+        if (object === undefined) {
+          break;
+        }
+
+        object = object[token];
     }
-    object = object[p];
   }
 
   return object;
