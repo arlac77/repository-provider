@@ -166,6 +166,8 @@ function* tokens(string) {
 
   for (const c of string) {
     switch (c) {
+      case "\t":
+      case " ": break;
       case ".":
       case "[":
       case "]":
