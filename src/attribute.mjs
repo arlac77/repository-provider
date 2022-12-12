@@ -143,17 +143,30 @@ export function defaultValues(attributes, object) {
  * @param {any} value
  */
 export function setAttribute(object, name, value) {
-  const parts = name.split(/\./);
-  const last = parts.pop();
 
-  for (const p of parts) {
-    if (object[p] === undefined || typeof object[p] !== "object") {
-      object[p] = {};
+  let lastObject = object;
+  let lastKey;
+
+  for (const token of tokens(name)) {
+    switch (token) {
+      case ".":
+        case "[":
+        case "]":
+          break;
+  
+        default:
+          if (object[token] === undefined || typeof object[token] !== "object") {
+            object[token] = {};
+          }
+
+          lastObject = object;
+          lastKey = token;
+
+          object = object[token];
     }
-    object = object[p];
   }
 
-  object[last] = value;
+  lastObject[lastKey] = value;
 }
 
 /**
