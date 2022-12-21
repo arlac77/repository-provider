@@ -13,6 +13,10 @@ export class BaseObject {
   }
 
   /**
+   * ```
+   * Tag -> tags
+   * Repository -> repositories
+   * ```
    * @return {string} name of the collection holding us in the owner
    */
   static get collectionName() {
@@ -21,6 +25,7 @@ export class BaseObject {
 
   /**
    * Attributes definitions
+   * @return {Object}
    */
   static get attributes() {
     return {
