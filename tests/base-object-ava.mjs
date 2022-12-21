@@ -17,9 +17,3 @@ test("BaseObject update", async t => {
   await b.update();
   t.true(true);
 });
-
-test("BaseObject api", t => {
-  const b = new BaseObject();
-  b.owner = { api: "myAPI" };
-  t.is(b.api, "myAPI");
-});

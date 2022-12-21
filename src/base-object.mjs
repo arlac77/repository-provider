@@ -155,16 +155,7 @@ export class BaseObject {
   get provider() {
     return this.owner.provider;
   }
-
-  /**
-   * API as given by the owner.
-   * @return {string} url
-   */
-  get api() {
-    // TODO move into owner-object
-    return this.owner?.api;
-  }
-
+  
   /**
    * Forwarded to the owner.
    * @param  {...any} args

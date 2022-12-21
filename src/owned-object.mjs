@@ -30,4 +30,12 @@ export class OwnedObject extends NamedObject {
   equals(other) {
     return super.equals(other) && this.owner.equals(other.owner);
   }
+
+  /**
+   * API as given by the owner.
+   * @return {string} url
+   */
+  get api() {
+    return this.owner.api;
+  }
 }
