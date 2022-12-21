@@ -38,4 +38,12 @@ export class OwnedObject extends NamedObject {
   get api() {
     return this.owner.api;
   }
+
+  /**
+   * The provider we live in.
+   * @return {BaseProvider}
+   */
+  get provider() {
+    return this.owner.provider;
+  }
 }

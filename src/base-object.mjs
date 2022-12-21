@@ -149,14 +149,6 @@ export class BaseObject {
   }
 
   /**
-   * The provider we live in.
-   * @return {BaseProvider}
-   */
-  get provider() {
-    return this.owner.provider;
-  }
-  
-  /**
    * Forwarded to the owner.
    * @param  {...any} args
    */
