@@ -76,7 +76,6 @@ console.log(await readme.getString());
     *   [equals](#equals)
         *   [Parameters](#parameters-9)
     *   [provider](#provider)
-    *   [api](#api)
     *   [trace](#trace)
         *   [Parameters](#parameters-10)
     *   [info](#info)
@@ -207,6 +206,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-46)
     *   [equals](#equals-3)
         *   [Parameters](#parameters-47)
+    *   [api](#api)
     *   [addMethodName](#addmethodname)
 *   [Project](#project)
 *   [PullRequest](#pullrequest)
@@ -546,12 +546,6 @@ The provider we live in.
 
 Returns **[BaseProvider](#baseprovider)**&#x20;
 
-### api
-
-API as given by the owner.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
-
 ### trace
 
 Forwarded to the owner.
@@ -626,11 +620,16 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### collectionName
 
+    Tag -> tags
+    Repository -> repositories
+
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the collection holding us in the owner
 
 ### attributes
 
 Attributes definitions
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
 ### writableAttributes
 
@@ -1231,6 +1230,12 @@ Check for equality.
 *   `other` **[OwnedObject](#ownedobject)**&#x20;
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if receiver and owner are equal
+
+### api
+
+API as given by the owner.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
 
 ### addMethodName
 
