@@ -46,4 +46,92 @@ export class OwnedObject extends NamedObject {
   get provider() {
     return this.owner.provider;
   }
+
+  /**
+   * Short human readable identifier with provider and branch.
+   * @return {string}
+   */
+  get identifier() {
+    return `${this.provider.name}:${this.fullCondensedName}`;
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  trace(...args) {
+    return this.owner.trace(...args);
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  info(...args) {
+    return this.owner.info(...args);
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  warn(...args) {
+    return this.owner.warn(...args);
+  }
+
+  /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  error(...args) {
+    return this.owner.error(...args);
+  }
+
+  /**
+   * By default we use the owners implementation.
+   * @return {Function} as defined in the owner
+   */
+  get repositoryClass() {
+    return this.owner.repositoryClass;
+  }
+
+  /**
+   * By default we use the owners implementation.
+   * @return {Function} as defined in the owner
+   */
+  get pullRequestClass() {
+    return this.owner.pullRequestClass;
+  }
+
+  /**
+   * By default we use the owners implementation.
+   * @return {Function} as defined in the owner
+   */
+  get branchClass() {
+    return this.owner.branchClass;
+  }
+
+  /**
+   * By default we use the owners implementation.
+   * @return {Function} as defined in the owner
+   */
+  get tagClass() {
+    return this.owner.tagClass;
+  }
+
+  /**
+   * By default we use the owners implementation.
+   * @return {Function} as defined in the owner
+   */
+  get entryClass() {
+    return this.owner.entryClass;
+  }
+
+  /**
+   * By default we use the owners implementation.
+   * @return {Function} as defined in the owner
+   */
+  get hookClass() {
+    return this.owner.hookClass;
+  }
 }
