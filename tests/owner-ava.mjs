@@ -9,6 +9,7 @@ class myPullRequestClass {}
 class myRepositoryClass {}
 
 const owner = {
+  name: "aOwner",
   api: "myAPI",
   provider: { name: "aProvider" },
   branchClass: myBranchClass,
@@ -33,6 +34,11 @@ test("OwnedObject name", t => {
 test("OwnedObject provider", t => {
   const object = new OwnedObject(owner, "aName");
   t.is(object.provider.name, "aProvider");
+});
+
+test("OwnedObject identifier", t => {
+  const object = new OwnedObject(owner, "aName");
+  t.is(object.identifier, "aProvider:aOwner/aName");
 });
 
 test("OwnedObject branchClass", t =>
