@@ -71,25 +71,9 @@ console.log(await readme.getString());
     *   [displayName](#displayname)
     *   [fullName](#fullname)
     *   [fullCondensedName](#fullcondensedname)
-    *   [identifier](#identifier)
     *   [isWritable](#iswritable)
     *   [equals](#equals)
         *   [Parameters](#parameters-9)
-    *   [provider](#provider)
-    *   [trace](#trace)
-        *   [Parameters](#parameters-10)
-    *   [info](#info)
-        *   [Parameters](#parameters-11)
-    *   [warn](#warn)
-        *   [Parameters](#parameters-12)
-    *   [error](#error)
-        *   [Parameters](#parameters-13)
-    *   [repositoryClass](#repositoryclass)
-    *   [pullRequestClass](#pullrequestclass)
-    *   [branchClass](#branchclass)
-    *   [tagClass](#tagclass)
-    *   [entryClass](#entryclass)
-    *   [hookClass](#hookclass)
     *   [type](#type)
     *   [collectionName](#collectionname)
     *   [attributes](#attributes)
@@ -103,59 +87,59 @@ console.log(await readme.getString());
 *   [BaseProvider](#baseprovider)
     *   [Properties](#properties-2)
     *   [equals](#equals-1)
-        *   [Parameters](#parameters-14)
+        *   [Parameters](#parameters-10)
     *   [repositoryBases](#repositorybases)
     *   [normalizeRepositoryName](#normalizerepositoryname)
-        *   [Parameters](#parameters-15)
+        *   [Parameters](#parameters-11)
     *   [normalizeGroupName](#normalizegroupname)
-        *   [Parameters](#parameters-16)
+        *   [Parameters](#parameters-12)
     *   [areRepositoryNamesCaseSensitive](#arerepositorynamescasesensitive)
     *   [areGroupNamesCaseSensitive](#aregroupnamescasesensitive)
     *   [supportsBase](#supportsbase)
-        *   [Parameters](#parameters-17)
+        *   [Parameters](#parameters-13)
     *   [parseName](#parsename)
-        *   [Parameters](#parameters-18)
+        *   [Parameters](#parameters-14)
     *   [createRepository](#createrepository)
-        *   [Parameters](#parameters-19)
+        *   [Parameters](#parameters-15)
     *   [list](#list)
-        *   [Parameters](#parameters-20)
+        *   [Parameters](#parameters-16)
     *   [projects](#projects)
-        *   [Parameters](#parameters-21)
+        *   [Parameters](#parameters-17)
     *   [milestones](#milestones)
-        *   [Parameters](#parameters-22)
+        *   [Parameters](#parameters-18)
     *   [repositories](#repositories)
-        *   [Parameters](#parameters-23)
+        *   [Parameters](#parameters-19)
     *   [branches](#branches)
-        *   [Parameters](#parameters-24)
+        *   [Parameters](#parameters-20)
     *   [tags](#tags)
-        *   [Parameters](#parameters-25)
+        *   [Parameters](#parameters-21)
     *   [hooks](#hooks)
-        *   [Parameters](#parameters-26)
+        *   [Parameters](#parameters-22)
     *   [pullRequests](#pullrequests)
-        *   [Parameters](#parameters-27)
+        *   [Parameters](#parameters-23)
     *   [name](#name)
-    *   [provider](#provider-1)
+    *   [provider](#provider)
     *   [url](#url)
     *   [toJSON](#tojson)
     *   [repositoryGroupClass](#repositorygroupclass)
-    *   [hookClass](#hookclass-1)
-    *   [repositoryClass](#repositoryclass-1)
-    *   [branchClass](#branchclass-1)
-    *   [tagClass](#tagclass-1)
-    *   [entryClass](#entryclass-1)
-    *   [pullRequestClass](#pullrequestclass-1)
+    *   [hookClass](#hookclass)
+    *   [repositoryClass](#repositoryclass)
+    *   [branchClass](#branchclass)
+    *   [tagClass](#tagclass)
+    *   [entryClass](#entryclass)
+    *   [pullRequestClass](#pullrequestclass)
     *   [instanceIdentifier](#instanceidentifier)
     *   [optionsFromEnvironment](#optionsfromenvironment)
-        *   [Parameters](#parameters-28)
+        *   [Parameters](#parameters-24)
     *   [areOptionsSufficcient](#areoptionssufficcient)
-        *   [Parameters](#parameters-29)
+        *   [Parameters](#parameters-25)
     *   [initialize](#initialize)
-        *   [Parameters](#parameters-30)
+        *   [Parameters](#parameters-26)
 *   [priority](#priority)
 *   [name](#name-1)
 *   [messageDestination](#messagedestination-1)
 *   [Branch](#branch)
-    *   [Parameters](#parameters-31)
+    *   [Parameters](#parameters-27)
     *   [Properties](#properties-3)
     *   [url](#url-1)
     *   [refType](#reftype)
@@ -163,50 +147,66 @@ console.log(await readme.getString());
     *   [isDefault](#isdefault)
     *   [delete](#delete)
     *   [commit](#commit)
-        *   [Parameters](#parameters-32)
+        *   [Parameters](#parameters-28)
     *   [commitIntoPullRequest](#commitintopullrequest)
-        *   [Parameters](#parameters-33)
+        *   [Parameters](#parameters-29)
     *   [removeEntries](#removeentries)
-        *   [Parameters](#parameters-34)
+        *   [Parameters](#parameters-30)
     *   [createPullRequest](#createpullrequest)
-        *   [Parameters](#parameters-35)
+        *   [Parameters](#parameters-31)
     *   [createBranch](#createbranch)
-        *   [Parameters](#parameters-36)
+        *   [Parameters](#parameters-32)
 *   [CommitResult](#commitresult)
     *   [Properties](#properties-4)
 *   [Commit](#commit-1)
-    *   [Parameters](#parameters-37)
+    *   [Parameters](#parameters-33)
     *   [Properties](#properties-5)
 *   [Hook](#hook)
 *   [Issue](#issue)
 *   [Milestone](#milestone)
 *   [MultiGroupProvider](#multigroupprovider)
     *   [repository](#repository)
-        *   [Parameters](#parameters-38)
+        *   [Parameters](#parameters-34)
     *   [branch](#branch-1)
-        *   [Parameters](#parameters-39)
+        *   [Parameters](#parameters-35)
     *   [repositoryGroup](#repositorygroup)
-        *   [Parameters](#parameters-40)
+        *   [Parameters](#parameters-36)
     *   [repositoryGroups](#repositorygroups)
-        *   [Parameters](#parameters-41)
+        *   [Parameters](#parameters-37)
     *   [createRepositoryGroup](#createrepositorygroup)
-        *   [Parameters](#parameters-42)
+        *   [Parameters](#parameters-38)
     *   [addRepositoryGroup](#addrepositorygroup)
-        *   [Parameters](#parameters-43)
+        *   [Parameters](#parameters-39)
 *   [NamedObject](#namedobject)
-    *   [Parameters](#parameters-44)
+    *   [Parameters](#parameters-40)
     *   [Properties](#properties-6)
     *   [equals](#equals-2)
-        *   [Parameters](#parameters-45)
+        *   [Parameters](#parameters-41)
     *   [fullName](#fullname-1)
     *   [toJSON](#tojson-1)
     *   [attributes](#attributes-1)
 *   [homePageURL](#homepageurl)
 *   [OwnedObject](#ownedobject)
-    *   [Parameters](#parameters-46)
+    *   [Parameters](#parameters-42)
     *   [equals](#equals-3)
-        *   [Parameters](#parameters-47)
+        *   [Parameters](#parameters-43)
     *   [api](#api)
+    *   [provider](#provider-1)
+    *   [identifier](#identifier)
+    *   [trace](#trace)
+        *   [Parameters](#parameters-44)
+    *   [info](#info)
+        *   [Parameters](#parameters-45)
+    *   [warn](#warn)
+        *   [Parameters](#parameters-46)
+    *   [error](#error)
+        *   [Parameters](#parameters-47)
+    *   [repositoryClass](#repositoryclass-1)
+    *   [pullRequestClass](#pullrequestclass-1)
+    *   [branchClass](#branchclass-1)
+    *   [tagClass](#tagclass-1)
+    *   [entryClass](#entryclass-1)
+    *   [hookClass](#hookclass-1)
     *   [addMethodName](#addmethodname)
 *   [Project](#project)
 *   [PullRequest](#pullrequest)
@@ -518,12 +518,6 @@ Complete name in the hierachy.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
-### identifier
-
-Short human readable identifier with provider and branch.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
 ### isWritable
 
 By default cannot be written to.
@@ -539,80 +533,6 @@ Check for equality
 *   `other` **[BaseObject](#baseobject)**&#x20;
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if other is present
-
-### provider
-
-The provider we live in.
-
-Returns **[BaseProvider](#baseprovider)**&#x20;
-
-### trace
-
-Forwarded to the owner.
-
-#### Parameters
-
-*   `args` **...any**&#x20;
-
-### info
-
-Forwarded to the owner.
-
-#### Parameters
-
-*   `args` **...any**&#x20;
-
-### warn
-
-Forwarded to the owner.
-
-#### Parameters
-
-*   `args` **...any**&#x20;
-
-### error
-
-Forwarded to the owner.
-
-#### Parameters
-
-*   `args` **...any**&#x20;
-
-### repositoryClass
-
-By default we use the owners implementation.
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
-
-### pullRequestClass
-
-By default we use the owners implementation.
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
-
-### branchClass
-
-By default we use the owners implementation.
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
-
-### tagClass
-
-By default we use the owners implementation.
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
-
-### entryClass
-
-By default we use the owners implementation.
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
-
-### hookClass
-
-By default we use the owners implementation.
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### type
 
@@ -1236,6 +1156,86 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 API as given by the owner.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
+
+### provider
+
+The provider we live in.
+
+Returns **[BaseProvider](#baseprovider)**&#x20;
+
+### identifier
+
+Short human readable identifier with provider and branch.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+### trace
+
+Forwarded to the owner.
+
+#### Parameters
+
+*   `args` **...any**&#x20;
+
+### info
+
+Forwarded to the owner.
+
+#### Parameters
+
+*   `args` **...any**&#x20;
+
+### warn
+
+Forwarded to the owner.
+
+#### Parameters
+
+*   `args` **...any**&#x20;
+
+### error
+
+Forwarded to the owner.
+
+#### Parameters
+
+*   `args` **...any**&#x20;
+
+### repositoryClass
+
+By default we use the owners implementation.
+
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
+
+### pullRequestClass
+
+By default we use the owners implementation.
+
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
+
+### branchClass
+
+By default we use the owners implementation.
+
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
+
+### tagClass
+
+By default we use the owners implementation.
+
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
+
+### entryClass
+
+By default we use the owners implementation.
+
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
+
+### hookClass
+
+By default we use the owners implementation.
+
+Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
 
 ### addMethodName
 
