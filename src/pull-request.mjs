@@ -3,7 +3,6 @@ import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
 import { Review } from "./review.mjs";
-import { BaseProvider } from "./base-provider.mjs";
 
 /**
  * Abstract pull request.
@@ -221,13 +220,6 @@ export class PullRequest extends OwnedObject {
    */
   get repository() {
     return this.owner?.repository;
-  }
-
-  /**
-   * @return {BaseProvider}
-   */
-  get provider() {
-    return this.owner?.provider;
   }
 
   /**
