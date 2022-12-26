@@ -9,6 +9,9 @@ class myPullRequestClass {}
 class myRepositoryClass {}
 
 const owner = {
+  equals(other) {
+    return this === other;
+  },
   error(...args) {
     this._error = [...args];
   },
@@ -27,7 +30,12 @@ const owner = {
 
   name: "aOwner",
   api: "myAPI",
-  provider: { name: "aProvider" },
+  provider: {
+    name: "aProvider",
+    equals(other) {
+      return this === other;
+    }
+  },
   branchClass: myBranchClass,
   entryClass: myEntryClass,
   tagClass: myTagClass,
@@ -40,6 +48,20 @@ const owner = {
 test("OwnedObject api", t => {
   const object = new OwnedObject(owner, "aName");
   t.is(object.api, "myAPI");
+});
+
+test("OwnedObject equals", t => {
+  const object = new OwnedObject(owner, "aName");
+  t.true(object.equals(object));
+  t.false(object.equals(undefined));
+  t.false(object.equals("other"));
+
+  const object2 = new OwnedObject(owner, "aName");
+  t.true(object.equals(object2));
+
+  const object3 = new OwnedObject(owner, "other name");
+  t.false(object.equals(object3));
+
 });
 
 test("OwnedObject name", t => {
@@ -70,6 +92,7 @@ test("OwnedObject warn", t => {
 
   t.deepEqual(owner._warn, ["warn"]);
 });
+
 test("OwnedObject info", t => {
   const object = new OwnedObject(owner, "aName");
   object.info("info");
