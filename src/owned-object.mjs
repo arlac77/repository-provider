@@ -88,6 +88,14 @@ export class OwnedObject extends NamedObject {
   }
 
   /**
+   * Forwarded to the owner.
+   * @param  {...any} args
+   */
+  debug(...args) {
+    return this.owner.debug(...args);
+  }
+
+  /**
    * By default we use the owners implementation.
    * @return {Function} as defined in the owner
    */

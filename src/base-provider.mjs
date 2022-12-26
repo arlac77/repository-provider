@@ -447,6 +447,10 @@ export class BaseProvider extends BaseObject {
     return this.messageDestination.trace(...args);
   }
 
+  debug(...args) {
+    return this.messageDestination.debug(...args);
+  }
+
   info(...args) {
     return this.messageDestination.info(...args);
   }
