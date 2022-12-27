@@ -217,7 +217,6 @@ console.log(await readme.getString());
     *   [fullName](#fullname-2)
     *   [url](#url-2)
     *   [repository](#repository-1)
-    *   [provider](#provider-2)
     *   [equals](#equals-4)
         *   [Parameters](#parameters-50)
     *   [delete](#delete-1)
@@ -1303,10 +1302,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### repository
 
 Returns **[Repository](#repository)** destination repository
-
-### provider
-
-Returns **[BaseProvider](#baseprovider)**&#x20;
 
 ### equals
 
