@@ -4,6 +4,7 @@ import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
+import { url } from "./attributes.mjs";
 
 /**
  * Abstract repository
@@ -49,7 +50,7 @@ export class Repository extends OwnedObject {
        * URL of the repository
        * @return {string}
        */
-      url: { type: "url" },
+      url,
 
       cloneURL: { type: "url" },
 

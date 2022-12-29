@@ -1,6 +1,7 @@
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
+import { url } from "./attributes.mjs";
 
 /**
  * Abstract repository collection.
@@ -43,7 +44,7 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
       /**
        * api url
        */
-      url: { type: "url" },
+      url,
 
       /**
        * Avatar.

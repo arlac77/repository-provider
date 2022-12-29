@@ -8,6 +8,7 @@ import { Hook } from "./hook.mjs";
 import { Project } from "./project.mjs";
 import { Milestone } from "./milestone.mjs";
 import { BaseObject } from "./base-object.mjs";
+import { url } from "./attributes.mjs";
 
 /**
  * @typedef {Object} MessageDestination
@@ -115,11 +116,8 @@ export class BaseProvider extends BaseObject {
         env: ["{{instanceIdentifier}}NAME"]
       },
 
-      url: {
-        description: "home of the provider",
-        type: "string"
-      },
-
+      url,
+ 
       /**
        * To forward info/warn and error messages to
        */
