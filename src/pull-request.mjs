@@ -223,15 +223,6 @@ export class PullRequest extends OwnedObject {
   }
 
   /**
-   * Check for equality
-   * @param {PullRequest} other
-   * @return {boolean} true if number and repository are equal
-   */
-  equals(other) {
-    return super.equals(other) && this.repository.equals(other.repository);
-  }
-
-  /**
    * Delete the pull request from the {@link Repository}.
    * @see {@link Repository#deletePullRequest}
    * @return {Promise}
