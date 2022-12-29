@@ -3,7 +3,7 @@ import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
 import { Review } from "./review.mjs";
-import { url } from "./attributes.mjs";
+import { url, state } from "./attributes.mjs";
 
 /**
  * Abstract pull request.
@@ -109,8 +109,8 @@ export class PullRequest extends OwnedObject {
        * @return {string}
        */
       state: {
+        ...state,
         default: "OPEN",
-        type: "string",
         writable: true
       },
 

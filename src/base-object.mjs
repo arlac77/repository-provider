@@ -1,4 +1,5 @@
 import { definePropertiesFromOptions, mapAttributes } from "./attribute.mjs";
+import { description, id, uuid } from "./attributes.mjs";
 
 /**
  * @param {Object} options
@@ -29,27 +30,9 @@ export class BaseObject {
    */
   static get attributes() {
     return {
-      /**
-       * The description of the repository content.
-       * @return {string}
-       */
-      description: {
-        type: "string",
-        description: "human readable description",
-        writable: true
-      },
-
-      /**
-       * Unique id within the provider.
-       * @return {string}
-       */
-      id: { isKey: true, type: "string" },
-
-      /**
-       * Unique id.
-       * @return {string}
-       */
-      uuid: { isKey: true, type: "string" }
+      description,
+      id,
+      uuid
     };
   }
 

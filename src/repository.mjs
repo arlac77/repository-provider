@@ -52,13 +52,13 @@ export class Repository extends OwnedObject {
        */
       url,
 
-      cloneURL: { type: "url" },
+      cloneURL: { ...url },
 
       /**
        * The url of issue tracking system.
        * @return {string}
        */
-      issuesURL: { type: "url" },
+      issuesURL: { ...url },
       size: { type: "integer" },
       language: { type: "string" },
       isArchived: { type: "boolean", default: false, writable: true },

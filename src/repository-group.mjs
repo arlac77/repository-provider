@@ -41,16 +41,13 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
        */
       type: { type: "string" },
 
-      /**
-       * api url
-       */
       url,
 
       /**
        * Avatar.
        * @return {string}
        */
-      avatarURL: { type: "url" },
+      avatarURL: { ...url },
 
       isAdmin: { type: "boolean", default: false }
     };
