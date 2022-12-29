@@ -2,8 +2,8 @@ import test from "ava";
 import { SingleGroupProvider, PullRequest } from "repository-provider";
 
 test("PullRequest type", t => t.is(PullRequest.type, "pull-request"));
-test("PullRequest collection name", t => t.is(PullRequest.collectionName, "pullRequests"));
-
+test("PullRequest collection name", t =>
+  t.is(PullRequest.collectionName, "pullRequests"));
 
 test("pullRequest list", async t => {
   const provider = new SingleGroupProvider();
@@ -30,7 +30,7 @@ test("pullRequest create", async t => {
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");
 
-  const pr = new PullRequest(b1, b2, "4711", {
+  let pr = new PullRequest(b1, b2, "4711", {
     title: "a title",
     body: "the body",
     state: "closed",
@@ -54,21 +54,21 @@ test("pullRequest create", async t => {
   t.is(pr.identifier, "SingleGroupProvider:r1#b2[4711]");
   t.is(pr.url, "/r1/pull/4711");
 
-  t.deepEqual(pr.toJSON(),{
-  	name: "4711",
-  	body: 'the body',
-  	destination: b1,
-  	draft: false,
-  	dry: false,
-  	id: '123456',
-  	locked: false,
-  	merged: false,
-  	source: b2,
-  	state: 'CLOSED',
-  	title: 'a title',
+  t.deepEqual(pr.toJSON(), {
+    name: "4711",
+    body: "the body",
+    destination: b1,
+    draft: false,
+    dry: false,
+    id: "123456",
+    locked: false,
+    merged: false,
+    source: b2,
+    state: "CLOSED",
+    title: "a title",
     url: "/r1/pull/4711"
   });
-  
+
   t.is(
     `${pr}`,
     "4711: a title, source: SingleGroupProvider:r1#b1, destination: SingleGroupProvider:r1#b2, state: CLOSED, locked: false, merged: false, draft: false, dry: false"
@@ -82,6 +82,11 @@ test("pullRequest create", async t => {
   }
 
   t.is(prs[pr.number], pr);
+
+  pr = new PullRequest(b1, b2, "4711", {
+    empty: true
+  });
+  t.is(pr.empty, true);
 });
 
 test("pullRequest equal", async t => {
