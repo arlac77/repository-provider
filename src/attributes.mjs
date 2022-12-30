@@ -1,3 +1,9 @@
+export const boolean_attribute = {
+  type: "boolean",
+  default: false,
+  writable: true
+};
+
 export const url = { description: "home of the object", type: "url" };
 
 /**
@@ -51,7 +57,6 @@ export const priority = {
   default: 0,
   writable: true
 };
-
 
 export const active = { type: "boolean", default: true, writable: true };
 export const size = { type: "integer" };

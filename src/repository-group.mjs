@@ -1,7 +1,7 @@
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
-import { url } from "./attributes.mjs";
+import { url, boolean_attribute } from "./attributes.mjs";
 
 /**
  * Abstract repository collection.
@@ -49,7 +49,7 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
        */
       avatarURL: { ...url },
 
-      isAdmin: { type: "boolean", default: false }
+      isAdmin: boolean_attribute
     };
   }
 

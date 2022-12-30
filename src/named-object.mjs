@@ -1,6 +1,6 @@
 import { optionJSON } from "./attribute.mjs";
 import { BaseObject } from "./base-object.mjs";
-import { name } from "./attributes.mjs";
+import { name, url } from "./attributes.mjs";
 
 /**
  * Object with a name.
@@ -23,7 +23,7 @@ export class NamedObject extends BaseObject {
        * The url of home page.
        * @return {string}
        */
-      homePageURL: { type: "url", writable: true }
+      homePageURL: { ...url, writable: true }
     };
   }
 
