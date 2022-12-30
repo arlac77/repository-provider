@@ -8,7 +8,7 @@ import { Hook } from "./hook.mjs";
 import { Project } from "./project.mjs";
 import { Milestone } from "./milestone.mjs";
 import { BaseObject } from "./base-object.mjs";
-import { url, name } from "./attributes.mjs";
+import { url, name, description } from "./attributes.mjs";
 
 /**
  * @typedef {Object} MessageDestination
@@ -98,7 +98,9 @@ export class BaseProvider extends BaseObject {
 
   static get attributes() {
     return {
-      ...super.attributes,
+      url,
+      description,
+      
       /**
        * In case there are several providers able to support a given source which one sould be used ?
        * this defines the order
@@ -115,8 +117,6 @@ export class BaseProvider extends BaseObject {
         ...name,
         env: ["{{instanceIdentifier}}NAME"]
       },
-
-      url,
  
       /**
        * To forward info/warn and error messages to
