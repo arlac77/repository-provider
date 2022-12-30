@@ -61,3 +61,4 @@ export const priority = {
 export const active = { type: "boolean", default: true, writable: true };
 export const size = { type: "integer" };
 export const language = { type: "string" };
+export const type = { type: "string" };
