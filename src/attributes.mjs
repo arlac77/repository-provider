@@ -41,3 +41,18 @@ export const title = {
   description: "human readable title",
   writable: true
 };
+
+/**
+ * In case there are several providers able to support a given source which one sould be used ?
+ * this defines the order
+ */
+export const priority = {
+  type: "number",
+  default: 0,
+  writable: true
+};
+
+
+export const active = { type: "boolean", default: true, writable: true };
+export const size = { type: "integer" };
+export const language = { type: "string" };

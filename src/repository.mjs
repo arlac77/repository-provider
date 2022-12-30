@@ -4,7 +4,7 @@ import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { url } from "./attributes.mjs";
+import { url, size, language } from "./attributes.mjs";
 
 /**
  * Abstract repository
@@ -24,11 +24,10 @@ import { url } from "./attributes.mjs";
  * @property {Map<string,Milestone>} milestones
  */
 export class Repository extends OwnedObject {
-
   static get addMethodName() {
     return "_addRepository";
   }
-  
+
   static get collectionName() {
     return "repositories";
   }
@@ -39,18 +38,15 @@ export class Repository extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
+      url,
+      size,
+      language,
 
       /**
        * The name of the default branch
        * @return {string}
        */
       defaultBranchName: { type: "string", default: "master" },
-
-      /**
-       * URL of the repository
-       * @return {string}
-       */
-      url,
 
       cloneURL: { ...url },
 
@@ -59,8 +55,6 @@ export class Repository extends OwnedObject {
        * @return {string}
        */
       issuesURL: { ...url },
-      size: { type: "integer" },
-      language: { type: "string" },
       isArchived: { type: "boolean", default: false, writable: true },
       isLocked: { type: "boolean", default: false },
       isDisabled: { type: "boolean", default: false },
