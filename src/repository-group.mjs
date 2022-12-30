@@ -52,11 +52,6 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
     return {};
   }
 
-  get provider()
-  {
-    return this.owner;
-  }
-
   get isAdmin() {
     return false;
   }
