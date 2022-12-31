@@ -31,6 +31,10 @@ export class PullRequest extends OwnedObject {
     return "_addPullRequest";
   }
 
+  static get deleteMethodName() {
+    return "_deletePullRequest";	
+  }
+  
   static get type() {
     return "pull-request";
   }

@@ -23,6 +23,10 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
     return "_addRepositoryGroup";
   }
 
+  static get deleteMethodName() {
+    return "_deleteRepositoryGroup";  	
+  }
+
   static get type() {
     return "repository-group";
   }

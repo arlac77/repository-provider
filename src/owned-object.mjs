@@ -13,6 +13,10 @@ export class OwnedObject extends NamedObject {
     return "_add" + this.name;
   }
 
+  static get deleteMethodName() {
+    return "_delete" + this.name;	
+  }
+
   constructor(owner, name, options, additionalProperties) {
     super(name, options, {
       ...additionalProperties,

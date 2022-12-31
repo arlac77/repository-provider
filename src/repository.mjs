@@ -28,6 +28,11 @@ export class Repository extends OwnedObject {
     return "_addRepository";
   }
 
+  static get deleteMethodName()
+  {
+     return "_deleteRepository";  	
+  }
+
   static get collectionName() {
     return "repositories";
   }

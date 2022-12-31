@@ -9,6 +9,10 @@ export class Tag extends Ref {
     return "_addTag";
   }
 
+  static get deleteMethodName() {
+    return "_deleteTag";  	
+  }
+
   /**
    * @return {string} tags
    */

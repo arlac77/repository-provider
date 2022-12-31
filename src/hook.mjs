@@ -20,4 +20,8 @@ export class Hook extends OwnedObject {
   static get addMethodName() {
     return "_addHook";
   }
+
+  static get delteteMethodName() {
+  	return "_deleteHook";
+  }
 }

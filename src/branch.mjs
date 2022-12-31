@@ -19,6 +19,10 @@ export class Branch extends Ref {
   static get addMethodName() {
     return "_addBranch";
   }
+
+  static get deleteMethodName() {
+    return "_deleteBranch";  	
+  }
   
   static get collectionName() {
     return "branches";
