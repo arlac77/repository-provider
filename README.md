@@ -265,7 +265,6 @@ console.log(await readme.getString());
     *   [Properties](#properties-9)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type-1)
-*   [avatarURL](#avatarurl)
 *   [RepositoryOwner](#repositoryowner)
     *   [Parameters](#parameters-57)
 *   [Repository](#repository-3)
@@ -1564,14 +1563,6 @@ Map attributes between external and internal representation.
 ## type
 
 Type of the repository group either User or Organization.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
-## avatarURL
-
-Avatar.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 ## RepositoryOwner
 
