@@ -3,7 +3,7 @@ import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
 import { Review } from "./review.mjs";
-import { url, state } from "./attributes.mjs";
+import { url, state, body, title, boolean_attribute } from "./attributes.mjs";
 
 /**
  * Abstract pull request.
@@ -89,18 +89,10 @@ export class PullRequest extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
-      /**
-       * The one line description of the pull request.
-       * @return {string}
-       */
-      title: { type: "string", writable: true },
-
-      /**
-       * The description of the pull request.
-       * @return {string}
-       */
-      body: { type: "string", writable: true },
-
+      body,
+      title,
+      url,
+      
       /**
        * state of the pull request.
        * - OPEN
@@ -118,30 +110,19 @@ export class PullRequest extends OwnedObject {
        * Locked state of the pull request.
        * @return {boolean}
        */
-      locked: {
-        type: "boolean",
-        default: false,
-        writable: true
-      },
+      locked: boolean_attribute,
 
       /**
        * Merged state of the pull request.
        * @return {boolean}
        */
-      merged: {
-        type: "boolean",
-        default: false,
-        writable: true
-      },
+      merged: boolean_attribute,
 
       /**
        * Draft state of the pull request.
        * @return {boolean}
        */
-      draft: {
-        type: "boolean",
-        default: false
-      },
+      draft: boolean_attribute,
 
       dry: {
         type: "boolean",
@@ -150,9 +131,7 @@ export class PullRequest extends OwnedObject {
 
       empty: {
         type: "boolean"
-      },
-
-      url
+      }
     };
   }
 

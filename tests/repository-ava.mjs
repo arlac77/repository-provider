@@ -11,7 +11,7 @@ test("Repository type", t => t.is(Repository.type, "repository"));
 test("Repository collection name", t => t.is(Repository.collectionName, "repositories"));
 
 test("repository init with options", async t => {
-  const provider = new SingleGroupProvider();
+  const provider = new SingleGroupProvider({ url: "https://myprovider.com/"});
   const repository = new Repository(provider, "r1", {
     description: "a description",
     id: "4711",
@@ -22,6 +22,7 @@ test("repository init with options", async t => {
   t.is(repository.slug, "SingleGroupProvider/r1");
   t.is(repository.fullName, "r1");
   t.is(repository.identifier, "SingleGroupProvider:r1");
+  t.is(repository.url, "https://myprovider.com/SingleGroupProvider/r1");
   t.is(repository.type, "git");
   t.is(repository.description, "a description");
   t.is(repository.id, "4711");
@@ -36,6 +37,8 @@ test("repository init with options", async t => {
   t.is(repository.toString(), "r1");
   t.is(await repository.refId('branches/master'), undefined);
   t.deepEqual(repository.toJSON(), {
+    url: "https://myprovider.com/SingleGroupProvider/r1",
+    cloneURL: "https://myprovider.com/SingleGroupProvider/r1",
     defaultBranchName: "master",
     description: "a description",
     id: "4711",

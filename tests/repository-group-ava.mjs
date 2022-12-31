@@ -20,6 +20,7 @@ test("repository-group create with options", t => {
     homePageURL: "http://somewhere/rg",
     isAdmin: true
   });
+
   t.is(rg.name, "rg");
   t.is(rg.fullName, "MultiGroupProvider/rg");
   t.is(rg.description, "a description");
@@ -27,6 +28,7 @@ test("repository-group create with options", t => {
   t.is(rg.uuid, "12345");
   t.is(rg.isAdmin, true);
   t.is(rg.homePageURL, "http://somewhere/rg");
+  t.is(rg.provider, provider);
   //t.is(rg.toString(), "rg");
   t.deepEqual(rg.toJSON(), {
     name: "rg",
@@ -109,10 +111,10 @@ test("owner get repository with branch", async t => {
 });
 
 test("owner repository url", async t => {
-  const provider = new MultiGroupProvider();
+  const provider = new MultiGroupProvider({ url: "https://myprovider.com/"});
   const group = new RepositoryGroup(provider, "g1");
   const repository = group.addRepository("r1");
-  t.is(repository.url, undefined);
+  t.is(repository.url, "https://myprovider.com/g1/r1");
 });
 
 test("owner get undefined repository", async t => {

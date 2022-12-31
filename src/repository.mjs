@@ -4,7 +4,7 @@ import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { url } from "./attributes.mjs";
+import { url, size, language, boolean_attribute } from "./attributes.mjs";
 
 /**
  * Abstract repository
@@ -24,11 +24,10 @@ import { url } from "./attributes.mjs";
  * @property {Map<string,Milestone>} milestones
  */
 export class Repository extends OwnedObject {
-
   static get addMethodName() {
     return "_addRepository";
   }
-  
+
   static get collectionName() {
     return "repositories";
   }
@@ -39,6 +38,9 @@ export class Repository extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
+      url,
+      size,
+      language,
 
       /**
        * The name of the default branch
@@ -46,25 +48,17 @@ export class Repository extends OwnedObject {
        */
       defaultBranchName: { type: "string", default: "master" },
 
-      /**
-       * URL of the repository
-       * @return {string}
-       */
-      url,
-
-      cloneURL: { ...url },
+      cloneURL: url,
 
       /**
        * The url of issue tracking system.
        * @return {string}
        */
-      issuesURL: { ...url },
-      size: { type: "integer" },
-      language: { type: "string" },
-      isArchived: { type: "boolean", default: false, writable: true },
-      isLocked: { type: "boolean", default: false },
-      isDisabled: { type: "boolean", default: false },
-      isTemplate: { type: "boolean", default: false },
+      issuesURL: url,
+      isArchived: boolean_attribute,
+      isLocked: boolean_attribute,
+      isDisabled: boolean_attribute,
+      isTemplate: boolean_attribute,
       isFork: { type: "boolean", default: false }
     };
   }
@@ -97,6 +91,10 @@ export class Repository extends OwnedObject {
    */
   get slug() {
     return `${this.owner.name}/${this.name}`;
+  }
+
+  get url() {
+    return `${this.provider.url}${this.slug}`;
   }
 
   /**

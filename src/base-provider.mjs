@@ -8,7 +8,7 @@ import { Hook } from "./hook.mjs";
 import { Project } from "./project.mjs";
 import { Milestone } from "./milestone.mjs";
 import { BaseObject } from "./base-object.mjs";
-import { url, name } from "./attributes.mjs";
+import { url, name, description, priority } from "./attributes.mjs";
 
 /**
  * @typedef {Object} MessageDestination
@@ -23,7 +23,6 @@ import { url, name } from "./attributes.mjs";
  * @property {MessageDestination} messageDestination
  */
 export class BaseProvider extends BaseObject {
-
   static get type() {
     return "provider";
   }
@@ -67,7 +66,7 @@ export class BaseProvider extends BaseObject {
               options = {};
             }
 
-            if(options[name] === undefined) {
+            if (options[name] === undefined) {
               options[name] = value;
               Object.assign(options, attribute.additionalAttributes);
             }
@@ -98,15 +97,9 @@ export class BaseProvider extends BaseObject {
 
   static get attributes() {
     return {
-      ...super.attributes,
-      /**
-       * In case there are several providers able to support a given source which one sould be used ?
-       * this defines the order
-       */
-      priority: {
-        type: "number",
-        default: 0
-      },
+      url,
+      description,
+      priority,
 
       /**
        * Name of the provider.
@@ -116,8 +109,6 @@ export class BaseProvider extends BaseObject {
         env: ["{{instanceIdentifier}}NAME"]
       },
 
-      url,
- 
       /**
        * To forward info/warn and error messages to
        */
