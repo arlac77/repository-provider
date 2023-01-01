@@ -18,11 +18,8 @@ export class OwnedObject extends NamedObject {
   }
 
   constructor(owner, name, options, additionalProperties) {
-    super(name, options, {
-      ...additionalProperties,
-      owner: { value: owner }
-    });
-
+    super(name, options, additionalProperties);
+    this.owner = owner;
     owner[this.constructor.addMethodName](this);
   }
 
