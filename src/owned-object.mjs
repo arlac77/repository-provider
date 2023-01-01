@@ -23,6 +23,9 @@ export class OwnedObject extends NamedObject {
     owner[this.constructor.addMethodName](this);
   }
 
+  /**
+   * Removes the receiver from the owner.
+   */
   delete() {
     this.owner[this.constructor.deleteMethodName](this);
   }
