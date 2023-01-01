@@ -44,14 +44,6 @@ export class PullRequest extends OwnedObject {
   }
 
   /**
-   * All valid states
-   * @return {Set<string>} valid states
-   */
-  static get validStates() {
-    return new Set(["OPEN", "MERGED", "CLOSED"]);
-  }
-
-  /**
    * States to list pull request by default
    * @return {Set<string>} states to list by default
    */
@@ -107,6 +99,7 @@ export class PullRequest extends OwnedObject {
       state: {
         ...state,
         default: "OPEN",
+        values: new Set(["OPEN", "MERGED", "CLOSED"]),
         writable: true
       },
 
@@ -147,7 +140,7 @@ export class PullRequest extends OwnedObject {
       state: {
         set(value) {
           value = value.toUpperCase();
-          if (this.constructor.validStates.has(value)) {
+          if (this.constructor.attributes.state.values.has(value)) {
             state = value;
           } else throw new Error(`Invalid Pull Request state ${value}`);
         },
