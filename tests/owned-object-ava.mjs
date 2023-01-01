@@ -61,7 +61,6 @@ test("OwnedObject equals", t => {
 
   const object3 = new OwnedObject(owner, "other name");
   t.false(object.equals(object3));
-
 });
 
 test("OwnedObject name", t => {
