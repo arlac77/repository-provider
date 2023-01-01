@@ -37,6 +37,7 @@ export class BaseObject {
   }
 
   /**
+   * User modifyable attributes.
    * @return {Object} writable attributes
    */
   static get writableAttributes() {
