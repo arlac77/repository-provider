@@ -1,6 +1,6 @@
 import { optionJSON } from "./attribute.mjs";
 import { BaseObject } from "./base-object.mjs";
-import { name, url } from "./attributes.mjs";
+import { name, url, description, id, uuid } from "./attributes.mjs";
 
 /**
  * Object with a name.
@@ -16,9 +16,11 @@ export class NamedObject extends BaseObject {
    */
   static get attributes() {
     return {
-      ...super.attributes,
       name,
-
+      id,
+      uuid,
+      description,
+   
       /**
        * The url of home page.
        * @return {string}
