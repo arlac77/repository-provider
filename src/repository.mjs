@@ -8,13 +8,13 @@ import { url, size, language, boolean_attribute } from "./attributes.mjs";
 
 /**
  * Abstract repository
- * @param {Owner} owner
+ * @param {RepositoryOwner} owner
  * @param {string} name (#branch) will be removed
  * @param {Object} options
  * @param {string} [options.description] human readable description
  * @param {string} [options.id] internal id
  *
- * @property {Owner} owner
+ * @property {RepositoryOwner} owner
  * @property {string} name without (#branch)
  * @property {string} [description] from options.description
  * @property {string} [id] from options.id
