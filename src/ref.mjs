@@ -93,7 +93,7 @@ export class Ref extends OwnedObject {
    * Ref owner.
    * By default we provide the repository owner
    * @see {@link Repository#owner}
-   * @return {string}
+   * @return {Repository}
    */
   get repository() {
     return this.owner;
