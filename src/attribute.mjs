@@ -136,40 +136,6 @@ export function defaultValues(attributes, object) {
 }
 
 /**
- * Set Object attribute.
- * The name may be a property path like 'a.b.c'.
- * @param {Object} object
- * @param {string} name
- * @param {any} value
- */
-export function setAttribute(object, name, value) {
-
-  let lastObject = object;
-  let lastKey;
-
-  for (const token of tokens(name)) {
-    switch (token) {
-      case ".":
-        case "[":
-        case "]":
-          break;
-  
-        default:
-          if (object[token] === undefined || typeof object[token] !== "object") {
-            object[token] = {};
-          }
-
-          lastObject = object;
-          lastKey = token;
-
-          object = object[token];
-    }
-  }
-
-  lastObject[lastKey] = value;
-}
-
-/**
  * Split property path into tokens
  * @param {string} string 
  * @return {Iterator<string>}
@@ -198,6 +164,39 @@ function* tokens(string) {
   if (identifier.length) {
     yield identifier;
   }
+}
+
+/**
+ * Set Object attribute.
+ * The name may be a property path like 'a.b.c'.
+ * @param {Object} object
+ * @param {string} name
+ * @param {any} value
+ */
+export function setAttribute(object, name, value) {
+  let lastObject = object;
+  let lastKey;
+
+  for (const token of tokens(name)) {
+    switch (token) {
+      case ".":
+        case "[":
+        case "]":
+          break;
+  
+        default:
+          if (object[token] === undefined || typeof object[token] !== "object") {
+            object[token] = {};
+          }
+
+          lastObject = object;
+          lastKey = token;
+
+          object = object[token];
+    }
+  }
+
+  lastObject[lastKey] = value;
 }
 
 /**
