@@ -14,7 +14,7 @@ export class OwnedObject extends NamedObject {
   }
 
   static get deleteMethodName() {
-    return "_delete" + this.name;	
+    return "_delete" + this.name;
   }
 
   constructor(owner, name, options, additionalProperties) {
@@ -24,6 +24,10 @@ export class OwnedObject extends NamedObject {
     });
 
     owner[this.constructor.addMethodName](this);
+  }
+
+  delete() {
+    this.owner[this.constructor.deleteMethodName](this);
   }
 
   /**
