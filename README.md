@@ -52,9 +52,9 @@ console.log(await readme.getString());
     *   [Parameters](#parameters)
 *   [defaultValues](#defaultvalues)
     *   [Parameters](#parameters-1)
-*   [setAttribute](#setattribute)
-    *   [Parameters](#parameters-2)
 *   [tokens](#tokens)
+    *   [Parameters](#parameters-2)
+*   [setAttribute](#setattribute)
     *   [Parameters](#parameters-3)
 *   [getAttribute](#getattribute)
     *   [Parameters](#parameters-4)
@@ -190,6 +190,7 @@ console.log(await readme.getString());
 *   [homePageURL](#homepageurl)
 *   [OwnedObject](#ownedobject)
     *   [Parameters](#parameters-42)
+    *   [delete](#delete-1)
     *   [equals](#equals-3)
         *   [Parameters](#parameters-43)
     *   [api](#api)
@@ -219,13 +220,12 @@ console.log(await readme.getString());
     *   [fullName](#fullname-2)
     *   [url](#url-2)
     *   [repository](#repository-1)
-    *   [delete](#delete-1)
+    *   [delete](#delete-2)
     *   [merge](#merge)
         *   [Parameters](#parameters-50)
     *   [decline](#decline)
     *   [reviews](#reviews)
     *   [identifier](#identifier-1)
-    *   [validStates](#validstates)
     *   [defaultListStates](#defaultliststates)
     *   [validMergeMethods](#validmergemethods)
     *   [list](#list-1)
@@ -287,7 +287,7 @@ console.log(await readme.getString());
     *   [isLocked](#islocked-1)
     *   [isDisabled](#isdisabled-1)
     *   [isTemplate](#istemplate)
-    *   [delete](#delete-2)
+    *   [delete](#delete-3)
     *   [defaultBranch](#defaultbranch)
     *   [branch](#branch-2)
         *   [Parameters](#parameters-63)
@@ -407,6 +407,16 @@ Get default values.
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** filled with default values
 
+## tokens
+
+Split property path into tokens
+
+### Parameters
+
+*   `string` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+Returns **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
+
 ## setAttribute
 
 Set Object attribute.
@@ -417,16 +427,6 @@ The name may be a property path like 'a.b.c'.
 *   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 *   `value` **any**&#x20;
-
-## tokens
-
-Split property path into tokens
-
-### Parameters
-
-*   `string` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
-Returns **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
 
 ## getAttribute
 
@@ -573,6 +573,8 @@ Attributes definitions
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
 ### writableAttributes
+
+User modifyable attributes.
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** writable attributes
 
@@ -1139,6 +1141,10 @@ Named Object registering itself in the owner.
 *   `options` &#x20;
 *   `additionalProperties` &#x20;
 
+### delete
+
+Removes the receiver from the owner.
+
 ### equals
 
 Check for equality.
@@ -1330,12 +1336,6 @@ Short human readable identifier with provider and branch.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
-### validStates
-
-All valid states
-
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid states
-
 ### defaultListStates
 
 States to list pull request by default
@@ -1471,7 +1471,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 Ref owner.
 By default we provide the repository owner
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+Returns **[Repository](#repository)**&#x20;
 
 ### fullName
 
@@ -1580,7 +1580,7 @@ Abstract repository
 
 ### Parameters
 
-*   `owner` **Owner**&#x20;
+*   `owner` **[RepositoryOwner](#repositoryowner)**&#x20;
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** (#branch) will be removed
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
@@ -1589,7 +1589,7 @@ Abstract repository
 
 ### Properties
 
-*   `owner` **Owner**&#x20;
+*   `owner` **[RepositoryOwner](#repositoryowner)**&#x20;
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** without (#branch)
 *   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.description
 *   `id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.id
