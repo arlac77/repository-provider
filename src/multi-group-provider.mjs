@@ -104,7 +104,7 @@ export class MultiGroupProvider extends BaseProvider {
    * @return {RepositoryGroup}
    */
   addRepositoryGroup(name, options) {
-    return this.#repositoryGroups.get(this.normalizeGroupName(name, true)) || new this.repositoryGroupClass(this, name, options);
+    return this.#repositoryGroups.get(this.normalizeGroupName(name, true)) || new this.repositoryGroupClass(this, name, options);
   }
 
   _addRepositoryGroup(repositoryGroup) {
