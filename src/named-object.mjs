@@ -49,13 +49,6 @@ export class NamedObject extends BaseObject {
   }
   
   /**
-   * @return {string} name with owner name
-   */
-  get fullName() {
-    return this.owner ? this.owner.name + "/" + this.name : this.name;
-  }
-
-  /**
    * Provided name and all defined attributes.
    */
   toJSON() {

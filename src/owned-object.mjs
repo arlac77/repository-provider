@@ -64,6 +64,13 @@ export class OwnedObject extends NamedObject {
   }
 
   /**
+   * @return {string} name with owner name
+   */
+  get fullName() {
+    return this.owner.name + "/" + this.name;
+  }
+
+  /**
    * Forwarded to the owner.
    * @param  {...any} args
    */
