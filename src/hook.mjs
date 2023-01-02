@@ -2,7 +2,7 @@ import { OwnedObject } from "./owned-object.mjs";
 import {
   secret_attribute,
   boolean_attribute,
-  active,
+  active_attribute,
   url_attribute
 } from "./attributes.mjs";
 
@@ -13,7 +13,7 @@ export class Hook extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
-      active,
+      active: active_attribute,
       secret: secret_attribute,
       url: { ...url_attribute, description: "target url", writable: true },
       content_type: { type: "string", default: "json", writable: true },

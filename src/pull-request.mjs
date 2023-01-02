@@ -3,7 +3,14 @@ import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
 import { Review } from "./review.mjs";
-import { url_attribute, state, body, title, boolean_attribute, empty_attiribute } from "./attributes.mjs";
+import {
+  url_attribute,
+  state_attribute,
+  body_attribute,
+  title_attribute,
+  boolean_attribute,
+  empty_attiribute
+} from "./attributes.mjs";
 
 /**
  * Abstract pull request.
@@ -32,9 +39,9 @@ export class PullRequest extends OwnedObject {
   }
 
   static get deleteMethodName() {
-    return "_deletePullRequest";	
+    return "_deletePullRequest";
   }
-  
+
   static get type() {
     return "pull-request";
   }
@@ -85,10 +92,10 @@ export class PullRequest extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
-      body,
-      title,
+      body: body_attribute,
+      title: title_attribute,
       url: url_attribute,
-      
+
       /**
        * state of the pull request.
        * - OPEN
@@ -97,7 +104,7 @@ export class PullRequest extends OwnedObject {
        * @return {string}
        */
       state: {
-        ...state,
+        ...state_attribute,
         default: "OPEN",
         values: new Set(["OPEN", "MERGED", "CLOSED"]),
         writable: true

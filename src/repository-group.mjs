@@ -1,7 +1,11 @@
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
-import { url_attribute, boolean_attribute, type } from "./attributes.mjs";
+import {
+  url_attribute,
+  boolean_attribute,
+  type_attribute
+} from "./attributes.mjs";
 
 /**
  * Abstract repository collection.
@@ -18,13 +22,12 @@ import { url_attribute, boolean_attribute, type } from "./attributes.mjs";
  */
 
 export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
-
   static get addMethodName() {
     return "_addRepositoryGroup";
   }
 
   static get deleteMethodName() {
-    return "_deleteRepositoryGroup";  	
+    return "_deleteRepositoryGroup";
   }
 
   static get type() {
@@ -42,7 +45,7 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
       /**
        * Type of the repository group either User or Organization.
        */
-      type,
+      type: type_attribute,
       url: url_attribute,
       avatarURL: url_attribute,
       isAdmin: boolean_attribute

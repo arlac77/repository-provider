@@ -41,17 +41,17 @@ export const description_attribute = {
  */
 export const id_attribute = { isKey: true, type: "string" };
 
-export const state = { type: "string" };
+export const state_attribute = { type: "string" };
 
 /**
  * The description of the pull request.
  */
-export const body = { type: "string", writable: true };
+export const body_attribute = { type: "string", writable: true };
 
 /**
  * The one line description of the pull request.
  */
-export const title = {
+export const title_attribute = {
   type: "string",
   description: "human readable title",
   writable: true,
@@ -69,11 +69,11 @@ export const priority_attribute = {
   mandatory: false
 };
 
-export const active = {
+export const active_attribute = {
   type: "boolean",
   default: true,
   mandatory: false,
   writable: true
 };
 export const language_attribute = { type: "string", mandatory: false };
-export const type = { type: "string", mandatory: false };
+export const type_attribute = { type: "string", mandatory: false };
