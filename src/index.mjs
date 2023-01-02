@@ -20,3 +20,4 @@ export * from "./review.mjs";
 export * from "./application.mjs";
 export * from "./attribute.mjs";
 export * from "./util.mjs";
+export * from "./attributes.mjs";

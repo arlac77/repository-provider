@@ -1,5 +1,5 @@
 import { definePropertiesFromOptions, mapAttributes } from "./attribute.mjs";
-import { description, id, uuid } from "./attributes.mjs";
+import { description, id } from "./attributes.mjs";
 
 /**
  * @param {Object} options
@@ -31,8 +31,7 @@ export class BaseObject {
   static get attributes() {
     return {
       description,
-      id,
-      uuid
+      id
     };
   }
 

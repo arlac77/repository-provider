@@ -4,6 +4,8 @@ export const boolean_attribute = {
   writable: true
 };
 
+export const uuid_attiribute = { isKey: true, type: "string" };
+
 export const url = { description: "home of the object", type: "url" };
 
 /**
@@ -25,10 +27,6 @@ export const name = {
  */
 export const id = { isKey: true, type: "string" };
 
-/**
- * Unique id.
- */
-export const uuid = { isKey: true, type: "string" };
 
 export const state = { type: "string" };
 

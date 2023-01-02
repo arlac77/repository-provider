@@ -14,8 +14,7 @@ test("repository init with options", async t => {
   const provider = new SingleGroupProvider({ url: "https://myprovider.com/"});
   const repository = new Repository(provider, "r1", {
     description: "a description",
-    id: "4711",
-    uuid: "12345"
+    id: "4711"
   });
   t.is(repository.owner, provider);
   t.is(repository.name, "r1");
@@ -26,7 +25,6 @@ test("repository init with options", async t => {
   t.is(repository.type, "git");
   t.is(repository.description, "a description");
   t.is(repository.id, "4711");
-  t.is(repository.uuid, "12345");
   t.is(repository.issuesURL, undefined);
   t.is(repository.homePageURL, undefined);
   t.is(repository.isArchived, false);
@@ -42,7 +40,6 @@ test("repository init with options", async t => {
     defaultBranchName: "master",
     description: "a description",
     id: "4711",
-    uuid: "12345",
     name: "r1",
     isArchived: false,
     isDisabled: false,

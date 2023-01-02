@@ -25,14 +25,12 @@ test("repository-group create with options", t => {
   t.is(rg.fullName, "MultiGroupProvider/rg");
   t.is(rg.description, "a description");
   t.is(rg.id, "4711");
-  t.is(rg.uuid, "12345");
   t.is(rg.isAdmin, true);
   t.is(rg.homePageURL, "http://somewhere/rg");
   t.is(rg.provider, provider);
   //t.is(rg.toString(), "rg");
   t.deepEqual(rg.toJSON(), {
     name: "rg",
-    uuid: "12345",
     id: "4711",
     description: "a description",
     homePageURL: "http://somewhere/rg",
