@@ -17,6 +17,10 @@ export const secret_attribute = {
   writable: true
 };
 export const size_attribute = { type: "integer" };
+export const name_attribute = {
+  type: "string",
+  isKey: true
+};
 
 export const url = { description: "home of the object", type: "url" };
 
@@ -29,10 +33,6 @@ export const description = {
   writable: true
 };
 
-export const name = {
-  type: "string",
-  isKey: true
-};
 
 /**
  * Unique id within the provider.

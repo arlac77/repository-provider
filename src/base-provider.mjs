@@ -8,7 +8,7 @@ import { Hook } from "./hook.mjs";
 import { Project } from "./project.mjs";
 import { Milestone } from "./milestone.mjs";
 import { BaseObject } from "./base-object.mjs";
-import { url, name, description, priority } from "./attributes.mjs";
+import { url, name_attribute, description, priority } from "./attributes.mjs";
 
 /**
  * @typedef {Object} MessageDestination
@@ -105,7 +105,7 @@ export class BaseProvider extends BaseObject {
        * Name of the provider.
        */
       name: {
-        ...name,
+        ...name_attribute,
         env: ["{{instanceIdentifier}}NAME"]
       },
 
