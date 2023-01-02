@@ -4,7 +4,19 @@ export const boolean_attribute = {
   writable: true
 };
 
+export const boolean_read_only_attribute = {
+  type: "boolean",
+  default: false
+};
+
 export const uuid_attiribute = { isKey: true, type: "string" };
+export const empty_attiribute = { type: "boolean" };
+export const secret_attribute = {
+  type: "string",
+  private: true,
+  writable: true
+};
+export const size_attribute = { type: "integer" };
 
 export const url = { description: "home of the object", type: "url" };
 
@@ -27,10 +39,7 @@ export const name = {
  */
 export const id = { isKey: true, type: "string" };
 
-
 export const state = { type: "string" };
-
-export const secret = { type: "string", private: true, writable: true };
 
 /**
  * The description of the pull request.
@@ -57,6 +66,5 @@ export const priority = {
 };
 
 export const active = { type: "boolean", default: true, writable: true };
-export const size = { type: "integer" };
 export const language = { type: "string" };
 export const type = { type: "string" };

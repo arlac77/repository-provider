@@ -3,7 +3,7 @@ import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
 import { Review } from "./review.mjs";
-import { url, state, body, title, boolean_attribute } from "./attributes.mjs";
+import { url, state, body, title, boolean_attribute, boolean_read_only_attribute, empty_attiribute } from "./attributes.mjs";
 
 /**
  * Abstract pull request.
@@ -120,15 +120,8 @@ export class PullRequest extends OwnedObject {
        * @return {boolean}
        */
       draft: boolean_attribute,
-
-      dry: {
-        type: "boolean",
-        default: false
-      },
-
-      empty: {
-        type: "boolean"
-      }
+      dry: boolean_attribute,
+      empty: empty_attiribute
     };
   }
 

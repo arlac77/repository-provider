@@ -4,7 +4,7 @@ import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { url, size, language, boolean_attribute } from "./attributes.mjs";
+import { url, size_attribute, language, boolean_attribute, boolean_read_only_attribute } from "./attributes.mjs";
 
 /**
  * Abstract repository
@@ -44,7 +44,7 @@ export class Repository extends OwnedObject {
     return {
       ...super.attributes,
       url,
-      size,
+      size_attribute,
       language,
 
       /**
@@ -64,7 +64,7 @@ export class Repository extends OwnedObject {
       isLocked: boolean_attribute,
       isDisabled: boolean_attribute,
       isTemplate: boolean_attribute,
-      isFork: { type: "boolean", default: false }
+      isFork: boolean_read_only_attribute
     };
   }
 

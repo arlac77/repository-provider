@@ -1,5 +1,10 @@
 import { OwnedObject } from "./owned-object.mjs";
-import { secret, active, url, boolean_attribute } from "./attributes.mjs";
+import {
+  secret_attribute,
+  boolean_attribute,
+  active,
+  url
+} from "./attributes.mjs";
 
 /**
  * Repository hook.
@@ -9,7 +14,7 @@ export class Hook extends OwnedObject {
     return {
       ...super.attributes,
       active,
-      secret,
+      secret: secret_attribute,
       url: { ...url, description: "target url", writable: true },
       content_type: { type: "string", default: "json", writable: true },
       insecure_ssl: boolean_attribute,
@@ -22,6 +27,6 @@ export class Hook extends OwnedObject {
   }
 
   static get delteteMethodName() {
-  	return "_deleteHook";
+    return "_deleteHook";
   }
 }
