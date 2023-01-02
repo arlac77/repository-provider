@@ -115,6 +115,7 @@ export class BaseProvider extends BaseObject {
       messageDestination: {
         type: "object",
         default: console,
+        mandatory: false,
         writable: true,
         private: true
       }

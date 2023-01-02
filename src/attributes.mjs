@@ -1,12 +1,14 @@
 export const boolean_attribute = {
   type: "boolean",
   default: false,
+  mandatory: false,
   writable: true
 };
 
 export const boolean_read_only_attribute = {
   type: "boolean",
-  default: false
+  default: false,
+  mandatory: false
 };
 
 export const uuid_attiribute = { isKey: true, type: "string" };
@@ -16,7 +18,7 @@ export const secret_attribute = {
   private: true,
   writable: true
 };
-export const size_attribute = { type: "integer" };
+export const size_attribute = { type: "integer", mandatory: false };
 export const name_attribute = {
   type: "string",
   isKey: true
@@ -30,9 +32,9 @@ export const url = { description: "home of the object", type: "url" };
 export const description = {
   type: "string",
   description: "human readable description",
+  mandatory: false,
   writable: true
 };
-
 
 /**
  * Unique id within the provider.
@@ -52,7 +54,8 @@ export const body = { type: "string", writable: true };
 export const title = {
   type: "string",
   description: "human readable title",
-  writable: true
+  writable: true,
+  mandatory: false
 };
 
 /**
@@ -62,9 +65,15 @@ export const title = {
 export const priority = {
   type: "number",
   default: 0,
-  writable: true
+  writable: true,
+  mandatory: false
 };
 
-export const active = { type: "boolean", default: true, writable: true };
+export const active = {
+  type: "boolean",
+  default: true,
+  mandatory: false,
+  writable: true
+};
 export const language = { type: "string" };
 export const type = { type: "string" };
