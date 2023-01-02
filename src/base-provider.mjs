@@ -8,7 +8,7 @@ import { Hook } from "./hook.mjs";
 import { Project } from "./project.mjs";
 import { Milestone } from "./milestone.mjs";
 import { BaseObject } from "./base-object.mjs";
-import { url, name_attribute, description, priority } from "./attributes.mjs";
+import { url_attribute, name_attribute, description_attribute, priority_attribute } from "./attributes.mjs";
 
 /**
  * @typedef {Object} MessageDestination
@@ -97,9 +97,9 @@ export class BaseProvider extends BaseObject {
 
   static get attributes() {
     return {
-      url,
-      description,
-      priority,
+      url: url_attribute,
+      description : description_attribute,
+      priority: priority_attribute,
 
       /**
        * Name of the provider.

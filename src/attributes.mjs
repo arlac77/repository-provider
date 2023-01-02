@@ -24,12 +24,12 @@ export const name_attribute = {
   isKey: true
 };
 
-export const url = { description: "home of the object", type: "url" };
+export const url_attribute = { description: "home of the object", type: "url" };
 
 /**
  * The description of the object content.
  */
-export const description = {
+export const description_attribute = {
   type: "string",
   description: "human readable description",
   mandatory: false,
@@ -39,7 +39,7 @@ export const description = {
 /**
  * Unique id within the provider.
  */
-export const id = { isKey: true, type: "string" };
+export const id_attribute = { isKey: true, type: "string" };
 
 export const state = { type: "string" };
 
@@ -62,7 +62,7 @@ export const title = {
  * In case there are several providers able to support a given source which one sould be used ?
  * this defines the order
  */
-export const priority = {
+export const priority_attribute = {
   type: "number",
   default: 0,
   writable: true,

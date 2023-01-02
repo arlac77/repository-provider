@@ -4,7 +4,7 @@ import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { url, size_attribute, language, boolean_attribute, boolean_read_only_attribute } from "./attributes.mjs";
+import { url_attribute, size_attribute, language, boolean_attribute, boolean_read_only_attribute } from "./attributes.mjs";
 
 /**
  * Abstract repository
@@ -43,7 +43,7 @@ export class Repository extends OwnedObject {
   static get attributes() {
     return {
       ...super.attributes,
-      url,
+      url: url_attribute,
       size_attribute,
       language,
 
@@ -53,13 +53,13 @@ export class Repository extends OwnedObject {
        */
       defaultBranchName: { type: "string", default: "master" },
 
-      cloneURL: url,
+      cloneURL: url_attribute,
 
       /**
        * The url of issue tracking system.
        * @return {string}
        */
-      issuesURL: url,
+      issuesURL: url_attribute,
       isArchived: boolean_attribute,
       isLocked: boolean_attribute,
       isDisabled: boolean_attribute,
