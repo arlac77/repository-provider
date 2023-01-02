@@ -66,7 +66,6 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-7)
 *   [description](#description)
 *   [id](#id)
-*   [uuid](#uuid)
 *   [body](#body)
 *   [title](#title)
 *   [priority](#priority)
@@ -184,7 +183,6 @@ console.log(await readme.getString());
     *   [Properties](#properties-6)
     *   [equals](#equals-2)
         *   [Parameters](#parameters-41)
-    *   [fullName](#fullname-1)
     *   [toJSON](#tojson-1)
     *   [attributes](#attributes-1)
 *   [homePageURL](#homepageurl)
@@ -196,6 +194,7 @@ console.log(await readme.getString());
     *   [api](#api)
     *   [provider](#provider-1)
     *   [identifier](#identifier)
+    *   [fullName](#fullname-1)
     *   [trace](#trace)
         *   [Parameters](#parameters-44)
     *   [info](#info)
@@ -488,10 +487,6 @@ The description of the object content.
 ## id
 
 Unique id within the provider.
-
-## uuid
-
-Unique id.
 
 ## body
 
@@ -1110,10 +1105,6 @@ Check for equality.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if names are equal and have the same provider
 
-### fullName
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name with owner name
-
 ### toJSON
 
 Provided name and all defined attributes.
@@ -1172,6 +1163,10 @@ Returns **[BaseProvider](#baseprovider)**&#x20;
 Short human readable identifier with provider and branch.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+### fullName
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name with owner name
 
 ### trace
 
