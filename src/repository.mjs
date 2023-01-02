@@ -4,7 +4,7 @@ import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
-import { url_attribute, size_attribute, language, boolean_attribute, boolean_read_only_attribute } from "./attributes.mjs";
+import { url_attribute, size_attribute, language_attribute, boolean_attribute, boolean_read_only_attribute } from "./attributes.mjs";
 
 /**
  * Abstract repository
@@ -44,8 +44,8 @@ export class Repository extends OwnedObject {
     return {
       ...super.attributes,
       url: url_attribute,
-      size_attribute,
-      language,
+      size: size_attribute,
+      language: language_attribute,
 
       /**
        * The name of the default branch

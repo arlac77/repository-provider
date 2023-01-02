@@ -75,5 +75,5 @@ export const active = {
   mandatory: false,
   writable: true
 };
-export const language = { type: "string" };
-export const type = { type: "string" };
+export const language_attribute = { type: "string", mandatory: false };
+export const type = { type: "string", mandatory: false };
