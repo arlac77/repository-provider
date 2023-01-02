@@ -16,7 +16,7 @@ export class NamedObject extends BaseObject {
    */
   static get attributes() {
     return {
-      name_attribute,
+      name: name_attribute,
       id,
       description,
 
