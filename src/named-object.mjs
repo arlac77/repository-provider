@@ -18,13 +18,7 @@ export class NamedObject extends BaseObject {
     return {
       name: name_attribute,
       id: id_attribute,
-      description: description_attribute,
-
-      /**
-       * The url of home page.
-       * @return {string}
-       */
-      homePageURL: { ...url_attribute, writable: true }
+      description: description_attribute
     };
   }
 
