@@ -106,8 +106,7 @@ export class PullRequest extends OwnedObject {
       state: {
         ...state_attribute,
         default: "OPEN",
-        values: new Set(["OPEN", "MERGED", "CLOSED"]),
-        writable: true
+        values: new Set(["OPEN", "MERGED", "CLOSED"])
       },
 
       /**
