@@ -64,11 +64,11 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-6)
 *   [mapAttributesInverse](#mapattributesinverse)
     *   [Parameters](#parameters-7)
-*   [description](#description)
-*   [id](#id)
-*   [body](#body)
-*   [title](#title)
-*   [priority](#priority)
+*   [description\_attribute](#description_attribute)
+*   [id\_attribute](#id_attribute)
+*   [body\_attribute](#body_attribute)
+*   [title\_attribute](#title_attribute)
+*   [priority\_attribute](#priority_attribute)
 *   [BaseObject](#baseobject)
     *   [Parameters](#parameters-8)
     *   [update](#update)
@@ -185,7 +185,6 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-41)
     *   [toJSON](#tojson-1)
     *   [attributes](#attributes-1)
-*   [homePageURL](#homepageurl)
 *   [OwnedObject](#ownedobject)
     *   [Parameters](#parameters-42)
     *   [delete](#delete-1)
@@ -252,7 +251,7 @@ console.log(await readme.getString());
     *   [fullCondensedName](#fullcondensedname-1)
     *   [toString](#tostring-1)
     *   [issuesURL](#issuesurl)
-    *   [homePageURL](#homepageurl-1)
+    *   [homePageURL](#homepageurl)
     *   [isLocked](#islocked)
     *   [isArchived](#isarchived)
     *   [isDisabled](#isdisabled)
@@ -264,6 +263,7 @@ console.log(await readme.getString());
     *   [Properties](#properties-9)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type-1)
+*   [homePageURL](#homepageurl-1)
 *   [RepositoryOwner](#repositoryowner)
     *   [Parameters](#parameters-57)
 *   [Repository](#repository-3)
@@ -480,23 +480,23 @@ Filters out null, undefined and empty strings
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
 
-## description
+## description\_attribute
 
 The description of the object content.
 
-## id
+## id\_attribute
 
 Unique id within the provider.
 
-## body
+## body\_attribute
 
 The description of the pull request.
 
-## title
+## title\_attribute
 
 The one line description of the pull request.
 
-## priority
+## priority\_attribute
 
 In case there are several providers able to support a given source which one sould be used ?
 this defines the order
@@ -1113,12 +1113,6 @@ Provided name and all defined attributes.
 
 options
 
-## homePageURL
-
-The url of home page.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
 ## OwnedObject
 
 **Extends NamedObject**
@@ -1558,6 +1552,12 @@ Map attributes between external and internal representation.
 ## type
 
 Type of the repository group either User or Organization.
+
+## homePageURL
+
+The url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 ## RepositoryOwner
 
