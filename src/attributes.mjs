@@ -41,7 +41,7 @@ export const description_attribute = {
  */
 export const id_attribute = { isKey: true, type: "string" };
 
-export const state_attribute = { type: "string" };
+export const state_attribute = { type: "string", writeable: true };
 
 /**
  * The description of the pull request.
