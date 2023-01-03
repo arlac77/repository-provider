@@ -48,7 +48,12 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
       type: type_attribute,
       url: url_attribute,
       avatarURL: url_attribute,
-      isAdmin: boolean_attribute
+      isAdmin: boolean_attribute,
+      /**
+       * The url of home page.
+       * @return {string}
+       */
+      homePageURL: { ...url_attribute, writable: true }
     };
   }
 
