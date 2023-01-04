@@ -30,8 +30,8 @@ export class BaseObject {
    */
   static get attributes() {
     return {
-      description: description_attribute,
-      id: id_attribute
+      id: id_attribute,
+      description: description_attribute
     };
   }
 
