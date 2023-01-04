@@ -42,13 +42,10 @@ export function RepositoryOwner(base) {
      * @return {Promise<Repository>}
      */
     async repository(name) {
-      if (name === undefined) {
-        return undefined;
+      if (name !== undefined) {
+        await this.initializeRepositories();
+        return this.#repositories.get(this.normalizeRepositoryName(name, true));
       }
-
-      await this.initializeRepositories();
-
-      return this.#repositories.get(this.normalizeRepositoryName(name, true));
     }
 
     /**
