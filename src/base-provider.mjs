@@ -14,6 +14,7 @@ import { url_attribute, name_attribute, description_attribute, priority_attribut
  * @typedef {Object} MessageDestination
  * Endpoint to deliver log messages to.
  * @property {Function} info
+ * @property {Function} debug
  * @property {Function} warn
  * @property {Function} error
  * @property {Function} trace
@@ -97,10 +98,6 @@ export class BaseProvider extends BaseObject {
 
   static get attributes() {
     return {
-      url: url_attribute,
-      description : description_attribute,
-      priority: priority_attribute,
-
       /**
        * Name of the provider.
        */
@@ -108,6 +105,10 @@ export class BaseProvider extends BaseObject {
         ...name_attribute,
         env: ["{{instanceIdentifier}}NAME"]
       },
+
+      url: url_attribute,
+      description : description_attribute,
+      priority: priority_attribute,
 
       /**
        * To forward info/warn and error messages to
