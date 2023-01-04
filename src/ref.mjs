@@ -1,5 +1,5 @@
 import { OwnedObject } from "./owned-object.mjs";
-import { boolean_attribute } from "./attributes.mjs";
+import { name_attribute, boolean_attribute } from "./attributes.mjs";
 
 /**
  * @typedef {Object} ContentEntry
@@ -16,7 +16,7 @@ export class Ref extends OwnedObject {
    */
   static get attributes() {
     return {
-      ...super.attributes,
+      name: name_attribute,
 
       /**
        * Can the ref be modified.
@@ -28,7 +28,6 @@ export class Ref extends OwnedObject {
 
   static get attributeMapping() {
     return {
-      ...super.attributeMapping,
       protected: "isProtected"
     };
   }
