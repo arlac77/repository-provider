@@ -11,13 +11,11 @@ import { name_attribute, url_attribute, description_attribute, id_attribute } fr
  * @property {string} name
  */
 export class NamedObject extends BaseObject {
-  /**
-   * options
-   */
+
   static get attributes() {
     return {
-      name: name_attribute,
       id: id_attribute,
+      name: name_attribute,
       description: description_attribute
     };
   }
