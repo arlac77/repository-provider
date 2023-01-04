@@ -13,6 +13,11 @@ export class OwnedObject extends NamedObject {
     return "_add" + this.name;
   }
 
+  /**
+   * Method name to be called to unregister one instance in the owner.
+   * sample: Application => _deleteApplication
+   * @return {string}
+   */
   static get deleteMethodName() {
     return "_delete" + this.name;
   }
