@@ -1,5 +1,5 @@
 import { OwnedObject } from "./owned-object.mjs";
-import { boolean_read_only_attribute } from "./attributes.mjs";
+import { boolean_attribute } from "./attributes.mjs";
 
 /**
  * @typedef {Object} ContentEntry
@@ -22,7 +22,7 @@ export class Ref extends OwnedObject {
        * Can the ref be modified.
        * @return {string}
        */
-      isProtected: boolean_read_only_attribute
+      isProtected: boolean_attribute
     };
   }
 
