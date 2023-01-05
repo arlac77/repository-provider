@@ -59,6 +59,14 @@ export class BaseObject {
    * @param {object} additionalProperties
    */
   constructor(options, additionalProperties) {
+    this.updateAttributes(options, additionalProperties);
+  }
+
+  /**
+   * Takes values from options.
+   * @param {object} options
+   */
+  updateAttributes(options, additionalProperties) {
     definePropertiesFromOptions(
       this,
       mapAttributes(options, this.constructor.attributeMapping),
