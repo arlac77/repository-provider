@@ -18,6 +18,7 @@ export const secret_attribute = {
   private: true,
   writable: true
 };
+export const count_attribute = { type: "integer" };
 export const size_attribute = { type: "integer", mandatory: false };
 export const name_attribute = {
   type: "string",
