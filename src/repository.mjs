@@ -60,11 +60,6 @@ export class Repository extends OwnedObject {
 
       cloneURL: url_attribute,
 
-      /**
-       * The url of issue tracking system.
-       * @return {string}
-       */
-      issuesURL: url_attribute,
       isArchived: boolean_attribute,
       isLocked: boolean_attribute,
       isDisabled: boolean_attribute,
