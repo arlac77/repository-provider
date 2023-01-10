@@ -25,7 +25,7 @@ test("pullRequest create numeric", async t => {
 });
 
 test("pullRequest create", async t => {
-  const provider = new SingleGroupProvider();
+  const provider = new SingleGroupProvider({ url: "https:/mydomain.com/" });
   const repository = await provider.createRepository("r1");
   const b1 = await repository.createBranch("b1");
   const b2 = await repository.createBranch("b2");
@@ -52,7 +52,7 @@ test("pullRequest create", async t => {
   t.is(pr.empty, undefined);
   t.is(pr.id, "123456");
   t.is(pr.identifier, "SingleGroupProvider:r1#b2[4711]");
-  t.is(pr.url, "/r1/pull/4711");
+  t.is(pr.url, "https:/mydomain.com/SingleGroupProvider/r1/pull/4711");
 
   t.deepEqual(pr.toJSON(), {
     name: "4711",
@@ -66,7 +66,7 @@ test("pullRequest create", async t => {
     source: b2,
     state: "CLOSED",
     title: "a title",
-    url: "/r1/pull/4711"
+    url: "https:/mydomain.com/SingleGroupProvider/r1/pull/4711"
   });
 
   t.is(
