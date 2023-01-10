@@ -177,7 +177,7 @@ export class PullRequest extends OwnedObject {
    * @return {string} url
    */
   get url() {
-    return `${this.repository.api}/pull/${this.name}`;
+    return `${this.repository.url}/pull/${this.name}`;
   }
 
   get number() {

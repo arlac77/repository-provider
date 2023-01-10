@@ -53,6 +53,14 @@ export class OwnedObject extends NamedObject {
   }
 
   /**
+   * URL as given by the owner.
+   * @return {string} url
+   */
+  get url() {
+    return this.owner.url;
+  }
+
+  /**
    * The provider we live in.
    * @return {BaseProvider}
    */

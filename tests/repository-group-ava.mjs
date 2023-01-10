@@ -8,11 +8,13 @@ import {
 } from "repository-provider";
 import { createMessageDestination } from "repository-provider-test-support";
 
-test("RepositoryGroup type", t => t.is(RepositoryGroup.type, "repository-group"));
-test("RepositoryGroup collection name", t => t.is(RepositoryGroup.collectionName, "repositoryGroups"));
+test("RepositoryGroup type", t =>
+  t.is(RepositoryGroup.type, "repository-group"));
+test("RepositoryGroup collection name", t =>
+  t.is(RepositoryGroup.collectionName, "repositoryGroups"));
 
 test("repository-group create with options", t => {
-  const provider = new MultiGroupProvider();
+  const provider = new MultiGroupProvider({ url: "https://somewhere.com/" });
   const rg = new RepositoryGroup(provider, "rg", {
     description: "a description",
     id: "4711",
@@ -34,7 +36,8 @@ test("repository-group create with options", t => {
     id: "4711",
     description: "a description",
     homePageURL: "http://somewhere/rg",
-    isAdmin: true
+    isAdmin: true,
+    url: "https://somewhere.com/"
   });
 });
 
@@ -109,7 +112,7 @@ test("owner get repository with branch", async t => {
 });
 
 test("owner repository url", async t => {
-  const provider = new MultiGroupProvider({ url: "https://myprovider.com/"});
+  const provider = new MultiGroupProvider({ url: "https://myprovider.com/" });
   const group = new RepositoryGroup(provider, "g1");
   const repository = group.addRepository("r1");
   t.is(repository.url, "https://myprovider.com/g1/r1");
