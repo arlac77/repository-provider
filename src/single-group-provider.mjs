@@ -26,12 +26,10 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
    * @return {Promise<RepositoryGroup>} deliver the one and only present group
    */
   async repositoryGroup(name) {
-    if (name !== undefined) {
-      const { base } = this.parseName(name);
+    const { base } = this.parseName(name);
 
-      if (this.supportsBase(base)) {
-        return this;
-      }
+    if (name && this.supportsBase(base)) {
+      return this;
     }
   }
 
