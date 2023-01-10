@@ -192,6 +192,7 @@ console.log(await readme.getString());
     *   [equals](#equals-3)
         *   [Parameters](#parameters-44)
     *   [api](#api)
+    *   [url](#url-2)
     *   [provider](#provider-1)
     *   [identifier](#identifier)
     *   [fullName](#fullname-1)
@@ -218,7 +219,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-50)
     *   [Properties](#properties-7)
     *   [fullName](#fullname-2)
-    *   [url](#url-2)
+    *   [url](#url-3)
     *   [repository](#repository-1)
     *   [delete](#delete-2)
     *   [merge](#merge)
@@ -1150,6 +1151,12 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### api
 
 API as given by the owner.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
+
+### url
+
+URL as given by the owner.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
 
