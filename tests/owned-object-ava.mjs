@@ -30,6 +30,7 @@ const owner = {
 
   name: "aOwner",
   api: "myAPI",
+  url: "myURL",
   provider: {
     name: "aProvider",
     equals(other) {
@@ -48,6 +49,11 @@ const owner = {
 test("OwnedObject api", t => {
   const object = new OwnedObject(owner, "aName");
   t.is(object.api, "myAPI");
+});
+
+test("OwnedObject url", t => {
+  const object = new OwnedObject(owner, "aName");
+  t.is(object.url, "myURL");
 });
 
 test("OwnedObject equals", t => {
