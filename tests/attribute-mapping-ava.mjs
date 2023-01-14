@@ -54,16 +54,6 @@ test(
   }
 );
 
-test.skip(
-  mait,
-  { "a": { b: 1 }, b: "2" },
-  { "a.b": "a" },
-  {
-    a: 1,
-    b: "2"
-  }
-);
-
 test(
   mat,
   { a: 1, b: "2", c: "", d: null, e: undefined },
@@ -85,10 +75,21 @@ test(
 );
 
 test.skip(
+  mait,
+  { "a": { b: 1 }, b: "2" },
+  { "a.b": "b" },
+  {
+    a: 1,
+    b: "2"
+  }
+);
+
+test.skip(
   mat,
   { a: { b: { c: 1 } } },
   { "a.b.c": "a'" },
   {
+    a: { b: {}},
     "a'": 1
   }
 );
