@@ -21,13 +21,15 @@ gat.title = (providedTitle, object, key) =>
 
 test(gat, undefined, "a", undefined);
 test(gat, { a: 1 }, "a", 1);
+test(gat, { b: 1 }, "b>", 1);
+test(gat, { b: 1 }, "b<", 1);
 test(gat, { a: { b: 1 } }, "a.b", 1);
 test(gat, { "a.b": 1 }, "a.b", 1);
 test(gat, {}, "x.y.z", undefined);
 test(gat, [1, 2], "[1]", 2);
 test(gat, [1, 2, 3], " [ 1 ] ", 2);
-test(gat, [1, { b: 3 }], "[1].b", 3);
-test(gat, [1, { c: 3 }], " [1 ] .c ", 3);
+test(gat, [0, { b: 3 }], "[1].b", 3);
+test(gat, [0, { c: 3 }], " [1 ] .c ", 3);
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);

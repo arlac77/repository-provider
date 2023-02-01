@@ -137,16 +137,22 @@ export function defaultValues(attributes, object) {
 
 /**
  * Split property path into tokens
- * @param {string} string 
+ * @param {string} string
  * @return {Iterator<string>}
  */
 function* tokens(string) {
   let identifier = "";
 
+
   for (const c of string) {
     switch (c) {
       case "\t":
-      case " ": break;
+      case " ":
+        break;
+
+      case ">":
+      case "<":
+
       case ".":
       case "[":
       case "]":
@@ -179,20 +185,22 @@ export function setAttribute(object, name, value) {
 
   for (const token of tokens(name)) {
     switch (token) {
+      case ">":
+      case "<":
       case ".":
-        case "[":
-        case "]":
-          break;
-  
-        default:
-          if (object[token] === undefined || typeof object[token] !== "object") {
-            object[token] = {};
-          }
+      case "[":
+      case "]":
+        break;
 
-          lastObject = object;
-          lastKey = token;
+      default:
+        if (object[token] === undefined || typeof object[token] !== "object") {
+          object[token] = {};
+        }
 
-          object = object[token];
+        lastObject = object;
+        lastKey = token;
+
+        object = object[token];
     }
   }
 
@@ -213,6 +221,8 @@ export function getAttribute(object, name) {
 
   for (const token of tokens(name)) {
     switch (token) {
+      case ">":
+      case "<":
       case ".":
       case "[":
       case "]":
