@@ -1,4 +1,4 @@
-import { optionJSON } from "./attribute.mjs";
+import { optionJSON } from "./attribute-extras.mjs";
 import { BaseObject } from "./base-object.mjs";
 import { name_attribute, url_attribute, description_attribute, id_attribute } from "./attributes.mjs";
 

@@ -1,4 +1,4 @@
-import { optionJSON } from "./attribute.mjs";
+import { optionJSON } from "./attribute-extras.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
