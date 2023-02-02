@@ -52,17 +52,17 @@ console.log(await readme.getString());
     *   [Parameters](#parameters)
 *   [defaultValues](#defaultvalues)
     *   [Parameters](#parameters-1)
-*   [tokens](#tokens)
-    *   [Parameters](#parameters-2)
-*   [setAttribute](#setattribute)
-    *   [Parameters](#parameters-3)
-*   [getAttribute](#getattribute)
-    *   [Parameters](#parameters-4)
 *   [optionJSON](#optionjson)
-    *   [Parameters](#parameters-5)
+    *   [Parameters](#parameters-2)
 *   [mapAttributes](#mapattributes)
-    *   [Parameters](#parameters-6)
+    *   [Parameters](#parameters-3)
 *   [mapAttributesInverse](#mapattributesinverse)
+    *   [Parameters](#parameters-4)
+*   [tokens](#tokens)
+    *   [Parameters](#parameters-5)
+*   [setAttribute](#setattribute)
+    *   [Parameters](#parameters-6)
+*   [getAttribute](#getattribute)
     *   [Parameters](#parameters-7)
 *   [description\_attribute](#description_attribute)
 *   [id\_attribute](#id_attribute)
@@ -408,39 +408,6 @@ Get default values.
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** filled with default values
 
-## tokens
-
-Split property path into tokens
-
-### Parameters
-
-*   `string` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
-Returns **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
-
-## setAttribute
-
-Set Object attribute.
-The name may be a property path like 'a.b.c'.
-
-### Parameters
-
-*   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-*   `value` **any**&#x20;
-
-## getAttribute
-
-Deliver attribute value.
-The name may be a property path like 'a.b.c'.
-
-### Parameters
-
-*   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
-Returns **any** value associated with the given property name
-
 ## optionJSON
 
 Create json based on present options.
@@ -481,6 +448,39 @@ Filters out null, undefined and empty strings
 *   `mapping` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
+
+## tokens
+
+Split property path into tokens
+
+### Parameters
+
+*   `string` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+Returns **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
+
+## setAttribute
+
+Set Object attribute.
+The name may be a property path like 'a.b.c'.
+
+### Parameters
+
+*   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+*   `value` **any**&#x20;
+
+## getAttribute
+
+Deliver attribute value.
+The name may be a property path like 'a.b.c'.
+
+### Parameters
+
+*   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+Returns **any** value associated with the given property name
 
 ## description\_attribute
 
