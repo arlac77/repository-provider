@@ -1,4 +1,3 @@
-
 import { setAttribute, getAttribute } from "./attribute.mjs";
 
 /**
@@ -155,11 +154,7 @@ export function optionJSON(
     ? Object.keys(attributes).reduce((a, c) => {
         const value = object[c];
         if (value !== undefined && !(value instanceof Function)) {
-          if (value instanceof Set) {
-            a[c] = [...value];
-          } else {
-            a[c] = value;
-          }
+          a[c] = value instanceof Set ? [...value] : value;
         }
         return a;
       }, initial)
