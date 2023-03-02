@@ -411,13 +411,6 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
-   * @return url of the provider.
-   */
-  get url() {
-    return "/";
-  }
-
-  /**
    * List all defined entries from attributes.
    * return {object}
    */

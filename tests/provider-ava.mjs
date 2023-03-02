@@ -1,13 +1,16 @@
 import test from "ava";
-import { providerTest, createMessageDestination } from "repository-provider-test-support";
+import {
+  providerTest,
+  createMessageDestination
+} from "repository-provider-test-support";
 import { SingleGroupProvider, MultiGroupProvider } from "repository-provider";
 
-
 test("MultiGroupProvider type", t => t.is(MultiGroupProvider.type, "provider"));
-test("SingleGroupProvider type", t => t.is(SingleGroupProvider.type, "provider"));
+test("SingleGroupProvider type", t =>
+  t.is(SingleGroupProvider.type, "provider"));
 
-test(providerTest, new SingleGroupProvider());
-test(providerTest, new MultiGroupProvider());
+test(providerTest, new SingleGroupProvider({ url: "/" }));
+test(providerTest, new MultiGroupProvider({ url: "/" }));
 
 test("messageDestination default", t => {
   const sp = new SingleGroupProvider();

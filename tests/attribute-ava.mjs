@@ -199,6 +199,5 @@ test(
     id: 1,
     isAdmin: false,
     name: "a",
-    url: "/"
   }
 );
