@@ -164,8 +164,7 @@ export function RepositoryOwner(base) {
 
     _addRepository(repository)
     {
-      const normalizedName = this.normalizeRepositoryName(repository.name, true);
-      this.#repositories.set(normalizedName, repository);
+      this.#repositories.set(this.normalizeRepositoryName(repository.name, true), repository);
     }
 
     /**
