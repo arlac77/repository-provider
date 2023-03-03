@@ -177,7 +177,7 @@ export class BaseProvider extends BaseObject {
    * @return {boolean} true if base is supported or base is undefined
    */
   supportsBase(base) {
-    return base === undefined || this.repositoryBases.indexOf(base) >= 0;
+    return base === undefined || this.repositoryBases.indexOf(base) >= 0;
   }
 
   /**
