@@ -172,6 +172,15 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
+   * Does the provider support the base name.
+   * @param {string} base to be checked
+   * @return {boolean} true if base is supported or base is undefined
+   */
+  supportsBase(base) {
+    return base === undefined || this.repositoryBases.indexOf(base) >= 0;
+  }
+
+  /**
    * Bring a repository name into its normal form by removing any clutter.
    * like .git suffix or #branch names.
    * @param {string} name
@@ -215,25 +224,6 @@ export class BaseProvider extends BaseObject {
    */
   get areGroupNamesCaseSensitive() {
     return true;
-  }
-
-  /**
-   * Does the provider support the base name.
-   * @param {string} base to be checked
-   * @return {boolean} true if base is supported or base is undefined
-   */
-  supportsBase(base) {
-    if (base === undefined) {
-      return true;
-    }
-
-    for (const b of this.repositoryBases) {
-      if (b === base) {
-        return true;
-      }
-    }
-
-    return false;
   }
 
   /**
