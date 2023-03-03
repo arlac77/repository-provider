@@ -93,14 +93,14 @@ console.log(await readme.getString());
     *   [equals](#equals-1)
         *   [Parameters](#parameters-11)
     *   [repositoryBases](#repositorybases)
-    *   [normalizeRepositoryName](#normalizerepositoryname)
+    *   [supportsBase](#supportsbase)
         *   [Parameters](#parameters-12)
-    *   [normalizeGroupName](#normalizegroupname)
+    *   [normalizeRepositoryName](#normalizerepositoryname)
         *   [Parameters](#parameters-13)
+    *   [normalizeGroupName](#normalizegroupname)
+        *   [Parameters](#parameters-14)
     *   [areRepositoryNamesCaseSensitive](#arerepositorynamescasesensitive)
     *   [areGroupNamesCaseSensitive](#aregroupnamescasesensitive)
-    *   [supportsBase](#supportsbase)
-        *   [Parameters](#parameters-14)
     *   [parseName](#parsename)
         *   [Parameters](#parameters-15)
     *   [createRepository](#createrepository)
@@ -123,7 +123,6 @@ console.log(await readme.getString());
         *   [Parameters](#parameters-24)
     *   [name](#name)
     *   [provider](#provider)
-    *   [url](#url)
     *   [toJSON](#tojson)
     *   [repositoryGroupClass](#repositorygroupclass)
     *   [hookClass](#hookclass)
@@ -144,7 +143,7 @@ console.log(await readme.getString());
 *   [Branch](#branch)
     *   [Parameters](#parameters-28)
     *   [Properties](#properties-3)
-    *   [url](#url-1)
+    *   [url](#url)
     *   [refType](#reftype)
     *   [isWritable](#iswritable-1)
     *   [isDefault](#isdefault)
@@ -192,7 +191,7 @@ console.log(await readme.getString());
     *   [equals](#equals-3)
         *   [Parameters](#parameters-44)
     *   [api](#api)
-    *   [url](#url-2)
+    *   [url](#url-1)
     *   [provider](#provider-1)
     *   [identifier](#identifier)
     *   [fullName](#fullname-1)
@@ -219,7 +218,7 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-50)
     *   [Properties](#properties-7)
     *   [fullName](#fullname-2)
-    *   [url](#url-3)
+    *   [url](#url-2)
     *   [repository](#repository-1)
     *   [delete](#delete-2)
     *   [merge](#merge)
@@ -631,6 +630,16 @@ For github something like:
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** common base urls of all repositories
 
+### supportsBase
+
+Does the provider support the base name.
+
+#### Parameters
+
+*   `base` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** to be checked
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if base is supported or base is undefined
+
 ### normalizeRepositoryName
 
 Bring a repository name into its normal form by removing any clutter.
@@ -668,16 +677,6 @@ Are repositroy group names case sensitive.
 Overwrite and return false if you want to have case insensitive group lookup
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true
-
-### supportsBase
-
-Does the provider support the base name.
-
-#### Parameters
-
-*   `base` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** to be checked
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if base is supported or base is undefined
 
 ### parseName
 
@@ -792,10 +791,6 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 We are our own provider.
 
 Returns **[BaseProvider](#baseprovider)** this
-
-### url
-
-Returns **any** url of the provider.
 
 ### toJSON
 
