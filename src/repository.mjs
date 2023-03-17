@@ -403,7 +403,7 @@ export class Repository extends OwnedObject {
    * @param {Hook} hook
    */
   async createHook(hook) {
-    this.addHook(hook);
+    this._addHook(hook);
   }
 
   /**
