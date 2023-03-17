@@ -109,8 +109,8 @@ export function RepositoryOwner(base) {
      * List entities for a given type and pattern.
      * @param {string} type 
      * @param {string|string[]} patterns 
-     * @param {function} split 
-     * @param {Object} defaultItem
+     * @param {function?} split 
+     * @param {Object?} defaultItem
      * @return {AsyncIterator<NamedObject>} matching type and pattern
      */
     async *list(type, patterns, split, defaultItem) {
