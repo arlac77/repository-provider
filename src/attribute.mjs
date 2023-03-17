@@ -78,7 +78,7 @@ export function setAttribute(object, name, value) {
  * @returns {any} value associated with the given property name
  */
 export function getAttribute(object, name) {
-  if (object && object[name] !== undefined) {
+  if (object?.[name] !== undefined) {
     return object[name];
   }
 

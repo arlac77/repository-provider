@@ -1,11 +1,5 @@
 import { definePropertiesFromOptions, mapAttributes } from "./attribute-extras.mjs";
 import { description_attribute, id_attribute } from "./attributes.mjs";
-
-/**
- * @typdef {Object} AttributeDefinition
- * @property {string} id
- * @property {Object} env
- */
  
 /**
  * @param {Object} options
