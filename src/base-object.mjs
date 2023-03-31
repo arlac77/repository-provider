@@ -55,8 +55,8 @@ export class BaseObject {
 
   /**
    * Creates an instance of BaseObject.
-   * @param {object} options
-   * @param {object} additionalProperties
+   * @param {Object} options
+   * @param {Object} additionalProperties
    */
   constructor(options, additionalProperties) {
     this.updateAttributes(options, additionalProperties);
@@ -64,7 +64,7 @@ export class BaseObject {
 
   /**
    * Takes values from options.
-   * @param {object} options
+   * @param {Object} options
    */
   updateAttributes(options, additionalProperties) {
     definePropertiesFromOptions(
