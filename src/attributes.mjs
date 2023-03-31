@@ -1,5 +1,5 @@
 /**
- * @type AttributeDefinition
+ * common attributes
  */
 export const default_attribute = {
   type: "string",
