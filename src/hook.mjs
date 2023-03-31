@@ -3,7 +3,8 @@ import {
   secret_attribute,
   boolean_attribute,
   active_attribute,
-  url_attribute
+  url_attribute,
+  default_attribute
 } from "./attributes.mjs";
 
 /**
@@ -16,7 +17,7 @@ export class Hook extends OwnedObject {
       active: active_attribute,
       secret: secret_attribute,
       url: { ...url_attribute, description: "target url", writable: true },
-      content_type: { type: "string", default: "json", writable: true },
+      content_type: { ...default_attribute, default: "json", writable: true },
       insecure_ssl: boolean_attribute,
       events: { type: "set", default: new Set(["*"]) }
     };

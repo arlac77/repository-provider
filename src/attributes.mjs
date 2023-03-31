@@ -1,62 +1,89 @@
-export const boolean_attribute = {
-  type: "boolean",
-  default: false,
+/**
+ * @type AttributeDefinition
+ */
+export const default_attribute = {
+  type: "string",
+  writeable: false,
   mandatory: false,
-  writable: true
+  private: false,
+  isKey: false,
+  additionalAttributes: []
+};
+
+export const boolean_attribute = {
+  ...default_attribute,
+  writeable: true,
+  default: false,
+  type: "boolean"
 };
 
 export const boolean_read_only_attribute = {
+  ...default_attribute,
   type: "boolean",
-  default: false,
-  mandatory: false
+  default: false
 };
 
-export const uuid_attiribute = { isKey: true, type: "string" };
-export const empty_attiribute = { type: "boolean" };
+export const uuid_attiribute = {
+  ...default_attribute,
+  isKey: true
+};
+export const empty_attiribute = { ...default_attribute, type: "boolean" };
 export const secret_attribute = {
-  type: "string",
+  ...default_attribute,
   private: true,
   writable: true
 };
-export const count_attribute = { type: "integer" };
-export const size_attribute = { type: "integer", mandatory: false };
+export const count_attribute = { ...default_attribute, type: "integer" };
+export const size_attribute = { ...default_attribute, type: "integer" };
 export const name_attribute = {
-  type: "string",
+  ...default_attribute,
   isKey: true
 };
 
-export const url_attribute = { description: "home of the object", type: "url" };
+export const url_attribute = {
+  ...default_attribute,
+  description: "home of the object",
+  type: "url"
+};
 
 /**
  * The description of the object content.
  */
 export const description_attribute = {
-  type: "string",
+  ...default_attribute,
   description: "human readable description",
-  mandatory: false,
   writable: true
 };
 
 /**
  * Unique id within the provider.
  */
-export const id_attribute = { isKey: true, type: "string" };
+export const id_attribute = {
+  ...default_attribute,
+  isKey: true,
+  description: "internal identifier"
+};
 
-export const state_attribute = { type: "string", writeable: true };
+export const state_attribute = {
+  ...default_attribute,
+  writeable: true
+};
 
 /**
  * The description of the pull request.
  */
-export const body_attribute = { type: "string", writable: true };
+export const body_attribute = {
+  ...default_attribute,
+  writable: true
+};
 
 /**
  * The one line description of the pull request.
  */
 export const title_attribute = {
-  type: "string",
+  ...default_attribute,
   description: "human readable title",
-  writable: true,
-  mandatory: false
+  writable: true
 };
 
 /**
@@ -64,17 +91,17 @@ export const title_attribute = {
  * this defines the order
  */
 export const priority_attribute = {
+  ...default_attribute,
   type: "number",
   default: 0,
-  writable: true,
-  mandatory: false
+  writable: true
 };
 
 export const active_attribute = {
+  ...default_attribute,
   type: "boolean",
   default: true,
-  mandatory: false,
   writable: true
 };
-export const language_attribute = { type: "string", mandatory: false };
-export const type_attribute = { type: "string", mandatory: false };
+export const language_attribute = default_attribute;
+export const type_attribute = default_attribute;

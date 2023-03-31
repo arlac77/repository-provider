@@ -7,7 +7,8 @@ import { PullRequest } from "./pull-request.mjs";
 import {
   url_attribute,
   boolean_attribute,
-  boolean_read_only_attribute
+  boolean_read_only_attribute,
+  default_attribute
 } from "./attributes.mjs";
 
 /**
@@ -52,7 +53,7 @@ export class Repository extends OwnedObject {
        * The name of the default branch
        * @return {string}
        */
-      defaultBranchName: { type: "string", default: "master" },
+      defaultBranchName: { ...default_attribute, default: "master" },
 
       cloneURL: url_attribute,
 
