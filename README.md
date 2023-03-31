@@ -46,8 +46,6 @@ console.log(await readme.getString());
 ### Table of Contents
 
 *   [Application](#application)
-*   [AttributeDefinition](#attributedefinition)
-    *   [Properties](#properties)
 *   [definePropertiesFromOptions](#definepropertiesfromoptions)
     *   [Parameters](#parameters)
 *   [defaultValues](#defaultvalues)
@@ -58,12 +56,15 @@ console.log(await readme.getString());
     *   [Parameters](#parameters-3)
 *   [mapAttributesInverse](#mapattributesinverse)
     *   [Parameters](#parameters-4)
+*   [AttributeDefinition](#attributedefinition)
+    *   [Properties](#properties)
 *   [tokens](#tokens)
     *   [Parameters](#parameters-5)
 *   [setAttribute](#setattribute)
     *   [Parameters](#parameters-6)
 *   [getAttribute](#getattribute)
     *   [Parameters](#parameters-7)
+*   [default\_attribute](#default_attribute)
 *   [description\_attribute](#description_attribute)
 *   [id\_attribute](#id_attribute)
 *   [body\_attribute](#body_attribute)
@@ -351,23 +352,6 @@ console.log(await readme.getString());
 
 **Extends OwnedObject**
 
-## AttributeDefinition
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
-*   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-*   `writable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
-*   `private` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** should the value be shown
-*   `depends` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** name of an attribute we depend on
-*   `additionalAttributes` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** extra attributes that are present in cas our attribute is set
-*   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-*   `default` **any?** the default value
-*   `set` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** set the value
-*   `get` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** get the value can be used to calculate default values
-*   `env` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>)?** environment variable use to provide the value
-
 ## definePropertiesFromOptions
 
 *   **See**: Object.definedProperties()
@@ -449,6 +433,23 @@ Filters out null, undefined and empty strings
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
 
+## AttributeDefinition
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+*   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+*   `writable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
+*   `private` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** should the value be shown
+*   `depends` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** name of an attribute we depend on
+*   `additionalAttributes` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** extra attributes that are present in cas our attribute is set
+*   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+*   `default` **any?** the default value
+*   `set` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** set the value
+*   `get` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** get the value can be used to calculate default values
+*   `env` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>)?** environment variable use to provide the value
+
 ## tokens
 
 Split property path into tokens
@@ -481,6 +482,8 @@ The name may be a property path like 'a.b.c'.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 Returns **any** value associated with the given property name
+
+## default\_attribute
 
 ## description\_attribute
 
