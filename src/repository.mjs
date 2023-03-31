@@ -12,6 +12,11 @@ import {
 } from "./attributes.mjs";
 
 /**
+ * @typedef {Object} ContentEntry
+ * @property {string} name
+ *
+
+/**
  * Abstract repository
  * @param {RepositoryOwner} owner
  * @param {string} name (#branch) will be removed

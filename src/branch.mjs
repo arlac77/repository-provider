@@ -4,6 +4,11 @@ import { Repository } from "./repository.mjs";
 import { Commit } from "./commit.mjs";
 
 /**
+ * @typedef {Object} ContentEntry
+ * @property {string} name
+ *
+
+/**
  * Abstract branch.
  * @see {@link Repository#_addBranch}
  * @param {RepositoryOwner} owner
