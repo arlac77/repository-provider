@@ -4,6 +4,10 @@ import { Repository } from "./repository.mjs";
 import { Commit } from "./commit.mjs";
 
 /**
+ * @typedef {import('./repository-owner.mjs').RepositoryOwner} RepositoryOwner
+ */
+
+/**
  * @typedef {Object} ContentEntry
  * @property {string} name
  *
