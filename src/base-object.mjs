@@ -83,7 +83,7 @@ export class BaseObject {
    * @return {string} fullName
    */
   toString() {
-    return this.fullName;
+    return this.ifentifier;
   }
 
   /**
@@ -100,6 +100,10 @@ export class BaseObject {
    */
   get fullName() {
     return this.name;
+  }
+
+  get identifier() {
+  	return this.name;
   }
 
   /**
