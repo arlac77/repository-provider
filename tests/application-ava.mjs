@@ -21,4 +21,6 @@ test("init Application", t => {
   t.is(a1.name, "a1");
   t.is(a1.fullName, "o1/a1");
   t.is(a1.displayName, "a1");
+  t.is(a1.toString(), "p1:o1/a1");
+  t.is(a1.identifier, "p1:o1/a1");
 });
