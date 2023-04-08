@@ -21,6 +21,7 @@ test("repository init with options", async t => {
   t.is(repository.slug, "SingleGroupProvider/r1");
   t.is(repository.fullName, "r1");
   t.is(repository.identifier, "SingleGroupProvider:r1");
+  t.is(repository.toString(), "SingleGroupProvider:r1");
   t.is(repository.url, "https://myprovider.com/SingleGroupProvider/r1");
   t.is(repository.type, "git");
   t.is(repository.description, "a description");
@@ -32,7 +33,6 @@ test("repository init with options", async t => {
   t.is(repository.isTemplate, false);
   t.is(repository.isDisabled, false);
   t.is(repository.hasBranches, false);
-  t.is(repository.toString(), "r1");
   t.is(await repository.refId('branches/master'), undefined);
   t.deepEqual(repository.toJSON(), {
     url: "https://myprovider.com/SingleGroupProvider/r1",
@@ -92,8 +92,9 @@ test("repository init without options", t => {
   const repository = new Repository(provider, "r1");
   t.is(repository.owner, provider);
   t.is(repository.name, "r1");
+  t.is(repository.identifier, "SingleGroupProvider:r1");
   t.is(repository.fullName, "r1");
-  t.is(`${repository}`, "r1");
+  t.is(`${repository}`, "SingleGroupProvider:r1");
   t.is(repository.type, "git");
   t.is(repository.description, undefined);
 });
