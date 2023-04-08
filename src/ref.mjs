@@ -122,6 +122,12 @@ export class Ref extends OwnedObject {
       : `${this.owner.fullName}#${this.name}`;
   }
 
+  get identifier() {
+    return this.isDefault
+      ? this.owner.identifier
+      : `${this.owner.identifier}#${this.name}`;
+  }
+
   /**
    * Same as identifier.
    * @return {string}
