@@ -2,11 +2,13 @@ import test from "ava";
 import { Application } from "repository-provider";
 
 test("Application type", t => t.is(Application.type, "application"));
-test("Application collection name", t => t.is(Application.collectionName, "applications"));
+test("Application collection name", t =>
+  t.is(Application.collectionName, "applications"));
 
 test("init Application", t => {
   let theApp;
   const owner = {
+    provider: { name: "p1" },
     name: "o1",
     _addApplication: app => {
       theApp = app;

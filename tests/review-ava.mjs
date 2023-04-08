@@ -8,6 +8,7 @@ test("init Review", t => {
   let theReview;
 
   const owner = {
+    provider: { name: "p1" },
     name: "o1",
     _addReview: review => {
       theReview = review;

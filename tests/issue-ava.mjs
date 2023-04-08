@@ -7,7 +7,12 @@ test("Issue collection name", t => t.is(Issue.collectionName, "issues"));
 test("init Issue", t => {
   let theIssue;
 
-  const owner = { _addIssue: (issue) => { theIssue = issue; } };
+  const owner = {
+    provider: { name: "p1" },
+    _addIssue: issue => {
+      theIssue = issue;
+    }
+  };
   const i = new Issue(owner, "i1");
 
   t.is(theIssue, i);

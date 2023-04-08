@@ -6,7 +6,13 @@ test("Project collection name", t => t.is(Project.collectionName, "projects"));
 
 test("init Project", t => {
   let theProject;
-  const owner = { name: "o1", _addProject: (project) => { theProject = project; } };
+  const owner = {
+    provider: { name: "p1" },
+    name: "o1",
+    _addProject: project => {
+      theProject = project;
+    }
+  };
   const p = new Project(owner, "p1");
 
   t.is(theProject, p);
