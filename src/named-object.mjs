@@ -1,6 +1,10 @@
 import { optionJSON } from "./attribute-extras.mjs";
 import { BaseObject } from "./base-object.mjs";
-import { name_attribute, url_attribute, description_attribute, id_attribute } from "./attributes.mjs";
+import {
+  name_attribute,
+  description_attribute,
+  id_attribute
+} from "./attributes.mjs";
 
 /**
  * Object with a name.
@@ -11,7 +15,6 @@ import { name_attribute, url_attribute, description_attribute, id_attribute } fr
  * @property {string} name
  */
 export class NamedObject extends BaseObject {
-
   static get attributes() {
     return {
       id: id_attribute,
@@ -39,7 +42,7 @@ export class NamedObject extends BaseObject {
       this.provider.equals(other.provider)
     );
   }
-  
+
   /**
    * Provided name and all defined attributes.
    */
