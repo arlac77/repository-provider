@@ -103,7 +103,7 @@ export class BaseObject {
   }
 
   get identifier() {
-  	return this.name;
+  	return this.fullName;
   }
 
   /**

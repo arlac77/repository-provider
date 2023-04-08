@@ -129,14 +129,6 @@ export class Ref extends OwnedObject {
   }
 
   /**
-   * Same as identifier.
-   * @return {string}
-   */
-  toString() {
-    return this.identifier;
-  }
-
-  /**
    * Url of issue tracking system.
    * @see {@link Repository#issuesURL}
    * @return {string} as provided from the repository
