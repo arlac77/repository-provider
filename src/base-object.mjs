@@ -1,6 +1,9 @@
-import { definePropertiesFromOptions, mapAttributes } from "./attribute-extras.mjs";
+import {
+  definePropertiesFromOptions,
+  mapAttributes
+} from "./attribute-extras.mjs";
 import { description_attribute, id_attribute } from "./attributes.mjs";
- 
+
 /**
  * @param {Object} options
  * @param {Object} additionalProperties
@@ -83,7 +86,7 @@ export class BaseObject {
    * @return {string} fullName
    */
   toString() {
-    return this.ifentifier;
+    return this.identifier;
   }
 
   /**
@@ -103,7 +106,7 @@ export class BaseObject {
   }
 
   get identifier() {
-  	return this.fullName;
+    return this.fullName;
   }
 
   /**
