@@ -30,6 +30,8 @@ test("add hook", async t => {
   t.is(hook.name, "hook1");
   t.is(hook.displayName, "hook1");
   t.is(hook.fullName, "r1/hook1");
+  t.is(hook.identifier, "SingleGroupProvider:r1/hook1");
+  t.is(hook.toString(), "SingleGroupProvider:r1/hook1");
   t.deepEqual(hook.events, new Set(["a"]));
 
   t.is(hook.id, 77);
