@@ -4,16 +4,14 @@ import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
+import { RepositoryOwner } from "./repository-owner.mjs";
+import { Commit } from "./commit.mjs";
 import {
   url_attribute,
   boolean_attribute,
   boolean_read_only_attribute,
   default_attribute
 } from "./attributes.mjs";
-
-/**
- * @typedef {import('./repository-owner.mjs').RepositoryOwner} RepositoryOwner
- */
 
 /**
  * @typedef {Object} ContentEntry

@@ -1,5 +1,6 @@
 import { OwnedObject } from "./owned-object.mjs";
 import { name_attribute, boolean_attribute } from "./attributes.mjs";
+import { Repository } from "./repository.mjs";
 
 /**
  * @typedef {Object} ContentEntry

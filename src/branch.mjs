@@ -1,11 +1,8 @@
 import { Ref } from "./ref.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Repository } from "./repository.mjs";
+import { RepositoryOwner } from "./repository-owner.mjs";
 import { Commit } from "./commit.mjs";
-
-/**
- * @typedef {import('./repository-owner.mjs').RepositoryOwner} RepositoryOwner
- */
 
 /**
  * @typedef {Object} ContentEntry
