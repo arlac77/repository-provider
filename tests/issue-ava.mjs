@@ -19,6 +19,6 @@ test("init Issue", t => {
   t.is(i.owner, owner);
   t.is(i.name, "i1");
   t.is(i.displayName, "i1");
-
-  //t.is(i.identifier, "SingleGroupProvider:i1");
+  t.is(i.identifier, "p1:i1");
+  t.is(i.toString(), "p1:i1");
 });

@@ -20,4 +20,6 @@ test("init Project", t => {
   t.is(p.name, "p1");
   t.is(p.fullName, "o1/p1");
   t.is(p.displayName, "p1");
+  t.is(p.identifier, "p1:o1/p1");
+  t.is(p.toString(), "p1:o1/p1");
 });

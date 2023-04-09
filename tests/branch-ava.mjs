@@ -21,6 +21,8 @@ test("branch init", async t => {
 
   t.is(b.fullName, "r1#b1");
   t.is(b.fullCondensedName, "r1#b1");
+  t.is(b.identifier, "SingleGroupProvider:r1#b1");
+  t.is(b.toString(), "SingleGroupProvider:r1#b1");
   t.is(b.url, "http://myprovider.com/r1#b1");
   t.is(b.isDefault, false);
   t.is(b.isLocked, false);

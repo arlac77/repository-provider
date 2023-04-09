@@ -19,4 +19,6 @@ test("init Milestone", t => {
   t.is(m.owner, owner);
   t.is(m.name, "m1");
   t.is(m.displayName, "m1");
+  t.is(m.identifier, "p1:m1");
+  t.is(m.toString(), "p1:m1");
 });

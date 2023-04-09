@@ -86,16 +86,6 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * Full repository name within the provider.
-   * @return {string} full repo name
-   */
-  get fullName() {
-    return this.owner === this.provider || this.owner.name === undefined
-      ? this.name
-      : [this.owner.name, this.name].join("/");
-  }
-
-  /**
    * Name of the repo as used in the URL.
    * @return {string}
    */

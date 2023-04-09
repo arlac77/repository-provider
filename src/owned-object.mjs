@@ -80,7 +80,9 @@ export class OwnedObject extends NamedObject {
    * @return {string} name with owner name
    */
   get fullName() {
-    return this.owner.name + "/" + this.name;
+      return this.owner === this.provider || this.owner.name === undefined
+        ? this.name
+        : this.owner.name + "/" + this.name;
   }
 
   /**
