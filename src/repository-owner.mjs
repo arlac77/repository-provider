@@ -84,7 +84,7 @@ export function RepositoryOwner(base) {
      * @param {string} name
      * @param {function} [split]
      * @param {Object} [defaultItem]
-     * @returns {NamedObject} from a repository
+     * @returns {Promise<NamedObject>} from a repository
      */
     async lookup(type, name, split, defaultItem) {
       if (name !== undefined) {
