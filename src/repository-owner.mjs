@@ -80,10 +80,10 @@ export function RepositoryOwner(base) {
 
     /**
      * Lookup entity of a given type and name.
-     * @param {string} type 
-     * @param {string} name 
-     * @param {function} split 
-     * @param {Object} defaultItem 
+     * @param {string} type
+     * @param {string} name
+     * @param {function} split
+     * @param {Object} defaultItem
      * @returns {NamedObject} from a repository
      */
     async lookup(type, name, split, defaultItem) {
@@ -107,9 +107,9 @@ export function RepositoryOwner(base) {
 
     /**
      * List entities for a given type and pattern.
-     * @param {string} type 
-     * @param {string|string[]} patterns 
-     * @param {function?} split 
+     * @param {string} type
+     * @param {string|string[]} patterns
+     * @param {function?} split
      * @param {Object?} defaultItem
      * @return {AsyncIterator<NamedObject>} matching type and pattern
      */
