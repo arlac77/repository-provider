@@ -20,6 +20,7 @@ import {
 
 /**
  * Abstract repository
+ * @class Repository
  * @param {RepositoryOwner} owner
  * @param {string} name (#branch) will be removed
  * @param {Object} options
