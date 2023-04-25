@@ -41,11 +41,9 @@ export function stripBaseName(name, repositoryBases, whenFound) {
  * @return {string[]|undefined} names without base
  */
 export function stripBaseNames(names, repositoryBases, whenFound) {
-  return names === undefined
-    ? undefined
-    : Array.isArray(names)
+  return Array.isArray(names)
     ? names.map(name => stripBaseName(name, repositoryBases, whenFound))
-    : stripBaseName(names, repositoryBases, whenFound);
+    : names && stripBaseName(names, repositoryBases, whenFound);
 }
 
 /**
