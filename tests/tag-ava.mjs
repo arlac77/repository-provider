@@ -14,7 +14,7 @@ test("tag init", async t => {
   t.is(b.repository, repository);
   t.is(b.provider, provider);
   t.is(b.owner, repository);
-
+  t.is(b.isDefault, false);
   t.is(b.name, "t1");
   t.is(b.ref, "refs/tags/t1");
   t.is(b.isWritable, false);

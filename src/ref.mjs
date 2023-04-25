@@ -4,7 +4,7 @@ import { name_attribute, boolean_attribute } from "./attributes.mjs";
 /**
  * @typedef {Object} ContentEntry
  * @property {string} name
- * 
+ *
  */
 
 /**
@@ -172,6 +172,14 @@ export class Ref extends OwnedObject {
    * @return false
    */
   get isProtected() {
+    return false;
+  }
+
+  /**
+   * Are we the default ref.
+   * @return {boolean} false
+   */
+  get isDefault() {
     return false;
   }
 }
