@@ -37,9 +37,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
 
 /**
  * Loops over names and executes stripBaseName.
- *
  * @param {string|string[]} names
- * @param {*} repositoryBases
  * @param {string[]} repositoryBases all possible bases
  * @param {Function} [whenFound] to be called with the found base name
  * @return {string[]|undefined} names without base
