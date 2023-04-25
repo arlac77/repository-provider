@@ -26,9 +26,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
     }
 
     if (name.startsWith(b)) {
-      if (whenFound) {
-        whenFound(b);
-      }
+      whenFound?.(b);
       return name.slice(b.length);
     }
   }
