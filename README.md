@@ -258,6 +258,7 @@ console.log(await readme.getString());
     *   [isArchived](#isarchived)
     *   [isDisabled](#isdisabled)
     *   [isProtected](#isprotected)
+    *   [isDefault](#isdefault-1)
     *   [attributes](#attributes-1)
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
@@ -1526,6 +1527,12 @@ Forwarded from the repository
 ### isProtected
 
 Returns **any** false
+
+### isDefault
+
+Are we the default ref.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
 ### attributes
 
