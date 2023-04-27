@@ -54,17 +54,18 @@ export class PullRequest extends OwnedObject {
    * States to list pull request by default
    * @return {Set<string>} states to list by default
    */
-  static get defaultListStates() {
-    return new Set(["OPEN"]);
-  }
+  static defaultListStates = new Set(["OPEN"]);
 
   /**
-   * All valid merge methods
-   * @return {Set<string>} valid merge methods
+   * possible states
    */
-  static get validMergeMethods() {
-    return new Set(/*["MERGE", "SQUASH", "REBASE"]*/);
-  }
+  static states = new Set(["OPEN", "MERGED", "CLOSED"]);
+  
+  /**
+   * All valid merge methods
+   * @return {Set<string>} valid merge methods.
+   */
+  static validMergeMethods =new Set(/*["MERGE", "SQUASH", "REBASE"]*/);
 
   /**
    * List all pull request for a given repo.
@@ -106,7 +107,7 @@ export class PullRequest extends OwnedObject {
       state: {
         ...state_attribute,
         default: "OPEN",
-        values: new Set(["OPEN", "MERGED", "CLOSED"])
+        values: this.states
       },
 
       /**

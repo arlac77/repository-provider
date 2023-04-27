@@ -11,6 +11,9 @@ import {
  * Repository hook.
  */
 export class Hook extends OwnedObject {
+
+  static defaultEvents = new Set(["*"]);
+
   static get attributes() {
     return {
       ...super.attributes,
@@ -19,7 +22,7 @@ export class Hook extends OwnedObject {
       url: { ...url_attribute, description: "target url", writable: true },
       content_type: { ...default_attribute, default: "json", writable: true },
       insecure_ssl: boolean_attribute,
-      events: { type: "set", default: new Set(["*"]) }
+      events: { type: "set", default: this.defaultEvents }
     };
   }
 
