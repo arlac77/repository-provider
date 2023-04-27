@@ -60,12 +60,12 @@ export class PullRequest extends OwnedObject {
    * possible states
    */
   static states = new Set(["OPEN", "MERGED", "CLOSED"]);
-  
+
   /**
    * All valid merge methods
    * @return {Set<string>} valid merge methods.
    */
-  static validMergeMethods =new Set(/*["MERGE", "SQUASH", "REBASE"]*/);
+  static validMergeMethods = new Set(/*["MERGE", "SQUASH", "REBASE"]*/);
 
   /**
    * List all pull request for a given repo.
