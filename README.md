@@ -228,6 +228,7 @@ console.log(await readme.getString());
     *   [reviews](#reviews)
     *   [identifier](#identifier-1)
     *   [defaultListStates](#defaultliststates)
+    *   [states](#states)
     *   [validMergeMethods](#validmergemethods)
     *   [list](#list-1)
         *   [Parameters](#parameters-52)
@@ -1352,11 +1353,15 @@ States to list pull request by default
 
 Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** states to list by default
 
+### states
+
+possible states
+
 ### validMergeMethods
 
 All valid merge methods
 
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid merge methods
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid merge methods.
 
 ### list
 
