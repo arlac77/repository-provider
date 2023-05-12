@@ -16,7 +16,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * Lookup a repository in the provider and all of its repository groups.
    * @param {string} name of the repository
-   * @return {Promise<Repository>}
+   * @return {Promise<Repository|undefined>}
    */
   async repository(name) {
     const { base, group, repository } = this.parseName(name);
@@ -35,7 +35,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * Lookup a branch.
    * @param {string} name of the branch
-   * @return {Promise<Branch>}
+   * @return {Promise<Branch|undefined>}
    */
   async branch(name) {
     const { base, group, repository, branch } = this.parseName(name);
@@ -57,7 +57,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * Lookup a repository group.
    * @param {string} name of the group
-   * @return {Promise<RepositoryGroup>}
+   * @return {Promise<RepositoryGroup|undefined>}
    */
   async repositoryGroup(name) {
     const { base } = this.parseName(name);

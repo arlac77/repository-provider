@@ -46,7 +46,7 @@ export class BaseProvider extends BaseObject {
    * Object with the detected key value pairs is delivered.
    * @param {Object} env as from process.env
    * @param {string} instanceIdentifier part of variable name.
-   * @return {Object} undefined if no suitable environment variables have been found
+   * @return {Object|undefined} undefined if no suitable environment variables have been found
    */
   static optionsFromEnvironment(
     env,
@@ -137,7 +137,7 @@ export class BaseProvider extends BaseObject {
    * @param {Object} options additional options
    * @param {string} [options.instanceIdentifier] name of the provider instance
    * @param {Object} env taken from process.env
-   * @return {BaseProvider} newly created provider or undefined if options are not sufficient to construct a provider
+   * @return {BaseProvider|undefined} newly created provider or undefined if options are not sufficient to construct a provider
    */
   static initialize(options = {}, env) {
     options = {

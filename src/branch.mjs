@@ -201,7 +201,7 @@ export class Branch extends Ref {
    * Create a new {@link Branch} by cloning a given source branch.
    * Simply calls Repository.createBranch() with the receiver as source branch
    * @param {string} name the new branch
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
    */
   async createBranch(name, options) {

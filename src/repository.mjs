@@ -251,7 +251,7 @@ export class Repository extends OwnedObject {
    * Add a new {@link Branch}.
    * Internal branch creation does not call repository.initialize()
    * @param {string} name of the new branch
-   * @param {Object} options to be passed to the branch
+   * @param {Object|undefined} options to be passed to the branch
    * @return {Branch} newly created branch
    */
   addBranch(name, options) {
@@ -306,7 +306,7 @@ export class Repository extends OwnedObject {
    * Add a new {@link Tag}.
    * Internal tag creation does not call repository.initialize()
    * @param {string} name of the new tag
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {Tag} newly created tag
    */
   addTag(name, options) {
@@ -321,7 +321,7 @@ export class Repository extends OwnedObject {
    * Create a pull request (or deliver an already present for the given name).
    * @param {string} name of the pr
    * @param {Branch} source branch
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {Promise<PullRequest>}
    */
   async createPullRequest(name, source, options) {
@@ -419,7 +419,7 @@ export class Repository extends OwnedObject {
   /**
    * Get a Hook.
    * @param {string|number} id
-   * @return {Promise<Hook>} for the given id
+   * @return {Promise<Hook|undefined>} for the given id
    */
   async hook(id) {
     for await (const hook of this.hooks()) {

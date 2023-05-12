@@ -7,7 +7,8 @@ export const default_attribute = {
   mandatory: false,
   private: false,
   isKey: false,
-  additionalAttributes: []
+  additionalAttributes: [],
+  env: []
 };
 
 export const boolean_attribute = {
