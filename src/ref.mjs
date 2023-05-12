@@ -70,7 +70,7 @@ export class Ref extends OwnedObject {
   /**
    * Get exactly one matching entry by name or undefine if no such entry is found.
    * @param {string} name
-   * @return {Promise<ContentEntry>}
+   * @return {Promise<ContentEntry|undefined>}
    */
   async maybeEntry(name) {
     return (await this.entries(name).next()).value;
