@@ -38,7 +38,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
  * @param {string|string[]} names
  * @param {string[]} repositoryBases all possible bases
  * @param {Function} [whenFound] to be called with the found base name
- * @return {string[]|undefined} names without base
+ * @return {string[]|string|undefined} names without base
  */
 export function stripBaseNames(names, repositoryBases, whenFound) {
   return Array.isArray(names)
@@ -61,5 +61,5 @@ export async function generateBranchName(repository, pattern) {
     n++;
   }
 
-  return pattern.replace(/\*/, n);
+  return pattern.replace(/\*/, n.toString());
 }

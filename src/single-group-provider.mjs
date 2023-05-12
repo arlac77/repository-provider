@@ -11,7 +11,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   /**
    * Lookup a repository in the provider and all of its repository groups.
    * @param {string} name of the repository
-   * @return {Promise<Repository>}
+   * @return {Promise<Repository|undefined>}
    */
   async repository(name) {
     const { base, repository } = this.parseName(name);
@@ -23,7 +23,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   /**
    * Get a single group.
    * @param {string} name
-   * @return {Promise<RepositoryGroup>} deliver the one and only present group
+   * @return {Promise<RepositoryGroup|undefined>} deliver the one and only present group
    */
   async repositoryGroup(name) {
     const { base } = this.parseName(name);
