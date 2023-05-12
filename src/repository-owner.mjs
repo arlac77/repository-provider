@@ -39,7 +39,7 @@ export function RepositoryOwner(base) {
     /**
      * Lookup a repository.
      * @param {string} name of the repository may contain a #branch
-     * @return {Promise<Repository>}
+     * @return {Promise<Repository|undefined>}
      */
     async repository(name) {
       if (name !== undefined) {
