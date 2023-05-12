@@ -23,7 +23,7 @@ import {
  * @class Repository
  * @param {RepositoryOwner} owner
  * @param {string} name (#branch) will be removed
- * @param {Object} options
+ * @param {Object|undefined} options
  * @param {string} [options.description] human readable description
  * @param {string} [options.id] internal id
  *
@@ -362,7 +362,7 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * The @{link PullRequest} for a given name.
+   * The @see {@link PullRequest} for a given name.
    * @param {string} name
    * @return {Promise<PullRequest>}
    */
@@ -465,7 +465,7 @@ export class Repository extends OwnedObject {
   /**
    * Get sha of a ref.
    * @param {string} ref
-   * @return {Promise<string>} sha of the ref
+   * @return {Promise<string|undefined>} sha of the ref
    */
   async refId(ref) {}
 

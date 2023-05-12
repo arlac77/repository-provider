@@ -12,7 +12,8 @@ import {
   url_attribute,
   name_attribute,
   description_attribute,
-  priority_attribute
+  priority_attribute,
+  default_attribute
 } from "./attributes.mjs";
 
 /**
@@ -119,9 +120,9 @@ export class BaseProvider extends BaseObject {
        * To forward info/warn and error messages to
        */
       messageDestination: {
+        ...default_attribute,
         type: "object",
         default: console,
-        mandatory: false,
         writable: true,
         private: true
       }
@@ -300,7 +301,7 @@ export class BaseProvider extends BaseObject {
    * List provider objects of a given type.
    *
    * @param {string} type name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
-   * @param {string|string[]} patterns group / repository filter
+   * @param {string[]|string} patterns group / repository filter
    */
   async *list(type, patterns) {
     if (patterns === undefined) {

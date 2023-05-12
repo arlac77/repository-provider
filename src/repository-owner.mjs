@@ -1,11 +1,12 @@
 import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
+import { NamedObject } from "./named-object.mjs";
 import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
 
 /**
  * Mixin to define a class able to handle a collection of repositories.
- * @param {Class} base to be extendet
+ * @param {Object} base to be extendet
  */
 export function RepositoryOwner(base) {
   return class RepositoryOwner extends base {
@@ -108,7 +109,7 @@ export function RepositoryOwner(base) {
     /**
      * List entities for a given type and pattern.
      * @param {string} type
-     * @param {string|string[]} patterns
+     * @param {string[]|string} patterns
      * @param {function} [split]
      * @param {Object} [defaultItem]
      * @return {AsyncIterator<NamedObject>} matching type and pattern

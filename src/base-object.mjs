@@ -4,11 +4,12 @@ import {
 } from "./attribute-extras.mjs";
 import { description_attribute, id_attribute } from "./attributes.mjs";
 
-/**
- * @param {Object} options
- * @param {Object} additionalProperties
- */
-export class BaseObject {
+  /**
+   * Creates an instance of BaseObject.
+   * @param {Object|undefined} options
+   * @param {Object|undefined} additionalProperties
+   */
+  export class BaseObject {
   /**
    * @return {string} type we represent
    */
@@ -56,18 +57,13 @@ export class BaseObject {
     return {};
   }
 
-  /**
-   * Creates an instance of BaseObject.
-   * @param {Object} options
-   * @param {Object} additionalProperties
-   */
   constructor(options, additionalProperties) {
     this.updateAttributes(options, additionalProperties);
   }
 
   /**
    * Takes values from options.
-   * @param {Object} options
+   * @param {Object|undefined} options
    */
   updateAttributes(options, additionalProperties) {
     definePropertiesFromOptions(
