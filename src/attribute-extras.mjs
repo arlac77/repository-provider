@@ -32,10 +32,6 @@ export function definePropertiesFromOptions(
   const applyLater = {};
 
   Object.entries(attributes).forEach(([name, attribute]) => {
-    const path = name.split(/\./);
-    const first = path.shift();
-    const property = properties[first];
-
     let value = getAttribute(options, name);
 
     if (value === undefined) {
@@ -67,8 +63,13 @@ export function definePropertiesFromOptions(
       }
     }
 
+    const path = name.split(/\./);
+    const first = path.shift();
+    const property = properties[first];  
+
     if (path.length) {
       const remaining = path.join(".");
+
       if (property) {
         setAttribute(property.value, remaining, value);
       } else {
