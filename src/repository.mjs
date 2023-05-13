@@ -118,7 +118,7 @@ export class Repository extends OwnedObject {
   /**
    * Get exactly one matching entry by name or undefined if no such entry is found.
    * @param {string} name
-   * @return {Promise<ContentEntry>}
+   * @return {Promise<ContentEntry|undefined>}
    */
   async maybeEntry(name) {
     return (await this.defaultBranch).maybeEntry(name);
@@ -198,7 +198,7 @@ export class Repository extends OwnedObject {
 
   /**
    * Lookup the default branch.
-   * @return {Promise<Branch>} branch named after defaultBranchName
+   * @return {Promise<Branch|undefined>} branch named after defaultBranchName
    */
   get defaultBranch() {
     return this.branch(this.defaultBranchName);
