@@ -103,6 +103,7 @@ export function definePropertiesFromOptions(
 /**
  * Get default values.
  * @param {Object} attributes
+ * @param {Object} object
  * @return {Object} filled with default values
  */
 export function defaultValues(attributes, object) {
@@ -154,7 +155,7 @@ export function optionJSON(
  * ```js
  * mapAttributes({a:1},{a:"a'"}) // {"a'": 1}
  * ```
- * @param {Object} object
+ * @param {Object|undefined} object
  * @param {Object} mapping
  * @return {Object} keys renamed after mapping
  */
@@ -177,7 +178,7 @@ export function mapAttributes(object, mapping) {
  * Same as mapAttributes but with the inverse mapping.
  * Filters out null, undefined and empty strings
  * @param {Object} object
- * @param {Object} mapping
+ * @param {Object|undefined} mapping
  * @return {Object} keys renamed after mapping
  */
 export function mapAttributesInverse(object, mapping) {

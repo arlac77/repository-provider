@@ -3,7 +3,7 @@ import { Repository } from "./repository.mjs";
 /**
  * Convert scalar into an array.
  * The value undefined will be represented as an empty array.
- * @param {any|Array} value
+ * @param {Array|any} value
  * @return {Array} value encapsulated in an array
  */
 export function asArray(value) {
@@ -13,25 +13,25 @@ export function asArray(value) {
 /**
  * Strip repository base name away.
  * A URL auth component will be removed to.
- * @param {string} name
+ * @param {string|undefined} name
  * @param {string[]} repositoryBases all possible bases
  * @param {Function} [whenFound] to be called with the found base name
- * @return {string} name without base
+ * @return {string|undefined} name without base
  */
 export function stripBaseName(name, repositoryBases, whenFound) {
-  if(name) {
-  for (const b of repositoryBases) {
-    const m = name.match(/^(\w+:)\/\/([^@]+@)/);
-    if (m) {
-      name = m[1] + "//" + name.substring(m[1].length + 2 + m[2].length);
-    }
+  if (name) {
+    for (const b of repositoryBases) {
+      const m = name.match(/^(\w+:)\/\/([^@]+@)/);
+      if (m) {
+        name = m[1] + "//" + name.substring(m[1].length + 2 + m[2].length);
+      }
 
-    if (name.startsWith(b)) {
-      whenFound?.(b);
-      return name.slice(b.length);
+      if (name.startsWith(b)) {
+        whenFound?.(b);
+        return name.slice(b.length);
+      }
     }
   }
-}
   return name;
 }
 
