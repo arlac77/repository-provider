@@ -63,5 +63,5 @@ export async function generateBranchName(repository, pattern) {
     n++;
   }
 
-  return pattern.replace(/\*/, n.toString());
+  return pattern.replace(/\*+/, n.toString());
 }

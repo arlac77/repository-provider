@@ -21,11 +21,12 @@ async function gbnt(t, branchNames, pattern, result) {
   t.is(await generateBranchName(repository, pattern), result);
 }
 
-gbnt.title = (providedTitle = "", a, b) =>
-  `generateBranchName ${providedTitle} ${a} ${b}`.trim();
+gbnt.title = (providedTitle = "generateBranchName", a, b, c) =>
+  `${providedTitle} ${a} ${b} -> ${c}`.trim();
 
 test(gbnt, ["b1"], "x1", "x1");
 test(gbnt, ["b1"], "b*", "b2");
+test(gbnt, ["b1"], "b**", "b2");
 test(gbnt, ["b1", "b2"], "b*", "b3");
 test(gbnt, ["b1", "b2", "b3"], "b*", "b4");
 test(gbnt, ["b1", "mkpr/1"], "mkpr/*", "mkpr/2");
