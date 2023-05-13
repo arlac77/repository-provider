@@ -30,7 +30,7 @@
     "lint:tsc": "tsc --allowJs --checkJs --noEmit -t esnext -m esnext --moduleResolution nodenext ./src/*.mjs"
   },
   "dependencies": {
-    "matching-iterator": "^2.0.11"
+    "matching-iterator": "^2.0.12"
   },
   "devDependencies": {
     "ava": "^5.2.0",
