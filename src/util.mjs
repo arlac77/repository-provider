@@ -19,6 +19,7 @@ export function asArray(value) {
  * @return {string} name without base
  */
 export function stripBaseName(name, repositoryBases, whenFound) {
+  if(name) {
   for (const b of repositoryBases) {
     const m = name.match(/^(\w+:)\/\/([^@]+@)/);
     if (m) {
@@ -30,12 +31,13 @@ export function stripBaseName(name, repositoryBases, whenFound) {
       return name.slice(b.length);
     }
   }
+}
   return name;
 }
 
 /**
  * Loops over names and executes stripBaseName.
- * @param {string[]|string} names
+ * @param {string[]|string|undefined} names
  * @param {string[]} repositoryBases all possible bases
  * @param {Function} [whenFound] to be called with the found base name
  * @return {string[]|string|undefined} names without base
@@ -43,7 +45,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
 export function stripBaseNames(names, repositoryBases, whenFound) {
   return Array.isArray(names)
     ? names.map(name => stripBaseName(name, repositoryBases, whenFound))
-    : names && stripBaseName(names, repositoryBases, whenFound);
+    : stripBaseName(names, repositoryBases, whenFound);
 }
 
 /**
