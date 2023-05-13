@@ -175,7 +175,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * Does the provider support the base name.
-   * @param {string} base to be checked
+   * @param {string|undefined} base to be checked
    * @return {boolean} true if base is supported or base is undefined
    */
   supportsBase(base) {
@@ -231,7 +231,7 @@ export class BaseProvider extends BaseObject {
   /**
    * Parses repository name and tries to split it into
    * base, group, repository and branch.
-   * @param {string} name
+   * @param {string|undefined} name
    * @param {string} focus where lies the focus if only one path component is given
    * @return {Object} with separated attributes
    */
@@ -289,7 +289,7 @@ export class BaseProvider extends BaseObject {
   /**
    * Create a repository.
    * @param {string} name of group and repository
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @returns {Promise<Repository>}
    */
   async createRepository(name, options) {
@@ -302,7 +302,7 @@ export class BaseProvider extends BaseObject {
    * List provider objects of a given type.
    *
    * @param {string} type name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
-   * @param {string[]|string} patterns group / repository filter
+   * @param {string[]|string|undefined} patterns group / repository filter
    */
   async *list(type, patterns) {
     if (patterns === undefined) {
@@ -325,7 +325,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List projects.
-   * @param {string[]|string} patterns
+   * @param {string[]|string|undefined} patterns
    * @return {AsyncIterator<Project>} all matching projects of the provider
    */
   async *projects(patterns) {
@@ -334,7 +334,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List milestones.
-   * @param {string[]|string} patterns
+   * @param {string[]|string|undefined} patterns
    * @return {AsyncIterator<Milestone>} all matching milestones of the provider
    */
   async *milestones(patterns) {
@@ -343,7 +343,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List repositories.
-   * @param {string[]|string} patterns
+   * @param {string[]|string|undefined} patterns
    * @return {AsyncIterator<Repository>} all matching repos of the provider
    */
   async *repositories(patterns) {
@@ -352,7 +352,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List branches.
-   * @param {string[]|string} patterns
+   * @param {string[]|string|undefined} patterns
    * @return {AsyncIterator<Branch>} all matching branches of the provider
    */
   async *branches(patterns) {
@@ -361,7 +361,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List tags.
-   * @param {string[]|string} patterns
+   * @param {string[]|string|undefined} patterns
    * @return {AsyncIterator<Tag>} all matching tags of the provider
    */
   async *tags(patterns) {
@@ -370,7 +370,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List hooks.
-   * @param {string[]|string} patterns
+   * @param {string[]|string|undefined} patterns
    * @return {AsyncIterator<Hook>} all matching hooks of the provider
    */
   async *hooks(patterns) {
@@ -379,7 +379,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List pull requests.
-   * @param {string[]|string} patterns
+   * @param {string[]|string|undefined} patterns
    * @return {AsyncIterator<PullRequest>} all matching pullRequests of the provider
    */
   async *pullRequests(patterns) {
