@@ -10,7 +10,6 @@ import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
  */
 export function RepositoryOwner(base) {
   return class RepositoryOwner extends base {
-
     #repositories = new Map();
 
     /**
@@ -21,7 +20,10 @@ export function RepositoryOwner(base) {
      * @return {string} normalized name
      */
     normalizeRepositoryName(name, forLookup) {
-      name = name.replace(/#.*$/, "");
+      const i = name.indexOf("#");
+      if (i >= 0) {
+        name = name.substring(0, i);
+      }
 
       const parts = name.split(/\//);
       if (parts.length >= 2) {
@@ -160,12 +162,17 @@ export function RepositoryOwner(base) {
      * @return {Promise<Repository>} newly created repository
      */
     addRepository(name, options) {
-      return this.#repositories.get(this.normalizeRepositoryName(name, true)) || new this.repositoryClass(this, name, options);
+      return (
+        this.#repositories.get(this.normalizeRepositoryName(name, true)) ||
+        new this.repositoryClass(this, name, options)
+      );
     }
 
-    _addRepository(repository)
-    {
-      this.#repositories.set(this.normalizeRepositoryName(repository.name, true), repository);
+    _addRepository(repository) {
+      this.#repositories.set(
+        this.normalizeRepositoryName(repository.name, true),
+        repository
+      );
     }
 
     /**
