@@ -11,7 +11,7 @@ import {
  * Abstract repository collection.
  * @param {BaseProvider} provider
  * @param {string} name of the group
- * @param {Object} options
+ * @param {Object|undefined} options
  * @param {string} [options.description] human readable description
  * @param {string} [options.id] internal id
  * @param {string} [options.uuid] internal id

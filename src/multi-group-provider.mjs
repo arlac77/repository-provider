@@ -90,7 +90,7 @@ export class MultiGroupProvider extends BaseProvider {
    * Create a new repository group.
    * If there is already a group for the given name it will be returend instead
    * @param {string} name of the group
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {Promise<RepositoryGroup>}
    */
   async createRepositoryGroup(name, options) {
@@ -100,7 +100,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * Add a new repository group (not provider specific actions are executed).
    * @param {string} name of the group
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {RepositoryGroup}
    */
   addRepositoryGroup(name, options) {

@@ -108,7 +108,7 @@ export class Repository extends OwnedObject {
 
   /**
    * List entries of the default branch.
-   * @param {string[]} matchingPatterns
+   * @param {string[]|string} matchingPatterns
    * @return {AsyncIterator<ContentEntry>} all matching entries in the branch
    */
   async *entries(matchingPatterns) {
@@ -126,7 +126,7 @@ export class Repository extends OwnedObject {
 
   /**
    * List commits of the default branch.
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {AsyncIterator<Commit>} all matching commits in the repository
    */
   async *commits(options) {}
@@ -207,7 +207,7 @@ export class Repository extends OwnedObject {
   /**
    * Lookup branch by name.
    * @param {string} name
-   * @return {Promise<Branch>}
+   * @return {Promise<Branch|undefined>}
    */
   async branch(name) {
     if (name === this.defaultBranchName) {
@@ -226,6 +226,7 @@ export class Repository extends OwnedObject {
   }
 
   /**
+   * @param {string[]|string} patterns
    * @return {AsyncIterator<Branch>} of all branches
    */
   async *branches(patterns) {
@@ -239,7 +240,7 @@ export class Repository extends OwnedObject {
    * Create a new {@link Branch} by cloning a given source branch.
    * @param {string} name of the new branch
    * @param {Branch} source branch defaults to the defaultBranch
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
    */
   async createBranch(name, source, options) {
@@ -291,7 +292,7 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * @param {string|string[]} patterns
+   * @param {string[]|string} patterns
    * @return {AsyncIterator<Tag>} of all tags
    */
   async *tags(patterns) {
@@ -333,7 +334,7 @@ export class Repository extends OwnedObject {
    * Add a pull request.
    * @param {string} name
    * @param {Branch} source
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {PullRequest}
    */
   addPullRequest(name, source, options) {
@@ -364,7 +365,7 @@ export class Repository extends OwnedObject {
   /**
    * The @see {@link PullRequest} for a given name.
    * @param {string} name
-   * @return {Promise<PullRequest>}
+   * @return {Promise<PullRequest|undefined>}
    */
   async pullRequest(name) {
     await this.initializePullRequests();
@@ -383,7 +384,7 @@ export class Repository extends OwnedObject {
   /**
    * Add a new {@link Hook}.
    * @param {string} name of the new hoook name
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {Hook} newly created hook
    */
   addHook(name, options) {
@@ -434,6 +435,11 @@ export class Repository extends OwnedObject {
     this.#milestones.set(milestone.name, milestone);
   }
 
+  /**
+   * Get a Milestone.
+   * @param {string} name
+   * @return {Promise<Milestone|undefined>} for the given name
+   */
   async milestone(name) {
     return this.#milestones.get(name);
   }
@@ -442,6 +448,11 @@ export class Repository extends OwnedObject {
     this.#projects.set(project.name, project);
   }
 
+  /**
+   * Get a Project.
+   * @param {string} name
+   * @return {Promise<Project|undefined>} for the given name
+   */
   async project(name) {
     return this.#projects.get(name);
   }
@@ -450,6 +461,11 @@ export class Repository extends OwnedObject {
     this.#applications.set(application.name, application);
   }
 
+  /**
+   * Get an Application.
+   * @param {string} name
+   * @return {Promise<Application|undefined>} for the given name
+   */
   async application(name) {
     return this.#applications.get(name);
   }
