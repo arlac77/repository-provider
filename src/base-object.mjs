@@ -127,7 +127,7 @@ import { description_attribute, id_attribute } from "./attributes.mjs";
 
   /**
    * Check for equality
-   * @param {BaseObject} other
+   * @param {BaseObject|undefined} other
    * @return {boolean} true if other is present
    */
   equals(other) {

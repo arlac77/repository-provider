@@ -152,6 +152,7 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
+   * @param {*} other 
    * @return {boolean} true if other provider is the same as the receiver
    */
   equals(other) {
