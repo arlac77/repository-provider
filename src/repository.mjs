@@ -97,6 +97,11 @@ export class Repository extends OwnedObject {
     return `${this.provider.url}${this.slug}`;
   }
 
+  get defaultBranchName()
+  {
+    return "master";
+  }
+
   /**
    * Lookup entries form the head of the default branch.
    * {@link Branch#entry}
