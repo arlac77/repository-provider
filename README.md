@@ -641,6 +641,7 @@ For github something like:
 *   git+ssh://github.com
 *   <https://github.com>
 *   git+<https://github.com>
+    By default we provide provider name with ':'.
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** common base urls of all repositories
 
@@ -657,7 +658,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### normalizeRepositoryName
 
 Bring a repository name into its normal form by removing any clutter.
-like .git suffix or #branch names.
+Like .git suffix or #branch names.
 
 #### Parameters
 
@@ -669,7 +670,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### normalizeGroupName
 
 Bring a group name into its normal form by removing any clutter.
-like .git suffix or #branch names.
+Like .git suffix or #branch names.
 
 #### Parameters
 
@@ -681,14 +682,14 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### areRepositoryNamesCaseSensitive
 
 Are repository names case sensitive.
-Overwrite and return false if you want to have case insensitive repository lookup
+Overwrite and return false if you want to have case insensitive repository lookup.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true
 
 ### areGroupNamesCaseSensitive
 
 Are repositroy group names case sensitive.
-Overwrite and return false if you want to have case insensitive group lookup
+Overwrite and return false if you want to have case insensitive group lookup.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true
 
@@ -813,45 +814,34 @@ return {object}
 
 ### repositoryGroupClass
 
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** repository group class used by the Provider
-
 ### hookClass
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** hook class used by the Provider
 
 ### repositoryClass
 
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** repository class used by the Provider
-
 ### branchClass
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** branch class used by the Provider
 
 ### tagClass
 
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** branch class used by the Provider
-
 ### entryClass
-
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** entry class used by the Provider
 
 ### pullRequestClass
 
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** pull request class used by the Provider
-
 ### instanceIdentifier
+
+Prefix used to form environment variables.
+'GITHUB\_' -> 'GITHUB\_TOKEN'
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** identifier for environment options
 
 ### optionsFromEnvironment
 
-Extract options suitable for the constructor
-form the given set of environment variables.
+Extract options suitable for the constructor.
+Form the given set of environment variables.
 Object with the detected key value pairs is delivered.
 
 #### Parameters
 
-*   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as from process.env
+*   `env` **([Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** as from process.env
 *   `instanceIdentifier` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** part of variable name. (optional, default `this.instanceIdentifier`)
 
 Returns **([Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** undefined if no suitable environment variables have been found
