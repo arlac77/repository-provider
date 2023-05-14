@@ -35,6 +35,8 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
+   * Prefix used to form environment variables.
+   * 'GITHUB_' -> 'GITHUB_TOKEN'
    * @return {string} identifier for environment options
    */
   static get instanceIdentifier() {
@@ -42,10 +44,10 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
-   * Extract options suitable for the constructor
-   * form the given set of environment variables.
+   * Extract options suitable for the constructor.
+   * Form the given set of environment variables.
    * Object with the detected key value pairs is delivered.
-   * @param {Object} env as from process.env
+   * @param {Object|undefined} env as from process.env
    * @param {string} instanceIdentifier part of variable name.
    * @return {Object|undefined} undefined if no suitable environment variables have been found
    */
@@ -167,6 +169,7 @@ export class BaseProvider extends BaseObject {
    * - git+ssh://github.com
    * - https://github.com
    * - git+https://github.com
+   * By default we provide provider name with ':'.
    * @return {string[]} common base urls of all repositories
    */
   get repositoryBases() {
@@ -184,7 +187,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * Bring a repository name into its normal form by removing any clutter.
-   * like .git suffix or #branch names.
+   * Like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
    * @return {string} normalized name
@@ -198,7 +201,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * Bring a group name into its normal form by removing any clutter.
-   * like .git suffix or #branch names.
+   * Like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
    * @return {string} normalized name
@@ -212,7 +215,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * Are repository names case sensitive.
-   * Overwrite and return false if you want to have case insensitive repository lookup
+   * Overwrite and return false if you want to have case insensitive repository lookup.
    * @return {boolean} true
    */
   get areRepositoryNamesCaseSensitive() {
@@ -221,7 +224,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * Are repositroy group names case sensitive.
-   * Overwrite and return false if you want to have case insensitive group lookup
+   * Overwrite and return false if you want to have case insensitive group lookup.
    * @return {boolean} true
    */
   get areGroupNamesCaseSensitive() {
