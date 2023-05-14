@@ -182,7 +182,7 @@ export class Branch extends Ref {
   /**
    * Create a pull request.
    * @param {Branch} toBranch
-   * @param {Object} options
+   * @param {Object|undefined} options
    * @return {Promise<PullRequest>}
    */
   async createPullRequest(toBranch, options) {
