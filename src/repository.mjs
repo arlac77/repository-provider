@@ -49,6 +49,8 @@ export class Repository extends OwnedObject {
     return "repositories";
   }
 
+  static defaultBranchName = "master";
+
   /**
    * options
    */
@@ -61,7 +63,7 @@ export class Repository extends OwnedObject {
        * The name of the default branch
        * @return {string}
        */
-      defaultBranchName: { ...default_attribute, default: "master" },
+      defaultBranchName: { ...default_attribute, default: Repository.defaultBranchName },
 
       cloneURL: url_attribute,
 
@@ -99,7 +101,7 @@ export class Repository extends OwnedObject {
 
   get defaultBranchName()
   {
-    return "master";
+    return Repository.defaultBranchName;
   }
 
   /**
