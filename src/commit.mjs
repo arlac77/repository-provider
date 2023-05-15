@@ -18,6 +18,6 @@ export class User
  */
 export class Commit {
   constructor(repository) {
-    Object.defineProperties(this, { repository: { value: repository } });
+    this.repository = repository;
   }
 }
