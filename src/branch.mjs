@@ -182,7 +182,7 @@ export class Branch extends Ref {
   /**
    * Create a pull request.
    * @param {Branch} toBranch
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {Promise<PullRequest>}
    */
   async createPullRequest(toBranch, options) {
@@ -201,7 +201,7 @@ export class Branch extends Ref {
    * Create a new {@link Branch} by cloning a given source branch.
    * Simply calls Repository.createBranch() with the receiver as source branch
    * @param {string} name the new branch
-   * @param {Object|undefined} options passed through
+   * @param {Object} [options] passed through
    * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
    */
   async createBranch(name, options) {

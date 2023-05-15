@@ -41,7 +41,7 @@ export function RepositoryOwner(base) {
 
     /**
      * Lookup a repository.
-     * @param {string|undefined} name of the repository may contain a #branch
+     * @param {string} [name] of the repository may contain a #branch
      * @return {Promise<Repository|undefined>}
      */
     async repository(name) {
@@ -53,7 +53,7 @@ export function RepositoryOwner(base) {
 
     /**
      * List repositories for the owner.
-     * @param {string[]|string|undefined} patterns
+     * @param {string[]|string} [patterns]
      * @return {AsyncIterator<Repository>} all matching repositories of the owner
      */
     async *repositories(patterns) {
@@ -84,7 +84,7 @@ export function RepositoryOwner(base) {
     /**
      * Lookup entity of a given type and name.
      * @param {string} type
-     * @param {string|undefined} name
+     * @param {string} [name]
      * @param {function} [split]
      * @param {Object} [defaultItem]
      * @returns {Promise<NamedObject|undefined>} from a repository
@@ -111,7 +111,7 @@ export function RepositoryOwner(base) {
     /**
      * List entities for a given type and pattern.
      * @param {string} type
-     * @param {string[]|string} patterns
+     * @param {string[]|string} [patterns]
      * @param {function} [split]
      * @param {Object} [defaultItem]
      * @return {AsyncIterator<NamedObject>} matching type and pattern
@@ -147,7 +147,7 @@ export function RepositoryOwner(base) {
      * Create a new {@link Repository} in the provider.
      * If there is already if repository for the given name it will be returned.
      * @param {string} name
-     * @param {Object|undefined} options
+     * @param {Object} [options]
      * @return {Promise<Repository>} newly created repository (if not already present)
      */
     async createRepository(name, options) {
@@ -158,7 +158,7 @@ export function RepositoryOwner(base) {
      * Add a {@link Repository} to the group.
      * Only adds the repository to the in memory representation (does not execute any provider actions).
      * @param {string} name
-     * @param {Object|undefined} options
+     * @param {Object} [options]
      * @return {Promise<Repository>} newly created repository
      */
     addRepository(name, options) {
@@ -205,7 +205,7 @@ export function RepositoryOwner(base) {
 
     /**
      * List branches for the owner.
-     * @param {string[]|string} patterns
+     * @param {string[]|string} [patterns]
      * @return {AsyncIterator<Branch>} all matching branches of the owner
      */
     async *branches(patterns) {

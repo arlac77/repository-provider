@@ -135,7 +135,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Function} as defined in the owner
+   * @return {typeof PullRequest} as defined in the owner
    */
   get pullRequestClass() {
     return this.owner.pullRequestClass;
@@ -143,7 +143,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Function} as defined in the owner
+   * @return {typeof Branch} as defined in the owner
    */
   get branchClass() {
     return this.owner.branchClass;
@@ -151,7 +151,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Function} as defined in the owner
+   * @return {typeof Tag} as defined in the owner
    */
   get tagClass() {
     return this.owner.tagClass;
@@ -159,7 +159,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Function} as defined in the owner
+   * @return {typeof ContentEntry} as defined in the owner
    */
   get entryClass() {
     return this.owner.entryClass;
@@ -167,7 +167,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Function} as defined in the owner
+   * @return {typeof Hook} as defined in the owner
    */
   get hookClass() {
     return this.owner.hookClass;

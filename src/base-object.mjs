@@ -6,8 +6,8 @@ import { description_attribute, id_attribute } from "./attributes.mjs";
 
   /**
    * Creates an instance of BaseObject.
-   * @param {Object|undefined} options
-   * @param {Object|undefined} additionalProperties
+   * @param {Object} [options]
+   * @param {Object} [additionalProperties]
    */
   export class BaseObject {
   /**
@@ -63,7 +63,7 @@ import { description_attribute, id_attribute } from "./attributes.mjs";
 
   /**
    * Takes values from options.
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    */
   updateAttributes(options, additionalProperties) {
     definePropertiesFromOptions(

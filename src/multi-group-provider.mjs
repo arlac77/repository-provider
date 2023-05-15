@@ -70,7 +70,7 @@ export class MultiGroupProvider extends BaseProvider {
 
   /**
    * List groups.
-   * @param {string[]|string} patterns
+   * @param {string[]|string} [patterns]
    * @return {AsyncIterator<RepositoryGroup>} all matching repositories groups of the provider
    */
   async *repositoryGroups(patterns) {
@@ -90,7 +90,7 @@ export class MultiGroupProvider extends BaseProvider {
    * Create a new repository group.
    * If there is already a group for the given name it will be returend instead
    * @param {string} name of the group
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {Promise<RepositoryGroup>}
    */
   async createRepositoryGroup(name, options) {
@@ -100,7 +100,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * Add a new repository group (not provider specific actions are executed).
    * @param {string} name of the group
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {RepositoryGroup}
    */
   addRepositoryGroup(name, options) {

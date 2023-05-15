@@ -23,7 +23,7 @@ import {
  * @class Repository
  * @param {RepositoryOwner} owner
  * @param {string} name (#branch) will be removed
- * @param {Object|undefined} options
+ * @param {Object} [options]
  * @param {string} [options.description] human readable description
  * @param {string} [options.id] internal id
  *
@@ -113,11 +113,11 @@ export class Repository extends OwnedObject {
 
   /**
    * List entries of the default branch.
-   * @param {string[]|string} matchingPatterns
+   * @param {string[]|string} [patterns]
    * @return {AsyncIterator<ContentEntry>} all matching entries in the branch
    */
-  async *entries(matchingPatterns) {
-    yield* (await this.defaultBranch).entries(matchingPatterns);
+  async *entries(patterns) {
+    yield* (await this.defaultBranch).entries(patterns);
   }
 
   /**
@@ -131,7 +131,7 @@ export class Repository extends OwnedObject {
 
   /**
    * List commits of the default branch.
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {AsyncIterator<Commit>} all matching commits in the repository
    */
   async *commits(options) {}
@@ -231,7 +231,7 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * @param {string[]|string} patterns
+   * @param {string[]|string} [patterns]
    * @return {AsyncIterator<Branch>} of all branches
    */
   async *branches(patterns) {
@@ -245,7 +245,7 @@ export class Repository extends OwnedObject {
    * Create a new {@link Branch} by cloning a given source branch.
    * @param {string} name of the new branch
    * @param {Branch} source branch defaults to the defaultBranch
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {Promise<Branch>} newly created branch (or already present old one with the same name)
    */
   async createBranch(name, source, options) {
@@ -257,7 +257,7 @@ export class Repository extends OwnedObject {
    * Add a new {@link Branch}.
    * Internal branch creation does not call repository.initialize()
    * @param {string} name of the new branch
-   * @param {Object|undefined} options to be passed to the branch
+   * @param {Object} [options] to be passed to the branch
    * @return {Branch} newly created branch
    */
   addBranch(name, options) {
@@ -297,7 +297,7 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * @param {string[]|string} patterns
+   * @param {string[]|string} [patterns]
    * @return {AsyncIterator<Tag>} of all tags
    */
   async *tags(patterns) {
@@ -312,7 +312,7 @@ export class Repository extends OwnedObject {
    * Add a new {@link Tag}.
    * Internal tag creation does not call repository.initialize()
    * @param {string} name of the new tag
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {Tag} newly created tag
    */
   addTag(name, options) {
@@ -327,7 +327,7 @@ export class Repository extends OwnedObject {
    * Create a pull request (or deliver an already present for the given name).
    * @param {string} name of the pr
    * @param {Branch} source branch
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {Promise<PullRequest>}
    */
   async createPullRequest(name, source, options) {
@@ -339,7 +339,7 @@ export class Repository extends OwnedObject {
    * Add a pull request.
    * @param {string} name
    * @param {Branch} source
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {PullRequest}
    */
   addPullRequest(name, source, options) {
@@ -389,7 +389,7 @@ export class Repository extends OwnedObject {
   /**
    * Add a new {@link Hook}.
    * @param {string} name of the new hoook name
-   * @param {Object|undefined} options
+   * @param {Object} [options]
    * @return {Hook} newly created hook
    */
   addHook(name, options) {

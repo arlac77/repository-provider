@@ -18,7 +18,7 @@ import {
  * @param {Branch} source merge source
  * @param {Branch} owner merge target
  * @param {string} name
- * @param {Object} options
+ * @param {Object} [options]
  * @param {string} [options.title]
  * @param {string} [options.state]
  * @param {boolean} [options.merged]
@@ -71,10 +71,10 @@ export class PullRequest extends OwnedObject {
    * List all pull request for a given repo.
    * Result will be filtered by source branch, destination branch and states
    * @param {Repository} repository
-   * @param {Object} filter
-   * @param {Branch?} filter.source
-   * @param {Branch?} filter.destination
-   * @param {Set<string>?} filter.states
+   * @param {Object} [filter]
+   * @param {Branch?} [filter.source]
+   * @param {Branch?} [filter.destination]
+   * @param {Set<string>} [filter.states]
    * @return {AsyncIterator<PullRequest>}
    */
   static async *list(repository, filter) {}
@@ -84,7 +84,7 @@ export class PullRequest extends OwnedObject {
    *
    * @param {Branch} source
    * @param {Branch} destination
-   * @param {Object} options
+   * @param {Object} [options]
    */
   static async open(source, destination, options) {
     return new this(source, destination, "-1", options);

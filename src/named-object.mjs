@@ -9,8 +9,8 @@ import {
 /**
  * Object with a name.
  * @param {string} name
- * @param {Object|undefined} options
- * @param {Object|undefined} additionalProperties
+ * @param {Object} [options]
+ * @param {Object} [additionalProperties|
  *
  * @property {string} name
  */
