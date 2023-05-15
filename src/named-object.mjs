@@ -10,7 +10,7 @@ import {
  * Object with a name.
  * @param {string} name
  * @param {Object} [options]
- * @param {Object} [additionalProperties|
+ * @param {Object} [additionalProperties]
  *
  * @property {string} name
  */
@@ -28,6 +28,16 @@ export class NamedObject extends BaseObject {
       name: { value: name },
       ...additionalProperties
     });
+  }
+
+  #name;
+
+  get name() {
+    return this.#name;
+  }
+
+  set name(name) {
+    this.#name = name;
   }
 
   /**
