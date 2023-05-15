@@ -14,13 +14,11 @@ import {
  * @param {Object} [options]
  * @param {string} [options.description] human readable description
  * @param {string} [options.id] internal id
- * @param {string} [options.uuid] internal id
  * @param {string} [options.url] home
  *
  * @property {BaseProvider} provider
  * @property {string} name
  */
-
 export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
   static get addMethodName() {
     return "_addRepositoryGroup";
