@@ -22,15 +22,14 @@ import { Commit } from "./commit.mjs";
  * @property {string} name
  */
 export class Branch extends Ref {
-
   static get addMethodName() {
     return "_addBranch";
   }
 
   static get deleteMethodName() {
-    return "_deleteBranch";  	
+    return "_deleteBranch";
   }
-  
+
   static get collectionName() {
     return "branches";
   }
@@ -44,9 +43,7 @@ export class Branch extends Ref {
    * @return {string} 'repoUrl#branch'
    */
   get url() {
-    return this.isDefault
-      ? this.owner.url
-      : `${this.owner.url}#${this.name}`;
+    return this.isDefault ? this.owner.url : `${this.owner.url}#${this.name}`;
   }
 
   /**
@@ -68,7 +65,7 @@ export class Branch extends Ref {
       !this.isProtected
     );
   }
-  
+
   /**
    * Are we the default branch.
    * @return {boolean} true if name matches the repository default branch
@@ -101,7 +98,7 @@ export class Branch extends Ref {
    * @param {Commit|AsyncIterator<Commit>} commits to be commited
    * @param {Object} options
    * @param {Branch|string} options.pullRequestBranch to commit into
-   * @param {boolean} options.dry do not create a branch and do not commit only create dummy PR
+   * @param {boolean} [options.dry=false] do not create a branch and do not commit only create dummy PR
    * @param {boolean} options.skipWithoutCommits do not create a PR if no commits are given
    * @param {boolean} options.bodyFromCommitMessages generate body from commit messages
    * @param {string} [options.body] body of the PR
