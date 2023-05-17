@@ -155,7 +155,7 @@ export function optionJSON(
  * ```js
  * mapAttributes({a:1},{a:"a'"}) // {"a'": 1}
  * ```
- * @param {Object} [object]
+ * @param {Object} object
  * @param {Object} mapping
  * @return {Object} keys renamed after mapping
  */
