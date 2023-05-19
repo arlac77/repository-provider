@@ -10,13 +10,14 @@
  * @property {any} [default] the default value
  * @property {Function} [set] set the value
  * @property {Function} [get] get the value can be used to calculate default values
- * @property {string|string[]} [env] environment variable use to provide the value
+ * @property {string[]|string} [env] environment variable use to provide the value
  */
 
 /**
  * Split property path into tokens
+ * @generator
  * @param {string} string
- * @return {Iterator<string>}
+ * @yields {string}
  */
 function* tokens(string) {
   let identifier = "";
