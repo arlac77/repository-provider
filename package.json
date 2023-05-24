@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "ava": "^5.2.0",
-    "browser-ava": "^1.3.40",
+    "browser-ava": "^1.3.43",
     "c8": "^7.13.0",
     "documentation": "^14.0.2",
     "repository-provider-test-support": "^2.3.6",
