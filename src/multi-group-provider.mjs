@@ -1,6 +1,6 @@
 import { matcher } from "matching-iterator";
 import { BaseProvider } from "./base-provider.mjs";
-import { stripBaseNames } from "./util.mjs";
+import { stripBaseName, stripBaseNames } from "./util.mjs";
 import { Repository } from "./repository.mjs";
 import { Branch } from "./branch.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
@@ -64,7 +64,7 @@ export class MultiGroupProvider extends BaseProvider {
 
     if (this.supportsBase(base)) {
       await this.initializeRepositories();
-      return this.#repositoryGroups.get(this.normalizeGroupName(stripBaseNames(name, this.provider.repositoryBases), true));
+      return this.#repositoryGroups.get(this.normalizeGroupName(stripBaseName(name, this.provider.repositoryBases), true));
     }
   }
 
