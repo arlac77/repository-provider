@@ -65,32 +65,35 @@ export function definePropertiesFromOptions(
 
     const path = name.split(/\./);
     const first = path.shift();
-    const property = properties[first];  
 
-    if (path.length) {
-      const remaining = path.join(".");
+    if (first !== undefined) {
+      const property = properties[first];
 
-      if (property) {
-        setAttribute(property.value, remaining, value);
-      } else {
-        const slice = {};
-        setAttribute(slice, remaining, value);
-        properties[first] = { configurable: true, value: slice };
-      }
-    } else {
-      if (value !== undefined) {
-        const op = Object.getOwnPropertyDescriptor(
-          object.constructor.prototype,
-          first
-        );
+      if (path.length) {
+        const remaining = path.join(".");
 
-        if (op?.set || property?.set) {
-          applyLater[first] = value;
+        if (property) {
+          setAttribute(property.value, remaining, value);
         } else {
-          properties[first] = Object.assign(
-            { value, writable: attribute.writable },
-            property
+          const slice = {};
+          setAttribute(slice, remaining, value);
+          properties[first] = { configurable: true, value: slice };
+        }
+      } else {
+        if (value !== undefined) {
+          const op = Object.getOwnPropertyDescriptor(
+            object.constructor.prototype,
+            first
           );
+
+          if (op?.set || property?.set) {
+            applyLater[first] = value;
+          } else {
+            properties[first] = Object.assign(
+              { value, writable: attribute.writable },
+              property
+            );
+          }
         }
       }
     }
