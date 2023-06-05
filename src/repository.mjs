@@ -63,7 +63,10 @@ export class Repository extends OwnedObject {
        * The name of the default branch
        * @return {string}
        */
-      defaultBranchName: { ...default_attribute, default: Repository.defaultBranchName },
+      defaultBranchName: {
+        ...default_attribute,
+        default: Repository.defaultBranchName
+      },
 
       cloneURL: url_attribute,
 
@@ -99,8 +102,7 @@ export class Repository extends OwnedObject {
     return `${this.provider.url}${this.slug}`;
   }
 
-  get defaultBranchName()
-  {
+  get defaultBranchName() {
     return Repository.defaultBranchName;
   }
 
@@ -265,10 +267,7 @@ export class Repository extends OwnedObject {
   addBranch(name, options) {
     const branch = this.#branches.get(name);
     if (branch) {
-      if (options) {
-        branch.updateAttributes(options);
-      }
-
+      branch.updateAttributes(options);
       return branch;
     }
 
