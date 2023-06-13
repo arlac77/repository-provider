@@ -8,6 +8,9 @@ class myHookClass {}
 class myPullRequestClass {}
 class myRepositoryClass {}
 
+
+const members = new Set();
+
 const owner = {
   equals(other) {
     return this === other;
@@ -43,7 +46,9 @@ const owner = {
   hookClass: myHookClass,
   pullRequestClass: myPullRequestClass,
   repositoryClass: myRepositoryClass,
-  _addOwnedObject: () => {}
+
+  _addOwnedObject: (o) => { members.add(o) },
+  _deleteOwnedObject: (o) => { members.delete(o) }
 };
 
 test("OwnedObject api", t => {
@@ -82,6 +87,13 @@ test("OwnedObject provider", t => {
 test("OwnedObject identifier", t => {
   const object = new OwnedObject(owner, "aName");
   t.is(object.identifier, "aProvider:aOwner/aName");
+});
+
+test("OwnedObject livecycle", t => {
+  const object = new OwnedObject(owner, "aName");
+  t.true(members.has(object));
+  object.delete();
+  t.false(members.has(object));
 });
 
 test("OwnedObject error", t => {

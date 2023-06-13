@@ -26,3 +26,10 @@ test("name object init with options", t => {
     description: "hello"
   });
 });
+
+test.skip("name object set / get", t => {
+  const no = new NamedObject("n1");
+
+  no.name = "n2";
+  t.is(no.name, "n2");
+});
