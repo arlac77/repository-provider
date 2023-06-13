@@ -128,47 +128,6 @@ export class Ref extends OwnedObject {
       : `${this.owner.identifier}#${this.name}`;
   }
 
-  /**
-   * Url of issue tracking system.
-   * @see {@link Repository#issuesURL}
-   * @return {string} as provided from the repository
-   */
-  get issuesURL() {
-    return this.owner.issuesURL;
-  }
-
-  /**
-   * Url of home page.
-   * @see {@link Repository#homePageURL}
-   * @return {string} as provided from the repository
-   */
-  get homePageURL() {
-    return this.owner.homePageURL;
-  }
-
-  /**
-   * Forwarded from the repository
-   * @return {boolean}
-   */
-  get isLocked() {
-    return this.owner.isLocked;
-  }
-
-  /**
-   * Forwarded from the repository
-   * @return {boolean}
-   */
-  get isArchived() {
-    return this.owner.isArchived;
-  }
-
-  /**
-   * Forwarded from the repository
-   * @return {boolean}
-   */
-  get isDisabled() {
-    return this.owner.isDisabled;
-  }
 
   /**
    *

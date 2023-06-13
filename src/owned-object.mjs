@@ -23,7 +23,7 @@ export class OwnedObject extends NamedObject {
   }
 
   owner;
-  
+
   constructor(owner, name, options, additionalProperties) {
     super(name, options, additionalProperties);
     this.owner = owner;
@@ -44,6 +44,48 @@ export class OwnedObject extends NamedObject {
    */
   equals(other) {
     return super.equals(other) && this.owner.equals(other.owner);
+  }
+
+  /**
+   * Url of home page.
+   * @see {@link Repository#homePageURL}
+   * @return {string} as provided from the owner
+   */
+  get homePageURL() {
+    return this.owner.homePageURL;
+  }
+
+  /**
+   * Url of issue tracking system.
+   * @see {@link Repository#issuesURL}
+   * @return {string} as provided from the repository
+   */
+  get issuesURL() {
+    return this.owner.issuesURL;
+  }
+
+  /**
+   * Forwarded from the owner.
+   * @return {boolean}
+   */
+  get isLocked() {
+    return this.owner.isLocked;
+  }
+
+  /**
+   * Forwarded from the owner.
+   * @return {boolean}
+   */
+  get isArchived() {
+    return this.owner.isArchived;
+  }
+
+  /**
+   * Forwarded from the owner.
+   * @return {boolean}
+   */
+  get isDisabled() {
+    return this.owner.isDisabled;
   }
 
   /**
@@ -82,9 +124,9 @@ export class OwnedObject extends NamedObject {
    * @return {string} name with owner name
    */
   get fullName() {
-      return this.owner === this.provider || this.owner.name === undefined
-        ? this.name
-        : this.owner.name + "/" + this.name;
+    return this.owner === this.provider || this.owner.name === undefined
+      ? this.name
+      : this.owner.name + "/" + this.name;
   }
 
   /**
