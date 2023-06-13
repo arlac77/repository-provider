@@ -220,7 +220,7 @@ export class Repository extends OwnedObject {
    */
   async branch(name) {
     if (name === this.defaultBranchName) {
-      return this.#branches.get(name) || this.addBranch(name);
+      return this.addBranch(name);
     }
 
     await this.initializeBranches();

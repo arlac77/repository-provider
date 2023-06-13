@@ -17,6 +17,9 @@ export class User
  * @property {User} committer
  */
 export class Commit {
+
+  repository;
+  
   constructor(repository) {
     this.repository = repository;
   }

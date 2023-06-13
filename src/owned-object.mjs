@@ -22,6 +22,8 @@ export class OwnedObject extends NamedObject {
     return "_delete" + this.name;
   }
 
+  owner;
+  
   constructor(owner, name, options, additionalProperties) {
     super(name, options, additionalProperties);
     this.owner = owner;
