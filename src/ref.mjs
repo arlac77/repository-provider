@@ -148,6 +148,7 @@ export class Ref extends OwnedObject {
 
   /**
    * Forwarded from the repository
+   * @return {boolean}
    */
   get isLocked() {
     return this.owner.isLocked;
@@ -155,6 +156,7 @@ export class Ref extends OwnedObject {
 
   /**
    * Forwarded from the repository
+   * @return {boolean}
    */
   get isArchived() {
     return this.owner.isArchived;
@@ -162,6 +164,7 @@ export class Ref extends OwnedObject {
 
   /**
    * Forwarded from the repository
+   * @return {boolean}
    */
   get isDisabled() {
     return this.owner.isDisabled;
