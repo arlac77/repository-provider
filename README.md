@@ -193,6 +193,11 @@ console.log(await readme.string);
     *   [delete](#delete-1)
     *   [equals](#equals-3)
         *   [Parameters](#parameters-45)
+    *   [homePageURL](#homepageurl)
+    *   [issuesURL](#issuesurl)
+    *   [isLocked](#islocked)
+    *   [isArchived](#isarchived)
+    *   [isDisabled](#isdisabled)
     *   [api](#api)
     *   [url](#url-1)
     *   [provider](#provider-1)
@@ -255,11 +260,6 @@ console.log(await readme.string);
     *   [repository](#repository-2)
     *   [fullName](#fullname-3)
     *   [fullCondensedName](#fullcondensedname-1)
-    *   [issuesURL](#issuesurl)
-    *   [homePageURL](#homepageurl)
-    *   [isLocked](#islocked)
-    *   [isArchived](#isarchived)
-    *   [isDisabled](#isdisabled)
     *   [isProtected](#isprotected)
     *   [isDefault](#isdefault-1)
     *   [attributes](#attributes-1)
@@ -1160,6 +1160,40 @@ Check for equality.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if receiver and owner are equal
 
+### homePageURL
+
+*   **See**: [Repository#homePageURL](#repositoryhomepageurl)
+
+Url of home page.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the owner
+
+### issuesURL
+
+*   **See**: [Repository#issuesURL](#repositoryissuesurl)
+
+Url of issue tracking system.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
+
+### isLocked
+
+Forwarded from the owner.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
+
+### isArchived
+
+Forwarded from the owner.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
+
+### isDisabled
+
+Forwarded from the owner.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
+
 ### api
 
 API as given by the owner.
@@ -1501,34 +1535,6 @@ Repository fullName and branch name combined.
 But skipping the branch name if it is the default branch.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'user/repo#branch'
-
-### issuesURL
-
-*   **See**: [Repository#issuesURL](#repositoryissuesurl)
-
-Url of issue tracking system.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
-
-### homePageURL
-
-*   **See**: [Repository#homePageURL](#repositoryhomepageurl)
-
-Url of home page.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the repository
-
-### isLocked
-
-Forwarded from the repository
-
-### isArchived
-
-Forwarded from the repository
-
-### isDisabled
-
-Forwarded from the repository
 
 ### isProtected
 
