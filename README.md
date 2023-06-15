@@ -199,6 +199,7 @@ console.log(await readme.string);
     *   [isArchived](#isarchived)
     *   [isDisabled](#isdisabled)
     *   [api](#api)
+    *   [slug](#slug)
     *   [url](#url-1)
     *   [provider](#provider-1)
     *   [identifier](#identifier)
@@ -275,7 +276,7 @@ console.log(await readme.string);
 *   [Repository](#repository-3)
     *   [Parameters](#parameters-60)
     *   [Properties](#properties-10)
-    *   [slug](#slug)
+    *   [slug](#slug-1)
     *   [entry](#entry-1)
         *   [Parameters](#parameters-61)
     *   [entries](#entries-1)
@@ -1195,6 +1196,12 @@ Forwarded from the owner.
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
 
 ### api
+
+API as given by the owner.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** url
+
+### slug
 
 API as given by the owner.
 
