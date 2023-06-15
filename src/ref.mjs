@@ -99,10 +99,6 @@ export class Ref extends OwnedObject {
     return this.owner;
   }
 
-  get slug() {
-    return this.owner.slug;
-  }
-
   /**
    * Repository and branch name combined.
    * @return {string} 'repo#branch'
@@ -127,7 +123,6 @@ export class Ref extends OwnedObject {
       ? this.owner.identifier
       : `${this.owner.identifier}#${this.name}`;
   }
-
 
   /**
    *

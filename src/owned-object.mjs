@@ -97,6 +97,14 @@ export class OwnedObject extends NamedObject {
   }
 
   /**
+   * API as given by the owner.
+   * @return {string} url
+   */
+  get slug() {
+    return this.owner.slug;
+  }
+
+  /**
    * URL as given by the owner.
    * @return {string} url
    */
