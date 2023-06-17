@@ -1,4 +1,6 @@
 import test from "ava";
+import { assertBranchUpdateAttributes } from "repository-provider-test-support";
+
 import {
   SingleGroupProvider,
   Repository,
@@ -72,10 +74,7 @@ test("branch update attributes", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
   const branch = await repository.createBranch("b1");
-
-  branch.updateAttributes({ protected: true });
-
-  t.is(branch.isProtected, true);
+  await assertBranchUpdateAttributes(t, branch);
 });
 
 test("branch delete", async t => {
