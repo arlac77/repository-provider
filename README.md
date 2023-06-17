@@ -923,7 +923,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### isWritable
 
-Returns **any** true if not [isArchived](isArchived) and [isDisabled](isDisabled) and [isLocked](isLocked)
+Returns **any** true if not [isArchived](isArchived) and [isDisabled](isDisabled) and [isLocked](isLocked) and [isProtected](#isprotected)
 
 ### isDefault
 
@@ -1561,7 +1561,7 @@ options
 
 Can the ref be modified.
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
 
 ## RepositoryGroup
 
