@@ -20,7 +20,7 @@ export class Ref extends OwnedObject {
 
       /**
        * Can the ref be modified.
-       * @return {string}
+       * @return {boolean}
        */
       isProtected: boolean_attribute
     };

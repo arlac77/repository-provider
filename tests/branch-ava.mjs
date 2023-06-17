@@ -1,5 +1,10 @@
 import test from "ava";
-import { SingleGroupProvider, Repository, Branch, PullRequest } from "repository-provider";
+import {
+  SingleGroupProvider,
+  Repository,
+  Branch,
+  PullRequest
+} from "repository-provider";
 
 test("Branch type", t => t.is(Branch.type, "branch"));
 test("Branch collection name", t => t.is(Branch.collectionName, "branches"));
@@ -29,6 +34,7 @@ test("branch init", async t => {
   t.is(b.isArchived, false);
   t.is(b.isDisabled, false);
   t.is(b.isWritable, true);
+  t.is(b.isProtected, false);
 
   t.is(b.homePageURL, undefined);
   t.is(b.issuesURL, undefined);
@@ -60,6 +66,16 @@ test("branch isDefault changed", async t => {
   t.is(b.fullName, "r1#otherMaster");
   t.is(b.fullCondensedName, "r1");
   t.is(b.isDefault, true);
+});
+
+test("branch update attributes", async t => {
+  const provider = new SingleGroupProvider();
+  const repository = await provider.addRepository("r1");
+  const branch = await repository.createBranch("b1");
+
+  branch.updateAttributes({ protected: true });
+
+  t.is(branch.isProtected, true);
 });
 
 test("branch delete", async t => {
