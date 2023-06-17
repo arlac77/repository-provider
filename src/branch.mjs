@@ -55,7 +55,7 @@ export class Branch extends Ref {
 
   /**
    *
-   * @return true if not {@link isArchived} and {@link isDisabled} and {@link isLocked}
+   * @return true if not {@link isArchived} and {@link isDisabled} and {@link isLocked} and {@link isProtected}
    */
   get isWritable() {
     return (
