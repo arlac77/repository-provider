@@ -8,6 +8,17 @@ import {
   optionJSON,
   MultiGroupProvider
 } from "repository-provider";
+import { tokens } from "../src/attribute.mjs";
+
+function tt(t, source, expected) {
+  t.deepEqual(expected, [...tokens(source)]);
+}
+
+tt.title = (providedTitle = "", source, expected) =>
+  `tokenize ${providedTitle}${source} -> ${expected.join(" ")}`.trim();
+
+test(tt, "a1 .b.c[3 + 4 ]", ["a1", ".", "b", ".", "c", "[", "3", "+", "4", "]"]);
+test(tt, "=<=>=!=+-*/", ["=", "<=", ">=", "!=", "+", "-", "*", "/"]);
 
 function gat(t, object, key, expected) {
   const value = getAttribute(object, key);
@@ -198,6 +209,6 @@ test(
   {
     id: 1,
     isAdmin: false,
-    name: "a",
+    name: "a"
   }
 );
