@@ -17,7 +17,19 @@ function tt(t, source, expected) {
 tt.title = (providedTitle = "", source, expected) =>
   `tokenize ${providedTitle}${source} -> ${expected.join(" ")}`.trim();
 
-test(tt, "a1 .b.c[3 + 4 ]", ["a1", ".", "b", ".", "c", "[", "3", "+", "4", "]"]);
+test(tt, "a1 .b.c[3 + 4 ]", [
+  "a1",
+  ".",
+  "b",
+  ".",
+  "c",
+  "[",
+  "3",
+  "+",
+  "4",
+  "]"
+]);
+test(tt, "'a b c'+\"D E F\"", ["a b c", "+", "D E F"]);
 test(tt, "=<=>=!=+-*/", ["=", "<=", ">=", "!=", "+", "-", "*", "/"]);
 
 function gat(t, object, key, expected) {
