@@ -27,9 +27,9 @@ test(mait, undefined, { a: "a'" }, undefined);
 test(
   mat,
   { a: 1, b: "2" },
-  { a: "a'" },
+  { a: "a1" },
   {
-    "a'": 1,
+    "a1": 1,
     b: "2"
   }
 );
@@ -46,8 +46,8 @@ test(
 
 test(
   mait,
-  { "a'": 1, b: "2" },
-  { a: "a'" },
+  { "a1": 1, b: "2" },
+  { a: "a1" },
   {
     a: 1,
     b: "2"
@@ -57,19 +57,19 @@ test(
 test(
   mat,
   { a: 1, b: "2", c: "", d: null, e: undefined },
-  { a: "a'" },
+  { a: "a1" },
   {
-    "a'": 1,
+    "a1": 1,
     b: "2"
   }
 );
 
 test(
   mait,
-  { "a'": 1, b: "2", c: "", d: null, e: undefined },
-  { "a'": "a" },
+  { "a1": 1, b: "2", c: "", d: null, e: undefined },
+  { "a1": "a" },
   {
-    "a'": 1,
+    "a1": 1,
     b: "2"
   }
 );
@@ -87,9 +87,9 @@ test.skip(
 test.skip(
   mat,
   { a: { b: { c: 1 } } },
-  { "a.b.c": "a'" },
+  { "a.b.c": "a1" },
   {
     a: { b: {}},
-    "a'": 1
+    "a1": 1
   }
 );
