@@ -114,6 +114,10 @@ import { description_attribute, id_attribute } from "./attributes.mjs";
     return this.fullName;
   }
 
+  /**
+   * Name with default parts removed
+   * @return {string}
+   */
   get condensedName() {
     return this.name;
   }
