@@ -81,6 +81,7 @@ console.log(await readme.string);
     *   [displayName](#displayname)
     *   [fullName](#fullname)
     *   [fullCondensedName](#fullcondensedname)
+    *   [condensedName](#condensedname)
     *   [isWritable](#iswritable)
     *   [equals](#equals)
         *   [Parameters](#parameters-11)
@@ -388,7 +389,7 @@ Object.definedProperties(new aClass(),{ with_default: { value: 77 }})
 *   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor (optional, default `{}`)
 *   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
-*   `attributes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `object.constructor.attributes||[]`)
+*   `attributes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** attribute meta info (optional, default `object.constructor.attributes`)
 
 ## defaultValues
 
@@ -569,6 +570,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### fullCondensedName
 
 Complete name in the hierachy.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+### condensedName
+
+Name with default parts removed
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
