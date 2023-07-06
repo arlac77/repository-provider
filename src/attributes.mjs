@@ -3,7 +3,7 @@
  */
 export const default_attribute = {
   type: "string",
-  writeable: false,
+  writable: false,
   mandatory: false,
   private: false,
   isKey: false,
@@ -13,7 +13,7 @@ export const default_attribute = {
 
 export const boolean_attribute = {
   ...default_attribute,
-  writeable: true,
+  writable: true,
   default: false,
   type: "boolean"
 };
@@ -67,7 +67,7 @@ export const id_attribute = {
 
 export const state_attribute = {
   ...default_attribute,
-  writeable: true
+  writable: true
 };
 
 /**
