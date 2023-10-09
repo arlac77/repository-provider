@@ -10,7 +10,9 @@ jobs:
       - uses: actions/setup-node@v3.8.1
         with:
           node-version: 18.18.0
+      - run: rm package-lock.json
       - run: npm install
+      - run: npm run cover --if-present
       - uses: gr2m/create-or-update-pull-request-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
