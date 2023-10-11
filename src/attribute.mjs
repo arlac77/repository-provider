@@ -237,13 +237,27 @@ export function getAttribute(object, name) {
     return object[name];
   }
 
+  let predicateTokens;
+
   for (const token of tokens(name)) {
     switch (token) {
       case ">":
       case "<":
       case ".":
+        break;
       case "[":
+        predicateTokens = [];
+        break;
       case "]":
+        // TODO: should loop over array actually getAttribute api should deliver iterators
+        if (Array.isArray(object)) {
+          object = object[0];
+        }
+
+        predicateTokens = undefined;
+        break;
+      case "*":
+        predicateTokens.push(token);
         break;
 
       default:
@@ -268,6 +282,8 @@ export function getAttribute(object, name) {
 export function getAttributeAndOperator(object, expression, getters = {}) {
   let op = "=";
 
+  let predicateTokens;
+
   for (const token of tokens(expression)) {
     switch (token) {
       case ">=":
@@ -280,7 +296,18 @@ export function getAttributeAndOperator(object, expression, getters = {}) {
         break;
       case ".":
       case "[":
+        predicateTokens = [];
+        break;
       case "]":
+        // TODO: should loop over array actually getAttribute api should deliver iterators
+        if (Array.isArray(object)) {
+          object = object[0];
+        }
+
+        predicateTokens = undefined;
+        break;
+      case "*":
+        predicateTokens.push(token);
         break;
 
       default:
