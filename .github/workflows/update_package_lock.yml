@@ -5,6 +5,10 @@ name: Update package lock
 jobs:
   update_package_lock:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 20.9.0
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -23,7 +27,3 @@ jobs:
           branch: package-lock
           labels: npm
           commit-message: 'chore(deps): lock'
-    strategy:
-      matrix:
-        node-version:
-          - 20.9.0
