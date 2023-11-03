@@ -1,4 +1,4 @@
-import { setAttribute, getAttribute } from "./attribute.mjs";
+import { setAttribute, getAttribute } from "pacc";
 
 /**
  * Create properties from options and default options.

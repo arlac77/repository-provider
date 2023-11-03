@@ -18,7 +18,6 @@ export * from "./hook.mjs";
 export * from "./milestone.mjs";
 export * from "./review.mjs";
 export * from "./application.mjs";
-export * from "./attribute.mjs";
 export * from "./attribute-extras.mjs";
 export * from "./util.mjs";
 export * from "./attributes.mjs";

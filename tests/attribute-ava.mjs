@@ -1,14 +1,12 @@
 import test from "ava";
 import {
   defaultValues,
-  getAttribute,
-  setAttribute,
   RepositoryGroup,
   definePropertiesFromOptions,
   optionJSON,
   MultiGroupProvider
 } from "repository-provider";
-import { tokens } from "../src/attribute.mjs";
+import { tokens, getAttribute, setAttribute } from "pacc";
 
 function tt(t, source, expected) {
   t.deepEqual(expected, [...tokens(source)]);
