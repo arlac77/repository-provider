@@ -38,7 +38,7 @@
     "browser-ava": "^2.0.0",
     "c8": "^8.0.1",
     "documentation": "^14.0.2",
-    "repository-provider-test-support": "^2.4.4",
+    "repository-provider-test-support": "^3.0.0",
     "semantic-release": "^22.0.6",
     "typescript": "^5.2.2"
   },
