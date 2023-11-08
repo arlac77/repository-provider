@@ -6,29 +6,7 @@ import {
   optionJSON,
   MultiGroupProvider
 } from "repository-provider";
-import { tokens, getAttribute, setAttribute } from "pacc";
-
-function tt(t, source, expected) {
-  t.deepEqual(expected, [...tokens(source)]);
-}
-
-tt.title = (providedTitle = "", source, expected) =>
-  `tokenize ${providedTitle}${source} -> ${expected.join(" ")}`.trim();
-
-test(tt, "a1 .b.c[3 + 4 ]", [
-  "a1",
-  ".",
-  "b",
-  ".",
-  "c",
-  "[",
-  "3",
-  "+",
-  "4",
-  "]"
-]);
-test(tt, "'a b c'+\"D E F\"", ["a b c", "+", "D E F"]);
-test(tt, "=<=>=!=+-*/", ["=", "<=", ">=", "!=", "+", "-", "*", "/"]);
+import { getAttribute } from "pacc";
 
 function gat(t, object, key, expected) {
   const value = getAttribute(object, key);
@@ -175,24 +153,6 @@ test(dpct, MyClass, { preexisting_property: 77 }, (t, object) => {
   t.is(object.preexisting_property, 77);
   t.is(object._preexisting_property, 77);
 });
-
-function sat(t, object, key, value, expected) {
-  setAttribute(object, key, value);
-  t.deepEqual(object, expected);
-}
-
-sat.title = (providedTitle, object, key, value, expected) =>
-  `setAttribute ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(
-    object
-  )} ${key}=${value} => ${JSON.stringify(expected)}`.trim();
-
-test(sat, {}, "a", 1, { a: 1 });
-test(sat, {}, "a.b", 1, { a: { b: 1 } });
-test(sat, { a: [] }, "a[0]", 1, { a: [1] });
-test(sat, { a: { b: "x" } }, "a.b", 1, { a: { b: 1 } });
-test(sat, { a: 1 }, "a.b", 1, { a: { b: 1 } });
-test(sat, { a: "1" }, "a . b ", 1, { a: { b: 1 } });
-test(sat, { a: { x: 7 } }, "a.b.c.d", 1, { a: { x: 7, b: { c: { d: 1 } } } });
 
 test("default values", t => {
   t.deepEqual(
