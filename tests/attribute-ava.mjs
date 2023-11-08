@@ -6,29 +6,7 @@ import {
   optionJSON,
   MultiGroupProvider
 } from "repository-provider";
-import { getAttribute } from "pacc";
 
-function gat(t, object, key, expected) {
-  const value = getAttribute(object, key);
-  t.is(value, expected);
-}
-
-gat.title = (providedTitle, object, key) =>
-  `getAttribute ${providedTitle ? providedTitle + " " : ""}${JSON.stringify(
-    object
-  )} ${key}`.trim();
-
-test(gat, undefined, "a", undefined);
-test(gat, { a: 1 }, "a", 1);
-test(gat, { b: 1 }, "b>", 1);
-test(gat, { b: 1 }, "b<", 1);
-test(gat, { a: { b: 1 } }, "a.b", 1);
-test(gat, { "a.b": 1 }, "a.b", 1);
-test(gat, {}, "x.y.z", undefined);
-test(gat, [1, 2], "[1]", 2);
-test(gat, [1, 2, 3], " \t[ 1 ] ", 2);
-test(gat, [0, { b: 3 }], "[1].b", 3);
-test(gat, [0, { c: 3 }], " [1 ] .c ", 3);
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);
