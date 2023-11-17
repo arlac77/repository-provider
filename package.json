@@ -39,7 +39,7 @@
     "c8": "^8.0.1",
     "documentation": "^14.0.2",
     "repository-provider-test-support": "^3.0.1",
-    "semantic-release": "^22.0.7",
+    "semantic-release": "^22.0.8",
     "typescript": "^5.2.2"
   },
   "engines": {
