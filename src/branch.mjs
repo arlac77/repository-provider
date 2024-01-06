@@ -149,10 +149,10 @@ export class Branch extends Ref {
       }
 
       if (options.bodyFromCommitMessages) {
-        options.body = body;
+        options.body = options.body ? options.body + '\n' + body : body;
       }
 
-      if (body.length > 0 && !options.skipWithoutCommits) {
+      if (options.body?.length > 0 && !options.skipWithoutCommits) {
         return prBranch.createPullRequest(this, options);
       } else {
         return new PullRequest(
