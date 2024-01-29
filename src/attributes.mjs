@@ -24,7 +24,7 @@ export const boolean_read_only_attribute = {
   default: false
 };
 
-export const uuid_attiribute = {
+export const uuid_attribute = {
   ...default_attribute,
   isKey: true
 };
@@ -104,5 +104,6 @@ export const active_attribute = {
   default: true,
   writable: true
 };
+
 export const language_attribute = default_attribute;
 export const type_attribute = default_attribute;
