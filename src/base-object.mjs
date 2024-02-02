@@ -4,12 +4,12 @@ import {
 } from "./attribute-extras.mjs";
 import { description_attribute, id_attribute } from "./attributes.mjs";
 
-  /**
-   * Creates an instance of BaseObject.
-   * @param {Object} options
-   * @param {Object} [additionalProperties]
-   */
-  export class BaseObject {
+/**
+ * Creates an instance of BaseObject.
+ * @param {Object} options
+ * @param {Object} [additionalProperties]
+ */
+export class BaseObject {
   /**
    * @return {string} type we represent
    */
@@ -87,14 +87,6 @@ import { description_attribute, id_attribute } from "./attributes.mjs";
   }
 
   /**
-   * Beautified name use for human displaying only.
-   * @return {string} human readable name
-   */
-  get displayName() {
-    return this.name;
-  }
-
-  /**
    * Complete name in the hierachy.
    * @return {string}
    */
@@ -112,14 +104,6 @@ import { description_attribute, id_attribute } from "./attributes.mjs";
    */
   get fullCondensedName() {
     return this.fullName;
-  }
-
-  /**
-   * Name with default parts removed
-   * @return {string}
-   */
-  get condensedName() {
-    return this.name;
   }
 
   /**

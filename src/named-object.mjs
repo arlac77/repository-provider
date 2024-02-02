@@ -41,6 +41,22 @@ export class NamedObject extends BaseObject {
   }
 
   /**
+   * Beautified name use for human displaying only.
+   * @return {string} human readable name
+   */
+  get displayName() {
+    return this.name;
+  }
+
+  /**
+   * Name with default parts removed
+   * @return {string}
+   */
+  get condensedName() {
+    return this.name;
+  }
+
+  /**
    * Check for equality.
    * @param {NamedObject} other
    * @return {boolean} true if names are equal and have the same provider
