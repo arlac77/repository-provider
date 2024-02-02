@@ -236,7 +236,7 @@ export class Repository extends OwnedObject {
 
   /**
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Branch>} of all branches
+   * @return {AsyncGenerator<Branch>} of all branches
    */
   async *branches(patterns) {
     await this.initializeBranches();
@@ -299,7 +299,7 @@ export class Repository extends OwnedObject {
 
   /**
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Tag>} of all tags
+   * @return {AsyncGenerator<Tag>} of all tags
    */
   async *tags(patterns) {
     await this.initializeTags();
@@ -358,7 +358,7 @@ export class Repository extends OwnedObject {
 
   /**
    * Deliver all {@link PullRequest}s.
-   * @return {AsyncIterator<PullRequest>} of all pull requests
+   * @return {AsyncGenerator<PullRequest>} of all pull requests
    */
   async *pullRequests() {
     await this.initializePullRequests();
@@ -414,7 +414,7 @@ export class Repository extends OwnedObject {
 
   /**
    * List hooks.
-   * @return {AsyncIterator<Hook>} all hooks of the repository
+   * @return {AsyncGenerator<Hook>} all hooks of the repository
    */
   async *hooks() {
     await this.initializeHooks();
