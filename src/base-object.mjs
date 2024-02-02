@@ -99,14 +99,6 @@ export class BaseObject {
   }
 
   /**
-   * Complete name in the hierachy.
-   * @return {string}
-   */
-  get fullCondensedName() {
-    return this.fullName;
-  }
-
-  /**
    * By default cannot be written to.
    * @return {boolean} false
    */
