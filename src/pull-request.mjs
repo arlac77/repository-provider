@@ -138,7 +138,6 @@ export class PullRequest extends OwnedObject {
     let state = "OPEN";
 
     super(owner, name, options, {
-      source: { value: source },
       state: {
         set(value) {
           value = value.toUpperCase();
@@ -161,6 +160,8 @@ export class PullRequest extends OwnedObject {
         }
       }
     });
+
+    this.source = source;
   }
 
   get destination() {
