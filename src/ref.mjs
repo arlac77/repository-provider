@@ -55,13 +55,13 @@ export class Ref extends OwnedObject {
   /**
    * List entries of the branch.
    * @param {string[]|string} [matchingPatterns]
-   * @return {AsyncIterator<ContentEntry>} all matching entries in the branch
+   * @return {AsyncGenerator<ContentEntry>} all matching entries in the branch
    */
   async *entries(matchingPatterns) {}
 
   /**
    * List all entries of the branch.
-   * @return {AsyncIterator<ContentEntry>} all entries in the branch
+   * @return {AsyncGenerator<ContentEntry>} all entries in the branch
    */
   async *[Symbol.asyncIterator]() {
     return yield* this.entries();

@@ -95,7 +95,7 @@ export class Branch extends Ref {
   /**
    * Add commits into a pull request.
    *
-   * @param {Commit|AsyncIterator<Commit>} commits to be commited
+   * @param {Commit|AsyncGenerator<Commit>} commits to be commited
    * @param {Object} options
    * @param {Branch|string} options.pullRequestBranch to commit into
    * @param {boolean} [options.dry=false] do not create a branch and do not commit only create dummy PR
