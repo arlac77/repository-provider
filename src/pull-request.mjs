@@ -58,12 +58,14 @@ export class PullRequest extends OwnedObject {
 
   /**
    * possible states
+   * @enum {string}
    */
   static states = new Set(["OPEN", "MERGED", "CLOSED"]);
 
   /**
    * All valid merge methods
    * @return {Set<string>} valid merge methods.
+   * @enum {string}
    */
   static validMergeMethods = new Set(/*["MERGE", "SQUASH", "REBASE"]*/);
 
