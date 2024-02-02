@@ -56,14 +56,14 @@ export class NamedObject extends BaseObject {
     return this.name;
   }
 
-    /**
+  /**
    * Complete name in the hierachy.
    * @return {string}
    */
-    get fullCondensedName() {
-      return this.fullName;
-    }
-  
+  get fullCondensedName() {
+    return this.fullName;
+  }
+
   /**
    * Check for equality.
    * @param {NamedObject} other
