@@ -179,7 +179,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {Function} as defined in the owner
+   * @return {typeof Repository} as defined in the owner
    */
   get repositoryClass() {
     return this.owner.repositoryClass;
