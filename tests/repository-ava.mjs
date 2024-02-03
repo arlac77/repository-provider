@@ -36,7 +36,7 @@ test("repository init with options", async t => {
   t.is(await repository.refId('branches/master'), undefined);
   t.deepEqual(repository.toJSON(), {
     url: "https://myprovider.com/SingleGroupProvider/r1",
-    cloneURL: "https://myprovider.com/SingleGroupProvider/r1",
+    cloneURL: "git+https://myprovider.com/SingleGroupProvider/r1.git",
     defaultBranchName: "master",
     description: "a description",
     id: "4711",

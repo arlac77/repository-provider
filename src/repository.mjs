@@ -145,12 +145,12 @@ export class Repository extends OwnedObject {
    * @return {string}
    */
   get cloneURL() {
-    return this.url;
+    return `git+${this.url}.git`;
   }
 
   /**
    * The url of issue tracking system.
-   * @return {string}
+   * @return {string|undefined}
    */
   get issuesURL() {
     return undefined;
@@ -158,7 +158,7 @@ export class Repository extends OwnedObject {
 
   /**
    * The url of home page.
-   * @return {string}
+   * @return {string|undefined}
    */
   get homePageURL() {
     return undefined;
