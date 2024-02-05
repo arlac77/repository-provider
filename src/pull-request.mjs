@@ -77,7 +77,7 @@ export class PullRequest extends OwnedObject {
    * @param {Branch?} [filter.source]
    * @param {Branch?} [filter.destination]
    * @param {Set<string>} [filter.states]
-   * @return {AsyncIterator<PullRequest>}
+   * @return {AsyncIterable<PullRequest>}
    */
   static async *list(repository, filter) {}
 
@@ -228,7 +228,7 @@ export class PullRequest extends OwnedObject {
   async decline() {}
 
   /**
-   * @return {AsyncIterator<Review>}
+   * @return {AsyncIterable<Review>}
    */
   async *reviews() {}
 

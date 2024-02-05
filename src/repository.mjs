@@ -118,7 +118,7 @@ export class Repository extends OwnedObject {
   /**
    * List entries of the default branch.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<ContentEntry>} all matching entries in the branch
+   * @return {AsyncIterable<ContentEntry>} all matching entries in the branch
    */
   async *entries(patterns) {
     yield* (await this.defaultBranch).entries(patterns);
@@ -136,7 +136,7 @@ export class Repository extends OwnedObject {
   /**
    * List commits of the default branch.
    * @param {Object} [options]
-   * @return {AsyncIterator<Commit>} all matching commits in the repository
+   * @return {AsyncIterable<Commit>} all matching commits in the repository
    */
   async *commits(options) {}
 

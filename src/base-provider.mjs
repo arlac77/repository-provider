@@ -347,7 +347,7 @@ export class BaseProvider extends BaseObject {
   /**
    * List repositories.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Repository>} all matching repos of the provider
+   * @return {AsyncIterable<Repository>} all matching repos of the provider
    */
   async *repositories(patterns) {
     yield* this.list("repositories", patterns);
@@ -356,7 +356,7 @@ export class BaseProvider extends BaseObject {
   /**
    * List branches.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Branch>} all matching branches of the provider
+   * @return {AsyncIterable<Branch>} all matching branches of the provider
    */
   async *branches(patterns) {
     yield* this.list("branches", patterns);
@@ -365,7 +365,7 @@ export class BaseProvider extends BaseObject {
   /**
    * List tags.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Tag>} all matching tags of the provider
+   * @return {AsyncIterable<Tag>} all matching tags of the provider
    */
   async *tags(patterns) {
     yield* this.list("tags", patterns);
@@ -374,7 +374,7 @@ export class BaseProvider extends BaseObject {
   /**
    * List hooks.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Hook>} all matching hooks of the provider
+   * @return {AsyncIterable<Hook>} all matching hooks of the provider
    */
   async *hooks(patterns) {
     yield* this.list("hooks", patterns);
@@ -383,7 +383,7 @@ export class BaseProvider extends BaseObject {
   /**
    * List pull requests.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<PullRequest>} all matching pullRequests of the provider
+   * @return {AsyncIterable<PullRequest>} all matching pullRequests of the provider
    */
   async *pullRequests(patterns) {
     yield* this.list("pullRequests", patterns);

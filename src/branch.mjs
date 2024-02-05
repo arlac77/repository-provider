@@ -172,7 +172,7 @@ export class Branch extends Ref {
 
   /**
    * Remove entries form the branch.
-   * @param {AsyncIterator<ContentEntry>} entries
+   * @param {AsyncIterable<ContentEntry>} entries
    */
   async removeEntries(entries) {}
 

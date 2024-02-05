@@ -71,7 +71,7 @@ export class MultiGroupProvider extends BaseProvider {
   /**
    * List groups.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<RepositoryGroup>} all matching repositories groups of the provider
+   * @return {AsyncIterable<RepositoryGroup>} all matching repositories groups of the provider
    */
   async *repositoryGroups(patterns) {
     await this.initializeRepositories();

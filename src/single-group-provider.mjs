@@ -36,7 +36,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
   /**
    * List groups.
    * @param {string[]|string|undefined} patterns
-   * @return {AsyncIterator<RepositoryGroup>} always deliver the one and only present group
+   * @return {AsyncIterable<RepositoryGroup>} always deliver the one and only present group
    */
   async *repositoryGroups(patterns) {
     let found;

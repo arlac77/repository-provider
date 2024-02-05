@@ -1,7 +1,7 @@
 import { matcher } from "matching-iterator";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
-import { NamedObject } from "./named-object.mjs";
+import { OwnedObject } from "./owned-object.mjs";
 import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
 
 /**
@@ -54,7 +54,7 @@ export function RepositoryOwner(base) {
     /**
      * List repositories for the owner.
      * @param {string[]|string} [patterns]
-     * @return {AsyncIterator<Repository>} all matching repositories of the owner
+     * @return {AsyncIterable<Repository>} all matching repositories of the owner
      */
     async *repositories(patterns) {
       patterns = asArray(patterns);
@@ -87,7 +87,7 @@ export function RepositoryOwner(base) {
      * @param {string} [name]
      * @param {function} [split]
      * @param {Object} [defaultItem]
-     * @returns {Promise<NamedObject|undefined>} from a repository
+     * @returns {Promise<OwnedObject|undefined>} from a repository
      */
     async lookup(type, name, split, defaultItem) {
       if (name !== undefined) {
@@ -114,7 +114,7 @@ export function RepositoryOwner(base) {
      * @param {string[]|string} [patterns]
      * @param {function} [split]
      * @param {Object} [defaultItem]
-     * @return {AsyncIterator<NamedObject>} matching type and pattern
+     * @return {AsyncIterable<OwnedObject>} matching type and pattern
      */
     async *list(type, patterns, split, defaultItem) {
       await this.initializeRepositories();
@@ -206,7 +206,7 @@ export function RepositoryOwner(base) {
     /**
      * List branches for the owner.
      * @param {string[]|string} [patterns]
-     * @return {AsyncIterator<Branch>} all matching branches of the owner
+     * @return {AsyncIterable<Branch>} all matching branches of the owner
      */
     async *branches(patterns) {
       yield* this.list(
