@@ -64,14 +64,12 @@ console.log(await readme.string);
 *   [priority\_attribute](#priority_attribute)
 *   [BaseObject](#baseobject)
     *   [Parameters](#parameters-5)
+    *   [Properties](#properties)
     *   [updateAttributes](#updateattributes)
         *   [Parameters](#parameters-6)
     *   [update](#update)
     *   [toString](#tostring)
-    *   [displayName](#displayname)
     *   [fullName](#fullname)
-    *   [fullCondensedName](#fullcondensedname)
-    *   [condensedName](#condensedname)
     *   [isWritable](#iswritable)
     *   [equals](#equals)
         *   [Parameters](#parameters-7)
@@ -81,9 +79,9 @@ console.log(await readme.string);
     *   [writableAttributes](#writableattributes)
     *   [attributeMapping](#attributemapping)
 *   [MessageDestination](#messagedestination)
-    *   [Properties](#properties)
-*   [BaseProvider](#baseprovider)
     *   [Properties](#properties-1)
+*   [BaseProvider](#baseprovider)
+    *   [Properties](#properties-2)
     *   [equals](#equals-1)
         *   [Parameters](#parameters-8)
     *   [repositoryBases](#repositorybases)
@@ -136,7 +134,7 @@ console.log(await readme.string);
 *   [messageDestination](#messagedestination-1)
 *   [Branch](#branch)
     *   [Parameters](#parameters-25)
-    *   [Properties](#properties-2)
+    *   [Properties](#properties-3)
     *   [url](#url)
     *   [refType](#reftype)
     *   [isWritable](#iswritable-1)
@@ -153,10 +151,10 @@ console.log(await readme.string);
     *   [createBranch](#createbranch)
         *   [Parameters](#parameters-30)
 *   [CommitResult](#commitresult)
-    *   [Properties](#properties-3)
+    *   [Properties](#properties-4)
 *   [Commit](#commit-1)
     *   [Parameters](#parameters-31)
-    *   [Properties](#properties-4)
+    *   [Properties](#properties-5)
 *   [Hook](#hook)
 *   [Issue](#issue)
 *   [Milestone](#milestone)
@@ -175,7 +173,10 @@ console.log(await readme.string);
         *   [Parameters](#parameters-37)
 *   [NamedObject](#namedobject)
     *   [Parameters](#parameters-38)
-    *   [Properties](#properties-5)
+    *   [Properties](#properties-6)
+    *   [displayName](#displayname)
+    *   [condensedName](#condensedname)
+    *   [fullCondensedName](#fullcondensedname)
     *   [equals](#equals-2)
         *   [Parameters](#parameters-39)
     *   [toJSON](#tojson-1)
@@ -216,7 +217,7 @@ console.log(await readme.string);
 *   [Project](#project)
 *   [PullRequest](#pullrequest)
     *   [Parameters](#parameters-47)
-    *   [Properties](#properties-6)
+    *   [Properties](#properties-7)
     *   [fullName](#fullname-2)
     *   [url](#url-2)
     *   [repository](#repository-1)
@@ -238,7 +239,7 @@ console.log(await readme.string);
 *   [merged](#merged)
 *   [draft](#draft)
 *   [ContentEntry](#contententry)
-    *   [Properties](#properties-7)
+    *   [Properties](#properties-8)
 *   [Ref](#ref)
     *   [ref](#ref-1)
     *   [refId](#refid)
@@ -258,7 +259,7 @@ console.log(await readme.string);
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
     *   [Parameters](#parameters-54)
-    *   [Properties](#properties-8)
+    *   [Properties](#properties-9)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type-1)
 *   [homePageURL](#homepageurl-1)
@@ -266,7 +267,7 @@ console.log(await readme.string);
     *   [Parameters](#parameters-55)
 *   [Repository](#repository-3)
     *   [Parameters](#parameters-56)
-    *   [Properties](#properties-9)
+    *   [Properties](#properties-10)
     *   [slug](#slug-1)
     *   [entry](#entry-1)
         *   [Parameters](#parameters-57)
@@ -467,6 +468,11 @@ Creates an instance of BaseObject.
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 *   `additionalProperties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?**&#x20;
 
+### Properties
+
+*   `id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
+*   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
+
 ### updateAttributes
 
 Takes values from options.
@@ -484,27 +490,9 @@ Save object attributes in the backing store.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** fullName
 
-### displayName
-
-Beautified name use for human displaying only.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** human readable name
-
 ### fullName
 
 Complete name in the hierachy.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
-### fullCondensedName
-
-Complete name in the hierachy.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
-### condensedName
-
-Name with default parts removed
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
@@ -703,7 +691,7 @@ List repositories.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Repository](#repository)>** all matching repos of the provider
+Returns **AsyncIterable<[Repository](#repository)>** all matching repos of the provider
 
 ### branches
 
@@ -713,7 +701,7 @@ List branches.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Branch](#branch)>** all matching branches of the provider
+Returns **AsyncIterable<[Branch](#branch)>** all matching branches of the provider
 
 ### tags
 
@@ -723,7 +711,7 @@ List tags.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Tag](#tag)>** all matching tags of the provider
+Returns **AsyncIterable<[Tag](#tag)>** all matching tags of the provider
 
 ### hooks
 
@@ -733,7 +721,7 @@ List hooks.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Hook](#hook)>** all matching hooks of the provider
+Returns **AsyncIterable<[Hook](#hook)>** all matching hooks of the provider
 
 ### pullRequests
 
@@ -743,7 +731,7 @@ List pull requests.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[PullRequest](#pullrequest)>** all matching pullRequests of the provider
+Returns **AsyncIterable<[PullRequest](#pullrequest)>** all matching pullRequests of the provider
 
 ### name
 
@@ -893,7 +881,7 @@ Add commits into a pull request.
 
 #### Parameters
 
-*   `commits` **([Commit](#commit) | AsyncIterator<[Commit](#commit)>)** to be commited
+*   `commits` **([Commit](#commit) | AsyncGenerator<[Commit](#commit)>)** to be commited
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
     *   `options.pullRequestBranch` **([Branch](#branch) | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** to commit into
@@ -910,7 +898,7 @@ Remove entries form the branch.
 
 #### Parameters
 
-*   `entries` **AsyncIterator<[ContentEntry](#contententry)>**&#x20;
+*   `entries` **AsyncIterable<[ContentEntry](#contententry)>**&#x20;
 
 ### createPullRequest
 
@@ -1015,7 +1003,7 @@ List groups.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[RepositoryGroup](#repositorygroup)>** all matching repositories groups of the provider
+Returns **AsyncIterable<[RepositoryGroup](#repositorygroup)>** all matching repositories groups of the provider
 
 ### createRepositoryGroup
 
@@ -1055,6 +1043,24 @@ Object with a name.
 ### Properties
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+### displayName
+
+Beautified name use for human displaying only.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** human readable name
+
+### condensedName
+
+Name with default parts removed
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+### fullCondensedName
+
+Complete name in the hierachy.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 ### equals
 
@@ -1209,8 +1215,6 @@ Forwarded to the owner.
 
 By default we use the owners implementation.
 
-Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** as defined in the owner
-
 ### pullRequestClass
 
 By default we use the owners implementation.
@@ -1317,7 +1321,7 @@ Decline the pull request.
 
 ### reviews
 
-Returns **AsyncIterator<[Review](#review)>**&#x20;
+Returns **AsyncIterable<[Review](#review)>**&#x20;
 
 ### identifier
 
@@ -1335,9 +1339,13 @@ Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 
 possible states
 
+Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
+
 ### validMergeMethods
 
 All valid merge methods
+
+Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** valid merge methods.
 
@@ -1355,7 +1363,7 @@ Result will be filtered by source branch, destination branch and states
     *   `filter.destination` **[Branch](#branch)??**&#x20;
     *   `filter.states` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>?**&#x20;
 
-Returns **AsyncIterator<[PullRequest](#pullrequest)>**&#x20;
+Returns **AsyncIterable<[PullRequest](#pullrequest)>**&#x20;
 
 ### open
 
@@ -1429,13 +1437,13 @@ List entries of the branch.
 
 *   `matchingPatterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[ContentEntry](#contententry)>** all matching entries in the branch
+Returns **AsyncGenerator<[ContentEntry](#contententry)>** all matching entries in the branch
 
 ### asyncIterator
 
 List all entries of the branch.
 
-Returns **AsyncIterator<[ContentEntry](#contententry)>** all entries in the branch
+Returns **AsyncGenerator<[ContentEntry](#contententry)>** all entries in the branch
 
 ### maybeEntry
 
@@ -1593,7 +1601,7 @@ List entries of the default branch.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[ContentEntry](#contententry)>** all matching entries in the branch
+Returns **AsyncIterable<[ContentEntry](#contententry)>** all matching entries in the branch
 
 ### maybeEntry
 
@@ -1613,7 +1621,7 @@ List commits of the default branch.
 
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?**&#x20;
 
-Returns **AsyncIterator<[Commit](#commit)>** all matching commits in the repository
+Returns **AsyncIterable<[Commit](#commit)>** all matching commits in the repository
 
 ### cloneURL
 
@@ -1625,13 +1633,13 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 The url of issue tracking system.
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))**&#x20;
 
 ### homePageURL
 
 The url of home page.
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))**&#x20;
 
 ### isArchived
 
@@ -1690,7 +1698,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Branch](#branch)>** of all branches
+Returns **AsyncGenerator<[Branch](#branch)>** of all branches
 
 ### createBranch
 
@@ -1742,7 +1750,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Tag](#tag)>** of all tags
+Returns **AsyncGenerator<[Tag](#tag)>** of all tags
 
 ### addTag
 
@@ -1784,7 +1792,7 @@ Returns **[PullRequest](#pullrequest)**&#x20;
 
 Deliver all [PullRequest](#pullrequest)s.
 
-Returns **AsyncIterator<[PullRequest](#pullrequest)>** of all pull requests
+Returns **AsyncGenerator<[PullRequest](#pullrequest)>** of all pull requests
 
 ### pullRequest
 
@@ -1829,7 +1837,7 @@ Add a new Hook.
 
 List hooks.
 
-Returns **AsyncIterator<[Hook](#hook)>** all hooks of the repository
+Returns **AsyncGenerator<[Hook](#hook)>** all hooks of the repository
 
 ### hook
 
@@ -1935,7 +1943,7 @@ List groups.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))**&#x20;
 
-Returns **AsyncIterator<[RepositoryGroup](#repositorygroup)>** always deliver the one and only present group
+Returns **AsyncIterable<[RepositoryGroup](#repositorygroup)>** always deliver the one and only present group
 
 ## Tag
 
