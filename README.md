@@ -331,6 +331,9 @@ console.log(await readme.string);
         *   [Parameters](#parameters-79)
     *   [attributes](#attributes-2)
 *   [defaultBranchName](#defaultbranchname)
+*   [branches](#branches-2)
+*   [tags](#tags-2)
+*   [pullRequests](#pullrequests-2)
 *   [Review](#review)
 *   [SingleGroupProvider](#singlegroupprovider)
     *   [repository](#repository-4)
@@ -1723,7 +1726,7 @@ Internal branch creation does not call repository.initialize()
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** of the new branch
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** to be passed to the branch
 
-Returns **[Branch](#branch)** newly created branch
+Returns **[Branch](#branch)** newly created branch or already present one for the given name
 
 ### deleteBranch
 
@@ -1905,6 +1908,12 @@ options
 The name of the default branch
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+## branches
+
+## tags
+
+## pullRequests
 
 ## Review
 
