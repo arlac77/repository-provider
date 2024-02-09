@@ -78,12 +78,12 @@ export class Repository extends OwnedObject {
     };
   }
 
-  #branches = new Map();
-  #tags = new Map();
+  /** @type Map<string,Branch> */ #branches = new Map();
+  /** @type Map<string,Tag> */ #tags = new Map();
   #projects = new Map();
   #applications = new Map();
   #milestones = new Map();
-  #pullRequests = new Map();
+  /** @type Map<string,PullRequest> */ #pullRequests = new Map();
   #hooks = [];
 
   constructor(owner, name, options) {
@@ -262,7 +262,7 @@ export class Repository extends OwnedObject {
    * Internal branch creation does not call repository.initialize()
    * @param {string} name of the new branch
    * @param {Object} [options] to be passed to the branch
-   * @return {Branch} newly created branch
+   * @return {Branch} newly created branch or already present one for the given name
    */
   addBranch(name, options) {
     const branch = this.#branches.get(name);
