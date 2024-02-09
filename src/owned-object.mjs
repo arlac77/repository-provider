@@ -179,7 +179,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {typeof Repository} as defined in the owner
+   * @return {Repository} as defined in the owner
    */
   get repositoryClass() {
     return this.owner.repositoryClass;
@@ -187,7 +187,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {typeof PullRequest} as defined in the owner
+   * @return {PullRequest} as defined in the owner
    */
   get pullRequestClass() {
     return this.owner.pullRequestClass;
@@ -195,7 +195,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {typeof Branch} as defined in the owner
+   * @return {Branch} as defined in the owner
    */
   get branchClass() {
     return this.owner.branchClass;
@@ -203,7 +203,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {typeof Tag} as defined in the owner
+   * @return {Tag} as defined in the owner
    */
   get tagClass() {
     return this.owner.tagClass;
@@ -211,7 +211,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {typeof ContentEntry} as defined in the owner
+   * @return {ContentEntry} as defined in the owner
    */
   get entryClass() {
     return this.owner.entryClass;
@@ -219,7 +219,7 @@ export class OwnedObject extends NamedObject {
 
   /**
    * By default we use the owners implementation.
-   * @return {typeof Hook} as defined in the owner
+   * @return {Hook} as defined in the owner
    */
   get hookClass() {
     return this.owner.hookClass;
