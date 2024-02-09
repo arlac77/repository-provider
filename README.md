@@ -1219,25 +1219,37 @@ Forwarded to the owner.
 
 By default we use the owners implementation.
 
+Returns **[Repository](#repository)** as defined in the owner
+
 ### pullRequestClass
 
 By default we use the owners implementation.
+
+Returns **[PullRequest](#pullrequest)** as defined in the owner
 
 ### branchClass
 
 By default we use the owners implementation.
 
+Returns **[Branch](#branch)** as defined in the owner
+
 ### tagClass
 
 By default we use the owners implementation.
+
+Returns **[Tag](#tag)** as defined in the owner
 
 ### entryClass
 
 By default we use the owners implementation.
 
+Returns **[ContentEntry](#contententry)** as defined in the owner
+
 ### hookClass
 
 By default we use the owners implementation.
+
+Returns **[Hook](#hook)** as defined in the owner
 
 ### addMethodName
 
