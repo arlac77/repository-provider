@@ -78,12 +78,12 @@ export class Repository extends OwnedObject {
     };
   }
 
-  /** @type Map<string,Branch> */ #branches = new Map();
-  /** @type Map<string,Tag> */ #tags = new Map();
+  /** @type {Map<string,Branch>} */ #branches = new Map();
+  /** @type {Map<string,Tag>} */ #tags = new Map();
   #projects = new Map();
   #applications = new Map();
   #milestones = new Map();
-  /** @type Map<string,PullRequest> */ #pullRequests = new Map();
+  /** @type {Map<string,PullRequest>} */ #pullRequests = new Map();
   #hooks = [];
 
   constructor(owner, name, options) {
