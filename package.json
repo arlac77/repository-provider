@@ -31,7 +31,7 @@
     "lint:tsc": "tsc --allowJs --checkJs --noEmit -t esnext -m esnext --module nodenext --moduleResolution nodenext ./src**/*.mjs"
   },
   "dependencies": {
-    "matching-iterator": "^2.1.2",
+    "matching-iterator": "^2.1.3",
     "pacc": "^3.0.0"
   },
   "devDependencies": {
