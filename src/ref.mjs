@@ -10,6 +10,7 @@ import { name_attribute, boolean_attribute } from "./attributes.mjs";
 /**
  * Base for Branch and Tag
  */
+// @ts-ignore
 export class Ref extends OwnedObject {
   /**
    * options

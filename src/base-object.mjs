@@ -32,7 +32,7 @@ export class BaseObject {
   }
 
   /**
-   * Attributes definitions
+   * Attributes definitions.
    * @return {Object}
    */
   static get attributes() {
