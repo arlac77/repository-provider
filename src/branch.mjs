@@ -1,13 +1,9 @@
+import { ContentEntry } from "content-entry";
 import { Ref } from "./ref.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { Repository } from "./repository.mjs";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { Commit, CommitResult } from "./commit.mjs";
-
-/**
- * @typedef {Object} ContentEntry
- * @property {string} name
- *
 
 /**
  * Abstract branch.

@@ -1,4 +1,5 @@
 import { matcher } from "matching-iterator";
+import { ContentEntry } from "content-entry";
 import { OwnedObject } from "./owned-object.mjs";
 import { Hook } from "./hook.mjs";
 import { Tag } from "./tag.mjs";
@@ -12,11 +13,6 @@ import {
   boolean_read_only_attribute,
   default_attribute
 } from "./attributes.mjs";
-
-/**
- * @typedef {Object} ContentEntry
- * @property {string} name
- *
 
 /**
  * Abstract repository

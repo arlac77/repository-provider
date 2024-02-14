@@ -1,3 +1,4 @@
+import { ContentEntry } from "content-entry";
 import { NamedObject } from "./named-object.mjs";
 
 /**
