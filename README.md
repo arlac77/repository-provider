@@ -240,8 +240,6 @@ console.log(await readme.string);
 *   [locked](#locked)
 *   [merged](#merged)
 *   [draft](#draft)
-*   [ContentEntry](#contententry)
-    *   [Properties](#properties-8)
 *   [Ref](#ref)
     *   [ref](#ref-1)
     *   [refId](#refid)
@@ -261,7 +259,7 @@ console.log(await readme.string);
 *   [isProtected](#isprotected-1)
 *   [RepositoryGroup](#repositorygroup-1)
     *   [Parameters](#parameters-55)
-    *   [Properties](#properties-9)
+    *   [Properties](#properties-8)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type-1)
 *   [homePageURL](#homepageurl-1)
@@ -269,7 +267,7 @@ console.log(await readme.string);
     *   [Parameters](#parameters-56)
 *   [Repository](#repository-3)
     *   [Parameters](#parameters-57)
-    *   [Properties](#properties-10)
+    *   [Properties](#properties-9)
     *   [slug](#slug-1)
     *   [entry](#entry-1)
         *   [Parameters](#parameters-58)
@@ -824,7 +822,7 @@ To forward info/warn and error messages to
 
 *   **See**: [Repository#\_addBranch](Repository#_addBranch)
 
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+Abstract branch.
 
 ### Parameters
 
@@ -834,8 +832,6 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### Properties
 
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** /\*\*
-    Abstract branch.
 *   `repository` **[Repository](#repository)**&#x20;
 *   `provider` **Provider**&#x20;
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
@@ -875,7 +871,7 @@ Commit entries.
 #### Parameters
 
 *   `message` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** commit message
-*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[ContentEntry](#contententry)>** content to be commited
+*   `updates` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)\<ContentEntry>** content to be commited
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[CommitResult](#commitresult)>**&#x20;
@@ -903,7 +899,7 @@ Remove entries form the branch.
 
 #### Parameters
 
-*   `entries` **AsyncIterable<[ContentEntry](#contententry)>**&#x20;
+*   `entries` **AsyncIterable\<ContentEntry>**&#x20;
 
 ### createPullRequest
 
@@ -1246,7 +1242,7 @@ Returns **[Tag](#tag)** as defined in the owner
 
 By default we use the owners implementation.
 
-Returns **[ContentEntry](#contententry)** as defined in the owner
+Returns **ContentEntry** as defined in the owner
 
 ### hookClass
 
@@ -1422,14 +1418,6 @@ Draft state of the pull request.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
 
-## ContentEntry
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
-
 ## Ref
 
 **Extends OwnedObject**
@@ -1456,13 +1444,13 @@ List entries of the branch.
 
 *   `matchingPatterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncGenerator<[ContentEntry](#contententry)>** all matching entries in the branch
+Returns **AsyncGenerator\<ContentEntry>** all matching entries in the branch
 
 ### asyncIterator
 
 List all entries of the branch.
 
-Returns **AsyncGenerator<[ContentEntry](#contententry)>** all entries in the branch
+Returns **AsyncGenerator\<ContentEntry>** all entries in the branch
 
 ### maybeEntry
 
@@ -1472,7 +1460,7 @@ Get exactly one matching entry by name or undefine if no such entry is found.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<([ContentEntry](#contententry) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>**&#x20;
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<(ContentEntry | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>**&#x20;
 
 ### entry
 
@@ -1482,7 +1470,7 @@ Get exactly one matching entry by name (throws if entry is not found).
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[ContentEntry](#contententry)>**&#x20;
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ContentEntry>**&#x20;
 
 ### repository
 
@@ -1571,7 +1559,7 @@ Mixin to define a class able to handle a collection of repositories.
 
 ## Repository
 
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+Abstract repository
 
 ### Parameters
 
@@ -1584,8 +1572,6 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### Properties
 
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** /\*\*
-    Abstract repository
 *   `owner` **[RepositoryOwner](#repositoryowner)**&#x20;
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** without (#branch)
 *   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** from options.description
@@ -1610,7 +1596,7 @@ Lookup entries form the head of the default branch.
 
 *   `name` &#x20;
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[ContentEntry](#contententry)>**&#x20;
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<ContentEntry>**&#x20;
 
 ### entries
 
@@ -1620,7 +1606,7 @@ List entries of the default branch.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterable<[ContentEntry](#contententry)>** all matching entries in the branch
+Returns **AsyncIterable\<ContentEntry>** all matching entries in the branch
 
 ### maybeEntry
 
@@ -1630,7 +1616,7 @@ Get exactly one matching entry by name or undefined if no such entry is found.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<([ContentEntry](#contententry) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>**&#x20;
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<(ContentEntry | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>**&#x20;
 
 ### commits
 
