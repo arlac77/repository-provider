@@ -1,13 +1,15 @@
-
 /**
- * @typedef {Object} CommitResult
  * @property {string} ref
  */
+export class CommitResult {
+  ref;
 
-export class User
-{
-
+  constructor(ref) {
+    this.ref = ref;
+  }
 }
+
+export class User {}
 
 /**
  * @property {Repository} repository
@@ -17,9 +19,8 @@ export class User
  * @property {User} committer
  */
 export class Commit {
-
   repository;
-  
+
   constructor(repository) {
     this.repository = repository;
   }
