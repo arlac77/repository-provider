@@ -1,5 +1,7 @@
 import { ContentEntry } from "content-entry";
 import { NamedObject } from "./named-object.mjs";
+import { Repository } from "./repository.mjs";
+import { Tag } from "./tag.mjs";
 
 /**
  * Named Object registering itself in the owner.

@@ -1,3 +1,4 @@
+import { ContentEntry } from "content-entry";
 import { asArray, stripBaseName } from "./util.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
