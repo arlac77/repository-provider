@@ -1,5 +1,10 @@
 /**
+ * @typedef {import('pacc').AttributeDefinition} AttributeDefinition
+ */
+
+/**
  * common attributes
+ * @type {AttributeDefinition}
  */
 export const default_attribute = {
   type: "string",
@@ -11,6 +16,9 @@ export const default_attribute = {
   env: []
 };
 
+/**
+ * @type {AttributeDefinition}
+ */
 export const boolean_attribute = {
   ...default_attribute,
   writable: true,
@@ -18,29 +26,58 @@ export const boolean_attribute = {
   type: "boolean"
 };
 
+/**
+ * @type {AttributeDefinition}
+ */
 export const boolean_read_only_attribute = {
   ...default_attribute,
   type: "boolean",
   default: false
 };
 
+/**
+ * @type {AttributeDefinition}
+ */
 export const uuid_attribute = {
   ...default_attribute,
   isKey: true
 };
+
+/**
+ * @type {AttributeDefinition}
+ */
 export const empty_attiribute = { ...default_attribute, type: "boolean" };
+
+/**
+ * @type {AttributeDefinition}
+ */
 export const secret_attribute = {
   ...default_attribute,
   private: true,
   writable: true
 };
+
+/**
+ * @type {AttributeDefinition}
+ */
 export const count_attribute = { ...default_attribute, type: "integer" };
+
+/**
+ * @type {AttributeDefinition}
+ */
 export const size_attribute = { ...default_attribute, type: "integer" };
+
+/**
+ * @type {AttributeDefinition}
+ */
 export const name_attribute = {
   ...default_attribute,
   isKey: true
 };
 
+/**
+ * @type {AttributeDefinition}
+ */
 export const url_attribute = {
   ...default_attribute,
   description: "home of the object",
@@ -49,6 +86,7 @@ export const url_attribute = {
 
 /**
  * The description of the object content.
+ * @type {AttributeDefinition}
  */
 export const description_attribute = {
   ...default_attribute,
@@ -58,6 +96,7 @@ export const description_attribute = {
 
 /**
  * Unique id within the provider.
+ * @type {AttributeDefinition}
  */
 export const id_attribute = {
   ...default_attribute,
@@ -65,6 +104,9 @@ export const id_attribute = {
   description: "internal identifier"
 };
 
+/**
+ * @type {AttributeDefinition}
+ */
 export const state_attribute = {
   ...default_attribute,
   writable: true
@@ -72,6 +114,7 @@ export const state_attribute = {
 
 /**
  * The description of the pull request.
+ * @type {AttributeDefinition}
  */
 export const body_attribute = {
   ...default_attribute,
@@ -80,6 +123,7 @@ export const body_attribute = {
 
 /**
  * The one line description of the pull request.
+ * @type {AttributeDefinition}
  */
 export const title_attribute = {
   ...default_attribute,
@@ -89,7 +133,8 @@ export const title_attribute = {
 
 /**
  * In case there are several providers able to support a given source which one sould be used ?
- * this defines the order
+ * this defines the order.
+ * @type {AttributeDefinition}
  */
 export const priority_attribute = {
   ...default_attribute,
@@ -98,6 +143,9 @@ export const priority_attribute = {
   writable: true
 };
 
+/**
+ * @type {AttributeDefinition}
+ */
 export const active_attribute = {
   ...default_attribute,
   type: "boolean",
@@ -105,5 +153,12 @@ export const active_attribute = {
   writable: true
 };
 
+/**
+ * @type {AttributeDefinition}
+ */
 export const language_attribute = default_attribute;
+
+/**
+ * @type {AttributeDefinition}
+ */
 export const type_attribute = default_attribute;
