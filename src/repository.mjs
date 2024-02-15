@@ -98,6 +98,7 @@ export class Repository extends OwnedObject {
   }
 
   get url() {
+    // @ts-ignore
     return `${this.provider.url}${this.slug}`;
   }
 
@@ -270,6 +271,7 @@ export class Repository extends OwnedObject {
       return branch;
     }
 
+    // @ts-ignore
     return new this.branchClass(this, name, options);
   }
 
@@ -316,6 +318,7 @@ export class Repository extends OwnedObject {
    * @return {Tag} newly created tag
    */
   addTag(name, options) {
+    // @ts-ignore
     return this.#tags.get(name) || new this.tagClass(this, name, options);
   }
 
@@ -345,6 +348,7 @@ export class Repository extends OwnedObject {
   addPullRequest(name, source, options) {
     let pr = this.#pullRequests.get(name);
     if (pr === undefined) {
+      // @ts-ignore
       pr = new this.pullRequestClass(name, source, this, options);
       this.#pullRequests.set(pr.name, pr);
     }
@@ -395,6 +399,7 @@ export class Repository extends OwnedObject {
   addHook(name, options) {
     return (
       this.#hooks.find(hook => hook.name == name) ||
+      // @ts-ignore
       new this.hookClass(this, name, options)
     );
   }
@@ -429,6 +434,7 @@ export class Repository extends OwnedObject {
    */
   async hook(id) {
     for await (const hook of this.hooks()) {
+       // @ts-ignore
       if (hook.id == id) {
         // string of number
         return hook;
@@ -488,7 +494,9 @@ export class Repository extends OwnedObject {
    * @param {string} ref
    * @return {Promise<string|undefined>} sha of the ref
    */
-  async refId(ref) {}
+  async refId(ref) { 
+    return undefined;
+  }
 
   initialize() {}
 
@@ -505,7 +513,8 @@ export class Repository extends OwnedObject {
   }
 
   async initializePullRequests() {
-    for await (const pr of this.pullRequestClass.list(this)) {
+      // @ts-ignore
+      for await (const pr of this.pullRequestClass.list(this)) {
       this.#pullRequests.set(pr.name, pr);
     }
   }

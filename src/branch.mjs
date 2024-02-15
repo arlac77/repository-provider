@@ -84,9 +84,11 @@ export class Branch extends Ref {
    * @param {string} message commit message
    * @param {ContentEntry[]} updates content to be commited
    * @param {Object} options
-   * @return {Promise<CommitResult>}
+   * @return {Promise<CommitResult|undefined>}
    */
-  async commit(message, updates, options) {}
+  async commit(message, updates, options) {
+    return undefined;
+  }
 
   /**
    * Add commits into a pull request.
@@ -129,13 +131,16 @@ export class Branch extends Ref {
           if (prBranch === undefined) {
             prBranch = isBranch
               ? options.pullRequestBranch
+              // @ts-ignore
               : await this.createBranch(options.pullRequestBranch);
           }
           await prBranch.commit(commit.message, commit.entries);
           c2m(commit);
         };
 
+        // @ts-ignore
         if (commits.next) {
+          // @ts-ignore
           for await (const commit of commits) {
             await exec(commit);
           }
@@ -148,7 +153,9 @@ export class Branch extends Ref {
         options.body = options.body ? options.body + '\n' + body : body;
       }
 
+      // @ts-ignore
       if (options.body?.length > 0 && !options.skipWithoutCommits) {
+        // @ts-ignore
         return prBranch.createPullRequest(this, options);
       } else {
         return new PullRequest(
@@ -160,6 +167,7 @@ export class Branch extends Ref {
       }
     } catch (e) {
       if (!isBranch && prBranch) {
+        // @ts-ignore
         await prBranch.delete();
       }
       throw e;
@@ -179,6 +187,7 @@ export class Branch extends Ref {
    * @return {Promise<PullRequest>}
    */
   async createPullRequest(toBranch, options) {
+    // @ts-ignore
     return this.pullRequestClass.open(this, toBranch, options);
   }
 

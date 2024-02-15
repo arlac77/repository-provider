@@ -1,7 +1,14 @@
 import { ContentEntry } from "content-entry";
 import { NamedObject } from "./named-object.mjs";
-import { Repository } from "./repository.mjs";
-import { Tag } from "./tag.mjs";
+
+/** 
+* @typedef {import('./base-provider.mjs').BaseProvider} BaseProvider
+* @typedef {import('./repository.mjs').Repository} Repository
+* @typedef {import('./hook.mjs').Hook} Hook
+* @typedef {import('./tag.mjs').Tag} Tag
+* @typedef {import('./branch.mjs').Branch} Branch
+* @typedef {import('./pull-request.mjs').PullRequest} PullRequest
+*/
 
 /**
  * Named Object registering itself in the owner.
@@ -30,6 +37,7 @@ export class OwnedObject extends NamedObject {
   constructor(owner, name, options, additionalProperties) {
     super(name, options, additionalProperties);
     this.owner = owner;
+    // @ts-ignore
     owner[this.constructor.addMethodName](this);
   }
 
@@ -37,6 +45,7 @@ export class OwnedObject extends NamedObject {
    * Removes the receiver from the owner.
    */
   delete() {
+    // @ts-ignore
     this.owner[this.constructor.deleteMethodName](this);
   }
 
@@ -61,7 +70,7 @@ export class OwnedObject extends NamedObject {
   /**
    * Url of issue tracking system.
    * @see {@link Repository#issuesURL}
-   * @return {string} as provided from the repository
+   * @return {string|undefined} as provided from the repository
    */
   get issuesURL() {
     return this.owner.issuesURL;

@@ -141,6 +141,7 @@ export class PullRequest extends OwnedObject {
       state: {
         set(value) {
           value = value.toUpperCase();
+          // @ts-ignore
           if (this.constructor.attributes.state.values.has(value)) {
             state = value;
           } else throw new Error(`Invalid Pull Request state ${value}`);
@@ -214,7 +215,9 @@ export class PullRequest extends OwnedObject {
    */
   async merge(method = "MERGE") {
     method = method.toUpperCase();
+    // @ts-ignore
     if (this.constructor.validMergeMethods.has(method)) {
+      // @ts-ignore
       await this._merge(method);
       this.merged = true;
     } else {
@@ -234,9 +237,11 @@ export class PullRequest extends OwnedObject {
 
   toString() {
     return [
+      // @ts-ignore
       [this.name, this.title],
       ["source", this.source?.identifier],
       ["destination", this.owner.identifier],
+      // @ts-ignore
       ...Object.entries(this.constructor.attributes)
         .filter(
           ([k, v]) =>

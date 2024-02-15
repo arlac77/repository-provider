@@ -2,13 +2,11 @@ import { ContentEntry } from "content-entry";
 import { asArray, stripBaseName } from "./util.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
-import { Repository } from "./repository.mjs";
-import { Branch } from "./branch.mjs";
-import { Tag } from "./tag.mjs";
-import { Hook } from "./hook.mjs";
-import { Project } from "./project.mjs";
-import { Milestone } from "./milestone.mjs";
 import { BaseObject } from "./base-object.mjs";
+import { Repository } from "./repository.mjs";
+import { Tag } from "./tag.mjs";
+import { Branch } from "./branch.mjs";
+import { Hook } from "./hook.mjs";
 import {
   url_attribute,
   name_attribute,
@@ -16,6 +14,11 @@ import {
   priority_attribute,
   default_attribute
 } from "./attributes.mjs";
+
+/** 
+* @typedef {import('./project.mjs').Project} Project
+* @typedef {import('./milestone.mjs').Milestone} Milestone
+*/
 
 /**
  * @typedef {Object} MessageDestination
@@ -155,7 +158,7 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
-   * @param {*} other 
+   * @param {any} other 
    * @return {boolean} true if other provider is the same as the receiver
    */
   equals(other) {
@@ -298,6 +301,7 @@ export class BaseProvider extends BaseObject {
    */
   async createRepository(name, options) {
     const { group, repository } = this.parseName(name);
+    // @ts-ignore
     const rg = await this.repositoryGroup(group);
     return rg.createRepository(repository, options);
   }
@@ -310,6 +314,7 @@ export class BaseProvider extends BaseObject {
    */
   async *list(type, patterns) {
     if (patterns === undefined) {
+      // @ts-ignore
       for await (const group of this.repositoryGroups()) {
         yield* group[type]();
       }
@@ -320,6 +325,7 @@ export class BaseProvider extends BaseObject {
           this.repositoryBases
         ).split(/\//);
 
+        // @ts-ignore
         for await (const group of this.repositoryGroups(groupPattern)) {
           yield* group[type](repoPattern);
         }
@@ -413,6 +419,7 @@ export class BaseProvider extends BaseObject {
   toJSON() {
     const json = { name: this.name };
 
+    // @ts-ignore
     Object.entries(this.constructor.attributes).forEach(([k, v]) => {
       if (
         !v.private &&
@@ -429,22 +436,27 @@ export class BaseProvider extends BaseObject {
   initializeRepositories() {}
 
   trace(...args) {
+    // @ts-ignore
     return this.messageDestination.trace(...args);
   }
 
   debug(...args) {
+    // @ts-ignore
     return this.messageDestination.debug(...args);
   }
 
   info(...args) {
+    // @ts-ignore
     return this.messageDestination.info(...args);
   }
 
   warn(...args) {
+    // @ts-ignore
     return this.messageDestination.warn(...args);
   }
 
   error(...args) {
+    // @ts-ignore
     return this.messageDestination.error(...args);
   }
 

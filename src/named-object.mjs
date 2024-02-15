@@ -6,6 +6,12 @@ import {
   id_attribute
 } from "./attributes.mjs";
 
+/** 
+* @typedef {import('./hook.mjs').Hook} Hook
+* @typedef {import('./base-provider.mjs').BaseProvider} BaseProvider
+*/
+
+
 /**
  * Object with a name.
  * @param {string} name
@@ -73,6 +79,7 @@ export class NamedObject extends BaseObject {
     return (
       super.equals(other) &&
       this.fullName === other.fullName &&
+      // @ts-ignore
       this.provider.equals(other.provider)
     );
   }

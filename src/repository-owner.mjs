@@ -195,6 +195,7 @@ export function RepositoryOwner(base) {
      * @return {Promise<Branch|undefined>}
      */
     async branch(name) {
+      // @ts-ignore
       return this.lookup(
         "branch",
         name,
@@ -209,6 +210,7 @@ export function RepositoryOwner(base) {
      * @return {AsyncIterable<Branch>} all matching branches of the owner
      */
     async *branches(patterns) {
+      // @ts-ignore
       yield* this.list(
         "branches",
         patterns,

@@ -29,6 +29,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
     const { base } = this.parseName(name);
 
     if (name && this.supportsBase(base)) {
+       // @ts-ignore
       return this;
     }
   }
@@ -46,6 +47,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
     });
 
     if (found) {
+      // @ts-ignore
       yield this;
     }
   }
