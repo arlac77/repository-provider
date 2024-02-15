@@ -332,6 +332,9 @@ console.log(await readme.string);
 *   [defaultBranchName](#defaultbranchname)
 *   [branches](#branches-2)
 *   [tags](#tags-2)
+*   [projects](#projects-1)
+*   [applications](#applications)
+*   [milestones](#milestones-1)
 *   [pullRequests](#pullrequests-2)
 *   [Review](#review)
 *   [SingleGroupProvider](#singlegroupprovider)
@@ -1917,6 +1920,18 @@ Type: [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_O
 ## tags
 
 Type: [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Tag](#tag)>
+
+## projects
+
+Type: [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Project](#project)>
+
+## applications
+
+Type: [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Application](#application)>
+
+## milestones
+
+Type: [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [Milestone](#milestone)>
 
 ## pullRequests
 
