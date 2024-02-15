@@ -7,6 +7,9 @@ import { Branch } from "./branch.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { Commit } from "./commit.mjs";
+import { Milestone } from "./milestone.mjs";
+import { Project } from "./project.mjs";
+import { Application } from "./application.mjs";
 import {
   url_attribute,
   boolean_attribute,
@@ -76,9 +79,9 @@ export class Repository extends OwnedObject {
 
   /** @type {Map<string,Branch>} */ #branches = new Map();
   /** @type {Map<string,Tag>} */ #tags = new Map();
-  #projects = new Map();
-  #applications = new Map();
-  #milestones = new Map();
+  /** @type {Map<string,Project>} */ #projects = new Map();
+  /** @type {Map<string,Application>} */ #applications = new Map();
+  /** @type {Map<string,Milestone>} */ #milestones = new Map();
   /** @type {Map<string,PullRequest>} */ #pullRequests = new Map();
   #hooks = [];
 
