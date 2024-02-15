@@ -5,13 +5,13 @@
     "access": "public",
     "provenance": true
   },
+  "types": "./types/index.d.mts",
   "exports": {
     ".": {
-      "types": "./types/index.d.mts",
-      "default": "./src/index.mjs"
+      "default": "./src/index.mjs",
+      "types": "./types/index.d.mts"
     }
   },
-  "types": "./types/index.d.mts",
   "description": "abstract interface to git repository providers like github, bitbucket and gitlab",
   "keywords": [
     "git",
