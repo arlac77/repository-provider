@@ -1,4 +1,5 @@
 import test from "ava";
+import { ContentEntry } from "content-entry";
 import {
   MultiGroupProvider,
   RepositoryGroup,
@@ -47,7 +48,7 @@ test("repository-group classes", t => {
 
   t.is(rg.repositoryClass, Repository);
   t.is(rg.branchClass, Branch);
-  t.is(rg.entryClass, undefined);
+  t.is(rg.entryClass, ContentEntry);
   t.is(rg.pullRequestClass, PullRequest);
 });
 

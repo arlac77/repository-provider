@@ -6,6 +6,7 @@ import {
   Branch,
   PullRequest
 } from "repository-provider";
+import { ContentEntry } from "content-entry";
 
 test("Repository type", t => t.is(Repository.type, "repository"));
 test("Repository collection name", t => t.is(Repository.collectionName, "repositories"));
@@ -120,7 +121,7 @@ test("repository classes", t => {
   const provider = new SingleGroupProvider();
   const repository = new Repository(provider, "r1#branch");
   t.is(repository.branchClass, Branch);
-  t.is(repository.entryClass, undefined);
+  t.is(repository.entryClass, ContentEntry);
   t.is(repository.pullRequestClass, PullRequest);
 });
 

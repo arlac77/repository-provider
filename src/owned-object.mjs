@@ -1,14 +1,14 @@
 import { ContentEntry } from "content-entry";
 import { NamedObject } from "./named-object.mjs";
 
-/** 
-* @typedef {import('./base-provider.mjs').BaseProvider} BaseProvider
-* @typedef {import('./repository.mjs').Repository} Repository
-* @typedef {import('./hook.mjs').Hook} Hook
-* @typedef {import('./tag.mjs').Tag} Tag
-* @typedef {import('./branch.mjs').Branch} Branch
-* @typedef {import('./pull-request.mjs').PullRequest} PullRequest
-*/
+/**
+ * @typedef {import('./base-provider.mjs').BaseProvider} BaseProvider
+ * @typedef {import('./repository.mjs').Repository} Repository
+ * @typedef {import('./hook.mjs').Hook} Hook
+ * @typedef {import('./tag.mjs').Tag} Tag
+ * @typedef {import('./branch.mjs').Branch} Branch
+ * @typedef {import('./pull-request.mjs').PullRequest} PullRequest
+ */
 
 /**
  * Named Object registering itself in the owner.
@@ -189,50 +189,26 @@ export class OwnedObject extends NamedObject {
     return this.owner.debug(...args);
   }
 
-  /**
-   * By default we use the owners implementation.
-   * @return {Repository} as defined in the owner
-   */
   get repositoryClass() {
     return this.owner.repositoryClass;
   }
 
-  /**
-   * By default we use the owners implementation.
-   * @return {PullRequest} as defined in the owner
-   */
   get pullRequestClass() {
     return this.owner.pullRequestClass;
   }
 
-  /**
-   * By default we use the owners implementation.
-   * @return {Branch} as defined in the owner
-   */
   get branchClass() {
     return this.owner.branchClass;
   }
 
-  /**
-   * By default we use the owners implementation.
-   * @return {Tag} as defined in the owner
-   */
   get tagClass() {
     return this.owner.tagClass;
   }
 
-  /**
-   * By default we use the owners implementation.
-   * @return {ContentEntry} as defined in the owner
-   */
   get entryClass() {
     return this.owner.entryClass;
   }
 
-  /**
-   * By default we use the owners implementation.
-   * @return {Hook} as defined in the owner
-   */
   get hookClass() {
     return this.owner.hookClass;
   }

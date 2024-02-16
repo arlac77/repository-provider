@@ -7,6 +7,7 @@ import {
   Branch,
   PullRequest
 } from "repository-provider";
+import { ContentEntry } from "content-entry";
 
 test("Branch type", t => t.is(Branch.type, "branch"));
 test("Branch collection name", t => t.is(Branch.collectionName, "branches"));
@@ -43,7 +44,7 @@ test("branch init", async t => {
   t.is(`${b}`, "SingleGroupProvider:r1#b1");
   t.is(b.ref, "refs/heads/b1");
   t.is(b.pullRequestClass, PullRequest);
-  t.is(b.entryClass, undefined);
+  t.is(b.entryClass, ContentEntry);
   t.is(await repository.branch("b1"), b);
 });
 

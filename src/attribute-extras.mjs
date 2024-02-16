@@ -1,5 +1,6 @@
 import { setAttribute, getAttribute } from "pacc";
 
+
 /**
  * Create properties from options and default options.
  * Already present properties (direct) are skipped.
@@ -19,7 +20,7 @@ import { setAttribute, getAttribute } from "pacc";
  * @see Object.definedProperties()
  * @see Object.getOwnPropertyDescriptor()
  * @param {Object} object target object
- * @param {Object} options as passed to object constructor
+ * @param {Object} options as passed to object constructor. Used as values for the attributes.
  * @param {Object} properties object properties
  * @param {Object} [attributes] attribute meta info
  */

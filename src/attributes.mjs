@@ -3,7 +3,7 @@
  */
 
 /**
- * common attributes
+ * Common attribute properties.
  * @type {AttributeDefinition}
  */
 export const default_attribute = {

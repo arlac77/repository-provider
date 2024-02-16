@@ -305,7 +305,7 @@ export class BaseProvider extends BaseObject {
     const rg = await this.repositoryGroup(group);
     return rg.createRepository(repository, options);
   }
-
+  
   /**
    * List provider objects of a given type.
    *
@@ -460,51 +460,30 @@ export class BaseProvider extends BaseObject {
     return this.messageDestination.error(...args);
   }
 
-  /**
-   * @return {typeof RepositoryGroup} repository group class used by the Provider
-   */
   get repositoryGroupClass() {
     return RepositoryGroup;
   }
 
-  /**
-   * @return {typeof Hook} hook class used by the Provider
-   */
   get hookClass() {
     return Hook;
   }
 
-  /**
-   * @return {typeof Repository} repository class used by the Provider
-   */
   get repositoryClass() {
     return Repository;
   }
 
-  /**
-   * @return {typeof Branch} branch class used by the Provider
-   */
   get branchClass() {
     return Branch;
   }
 
-  /**
-   * @return {typeof Tag} branch class used by the Provider
-   */
   get tagClass() {
     return Tag;
   }
 
-  /**
-   * @return {typeof ContentEntry} entry class used by the Provider
-   */
   get entryClass() {
-    return undefined;
+    return ContentEntry;
   }
 
-  /**
-   * @return {typeof PullRequest} pull request class used by the Provider
-   */
   get pullRequestClass() {
     return PullRequest;
   }

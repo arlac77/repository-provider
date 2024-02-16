@@ -14,7 +14,8 @@ import { name_attribute, boolean_attribute } from "./attributes.mjs";
 // @ts-ignore
 export class Ref extends OwnedObject {
   /**
-   * options
+   * Attributes
+   * @type {Object}
    */
   static get attributes() {
     return {
