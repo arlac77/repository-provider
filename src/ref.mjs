@@ -4,8 +4,6 @@ import { name_attribute, boolean_attribute } from "./attributes.mjs";
 
 /** 
 * @typedef {import('./repository.mjs').Repository} Repository
-* @typedef {import('./tag.mjs').Tag} Tag
-* @typedef {import('./branch.mjs').Branch} Branch
 */
 
 /**

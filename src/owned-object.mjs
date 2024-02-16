@@ -1,13 +1,8 @@
-import { ContentEntry } from "content-entry";
 import { NamedObject } from "./named-object.mjs";
 
 /**
  * @typedef {import('./base-provider.mjs').BaseProvider} BaseProvider
  * @typedef {import('./repository.mjs').Repository} Repository
- * @typedef {import('./hook.mjs').Hook} Hook
- * @typedef {import('./tag.mjs').Tag} Tag
- * @typedef {import('./branch.mjs').Branch} Branch
- * @typedef {import('./pull-request.mjs').PullRequest} PullRequest
  */
 
 /**
