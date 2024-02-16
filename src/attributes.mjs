@@ -21,9 +21,9 @@ export const default_attribute = {
  */
 export const boolean_attribute = {
   ...default_attribute,
+  type: "boolean",
   writable: true,
-  default: false,
-  type: "boolean"
+  default: false
 };
 
 /**
@@ -80,8 +80,8 @@ export const name_attribute = {
  */
 export const url_attribute = {
   ...default_attribute,
-  description: "home of the object",
-  type: "url"
+  type: "url",
+  description: "home of the object"
 };
 
 /**
