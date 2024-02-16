@@ -128,13 +128,6 @@ console.log(await readme.string);
     *   [name](#name)
     *   [provider](#provider)
     *   [toJSON](#tojson)
-    *   [repositoryGroupClass](#repositorygroupclass)
-    *   [hookClass](#hookclass)
-    *   [repositoryClass](#repositoryclass)
-    *   [branchClass](#branchclass)
-    *   [tagClass](#tagclass)
-    *   [entryClass](#entryclass)
-    *   [pullRequestClass](#pullrequestclass)
     *   [instanceIdentifier](#instanceidentifier)
     *   [optionsFromEnvironment](#optionsfromenvironment)
         *   [Parameters](#parameters-22)
@@ -178,13 +171,6 @@ console.log(await readme.string);
     *   [name](#name-1)
     *   [provider](#provider-1)
     *   [toJSON](#tojson-1)
-    *   [repositoryGroupClass](#repositorygroupclass-1)
-    *   [hookClass](#hookclass-1)
-    *   [repositoryClass](#repositoryclass-1)
-    *   [branchClass](#branchclass-1)
-    *   [tagClass](#tagclass-1)
-    *   [entryClass](#entryclass-1)
-    *   [pullRequestClass](#pullrequestclass-1)
     *   [instanceIdentifier](#instanceidentifier-1)
     *   [optionsFromEnvironment](#optionsfromenvironment-1)
         *   [Parameters](#parameters-39)
@@ -279,12 +265,6 @@ console.log(await readme.string);
         *   [Parameters](#parameters-65)
     *   [debug](#debug)
         *   [Parameters](#parameters-66)
-    *   [repositoryClass](#repositoryclass-2)
-    *   [pullRequestClass](#pullrequestclass-2)
-    *   [branchClass](#branchclass-2)
-    *   [tagClass](#tagclass-2)
-    *   [entryClass](#entryclass-2)
-    *   [hookClass](#hookclass-2)
     *   [addMethodName](#addmethodname)
     *   [deleteMethodName](#deletemethodname)
 *   [OwnedObject](#ownedobject-1)
@@ -313,12 +293,6 @@ console.log(await readme.string);
         *   [Parameters](#parameters-72)
     *   [debug](#debug-1)
         *   [Parameters](#parameters-73)
-    *   [repositoryClass](#repositoryclass-3)
-    *   [pullRequestClass](#pullrequestclass-3)
-    *   [branchClass](#branchclass-3)
-    *   [tagClass](#tagclass-3)
-    *   [entryClass](#entryclass-3)
-    *   [hookClass](#hookclass-3)
     *   [addMethodName](#addmethodname-1)
     *   [deleteMethodName](#deletemethodname-1)
 *   [Project](#project)
@@ -505,7 +479,7 @@ Object.definedProperties(new aClass(),{ with_default: { value: 77 }})
 ### Parameters
 
 *   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target object
-*   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor (optional, default `{}`)
+*   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** as passed to object constructor. Used as values for the attributes. (optional, default `{}`)
 *   `properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** object properties (optional, default `{}`)
 *   `attributes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** attribute meta info (optional, default `object.constructor.attributes`)
 
@@ -565,7 +539,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## default\_attribute
 
-common attributes
+Common attribute properties.
 
 Type: AttributeDefinition
 
@@ -927,20 +901,6 @@ Returns **[BaseProvider](#baseprovider)** this
 List all defined entries from attributes.
 return {object}
 
-### repositoryGroupClass
-
-### hookClass
-
-### repositoryClass
-
-### branchClass
-
-### tagClass
-
-### entryClass
-
-### pullRequestClass
-
 ### instanceIdentifier
 
 Prefix used to form environment variables.
@@ -1180,20 +1140,6 @@ Returns **[BaseProvider](#baseprovider)** this
 
 List all defined entries from attributes.
 return {object}
-
-### repositoryGroupClass
-
-### hookClass
-
-### repositoryClass
-
-### branchClass
-
-### tagClass
-
-### entryClass
-
-### pullRequestClass
 
 ### instanceIdentifier
 
@@ -1694,42 +1640,6 @@ Forwarded to the owner.
 
 *   `args` **...any**&#x20;
 
-### repositoryClass
-
-By default we use the owners implementation.
-
-Returns **[Repository](#repository)** as defined in the owner
-
-### pullRequestClass
-
-By default we use the owners implementation.
-
-Returns **[PullRequest](#pullrequest)** as defined in the owner
-
-### branchClass
-
-By default we use the owners implementation.
-
-Returns **[Branch](#branch)** as defined in the owner
-
-### tagClass
-
-By default we use the owners implementation.
-
-Returns **[Tag](#tag)** as defined in the owner
-
-### entryClass
-
-By default we use the owners implementation.
-
-Returns **ContentEntry** as defined in the owner
-
-### hookClass
-
-By default we use the owners implementation.
-
-Returns **[Hook](#hook)** as defined in the owner
-
 ### addMethodName
 
 Method name to be called to register one instance in the owner.
@@ -1878,42 +1788,6 @@ Forwarded to the owner.
 #### Parameters
 
 *   `args` **...any**&#x20;
-
-### repositoryClass
-
-By default we use the owners implementation.
-
-Returns **[Repository](#repository)** as defined in the owner
-
-### pullRequestClass
-
-By default we use the owners implementation.
-
-Returns **[PullRequest](#pullrequest)** as defined in the owner
-
-### branchClass
-
-By default we use the owners implementation.
-
-Returns **[Branch](#branch)** as defined in the owner
-
-### tagClass
-
-By default we use the owners implementation.
-
-Returns **[Tag](#tag)** as defined in the owner
-
-### entryClass
-
-By default we use the owners implementation.
-
-Returns **ContentEntry** as defined in the owner
-
-### hookClass
-
-By default we use the owners implementation.
-
-Returns **[Hook](#hook)** as defined in the owner
 
 ### addMethodName
 
@@ -2169,7 +2043,9 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### attributes
 
-options
+Attributes
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ## Ref
 
@@ -2259,7 +2135,9 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ### attributes
 
-options
+Attributes
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ## isProtected
 
