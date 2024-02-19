@@ -6,7 +6,9 @@ import { description_attribute, id_attribute } from "./attributes.mjs";
 
 /**
  * Creates an instance of BaseObject.
- * @param {Object} options
+ * @param {Object} [options]
+ * @param {string} [options.id]
+ * @param {string} [options.description]
  * @param {Object} [additionalProperties]
  *
  * @property {string?} id

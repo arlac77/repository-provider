@@ -31,7 +31,11 @@ import {
  */
 
 /**
+ * @param {Object} [options]
+ * @param {string} [options.url]
+ * @param {MessageDestination} [options.messageDestination]
  * @property {MessageDestination} messageDestination
+ * @property {string} url
  */
 export class BaseProvider extends BaseObject {
   static get type() {

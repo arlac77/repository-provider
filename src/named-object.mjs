@@ -10,6 +10,9 @@ import {
  * Object with a name.
  * @param {string} name
  * @param {Object} [options]
+ * @param {string} [options.id]
+ * @param {string} [options.name]
+ * @param {string} [options.description]
  * @param {Object} [additionalProperties]
  *
  * @property {string} name
