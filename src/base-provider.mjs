@@ -316,6 +316,7 @@ export class BaseProvider extends BaseObject {
    *
    * @param {string} type name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
    * @param {string[]|string|undefined} patterns group / repository filter
+   * @return {AsyncIterable<Repository|PullRequest|Branch|Tag|Project|Milestone|Hook>} all matching repositories of the providers
    */
   async *list(type, patterns) {
     if (patterns === undefined) {
@@ -325,6 +326,7 @@ export class BaseProvider extends BaseObject {
       }
     } else {
       for (const pattern of asArray(patterns)) {
+        // @ts-ignore
         const [groupPattern, repoPattern] = stripBaseName(
           pattern,
           this.repositoryBases
@@ -344,6 +346,7 @@ export class BaseProvider extends BaseObject {
    * @return {AsyncIterator<Project>} all matching projects of the provider
    */
   async *projects(patterns) {
+    // @ts-ignore
     yield* this.list("projects", patterns);
   }
 
@@ -353,6 +356,7 @@ export class BaseProvider extends BaseObject {
    * @return {AsyncIterator<Milestone>} all matching milestones of the provider
    */
   async *milestones(patterns) {
+    // @ts-ignore
     yield* this.list("milestones", patterns);
   }
 
@@ -362,6 +366,7 @@ export class BaseProvider extends BaseObject {
    * @return {AsyncIterable<Repository>} all matching repos of the provider
    */
   async *repositories(patterns) {
+    // @ts-ignore
     yield* this.list("repositories", patterns);
   }
 
@@ -371,6 +376,7 @@ export class BaseProvider extends BaseObject {
    * @return {AsyncIterable<Branch>} all matching branches of the provider
    */
   async *branches(patterns) {
+    // @ts-ignore
     yield* this.list("branches", patterns);
   }
 
@@ -380,6 +386,7 @@ export class BaseProvider extends BaseObject {
    * @return {AsyncIterable<Tag>} all matching tags of the provider
    */
   async *tags(patterns) {
+    // @ts-ignore
     yield* this.list("tags", patterns);
   }
 
@@ -389,6 +396,7 @@ export class BaseProvider extends BaseObject {
    * @return {AsyncIterable<Hook>} all matching hooks of the provider
    */
   async *hooks(patterns) {
+    // @ts-ignore
     yield* this.list("hooks", patterns);
   }
 
@@ -398,6 +406,7 @@ export class BaseProvider extends BaseObject {
    * @return {AsyncIterable<PullRequest>} all matching pullRequests of the provider
    */
   async *pullRequests(patterns) {
+    // @ts-ignore
     yield* this.list("pullRequests", patterns);
   }
 
