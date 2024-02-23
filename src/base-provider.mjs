@@ -147,13 +147,14 @@ export class BaseProvider extends BaseObject {
    * Creates a new provider for a given set of options.
    * @param {Object} options additional options
    * @param {string} [options.instanceIdentifier] name of the provider instance
+   * @param {string} [options.description]
    * @param {Object} env taken from process.env
    * @return {BaseProvider|undefined} newly created provider or undefined if options are not sufficient to construct a provider
    */
-  static initialize(options = {}, env) {
+  static initialize(options, env) {
     options = {
       ...options,
-      ...this.optionsFromEnvironment(env, options.instanceIdentifier)
+      ...this.optionsFromEnvironment(env, options?.instanceIdentifier)
     };
 
     if (this.areOptionsSufficcient(options)) {

@@ -75,7 +75,7 @@ export class BaseObject {
 
   /**
    * Takes values from options.
-   * @param {Object} options
+   * @param {Object} [options]
    * @param {Object} [additionalProperties]
    */
   updateAttributes(options, additionalProperties) {
