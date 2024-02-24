@@ -15,10 +15,10 @@ import {
   default_attribute
 } from "./attributes.mjs";
 
-/** 
-* @typedef {import('./project.mjs').Project} Project
-* @typedef {import('./milestone.mjs').Milestone} Milestone
-*/
+/**
+ * @typedef {import('./project.mjs').Project} Project
+ * @typedef {import('./milestone.mjs').Milestone} Milestone
+ */
 
 /**
  * @typedef {Object} MessageDestination
@@ -144,6 +144,11 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
+   * @typedef {Object} parsedName
+   *
+   */
+
+  /**
    * Creates a new provider for a given set of options.
    * @param {Object} options additional options
    * @param {string} [options.instanceIdentifier] name of the provider instance
@@ -163,7 +168,7 @@ export class BaseProvider extends BaseObject {
   }
 
   /**
-   * @param {any} other 
+   * @param {any} other
    * @return {boolean} true if other provider is the same as the receiver
    */
   equals(other) {
@@ -199,11 +204,11 @@ export class BaseProvider extends BaseObject {
    * Like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
-   * @return {string} normalized name
+   * @return {string|undefined} normalized name
    */
   normalizeRepositoryName(name, forLookup) {
     const { repository } = this.parseName(name);
-    return forLookup && !this.areRepositoryNamesCaseSensitive
+    return repository && forLookup && !this.areRepositoryNamesCaseSensitive
       ? repository.toLowerCase()
       : repository;
   }
@@ -213,7 +218,7 @@ export class BaseProvider extends BaseObject {
    * Like .git suffix or #branch names.
    * @param {string} name
    * @param {boolean} forLookup
-   * @return {string} normalized name
+   * @return {string|undefined} normalized name
    */
   normalizeGroupName(name, forLookup) {
     const { group } = this.parseName(name, "group");
@@ -245,12 +250,13 @@ export class BaseProvider extends BaseObject {
    * base, group, repository and branch.
    * @param {string} [name]
    * @param {string} focus where lies the focus if only one path component is given
-   * @return {Object} with separated attributes
+   * @return {{base: string|undefined, group: string|undefined, repository: string|undefined, branch: string|undefined}} with separated attributes
    */
   parseName(name, focus = "repository") {
     const result = {};
 
     if (name === undefined) {
+      // @ts-ignore
       return result;
     }
 
@@ -295,6 +301,7 @@ export class BaseProvider extends BaseObject {
       }
     }
 
+    // @ts-ignore
     return result;
   }
 
@@ -310,7 +317,7 @@ export class BaseProvider extends BaseObject {
     const rg = await this.repositoryGroup(group);
     return rg.createRepository(repository, options);
   }
-  
+
   /**
    * List provider objects of a given type.
    *
@@ -343,7 +350,7 @@ export class BaseProvider extends BaseObject {
   /**
    * List projects.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Project>} all matching projects of the provider
+   * @return {AsyncIterable<Project>} all matching projects of the provider
    */
   async *projects(patterns) {
     // @ts-ignore
@@ -353,7 +360,7 @@ export class BaseProvider extends BaseObject {
   /**
    * List milestones.
    * @param {string[]|string} [patterns]
-   * @return {AsyncIterator<Milestone>} all matching milestones of the provider
+   * @return {AsyncIterable<Milestone>} all matching milestones of the provider
    */
   async *milestones(patterns) {
     // @ts-ignore
@@ -428,7 +435,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List all defined entries from attributes.
-   * return {object}
+   * @return {object}
    */
   toJSON() {
     const json = { name: this.name };
