@@ -36,6 +36,7 @@ import {
  * @param {MessageDestination} [options.messageDestination]
  * @property {MessageDestination} messageDestination
  * @property {string} url
+ * @property {string} api
  */
 export class BaseProvider extends BaseObject {
   static get type() {
