@@ -183,6 +183,7 @@ console.log(await readme.string);
     *   [Properties](#properties-2)
 *   [name](#name-2)
 *   [messageDestination](#messagedestination-1)
+*   [parsedName](#parsedname)
 *   [Branch](#branch)
     *   [Parameters](#parameters-43)
     *   [Properties](#properties-3)
@@ -747,7 +748,7 @@ Like .git suffix or #branch names.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 *   `forLookup` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** normalized name
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** normalized name
 
 ### normalizeGroupName
 
@@ -759,7 +760,7 @@ Like .git suffix or #branch names.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 *   `forLookup` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** normalized name
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** normalized name
 
 ### areRepositoryNamesCaseSensitive
 
@@ -785,8 +786,6 @@ base, group, repository and branch.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
 *   `focus` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** where lies the focus if only one path component is given (optional, default `"repository"`)
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** with separated attributes
-
 ### createRepository
 
 Create a repository.
@@ -807,6 +806,8 @@ List provider objects of a given type.
 *   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** group / repository filter
 
+Returns **AsyncIterable<([Repository](#repository) | [PullRequest](#pullrequest) | [Branch](#branch) | [Tag](#tag) | [Project](#project) | [Milestone](#milestone) | [Hook](#hook))>** all matching repositories of the providers
+
 ### projects
 
 List projects.
@@ -815,7 +816,7 @@ List projects.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Project](#project)>** all matching projects of the provider
+Returns **AsyncIterable<[Project](#project)>** all matching projects of the provider
 
 ### milestones
 
@@ -825,7 +826,7 @@ List milestones.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Milestone](#milestone)>** all matching milestones of the provider
+Returns **AsyncIterable<[Milestone](#milestone)>** all matching milestones of the provider
 
 ### repositories
 
@@ -892,7 +893,8 @@ Returns **[BaseProvider](#baseprovider)** this
 ### toJSON
 
 List all defined entries from attributes.
-return {object}
+
+Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
 ### instanceIdentifier
 
@@ -953,6 +955,7 @@ Returns **([BaseProvider](#baseprovider) | [undefined](https://developer.mozilla
 
 *   `messageDestination` **[MessageDestination](#messagedestination)**&#x20;
 *   `url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+*   `api` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 ### equals
 
@@ -996,7 +999,7 @@ Like .git suffix or #branch names.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 *   `forLookup` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** normalized name
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** normalized name
 
 ### normalizeGroupName
 
@@ -1008,7 +1011,7 @@ Like .git suffix or #branch names.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 *   `forLookup` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**&#x20;
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** normalized name
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** normalized name
 
 ### areRepositoryNamesCaseSensitive
 
@@ -1034,8 +1037,6 @@ base, group, repository and branch.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
 *   `focus` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** where lies the focus if only one path component is given (optional, default `"repository"`)
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** with separated attributes
-
 ### createRepository
 
 Create a repository.
@@ -1056,6 +1057,8 @@ List provider objects of a given type.
 *   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** group / repository filter
 
+Returns **AsyncIterable<([Repository](#repository) | [PullRequest](#pullrequest) | [Branch](#branch) | [Tag](#tag) | [Project](#project) | [Milestone](#milestone) | [Hook](#hook))>** all matching repositories of the providers
+
 ### projects
 
 List projects.
@@ -1064,7 +1067,7 @@ List projects.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Project](#project)>** all matching projects of the provider
+Returns **AsyncIterable<[Project](#project)>** all matching projects of the provider
 
 ### milestones
 
@@ -1074,7 +1077,7 @@ List milestones.
 
 *   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?**&#x20;
 
-Returns **AsyncIterator<[Milestone](#milestone)>** all matching milestones of the provider
+Returns **AsyncIterable<[Milestone](#milestone)>** all matching milestones of the provider
 
 ### repositories
 
@@ -1141,7 +1144,8 @@ Returns **[BaseProvider](#baseprovider)** this
 ### toJSON
 
 List all defined entries from attributes.
-return {object}
+
+Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
 
 ### instanceIdentifier
 
@@ -1206,6 +1210,10 @@ Name of the provider.
 ## messageDestination
 
 To forward info/warn and error messages to
+
+## parsedName
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ## Branch
 
