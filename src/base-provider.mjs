@@ -436,7 +436,7 @@ export class BaseProvider extends BaseObject {
 
   /**
    * List all defined entries from attributes.
-   * @return {object}
+   * @return {{name: string}}
    */
   toJSON() {
     const json = { name: this.name };
