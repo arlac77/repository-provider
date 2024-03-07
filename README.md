@@ -894,7 +894,7 @@ Returns **[BaseProvider](#baseprovider)** this
 
 List all defined entries from attributes.
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
+Returns **{name: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)}**&#x20;
 
 ### instanceIdentifier
 
@@ -1145,7 +1145,7 @@ Returns **[BaseProvider](#baseprovider)** this
 
 List all defined entries from attributes.
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**&#x20;
+Returns **{name: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)}**&#x20;
 
 ### instanceIdentifier
 
