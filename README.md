@@ -1197,11 +1197,11 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### Properties
 
-*   `info` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)**&#x20;
-*   `debug` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)**&#x20;
-*   `warn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)**&#x20;
-*   `error` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)**&#x20;
-*   `trace` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)**&#x20;
+*   `info` **function ([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)): void**&#x20;
+*   `debug` **function ([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)): void**&#x20;
+*   `warn` **function ([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)): void**&#x20;
+*   `error` **function ([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)): void**&#x20;
+*   `trace` **function ([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)): void**&#x20;
 
 ## name
 
@@ -2608,7 +2608,7 @@ A URL auth component will be removed to.
 
 *   `name` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))**&#x20;
 *   `repositoryBases` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** all possible bases
-*   `whenFound` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** to be called with the found base name
+*   `whenFound` **function ([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)): void?** to be called with the found base name
 
 Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** name without base
 
@@ -2620,7 +2620,7 @@ Loops over names and executes stripBaseName.
 
 *   `names` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))**&#x20;
 *   `repositoryBases` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** all possible bases
-*   `whenFound` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** to be called with the found base name
+*   `whenFound` **function ([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)): void?** to be called with the found base name
 
 Returns **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** names without base
 
