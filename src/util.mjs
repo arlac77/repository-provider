@@ -15,7 +15,7 @@ export function asArray(value) {
  * A URL auth component will be removed to.
  * @param {string|undefined} name
  * @param {string[]} repositoryBases all possible bases
- * @param {Function} [whenFound] to be called with the found base name
+ * @param {function(string):void} [whenFound] to be called with the found base name
  * @return {string|undefined} name without base
  */
 export function stripBaseName(name, repositoryBases, whenFound) {
@@ -39,7 +39,7 @@ export function stripBaseName(name, repositoryBases, whenFound) {
  * Loops over names and executes stripBaseName.
  * @param {string[]|string|undefined} names
  * @param {string[]} repositoryBases all possible bases
- * @param {Function} [whenFound] to be called with the found base name
+ * @param {function(string):void} [whenFound] to be called with the found base name
  * @return {string[]|string|undefined} names without base
  */
 export function stripBaseNames(names, repositoryBases, whenFound) {

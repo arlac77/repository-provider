@@ -23,11 +23,11 @@ import {
 /**
  * @typedef {Object} MessageDestination
  * Endpoint to deliver log messages to.
- * @property {Function} info
- * @property {Function} debug
- * @property {Function} warn
- * @property {Function} error
- * @property {Function} trace
+ * @property {function(string):void} info
+ * @property {function(string):void} debug
+ * @property {function(string):void} warn
+ * @property {function(string):void} error
+ * @property {function(string):void} trace
  */
 
 /**
