@@ -80,6 +80,8 @@ console.log(await readme.string);
 *   [BaseObject](#baseobject)
     *   [Parameters](#parameters-5)
     *   [Properties](#properties)
+    *   [id](#id)
+    *   [description](#description)
     *   [updateAttributes](#updateattributes)
         *   [Parameters](#parameters-6)
     *   [update](#update)
@@ -182,6 +184,7 @@ console.log(await readme.string);
 *   [MessageDestination](#messagedestination)
     *   [Properties](#properties-2)
 *   [name](#name-2)
+*   [name](#name-3)
 *   [messageDestination](#messagedestination-1)
 *   [parsedName](#parsedname)
 *   [Branch](#branch)
@@ -633,6 +636,14 @@ Creates an instance of BaseObject.
 
 *   `id` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
 *   `description` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
+
+### id
+
+Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
+
+### description
+
+Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ### updateAttributes
 
@@ -1206,6 +1217,10 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 ## name
 
 Name of the provider.
+
+## name
+
+Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ## messageDestination
 
