@@ -33,7 +33,7 @@ export class NamedObject extends BaseObject {
     });
   }
 
-  #name;
+  /** @type {string} */ #name;
 
   get name() {
     return this.#name;

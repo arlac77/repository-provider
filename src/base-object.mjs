@@ -62,13 +62,16 @@ export class BaseObject {
     return {};
   }
 
+  /** @type {string} */ id;
+  /** @type {string} */ description;
+
   /**
- * Creates an instance of BaseObject.
- * @param {Object} [options]
- * @param {string} [options.id]
- * @param {string} [options.description]
- * @param {Object} [additionalProperties]
- */
+   * Creates an instance of BaseObject.
+   * @param {Object} [options]
+   * @param {string} [options.id]
+   * @param {string} [options.description]
+   * @param {Object} [additionalProperties]
+   */
   constructor(options, additionalProperties) {
     this.updateAttributes(options, additionalProperties);
   }
