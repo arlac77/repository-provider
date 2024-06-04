@@ -56,7 +56,7 @@ export class OwnedObject extends NamedObject {
   /**
    * Url of home page.
    * @see {@link Repository#homePageURL}
-   * @return {string} as provided from the owner
+   * @return {string|undefined} as provided from the owner
    */
   get homePageURL() {
     return this.owner.homePageURL;

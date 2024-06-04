@@ -97,6 +97,9 @@ export class Repository extends OwnedObject {
     return `${this.owner.name}/${this.name}`;
   }
 
+  /**
+   * @return {string}
+   */
   get url() {
     // @ts-ignore
     return `${this.provider.url}${this.slug}`;
@@ -130,7 +133,7 @@ export class Repository extends OwnedObject {
    * @return {Promise<ContentEntry|undefined>}
    */
   async maybeEntry(name) {
-    return (await this.defaultBranch).maybeEntry(name);
+    return (await this.defaultBranch)?.maybeEntry(name);
   }
 
   /**
