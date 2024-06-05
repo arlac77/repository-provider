@@ -9,7 +9,7 @@ import {
   body_attribute,
   title_attribute,
   boolean_attribute,
-  empty_attiribute
+  empty_attribute
 } from "./attributes.mjs";
 
 /**
@@ -130,9 +130,11 @@ export class PullRequest extends OwnedObject {
        */
       draft: boolean_attribute,
       dry: boolean_attribute,
-      empty: empty_attiribute
+      empty: empty_attribute
     };
   }
+
+  /** @type {Branch} */ source;
 
   constructor(source, owner, name, options) {
     let state = "OPEN";

@@ -46,7 +46,7 @@ export const uuid_attribute = {
 /**
  * @type {AttributeDefinition}
  */
-export const empty_attiribute = { ...default_attribute, type: "boolean" };
+export const empty_attribute = { ...default_attribute, type: "boolean" };
 
 /**
  * @type {AttributeDefinition}
