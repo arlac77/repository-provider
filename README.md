@@ -361,6 +361,7 @@ console.log(await readme.string);
     *   [Parameters](#parameters-85)
     *   [Properties](#properties-9)
     *   [slug](#slug-2)
+    *   [url](#url-4)
     *   [entry](#entry-2)
         *   [Parameters](#parameters-86)
     *   [entries](#entries-2)
@@ -1526,7 +1527,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Url of home page.
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the owner
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** as provided from the owner
 
 ### issuesURL
 
@@ -1675,7 +1676,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Url of home page.
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** as provided from the owner
+Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** as provided from the owner
 
 ### issuesURL
 
@@ -2203,6 +2204,10 @@ Abstract repository
 ### slug
 
 Name of the repo as used in the URL.
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+### url
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
