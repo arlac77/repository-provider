@@ -62,7 +62,7 @@ console.log(await readme.string);
 *   [boolean\_attribute](#boolean_attribute)
 *   [boolean\_read\_only\_attribute](#boolean_read_only_attribute)
 *   [uuid\_attribute](#uuid_attribute)
-*   [empty\_attiribute](#empty_attiribute)
+*   [empty\_attribute](#empty_attribute)
 *   [secret\_attribute](#secret_attribute)
 *   [count\_attribute](#count_attribute)
 *   [size\_attribute](#size_attribute)
@@ -296,6 +296,7 @@ console.log(await readme.string);
 *   [PullRequest](#pullrequest)
     *   [Parameters](#parameters-73)
     *   [Properties](#properties-7)
+    *   [source](#source)
     *   [fullName](#fullname-3)
     *   [url](#url-3)
     *   [repository](#repository-1)
@@ -553,7 +554,7 @@ Type: AttributeDefinition
 
 Type: AttributeDefinition
 
-## empty\_attiribute
+## empty\_attribute
 
 Type: AttributeDefinition
 
@@ -1825,6 +1826,10 @@ Abstract pull request.
 *   `merged` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?**&#x20;
 *   `locked` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?**&#x20;
 *   `url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+
+### source
+
+Type: [Branch](#branch)
 
 ### fullName
 
