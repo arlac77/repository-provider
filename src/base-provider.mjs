@@ -21,6 +21,14 @@ import {
  */
 
 /**
+ * @typedef {Object} DecodedRepositoryName
+ * @property {string} [base]
+ * @property {string} [group]
+ * @property {string} [repository]
+ * @property {string} [branch]
+ */
+
+/**
  * @typedef {Object} MessageDestination
  * Endpoint to deliver log messages to.
  * @property {function(string):void} info
@@ -251,7 +259,7 @@ export class BaseProvider extends BaseObject {
    * base, group, repository and branch.
    * @param {string} [name]
    * @param {string} focus where lies the focus if only one path component is given
-   * @return {{base: string|undefined, group: string|undefined, repository: string|undefined, branch: string|undefined}} with separated attributes
+   * @returns {DecodedRepositoryName} result
    */
   parseName(name, focus = "repository") {
     const result = {};
