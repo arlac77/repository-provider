@@ -181,15 +181,17 @@ console.log(await readme.string);
         *   [Parameters](#parameters-41)
     *   [initialize](#initialize-1)
         *   [Parameters](#parameters-42)
-*   [MessageDestination](#messagedestination)
+*   [DecodedRepositoryName](#decodedrepositoryname)
     *   [Properties](#properties-2)
+*   [MessageDestination](#messagedestination)
+    *   [Properties](#properties-3)
 *   [name](#name-2)
 *   [name](#name-3)
 *   [messageDestination](#messagedestination-1)
 *   [parsedName](#parsedname)
 *   [Branch](#branch)
     *   [Parameters](#parameters-43)
-    *   [Properties](#properties-3)
+    *   [Properties](#properties-4)
     *   [url](#url)
     *   [refType](#reftype)
     *   [isWritable](#iswritable-1)
@@ -207,10 +209,10 @@ console.log(await readme.string);
         *   [Parameters](#parameters-48)
 *   [CommitResult](#commitresult)
     *   [Parameters](#parameters-49)
-    *   [Properties](#properties-4)
+    *   [Properties](#properties-5)
 *   [Commit](#commit-1)
     *   [Parameters](#parameters-50)
-    *   [Properties](#properties-5)
+    *   [Properties](#properties-6)
 *   [Hook](#hook)
 *   [Issue](#issue)
 *   [Milestone](#milestone)
@@ -229,7 +231,7 @@ console.log(await readme.string);
         *   [Parameters](#parameters-56)
 *   [NamedObject](#namedobject)
     *   [Parameters](#parameters-57)
-    *   [Properties](#properties-6)
+    *   [Properties](#properties-7)
     *   [displayName](#displayname)
     *   [condensedName](#condensedname)
     *   [fullCondensedName](#fullcondensedname)
@@ -295,7 +297,7 @@ console.log(await readme.string);
 *   [Project](#project)
 *   [PullRequest](#pullrequest)
     *   [Parameters](#parameters-73)
-    *   [Properties](#properties-7)
+    *   [Properties](#properties-8)
     *   [source](#source)
     *   [fullName](#fullname-3)
     *   [url](#url-3)
@@ -352,7 +354,7 @@ console.log(await readme.string);
 *   [isProtected](#isprotected-2)
 *   [RepositoryGroup](#repositorygroup-1)
     *   [Parameters](#parameters-83)
-    *   [Properties](#properties-8)
+    *   [Properties](#properties-9)
     *   [attributeMapping](#attributemapping-1)
 *   [type](#type-1)
 *   [homePageURL](#homepageurl-2)
@@ -360,7 +362,7 @@ console.log(await readme.string);
     *   [Parameters](#parameters-84)
 *   [Repository](#repository-4)
     *   [Parameters](#parameters-85)
-    *   [Properties](#properties-9)
+    *   [Properties](#properties-10)
     *   [slug](#slug-2)
     *   [url](#url-4)
     *   [entry](#entry-2)
@@ -799,6 +801,8 @@ base, group, repository and branch.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
 *   `focus` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** where lies the focus if only one path component is given (optional, default `"repository"`)
 
+Returns **[DecodedRepositoryName](#decodedrepositoryname)** result
+
 ### createRepository
 
 Create a repository.
@@ -1050,6 +1054,8 @@ base, group, repository and branch.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
 *   `focus` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** where lies the focus if only one path component is given (optional, default `"repository"`)
 
+Returns **[DecodedRepositoryName](#decodedrepositoryname)** result
+
 ### createRepository
 
 Create a repository.
@@ -1203,6 +1209,17 @@ Creates a new provider for a given set of options.
 *   `env` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** taken from process.env
 
 Returns **([BaseProvider](#baseprovider) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** newly created provider or undefined if options are not sufficient to construct a provider
+
+## DecodedRepositoryName
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+*   `base` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
+*   `group` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
+*   `repository` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
+*   `branch` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
 
 ## MessageDestination
 
