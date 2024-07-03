@@ -821,7 +821,7 @@ List provider objects of a given type.
 #### Parameters
 
 *   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
-*   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** group / repository filter
+*   `patterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** group / repository filter
 
 Returns **AsyncIterable<([Repository](#repository) | [PullRequest](#pullrequest) | [Branch](#branch) | [Tag](#tag) | [Project](#project) | [Milestone](#milestone) | [Hook](#hook))>** all matching repositories of the providers
 
@@ -1074,7 +1074,7 @@ List provider objects of a given type.
 #### Parameters
 
 *   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
-*   `patterns` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))** group / repository filter
+*   `patterns` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** group / repository filter
 
 Returns **AsyncIterable<([Repository](#repository) | [PullRequest](#pullrequest) | [Branch](#branch) | [Tag](#tag) | [Project](#project) | [Milestone](#milestone) | [Hook](#hook))>** all matching repositories of the providers
 
