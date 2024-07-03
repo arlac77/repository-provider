@@ -331,22 +331,27 @@ export class BaseProvider extends BaseObject {
    * List provider objects of a given type.
    *
    * @param {string} type name of the method to deliver typed iterator projects,milestones,hooks,repositories,branches,tags
-   * @param {string[]|string|undefined} patterns group / repository filter
+   * @param {string[]} patterns group / repository filter
    * @return {AsyncIterable<Repository|PullRequest|Branch|Tag|Project|Milestone|Hook>} all matching repositories of the providers
    */
   async *list(type, patterns) {
-    if (patterns === undefined) {
+    if (patterns.length === 0) {
       // @ts-ignore
       for await (const group of this.repositoryGroups()) {
         yield* group[type]();
       }
     } else {
-      for (const pattern of asArray(patterns)) {
+      for (const pattern of patterns) {
         // @ts-ignore
-        const [groupPattern, repoPattern] = stripBaseName(
+        let [groupPattern, repoPattern] = stripBaseName(
           pattern,
           this.repositoryBases
         ).split(/\//);
+
+        if(repoPattern) {
+          // TODO do cleanup in stripBase()
+          repoPattern = repoPattern.replace(/\.git(#.*)?$/, (all,b) => b || "");
+        }
 
         // @ts-ignore
         for await (const group of this.repositoryGroups(groupPattern)) {
@@ -363,7 +368,7 @@ export class BaseProvider extends BaseObject {
    */
   async *projects(patterns) {
     // @ts-ignore
-    yield* this.list("projects", patterns);
+    yield* this.list("projects", asArray(patterns));
   }
 
   /**
@@ -373,7 +378,7 @@ export class BaseProvider extends BaseObject {
    */
   async *milestones(patterns) {
     // @ts-ignore
-    yield* this.list("milestones", patterns);
+    yield* this.list("milestones", asArray(patterns));
   }
 
   /**
@@ -383,7 +388,7 @@ export class BaseProvider extends BaseObject {
    */
   async *repositories(patterns) {
     // @ts-ignore
-    yield* this.list("repositories", patterns);
+    yield* this.list("repositories", asArray(patterns));
   }
 
   /**
@@ -393,7 +398,7 @@ export class BaseProvider extends BaseObject {
    */
   async *branches(patterns) {
     // @ts-ignore
-    yield* this.list("branches", patterns);
+    yield* this.list("branches", asArray(patterns));
   }
 
   /**
@@ -403,7 +408,7 @@ export class BaseProvider extends BaseObject {
    */
   async *tags(patterns) {
     // @ts-ignore
-    yield* this.list("tags", patterns);
+    yield* this.list("tags", asArray(patterns));
   }
 
   /**
@@ -413,7 +418,7 @@ export class BaseProvider extends BaseObject {
    */
   async *hooks(patterns) {
     // @ts-ignore
-    yield* this.list("hooks", patterns);
+    yield* this.list("hooks", asArray(patterns));
   }
 
   /**
@@ -423,7 +428,7 @@ export class BaseProvider extends BaseObject {
    */
   async *pullRequests(patterns) {
     // @ts-ignore
-    yield* this.list("pullRequests", patterns);
+    yield* this.list("pullRequests", asArray(patterns));
   }
 
   /**
