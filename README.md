@@ -598,7 +598,7 @@ Type: AttributeDefinition
 
 ## body\_attribute
 
-The description of the pull request.
+The body text of the pull request.
 
 Type: AttributeDefinition
 
