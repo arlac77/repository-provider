@@ -113,7 +113,7 @@ export const state_attribute = {
 };
 
 /**
- * The description of the pull request.
+ * The body text of the pull request.
  * @type {AttributeDefinition}
  */
 export const body_attribute = {
