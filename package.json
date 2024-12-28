@@ -8,8 +8,8 @@
   "types": "./types/index.d.mts",
   "exports": {
     ".": {
-      "default": "./src/index.mjs",
-      "types": "./types/index.d.mts"
+      "types": "./types/index.d.mts",
+      "default": "./src/index.mjs"
     }
   },
   "description": "abstract interface to git repository providers like github, bitbucket and gitlab",
