@@ -39,7 +39,7 @@
   "dependencies": {
     "content-entry": "^12.0.0",
     "matching-iterator": "^2.1.3",
-    "pacc": "^3.4.0"
+    "pacc": "^3.4.1"
   },
   "devDependencies": {
     "@types/readable-stream": "^4.0.18",
