@@ -88,9 +88,7 @@ export class BaseProvider extends BaseObject {
                 ) === envName
             )
           ) {
-            if (options === undefined) {
-              options = {};
-            }
+            options ??= {};
 
             if (options[name] === undefined) {
               options[name] = value;
@@ -348,9 +346,12 @@ export class BaseProvider extends BaseObject {
           this.repositoryBases
         ).split(/\//);
 
-        if(repoPattern) {
+        if (repoPattern) {
           // TODO do cleanup in stripBase()
-          repoPattern = repoPattern.replace(/\.git(#.*)?$/, (all,b) => b || "");
+          repoPattern = repoPattern.replace(
+            /\.git(#.*)?$/,
+            (all, b) => b || ""
+          );
         }
 
         // @ts-ignore
