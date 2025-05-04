@@ -19,12 +19,6 @@ import {
 
 /**
  * Abstract repository
- * @class Repository
- * @param {RepositoryOwner} owner
- * @param {string} name (#branch) will be removed
- * @param {Object} [options]
- * @param {string} [options.description] human readable description
- * @param {string} [options.id] internal id
  *
  * @property {RepositoryOwner} owner
  * @property {string} name without (#branch)
@@ -85,8 +79,19 @@ export class Repository extends OwnedObject {
   /** @type {Map<string,PullRequest>} */ #pullRequests = new Map();
   #hooks = [];
 
-  constructor(owner, name, options) {
-    super(owner, owner.normalizeRepositoryName(name, false), options);
+  /**
+   * @param {RepositoryOwner} owner
+   * @param {string} name (#branch) will be removed
+   * @param {Object} [options]
+   * @param {string} [options.description] human readable description
+   * @param {string} [options.id] internal id
+   * @param {Object} [options]
+   * @param {string} [options.id]
+   * @param {string} [options.description]
+   * @param {Object} [additionalProperties]
+   */
+  constructor(owner, name, options, additionalProperties) {
+    super(owner, owner.normalizeRepositoryName(name, false), options, additionalProperties);
   }
 
   /**
