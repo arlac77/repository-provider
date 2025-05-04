@@ -1,3 +1,5 @@
+import { Repository } from "./repository.mjs";
+
 /**
  * @property {string} ref
  */
@@ -21,7 +23,17 @@ export class User {}
 export class Commit {
   repository;
 
-  constructor(repository) {
+  /**
+   * 
+   * @param {Repository} repository 
+   * @param {Object} options
+   * @param {string} options.sha
+   * @param {string} options.message
+   * @param {string} options.author
+   * @param {string} options.committer
+   */
+  constructor(repository, options) {
     this.repository = repository;
+    Object.assign(this, options);
   }
 }
