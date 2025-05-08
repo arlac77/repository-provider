@@ -200,10 +200,6 @@ export class OwnedObject extends NamedObject {
     return this.owner.tagClass;
   }
 
-  get entryClass() {
-    return this.owner.entryClass;
-  }
-
   get hookClass() {
     return this.owner.hookClass;
   }

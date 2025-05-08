@@ -2,7 +2,6 @@ import test from "ava";
 import { OwnedObject } from "repository-provider";
 
 class myBranchClass {}
-class myEntryClass {}
 class myTagClass {}
 class myHookClass {}
 class myPullRequestClass {}
@@ -41,7 +40,6 @@ const owner = {
     }
   },
   branchClass: myBranchClass,
-  entryClass: myEntryClass,
   tagClass: myTagClass,
   hookClass: myHookClass,
   pullRequestClass: myPullRequestClass,
@@ -133,9 +131,6 @@ test("OwnedObject debug", t => {
 
 test("OwnedObject branchClass", t =>
   t.is(new OwnedObject(owner, "aName").branchClass, myBranchClass));
-
-test("OwnedObject entryClass", t =>
-  t.is(new OwnedObject(owner, "aName").entryClass, myEntryClass));
 
 test("OwnedObject tagClass", t =>
   t.is(new OwnedObject(owner, "aName").tagClass, myTagClass));

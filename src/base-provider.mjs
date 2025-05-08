@@ -516,10 +516,6 @@ export class BaseProvider extends BaseObject {
     return Tag;
   }
 
-  get entryClass() {
-    return ContentEntry;
-  }
-
   get pullRequestClass() {
     return PullRequest;
   }

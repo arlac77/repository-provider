@@ -48,7 +48,6 @@ test("repository-group classes", t => {
 
   t.is(rg.repositoryClass, Repository);
   t.is(rg.branchClass, Branch);
-  t.is(rg.entryClass, ContentEntry);
   t.is(rg.pullRequestClass, PullRequest);
 });
 

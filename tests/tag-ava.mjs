@@ -19,7 +19,6 @@ test("tag init", async t => {
   t.is(b.name, "t1");
   t.is(b.ref, "refs/tags/t1");
   t.is(b.isWritable, false);
-  t.is(b.entryClass, ContentEntry);
   // t.is(await repository.tags("t1"), b);
 
   t.is(b.identifier, "SingleGroupProvider:r1#t1");
