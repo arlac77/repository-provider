@@ -37,7 +37,7 @@
     "lint:typescript": "tsc --allowJs --checkJs --noEmit --resolveJsonModule --target esnext -m esnext --module nodenext --moduleResolution nodenext ./src**/*.mjs"
   },
   "dependencies": {
-    "content-entry": "^13.6.0",
+    "content-entry": "^14.0.4",
     "matching-iterator": "^2.1.4",
     "pacc": "^3.4.2"
   },
