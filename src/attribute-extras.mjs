@@ -107,31 +107,6 @@ export function definePropertiesFromOptions(
 }
 
 /**
- * Get default values.
- * @param {Object} attributes
- * @param {Object} object
- * @return {Object} filled with default values
- */
-export function defaultValues(attributes, object) {
-  return Object.fromEntries(
-    Object.entries(attributes).reduce((a, c) => {
-      const [name, attribute] = c;
-
-      if (attribute.default !== undefined) {
-        a.push([name, attribute.default]);
-      } else if (attribute.get !== undefined) {
-        const value = attribute.get(attribute, object);
-        if (value !== undefined) {
-          a.push([name, value]);
-        }
-      }
-
-      return a;
-    }, [])
-  );
-}
-
-/**
  * Create json based on present options.
  * In other words only produce key value pairs if value is defined.
  * @param {Object} object

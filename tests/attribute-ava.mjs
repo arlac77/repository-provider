@@ -1,12 +1,10 @@
 import test from "ava";
 import {
-  defaultValues,
   RepositoryGroup,
   definePropertiesFromOptions,
   optionJSON,
   MultiGroupProvider
 } from "repository-provider";
-
 
 function dpot(t, object, options, expected) {
   definePropertiesFromOptions(object, options);
@@ -130,13 +128,6 @@ test("default with deep path", dpct, MyClass, { something: "b" }, (t, object) =>
 test(dpct, MyClass, { preexisting_property: 77 }, (t, object) => {
   t.is(object.preexisting_property, 77);
   t.is(object._preexisting_property, 77);
-});
-
-test("default values", t => {
-  t.deepEqual(
-    { "a.b.c.d": 7, "authentification.user": "hugo", calculatedDefault: 3 },
-    defaultValues(MyClass.attributes, { preexisting_property: 2 })
-  );
 });
 
 function ojt(t, object, initial, result) {
