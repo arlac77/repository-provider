@@ -55,26 +55,6 @@ console.log(await readme.string);
     *   [Parameters](#parameters-2)
 *   [mapAttributesInverse](#mapattributesinverse)
     *   [Parameters](#parameters-3)
-*   [default\_attribute](#default_attribute)
-*   [default\_attribute](#default_attribute-1)
-*   [boolean\_attribute](#boolean_attribute)
-*   [boolean\_read\_only\_attribute](#boolean_read_only_attribute)
-*   [uuid\_attribute](#uuid_attribute)
-*   [empty\_attribute](#empty_attribute)
-*   [secret\_attribute](#secret_attribute)
-*   [count\_attribute](#count_attribute)
-*   [size\_attribute](#size_attribute)
-*   [name\_attribute](#name_attribute)
-*   [url\_attribute](#url_attribute)
-*   [description\_attribute](#description_attribute)
-*   [id\_attribute](#id_attribute)
-*   [state\_attribute](#state_attribute)
-*   [body\_attribute](#body_attribute)
-*   [title\_attribute](#title_attribute)
-*   [priority\_attribute](#priority_attribute)
-*   [active\_attribute](#active_attribute)
-*   [language\_attribute](#language_attribute)
-*   [type\_attribute](#type_attribute)
 *   [BaseObject](#baseobject)
     *   [Parameters](#parameters-4)
     *   [Properties](#properties)
@@ -522,97 +502,6 @@ Filters out null, undefined and empty strings
 *   `mapping` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?**&#x20;
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** keys renamed after mapping
-
-## default\_attribute
-
-## default\_attribute
-
-Common attribute properties.
-
-Type: AttributeDefinition
-
-## boolean\_attribute
-
-Type: AttributeDefinition
-
-## boolean\_read\_only\_attribute
-
-Type: AttributeDefinition
-
-## uuid\_attribute
-
-Type: AttributeDefinition
-
-## empty\_attribute
-
-Type: AttributeDefinition
-
-## secret\_attribute
-
-Type: AttributeDefinition
-
-## count\_attribute
-
-Type: AttributeDefinition
-
-## size\_attribute
-
-Type: AttributeDefinition
-
-## name\_attribute
-
-Type: AttributeDefinition
-
-## url\_attribute
-
-Type: AttributeDefinition
-
-## description\_attribute
-
-The description of the object content.
-
-Type: AttributeDefinition
-
-## id\_attribute
-
-Unique id within the provider.
-
-Type: AttributeDefinition
-
-## state\_attribute
-
-Type: AttributeDefinition
-
-## body\_attribute
-
-The body text of the pull request.
-
-Type: AttributeDefinition
-
-## title\_attribute
-
-The one line description of the pull request.
-
-Type: AttributeDefinition
-
-## priority\_attribute
-
-In case there are several providers able to support a given source which one sould be used ?
-this defines the order.
-
-Type: AttributeDefinition
-
-## active\_attribute
-
-Type: AttributeDefinition
-
-## language\_attribute
-
-Type: AttributeDefinition
-
-## type\_attribute
-
-Type: AttributeDefinition
 
 ## BaseObject
 
