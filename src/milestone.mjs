@@ -1,5 +1,5 @@
+import { state_attribute } from "pacc";
 import { OwnedObject } from "./owned-object.mjs";
-import { state_attribute } from "./attributes.mjs";
 
 /**
  */

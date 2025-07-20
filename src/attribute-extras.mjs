@@ -1,6 +1,5 @@
 import { setAttribute, getAttribute } from "pacc";
 
-
 /**
  * Create properties from options and default options.
  * Already present properties (direct) are skipped.

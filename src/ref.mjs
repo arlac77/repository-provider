@@ -1,6 +1,6 @@
+import { name_attribute, boolean_attribute } from "pacc";
 import { ContentEntry } from "content-entry";
 import { OwnedObject } from "./owned-object.mjs";
-import { name_attribute, boolean_attribute } from "./attributes.mjs";
 
 /** 
 * @typedef {import('./repository.mjs').Repository} Repository

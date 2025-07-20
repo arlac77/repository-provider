@@ -1,11 +1,11 @@
-import { RepositoryOwner } from "./repository-owner.mjs";
-import { OwnedObject } from "./owned-object.mjs";
-import { BaseProvider } from "./base-provider.mjs";
 import {
   url_attribute,
   boolean_attribute,
   type_attribute
-} from "./attributes.mjs";
+} from "pacc";
+import { RepositoryOwner } from "./repository-owner.mjs";
+import { OwnedObject } from "./owned-object.mjs";
+import { BaseProvider } from "./base-provider.mjs";
 
 /**
  * Abstract repository collection.

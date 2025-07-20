@@ -1,3 +1,9 @@
+import {
+  url_attribute,
+  boolean_attribute,
+  boolean_read_only_attribute,
+  default_attribute
+} from "pacc";
 import { matcher } from "matching-iterator";
 import { ContentEntry } from "content-entry";
 import { OwnedObject } from "./owned-object.mjs";
@@ -10,12 +16,6 @@ import { Commit } from "./commit.mjs";
 import { Milestone } from "./milestone.mjs";
 import { Project } from "./project.mjs";
 import { Application } from "./application.mjs";
-import {
-  url_attribute,
-  boolean_attribute,
-  boolean_read_only_attribute,
-  default_attribute
-} from "./attributes.mjs";
 
 /**
  * Abstract repository

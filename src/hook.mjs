@@ -1,11 +1,11 @@
-import { OwnedObject } from "./owned-object.mjs";
 import {
   secret_attribute,
   boolean_attribute,
   active_attribute,
   url_attribute,
   default_attribute
-} from "./attributes.mjs";
+} from "pacc";
+import { OwnedObject } from "./owned-object.mjs";
 
 /**
  * Repository hook.

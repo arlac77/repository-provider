@@ -2,7 +2,7 @@ import {
   definePropertiesFromOptions,
   mapAttributes
 } from "./attribute-extras.mjs";
-import { description_attribute, id_attribute } from "./attributes.mjs";
+import { description_attribute, id_attribute } from "pacc";
 
 /**
  * Creates an instance of BaseObject.

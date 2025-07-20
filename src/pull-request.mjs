@@ -1,8 +1,3 @@
-import { optionJSON } from "./attribute-extras.mjs";
-import { OwnedObject } from "./owned-object.mjs";
-import { Branch } from "./branch.mjs";
-import { Repository } from "./repository.mjs";
-import { Review } from "./review.mjs";
 import {
   url_attribute,
   state_attribute,
@@ -10,7 +5,12 @@ import {
   title_attribute,
   boolean_attribute,
   empty_attribute
-} from "./attributes.mjs";
+} from "pacc";
+import { optionJSON } from "./attribute-extras.mjs";
+import { OwnedObject } from "./owned-object.mjs";
+import { Branch } from "./branch.mjs";
+import { Repository } from "./repository.mjs";
+import { Review } from "./review.mjs";
 
 /**
  * Abstract pull request.

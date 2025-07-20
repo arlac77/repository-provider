@@ -1,4 +1,10 @@
-import { ContentEntry } from "content-entry";
+import {
+  url_attribute,
+  name_attribute,
+  description_attribute,
+  priority_attribute,
+  default_attribute
+} from "pacc";
 import { asArray, stripBaseName } from "./util.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
@@ -7,13 +13,6 @@ import { Repository } from "./repository.mjs";
 import { Tag } from "./tag.mjs";
 import { Branch } from "./branch.mjs";
 import { Hook } from "./hook.mjs";
-import {
-  url_attribute,
-  name_attribute,
-  description_attribute,
-  priority_attribute,
-  default_attribute
-} from "./attributes.mjs";
 
 /**
  * @typedef {import('./project.mjs').Project} Project
