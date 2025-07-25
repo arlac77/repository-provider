@@ -1,5 +1,8 @@
 import test from "ava";
-import { repositoryEqualityTest, createMessageDestination } from "repository-provider-test-support";
+import {
+  repositoryEqualityTest,
+  createMessageDestination
+} from "repository-provider-test-support";
 import {
   SingleGroupProvider,
   Repository,
@@ -9,10 +12,11 @@ import {
 import { ContentEntry } from "content-entry";
 
 test("Repository type", t => t.is(Repository.type, "repository"));
-test("Repository collection name", t => t.is(Repository.collectionName, "repositories"));
+test("Repository collection name", t =>
+  t.is(Repository.collectionName, "repositories"));
 
 test("repository init with options", async t => {
-  const provider = new SingleGroupProvider({ url: "https://myprovider.com/"});
+  const provider = new SingleGroupProvider({ url: "https://myprovider.com/" });
   const repository = new Repository(provider, "r1", {
     description: "a description",
     id: "4711"
@@ -34,7 +38,7 @@ test("repository init with options", async t => {
   t.is(repository.isTemplate, false);
   t.is(repository.isDisabled, false);
   t.is(repository.hasBranches, false);
-  t.is(await repository.refId('branches/master'), undefined);
+  t.is(await repository.refId("branches/master"), undefined);
   t.deepEqual(repository.toJSON(), {
     url: "https://myprovider.com/SingleGroupProvider/r1",
     cloneURL: "git+https://myprovider.com/SingleGroupProvider/r1.git",
@@ -49,7 +53,10 @@ test("repository init with options", async t => {
     isFork: false
   });
 
-  t.deepEqual(await repository.commits().next(), { done: true, value: undefined });
+  t.deepEqual(await repository.commits().next(), {
+    done: true,
+    value: undefined
+  });
   t.deepEqual(await repository.tags().next(), { done: true, value: undefined });
   t.deepEqual(await repository.hooks().next(), {
     done: true,
@@ -125,12 +132,10 @@ test("repository classes", t => {
 });
 
 class MyRepository extends Repository {
-  static get attributes() {
-    return {
-      ...super.attributes,
-      myAttribute: { default: 77 }
-    };
-  }
+  static attributes = {
+    ...super.attributes,
+    myAttribute: { default: 77 }
+  };
 }
 
 test("defaultOption", t => {

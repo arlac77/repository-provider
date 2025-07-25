@@ -7,8 +7,8 @@ import { setAttribute, getAttribute } from "pacc";
  * options and merged with the given set of properties.
  * ```js
  * class aClass {
- *   static get attributes() {
- *     return { with_default: { default: 77 }};
+ *   static attributes = {
+ *     with_default: { default: 77 }
  *   }
  * }
  *

@@ -1,8 +1,4 @@
-import {
-  name_attribute,
-  description_attribute,
-  id_attribute
-} from "pacc";
+import { name_attribute, description_attribute, id_attribute } from "pacc";
 import { optionJSON } from "./attribute-extras.mjs";
 import { BaseObject } from "./base-object.mjs";
 
@@ -18,13 +14,11 @@ import { BaseObject } from "./base-object.mjs";
  * @property {string} name
  */
 export class NamedObject extends BaseObject {
-  static get attributes() {
-    return {
-      id: id_attribute,
-      name: name_attribute,
-      description: description_attribute
-    };
-  }
+  static attributes = {
+    id: id_attribute,
+    name: name_attribute,
+    description: description_attribute
+  };
 
   constructor(name, options, additionalProperties) {
     super(options, {

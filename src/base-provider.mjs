@@ -118,32 +118,30 @@ export class BaseProvider extends BaseObject {
     return true;
   }
 
-  static get attributes() {
-    return {
-      /**
-       * Name of the provider.
-       */
-      name: {
-        ...name_attribute,
-        env: "{{instanceIdentifier}}NAME"
-      },
+  static attributes = {
+    /**
+     * Name of the provider.
+     */
+    name: {
+      ...name_attribute,
+      env: "{{instanceIdentifier}}NAME"
+    },
 
-      url: url_attribute,
-      description: description_attribute,
-      priority: priority_attribute,
+    url: url_attribute,
+    description: description_attribute,
+    priority: priority_attribute,
 
-      /**
-       * To forward info/warn and error messages to
-       */
-      messageDestination: {
-        ...default_attribute,
-        type: "object",
-        default: console,
-        writable: true,
-        private: true
-      }
-    };
-  }
+    /**
+     * To forward info/warn and error messages to
+     */
+    messageDestination: {
+      ...default_attribute,
+      type: "object",
+      default: console,
+      writable: true,
+      private: true
+    }
+  };
 
   get priority() {
     return 0;

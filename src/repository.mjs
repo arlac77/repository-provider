@@ -1,8 +1,8 @@
 import {
+  default_attribute,
   url_attribute,
   boolean_attribute,
-  boolean_read_only_attribute,
-  default_attribute
+  boolean_attribute_false
 } from "pacc";
 import { matcher } from "matching-iterator";
 import { ContentEntry } from "content-entry";
@@ -47,29 +47,26 @@ export class Repository extends OwnedObject {
   /**
    * options
    */
-  static get attributes() {
-    return {
-      ...super.attributes,
-      url: url_attribute,
+  static attributes = {
+    ...super.attributes,
+    url: url_attribute,
 
-      /**
-       * The name of the default branch
-       * @return {string}
-       */
-      defaultBranchName: {
-        ...default_attribute,
-        default: Repository.defaultBranchName
-      },
+    /**
+     * The name of the default branch
+     * @return {string}
+     */
+    defaultBranchName: {
+      ...default_attribute,
+      default: Repository.defaultBranchName
+    },
 
-      cloneURL: url_attribute,
-
-      isArchived: boolean_attribute,
-      isLocked: boolean_attribute,
-      isDisabled: boolean_attribute,
-      isTemplate: boolean_attribute,
-      isFork: boolean_read_only_attribute
-    };
-  }
+    cloneURL: url_attribute,
+    isArchived: boolean_attribute,
+    isLocked: boolean_attribute,
+    isDisabled: boolean_attribute,
+    isTemplate: boolean_attribute,
+    isFork: boolean_attribute_false
+  };
 
   /** @type {Map<string,Branch>} */ #branches = new Map();
   /** @type {Map<string,Tag>} */ #tags = new Map();
@@ -91,7 +88,12 @@ export class Repository extends OwnedObject {
    * @param {Object} [additionalProperties]
    */
   constructor(owner, name, options, additionalProperties) {
-    super(owner, owner.normalizeRepositoryName(name, false), options, additionalProperties);
+    super(
+      owner,
+      owner.normalizeRepositoryName(name, false),
+      options,
+      additionalProperties
+    );
   }
 
   /**
@@ -442,7 +444,7 @@ export class Repository extends OwnedObject {
    */
   async hook(id) {
     for await (const hook of this.hooks()) {
-       // @ts-ignore
+      // @ts-ignore
       if (hook.id == id) {
         // string of number
         return hook;
@@ -502,7 +504,7 @@ export class Repository extends OwnedObject {
    * @param {string} ref
    * @return {Promise<string|undefined>} sha of the ref
    */
-  async refId(ref) { 
+  async refId(ref) {
     return undefined;
   }
 
@@ -521,8 +523,8 @@ export class Repository extends OwnedObject {
   }
 
   async initializePullRequests() {
-      // @ts-ignore
-      for await (const pr of this.pullRequestClass.list(this)) {
+    // @ts-ignore
+    for await (const pr of this.pullRequestClass.list(this)) {
       this.#pullRequests.set(pr.name, pr);
     }
   }

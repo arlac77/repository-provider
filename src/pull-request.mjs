@@ -92,47 +92,45 @@ export class PullRequest extends OwnedObject {
     return new this(source, destination, "-1", options);
   }
 
-  static get attributes() {
-    return {
-      ...super.attributes,
-      body: body_attribute,
-      title: title_attribute,
-      url: url_attribute,
+  static attributes = {
+    ...super.attributes,
+    body: body_attribute,
+    title: title_attribute,
+    url: url_attribute,
 
-      /**
-       * state of the pull request.
-       * - OPEN
-       * - MERGED
-       * - CLOSED
-       * @return {string}
-       */
-      state: {
-        ...state_attribute,
-        default: "OPEN",
-        values: this.states
-      },
+    /**
+     * state of the pull request.
+     * - OPEN
+     * - MERGED
+     * - CLOSED
+     * @return {string}
+     */
+    state: {
+      ...state_attribute,
+      default: "OPEN",
+      values: this.states
+    },
 
-      /**
-       * Locked state of the pull request.
-       * @return {boolean}
-       */
-      locked: boolean_attribute,
+    /**
+     * Locked state of the pull request.
+     * @return {boolean}
+     */
+    locked: boolean_attribute,
 
-      /**
-       * Merged state of the pull request.
-       * @return {boolean}
-       */
-      merged: boolean_attribute,
+    /**
+     * Merged state of the pull request.
+     * @return {boolean}
+     */
+    merged: boolean_attribute,
 
-      /**
-       * Draft state of the pull request.
-       * @return {boolean}
-       */
-      draft: boolean_attribute,
-      dry: boolean_attribute,
-      empty: empty_attribute
-    };
-  }
+    /**
+     * Draft state of the pull request.
+     * @return {boolean}
+     */
+    draft: boolean_attribute,
+    dry: boolean_attribute,
+    empty: empty_attribute
+  };
 
   /** @type {Branch} */ source;
 

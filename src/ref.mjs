@@ -2,9 +2,9 @@ import { name_attribute, boolean_attribute } from "pacc";
 import { ContentEntry } from "content-entry";
 import { OwnedObject } from "./owned-object.mjs";
 
-/** 
-* @typedef {import('./repository.mjs').Repository} Repository
-*/
+/**
+ * @typedef {import('./repository.mjs').Repository} Repository
+ */
 
 /**
  * Base for Branch and Tag
@@ -15,23 +15,19 @@ export class Ref extends OwnedObject {
    * Attributes
    * @type {Object}
    */
-  static get attributes() {
-    return {
-      name: name_attribute,
+  static attributes = {
+    name: name_attribute,
 
-      /**
-       * Can the ref be modified.
-       * @return {boolean}
-       */
-      isProtected: boolean_attribute
-    };
-  }
+    /**
+     * Can the ref be modified.
+     * @return {boolean}
+     */
+    isProtected: boolean_attribute
+  };
 
-  static get attributeMapping() {
-    return {
-      protected: "isProtected"
-    };
-  }
+  static attributeMapping = {
+    protected: "isProtected"
+  };
 
   get refType() {
     return "unknown";

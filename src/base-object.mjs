@@ -37,12 +37,10 @@ export class BaseObject {
    * Attributes definitions.
    * @return {Object}
    */
-  static get attributes() {
-    return {
-      id: id_attribute,
-      description: description_attribute
-    };
-  }
+  static attributes = {
+    id: id_attribute,
+    description: description_attribute
+  };
 
   /**
    * User modifyable attributes.
@@ -58,9 +56,7 @@ export class BaseObject {
    * Map attributes between external and internal representation.
    * @return {Object}
    */
-  static get attributeMapping() {
-    return {};
-  }
+  static attributeMapping = {};
 
   /** @type {string} */ id;
   /** @type {string} */ description;

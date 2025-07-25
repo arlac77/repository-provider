@@ -13,19 +13,17 @@ class MyProviderA extends BaseProvider {
     return "BITBUCKET_";
   }
 
-  static get attributes() {
-    return {
-      ...super.attributes,
-      "authentication.username": {
-        env: "{{instanceIdentifier}}USERNAME"
-      },
-      "authentication.password": {
-        env: ["BITBUCKET_APP_PASSWORD", "{{instanceIdentifier}}PASSWORD"],
-        additionalAttributes: { "authentication.type": "basic" },
-        private: true
-      }
-    };
-  }
+  static attributes = {
+    ...super.attributes,
+    "authentication.username": {
+      env: "{{instanceIdentifier}}USERNAME"
+    },
+    "authentication.password": {
+      env: ["BITBUCKET_APP_PASSWORD", "{{instanceIdentifier}}PASSWORD"],
+      additionalAttributes: { "authentication.type": "basic" },
+      private: true
+    }
+  };
 }
 
 class MyProviderB extends BaseProvider {
@@ -33,31 +31,30 @@ class MyProviderB extends BaseProvider {
     return "GITEA_";
   }
 
-  static get attributes() {
-    return {
-      ...super.attributes,
-      host: {
-        env: "{{instanceIdentifier}}HOST",
-        default: "somewhere.com"
-      },
-      cloneOptions: {
-        env: "GIT_CLONE_OPTIONS",
-        parse: value => value.split(/\s+/)
-      },
-      "authentication.token": {
-        env: ["{{instanceIdentifier}}TOKEN", "XXX_TOKEN"],
-        additionalAttributes: { "authentication.type": "token" },
-        private: true,
-        mandatory: true
-      },
-      api: {
-        env: "{{instanceIdentifier}}API",
-        get: (attribute, object, properties) =>
-          `http://${object.host || properties.host.value}/api`
-      }
-    };
-  }
+  static attributes = {
+    ...super.attributes,
+    host: {
+      env: "{{instanceIdentifier}}HOST",
+      default: "somewhere.com"
+    },
+    cloneOptions: {
+      env: "GIT_CLONE_OPTIONS",
+      parse: value => value.split(/\s+/)
+    },
+    "authentication.token": {
+      env: ["{{instanceIdentifier}}TOKEN", "XXX_TOKEN"],
+      additionalAttributes: { "authentication.type": "token" },
+      private: true,
+      mandatory: true
+    },
+    api: {
+      env: "{{instanceIdentifier}}API",
+      get: (attribute, object, properties) =>
+        `http://${object.host || properties.host.value}/api`
+    }
+  };
 }
+
 test("MyProviderB.initialize", t => {
   const p = MyProviderB.initialize(
     {},

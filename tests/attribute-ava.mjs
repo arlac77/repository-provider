@@ -31,22 +31,20 @@ dpct.title = (providedTitle, clazz, options) =>
   } ${JSON.stringify(options)}`.trim();
 
 class MyClass {
-  static get attributes() {
-    return {
-      read_only: {},
-      rw: { writable: true },
-      att_setter: { set: x => x * 2 },
-      boolean_conversion: { type: "boolean" },
-      set_conversion: { type: "set" },
-      preexisting_property: {},
-      "authentification.token": {},
-      "authentification.user": { default: "hugo" },
-      "a.b.c.d": { default: 7 },
-      calculatedDefault: {
-        get: (attribute, object) => object.preexisting_property + 1
-      }
-    };
-  }
+  static attributes = {
+    read_only: {},
+    rw: { writable: true },
+    att_setter: { set: x => x * 2 },
+    boolean_conversion: { type: "boolean" },
+    set_conversion: { type: "set" },
+    preexisting_property: {},
+    "authentification.token": {},
+    "authentification.user": { default: "hugo" },
+    "a.b.c.d": { default: 7 },
+    calculatedDefault: {
+      get: (attribute, object) => object.preexisting_property + 1
+    }
+  };
 
   constructor(options, additionalProperties) {
     definePropertiesFromOptions(this, options, additionalProperties);

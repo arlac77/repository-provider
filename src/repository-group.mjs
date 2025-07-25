@@ -1,8 +1,4 @@
-import {
-  url_attribute,
-  boolean_attribute,
-  type_attribute
-} from "pacc";
+import { url_attribute, boolean_attribute, type_attribute } from "pacc";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
@@ -36,31 +32,27 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
     return "repositoryGroups";
   }
 
-  static get attributes() {
-    return {
-      ...super.attributes,
+  static attributes = {
+    ...super.attributes,
 
-      /**
-       * Type of the repository group either User or Organization.
-       */
-      type: type_attribute,
-      url: url_attribute,
-      avatarURL: url_attribute,
-      isAdmin: boolean_attribute,
-      /**
-       * The url of home page.
-       * @return {string}
-       */
-      homePageURL: { ...url_attribute, writable: true }
-    };
-  }
+    /**
+     * Type of the repository group either User or Organization.
+     */
+    type: type_attribute,
+    url: url_attribute,
+    avatarURL: url_attribute,
+    isAdmin: boolean_attribute,
+    /**
+     * The url of home page.
+     * @return {string}
+     */
+    homePageURL: { ...url_attribute, writable: true }
+  };
 
   /**
    * Map attributes between external and internal representation.
    */
-  static get attributeMapping() {
-    return {};
-  }
+  static attributeMapping() {}
 
   get isAdmin() {
     return false;
