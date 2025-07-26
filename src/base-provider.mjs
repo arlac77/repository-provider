@@ -119,6 +119,8 @@ export class BaseProvider extends BaseObject {
   }
 
   static attributes = {
+    ...BaseObject.attributes,
+
     /**
      * Name of the provider.
      */
@@ -128,7 +130,6 @@ export class BaseProvider extends BaseObject {
     },
 
     url: url_attribute,
-    description: description_attribute,
     priority: priority_attribute,
 
     /**
