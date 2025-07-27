@@ -1,7 +1,6 @@
 import {
   url_attribute,
   name_attribute,
-  description_attribute,
   priority_attribute,
   default_attribute
 } from "pacc";

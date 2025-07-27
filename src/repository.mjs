@@ -1,5 +1,5 @@
 import {
-  default_attribute,
+  string_attribute,
   url_attribute,
   boolean_attribute,
   boolean_attribute_false
@@ -56,7 +56,7 @@ export class Repository extends OwnedObject {
      * @return {string}
      */
     defaultBranchName: {
-      ...default_attribute,
+      ...string_attribute,
       default: Repository.defaultBranchName
     },
 
