@@ -39,7 +39,7 @@
   "dependencies": {
     "content-entry": "^14.2.3",
     "matching-iterator": "^2.1.4",
-    "pacc": "^4.1.0"
+    "pacc": "^4.1.1"
   },
   "devDependencies": {
     "ava": "^6.4.1",
