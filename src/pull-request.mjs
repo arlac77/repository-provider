@@ -3,7 +3,7 @@ import {
   state_attribute,
   body_attribute,
   title_attribute,
-  boolean_attribute,
+  boolean_attribute_false,
   empty_attribute
 } from "pacc";
 import { optionJSON } from "./attribute-extras.mjs";
@@ -115,20 +115,20 @@ export class PullRequest extends OwnedObject {
      * Locked state of the pull request.
      * @return {boolean}
      */
-    locked: boolean_attribute,
+    locked: boolean_attribute_false,
 
     /**
      * Merged state of the pull request.
      * @return {boolean}
      */
-    merged: boolean_attribute,
+    merged: boolean_attribute_false,
 
     /**
      * Draft state of the pull request.
      * @return {boolean}
      */
-    draft: boolean_attribute,
-    dry: boolean_attribute,
+    draft: boolean_attribute_false,
+    dry: boolean_attribute_false,
     empty: empty_attribute
   };
 

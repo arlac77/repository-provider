@@ -1,4 +1,4 @@
-import { name_attribute, boolean_attribute } from "pacc";
+import { name_attribute, boolean_attribute_false } from "pacc";
 import { ContentEntry } from "content-entry";
 import { OwnedObject } from "./owned-object.mjs";
 
@@ -22,7 +22,7 @@ export class Ref extends OwnedObject {
      * Can the ref be modified.
      * @return {boolean}
      */
-    isProtected: boolean_attribute
+    isProtected: boolean_attribute_false
   };
 
   static attributeMapping = {
