@@ -1,4 +1,4 @@
-import { url_attribute, boolean_attribute, type_attribute } from "pacc";
+import { url_attribute, url_attribute_writble, boolean_attribute, type_attribute } from "pacc";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
@@ -46,7 +46,7 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
      * The url of home page.
      * @return {string}
      */
-    homePageURL: { ...url_attribute, writable: true }
+    homePageURL: url_attribute_writble
   };
 
   /**

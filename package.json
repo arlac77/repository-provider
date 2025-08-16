@@ -39,7 +39,7 @@
   "dependencies": {
     "content-entry": "^14.2.4",
     "matching-iterator": "^2.1.4",
-    "pacc": "^4.6.0"
+    "pacc": "^4.7.0"
   },
   "devDependencies": {
     "ava": "^6.4.1",
@@ -51,7 +51,7 @@
     "typescript": "^5.9.2"
   },
   "engines": {
-    "node": ">=22.17.1"
+    "node": ">=22.18.0"
   },
   "repository": {
     "type": "git",
