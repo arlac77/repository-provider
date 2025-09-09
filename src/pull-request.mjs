@@ -134,35 +134,32 @@ export class PullRequest extends OwnedObject {
 
   /** @type {Branch} */ source;
 
+  _state = "OPEN";
+
   constructor(source, owner, name, options) {
-    let state = "OPEN";
-
-    super(owner, name, options, {
-      state: {
-        set(value) {
-          value = value.toUpperCase();
-          // @ts-ignore
-          if (this.constructor.attributes.state.values.has(value)) {
-            state = value;
-          } else throw new Error(`Invalid Pull Request state ${value}`);
-        },
-        get() {
-          return state;
-        }
-      },
-      merged: {
-        set(value) {
-          if (value) {
-            state = "MERGED";
-          }
-        },
-        get() {
-          return state === "MERGED";
-        }
-      }
-    });
-
+    super(owner, name, options);
     this.source = source;
+  }
+
+  set state(value) {
+    value = value.toUpperCase();
+    if (this.constructor.attributes.state.values.has(value)) {
+      this._state = value;
+    } else throw new Error(`Invalid Pull Request state ${value}`);
+  }
+
+  get state() {
+    return this._state;
+  }
+
+  set merged(value) {
+    if (value) {
+      this.state = "MERGED";
+    }
+  }
+
+  get merged() {
+    return this.state === "MERGED";
   }
 
   get destination() {
