@@ -1,4 +1,4 @@
-import { name_attribute, boolean_attribute_writable_false } from "pacc";
+import { name_attribute_writable, boolean_attribute_writable_false } from "pacc";
 import { ContentEntry } from "content-entry";
 import { OwnedObject } from "./owned-object.mjs";
 
@@ -16,17 +16,13 @@ export class Ref extends OwnedObject {
    * @type {Object}
    */
   static attributes = {
-    name: name_attribute,
+    name: name_attribute_writable,
 
     /**
      * Can the ref be modified.
      * @return {boolean}
      */
-    isProtected: boolean_attribute_writable_false
-  };
-
-  static attributeMapping = {
-    protected: "isProtected"
+    isProtected: {...boolean_attribute_writable_false, externalName: "protected" }
   };
 
   get refType() {

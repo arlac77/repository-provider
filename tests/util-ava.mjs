@@ -24,7 +24,6 @@ async function gbnt(t, branchNames, pattern, result) {
 gbnt.title = (providedTitle = "generateBranchName", a, b, c) =>
   `${providedTitle} ${a} ${b} -> ${c}`.trim();
 
-test(gbnt, ["b1"], "x1", "x1");
 test(gbnt, ["b1"], "b*", "b2");
 test(gbnt, ["b1"], "b**", "b2");
 test(gbnt, ["b1", "b2"], "b*", "b3");

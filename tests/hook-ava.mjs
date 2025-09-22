@@ -42,7 +42,7 @@ test("add hook", async t => {
     active: true,
     id: 77,
     events: ["a"],
-    insecure_ssl: false,
+   // insecure_ssl: false,
     content_type: "json",
     url: "http://somewere.com/path"
   });

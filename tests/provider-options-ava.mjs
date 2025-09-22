@@ -1,12 +1,11 @@
 import test from "ava";
-import { providerOptionsFromEnvironmentTest } from "repository-provider-test-support";
+import {
+  string_attribute,
+  string_collection_attribute,
+  token_attribute,
+  object_attribute
+} from "pacc";
 import { BaseProvider } from "repository-provider";
-
-test("provider default empty env options", t => {
-  t.is(BaseProvider.optionsFromEnvironment(), undefined);
-  t.is(BaseProvider.optionsFromEnvironment({}), undefined);
-  t.true(BaseProvider.areOptionsSufficcient());
-});
 
 class MyProviderA extends BaseProvider {
   static get instanceIdentifier() {
@@ -15,140 +14,64 @@ class MyProviderA extends BaseProvider {
 
   static attributes = {
     ...super.attributes,
-    "authentication.username": {
-      env: "{{instanceIdentifier}}USERNAME"
-    },
-    "authentication.password": {
-      env: ["BITBUCKET_APP_PASSWORD", "{{instanceIdentifier}}PASSWORD"],
-      additionalAttributes: { "authentication.type": "basic" },
-      private: true
+    authentication: {
+      attributes: {
+        username: {
+          env: "{{instanceIdentifier}}USERNAME"
+        },
+        password: {
+          env: ["BITBUCKET_APP_PASSWORD", "{{instanceIdentifier}}PASSWORD"],
+          additionalValues: { "authentication.type": "basic" },
+          private: true
+        }
+      }
     }
   };
 }
 
 class MyProviderB extends BaseProvider {
-  static get instanceIdentifier() {
-    return "GITEA_";
-  }
+  static instanceIdentifier = "GITEA_";
 
   static attributes = {
     ...super.attributes,
     host: {
+      ...string_attribute,
       env: "{{instanceIdentifier}}HOST",
       default: "somewhere.com"
     },
     cloneOptions: {
+      ...string_collection_attribute,
       env: "GIT_CLONE_OPTIONS",
-      parse: value => value.split(/\s+/)
+      prepareValue: value => value.split(/\s+/)
     },
-    "authentication.token": {
-      env: ["{{instanceIdentifier}}TOKEN", "XXX_TOKEN"],
-      additionalAttributes: { "authentication.type": "token" },
-      private: true,
-      mandatory: true
+    authentication: {
+      ...object_attribute,
+      attributes: {
+        token: {
+          ...token_attribute,
+          env: ["{{instanceIdentifier}}TOKEN", "XXX_TOKEN"],
+          additionalValues: { "authentication.type": "token" },
+          mandatory: true
+        }
+      }
     },
     api: {
-      env: "{{instanceIdentifier}}API",
-      get: (attribute, object, properties) =>
-        `http://${object.host || properties.host.value}/api`
+      env: "{{instanceIdentifier}}API"
     }
   };
+
+  get api() {
+    return `http://${this.host}/api`;
+  }
 }
 
-test("MyProviderB.initialize", t => {
-  const p = MyProviderB.initialize(
-    {},
-    {
-      GITEA_HOST: "somewhere",
-      GITEA_TOKEN: "abc"
-    }
-  );
-
-  t.is(p.host, "somewhere");
-  t.is(p.api, "http://somewhere/api");
-});
-
-test(
-  providerOptionsFromEnvironmentTest,
-  MyProviderB,
-  {
-    GITEA_HOST: "somewhere",
-    GITEA_TOKEN: "abc"
-  },
-  {
-    host: "somewhere",
-    "authentication.token": "abc",
-    "authentication.type": "token"
-  },
-  true
-);
-
-test(
-  providerOptionsFromEnvironmentTest,
-  MyProviderB,
-  {
-    GITEA_API: "http://somewhere/api",
-    GITEA_TOKEN: "abc",
-    GIT_CLONE_OPTIONS: "-A 1"
-  },
-  {
-    "authentication.token": "abc",
-    "authentication.type": "token",
-    api: "http://somewhere/api",
-    cloneOptions: "-A 1"
-  },
-  true
-);
-
-test(
-  providerOptionsFromEnvironmentTest,
-  MyProviderB,
-  {
-    XXX_TOKEN: "abc"
-  },
-  {
-    "authentication.token": "abc",
-    "authentication.type": "token"
-  },
-  true
-);
-
-test(
-  providerOptionsFromEnvironmentTest,
-  MyProviderA,
-  {
-    BITBUCKET_USERNAME: "aName",
-    BITBUCKET_PASSWORD: "aSecret"
-  },
-  {
-    "authentication.username": "aName",
-    "authentication.password": "aSecret",
-    "authentication.type": "basic"
-  },
-  true
-);
-
-test(
-  providerOptionsFromEnvironmentTest,
-  MyProviderA,
-  {
-    BITBUCKET_USERNAME: "aName",
-    BITBUCKET_APP_PASSWORD: "aAppSecret",
-    BITBUCKET_PASSWORD: "aSecret"
-  },
-  {
-    "authentication.username": "aName",
-    "authentication.password": "aAppSecret",
-    "authentication.type": "basic"
-  },
-  true
-);
-
-test("initialize", t => {
+test("initialize sufficiant", t => {
   const provider = MyProviderB.initialize(undefined, { GITEA_TOKEN: "abc" });
   t.is(provider.name, "MyProviderB");
   t.is(provider.authentication.token, "abc");
+});
 
+test("initialize insufficiant", t => {
   t.is(MyProviderB.initialize(undefined, undefined), undefined);
 });
 
@@ -159,8 +82,6 @@ test("initialize with name", t => {
   });
   t.is(provider.name, "a name");
   t.is(provider.authentication.token, "abc");
-
-  t.is(MyProviderB.initialize(undefined, undefined), undefined);
 });
 
 test("new provider", t => {

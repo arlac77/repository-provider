@@ -27,7 +27,7 @@ test("name object init with options", t => {
   });
 });
 
-test.skip("name object set / get", t => {
+test("name object set / get", t => {
   const no = new NamedObject("n1");
 
   no.name = "n2";

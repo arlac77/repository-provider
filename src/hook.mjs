@@ -2,8 +2,9 @@ import {
   secret_attribute,
   boolean_attribute,
   active_attribute,
-  url_attribute,
-  string_attribute_writable
+  url_attribute_writable,
+  string_attribute_writable,
+  string_collection_attribute_writable
 } from "pacc";
 import { OwnedObject } from "./owned-object.mjs";
 
@@ -17,11 +18,22 @@ export class Hook extends OwnedObject {
     ...super.attributes,
     active: active_attribute,
     secret: secret_attribute,
-    url: { ...url_attribute, description: "target url", writable: true },
+    url: { ...url_attribute_writable, description: "target url" },
     content_type: { ...string_attribute_writable, default: "json" },
     insecure_ssl: boolean_attribute,
-    events: { type: "set", default: this.defaultEvents }
+    events: {
+      ...string_collection_attribute_writable,
+      default: this.defaultEvents
+    }
   };
+
+  set events(value) {
+    this._events = new Set(value);
+  }
+
+  get events() {
+    return this._events;
+  }
 
   static get addMethodName() {
     return "_addHook";

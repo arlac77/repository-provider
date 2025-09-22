@@ -1,8 +1,10 @@
 import {
+  manadatoryAttributesPresent,
+  environmentValues,
   url_attribute,
-  name_attribute,
+  name_attribute_writable,
   priority_attribute,
-  default_attribute
+  object_attribute
 } from "pacc";
 import { asArray, stripBaseName } from "./util.mjs";
 import { PullRequest } from "./pull-request.mjs";
@@ -58,65 +60,6 @@ export class BaseProvider extends BaseObject {
     return "";
   }
 
-  /**
-   * Extract options suitable for the constructor.
-   * Form the given set of environment variables.
-   * Object with the detected key value pairs is delivered.
-   * @param {Object} [env] as from process.env
-   * @param {string} instanceIdentifier part of variable name.
-   * @return {Object|undefined} undefined if no suitable environment variables have been found
-   */
-  static optionsFromEnvironment(
-    env,
-    instanceIdentifier = this.instanceIdentifier
-  ) {
-    let options;
-
-    if (env !== undefined) {
-      const attributes = this.attributes;
-
-      for (let [envName, value] of Object.entries(env)) {
-        for (const [name, attribute] of Object.entries(attributes)) {
-          if (
-            asArray(attribute.env).find(
-              e =>
-                e.replace(
-                  "{{instanceIdentifier}}",
-                  () => instanceIdentifier
-                ) === envName
-            )
-          ) {
-            options ??= {};
-
-            if (options[name] === undefined) {
-              options[name] = value;
-              Object.assign(options, attribute.additionalAttributes);
-            }
-            break;
-          }
-        }
-      }
-    }
-    return options;
-  }
-
-  /**
-   * Check if given options are sufficient to create a provider.
-   * @param {Object} options
-   * @return {boolean} true if options ar sufficient to construct a provider
-   */
-  static areOptionsSufficcient(options) {
-    for (const [name, attribute] of Object.entries(this.attributes).filter(
-      ([name, attribute]) => attribute.mandatory
-    )) {
-      if (options[name] === undefined) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
   static attributes = {
     ...BaseObject.attributes,
 
@@ -124,7 +67,7 @@ export class BaseProvider extends BaseObject {
      * Name of the provider.
      */
     name: {
-      ...name_attribute,
+      ...name_attribute_writable,
       env: "{{instanceIdentifier}}NAME"
     },
 
@@ -135,8 +78,7 @@ export class BaseProvider extends BaseObject {
      * To forward info/warn and error messages to
      */
     messageDestination: {
-      ...default_attribute,
-      type: "object",
+      ...object_attribute,
       default: console,
       writable: true,
       private: true
@@ -163,10 +105,14 @@ export class BaseProvider extends BaseObject {
   static initialize(options, env) {
     options = {
       ...options,
-      ...this.optionsFromEnvironment(env, options?.instanceIdentifier)
+      ...environmentValues(
+        env,
+        this.attributes,
+        options?.instanceIdentifier ?? this.instanceIdentifier
+      )
     };
 
-    if (this.areOptionsSufficcient(options)) {
+    if (manadatoryAttributesPresent(options, this.attributes)) {
       return new this(options);
     }
   }

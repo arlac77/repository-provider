@@ -1,12 +1,15 @@
 import {
+  getAttributesJSON,
+  attributeIterator,
   url_attribute,
-  state_attribute,
-  body_attribute,
-  title_attribute,
+  state_attribute_writable,
+  body_attribute_writable,
+  title_attribute_writable,
   boolean_attribute_false,
-  empty_attribute
+  boolean_attribute_writable_false,
+  empty_attribute,
+  types
 } from "pacc";
-import { optionJSON } from "./attribute-extras.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
@@ -94,8 +97,8 @@ export class PullRequest extends OwnedObject {
 
   static attributes = {
     ...super.attributes,
-    body: body_attribute,
-    title: title_attribute,
+    body: body_attribute_writable,
+    title: title_attribute_writable,
     url: url_attribute,
 
     /**
@@ -106,7 +109,7 @@ export class PullRequest extends OwnedObject {
      * @return {string}
      */
     state: {
-      ...state_attribute,
+      ...state_attribute_writable,
       default: "OPEN",
       values: this.states
     },
@@ -115,7 +118,7 @@ export class PullRequest extends OwnedObject {
      * Locked state of the pull request.
      * @return {boolean}
      */
-    locked: boolean_attribute_false,
+    locked: boolean_attribute_writable_false,
 
     /**
      * Merged state of the pull request.
@@ -127,7 +130,7 @@ export class PullRequest extends OwnedObject {
      * Draft state of the pull request.
      * @return {boolean}
      */
-    draft: boolean_attribute_false,
+    draft: boolean_attribute_writable_false,
     dry: boolean_attribute_false,
     empty: empty_attribute
   };
@@ -234,31 +237,34 @@ export class PullRequest extends OwnedObject {
 
   toString() {
     return [
-      // @ts-ignore
       [this.name, this.title],
       ["source", this.source?.identifier],
       ["destination", this.owner.identifier],
-      // @ts-ignore
-      ...Object.entries(this.constructor.attributes)
-        .filter(
-          ([k, v]) =>
-            !v.isKey &&
-            v.type !== "url" &&
-            k !== "title" &&
-            k !== "body" &&
-            this[k] !== undefined
+      ...[
+        ...attributeIterator(
+          this.constructor.attributes,
+          (name, attribute) =>
+            !attribute.isKey &&
+            attribute.type !== types.url &&
+            name !== "title" &&
+            name !== "body" &&
+            this[name] !== undefined
         )
-        .map(([k]) => [k, this[k]])
+      ].map(([path, attribute]) => {
+        const name = path.join(".");
+        return [name, this[name]];
+      })
     ]
-      .map(([k, v]) => `${k}: ${v}`)
-      .join(", ");
+      .map(([name, value]) => `${name}:${value}`)
+      .join(",");
   }
 
-  toJSON() {
-    return optionJSON(this, {
+  toJSON(filter) {
+    return {
+      ...getAttributesJSON(this, this.constructor.attributes, filter),
       source: this.source,
       destination: this.owner
-    });
+    };
   }
 
   /**

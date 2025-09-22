@@ -1,8 +1,8 @@
 import {
-  definePropertiesFromOptions,
-  mapAttributes
-} from "./attribute-extras.mjs";
-import { description_attribute, id_attribute } from "pacc";
+  definePropertiesFromAttributes,
+  description_attribute,
+  id_attribute
+} from "pacc";
 
 /**
  * Creates an instance of BaseObject.
@@ -52,12 +52,6 @@ export class BaseObject {
     );
   }
 
-  /**
-   * Map attributes between external and internal representation.
-   * @return {Object}
-   */
-  static attributeMapping = {};
-
   /** @type {string} */ id;
   /** @type {string} */ description;
 
@@ -66,10 +60,9 @@ export class BaseObject {
    * @param {Object} [options]
    * @param {string} [options.id]
    * @param {string} [options.description]
-   * @param {Object} [additionalProperties]
    */
-  constructor(options, additionalProperties) {
-    this.updateAttributes(options, additionalProperties);
+  constructor(options) {
+    this.updateAttributes(options);
   }
 
   /**
@@ -77,13 +70,8 @@ export class BaseObject {
    * @param {Object} [options]
    * @param {Object} [additionalProperties]
    */
-  updateAttributes(options, additionalProperties) {
-    definePropertiesFromOptions(
-      this,
-      // @ts-ignore
-      mapAttributes(options, this.constructor.attributeMapping),
-      additionalProperties
-    );
+  updateAttributes(options) {
+    definePropertiesFromAttributes(this, this.constructor.attributes, options);
   }
 
   /**

@@ -1,8 +1,8 @@
 import {
-  string_attribute,
+  string_attribute_writable,
   url_attribute,
-  boolean_attribute,
-  boolean_attribute_false
+  boolean_attribute_false,
+  boolean_attribute_writable_false
 } from "pacc";
 import { matcher } from "matching-iterator";
 import { ContentEntry } from "content-entry";
@@ -56,16 +56,18 @@ export class Repository extends OwnedObject {
      * @return {string}
      */
     defaultBranchName: {
-      ...string_attribute,
-      default: Repository.defaultBranchName
+      ...string_attribute_writable,
+      default: this.defaultBranchName,
+      externalName: "default_branch"
     },
 
     cloneURL: url_attribute,
-    isArchived: boolean_attribute,
-    isLocked: boolean_attribute,
-    isDisabled: boolean_attribute,
-    isTemplate: boolean_attribute,
-    isFork: boolean_attribute_false
+    isArchived: { ...boolean_attribute_writable_false, externalName: "archived" },
+    isLocked: { ...boolean_attribute_writable_false, externalName: "locked" },
+    isDisabled: { ...boolean_attribute_writable_false, externalName: "disabled" },
+    isTemplate: { ...boolean_attribute_writable_false, externalName: "template" },
+    isFork: { ...boolean_attribute_false, externalName: "fork" },
+    isPrivate: { ...boolean_attribute_writable_false, externalName: "private" }
   };
 
   /** @type {Map<string,Branch>} */ #branches = new Map();
@@ -85,14 +87,12 @@ export class Repository extends OwnedObject {
    * @param {Object} [options]
    * @param {string} [options.id]
    * @param {string} [options.description]
-   * @param {Object} [additionalProperties]
    */
-  constructor(owner, name, options, additionalProperties) {
+  constructor(owner, name, options) {
     super(
       owner,
       owner.normalizeRepositoryName(name, false),
-      options,
-      additionalProperties
+      options
     );
   }
 
@@ -113,7 +113,7 @@ export class Repository extends OwnedObject {
   }
 
   get defaultBranchName() {
-    return Repository.defaultBranchName;
+    return this.constructor.defaultBranchName;
   }
 
   /**

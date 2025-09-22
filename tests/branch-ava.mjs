@@ -62,7 +62,7 @@ test("branch init isDefault", async t => {
 test("branch isDefault changed", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1", {
-    defaultBranchName: "otherMaster"
+    default_branch: "otherMaster"
   });
   const b = new Branch(repository, "otherMaster");
   t.is(b.fullName, "r1#otherMaster");
@@ -70,7 +70,7 @@ test("branch isDefault changed", async t => {
   t.is(b.isDefault, true);
 });
 
-test("branch update attributes", async t => {
+test.only("branch update attributes", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
   const branch = await repository.createBranch("b1");

@@ -29,8 +29,8 @@ export class OwnedObject extends NamedObject {
 
   owner;
 
-  constructor(owner, name, options, additionalProperties) {
-    super(name, options, additionalProperties);
+  constructor(owner, name, options) {
+    super(name, options);
     this.owner = owner;
     // @ts-ignore
     owner[this.constructor.addMethodName](this);

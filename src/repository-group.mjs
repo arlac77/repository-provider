@@ -1,4 +1,4 @@
-import { url_attribute, url_attribute_writble, boolean_attribute, type_attribute } from "pacc";
+import { url_attribute, url_attribute_writable, boolean_attribute, type_attribute } from "pacc";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
@@ -46,13 +46,8 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
      * The url of home page.
      * @return {string}
      */
-    homePageURL: url_attribute_writble
+    homePageURL: url_attribute_writable
   };
-
-  /**
-   * Map attributes between external and internal representation.
-   */
-  static attributeMapping() {}
 
   get isAdmin() {
     return false;

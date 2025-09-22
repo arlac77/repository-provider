@@ -1,4 +1,5 @@
 import test from "ava";
+import { integer_attribute } from "pacc";
 import {
   repositoryEqualityTest,
   createMessageDestination
@@ -9,7 +10,6 @@ import {
   Branch,
   PullRequest
 } from "repository-provider";
-import { ContentEntry } from "content-entry";
 
 test("Repository type", t => t.is(Repository.type, "repository"));
 test("Repository collection name", t =>
@@ -19,7 +19,7 @@ test("repository init with options", async t => {
   const provider = new SingleGroupProvider({ url: "https://myprovider.com/" });
   const repository = new Repository(provider, "r1", {
     description: "a description",
-    id: "4711"
+    id: "4711",
   });
   t.is(repository.owner, provider);
   t.is(repository.name, "r1");
@@ -42,15 +42,16 @@ test("repository init with options", async t => {
   t.deepEqual(repository.toJSON(), {
     url: "https://myprovider.com/SingleGroupProvider/r1",
     cloneURL: "git+https://myprovider.com/SingleGroupProvider/r1.git",
-    defaultBranchName: "master",
+    default_branch: "master",
     description: "a description",
     id: "4711",
     name: "r1",
-    isArchived: false,
-    isDisabled: false,
-    isLocked: false,
-    isTemplate: false,
-    isFork: false
+    archived: false,
+    disabled: false,
+    locked: false,
+    template: false,
+    fork: false,
+    private: false
   });
 
   t.deepEqual(await repository.commits().next(), {
@@ -79,8 +80,8 @@ test("repository init with more options", async t => {
     description: "a description",
     id: "4712",
     uuid: "12345",
-    isArchived: true,
-    isTemplate: true,
+    archived: true,
+    template: true,
     url: "http:/myprovider/orner1/r1.git"
   });
 
@@ -134,7 +135,7 @@ test("repository classes", t => {
 class MyRepository extends Repository {
   static attributes = {
     ...super.attributes,
-    myAttribute: { default: 77 }
+    myAttribute: { ...integer_attribute, default: 77 }
   };
 }
 

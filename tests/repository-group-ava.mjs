@@ -1,5 +1,4 @@
 import test from "ava";
-import { ContentEntry } from "content-entry";
 import {
   MultiGroupProvider,
   RepositoryGroup,

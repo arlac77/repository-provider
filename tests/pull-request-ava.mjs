@@ -44,7 +44,7 @@ test("pullRequest create", async t => {
   t.is(pr.provider, provider);
   t.is(pr.title, "a title");
   t.is(pr.body, "the body");
-  t.is(pr.state, "CLOSED");
+  t.is(pr.state, "OPEN");
   t.is(pr.locked, false);
   t.is(pr.merged, false);
   t.is(pr.draft, false);
@@ -57,21 +57,21 @@ test("pullRequest create", async t => {
   t.deepEqual(pr.toJSON(), {
     name: "4711",
     body: "the body",
-    destination: b1,
+    destination: b2,
+    source: b1,
     draft: false,
     dry: false,
     id: "123456",
     locked: false,
     merged: false,
-    source: b2,
-    state: "CLOSED",
+    state: "OPEN",
     title: "a title",
     url: "https:/mydomain.com/SingleGroupProvider/r1/pull/4711"
   });
 
   t.is(
     `${pr}`,
-    "4711: a title, source: SingleGroupProvider:r1#b1, destination: SingleGroupProvider:r1#b2, state: CLOSED, locked: false, merged: false, draft: false, dry: false"
+    "4711:a title,source:SingleGroupProvider:r1#b1,destination:SingleGroupProvider:r1#b2,state:OPEN,locked:false,merged:false,draft:false,dry:false"
   );
 
   t.is(await repository.pullRequest("4711"), pr);

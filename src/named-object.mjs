@@ -1,5 +1,4 @@
-import { name_attribute } from "pacc";
-import { optionJSON } from "./attribute-extras.mjs";
+import { getAttributesJSON, name_attribute_writable } from "pacc";
 import { BaseObject } from "./base-object.mjs";
 
 /**
@@ -16,24 +15,15 @@ import { BaseObject } from "./base-object.mjs";
 export class NamedObject extends BaseObject {
   static attributes = {
     ...BaseObject.attributes,
-    name: name_attribute
+    name: name_attribute_writable
   };
 
-  constructor(name, options, additionalProperties) {
-    super(options, {
-      name: { value: name },
-      ...additionalProperties
-    });
-  }
+  name;
 
-  /** @type {string} */ #name;
-
-  get name() {
-    return this.#name;
-  }
-
-  set name(name) {
-    this.#name = name;
+  constructor(name, options) {
+    delete options?.name; // TODO
+    super(options);
+    this.name = name;
   }
 
   /**
@@ -77,9 +67,7 @@ export class NamedObject extends BaseObject {
   /**
    * Provided name and all defined attributes.
    */
-  toJSON() {
-    return optionJSON(this, {
-      name: this.name
-    });
+  toJSON(filter) {
+    return { ...getAttributesJSON(this, this.constructor.attributes, filter), name: this.name };
   }
 }
