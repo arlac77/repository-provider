@@ -1,4 +1,9 @@
-import { url_attribute, url_attribute_writable, boolean_attribute, type_attribute } from "pacc";
+import {
+  url_attribute,
+  url_attribute_writable,
+  boolean_attribute,
+  type_attribute
+} from "pacc";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
 import { BaseProvider } from "./base-provider.mjs";
@@ -40,8 +45,8 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
      */
     type: type_attribute,
     url: url_attribute,
-    avatarURL: url_attribute,
-    isAdmin: boolean_attribute,
+    avatarURL: { ...url_attribute, externalName: "avatar_url" },
+    isAdmin: { ...boolean_attribute, externalName: "is_admin" },
     /**
      * The url of home page.
      * @return {string}

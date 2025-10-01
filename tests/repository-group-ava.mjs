@@ -20,7 +20,7 @@ test("repository-group create with options", t => {
     id: "4711",
     uuid: "12345",
     homePageURL: "http://somewhere/rg",
-    isAdmin: true
+    is_admin: true
   });
 
   t.is(rg.name, "rg");
@@ -36,7 +36,7 @@ test("repository-group create with options", t => {
     id: "4711",
     description: "a description",
     homePageURL: "http://somewhere/rg",
-    isAdmin: true,
+    is_admin: true,
     url: "https://somewhere.com/"
   });
 });

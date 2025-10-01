@@ -6,7 +6,7 @@ test("JSON", t => {
 
   t.deepEqual(rg.toJSON(), {
     id: 1,
-    isAdmin: false,
+    is_admin: false,
     name: "a"
   });
 });
