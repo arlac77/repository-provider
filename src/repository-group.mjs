@@ -2,7 +2,8 @@ import {
   url_attribute,
   url_attribute_writable,
   boolean_attribute,
-  type_attribute
+  type_attribute,
+  active_attribute
 } from "pacc";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { OwnedObject } from "./owned-object.mjs";
@@ -45,6 +46,7 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
      */
     type: type_attribute,
     url: url_attribute,
+    active: active_attribute,
     avatarURL: { ...url_attribute, externalName: "avatar_url" },
     isAdmin: { ...boolean_attribute, externalName: "is_admin" },
     /**

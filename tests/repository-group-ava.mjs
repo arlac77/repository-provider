@@ -37,7 +37,8 @@ test("repository-group create with options", t => {
     description: "a description",
     homePageURL: "http://somewhere/rg",
     is_admin: true,
-    url: "https://somewhere.com/"
+    url: "https://somewhere.com/",
+    active: true
   });
 });
 
