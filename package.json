@@ -33,7 +33,7 @@
     "lint:docs": "documentation lint ./src**/*.mjs"
   },
   "dependencies": {
-    "content-entry": "^14.2.5",
+    "content-entry": "^14.2.6",
     "matching-iterator": "^2.1.4",
     "pacc": "^4.41.2"
   },
@@ -46,7 +46,7 @@
     "semantic-release": "^25.0.2"
   },
   "engines": {
-    "node": ">=22.21.0"
+    "node": ">=24.11.1"
   },
   "repository": {
     "type": "git",
