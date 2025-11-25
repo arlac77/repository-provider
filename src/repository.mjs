@@ -1,6 +1,7 @@
 import {
   string_attribute_writable,
   url_attribute,
+  url_attribute_writable,
   boolean_attribute_false,
   boolean_attribute_writable_false
 } from "pacc";
@@ -61,13 +62,14 @@ export class Repository extends OwnedObject {
       externalName: "default_branch"
     },
 
+    homePageURL: url_attribute_writable,
     cloneURL: url_attribute,
     isArchived: { ...boolean_attribute_writable_false, externalName: "archived" },
     isLocked: { ...boolean_attribute_writable_false, externalName: "locked" },
     isDisabled: { ...boolean_attribute_writable_false, externalName: "disabled" },
     isTemplate: { ...boolean_attribute_writable_false, externalName: "template" },
     isFork: { ...boolean_attribute_false, externalName: "fork" },
-    isPrivate: { ...boolean_attribute_writable_false, externalName: "private" }
+    isPrivate: { ...boolean_attribute_writable_false, externalName: "private" },
   };
 
   /** @type {Map<string,Branch>} */ #branches = new Map();
