@@ -10,7 +10,6 @@ import { RepositoryGroup } from "./repository-group.mjs";
  *
  */
 export class MultiGroupProvider extends BaseProvider {
-
   #repositoryGroups = new Map();
 
   /**
@@ -47,7 +46,7 @@ export class MultiGroupProvider extends BaseProvider {
         if (rg !== undefined) {
           const r = await rg.repository(repository);
           if (r !== undefined) {
-            return r.branch( branch || r.defaultBranchName);
+            return r.branch(branch || r.defaultBranchName);
           }
         }
       }
@@ -64,7 +63,12 @@ export class MultiGroupProvider extends BaseProvider {
 
     if (this.supportsBase(base)) {
       await this.initializeRepositories();
-      return this.#repositoryGroups.get(this.normalizeGroupName(stripBaseName(name, this.provider.repositoryBases), true));
+      return this.#repositoryGroups.get(
+        this.normalizeGroupName(
+          stripBaseName(name, this.provider.repositoryBases),
+          true
+        )
+      );
     }
   }
 
@@ -105,10 +109,26 @@ export class MultiGroupProvider extends BaseProvider {
    */
   addRepositoryGroup(name, options) {
     // @ts-ignore
-    return this.#repositoryGroups.get(this.normalizeGroupName(name, true)) || new this.repositoryGroupClass(this, name, options);
+    return (
+      this.#repositoryGroups.get(this.normalizeGroupName(name, true)) ||
+      new (this.repositoryGroupClassFor(name, options))(this, name, options)
+    );
+  }
+
+  /**
+   * Retrieve class suitable to hold repository group for name and options
+   * @param {string} name 
+   * @param {Object} options 
+   * @returns {Function}
+   */
+  repositoryGroupClassFor(name, options) {
+    return this.repositoryGroupClass;
   }
 
   _addRepositoryGroup(repositoryGroup) {
-    this.#repositoryGroups.set(this.normalizeGroupName(repositoryGroup.name, true), repositoryGroup);
+    this.#repositoryGroups.set(
+      this.normalizeGroupName(repositoryGroup.name, true),
+      repositoryGroup
+    );
   }
 }
