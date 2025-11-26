@@ -62,14 +62,23 @@ export class Repository extends OwnedObject {
       externalName: "default_branch"
     },
 
-    homePageURL: url_attribute_writable,
+    homePageURL: { ...url_attribute_writable, externalName: "homepage" },
     cloneURL: url_attribute,
-    isArchived: { ...boolean_attribute_writable_false, externalName: "archived" },
+    isArchived: {
+      ...boolean_attribute_writable_false,
+      externalName: "archived"
+    },
     isLocked: { ...boolean_attribute_writable_false, externalName: "locked" },
-    isDisabled: { ...boolean_attribute_writable_false, externalName: "disabled" },
-    isTemplate: { ...boolean_attribute_writable_false, externalName: "template" },
+    isDisabled: {
+      ...boolean_attribute_writable_false,
+      externalName: "disabled"
+    },
+    isTemplate: {
+      ...boolean_attribute_writable_false,
+      externalName: "template"
+    },
     isFork: { ...boolean_attribute_false, externalName: "fork" },
-    isPrivate: { ...boolean_attribute_writable_false, externalName: "private" },
+    isPrivate: { ...boolean_attribute_writable_false, externalName: "private" }
   };
 
   /** @type {Map<string,Branch>} */ #branches = new Map();
@@ -91,11 +100,7 @@ export class Repository extends OwnedObject {
    * @param {string} [options.description]
    */
   constructor(owner, name, options) {
-    super(
-      owner,
-      owner.normalizeRepositoryName(name, false),
-      options
-    );
+    super(owner, owner.normalizeRepositoryName(name, false), options);
   }
 
   /**
