@@ -439,7 +439,13 @@ export class BaseProvider extends BaseObject {
     return this.messageDestination.error(...args);
   }
 
-  get repositoryGroupClass() {
+  /**
+   * Retrieve class suitable to hold repository group for name and options
+   * @param {string} name
+   * @param {Object} options
+   * @returns {Function}
+   */
+  repositoryGroupClassFor(name, options) {
     return RepositoryGroup;
   }
 

@@ -115,16 +115,6 @@ export class MultiGroupProvider extends BaseProvider {
     );
   }
 
-  /**
-   * Retrieve class suitable to hold repository group for name and options
-   * @param {string} name 
-   * @param {Object} options 
-   * @returns {Function}
-   */
-  repositoryGroupClassFor(name, options) {
-    return this.repositoryGroupClass;
-  }
-
   _addRepositoryGroup(repositoryGroup) {
     this.#repositoryGroups.set(
       this.normalizeGroupName(repositoryGroup.name, true),
