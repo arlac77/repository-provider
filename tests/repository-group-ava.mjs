@@ -19,7 +19,7 @@ test("repository-group create with options", t => {
     description: "a description",
     id: "4711",
     uuid: "12345",
-    homePageURL: "http://somewhere/rg",
+    homepage: "http://somewhere/rg",
     is_admin: true
   });
 
@@ -35,7 +35,7 @@ test("repository-group create with options", t => {
     name: "rg",
     id: "4711",
     description: "a description",
-    homePageURL: "http://somewhere/rg",
+    homepage: "http://somewhere/rg",
     is_admin: true,
     url: "https://somewhere.com/",
     active: true
