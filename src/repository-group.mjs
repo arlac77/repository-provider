@@ -53,7 +53,7 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
      * The url of home page.
      * @return {string}
      */
-    homePageURL: url_attribute_writable
+    homePageURL: { ...url_attribute_writable, externalName: "homepage" }
   };
 
   get isAdmin() {
