@@ -42,7 +42,7 @@
     "browser-ava": "^2.3.45",
     "c8": "^10.1.3",
     "documentation": "^14.0.3",
-    "repository-provider-test-support": "^5.0.1",
+    "repository-provider-test-support": "^5.0.0",
     "semantic-release": "^25.0.2"
   },
   "engines": {
@@ -55,7 +55,7 @@
   "bugs": {
     "url": "https://github.com/arlac77/repository-provider/issues"
   },
-  "homepage": "https://github.com/arlac77/repository-provider#readme",
+  "homepage": "",
   "template": {
     "inheritFrom": [
       "arlac77/template-arlac77-github",
