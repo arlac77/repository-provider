@@ -68,7 +68,6 @@ export class BaseObject {
   /**
    * Takes values from options.
    * @param {Object} [options]
-   * @param {Object} [additionalProperties]
    */
   updateAttributes(options) {
     definePropertiesFromAttributes(this, this.constructor.attributes, options);
@@ -104,6 +103,22 @@ export class BaseObject {
    * @return {boolean} false
    */
   get isWritable() {
+    return false;
+  }
+
+  /**
+   * By default we are not disabled.
+   * @return {boolean} false
+   */
+  get isDisabled() {
+    return false;
+  }
+
+  /**
+   * By default we are not a template.
+   * @return {boolean} false
+   */
+  get isTemplate() {
     return false;
   }
 

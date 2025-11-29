@@ -3,6 +3,7 @@ import { NamedObject } from "./named-object.mjs";
 /**
  * @typedef {import('./base-provider.mjs').BaseProvider} BaseProvider
  * @typedef {import('./repository.mjs').Repository} Repository
+ * @typedef {import('./base-object.mjs').BaseObject} BaseObject
  */
 
 /**
@@ -29,6 +30,12 @@ export class OwnedObject extends NamedObject {
 
   owner;
 
+  /**
+   * 
+   * @param {BaseObject} owner 
+   * @param {string} name 
+   * @param {Object|undefined} options 
+   */
   constructor(owner, name, options) {
     super(name, options);
     this.owner = owner;

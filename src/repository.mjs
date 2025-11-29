@@ -87,7 +87,7 @@ export class Repository extends OwnedObject {
   /** @type {Map<string,Application>} */ #applications = new Map();
   /** @type {Map<string,Milestone>} */ #milestones = new Map();
   /** @type {Map<string,PullRequest>} */ #pullRequests = new Map();
-  #hooks = [];
+  /** @type {Array<Hook>} */ #hooks = [];
 
   /**
    * @param {RepositoryOwner} owner
@@ -198,22 +198,6 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * By default we are not disabled.
-   * @return {boolean} false
-   */
-  get isDisabled() {
-    return false;
-  }
-
-  /**
-   * By default we are not a template.
-   * @return {boolean} false
-   */
-  get isTemplate() {
-    return false;
-  }
-
-  /**
    * Delete the repository from the {@link Provider}.
    * {@link Provider#deleteRepository}
    * @return {Promise<any>}
@@ -308,7 +292,7 @@ export class Repository extends OwnedObject {
   /**
    * Get a Tag.
    * @param {string} name
-   * @return {Promise<Tag>}
+   * @return {Promise<Tag|undefined>}
    */
   async tag(name) {
     await this.initializeTags();
@@ -339,6 +323,10 @@ export class Repository extends OwnedObject {
     return this.#tags.get(name) || new this.tagClass(this, name, options);
   }
 
+  /**
+   * 
+   * @param {Tag} tag 
+   */
   _addTag(tag) {
     this.#tags.set(tag.name, tag);
   }
@@ -372,6 +360,10 @@ export class Repository extends OwnedObject {
     return pr;
   }
 
+  /**
+   * 
+   * @param {PullRequest} pr 
+   */
   _addPullRequest(pr) {
     this.#pullRequests.set(pr.name, pr);
   }
@@ -421,6 +413,10 @@ export class Repository extends OwnedObject {
     );
   }
 
+  /**
+   * 
+   * @param {Hook} hook 
+   */
   _addHook(hook) {
     this.#hooks.push(hook);
   }
@@ -459,6 +455,10 @@ export class Repository extends OwnedObject {
     }
   }
 
+  /**
+   * 
+   * @param {Milestone} milestone 
+   */
   _addMilestone(milestone) {
     this.#milestones.set(milestone.name, milestone);
   }
@@ -472,6 +472,10 @@ export class Repository extends OwnedObject {
     return this.#milestones.get(name);
   }
 
+  /**
+   * 
+   * @param {Project} project 
+   */
   _addProject(project) {
     this.#projects.set(project.name, project);
   }
@@ -485,6 +489,10 @@ export class Repository extends OwnedObject {
     return this.#projects.get(name);
   }
 
+  /**
+   * 
+   * @param {Application} application 
+   */
   _addApplication(application) {
     this.#applications.set(application.name, application);
   }
