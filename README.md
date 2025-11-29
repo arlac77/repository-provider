@@ -57,6 +57,8 @@ console.log(await readme.string);
     *   [toString](#tostring)
     *   [fullName](#fullname)
     *   [isWritable](#iswritable)
+    *   [isDisabled](#isdisabled)
+    *   [isTemplate](#istemplate)
     *   [equals](#equals)
         *   [Parameters](#parameters-2)
     *   [type](#type)
@@ -211,7 +213,7 @@ console.log(await readme.string);
     *   [issuesURL](#issuesurl)
     *   [isLocked](#islocked)
     *   [isArchived](#isarchived)
-    *   [isDisabled](#isdisabled)
+    *   [isDisabled](#isdisabled-1)
     *   [api](#api)
     *   [slug](#slug)
     *   [url](#url-1)
@@ -239,7 +241,7 @@ console.log(await readme.string);
     *   [issuesURL](#issuesurl-1)
     *   [isLocked](#islocked-1)
     *   [isArchived](#isarchived-1)
-    *   [isDisabled](#isdisabled-1)
+    *   [isDisabled](#isdisabled-2)
     *   [api](#api-1)
     *   [slug](#slug-1)
     *   [url](#url-2)
@@ -341,8 +343,6 @@ console.log(await readme.string);
     *   [homePageURL](#homepageurl-3)
     *   [isArchived](#isarchived-2)
     *   [isLocked](#islocked-2)
-    *   [isDisabled](#isdisabled-2)
-    *   [isTemplate](#istemplate)
     *   [delete](#delete-4)
     *   [defaultBranch](#defaultbranch)
     *   [branch](#branch-2)
@@ -362,31 +362,43 @@ console.log(await readme.string);
         *   [Parameters](#parameters-90)
     *   [addTag](#addtag)
         *   [Parameters](#parameters-91)
-    *   [createPullRequest](#createpullrequest-1)
+    *   [\_addTag](#_addtag)
         *   [Parameters](#parameters-92)
-    *   [addPullRequest](#addpullrequest)
+    *   [createPullRequest](#createpullrequest-1)
         *   [Parameters](#parameters-93)
+    *   [addPullRequest](#addpullrequest)
+        *   [Parameters](#parameters-94)
+    *   [\_addPullRequest](#_addpullrequest)
+        *   [Parameters](#parameters-95)
     *   [pullRequests](#pullrequests-2)
     *   [pullRequest](#pullrequest-1)
-        *   [Parameters](#parameters-94)
-    *   [deletePullRequest](#deletepullrequest)
-        *   [Parameters](#parameters-95)
-    *   [addHook](#addhook)
         *   [Parameters](#parameters-96)
-    *   [createHook](#createhook)
+    *   [deletePullRequest](#deletepullrequest)
         *   [Parameters](#parameters-97)
+    *   [addHook](#addhook)
+        *   [Parameters](#parameters-98)
+    *   [\_addHook](#_addhook)
+        *   [Parameters](#parameters-99)
+    *   [createHook](#createhook)
+        *   [Parameters](#parameters-100)
     *   [hooks](#hooks-2)
     *   [hook](#hook-1)
-        *   [Parameters](#parameters-98)
-    *   [milestone](#milestone-1)
-        *   [Parameters](#parameters-99)
-    *   [project](#project-1)
-        *   [Parameters](#parameters-100)
-    *   [application](#application-1)
         *   [Parameters](#parameters-101)
+    *   [\_addMilestone](#_addmilestone)
+        *   [Parameters](#parameters-102)
+    *   [milestone](#milestone-1)
+        *   [Parameters](#parameters-103)
+    *   [\_addProject](#_addproject)
+        *   [Parameters](#parameters-104)
+    *   [project](#project-1)
+        *   [Parameters](#parameters-105)
+    *   [\_addApplication](#_addapplication)
+        *   [Parameters](#parameters-106)
+    *   [application](#application-1)
+        *   [Parameters](#parameters-107)
     *   [type](#type-2)
     *   [refId](#refid-2)
-        *   [Parameters](#parameters-102)
+        *   [Parameters](#parameters-108)
     *   [attributes](#attributes-3)
 *   [defaultBranchName](#defaultbranchname)
 *   [branches](#branches-3)
@@ -395,24 +407,25 @@ console.log(await readme.string);
 *   [applications](#applications)
 *   [milestones](#milestones-2)
 *   [pullRequests](#pullrequests-3)
+*   [hooks](#hooks-3)
 *   [Review](#review)
 *   [SingleGroupProvider](#singlegroupprovider)
     *   [repository](#repository-5)
-        *   [Parameters](#parameters-103)
+        *   [Parameters](#parameters-109)
     *   [repositoryGroup](#repositorygroup-2)
-        *   [Parameters](#parameters-104)
+        *   [Parameters](#parameters-110)
     *   [repositoryGroups](#repositorygroups-1)
-        *   [Parameters](#parameters-105)
+        *   [Parameters](#parameters-111)
 *   [Tag](#tag-1)
     *   [refType](#reftype-1)
 *   [asArray](#asarray)
-    *   [Parameters](#parameters-106)
+    *   [Parameters](#parameters-112)
 *   [stripBaseName](#stripbasename)
-    *   [Parameters](#parameters-107)
+    *   [Parameters](#parameters-113)
 *   [stripBaseNames](#stripbasenames)
-    *   [Parameters](#parameters-108)
+    *   [Parameters](#parameters-114)
 *   [generateBranchName](#generatebranchname)
-    *   [Parameters](#parameters-109)
+    *   [Parameters](#parameters-115)
 
 ## Application
 
@@ -447,7 +460,6 @@ Takes values from options.
 #### Parameters
 
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?**&#x20;
-*   `additionalProperties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?**&#x20;
 
 ### update
 
@@ -466,6 +478,18 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 ### isWritable
 
 By default cannot be written to.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
+
+### isDisabled
+
+By default we are not disabled.
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
+
+### isTemplate
+
+By default we are not a template.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
@@ -1430,9 +1454,9 @@ Named Object registering itself in the owner.
 
 ### Parameters
 
-*   `owner` &#x20;
-*   `name` &#x20;
-*   `options` &#x20;
+*   `owner` **[BaseObject](#baseobject)**&#x20;
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
+*   `options` **([Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))**&#x20;
 
 ### delete
 
@@ -2059,18 +2083,6 @@ By default we are not locked.
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
 
-### isDisabled
-
-By default we are not disabled.
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
-
-### isTemplate
-
-By default we are not a template.
-
-Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** false
-
 ### delete
 
 Delete the repository from the [Provider](Provider).
@@ -2148,7 +2160,7 @@ Get a Tag.
 
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[Tag](#tag)>**&#x20;
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<([Tag](#tag) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>**&#x20;
 
 ### tags
 
@@ -2169,6 +2181,12 @@ Internal tag creation does not call repository.initialize()
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?**&#x20;
 
 Returns **[Tag](#tag)** newly created tag
+
+### \_addTag
+
+#### Parameters
+
+*   `tag` **[Tag](#tag)**&#x20;
 
 ### createPullRequest
 
@@ -2193,6 +2211,12 @@ Add a pull request.
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?**&#x20;
 
 Returns **[PullRequest](#pullrequest)**&#x20;
+
+### \_addPullRequest
+
+#### Parameters
+
+*   `pr` **[PullRequest](#pullrequest)**&#x20;
 
 ### pullRequests
 
@@ -2231,6 +2255,12 @@ Add a new [Hook](#hook).
 
 Returns **[Hook](#hook)** newly created hook
 
+### \_addHook
+
+#### Parameters
+
+*   `hook` **[Hook](#hook)**&#x20;
+
 ### createHook
 
 Add a new Hook.
@@ -2255,6 +2285,12 @@ Get a Hook.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<([Hook](#hook) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>** for the given id
 
+### \_addMilestone
+
+#### Parameters
+
+*   `milestone` **[Milestone](#milestone)**&#x20;
+
 ### milestone
 
 Get a Milestone.
@@ -2265,6 +2301,12 @@ Get a Milestone.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<([Milestone](#milestone) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>** for the given name
 
+### \_addProject
+
+#### Parameters
+
+*   `project` **[Project](#project)**&#x20;
+
 ### project
 
 Get a Project.
@@ -2274,6 +2316,12 @@ Get a Project.
 *   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<([Project](#project) | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined))>** for the given name
+
+### \_addApplication
+
+#### Parameters
+
+*   `application` **[Application](#application)**&#x20;
 
 ### application
 
@@ -2334,6 +2382,10 @@ Type: [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_O
 ## pullRequests
 
 Type: [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [PullRequest](#pullrequest)>
+
+## hooks
+
+Type: [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Hook](#hook)>
 
 ## Review
 
