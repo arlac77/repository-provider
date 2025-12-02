@@ -1,5 +1,5 @@
 import {
-  manadatoryAttributesPresent,
+  mandatoryAttributesPresent,
   environmentValues,
   url_attribute,
   name_attribute_writable,
@@ -112,7 +112,7 @@ export class BaseProvider extends BaseObject {
       )
     };
 
-    if (manadatoryAttributesPresent(options, this.attributes)) {
+    if (mandatoryAttributesPresent(options, this.attributes)) {
       return new this(options);
     }
   }
