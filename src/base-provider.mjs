@@ -99,6 +99,7 @@ export class BaseProvider extends BaseObject {
    * @param {Object} options additional options
    * @param {string} [options.instanceIdentifier] name of the provider instance
    * @param {string} [options.description]
+   * @param {MessageDestination} [options.messageDestination]
    * @param {Object} env taken from process.env
    * @return {BaseProvider|undefined} newly created provider or undefined if options are not sufficient to construct a provider
    */
