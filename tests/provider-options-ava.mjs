@@ -42,7 +42,7 @@ class MyProviderB extends BaseProvider {
     cloneOptions: {
       ...string_collection_attribute,
       env: "GIT_CLONE_OPTIONS",
-      prepareValue: value => value.split(/\s+/)
+      toInternal: value => value.split(/\s+/)
     },
     authentication: {
       ...object_attribute,
