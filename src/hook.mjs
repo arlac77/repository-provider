@@ -4,7 +4,7 @@ import {
   active_attribute,
   url_attribute_writable,
   string_attribute_writable,
-  string_collection_attribute_writable
+  string_set_attribute_writable
 } from "pacc";
 import { OwnedObject } from "./owned-object.mjs";
 
@@ -22,13 +22,13 @@ export class Hook extends OwnedObject {
     content_type: { ...string_attribute_writable, default: "json" },
     insecure_ssl: boolean_attribute,
     events: {
-      ...string_collection_attribute_writable,
+      ...string_set_attribute_writable,
       default: this.defaultEvents
     }
   };
 
   set events(value) {
-    this._events = new Set(value);
+    this._events = value instanceof Set ? value : new Set(value);
   }
 
   get events() {
