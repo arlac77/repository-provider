@@ -38,7 +38,7 @@
     "pacc": "^9.2.6"
   },
   "devDependencies": {
-    "ava": "^7.0.0",
+    "ava": "^8.0.0",
     "browser-ava": "^2.3.57",
     "c8": "^11.0.0",
     "documentation": "^14.0.3",
