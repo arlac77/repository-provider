@@ -324,8 +324,8 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * 
-   * @param {Tag} tag 
+   *
+   * @param {Tag} tag
    */
   _addTag(tag) {
     this.#tags.set(tag.name, tag);
@@ -351,18 +351,15 @@ export class Repository extends OwnedObject {
    * @return {PullRequest}
    */
   addPullRequest(name, source, options) {
-    let pr = this.#pullRequests.get(name);
-    if (pr === undefined) {
-      // @ts-ignore
-      pr = new this.pullRequestClass(name, source, this, options);
-      this.#pullRequests.set(pr.name, pr);
-    }
-    return pr;
+    return this.#pullRequests.getOrInsertComputed(
+      name,
+      () => new this.pullRequestClass(name, source, this, options)
+    );
   }
 
   /**
-   * 
-   * @param {PullRequest} pr 
+   *
+   * @param {PullRequest} pr
    */
   _addPullRequest(pr) {
     this.#pullRequests.set(pr.name, pr);
@@ -414,8 +411,8 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * 
-   * @param {Hook} hook 
+   *
+   * @param {Hook} hook
    */
   _addHook(hook) {
     this.#hooks.push(hook);
@@ -456,8 +453,8 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * 
-   * @param {Milestone} milestone 
+   *
+   * @param {Milestone} milestone
    */
   _addMilestone(milestone) {
     this.#milestones.set(milestone.name, milestone);
@@ -473,8 +470,8 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * 
-   * @param {Project} project 
+   *
+   * @param {Project} project
    */
   _addProject(project) {
     this.#projects.set(project.name, project);
@@ -490,8 +487,8 @@ export class Repository extends OwnedObject {
   }
 
   /**
-   * 
-   * @param {Application} application 
+   *
+   * @param {Application} application
    */
   _addApplication(application) {
     this.#applications.set(application.name, application);
