@@ -59,26 +59,46 @@ export class Repository extends OwnedObject {
     defaultBranchName: {
       ...string_attribute_writable,
       default: this.defaultBranchName,
+      name: "defaultBranchName",
       externalName: "default_branch"
     },
 
-    homePageURL: { ...url_attribute_writable, externalName: "homepage" },
-    cloneURL: url_attribute,
+    homePageURL: {
+      ...url_attribute_writable,
+      name: "homePageURL",
+      externalName: "homepage"
+    },
+    cloneURL: { ...url_attribute, name: "cloneURL" },
     isArchived: {
       ...boolean_attribute_writable_false,
+      name: "isArchived",
       externalName: "archived"
     },
-    isLocked: { ...boolean_attribute_writable_false, externalName: "locked" },
+    isLocked: {
+      ...boolean_attribute_writable_false,
+      name: "isLocked",
+      externalName: "locked"
+    },
     isDisabled: {
       ...boolean_attribute_writable_false,
+      name: "isDisabled",
       externalName: "disabled"
     },
     isTemplate: {
       ...boolean_attribute_writable_false,
+      name: "isTemplate",
       externalName: "template"
     },
-    isFork: { ...boolean_attribute_false, externalName: "fork" },
-    isPrivate: { ...boolean_attribute_writable_false, externalName: "private" }
+    isFork: {
+      ...boolean_attribute_false,
+      name: "isFork",
+      externalName: "fork"
+    },
+    isPrivate: {
+      ...boolean_attribute_writable_false,
+      name: "isPrivate",
+      externalName: "private"
+    }
   };
 
   /** @type {Map<string,Branch>} */ #branches = new Map();

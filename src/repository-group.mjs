@@ -47,13 +47,25 @@ export class RepositoryGroup extends RepositoryOwner(OwnedObject) {
     type: type_attribute,
     url: url_attribute,
     active: active_attribute,
-    avatarURL: { ...url_attribute, externalName: "avatar_url" },
-    isAdmin: { ...boolean_attribute, externalName: "is_admin" },
+    avatarURL: {
+      ...url_attribute,
+      name: "avatarURL",
+      externalName: "avatar_url"
+    },
+    isAdmin: {
+      ...boolean_attribute,
+      name: "isAdmin",
+      externalName: "is_admin"
+    },
     /**
      * The url of home page.
      * @return {string}
      */
-    homePageURL: { ...url_attribute_writable, externalName: "homepage" }
+    homePageURL: {
+      ...url_attribute_writable,
+      name: "homePageURL",
+      externalName: "homepage"
+    }
   };
 
   get isAdmin() {

@@ -19,10 +19,15 @@ export class Hook extends OwnedObject {
     active: active_attribute,
     secret: secret_attribute,
     url: { ...url_attribute_writable, description: "target url" },
-    content_type: { ...string_attribute_writable, default: "json" },
-    insecure_ssl: boolean_attribute,
+    content_type: {
+      ...string_attribute_writable,
+      name: "content_type",
+      default: "json"
+    },
+    insecure_ssl: { ...boolean_attribute, name: "insecure_ssl" },
     events: {
       ...string_set_attribute_writable,
+      name: "events",
       default: this.defaultEvents
     }
   };

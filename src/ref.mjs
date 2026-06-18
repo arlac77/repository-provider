@@ -1,4 +1,7 @@
-import { name_attribute_writable, boolean_attribute_writable_false } from "pacc";
+import {
+  name_attribute_writable,
+  boolean_attribute_writable_false
+} from "pacc";
 import { ContentEntry } from "content-entry";
 import { OwnedObject } from "./owned-object.mjs";
 
@@ -22,7 +25,11 @@ export class Ref extends OwnedObject {
      * Can the ref be modified.
      * @return {boolean}
      */
-    isProtected: {...boolean_attribute_writable_false, externalName: "protected" }
+    isProtected: {
+      ...boolean_attribute_writable_false,
+      name: "isProtected",
+      externalName: "protected"
+    }
   };
 
   get refType() {

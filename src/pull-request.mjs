@@ -118,20 +118,20 @@ export class PullRequest extends OwnedObject {
      * Locked state of the pull request.
      * @return {boolean}
      */
-    locked: boolean_attribute_writable_false,
+    locked: { ...boolean_attribute_writable_false, name: "locked" },
 
     /**
      * Merged state of the pull request.
      * @return {boolean}
      */
-    merged: boolean_attribute_false,
+    merged: { ...boolean_attribute_false, name: "merged" },
 
     /**
      * Draft state of the pull request.
      * @return {boolean}
      */
-    draft: boolean_attribute_writable_false,
-    dry: boolean_attribute_false,
+    draft: { ...boolean_attribute_writable_false, name: "draft" },
+    dry: { ...boolean_attribute_false, name: "dry" },
     empty: empty_attribute
   };
 

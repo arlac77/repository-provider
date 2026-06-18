@@ -79,6 +79,7 @@ export class BaseProvider extends BaseObject {
      */
     messageDestination: {
       ...object_attribute,
+      name: "messageDestination",
       default: console,
       writable: true,
       private: true
