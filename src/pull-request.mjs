@@ -243,12 +243,12 @@ export class PullRequest extends OwnedObject {
       ...[
         ...attributeIterator(
           this.constructor.attributes,
-          (name, attribute) =>
-            !attribute.isKey &&
+          attribute =>
+            !attribute.key &&
             attribute.type !== types.url &&
-            name !== "title" &&
-            name !== "body" &&
-            this[name] !== undefined
+            attribute.name !== "title" &&
+            attribute.name !== "body" &&
+            this[attribute.name] !== undefined
         )
       ].map(([path, attribute]) => {
         const name = path.join(".");
