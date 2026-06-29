@@ -1,4 +1,4 @@
-import { getAttributesJSON, name_attribute_writable } from "pacc";
+import { getAttributesJSON, name_attribute, name_attribute_writable } from "pacc";
 import { BaseObject } from "./base-object.mjs";
 
 /**
@@ -15,7 +15,8 @@ import { BaseObject } from "./base-object.mjs";
 export class NamedObject extends BaseObject {
   static attributes = {
     ...BaseObject.attributes,
-    name: name_attribute_writable
+    name: name_attribute_writable,
+    displayName: { ...name_attribute, name: "displayName" }
   };
 
   name;
