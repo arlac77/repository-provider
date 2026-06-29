@@ -8,6 +8,7 @@ test("JSON", t => {
     id: 1,
     is_admin: false,
     name: "a",
+    displayName: "a",
     active: true
   });
 });

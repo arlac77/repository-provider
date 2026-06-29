@@ -39,10 +39,11 @@ test("add hook", async t => {
   t.is(hook.url, "http://somewere.com/path");
   t.deepEqual(hook.toJSON(), {
     name: "hook1",
+    displayName: "hook1",
     active: true,
     id: 77,
     events: ["a"],
-   // insecure_ssl: false,
+    // insecure_ssl: false,
     content_type: "json",
     url: "http://somewere.com/path"
   });

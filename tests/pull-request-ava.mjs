@@ -56,6 +56,7 @@ test("pullRequest create", async t => {
 
   t.deepEqual(pr.toJSON(), {
     name: "4711",
+    displayName: "4711",
     body: "the body",
     destination: b2,
     source: b1,

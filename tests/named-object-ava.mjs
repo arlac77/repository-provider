@@ -11,7 +11,8 @@ test("name object init without options", t => {
 
   t.is(no.displayName, "n1");
   t.deepEqual(no.toJSON(), {
-    name: "n1"
+    name: "n1",
+    displayName: "n1"
   });
 });
 
@@ -23,6 +24,7 @@ test("name object init with options", t => {
   t.is(no.displayName, "n1");
   t.deepEqual(no.toJSON(), {
     name: "n1",
+    displayName: "n1",
     description: "hello"
   });
 });

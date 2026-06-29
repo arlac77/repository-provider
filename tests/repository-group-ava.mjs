@@ -33,6 +33,7 @@ test("repository-group create with options", t => {
   //t.is(rg.toString(), "rg");
   t.deepEqual(rg.toJSON(), {
     name: "rg",
+    displayName: "rg",
     id: "4711",
     description: "a description",
     homepage: "http://somewhere/rg",
