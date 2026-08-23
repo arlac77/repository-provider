@@ -1,8 +1,9 @@
 import { matcher } from "matching-iterator";
+import { asArray } from "pacc";
 import { Branch } from "./branch.mjs";
 import { Repository } from "./repository.mjs";
 import { OwnedObject } from "./owned-object.mjs";
-import { asArray, stripBaseName, stripBaseNames } from "./util.mjs";
+import { stripBaseName, stripBaseNames } from "./util.mjs";
 
 /**
  * Mixin to define a class able to handle a collection of repositories.

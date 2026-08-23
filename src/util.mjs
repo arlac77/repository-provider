@@ -1,14 +1,5 @@
 import { Repository } from "./repository.mjs";
 
-/**
- * Convert scalar into an array.
- * The value undefined will be represented as an empty array.
- * @param {Array|any} value
- * @return {Array} value encapsulated in an array
- */
-export function asArray(value) {
-  return Array.isArray(value) ? value : value === undefined ? [] : [value];
-}
 
 /**
  * Strip repository base name away.

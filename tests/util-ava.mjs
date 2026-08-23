@@ -1,14 +1,11 @@
 import test from "ava";
+
 import {
   SingleGroupProvider,
   Branch,
   generateBranchName
 } from "repository-provider";
-import { asArray, stripBaseNames, stripBaseName } from "../src/util.mjs";
-
-test("asArray from scalar", t => t.deepEqual(asArray(1), [1]));
-test("asArray from array", t => t.deepEqual(asArray([1]), [1]));
-test("asArray from undefined", t => t.deepEqual(asArray(undefined), []));
+import { stripBaseNames, stripBaseName } from "../src/util.mjs";
 
 async function gbnt(t, branchNames, pattern, result) {
   const provider = new SingleGroupProvider();

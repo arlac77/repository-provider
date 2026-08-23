@@ -4,9 +4,10 @@ import {
   url_attribute,
   name_attribute_writable,
   priority_attribute,
-  object_attribute
+  object_attribute,
+  asArray
 } from "pacc";
-import { asArray, stripBaseName } from "./util.mjs";
+import { stripBaseName } from "./util.mjs";
 import { PullRequest } from "./pull-request.mjs";
 import { RepositoryGroup } from "./repository-group.mjs";
 import { BaseObject } from "./base-object.mjs";
