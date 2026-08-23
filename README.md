@@ -417,14 +417,12 @@ console.log(await readme.string);
         *   [Parameters](#parameters-111)
 *   [Tag](#tag-1)
     *   [refType](#reftype-1)
-*   [asArray](#asarray)
-    *   [Parameters](#parameters-112)
 *   [stripBaseName](#stripbasename)
-    *   [Parameters](#parameters-113)
+    *   [Parameters](#parameters-112)
 *   [stripBaseNames](#stripbasenames)
-    *   [Parameters](#parameters-114)
+    *   [Parameters](#parameters-113)
 *   [generateBranchName](#generatebranchname)
-    *   [Parameters](#parameters-115)
+    *   [Parameters](#parameters-114)
 
 ## Application
 
@@ -2437,17 +2435,6 @@ Tag refs
 ### refType
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** tags
-
-## asArray
-
-Convert scalar into an array.
-The value undefined will be represented as an empty array.
-
-### Parameters
-
-*   `value` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) | any)**&#x20;
-
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** value encapsulated in an array
 
 ## stripBaseName
 
