@@ -33,7 +33,7 @@
     "lint:docs": "documentation lint ./src**/*.mjs"
   },
   "dependencies": {
-    "content-entry": "^15.0.0",
+    "content-entry": "^15.0.2",
     "matching-iterator": "^2.1.8",
     "pacc": "^11.6.0"
   },
