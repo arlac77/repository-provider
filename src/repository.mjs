@@ -58,8 +58,8 @@ export class Repository extends OwnedObject {
      */
     defaultBranchName: {
       ...string_attribute_writable,
-      default: this.defaultBranchName,
       name: "defaultBranchName",
+      default: this.defaultBranchName,
       externalName: "default_branch"
     },
 
