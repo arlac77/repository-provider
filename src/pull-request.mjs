@@ -99,7 +99,11 @@ export class PullRequest extends OwnedObject {
   static attributes = {
     ...super.attributes,
     source: { ...default_attribute_writable, name: "source", type: "Branch" },
-    destination: { ...default_attribute_writable, name: "destination", type: "Branch" },
+    destination: {
+      ...default_attribute_writable,
+      name: "destination",
+      type: "Branch"
+    },
 
     body: body_attribute_writable,
     title: title_attribute_writable,
@@ -136,8 +140,7 @@ export class PullRequest extends OwnedObject {
      */
     draft: { ...boolean_attribute_writable_false, name: "draft" },
     dry: { ...boolean_attribute_false, name: "dry" },
-    empty: empty_attribute,
-
+    empty: empty_attribute
   };
 
   /** @type {Branch} */ source;
