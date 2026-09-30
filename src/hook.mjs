@@ -28,6 +28,7 @@ export class Hook extends OwnedObject {
     events: {
       ...string_set_attribute_writable,
       name: "events",
+      separator: undefined,
       default: this.defaultEvents
     }
   };
