@@ -1,3 +1,4 @@
+import { addType } from "pacc";
 import { BaseProvider } from "./base-provider.mjs";
 import { RepositoryOwner } from "./repository-owner.mjs";
 import { stripBaseNames } from "./util.mjs";
@@ -8,6 +9,10 @@ import { RepositoryGroup } from "./repository-group.mjs";
  * Provider holding a single set of repositories (no repository groups).
  */
 export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
+  static {
+    addType(this);
+  }
+
   /**
    * Lookup a repository in the provider and all of its repository groups.
    * @param {string} name of the repository
@@ -29,7 +34,7 @@ export class SingleGroupProvider extends RepositoryOwner(BaseProvider) {
     const { base } = this.parseName(name);
 
     if (name && this.supportsBase(base)) {
-       // @ts-ignore
+      // @ts-ignore
       return this;
     }
   }

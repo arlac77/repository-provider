@@ -1,13 +1,16 @@
-import { state_attribute_writable } from "pacc";
+import { addType, state_attribute_writable } from "pacc";
 import { OwnedObject } from "./owned-object.mjs";
 
 /**
  */
 export class Milestone extends OwnedObject {
   static attributes = {
-    ...super.attributes,
     state: state_attribute_writable
   };
+
+  static {
+    addType(this);
+  }
 
   async *issues() {}
 }

@@ -1,3 +1,4 @@
+import { addType } from "pacc";
 import { ContentEntry } from "content-entry";
 import { Ref } from "./ref.mjs";
 import { PullRequest } from "./pull-request.mjs";
@@ -28,6 +29,10 @@ export class Branch extends Ref {
 
   static get collectionName() {
     return "branches";
+  }
+
+  static {
+    addType(this);
   }
 
   constructor(owner, name = owner.defaultBranchName, options) {
@@ -131,8 +136,8 @@ export class Branch extends Ref {
           if (prBranch === undefined) {
             prBranch = isBranch
               ? options.pullRequestBranch
-              // @ts-ignore
-              : await this.createBranch(options.pullRequestBranch);
+              : // @ts-ignore
+                await this.createBranch(options.pullRequestBranch);
           }
           await prBranch.commit(commit.message, commit.entries);
           c2m(commit);
@@ -150,7 +155,7 @@ export class Branch extends Ref {
       }
 
       if (options.bodyFromCommitMessages) {
-        options.body = options.body ? options.body + '\n' + body : body;
+        options.body = options.body ? options.body + "\n" + body : body;
       }
 
       // @ts-ignore

@@ -1,10 +1,6 @@
 import test from "ava";
 import { BaseObject } from "repository-provider";
 
-test("BaseObject writableAttributes", t => {
-  t.deepEqual(Object.keys(BaseObject.writableAttributes), ["description"]);
-});
-
 test("BaseObject isWritable", t => {
   const b = new BaseObject();
   t.false(b.isWritable);

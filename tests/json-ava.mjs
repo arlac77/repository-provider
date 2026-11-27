@@ -1,12 +1,12 @@
 import test from "ava";
 import { RepositoryGroup, MultiGroupProvider } from "repository-provider";
 
-test("JSON", t => {
+test("RepositoryGroup JSON", t => {
   const rg = new RepositoryGroup(new MultiGroupProvider(), "a", { id: 1 });
 
   t.deepEqual(rg.toJSON(), {
     id: 1,
-    is_admin: false,
+    isAdmin: false,
     name: "a",
     displayName: "a",
     active: true

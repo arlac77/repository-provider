@@ -1,3 +1,4 @@
+import { addType } from "pacc";
 import { matcher } from "matching-iterator";
 import { BaseProvider } from "./base-provider.mjs";
 import { stripBaseName, stripBaseNames } from "./util.mjs";
@@ -10,6 +11,10 @@ import { RepositoryGroup } from "./repository-group.mjs";
  *
  */
 export class MultiGroupProvider extends BaseProvider {
+  static {
+    addType(this);
+  }
+
   #repositoryGroups = new Map();
 
   /**

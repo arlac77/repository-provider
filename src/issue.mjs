@@ -1,3 +1,4 @@
+import { addType } from "pacc";
 import { OwnedObject } from "./owned-object.mjs";
 
 /**
@@ -8,4 +9,8 @@ export class Issue extends OwnedObject {
   async *assignees() {}
   async assignee() {}
   async milestone() {}
+
+  static {
+    addType(this);
+  }
 }

@@ -1,6 +1,5 @@
 import { Repository } from "./repository.mjs";
 
-
 /**
  * Strip repository base name away.
  * A URL auth component will be removed to.

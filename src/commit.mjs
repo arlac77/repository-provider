@@ -1,3 +1,4 @@
+import { addType } from "pacc";
 import { Repository } from "./repository.mjs";
 
 /**
@@ -5,6 +6,10 @@ import { Repository } from "./repository.mjs";
  */
 export class CommitResult {
   ref;
+
+  static {
+    addType(this);
+  }
 
   constructor(ref) {
     this.ref = ref;
@@ -21,11 +26,15 @@ export class User {}
  * @property {User} committer
  */
 export class Commit {
+  static {
+    addType(this);
+  }
+
   repository;
 
   /**
-   * 
-   * @param {Repository} repository 
+   *
+   * @param {Repository} repository
    * @param {Object} options
    * @param {string} options.sha
    * @param {string} options.message

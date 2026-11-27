@@ -1,13 +1,11 @@
 import test from "ava";
 import { assertBranchUpdateAttributes } from "repository-provider-test-support";
-
 import {
   SingleGroupProvider,
   Repository,
   Branch,
   PullRequest
 } from "repository-provider";
-import { ContentEntry } from "content-entry";
 
 test("Branch type", t => t.is(Branch.type, "branch"));
 test("Branch collection name", t => t.is(Branch.collectionName, "branches"));
@@ -70,7 +68,7 @@ test("branch isDefault changed", async t => {
   t.is(b.isDefault, true);
 });
 
-test.only("branch update attributes", async t => {
+test("branch update attributes", async t => {
   const provider = new SingleGroupProvider();
   const repository = await provider.addRepository("r1");
   const branch = await repository.createBranch("b1");

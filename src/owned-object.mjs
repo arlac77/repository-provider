@@ -1,3 +1,4 @@
+import { addType } from "pacc";
 import { NamedObject } from "./named-object.mjs";
 
 /**
@@ -28,13 +29,17 @@ export class OwnedObject extends NamedObject {
     return "_delete" + this.name;
   }
 
+  static {
+    addType(this);
+  }
+
   owner;
 
   /**
-   * 
-   * @param {BaseObject} owner 
-   * @param {string} name 
-   * @param {Object|undefined} options 
+   *
+   * @param {BaseObject} owner
+   * @param {string} name
+   * @param {Object|undefined} options
    */
   constructor(owner, name, options) {
     super(name, options);

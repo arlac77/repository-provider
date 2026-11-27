@@ -1,4 +1,5 @@
 import {
+  addType,
   name_attribute_writable,
   boolean_attribute_writable_false
 } from "pacc";
@@ -31,6 +32,10 @@ export class Ref extends OwnedObject {
       externalName: "protected"
     }
   };
+
+  static {
+    addType(this);
+  }
 
   get refType() {
     return "unknown";
@@ -129,7 +134,11 @@ export class Ref extends OwnedObject {
    * @return false
    */
   get isProtected() {
-    return false;
+    return this._isProtected ?? false;
+  }
+
+  set isProtected(value) {
+    this._isProtected = value;
   }
 
   /**
